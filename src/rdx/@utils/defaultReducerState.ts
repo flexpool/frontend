@@ -1,4 +1,4 @@
-import { DefaultState, DefaultArrayState, CollectionState } from './types';
+import { DefaultState, DefaultArrayState } from './types';
 
 export const defaultReducerState: DefaultState<any> = {
   invalidatedAt: null,

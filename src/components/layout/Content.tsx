@@ -2,10 +2,15 @@ import styled from 'styled-components/macro';
 
 export const Content = styled.div<{
   contentCenter?: boolean;
+  padding?: boolean;
 }>`
   width: 100%;
   margin: 0 auto;
   max-width: 1200px;
+  position: relative;
+  z-index: 1;
+  padding-left: 2rem;
+  padding-right: 2rem;
   ${(p) =>
     p.contentCenter &&
     `
@@ -15,4 +20,10 @@ export const Content = styled.div<{
     align-items: center;
     text-align: center;
   `}
+  ${(p) =>
+    p.padding &&
+    `
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  `};
 `;

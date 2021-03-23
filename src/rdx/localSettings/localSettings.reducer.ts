@@ -1,11 +1,14 @@
 import { Reducer } from 'redux';
+import { Ticker } from 'src/types/Ticker.types';
 
-type LocalSettingsState = {
+export type LocalSettingsState = {
   coin: string;
+  counterTicker: Ticker;
 };
 
 export const defaultState: LocalSettingsState = {
-  coin: 'ETH',
+  coin: 'eth',
+  counterTicker: 'usd',
 };
 
 export const reducer: Reducer<LocalSettingsState> = (

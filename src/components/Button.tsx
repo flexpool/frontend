@@ -2,7 +2,7 @@ import styled, { UIVariant } from 'styled-components/macro';
 
 const btnHeights = {
   xs: 26,
-  sm: 36,
+  sm: 42,
   default: 50,
   lg: 60,
 };
@@ -20,11 +20,13 @@ export const Button = styled.button<ButtonProps>`
   ${(p) => `
     line-height: ${getBtnPxHeight(p.size)}px;
     height: ${getBtnPxHeight(p.size)}px;
+    min-height: ${getBtnPxHeight(p.size)}px;
   `};
 
   font-weight: 700;
   background: var(--bg-secondary);
   border-color: var(--bg-secondary);
+  display: inline-flex;
 
   /** variant */
   ${(p) => {

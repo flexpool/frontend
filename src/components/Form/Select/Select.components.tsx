@@ -14,7 +14,7 @@ const SelectArrowImg = styled.img`
 `;
 
 const SCSelectButton = styled(Button)`
-  min-width: 200px;
+  min-width: 230px;
   font-weight: 600;
   position: relative;
   padding-right: 2.5rem;
@@ -52,7 +52,7 @@ export const DropdownList = styled(AnchoredPop)`
 `;
 
 export const SelectOptionButton = styled(Button)`
-  background-color: white;
+  background-color: var(--bg-primary);
   border: none;
   font-weight: 600;
   display: block;
@@ -60,6 +60,9 @@ export const SelectOptionButton = styled(Button)`
   text-align: left;
   transition: 0.2s all;
   position: relative;
+  & > * {
+    pointer-events: none;
+  }
   &:hover {
     ${(p) => `
       background-color: ${p.theme.color.primary};

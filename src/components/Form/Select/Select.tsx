@@ -73,6 +73,7 @@ export const Select: React.FC<SelectOptions & Partial<FieldProps<string>>> & {
 
   const onSelectItem: React.MouseEventHandler<HTMLButtonElement> = (event) => {
     openState.handleFalse();
+    console.log(event.target);
     if (onChange) {
       onChange(event);
     }

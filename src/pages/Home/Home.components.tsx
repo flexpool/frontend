@@ -7,5 +7,22 @@ export const Hero = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  color: var(--text-on-bg);
+  --text-primary: white;
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  position: relative;
+`;
+
+export const WorldMap = styled.img`
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  opacity: 0.3;
 `;
