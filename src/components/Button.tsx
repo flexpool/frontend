@@ -17,6 +17,9 @@ export type ButtonProps = {
 };
 
 export const Button = styled.button<ButtonProps>`
+  & > * {
+    pointer-events: none;
+  }
   ${(p) => `
     line-height: ${getBtnPxHeight(p.size)}px;
     height: ${getBtnPxHeight(p.size)}px;

@@ -19,7 +19,7 @@ export const useAsyncState = <T = any, E = any>(
   const [error, setError] = React.useState<E | null>(null);
 
   const start = React.useCallback(
-    async (p: Promise<T>) => {
+    async (p: Promise<T>, options?: { reset?: boolean }) => {
       if (isLoading) {
         return Promise.reject('Already loading');
       }
@@ -27,7 +27,9 @@ export const useAsyncState = <T = any, E = any>(
       consola('asyncState', `${title || ''}_START`);
       setIsLoading(true);
       setError(null);
-      setValue(defaultState || null);
+      if (options?.reset) {
+        setValue(defaultState || null);
+      }
       return p
         .then((res) => {
           setIsLoading(false);

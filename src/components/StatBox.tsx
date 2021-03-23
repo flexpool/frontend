@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components/macro';
 
 export const StatBoxContainer = styled.div`
@@ -37,7 +38,7 @@ const Value = styled.span`
   font-weight: 600;
 `;
 
-export const StatBox: React.FC<{ title: string; value: string }> = ({
+export const StatBox: React.FC<{ title: string; value: React.ReactNode }> = ({
   title,
   value,
 }) => (

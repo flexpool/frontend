@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import { Content } from 'src/components/layout/Content';
-import { SelectCoin } from 'src/components/SelectCoin';
+import { HeaderStat } from 'src/components/layout/StatHeader';
 import { StatBox, StatBoxContainer } from 'src/components/StatBox';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { fetchApi } from 'src/utils/fetchApi';
@@ -11,11 +11,6 @@ import styled from 'styled-components/macro';
 
 const Hero = styled.div`
   /* background: var(--primary); */
-`;
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
 `;
 
 export const StatisticsPage = () => {
@@ -40,12 +35,9 @@ export const StatisticsPage = () => {
       <Helmet>
         <title>Statistics</title>
       </Helmet>
-      <Content padding>
-        <Header>
-          <h1>Pool Statistics</h1>
-          <SelectCoin />
-        </Header>
-      </Content>
+      <HeaderStat>
+        <h1>Statistics</h1>
+      </HeaderStat>
       {!!statsState.data && (
         <Content>
           <StatBoxContainer>

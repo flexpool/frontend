@@ -1,5 +1,5 @@
 import cls from './NavBar.module.scss';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Logo from 'src/assets/logo.svg';
 import { Content } from 'src/components/layout/Content';
 import { Button } from 'src/components/Button';
@@ -20,6 +20,9 @@ const NLink = styled(NavLink)`
   svg {
     height: 1.25rem;
     width: 1.25rem;
+  }
+  &.active {
+    color: var(--primary);
   }
 `;
 
@@ -113,13 +116,15 @@ export const NavBar: React.FC<NavBarType> = (props) => {
           </NavLink>
           <NavSection>
             <NLink to="/statistics">Statistics</NLink>
-            <NLink to="/statistics">Blocks</NLink>
-            <NLink to="/statistics">Miners</NLink>
+            <NLink to="/blocks">Blocks</NLink>
+            <NLink to="/miners">Miners</NLink>
           </NavSection>
           <NavSection>
-            <NLink to="/statistics">FAQ</NLink>
-            <NLink to="/statistics">Support</NLink>
-            <Button variant="primary">Get Started</Button>
+            <NLink to="/faq">FAQ</NLink>
+            <NLink to="/support">Support</NLink>
+            <Button variant="primary" as={Link} to="/get-started">
+              Get Started
+            </Button>
           </NavSection>
         </NavContainer>
       </NavContainerOuter>
@@ -142,10 +147,10 @@ export const NavBar: React.FC<NavBarType> = (props) => {
         <MobileSlide isOpen={openState.value}>
           <Button variant="primary">Get Started</Button>
           <NLink to="/statistics">Statistics</NLink>
-          <NLink to="/statistics">Blocks</NLink>
-          <NLink to="/statistics">Miners</NLink>
-          <NLink to="/statistics">FAQ</NLink>
-          <NLink to="/statistics">Support</NLink>
+          <NLink to="/blocks">Blocks</NLink>
+          <NLink to="/miners">Miners</NLink>
+          <NLink to="/faq">FAQ</NLink>
+          <NLink to="/support">Support</NLink>
         </MobileSlide>
       </ContainerMobile>
     </>

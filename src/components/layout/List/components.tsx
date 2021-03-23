@@ -7,9 +7,12 @@ const Container = styled.table`
   border-spacing: 0 3px;
   color: var(--text-secondary);
   border-collapse: separate;
+  border: 1px solid var(--border-color);
 `;
 
 const shared = `
+padding-left: 0.5rem;
+padding-right: 0.5rem;
 &:first-child {
   padding-left: 1.5rem;
 }
@@ -37,7 +40,8 @@ const Td = styled.td<{ alignRight?: boolean }>`
   padding-bottom: 0.75rem;
   text-align: left;
   color: var(--text-secondary);
-  font-weight: 600;
+  font-weight: 500;
+  border-top: 1px solid var(--border-color);
 
   ${shared};
   color: var(--text-primary);

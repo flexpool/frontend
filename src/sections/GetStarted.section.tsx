@@ -5,6 +5,7 @@ import styled from 'styled-components/macro';
 const Wrapper = styled.section`
   background: var(--primary);
   color: var(--text-on-bg);
+  --text-primary: white;
 `;
 
 const Split = styled.div`

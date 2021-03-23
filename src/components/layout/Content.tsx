@@ -23,7 +23,7 @@ export const Content = styled.div<{
   ${(p) =>
     p.padding &&
     `
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   `};
 `;

@@ -1,6 +1,6 @@
 import qs from 'query-string';
 
-export const apiURL = process.env.REACT_APP_API_URL + '/api/v2';
+export const apiURL = process.env.REACT_APP_API_URL;
 
 const transformQuery = (query?: object) => {
   return (query && qs.stringify(query)) || '';
