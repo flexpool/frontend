@@ -16,6 +16,8 @@ import { HomePage } from 'src/pages/Home/Home.page';
 import { FooterSection } from 'src/sections/Footer.section';
 import { StatisticsPage } from 'src/pages/Statistics/Statistics.page';
 import { BlocksPage } from 'src/pages/Blocks/Blocks.page';
+import { MinersPage } from 'src/pages/Miners/Miners.page';
+import { FaqPage } from 'src/pages/Faq/Faq.page';
 
 const store = createReduxStore();
 
@@ -35,6 +37,8 @@ const App = () => {
                   component={StatisticsPage}
                   path="/statistics"
                 />
+                <Route exact strict component={FaqPage} path="/faq" />
+                <Route exact strict component={MinersPage} path="/miners" />
                 <Route exact strict component={BlocksPage} path="/blocks" />
                 <Route exact strict component={HomePage} path="/" />
                 <Redirect to="/" />

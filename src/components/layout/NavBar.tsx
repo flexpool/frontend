@@ -1,4 +1,3 @@
-import cls from './NavBar.module.scss';
 import { Link, NavLink } from 'react-router-dom';
 import Logo from 'src/assets/logo.svg';
 import { Content } from 'src/components/layout/Content';
@@ -39,7 +38,7 @@ const NavSection = styled.div`
 `;
 
 const MobileSlide = styled(ScrollArea)<{ isOpen?: boolean }>`
-  width: 100vw;
+  width: 100%;
   max-width: 400px;
   position: fixed;
   top: 70px;
@@ -70,7 +69,7 @@ const NavContainerOuter = styled.div`
   /* position: sticky; */
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 70px;
   z-index: 1000;
   background: var(--bg-primary);
@@ -112,7 +111,7 @@ export const NavBar: React.FC<NavBarType> = (props) => {
       <NavContainerOuter>
         <NavContainer>
           <NavLink to="/">
-            <img className={cls.logo} src={Logo} alt="Flexpool Logo" />
+            <img src={Logo} alt="Flexpool Logo" />
           </NavLink>
           <NavSection>
             <NLink to="/statistics">Statistics</NLink>

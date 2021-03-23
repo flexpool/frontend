@@ -36,10 +36,10 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject"
   },
   "eslintConfig": {
     "extends": [
@@ -66,7 +66,10 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/redux": "^3.6.0",
     "@types/redux-logger": "^3.0.8",
+    "frontmatter-markdown-loader": "^3.6.2",
     "prettier": "^2.2.1",
+    "react-app-rewire-frontmatter-markdown": "^1.4.0",
+    "react-app-rewired": "^2.1.8",
     "sass": "^1.32.8"
   }
 }

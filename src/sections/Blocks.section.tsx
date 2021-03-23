@@ -60,16 +60,18 @@ const PaginationItems = styled.div`
   }
 `;
 
+const PaginSplit = styled.span`
+  opacity: 0.3;
+`;
+
 const Pagination: React.FC<{
   currentPage: number;
   totalPages: number;
   onPageSelect: React.MouseEventHandler<HTMLButtonElement>;
 }> = ({ currentPage, totalPages, onPageSelect }) => {
-  const count = 3;
   const showStart = currentPage - 1 > 0;
   const showEnd = currentPage + 2 < totalPages;
-  console.log(showStart, currentPage - 1, 0);
-  console.log('current', currentPage + 1);
+
   const pageList = [
     currentPage - 1,
     currentPage,
@@ -85,7 +87,7 @@ const Pagination: React.FC<{
           <Button size="sm" onClick={onPageSelect} value={0}>
             {1}
           </Button>
-          —
+          <PaginSplit>—</PaginSplit>
         </>
       )}
       {pageList.map((item) => (
@@ -101,7 +103,7 @@ const Pagination: React.FC<{
       ))}
       {showEnd && (
         <>
-          —
+          <PaginSplit>—</PaginSplit>
           <Button size="sm" onClick={onPageSelect} value={totalPages - 1}>
             {totalPages}
           </Button>
@@ -148,8 +150,6 @@ export const BlocksSection = () => {
     },
     [totalPages]
   );
-
-  console.log('TTT', currentPage, totalPages);
 
   return (
     <Content padding>

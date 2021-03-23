@@ -13,6 +13,7 @@ import useWebSocket from 'react-use-websocket';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { getDisplayLuck } from 'src/utils/luck.utils';
 import { BlocksSection } from 'src/sections/Blocks.section';
+import { Luck } from 'src/components/Luck';
 
 const SOCKET_URL = (process.env.REACT_APP_API_URL || '').replace('http', 'ws');
 
@@ -68,8 +69,8 @@ export const BlocksPage = () => {
                 value={getDisplayLuck(statsState.data[0])}
               />
               <StatBox
-                title="Average Luck"
-                value={getDisplayLuck(blockStats.currentLuck)}
+                title="Current Luck"
+                value={<Luck value={blockStats.currentLuck} />}
               />
               <StatBox
                 title="Network hashrate"
