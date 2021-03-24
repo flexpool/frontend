@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import Logo from 'src/assets/logo.svg';
 import { Content } from 'src/components/layout/Content';
 import { Button } from 'src/components/Button';
@@ -7,6 +7,7 @@ import styled from 'styled-components/macro';
 
 import { FaChartArea, FaCubes } from 'react-icons/fa';
 import { useBoolState } from 'src/hooks/useBoolState';
+import React from 'react';
 
 const NLink = styled(NavLink)`
   height: 100%;
@@ -66,7 +67,7 @@ const MobileSlide = styled(ScrollArea)<{ isOpen?: boolean }>`
 `;
 
 const NavContainerOuter = styled.div`
-  /* position: sticky; */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -104,10 +105,22 @@ const ContainerMobile = styled(NavContainerOuter)`
   }
 `;
 
+const FixedMargin = styled.div`
+  height: 70px;
+`;
+
 export const NavBar: React.FC<NavBarType> = (props) => {
   const openState = useBoolState();
+
+  const location = useLocation();
+
+  React.useEffect(() => {
+    openState.handleFalse();
+  }, [location]);
+
   return (
     <>
+      <FixedMargin />
       <NavContainerOuter>
         <NavContainer>
           <NavLink to="/">
@@ -137,7 +150,7 @@ export const NavBar: React.FC<NavBarType> = (props) => {
             <NLink to="/statistics">
               <FaChartArea />
             </NLink>
-            <NLink to="/statistics">
+            <NLink to="/blocks">
               <FaCubes />
             </NLink>
             <Button onClick={openState.handleToggle}> x </Button>

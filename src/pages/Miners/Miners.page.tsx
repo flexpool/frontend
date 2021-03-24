@@ -1,13 +1,13 @@
 import { Helmet } from 'react-helmet-async';
+import { Page } from 'src/components/layout/Page';
 
 import { HeaderStat } from 'src/components/layout/StatHeader';
-import styled from 'styled-components/macro';
 import { TopDonatorsSection } from './TopDonors.section';
 import { TopMinersSection } from './TopMiners.section';
 
 export const MinersPage = () => {
   return (
-    <>
+    <Page>
       <Helmet>
         <title>Miners</title>
       </Helmet>
@@ -16,6 +16,6 @@ export const MinersPage = () => {
       </HeaderStat>
       <TopMinersSection />
       <TopDonatorsSection />
-    </>
+    </Page>
   );
 };

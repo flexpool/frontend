@@ -14,6 +14,7 @@ import { useReduxState } from 'src/rdx/useReduxState';
 import { getDisplayLuck } from 'src/utils/luck.utils';
 import { BlocksSection } from 'src/sections/Blocks.section';
 import { Luck } from 'src/components/Luck';
+import { Page } from 'src/components/layout/Page';
 
 const SOCKET_URL = (process.env.REACT_APP_API_URL || '').replace('http', 'ws');
 
@@ -52,7 +53,7 @@ export const BlocksPage = () => {
   }, []);
 
   return (
-    <>
+    <Page>
       <Hero>
         <Helmet>
           <title>Blocks</title>
@@ -85,6 +86,6 @@ export const BlocksPage = () => {
         )}
       </Hero>
       <BlocksSection />
-    </>
+    </Page>
   );
 };

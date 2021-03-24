@@ -58,6 +58,10 @@ const PaginationItems = styled.div`
   & > * {
     margin: 0 0.25rem;
   }
+
+  @media screen and (max-width: 660px) {
+    display: none;
+  }
 `;
 
 const PaginSplit = styled.span`
@@ -154,14 +158,18 @@ export const BlocksSection = () => {
   return (
     <Content padding>
       <DynamicList
+        isLoading={blockState.isLoading}
+        loadingRowsCount={10}
         data={blocks}
         columns={[
           {
             title: 'Number',
+            skeletonWidth: 90,
             Component: ({ data }) => <>{data.number}</>,
           },
           {
             title: 'Type',
+            skeletonWidth: 50,
             Component: ({ data }) =>
               data.type === 'uncle' ? (
                 <TypeUncle>{data.type}</TypeUncle>
@@ -171,22 +179,26 @@ export const BlocksSection = () => {
           },
           {
             title: 'Date',
+            skeletonWidth: 150,
             Component: ({ data }) => (
               <>{format(data.timestamp * 1000, 'PPp')}</>
             ),
           },
           {
             title: 'Region',
+            skeletonWidth: 50,
             Component: ({ data }) => <Region>{data.region}</Region>,
           },
           {
             title: 'Miner',
+            skeletonWidth: 210,
             Component: ({ data }) => (
               <LinkMiner coin={localSettingsState.coin} address={data.miner} />
             ),
           },
           {
             title: 'Reward',
+            skeletonWidth: 90,
             Component: ({ data }) => {
               const displayReward = useActiveCoinDisplayValue(data.reward);
 

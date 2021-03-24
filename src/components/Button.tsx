@@ -17,6 +17,30 @@ export type ButtonProps = {
 };
 
 export const Button = styled.button<ButtonProps>`
+  transition: 0.2s all;
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 4px;
+  border: 1px solid #f1f3fa;
+  outline: none;
+  font-size: 1rem;
+  cursor: pointer;
+  &:hover,
+  &:active,
+  &:focus {
+    background: #fafafb;
+    border-color: #eae8f0;
+  }
+  color: #111432;
+  font-weight: 400;
+
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.3;
+  }
   & > * {
     pointer-events: none;
   }

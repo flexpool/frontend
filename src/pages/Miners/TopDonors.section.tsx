@@ -18,17 +18,17 @@ type ApiDonor = {
 
 export const TopDonatorsSection = () => {
   const activeCoin = useActiveCoin();
-  const minersState = useAsyncState<ApiDonor[]>('donors', []);
+  const donorsState = useAsyncState<ApiDonor[]>('donors', []);
 
   React.useEffect(() => {
-    minersState.start(
+    donorsState.start(
       fetchApi('/pool/topDonators', { query: { coin: activeCoin } })
     );
   }, [activeCoin]);
 
   const miners = React.useMemo(() => {
-    return minersState.data || [];
-  }, [minersState.data]);
+    return donorsState.data || [];
+  }, [donorsState.data]);
 
   return (
     <>
@@ -36,7 +36,7 @@ export const TopDonatorsSection = () => {
         <h2>Top Miners</h2>
         <br />
         <DynamicList
-          isLoading={minersState.isLoading}
+          isLoading={donorsState.isLoading}
           loadingRowsCount={10}
           columns={[
             {

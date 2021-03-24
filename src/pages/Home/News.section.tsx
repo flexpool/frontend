@@ -1,11 +1,13 @@
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import React from 'react';
+import { Content } from 'src/components/layout/Content';
 
 const ItemWrapper = styled.a`
   min-height: 120px;
   padding: 30px;
-  width: 350px;
+  width: 1px;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -72,19 +74,27 @@ const HomeNewsItem: React.FC<{
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled(Content)`
   position: relative;
-  width: 100%;
   display: flex;
   justify-content: center;
   z-index: 1;
-  margin-bottom: 4rem;
 `;
 const WrapperInner = styled.div`
-  position: absolute;
-  top: -85px;
+  position: relative;
+  width: 100%;
+  top: -4rem;
   display: flex;
   box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.06);
+  @media screen and (max-width: 800px) {
+    position: relative;
+    display: block;
+    top: 2rem;
+    & > * {
+      width: 100%;
+      display: block;
+    }
+  }
 `;
 export const NewsSection = () => {
   return (

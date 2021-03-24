@@ -1,0 +1,19 @@
+.page-transition {
+  transition: 0.3s all;
+  opacity: 0;
+
+  &.enter {
+    opacity: 0;
+  }
+  &.enter-active {
+    opacity: 1;
+  }
+
+  &.enter-done {
+    opacity: 1;
+  }
+
+  &.exit {
+    opacity: 0;
+  }
+}

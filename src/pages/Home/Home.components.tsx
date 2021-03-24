@@ -2,6 +2,8 @@ import styled from 'styled-components/macro';
 
 export const Hero = styled.div`
   min-height: 40vh;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
   background: var(--primary);
   display: flex;
   flex-direction: column;

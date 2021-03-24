@@ -1,6 +1,6 @@
 import React from 'react';
 import { clx } from 'src/utils/clx';
-import { Skeleton, Table } from './components';
+import { HorizontalScrollWrapepr, Skeleton, Table } from './components';
 
 export interface DynamicListColumn<D extends {}, CP extends {}> {
   title: React.ReactNode;
@@ -49,13 +49,6 @@ export const DynamicList = <D extends {}, CP extends {}>(
     isLoading,
     loadingRowsCount = 5,
   } = props;
-
-  if (!tBodyChildren && (!data || data.length < 1)) {
-    if (contentEmpty !== null) {
-      return <div>{contentEmpty || <p>No data</p>}</div>;
-    }
-    return null;
-  }
 
   return (
     <Table.Container>

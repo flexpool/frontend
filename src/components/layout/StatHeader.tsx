@@ -6,6 +6,7 @@ import { Content } from './Content';
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 `;
 
 const Wrapper = styled.div`

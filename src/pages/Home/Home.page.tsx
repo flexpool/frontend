@@ -1,5 +1,6 @@
 import React from 'react';
 import { Content } from 'src/components/layout/Content';
+import { Page } from 'src/components/layout/Page';
 import { CoinsWeMineSection } from 'src/pages/Home/CoinsWeMine.section';
 import { GetStartedSection } from 'src/sections/GetStarted.section';
 import { Hero, WorldMap } from './Home.components';
@@ -8,7 +9,7 @@ import MapSvg from './world_map_dots.svg';
 
 export const HomePage = () => {
   return (
-    <>
+    <Page>
       <Hero>
         <WorldMap src={MapSvg} alt="map" />
         <Content contentCenter>
@@ -19,6 +20,6 @@ export const HomePage = () => {
       <NewsSection />
       <CoinsWeMineSection />
       <GetStartedSection />
-    </>
+    </Page>
   );
 };

@@ -12,14 +12,14 @@ const Container = styled.table`
 `;
 
 const shared = `
-padding-left: 0.5rem;
-padding-right: 0.5rem;
-&:first-child {
-  padding-left: 1.5rem;
-}
-&:last-child {
-  padding-right: 1.5rem;
-}
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  &:first-child {
+    padding-left: 1.5rem;
+  }
+  &:last-child {
+    padding-right: 1.5rem;
+  }
 `;
 
 const Th = styled.th<{ alignRight?: boolean }>`
@@ -87,4 +87,11 @@ export const Skeleton = styled.div`
   height: 1rem;
   border-radius: 4px;
   animation: ${pulse} 2s linear infinite;
+  margin-top: 3px;
+  margin-bottom: 3px;
+`;
+
+export const HorizontalScrollWrapepr = styled.div`
+  width: 100%;
+  overflow-x: auto;
 `;

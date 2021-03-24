@@ -26,6 +26,7 @@ export const CoinsWeMineSection = () => {
           Flexpool is a Multi-Coin mining pool, which means that you can mine
           your multiple favorite coins on Flexpool.
         </p>
+        <br />
         <DynamicList
           columns={[
             {

@@ -1,9 +1,7 @@
 ---
-title: "What is Hashrate?"
+title: 'What is Hashrate?'
 level: beginner
 ---
-
-# Hashrate
 
 Hashrate is a measure of the amount of Hashes your worker is processing per second - the higher your hashrate the more likely you are to find more Shares in a given amount of time.
 
