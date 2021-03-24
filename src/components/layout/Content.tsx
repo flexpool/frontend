@@ -4,6 +4,7 @@ export const Content = styled.div<{
   contentCenter?: boolean;
   padding?: boolean;
   paddingLg?: boolean;
+  md?: boolean;
 }>`
   width: 100%;
   margin: 0 auto;
@@ -32,5 +33,10 @@ export const Content = styled.div<{
     `
     padding-top: 4rem;
     padding-bottom: 4rem;
+  `};
+  ${(p) =>
+    p.md &&
+    `
+    max-width: 800px
   `};
 `;

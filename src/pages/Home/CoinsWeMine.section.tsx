@@ -28,9 +28,12 @@ export const CoinsWeMineSection = () => {
         </p>
         <br />
         <DynamicList
+          isLoading={poolCoinsState.isLoading}
+          loadingRowsCount={1}
           columns={[
             {
               title: 'Name',
+              skeletonWidth: 110,
               Component: ({ data }) => {
                 return <>{data.name}</>;
               },
@@ -38,6 +41,7 @@ export const CoinsWeMineSection = () => {
             {
               title: 'Price',
               alignRight: true,
+              skeletonWidth: 80,
               Component: ({ data }) => {
                 const v = useCounterValue(data.marketData.prices);
                 return <>{v}</>;
@@ -46,6 +50,7 @@ export const CoinsWeMineSection = () => {
             {
               title: 'Market Cap',
               alignRight: true,
+              skeletonWidth: 140,
               Component: ({ data }) => {
                 const v = useCounterValue(data.marketData.marketCaps);
                 return <>{v}</>;
@@ -54,12 +59,14 @@ export const CoinsWeMineSection = () => {
             {
               title: 'Algorithm',
               alignRight: true,
+              skeletonWidth: 75,
               Component: ({ data }) => {
                 return <>{data.algorithm}</>;
               },
             },
             {
               title: 'Hashrate',
+              skeletonWidth: 80,
               alignRight: true,
               Component: ({ data }) => {
                 return <>{formatSi(data.hashrate, 'H/s')}</>;
@@ -68,6 +75,7 @@ export const CoinsWeMineSection = () => {
             {
               title: 'Miners',
               alignRight: true,
+              skeletonWidth: 50,
               Component: ({ data }) => {
                 return <>{data.minerCount}</>;
               },
@@ -75,9 +83,10 @@ export const CoinsWeMineSection = () => {
             {
               title: '',
               alignRight: true,
+              skeletonWidth: 80,
               Component: ({ data }) => {
                 return (
-                  <Button size="sm" variant="primary">
+                  <Button size="xs" variant="primary">
                     Mine
                   </Button>
                 );

@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
 
 import { HeaderStat } from 'src/components/layout/StatHeader';
@@ -14,8 +15,10 @@ export const MinersPage = () => {
       <HeaderStat>
         <h1>Miners leaderboard</h1>
       </HeaderStat>
-      <TopMinersSection />
-      <TopDonatorsSection />
+      <Content padding>
+        <TopMinersSection />
+        <TopDonatorsSection />
+      </Content>
     </Page>
   );
 };

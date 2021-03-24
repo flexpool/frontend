@@ -30,14 +30,16 @@ const AppContent = () => {
   // hash
   React.useLayoutEffect(() => {
     const hash = location.hash;
-    const scrollToEl = document.getElementById(hash.replace('#', ''));
-    if (scrollToEl) {
-      window.scrollTo({
-        top: scrollToEl.offsetTop - 50,
-        left: 0,
-        behavior: 'smooth',
-      });
-    }
+    setTimeout(() => {
+      const scrollToEl = document.getElementById(hash.replace('#', ''));
+      if (scrollToEl) {
+        window.scrollTo({
+          top: scrollToEl.offsetTop - 50,
+          left: 0,
+          behavior: 'smooth',
+        });
+      }
+    }, 40);
   }, [location.hash]);
 
   // location

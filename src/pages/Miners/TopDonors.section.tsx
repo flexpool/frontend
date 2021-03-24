@@ -1,77 +1,63 @@
 import React from 'react';
-import { Content } from 'src/components/layout/Content';
 import DynamicList from 'src/components/layout/List/List';
 import { LinkMiner } from 'src/components/LinkMiner';
-import { useAsyncState } from 'src/hooks/useAsyncState';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
-import { fetchApi } from 'src/utils/fetchApi';
-import { formatSi } from 'src/utils/si.utils';
 import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
 import { useActiveCoinDisplayValue } from 'src/hooks/useDisplayReward';
-
-type ApiDonor = {
-  address: string;
-  donation: number;
-  donated: number;
-  firstJoined: number;
-};
+import { useDispatch } from 'react-redux';
+import { donorsGet } from 'src/rdx/topDonors/topDonors.actions';
+import { useReduxState } from 'src/rdx/useReduxState';
 
 export const TopDonatorsSection = () => {
   const activeCoin = useActiveCoin();
-  const donorsState = useAsyncState<ApiDonor[]>('donors', []);
+  const donorsState = useReduxState('donors');
+  const d = useDispatch();
 
   React.useEffect(() => {
-    donorsState.start(
-      fetchApi('/pool/topDonators', { query: { coin: activeCoin } })
-    );
-  }, [activeCoin]);
-
-  const miners = React.useMemo(() => {
-    return donorsState.data || [];
-  }, [donorsState.data]);
+    d(donorsGet(activeCoin));
+  }, [activeCoin, d]);
 
   return (
     <>
-      <Content paddingLg>
-        <h2>Top Miners</h2>
-        <br />
-        <DynamicList
-          isLoading={donorsState.isLoading}
-          loadingRowsCount={10}
-          columns={[
-            {
-              title: 'Miner',
-              skeletonWidth: 200,
-              Component: ({ data }) => {
-                return <LinkMiner address={data.address} coin={activeCoin} />;
-              },
+      <h2>Top Miners</h2>
+      <br />
+      <DynamicList
+        isLoading={donorsState.isLoading}
+        loadingRowsCount={10}
+        data={donorsState.data}
+        columns={[
+          {
+            title: 'Miner',
+            skeletonWidth: 200,
+            Component: ({ data }) => {
+              return <LinkMiner address={data.address} coin={activeCoin} />;
             },
-            {
-              title: 'Total Donated',
-              Component: ({ data }) => {
-                const displayReward = useActiveCoinDisplayValue(data.donated);
-                return <>{displayReward}</>;
-              },
+          },
+          {
+            title: 'Total Donated',
+            Component: ({ data }) => {
+              const displayReward = useActiveCoinDisplayValue(data.donated);
+              return <>{displayReward}</>;
             },
-            {
-              title: 'Donation',
-              Component: ({ data }) => {
-                return <>{data.donation * 100} %</>;
-              },
+          },
+          {
+            title: 'Donation',
+            skeletonWidth: 60,
+            Component: ({ data }) => {
+              return <>{data.donation * 100} %</>;
             },
-            {
-              title: 'Joined',
-              skeletonWidth: 150,
-              Component: ({ data }) => {
-                return (
-                  <>{formatDistanceToNowStrict(data.firstJoined * 1000)} ago</>
-                );
-              },
+          },
+          {
+            title: 'Joined',
+            skeletonWidth: 120,
+            Component: ({ data }) => {
+              return (
+                <>{formatDistanceToNowStrict(data.firstJoined * 1000)} ago</>
+              );
             },
-          ]}
-          data={miners}
-        />
-      </Content>
+          },
+        ]}
+      />
     </>
   );
 };

@@ -18,12 +18,8 @@ import { Page } from 'src/components/layout/Page';
 
 const SOCKET_URL = (process.env.REACT_APP_API_URL || '').replace('http', 'ws');
 
-const Hero = styled.div`
-  /* background: var(--primary); */
-`;
-
 export const BlocksPage = () => {
-  const statsState = useAsyncState('poolStats');
+  const statsState = useAsyncState('poolStats', [0]);
   const init = { query: { coin: 'eth' } };
 
   const localSettingsState = useReduxState('localSettings');
@@ -54,38 +50,38 @@ export const BlocksPage = () => {
 
   return (
     <Page>
-      <Hero>
-        <Helmet>
-          <title>Blocks</title>
-        </Helmet>
-        <HeaderStat>
-          <h1>Blocks</h1>
-          <p>History of mined blocks by Flexpool community</p>
-        </HeaderStat>
-        {!!statsState.data && (
-          <Content>
-            <StatBoxContainer>
-              <StatBox
-                title="Average Luck"
-                value={getDisplayLuck(statsState.data[0])}
-              />
-              <StatBox
-                title="Current Luck"
-                value={<Luck value={blockStats.currentLuck} />}
-              />
-              <StatBox
-                title="Network hashrate"
-                value={`${formatSi(blockStats.networkHashrate, 'H/s')}`}
-              />
-              <StatBox
-                title="Network difficulty"
-                value={`${formatSi(blockStats.difficulty, 'H')}`}
-              />
-            </StatBoxContainer>
-          </Content>
-        )}
-      </Hero>
-      <BlocksSection />
+      <Helmet>
+        <title>Blocks</title>
+      </Helmet>
+      <HeaderStat>
+        <h1>Blocks</h1>
+        <p>History of mined blocks by Flexpool community</p>
+      </HeaderStat>
+      <Content>
+        <StatBoxContainer>
+          <StatBox
+            title="Average Luck"
+            isLoading={statsState.isLoading}
+            value={getDisplayLuck((statsState.data && statsState.data[0]) || 0)}
+          />
+          <StatBox
+            title="Current Luck"
+            isLoading={statsState.isLoading}
+            value={<Luck value={blockStats.currentLuck} />}
+          />
+          <StatBox
+            title="Network hashrate"
+            isLoading={statsState.isLoading}
+            value={`${formatSi(blockStats.networkHashrate, 'H/s')}`}
+          />
+          <StatBox
+            title="Network difficulty"
+            isLoading={statsState.isLoading}
+            value={`${formatSi(blockStats.difficulty, 'H')}`}
+          />
+        </StatBoxContainer>
+        <BlocksSection />
+      </Content>
     </Page>
   );
 };

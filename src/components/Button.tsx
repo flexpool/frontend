@@ -1,7 +1,7 @@
 import styled, { UIVariant } from 'styled-components/macro';
 
 const btnHeights = {
-  xs: 26,
+  xs: 32,
   sm: 42,
   default: 50,
   lg: 60,
@@ -27,6 +27,7 @@ export const Button = styled.button<ButtonProps>`
   border: 1px solid #f1f3fa;
   outline: none;
   font-size: 1rem;
+  background-color: white;
   cursor: pointer;
   &:hover,
   &:active,
@@ -51,7 +52,6 @@ export const Button = styled.button<ButtonProps>`
   `};
 
   font-weight: 700;
-  background: var(--bg-secondary);
   border-color: var(--bg-secondary);
   display: inline-flex;
 

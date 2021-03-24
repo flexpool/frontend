@@ -156,7 +156,7 @@ export const BlocksSection = () => {
   );
 
   return (
-    <Content padding>
+    <div>
       <DynamicList
         isLoading={blockState.isLoading}
         loadingRowsCount={10}
@@ -164,7 +164,7 @@ export const BlocksSection = () => {
         columns={[
           {
             title: 'Number',
-            skeletonWidth: 90,
+            skeletonWidth: 80,
             Component: ({ data }) => <>{data.number}</>,
           },
           {
@@ -179,14 +179,14 @@ export const BlocksSection = () => {
           },
           {
             title: 'Date',
-            skeletonWidth: 150,
+            skeletonWidth: 180,
             Component: ({ data }) => (
               <>{format(data.timestamp * 1000, 'PPp')}</>
             ),
           },
           {
             title: 'Region',
-            skeletonWidth: 50,
+            skeletonWidth: 40,
             Component: ({ data }) => <Region>{data.region}</Region>,
           },
           {
@@ -198,7 +198,7 @@ export const BlocksSection = () => {
           },
           {
             title: 'Reward',
-            skeletonWidth: 90,
+            skeletonWidth: 80,
             Component: ({ data }) => {
               const displayReward = useActiveCoinDisplayValue(data.reward);
 
@@ -207,12 +207,8 @@ export const BlocksSection = () => {
           },
           {
             title: 'Round Time',
+            skeletonWidth: 75,
             Component: ({ data }) => {
-              const interval = intervalToDuration({
-                start: 0,
-                end: data.roundTime * 1000 - 60 * 60,
-              });
-              console.log(interval);
               return (
                 <>
                   {format(data.roundTime * 1000 - 1000 * 60 * 60, 'HH:mm:ss')}
@@ -222,6 +218,7 @@ export const BlocksSection = () => {
           },
           {
             title: 'Luck',
+            skeletonWidth: 70,
             Component: ({ data }) => <Luck value={data.luck} />,
           },
         ]}
@@ -249,6 +246,6 @@ export const BlocksSection = () => {
           Next
         </Button>
       </PaginationContainer>
-    </Content>
+    </div>
   );
 };

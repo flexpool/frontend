@@ -184,7 +184,7 @@ export const FaqPage = () => {
   }));
   return (
     <Page>
-      <Content padding>
+      <Content paddingLg>
         <Split>
           <FaqContent>
             {faqSections.map((item) => (
