@@ -12,13 +12,14 @@ const pulse = keyframes`
 }
 `;
 
-export const Skeleton = styled.div`
+export const Skeleton = styled.div<{ width?: number }>`
   background: var(--bg-secondary);
   width: 100px;
   height: 1rem;
-  border-radius: 4px;
+  border-radius: 5px;
   animation: ${pulse} 2s linear infinite;
   margin-top: 3px;
   margin-bottom: 3px;
   display: inline-block;
+  ${(p) => p.width && `width: ${p.width}`};
 `;

@@ -1,16 +1,16 @@
 import React from 'react';
 import DynamicList from 'src/components/layout/List/List';
 import { LinkMiner } from 'src/components/LinkMiner';
-import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
+import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { formatSi } from 'src/utils/si.utils';
 import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
-import { useActiveCoinDisplayValue } from 'src/hooks/useDisplayReward';
+import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { useDispatch } from 'react-redux';
 import { topMinersGet } from 'src/rdx/topMiners/topMiners.actions';
 
 export const TopMinersSection = () => {
-  const activeCoin = useActiveCoin();
+  const activeCoin = useActiveCoinTicker();
   const minersState = useReduxState('topMiners');
   const d = useDispatch();
 
@@ -44,7 +44,7 @@ export const TopMinersSection = () => {
             title: 'Balance',
             skeletonWidth: 75,
             Component: ({ data }) => {
-              const value = useActiveCoinDisplayValue(data.balance);
+              const value = useActiveCoinTickerDisplayValue(data.balance);
               return <>{value}</>;
             },
           },

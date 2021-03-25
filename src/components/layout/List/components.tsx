@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 const Container = styled.table`
   width: 100%;
   border-collapse: collapse;
-  border-radius: 4px;
+  border-radius: 5px;
   border-spacing: 0 3px;
   color: var(--text-secondary);
   border-collapse: separate;

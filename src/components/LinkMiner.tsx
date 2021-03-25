@@ -24,7 +24,7 @@ export const LinkMiner: React.FC<{
   chars?: number;
 }> = ({ address, coin, chars }) => {
   return (
-    <L to={{ pathname: `/miner/${coin}/${address}` }}>
+    <L to={{ pathname: `/miners/${coin}/${address}` }}>
       {shortenString(address, chars)}
     </L>
   );

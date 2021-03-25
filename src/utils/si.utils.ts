@@ -1,5 +1,9 @@
-export const formatSi = (value: number, unit: string, decimals = 1) => {
-  const siSymbols = ['', 'k', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];
+const siSymbols = ['', 'k', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];
+
+export const formatSi = (value?: number, unit: string = '', decimals = 1) => {
+  if (!value) {
+    return null;
+  }
 
   var siN = 0;
 

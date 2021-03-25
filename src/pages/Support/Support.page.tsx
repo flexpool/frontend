@@ -19,7 +19,7 @@ const SupportChannelWrapper = styled.a`
   font-weight: 600;
   display: inline-flex;
   align-items: center;
-  border-radius: 4px;
+  border-radius: 5px;
   svg {
     height: 30px;
     width: 30px;

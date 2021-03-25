@@ -1,15 +1,15 @@
 import React from 'react';
 import DynamicList from 'src/components/layout/List/List';
 import { LinkMiner } from 'src/components/LinkMiner';
-import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
-import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
-import { useActiveCoinDisplayValue } from 'src/hooks/useDisplayReward';
+import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
+import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
 import { useDispatch } from 'react-redux';
 import { donorsGet } from 'src/rdx/topDonors/topDonors.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
+import { dateUtils } from 'src/utils/date.utils';
 
 export const TopDonatorsSection = () => {
-  const activeCoin = useActiveCoin();
+  const activeCoin = useActiveCoinTicker();
   const donorsState = useReduxState('donors');
   const d = useDispatch();
 
@@ -36,7 +36,9 @@ export const TopDonatorsSection = () => {
           {
             title: 'Total Donated',
             Component: ({ data }) => {
-              const displayReward = useActiveCoinDisplayValue(data.donated);
+              const displayReward = useActiveCoinTickerDisplayValue(
+                data.donated
+              );
               return <>{displayReward}</>;
             },
           },
@@ -51,9 +53,7 @@ export const TopDonatorsSection = () => {
             title: 'Joined',
             skeletonWidth: 120,
             Component: ({ data }) => {
-              return (
-                <>{formatDistanceToNowStrict(data.firstJoined * 1000)} ago</>
-              );
+              return <>{dateUtils.formatDistance(data.firstJoined * 1000)}</>;
             },
           },
         ]}

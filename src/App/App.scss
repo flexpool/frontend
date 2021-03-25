@@ -5,11 +5,12 @@ body {
 
 body {
   --text-primary: #111432;
-  --text-secondary: #6b6c6f;
+  --text-secondary: #404a59;
   --text-on-bg: #fff;
   --bg-primary: #fff;
   --bg-secondary: #f5f5f9;
   --primary: #0069ff;
+  --secondary: #1633ff;
   --success: #15cd72;
   --border-color: #e8eff7;
 
@@ -27,8 +28,7 @@ h2 {
 }
 
 p,
-li,
-span {
+li {
   max-width: 660px;
   line-height: 1.4;
   color: var(--text-primary);
@@ -81,7 +81,7 @@ table {
   // display: block;
   width: 100%;
   border-collapse: collapse;
-  border-radius: 4px;
+  border-radius: 5px;
   border-spacing: 0 3px;
   color: var(--text-secondary);
   border-collapse: separate;

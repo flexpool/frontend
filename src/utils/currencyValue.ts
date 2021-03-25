@@ -64,11 +64,16 @@ const tickers: {
   },
 ];
 
-export const getDisplayValue = (value: number, ticker: Ticker = 'usd') => {
-  const val = String(Math.round(value * 100) / 100).replace(
-    /\B(?=(\d{3})+(?!\d))/g,
-    ','
-  );
+export const getDisplayCounterTickerValue = (
+  value?: number,
+  ticker: Ticker = 'usd'
+) => {
+  const val = value
+    ? String(Math.round(value * 100) / 100).replace(
+        /\B(?=(\d{3})+(?!\d))/g,
+        ','
+      )
+    : '---';
 
   const tickerSettings = tickers.find((item) => item.ticker === ticker);
   if (!tickerSettings) {
@@ -86,7 +91,7 @@ export const useCounterValue = (prices: { [k in Ticker]: number }) => {
   const settingsState = useReduxState('localSettings');
   const ticker = settingsState.counterTicker;
   const result = React.useMemo(() => {
-    return getDisplayValue(prices[ticker], ticker);
+    return getDisplayCounterTickerValue(prices[ticker], ticker);
   }, [ticker, prices]);
 
   return result;

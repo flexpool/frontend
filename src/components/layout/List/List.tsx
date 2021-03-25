@@ -1,7 +1,7 @@
 import React from 'react';
 import { clx } from 'src/utils/clx';
 import { Skeleton } from '../Skeleton';
-import { Table } from './components';
+import { HorizontalScrollWrapepr, Table } from './components';
 
 export interface DynamicListColumn<D extends {}, CP extends {}> {
   title: React.ReactNode;
@@ -52,68 +52,70 @@ export const DynamicList = <D extends {}, CP extends {}>(
   } = props;
 
   return (
-    <Table.Container>
-      {!hideHead && (
-        <thead>
-          <tr>
-            {columns &&
-              columns.map((colProps, index) => {
-                const { title } = colProps;
+    <HorizontalScrollWrapepr>
+      <Table.Container>
+        {!hideHead && (
+          <thead>
+            <tr>
+              {columns &&
+                columns.map((colProps, index) => {
+                  const { title } = colProps;
 
+                  return (
+                    <Table.Th
+                      key={index}
+                      className={clx(props && props.className)}
+                      alignRight={colProps.alignRight}
+                    >
+                      {title}
+                    </Table.Th>
+                  );
+                })}
+            </tr>
+          </thead>
+        )}
+        {(isLoading && (!data || data.length < 1) && (
+          <tbody>
+            {Array.apply(null, Array(loadingRowsCount)).map((_, index) => (
+              <Table.Tr key={index}>
+                {columns.map((col, cindex) => {
+                  return (
+                    <Table.Td key={cindex} alignRight={col.alignRight}>
+                      <Skeleton style={{ width: col.skeletonWidth }} />
+                    </Table.Td>
+                  );
+                })}
+              </Table.Tr>
+            ))}
+          </tbody>
+        )) || (
+          <tbody>
+            {columns &&
+              data &&
+              data.length > 0 &&
+              data.map((item, index) => {
                 return (
-                  <Table.Th
-                    key={index}
-                    className={clx(props && props.className)}
-                    alignRight={colProps.alignRight}
-                  >
-                    {title}
-                  </Table.Th>
+                  <Table.Tr key={index}>
+                    {columns.map((col, cindex) => {
+                      return (
+                        <Table.Td key={cindex} alignRight={col.alignRight}>
+                          <col.Component
+                            data={item}
+                            index={index}
+                            config={col.config}
+                          />
+                        </Table.Td>
+                      );
+                    })}
+                  </Table.Tr>
                 );
               })}
-          </tr>
-        </thead>
-      )}
-      {(isLoading && (!data || data.length < 1) && (
-        <tbody>
-          {Array.apply(null, Array(loadingRowsCount)).map((_, index) => (
-            <Table.Tr key={index}>
-              {columns.map((col, cindex) => {
-                return (
-                  <Table.Td key={cindex} alignRight={col.alignRight}>
-                    <Skeleton style={{ width: col.skeletonWidth }} />
-                  </Table.Td>
-                );
-              })}
-            </Table.Tr>
-          ))}
-        </tbody>
-      )) || (
-        <tbody>
-          {columns &&
-            data &&
-            data.length > 0 &&
-            data.map((item, index) => {
-              return (
-                <Table.Tr key={index}>
-                  {columns.map((col, cindex) => {
-                    return (
-                      <Table.Td key={cindex} alignRight={col.alignRight}>
-                        <col.Component
-                          data={item}
-                          index={index}
-                          config={col.config}
-                        />
-                      </Table.Td>
-                    );
-                  })}
-                </Table.Tr>
-              );
-            })}
-          {tBodyChildren}
-        </tbody>
-      )}
-      {tFooterChildren && <tfoot>{tFooterChildren}</tfoot>}
-    </Table.Container>
+            {tBodyChildren}
+          </tbody>
+        )}
+        {tFooterChildren && <tfoot>{tFooterChildren}</tfoot>}
+      </Table.Container>
+    </HorizontalScrollWrapepr>
   );
 };
 

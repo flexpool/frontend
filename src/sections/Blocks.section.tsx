@@ -8,7 +8,7 @@ import { getDisplayLuck } from 'src/utils/luck.utils';
 import format from 'date-fns/format';
 import formatDuration from 'date-fns/formatDuration';
 import intervalToDuration from 'date-fns/intervalToDuration';
-import { useActiveCoinDisplayValue } from 'src/hooks/useDisplayReward';
+import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
 import { LinkMiner } from 'src/components/LinkMiner';
 import { Luck } from 'src/components/Luck';
 import styled from 'styled-components';
@@ -181,7 +181,9 @@ export const BlocksSection = () => {
             title: 'Date',
             skeletonWidth: 180,
             Component: ({ data }) => (
-              <>{format(data.timestamp * 1000, 'PPp')}</>
+              <span style={{ whiteSpace: 'nowrap' }}>
+                {format(data.timestamp * 1000, 'PPp')}
+              </span>
             ),
           },
           {
@@ -200,7 +202,9 @@ export const BlocksSection = () => {
             title: 'Reward',
             skeletonWidth: 80,
             Component: ({ data }) => {
-              const displayReward = useActiveCoinDisplayValue(data.reward);
+              const displayReward = useActiveCoinTickerDisplayValue(
+                data.reward
+              );
 
               return <>{displayReward}</>;
             },

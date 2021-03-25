@@ -21,6 +21,7 @@ import { BlocksPage } from 'src/pages/Blocks/Blocks.page';
 import { MinersPage } from 'src/pages/Miners/Miners.page';
 import { FaqPage } from 'src/pages/Faq/Faq.page';
 import { SupportPage } from 'src/pages/Support/Support.page';
+import { MinerDashboardPage } from 'src/pages/MinerDashboard/MinerDashboard.page';
 
 const store = createReduxStore();
 
@@ -58,6 +59,12 @@ const AppContent = () => {
         <Route exact strict component={StatisticsPage} path="/statistics" />
         <Route exact strict component={FaqPage} path="/faq" />
         <Route exact strict component={MinersPage} path="/miners" />
+        <Route
+          exact
+          strict
+          component={MinerDashboardPage}
+          path="/miners/:coin/:address"
+        />
         <Route exact strict component={BlocksPage} path="/blocks" />
         <Route exact strict component={SupportPage} path="/support" />
         <Route exact strict component={HomePage} path="/" />

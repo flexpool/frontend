@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 
-import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
+import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { fetchApi } from 'src/utils/fetchApi';
 import { formatRegionName } from 'src/utils/region.utils';
 import { ApiRegion } from 'src/types/Region.types';
@@ -22,7 +22,7 @@ type HashrateItem = {
 
 const PoolHashrateChart = () => {
   const chartRef = useRef<HTMLDivElement>(null);
-  const activeCoin = useActiveCoin();
+  const activeCoin = useActiveCoinTicker();
   const poolHasrateState = useReduxState('poolHashrate');
 
   const d = useDispatch();

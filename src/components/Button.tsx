@@ -23,7 +23,7 @@ export const Button = styled.button<ButtonProps>`
   min-height: 50px;
   padding-left: 1rem;
   padding-right: 1rem;
-  border-radius: 4px;
+  border-radius: 5px;
   border: 1px solid #f1f3fa;
   outline: none;
   font-size: 1rem;

@@ -23,7 +23,7 @@ const TickBox = styled.span`
   align-items: center;
   width: 1.25rem;
   height: 1.25rem;
-  border-radius: 4px;
+  border-radius: 5px;
   border: ${(p) => p.theme.border.default};
   background: white;
   transition: 0.2s all;

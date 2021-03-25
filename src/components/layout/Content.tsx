@@ -11,8 +11,8 @@ export const Content = styled.div<{
   max-width: 1200px;
   position: relative;
   z-index: 1;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   ${(p) =>
     p.contentCenter &&
     `
@@ -25,8 +25,8 @@ export const Content = styled.div<{
   ${(p) =>
     p.padding &&
     `
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   `};
   ${(p) =>
     p.paddingLg &&

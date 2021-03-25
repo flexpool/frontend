@@ -46,7 +46,7 @@ export const DropdownList = styled(AnchoredPop)`
   ${(p) => p.theme.border};
   padding: 10px;
   min-width: 200px;
-  border-radius: 4px;
+  border-radius: 5px;
   max-height: 300px;
   overflow-y: auto;
 `;
