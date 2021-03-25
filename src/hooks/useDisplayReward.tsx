@@ -9,7 +9,8 @@ const Tick = styled.span`
 
 export const useActiveCoinTickerDisplayValue = (
   value?: number,
-  coin?: ApiPoolCoin
+  coin?: ApiPoolCoin,
+  dec: number = 10000
 ) => {
   const globalCoin = useActiveCoin();
   const activeCoin = coin || globalCoin;
@@ -19,9 +20,8 @@ export const useActiveCoinTickerDisplayValue = (
   }
 
   const val =
-    Math.round(
-      (value / Math.pow(10, activeCoin?.decimalPlaces || 100)) * 10000
-    ) / 10000;
+    Math.round((value / Math.pow(10, activeCoin?.decimalPlaces || 100)) * dec) /
+    dec;
   return (
     <span>
       {val} <Tick className="ticker">{activeCoin?.ticker}</Tick>

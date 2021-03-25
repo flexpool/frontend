@@ -68,13 +68,14 @@ export const getDisplayCounterTickerValue = (
   value?: number,
   ticker: Ticker = 'usd'
 ) => {
-  const val =
-    typeof value === 'number'
-      ? String(Math.round(value * 100) / 100).replace(
-          /\B(?=(\d{3})+(?!\d))/g,
-          ','
-        )
-      : '---';
+  if (typeof value !== 'number') {
+    return null;
+  }
+
+  const val = String(Math.round(value * 100) / 100).replace(
+    /\B(?=(\d{3})+(?!\d))/g,
+    ','
+  );
 
   const tickerSettings = tickers.find((item) => item.ticker === ticker);
   if (!tickerSettings) {

@@ -9,6 +9,7 @@ import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
 import { dateUtils } from 'src/utils/date.utils';
 import { formatDistance } from 'date-fns';
+import { Link } from 'react-router-dom';
 
 type ApiPaymentStats = {
   countervalue: number;
@@ -53,6 +54,7 @@ export const GeneralPaymentStatsSection: React.FC<{
 
   const data = asyncState.data;
   console.log(data?.stats.totalPaid);
+
   const totalPaidCounter =
     data && coin
       ? getDisplayCounterTickerValue(
@@ -67,36 +69,112 @@ export const GeneralPaymentStatsSection: React.FC<{
     coin
   );
 
+  const averageTransactionFeeCounter =
+    data && coin
+      ? getDisplayCounterTickerValue(
+          (data.stats.averageFee / Math.pow(10, coin.decimalPlaces)) *
+            data.countervalue,
+          couterTicker
+        )
+      : undefined;
+
+  const averageTransactionFee = useActiveCoinTickerDisplayValue(
+    data?.stats.averageFee,
+    coin,
+    10000000
+  );
+
+  const lastPaymentCounter =
+    data && coin
+      ? getDisplayCounterTickerValue(
+          (data.lastPayment.value / Math.pow(10, coin.decimalPlaces)) *
+            data.countervalue,
+          couterTicker
+        )
+      : undefined;
+
+  const lastPayment = useActiveCoinTickerDisplayValue(
+    data?.lastPayment.value,
+    coin
+  );
+
   return (
-    <CardGrid>
-      <Card padding>
-        <CardTitle>Total Paid</CardTitle>
-        <StatItem value={totalPaidCounter} subValue={totalPaid} />
-      </Card>
-      <Card padding>
-        <CardTitle>Total Transactions</CardTitle>
-        <StatItem
-          value={data?.stats.transactionCount}
-          subValue={
-            data
-              ? `${
-                  Math.round(
-                    (data.stats.totalFees / data.stats.totalPaid) * 100 * 100
-                  ) / 100
-                }% paid in fees`
-              : null
-          }
-        />
-      </Card>
-      <Card padding>
-        <CardTitle>Average Payout Duration</CardTitle>
-        <StatItem
-          value={
-            data ? formatDistance(0, data.stats.averageDuration * 1000) : 'N/A'
-          }
-          subValue="Average Time Between Payouts"
-        />
-      </Card>
-    </CardGrid>
+    <>
+      <h2>General Payment Statistics</h2>
+      <CardGrid>
+        <Card padding>
+          <CardTitle>Total Paid</CardTitle>
+          <StatItem value={totalPaidCounter} subValue={totalPaid} />
+        </Card>
+        <Card padding>
+          <CardTitle>Total Transactions</CardTitle>
+          <StatItem
+            value={data?.stats.transactionCount}
+            subValue={
+              data
+                ? `${
+                    Math.round(
+                      (data.stats.totalFees / data.stats.totalPaid) * 100 * 100
+                    ) / 100
+                  }% paid in fees`
+                : null
+            }
+          />
+        </Card>
+        <Card padding>
+          <CardTitle>Average Payout Duration</CardTitle>
+          <StatItem
+            value={
+              data
+                ? formatDistance(0, data.stats.averageDuration * 1000)
+                : 'N/A'
+            }
+            subValue="Average Time Between Payouts"
+          />
+        </Card>
+      </CardGrid>
+      <h2>Transaction fees</h2>
+      <CardGrid>
+        <Card padding>
+          <CardTitle>Last Transaction</CardTitle>
+          <StatItem
+            value={lastPaymentCounter}
+            subValue={
+              data ? (
+                <>
+                  {lastPayment} •{' '}
+                  {dateUtils.formatDistance(data.lastPayment.timestamp * 1000)}{' '}
+                  •{' '}
+                  {Math.round(
+                    (data.lastPayment.fee / data.lastPayment.value) * 100 * 100
+                  ) / 100}
+                  % fee
+                </>
+              ) : null
+            }
+          />
+        </Card>
+        <Card padding>
+          <CardTitle>Average Transaction Fee</CardTitle>
+          <StatItem
+            value={averageTransactionFeeCounter}
+            subValue={averageTransactionFee}
+          />
+        </Card>
+        <Card padding>
+          <CardTitle>Average Transaction Fee %</CardTitle>
+          <StatItem
+            value={
+              data && data.stats.averageFeePercent
+                ? `${
+                    Math.round(data.stats.averageFeePercent * 100 * 1000) / 1000
+                  }%`
+                : 'N/A'
+            }
+            subValue={<Link to="/">Tips on reducing fees</Link>}
+          />
+        </Card>
+      </CardGrid>
+    </>
   );
 };

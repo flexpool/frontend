@@ -54,9 +54,11 @@ export const HeaderStats: React.FC<{
   const settings = minerDetailsState.data;
 
   const approximateBlockShare = useActiveCoinTickerDisplayValue(
-    data?.approximateBlockShare
+    data?.approximateBlockShare,
+    coin,
+    1000000
   );
-  const balance = useActiveCoinTickerDisplayValue(data?.balance);
+  const balance = useActiveCoinTickerDisplayValue(data?.balance, coin, 1000000);
   const tickerBalance = getDisplayCounterTickerValue(
     data?.balanceCountervalue,
     counterTicker
@@ -103,8 +105,7 @@ export const HeaderStats: React.FC<{
         <CardTitle>Next Block Share</CardTitle>
         <StatItem
           value={
-            data &&
-            `${Math.round(data.roundShare * 100 * 100000000) / 100000000}%`
+            data && `${Math.round(data.roundShare * 100 * 10000) / 10000}%`
           }
           subValue={<>Approximate Reward: {approximateBlockShare}</>}
         />
