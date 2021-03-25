@@ -21,7 +21,7 @@ const shared = `
   }
 `;
 
-const Th = styled.th<{ alignRight?: boolean }>`
+const Th = styled.th<{ alignRight?: boolean; hoverable?: boolean }>`
   text-transform: uppercase;
   font-weight: 600;
   font-size: 0.75rem;
@@ -33,6 +33,14 @@ const Th = styled.th<{ alignRight?: boolean }>`
   padding-bottom: 0.5rem;
   ${shared};
   ${(p) => p.alignRight && `text-align: right;`};
+  ${(p) =>
+    p.hoverable &&
+    `
+    &:hover {
+      color: var(--primary);
+      cursor: pointer;
+    }
+  `};
 `;
 
 const Td = styled.td<{ alignRight?: boolean }>`

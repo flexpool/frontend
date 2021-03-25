@@ -8,6 +8,7 @@ import * as poolHashrate from 'src/rdx/poolHashrate/poolHashrate.reducer';
 import * as minerHeaderStats from 'src/rdx/minerHeaderStats/minerHeaderStats.reducer';
 import * as minerDetails from 'src/rdx/minerDetails/minerDetails.reducer';
 import * as minerStats from 'src/rdx/minerStats/minerStats.reducer';
+import * as minerWorkers from 'src/rdx/minerWorkers/minerWorkers.reducer';
 
 export const defaultReduxState = {
   localSettings: localSettings.defaultState,
@@ -18,6 +19,7 @@ export const defaultReduxState = {
   minerHeaderStats: minerHeaderStats.defaultState,
   minerDetails: minerDetails.defaultState,
   minerStats: minerStats.defaultState,
+  minerWorkers: minerWorkers.defaultState,
 };
 
 const combinedReducer = combineReducers({
@@ -29,6 +31,7 @@ const combinedReducer = combineReducers({
   minerHeaderStats: minerHeaderStats.reducer,
   minerDetails: minerDetails.reducer,
   minerStats: minerStats.reducer,
+  minerWorkers: minerWorkers.reducer,
 });
 
 export type AppState = ReturnType<typeof combinedReducer>;

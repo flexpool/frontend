@@ -23,7 +23,9 @@ export const StatItem: React.FC<{
 }> = ({ value, title, subValue }) => {
   return (
     <StatItemWrapper>
-      <StatItemValue>{value || <Skeleton />}</StatItemValue>
+      <StatItemValue>
+        {typeof value === undefined ? <Skeleton /> : value}
+      </StatItemValue>
       {title && <StatItemTitle>{title}</StatItemTitle>}
       {typeof subValue !== 'undefined' && (
         <StatItemSubValue>{subValue || <Skeleton />}</StatItemSubValue>

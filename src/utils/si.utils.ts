@@ -1,7 +1,7 @@
 const siSymbols = ['', 'k', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];
 
 export const formatSi = (value?: number, unit: string = '', decimals = 1) => {
-  if (!value) {
+  if (typeof value === 'undefined') {
     return null;
   }
 

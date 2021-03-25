@@ -8,7 +8,9 @@ import { ApiMinerDetails } from 'src/types/Miner.types';
 
 export const defaultState = defaultReducerState as DefaultState<ApiMinerDetails>;
 
-const getReducer = createGetReducer<ApiMinerDetails>();
+const getReducer = createGetReducer<ApiMinerDetails>(defaultState, {
+  flushOnStart: true,
+});
 
 export const reducer = composeReducers(
   '@minerDetails',

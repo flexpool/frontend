@@ -27,3 +27,15 @@ export type ApiMinerStats = {
   staleShares: number;
   validShares: number;
 };
+
+export type ApiMinerWorker = {
+  count: number;
+  currentEffectiveHashrate: number;
+  invalidShares: number;
+  isOnline: boolean;
+  lastSeen: number;
+  name: string;
+  reportedHashrate: number;
+  staleShares: number;
+  validShares: number;
+};

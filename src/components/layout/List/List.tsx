@@ -3,8 +3,9 @@ import { clx } from 'src/utils/clx';
 import { Skeleton } from '../Skeleton';
 import { HorizontalScrollWrapepr, Table } from './components';
 
-export interface DynamicListColumn<D extends {}, CP extends {}> {
-  title: React.ReactNode;
+export interface DynamicListColumn<D extends {}, CP extends {} = {}> {
+  title?: React.ReactNode;
+  onClickValue?: string;
   name?: string;
   alignRight?: boolean;
   config?: CP;
@@ -35,6 +36,7 @@ export type DynamicListProps<
   hideHead?: boolean;
   isLoading?: boolean;
   loadingRowsCount?: number;
+  onColumnHeaderClick?: (value: string) => void;
 };
 
 export const DynamicList = <D extends {}, CP extends {}>(
@@ -49,6 +51,7 @@ export const DynamicList = <D extends {}, CP extends {}>(
     hideHead,
     isLoading,
     loadingRowsCount = 5,
+    onColumnHeaderClick,
   } = props;
 
   return (
@@ -59,13 +62,22 @@ export const DynamicList = <D extends {}, CP extends {}>(
             <tr>
               {columns &&
                 columns.map((colProps, index) => {
-                  const { title } = colProps;
+                  const { title, onClickValue } = colProps;
+
+                  const handleClick =
+                    onClickValue && onColumnHeaderClick
+                      ? () => {
+                          onColumnHeaderClick(onClickValue);
+                        }
+                      : undefined;
 
                   return (
                     <Table.Th
                       key={index}
                       className={clx(props && props.className)}
                       alignRight={colProps.alignRight}
+                      onClick={handleClick}
+                      hoverable={!!handleClick}
                     >
                       {title}
                     </Table.Th>
