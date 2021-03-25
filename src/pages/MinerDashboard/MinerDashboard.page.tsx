@@ -23,6 +23,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { FaChartBar, FaWallet } from 'react-icons/fa';
 import { Spacer } from 'src/components/layout/Spacer';
+import { MinerPaymentsPage } from './Payments/MinerPayments.page';
 
 const TabContent = styled.div`
   box-shadow: inset -1px 18px 19px -13px var(--bg-secondary);
@@ -103,6 +104,10 @@ export const MinerDashboardPage: React.FC<
         <Content>
           <Switch>
             <Route path={`${match.path}/stats`} component={MinerStatsPage} />
+            <Route
+              path={`${match.path}/payments`}
+              component={MinerPaymentsPage}
+            />
             <Redirect to={`${match.path}/stats`} />
           </Switch>
         </Content>

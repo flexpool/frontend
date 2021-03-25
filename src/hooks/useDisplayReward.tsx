@@ -1,4 +1,5 @@
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
+import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import styled from 'styled-components';
 
 const Tick = styled.span`
@@ -6,11 +7,15 @@ const Tick = styled.span`
   text-transform: uppercase;
 `;
 
-export const useActiveCoinTickerDisplayValue = (value?: number) => {
-  const activeCoin = useActiveCoin();
+export const useActiveCoinTickerDisplayValue = (
+  value?: number,
+  coin?: ApiPoolCoin
+) => {
+  const globalCoin = useActiveCoin();
+  const activeCoin = coin || globalCoin;
 
-  if (!activeCoin || !value) {
-    return '---';
+  if (!activeCoin || typeof value !== 'number') {
+    return null;
   }
 
   const val =

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 
-import './HeaderStats.scss';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
-import { Skeleton } from 'src/components/layout/Skeleton';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import styled from 'styled-components/macro';
