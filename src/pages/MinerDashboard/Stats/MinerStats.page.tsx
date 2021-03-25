@@ -1,19 +1,18 @@
 import React from 'react';
 import { useRouteMatch } from 'react-router';
-import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';
-import { StatItem } from 'src/components/StatItem';
-import { useReduxState } from 'src/rdx/useReduxState';
-import { formatSi } from 'src/utils/si.utils';
-import styled from 'styled-components';
+import StatsChart from './StatCharts';
 import { MinerStats } from './Stats.section';
 import { MinerWorkers } from './Workers.section';
 
 export const MinerStatsPage = () => {
-  const match = useRouteMatch<{ address: string }>();
+  const {
+    params: { address, coin },
+  } = useRouteMatch<{ address: string; coin: string }>();
   return (
     <>
       <MinerStats />
-      <MinerWorkers address={match.params.address} />
+      <StatsChart address={address} coinTicker={coin} />
+      <MinerWorkers address={address} />
     </>
   );
 };

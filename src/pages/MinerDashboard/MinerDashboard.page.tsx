@@ -1,6 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { RouteComponentProps } from 'react-router';
+import {
+  Route,
+  RouteComponentProps,
+  Switch,
+  useRouteMatch,
+  Redirect,
+} from 'react-router';
 import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
@@ -13,6 +19,40 @@ import { HeaderGreetings } from './Header/Greetings';
 import { HeaderStats } from './Header/Stats';
 import { MinerDetails } from './Header/MinerDetails';
 import { MinerStatsPage } from './Stats/MinerStats.page';
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
+import { FaChartBar, FaWallet } from 'react-icons/fa';
+
+const TabContent = styled.div`
+  box-shadow: inset -1px 18px 19px -13px var(--bg-secondary);
+  border-top: 2px solid var(--border-color);
+  padding-top: 1rem;
+`;
+
+const TabLinkContainer = styled(Content)`
+  margin-top: 3rem;
+  display: flex;
+  overflow-x: auto;
+`;
+
+const TabLink = styled(NavLink)`
+  font-weight: 600;
+  font-size: 1.125rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  color: var(--text-primary);
+  padding: 0 1.5rem;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  svg {
+    margin-right: 0.5rem;
+  }
+  &.active {
+    color: var(--primary);
+    border-color: var(--primary);
+  }
+`;
 
 export const MinerDashboardPage: React.FC<
   RouteComponentProps<{
@@ -23,6 +63,7 @@ export const MinerDashboardPage: React.FC<
   const { coin: coinTicker, address } = props.match.params;
   const activeCoin = useActiveCoin(coinTicker);
   const localSettingsState = useReduxState('localSettings');
+  const match = useRouteMatch();
 
   const d = useDispatch();
 
@@ -41,8 +82,29 @@ export const MinerDashboardPage: React.FC<
         <AccountHeader coin={activeCoin} address={address} />
         <MinerDetails coin={activeCoin} />
         <HeaderStats coin={activeCoin} />
-        <MinerStatsPage />
       </Content>
+      <TabLinkContainer>
+        <TabLink to={`${match.url}/stats`}>
+          <FaChartBar /> Stats
+        </TabLink>
+        <TabLink to={`${match.url}/payments`}>
+          <FaWallet /> Payments
+        </TabLink>
+        <TabLink to={`${match.url}/rewards`}>
+          <FaChartBar /> Rewards
+        </TabLink>
+        <TabLink to={`${match.url}/blocks`}>
+          <FaWallet /> Blocks
+        </TabLink>
+      </TabLinkContainer>
+      <TabContent>
+        <Content>
+          <Switch>
+            <Route path={`${match.path}/stats`} component={MinerStatsPage} />
+            <Redirect to={`${match.path}/stats`} />
+          </Switch>
+        </Content>
+      </TabContent>
     </Page>
   );
 };

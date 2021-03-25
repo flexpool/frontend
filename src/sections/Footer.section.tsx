@@ -23,7 +23,6 @@ const LinkOut: React.FC<{ href: string; children: React.ReactNode }> = ({
 );
 
 const Footer = styled.footer`
-  margin-top: 8rem;
   border-top: 6px solid var(--primary);
   background: #020e1f;
   padding-top: 5rem;

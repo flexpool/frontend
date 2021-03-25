@@ -3,6 +3,7 @@ export const Card = styled.div<{ padding?: boolean; paddingShort?: boolean }>`
   border-radius: 5px;
   border: 1px solid var(--border-color);
   position: relative;
+  background: var(--bg-primary);
   ${(p) =>
     p.padding &&
     `

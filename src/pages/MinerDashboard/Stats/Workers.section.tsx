@@ -70,6 +70,7 @@ const ListHeader = styled.div`
   display: flex;
   align-items: flex-end;
   margin-bottom: 1rem;
+  margin-top: 2rem;
 `;
 
 type MinerWorker = ApiMinerWorker & { totalShares: number };
