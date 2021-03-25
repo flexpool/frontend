@@ -12,9 +12,10 @@ const ItemWrapper = styled.a`
   flex-direction: column;
   background-color: white;
   text-decoration: none;
-  color: black;
+  color: var(--texxt-primary);
   transition: 300ms;
   &:hover {
+    text-decoration: none;
     background-color: var(--primary);
     margin: -10px;
     padding: 40px;

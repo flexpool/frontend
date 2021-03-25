@@ -5,10 +5,9 @@ import { Skeleton } from './layout/Skeleton';
 
 export const StatBoxContainer = styled.div`
   display: flex;
-  margin-left: -1rem;
-  margin-right: -1rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+  padding: 0.5rem 0;
   flex-wrap: wrap;
   color: var(--text-primary);
   & > * {
@@ -20,7 +19,7 @@ const StatBoxC = styled(Card)`
   flex-grow: 1;
   width: 1px;
   min-width: 150px;
-  margin: 1rem;
+  margin: 0.5rem;
   @media screen and (max-width: 900px) {
     width: 40%;
   }

@@ -8,6 +8,7 @@ import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { useDispatch } from 'react-redux';
 import { topMinersGet } from 'src/rdx/topMiners/topMiners.actions';
+import { Mono, Ws } from 'src/components/Typo/Typo';
 
 export const TopMinersSection = () => {
   const activeCoin = useActiveCoinTicker();
@@ -37,7 +38,11 @@ export const TopMinersSection = () => {
             title: 'Hashrate',
             skeletonWidth: 90,
             Component: ({ data }) => {
-              return <>{formatSi(data.hashrate, 'H/s')}</>;
+              return (
+                <Ws>
+                  <Mono>{formatSi(data.hashrate, 'H/s')}</Mono>
+                </Ws>
+              );
             },
           },
           {
@@ -45,7 +50,11 @@ export const TopMinersSection = () => {
             skeletonWidth: 75,
             Component: ({ data }) => {
               const value = useActiveCoinTickerDisplayValue(data.balance);
-              return <>{value}</>;
+              return (
+                <Ws>
+                  <Mono>{value}</Mono>
+                </Ws>
+              );
             },
           },
           {
@@ -67,7 +76,9 @@ export const TopMinersSection = () => {
             skeletonWidth: 120,
             Component: ({ data }) => {
               return (
-                <>{formatDistanceToNowStrict(data.firstJoined * 1000)} ago</>
+                <Ws>
+                  {formatDistanceToNowStrict(data.firstJoined * 1000)} ago
+                </Ws>
               );
             },
           },

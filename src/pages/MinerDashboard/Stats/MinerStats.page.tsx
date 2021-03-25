@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouteMatch } from 'react-router';
+import { Spacer } from 'src/components/layout/Spacer';
 import StatsChart from './StatCharts';
 import { MinerStats } from './Stats.section';
 import { MinerWorkers } from './Workers.section';
@@ -11,6 +12,7 @@ export const MinerStatsPage = () => {
   return (
     <>
       <MinerStats />
+      <Spacer />
       <StatsChart address={address} coinTicker={coin} />
       <MinerWorkers address={address} />
     </>

@@ -22,6 +22,7 @@ import { MinerStatsPage } from './Stats/MinerStats.page';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { FaChartBar, FaWallet } from 'react-icons/fa';
+import { Spacer } from 'src/components/layout/Spacer';
 
 const TabContent = styled.div`
   box-shadow: inset -1px 18px 19px -13px var(--bg-secondary);
@@ -33,6 +34,7 @@ const TabLinkContainer = styled(Content)`
   margin-top: 3rem;
   display: flex;
   overflow-x: auto;
+  overflow-y: hidden;
 `;
 
 const TabLink = styled(NavLink)`
@@ -105,6 +107,7 @@ export const MinerDashboardPage: React.FC<
           </Switch>
         </Content>
       </TabContent>
+      <Spacer size="xl" />
     </Page>
   );
 };

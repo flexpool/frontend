@@ -3,6 +3,9 @@ import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import { SectionNotAvailable } from 'src/components/SectionNotAvailable';
 import { fetchApi } from 'src/utils/fetchApi';
+import { Card } from 'src/components/layout/Card';
+import { ChartTitle } from 'src/components/Typo/ChartTitle';
+import { Spacer } from 'src/components/layout/Spacer';
 
 export const StatsChart: React.FC<{
   coinTicker: string;
@@ -206,20 +209,18 @@ export const StatsChart: React.FC<{
     <>
       {!noDataAvailable ? (
         <>
-          <div className="chart wrapper" style={{ marginTop: '10px' }}>
-            <div className="chart-title">Hashrate</div>
+          <Card padding>
+            <ChartTitle>Hashrate</ChartTitle>
             <div
               id="hashrate-chart"
               style={{ width: '100%', height: '250px' }}
-            ></div>
-          </div>
-          <div className="chart wrapper" style={{ marginTop: '10px' }}>
-            <div className="chart-title">Shares</div>
-            <div
-              id="shares-chart"
-              style={{ width: '100%', height: '250px' }}
-            ></div>
-          </div>
+            />
+          </Card>
+          <Spacer />
+          <Card padding>
+            <ChartTitle>Shares</ChartTitle>
+            <div id="shares-chart" style={{ width: '100%', height: '250px' }} />
+          </Card>
         </>
       ) : (
         <SectionNotAvailable

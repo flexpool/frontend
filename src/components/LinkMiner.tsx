@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const L = styled(Link)`
   font-weight: 500;
+  white-space: nowrap;
 `;
 
 const shortenString = (str: string, chars = 8) => {

@@ -4,6 +4,7 @@ import Chart from 'src/components/Chart';
 
 import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
+import { Spacer } from 'src/components/layout/Spacer';
 import { HeaderStat } from 'src/components/layout/StatHeader';
 import { StatBox, StatBoxContainer } from 'src/components/StatBox';
 import { useAsyncState } from 'src/hooks/useAsyncState';
@@ -80,10 +81,10 @@ export const StatisticsPage = () => {
             />
           </StatBoxContainer>
         </Content>
-        <Content padding>
-          <h2>Pool hashrate</h2>
+        <Content>
           <PoolHashrateChart />
         </Content>
+        <Spacer size="xl" />
         {/* <Chart
           data={{
             labels: [1, 2, 3, 4, 5],

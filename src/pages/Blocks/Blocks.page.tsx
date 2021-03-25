@@ -7,7 +7,6 @@ import { StatBox, StatBoxContainer } from 'src/components/StatBox';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { fetchApi } from 'src/utils/fetchApi';
 import { formatSi } from 'src/utils/si.utils';
-import styled from 'styled-components/macro';
 
 import useWebSocket from 'react-use-websocket';
 import { useReduxState } from 'src/rdx/useReduxState';
@@ -15,6 +14,7 @@ import { getDisplayLuck } from 'src/utils/luck.utils';
 import { BlocksSection } from 'src/sections/Blocks.section';
 import { Luck } from 'src/components/Luck';
 import { Page } from 'src/components/layout/Page';
+import { Spacer } from 'src/components/layout/Spacer';
 
 const SOCKET_URL = (process.env.REACT_APP_API_URL || '').replace('http', 'ws');
 
@@ -82,6 +82,7 @@ export const BlocksPage = () => {
         </StatBoxContainer>
         <BlocksSection />
       </Content>
+      <Spacer size="xl" />
     </Page>
   );
 };

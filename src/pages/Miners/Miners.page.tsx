@@ -1,8 +1,10 @@
 import { Helmet } from 'react-helmet-async';
 import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
+import { Spacer } from 'src/components/layout/Spacer';
 
 import { HeaderStat } from 'src/components/layout/StatHeader';
+import { MinersDistributionChart } from './MinersDistrubution.chart';
 import { TopDonatorsSection } from './TopDonors.section';
 import { TopMinersSection } from './TopMiners.section';
 
@@ -17,8 +19,11 @@ export const MinersPage = () => {
       </HeaderStat>
       <Content padding>
         <TopMinersSection />
+
+        <MinersDistributionChart />
         <TopDonatorsSection />
       </Content>
+      <Spacer size="xl" />
     </Page>
   );
 };

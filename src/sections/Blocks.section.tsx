@@ -1,18 +1,18 @@
 import React from 'react';
-import { Content } from 'src/components/layout/Content';
 import DynamicList from 'src/components/layout/List/List';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { fetchApi } from 'src/utils/fetchApi';
-import { getDisplayLuck } from 'src/utils/luck.utils';
 import format from 'date-fns/format';
-import formatDuration from 'date-fns/formatDuration';
-import intervalToDuration from 'date-fns/intervalToDuration';
 import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
 import { LinkMiner } from 'src/components/LinkMiner';
 import { Luck } from 'src/components/Luck';
 import styled from 'styled-components';
 import { Button } from 'src/components/Button';
+import { getBlockLink } from 'src/utils/blockLink.utils';
+import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
+import { LinkOut } from 'src/components/LinkOut';
+import { Ws } from 'src/components/Typo/Typo';
 
 type ApiBlock = {
   confirmed: boolean;
@@ -38,12 +38,20 @@ const Region = styled.span`
   text-transform: uppercase;
 `;
 
+const TypeOrphan = styled.span`
+  text-transform: capitalize;
+  color: var(--text-tertiary);
+`;
+
+const BlockLink = styled(LinkOut)`
+  color: var(--text-primary);
+`;
 const TypeBlock = styled.span`
   text-transform: capitalize;
 `;
 const TypeUncle = styled.span`
   text-transform: capitalize;
-  opacity: 0.3;
+  color: var(--warning);
 `;
 
 const PaginationContainer = styled.div`
@@ -124,15 +132,16 @@ export const BlocksSection = () => {
     data: [],
   });
   const localSettingsState = useReduxState('localSettings');
+  const coinTicker = useActiveCoinTicker();
   const [currentPage, setCurrentPage] = React.useState(0);
 
   React.useEffect(() => {
     blockState.start(
       fetchApi('/pool/blocks', {
-        query: { coin: localSettingsState.coin, page: currentPage },
+        query: { coin: coinTicker, page: currentPage },
       })
     );
-  }, [currentPage]);
+  }, [currentPage, coinTicker]);
 
   const totalPages = blockState.data?.totalPages || 0;
 
@@ -165,7 +174,13 @@ export const BlocksSection = () => {
           {
             title: 'Number',
             skeletonWidth: 80,
-            Component: ({ data }) => <>{data.number}</>,
+            Component: ({ data }) => {
+              const url = getBlockLink(data.hash, coinTicker);
+              if (url) {
+                return <BlockLink href={url}>{data.number}</BlockLink>;
+              }
+              return <>{data.number}</>;
+            },
           },
           {
             title: 'Type',
@@ -181,9 +196,7 @@ export const BlocksSection = () => {
             title: 'Date',
             skeletonWidth: 180,
             Component: ({ data }) => (
-              <span style={{ whiteSpace: 'nowrap' }}>
-                {format(data.timestamp * 1000, 'PPp')}
-              </span>
+              <Ws>{format(data.timestamp * 1000, 'PPp')}</Ws>
             ),
           },
           {
@@ -206,7 +219,7 @@ export const BlocksSection = () => {
                 data.reward
               );
 
-              return <>{displayReward}</>;
+              return <Ws>{displayReward}</Ws>;
             },
           },
           {

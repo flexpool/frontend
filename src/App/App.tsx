@@ -23,6 +23,8 @@ import { FaqPage } from 'src/pages/Faq/Faq.page';
 import { SupportPage } from 'src/pages/Support/Support.page';
 import { MinerDashboardPage } from 'src/pages/MinerDashboard/MinerDashboard.page';
 
+import './init';
+
 const store = createReduxStore();
 
 const AppContent = () => {

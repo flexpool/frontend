@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { donorsGet } from 'src/rdx/topDonors/topDonors.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { dateUtils } from 'src/utils/date.utils';
+import { Mono } from 'src/components/Typo/Typo';
 
 export const TopDonatorsSection = () => {
   const activeCoin = useActiveCoinTicker();
@@ -19,7 +20,7 @@ export const TopDonatorsSection = () => {
 
   return (
     <>
-      <h2>Top Miners</h2>
+      <h2>Top Donators</h2>
       <br />
       <DynamicList
         isLoading={donorsState.isLoading}
@@ -39,14 +40,14 @@ export const TopDonatorsSection = () => {
               const displayReward = useActiveCoinTickerDisplayValue(
                 data.donated
               );
-              return <>{displayReward}</>;
+              return <Mono>{displayReward}</Mono>;
             },
           },
           {
             title: 'Donation',
             skeletonWidth: 60,
             Component: ({ data }) => {
-              return <>{data.donation * 100} %</>;
+              return <Mono>{data.donation * 100} %</Mono>;
             },
           },
           {

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import DynamicList, {
   DynamicListColumn,
 } from 'src/components/layout/List/List';
-import { Mono } from 'src/components/Typo/Typo';
+import { Mono, Ws } from 'src/components/Typo/Typo';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { minerWorkersGet } from 'src/rdx/minerWorkers/minerWorkers.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
@@ -109,10 +109,12 @@ const columns: DynamicListColumn<ApiMinerWorker & { totalShares: number }>[] = [
     alignRight: true,
     onClickValue: 'validShares',
     Component: ({ data }) => (
-      <Mono>
-        {data.validShares}{' '}
-        <Percentage total={data.totalShares} value={data.validShares} />
-      </Mono>
+      <Ws>
+        <Mono>
+          {data.validShares}{' '}
+          <Percentage total={data.totalShares} value={data.validShares} />
+        </Mono>
+      </Ws>
     ),
   },
   {
@@ -141,7 +143,7 @@ const columns: DynamicListColumn<ApiMinerWorker & { totalShares: number }>[] = [
     title: 'Last Seen',
     alignRight: true,
     Component: ({ data }) => (
-      <>{dateUtils.formatDistance(data.lastSeen * 1000)}</>
+      <Ws>{dateUtils.formatDistance(data.lastSeen * 1000)}</Ws>
     ),
   },
 ];

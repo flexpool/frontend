@@ -1,5 +1,5 @@
-import Tippy from '@tippyjs/react';
-import copy from 'copy-to-clipboard';
+// import Tippy from '@tippyjs/react';
+// import copy from 'copy-to-clipboard';
 import { Button } from 'src/components/Button';
 import { Card } from 'src/components/layout/Card';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';

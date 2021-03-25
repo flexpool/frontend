@@ -10,6 +10,7 @@ import { Card } from 'src/components/layout/Card';
 import { useDispatch } from 'react-redux';
 import { poolHashrateGet } from 'src/rdx/poolHashrate/poolHashrate.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
+import { ChartTitle } from 'src/components/Typo/ChartTitle';
 
 type HashrateItem = {
   minerCount: number;
@@ -106,6 +107,7 @@ const PoolHashrateChart = () => {
 
   return (
     <Card padding>
+      <ChartTitle>Pool Hashrate</ChartTitle>
       <div id="chartdiv" style={{ width: '100%', height: '400px' }}></div>
     </Card>
   );
