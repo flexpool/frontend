@@ -1,5 +1,7 @@
 import React from 'react';
-import DynamicList from 'src/components/layout/List/List';
+import DynamicList, {
+  DynamicListColumn,
+} from 'src/components/layout/List/List';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { fetchApi } from 'src/utils/fetchApi';
@@ -12,9 +14,11 @@ import { Button } from 'src/components/Button';
 import { getBlockLink } from 'src/utils/blockLink.utils';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { LinkOut } from 'src/components/LinkOut';
-import { Ws } from 'src/components/Typo/Typo';
+import { Mono, Ws } from 'src/components/Typo/Typo';
 import { ListPagination } from 'src/components/layout/List/ListPagination';
 import { dateUtils } from 'src/utils/date.utils';
+import { config } from 'react-transition-group';
+import { stringUtils } from 'src/utils/string.utils';
 
 type ApiBlock = {
   confirmed: boolean;
@@ -56,23 +60,127 @@ const TypeUncle = styled.span`
   color: var(--warning);
 `;
 
-export const BlocksSection = () => {
+const blockCols: {
+  [key: string]: DynamicListColumn<
+    ApiBlock,
+    {
+      coinTicker: string;
+      totalPages: number;
+      currentPage: number;
+      totalItems: number;
+    }
+  >;
+} = {
+  countNumber: {
+    title: '#',
+    skeletonWidth: 40,
+    Component: ({ config, index }) => {
+      return (
+        <Mono>
+          #
+          {(config.totalItems % 10) -
+            index +
+            (config.totalPages - (config.currentPage + 1)) * 10}
+        </Mono>
+      );
+    },
+  },
+  number: {
+    title: 'Number',
+    skeletonWidth: 80,
+    Component: ({ data, config }) => {
+      const url = getBlockLink(data.hash, config.coinTicker);
+      if (url) {
+        return <BlockLink href={url}>{data.number}</BlockLink>;
+      }
+      return <>{data.number}</>;
+    },
+  },
+  type: {
+    title: 'Type',
+    skeletonWidth: 50,
+    Component: ({ data }) =>
+      data.type === 'uncle' ? (
+        <TypeUncle>{data.type}</TypeUncle>
+      ) : (
+        <TypeBlock>{data.type}</TypeBlock>
+      ),
+  },
+  date: {
+    title: 'Date',
+    skeletonWidth: 180,
+    Component: ({ data }) => <Ws>{format(data.timestamp * 1000, 'PPp')}</Ws>,
+  },
+  region: {
+    title: 'Region',
+    skeletonWidth: 40,
+    Component: ({ data }) => <Region>{data.region}</Region>,
+  },
+  miner: {
+    title: 'Miner',
+    skeletonWidth: 210,
+    Component: ({ data, config }) => (
+      <LinkMiner coin={config.coinTicker} address={data.miner} />
+    ),
+  },
+  reward: {
+    title: 'Reward',
+    alignRight: true,
+    skeletonWidth: 80,
+    Component: ({ data }) => {
+      const displayReward = useActiveCoinTickerDisplayValue(data.reward);
+
+      return (
+        <Mono>
+          <Ws>{displayReward}</Ws>
+        </Mono>
+      );
+    },
+  },
+  roundTime: {
+    title: 'Round Time',
+    skeletonWidth: 75,
+    Component: ({ data }) => {
+      return (
+        <>
+          {dateUtils.durationWords(data.roundTime, {
+            includeSeconds: true,
+          })}
+        </>
+      );
+    },
+  },
+  luck: {
+    title: 'Luck',
+    skeletonWidth: 70,
+    Component: ({ data }) => <Luck value={data.luck} />,
+  },
+  blockHash: {
+    title: 'Hash',
+    skeletonWidth: 200,
+    alignRight: true,
+    Component: ({ data }) => (
+      <Mono>{stringUtils.shortenString(data.hash, 16)}</Mono>
+    ),
+  },
+};
+
+export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   const blockState = useAsyncState<ApiBlocks>('blocks', {
     totalItems: 0,
     totalPages: 0,
     data: [],
   });
-  const localSettingsState = useReduxState('localSettings');
   const coinTicker = useActiveCoinTicker();
   const [currentPage, setCurrentPage] = React.useState(0);
 
   React.useEffect(() => {
     blockState.start(
-      fetchApi('/pool/blocks', {
-        query: { coin: coinTicker, page: currentPage },
+      fetchApi(address ? '/miner/blocks' : '/pool/blocks', {
+        query: { coin: coinTicker, page: currentPage, address },
       })
     );
-  }, [currentPage, coinTicker]);
+  }, [currentPage, coinTicker, address]);
 
   const totalPages = blockState.data?.totalPages || 0;
 
@@ -80,8 +188,40 @@ export const BlocksSection = () => {
     return blockState.data?.data || [];
   }, [blockState.data]);
 
+  const columns = React.useMemo(() => {
+    // if no address, displaying default view
+    if (!address) {
+      return [
+        blockCols.number,
+        blockCols.type,
+        blockCols.date,
+        blockCols.region,
+        blockCols.miner,
+        blockCols.reward,
+        blockCols.roundTime,
+        blockCols.luck,
+      ];
+    }
+    return [
+      blockCols.countNumber,
+      blockCols.number,
+      blockCols.type,
+      blockCols.date,
+      blockCols.region,
+      blockCols.reward,
+      blockCols.blockHash,
+    ];
+  }, [address]);
+
+  const title = address
+    ? blockState.data && blockState.data.totalItems > 1
+      ? `You have mined ${blockState.data.totalItems} blocks.`
+      : "You haven't mined any block yet."
+    : null;
+
   return (
-    <div>
+    <>
+      {title && <h2>{title}</h2>}
       <DynamicList
         pagination={{
           currentPage,
@@ -91,72 +231,14 @@ export const BlocksSection = () => {
         isLoading={blockState.isLoading}
         loadingRowsCount={10}
         data={blocks}
-        columns={[
-          {
-            title: 'Number',
-            skeletonWidth: 80,
-            Component: ({ data }) => {
-              const url = getBlockLink(data.hash, coinTicker);
-              if (url) {
-                return <BlockLink href={url}>{data.number}</BlockLink>;
-              }
-              return <>{data.number}</>;
-            },
-          },
-          {
-            title: 'Type',
-            skeletonWidth: 50,
-            Component: ({ data }) =>
-              data.type === 'uncle' ? (
-                <TypeUncle>{data.type}</TypeUncle>
-              ) : (
-                <TypeBlock>{data.type}</TypeBlock>
-              ),
-          },
-          {
-            title: 'Date',
-            skeletonWidth: 180,
-            Component: ({ data }) => (
-              <Ws>{format(data.timestamp * 1000, 'PPp')}</Ws>
-            ),
-          },
-          {
-            title: 'Region',
-            skeletonWidth: 40,
-            Component: ({ data }) => <Region>{data.region}</Region>,
-          },
-          {
-            title: 'Miner',
-            skeletonWidth: 210,
-            Component: ({ data }) => (
-              <LinkMiner coin={localSettingsState.coin} address={data.miner} />
-            ),
-          },
-          {
-            title: 'Reward',
-            skeletonWidth: 80,
-            Component: ({ data }) => {
-              const displayReward = useActiveCoinTickerDisplayValue(
-                data.reward
-              );
-
-              return <Ws>{displayReward}</Ws>;
-            },
-          },
-          {
-            title: 'Round Time',
-            skeletonWidth: 75,
-            Component: ({ data }) => {
-              return <>{dateUtils.durationWords(data.roundTime)}</>;
-            },
-          },
-          {
-            title: 'Luck',
-            skeletonWidth: 70,
-            Component: ({ data }) => <Luck value={data.luck} />,
-          },
-        ]}
+        config={{
+          coinTicker,
+          totalPages,
+          totalItems: blockState.data?.totalItems || 0,
+          currentPage,
+        }}
+        columns={columns}
       />
-    </div>
+    </>
   );
 };

@@ -10,6 +10,7 @@ import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
 import { dateUtils } from 'src/utils/date.utils';
 import { formatDistance } from 'date-fns';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 type ApiPaymentStats = {
   countervalue: number;
@@ -99,6 +100,9 @@ export const GeneralPaymentStatsSection: React.FC<{
 
   return (
     <>
+      <Helmet>
+        <title>Miner Payments</title>
+      </Helmet>
       <h2>General Payment Statistics</h2>
       <CardGrid>
         <Card padding>

@@ -66,13 +66,13 @@ const tickers: {
 
 export const getDisplayCounterTickerValue = (
   value?: number | null,
-  ticker: Ticker = 'usd'
+  ticker: string | Ticker = 'usd'
 ) => {
   if (typeof value !== 'number') {
     return null;
   }
 
-  const val = String(Math.round(value * 100) / 100).replace(
+  const val = String((Math.round(value * 100) / 100).toFixed(2)).replace(
     /\B(?=(\d{3})+(?!\d))/g,
     ','
   );

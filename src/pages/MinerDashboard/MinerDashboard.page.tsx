@@ -9,7 +9,10 @@ import {
 } from 'react-router';
 import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
-import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
+import {
+  useActiveCoin,
+  useCounterTicker,
+} from 'src/rdx/localSettings/localSettings.hooks';
 import { minerDetailsGet } from 'src/rdx/minerDetails/minerDetails.actions';
 import { minerHeaderStatsGet } from 'src/rdx/minerHeaderStats/minerHeaderStats.actions';
 import { minerStatsGet } from 'src/rdx/minerStats/minerStats.actions';
@@ -24,11 +27,15 @@ import { NavLink } from 'react-router-dom';
 import { FaChartBar, FaWallet } from 'react-icons/fa';
 import { Spacer } from 'src/components/layout/Spacer';
 import { MinerPaymentsPage } from './Payments/MinerPayments.page';
+import { Helmet } from 'react-helmet-async';
+import { MinerBlocksPage } from './Blocks/MinerBlocks.page';
+import { MinerRewardsPage } from './Rewards/MinerRewards.page';
+import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
 
 const TabContent = styled.div`
   box-shadow: inset -1px 18px 19px -13px var(--bg-secondary);
   border-top: 2px solid var(--border-color);
-  padding-top: 1rem;
+  padding-top: 2rem;
 `;
 
 const TabLinkContainer = styled(Content)`
@@ -65,21 +72,27 @@ export const MinerDashboardPage: React.FC<
 > = (props) => {
   const { coin: coinTicker, address } = props.match.params;
   const activeCoin = useActiveCoin(coinTicker);
-  const localSettingsState = useReduxState('localSettings');
   const match = useRouteMatch();
+  const counterTicker = useCounterTicker();
 
   const d = useDispatch();
 
+  // globaly set active coin ticker
   React.useEffect(() => {
-    d(
-      minerHeaderStatsGet(coinTicker, address, localSettingsState.counterTicker)
-    );
+    d(localSettingsSet({ coin: coinTicker }));
+  }, [coinTicker, d]);
+
+  React.useEffect(() => {
+    d(minerHeaderStatsGet(coinTicker, address, counterTicker));
     d(minerDetailsGet(coinTicker, address));
     d(minerStatsGet(coinTicker, address));
-  }, [coinTicker, address, d, localSettingsState.counterTicker]);
+  }, [coinTicker, address, d, counterTicker]);
 
   return (
     <Page>
+      <Helmet>
+        <title>Miner Dashboard</title>
+      </Helmet>
       <Content>
         <HeaderGreetings coin={activeCoin} />
         <AccountHeader coin={activeCoin} address={address} />
@@ -104,6 +117,11 @@ export const MinerDashboardPage: React.FC<
         <Content>
           <Switch>
             <Route path={`${match.path}/stats`} component={MinerStatsPage} />
+            <Route path={`${match.path}/blocks`} component={MinerBlocksPage} />
+            <Route
+              path={`${match.path}/rewards`}
+              component={MinerRewardsPage}
+            />
             <Route
               path={`${match.path}/payments`}
               component={MinerPaymentsPage}

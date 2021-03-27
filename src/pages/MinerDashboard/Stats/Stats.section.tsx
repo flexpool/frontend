@@ -1,4 +1,4 @@
-import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';
+import { Card, CardTitle } from 'src/components/layout/Card';
 import { StatItem } from 'src/components/StatItem';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { formatSi } from 'src/utils/si.utils';
@@ -9,6 +9,12 @@ const StatItemGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 1rem;
   width: 100%;
+`;
+
+const StatGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 `;
 
 const getDisplayPercentage = (
@@ -30,7 +36,7 @@ export const MinerStats = () => {
     (data && data.invalidShares + data.staleShares + data.validShares) || 0;
 
   return (
-    <CardGrid>
+    <StatGrid>
       <Card padding>
         <CardTitle>Hashrate</CardTitle>
         <StatItemGrid>
@@ -77,6 +83,6 @@ export const MinerStats = () => {
           />
         </StatItemGrid>
       </Card>
-    </CardGrid>
+    </StatGrid>
   );
 };

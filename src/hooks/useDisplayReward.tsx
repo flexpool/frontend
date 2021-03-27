@@ -28,3 +28,24 @@ export const useActiveCoinTickerDisplayValue = (
     </span>
   );
 };
+
+export const getActiveCoinDisplayValue = (
+  value?: number,
+  coin?: ApiPoolCoin,
+  dec: number = 10000
+) => {
+  const activeCoin = coin;
+
+  if (!activeCoin || typeof value !== 'number') {
+    return null;
+  }
+
+  const val =
+    Math.round((value / Math.pow(10, activeCoin?.decimalPlaces || 100)) * dec) /
+    dec;
+  return (
+    <span>
+      {val} <Tick className="ticker">{activeCoin?.ticker}</Tick>
+    </span>
+  );
+};

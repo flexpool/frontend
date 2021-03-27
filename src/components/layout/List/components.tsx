@@ -81,4 +81,7 @@ export const HorizontalScrollWrapepr = styled.div`
   overflow-x: auto;
   border: 1px solid var(--border-color);
   border-radius: 5px;
+  &:not(:first-child) {
+    margin-top: 1rem;
+  }
 `;

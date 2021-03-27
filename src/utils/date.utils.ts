@@ -53,7 +53,15 @@ const formatDistance = (d: DateInput) => {
   return '?';
 };
 
-const durationWords = (seconds: number) => {
+const durationWords = (
+  seconds: number,
+  options?: { includeSeconds: boolean }
+) => {
+  const format = ['years', 'months', 'weeks', 'days', 'hours', 'minutes'];
+
+  if (options?.includeSeconds) {
+    format.push('seconds');
+  }
   return formatDuration(
     intervalToDuration({
       start: 0,
@@ -61,7 +69,7 @@ const durationWords = (seconds: number) => {
     }),
     {
       delimiter: ', ',
-      format: ['years', 'months', 'weeks', 'days', 'hours', 'minutes'],
+      format,
     }
   );
 };

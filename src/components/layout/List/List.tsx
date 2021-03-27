@@ -9,19 +9,19 @@ export interface DynamicListColumn<D extends {}, CP extends {} = {}> {
   onClickValue?: string;
   name?: string;
   alignRight?: boolean;
-  config?: CP;
   skeletonWidth?: number;
   // TODO - not sure how to type this so that React.createElement likes it
-  Component: React.ComponentType<{ data: D; index: number; config?: CP }>;
+  Component: React.ComponentType<{ data: D; index: number; config: CP }>;
   // Component?: Parameters<typeof React.createElement>[0]; // needs Prop type included
 }
 
 export type DynamicListProps<
   D extends {},
-  CP extends {}
+  CP extends {} = {}
 > = JSX.IntrinsicElements['table'] & {
   data?: D[];
   columns: DynamicListColumn<D, CP>[];
+  config?: CP;
   large?: boolean;
   className?: string;
   activeColName?: string;
@@ -59,6 +59,7 @@ export const DynamicList = <D extends {}, CP extends {}>(
     loadingRowsCount = 5,
     pagination,
     onColumnHeaderClick,
+    config = {},
   } = props;
 
   return (
@@ -121,7 +122,7 @@ export const DynamicList = <D extends {}, CP extends {}>(
                           <col.Component
                             data={item}
                             index={index}
-                            config={col.config}
+                            config={config as any}
                           />
                         </Table.Td>
                       );

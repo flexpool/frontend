@@ -54,3 +54,8 @@ export type ApiMinerPayments = {
   totalItems: number;
   totalPages: number;
 };
+
+export type ApiMinerReward = {
+  timestamp: number;
+  totalRewards: number;
+};
