@@ -11,7 +11,7 @@ export const usePoolCoins = () => {
     if (poolCoinsState.data.length < 1 && !poolCoinsState.isLoading) {
       d(poolCoinsGet());
     }
-  }, [poolCoinsState, d]);
+  }, [poolCoinsState.data, poolCoinsState.isLoading, d]);
 
   return poolCoinsState;
 };

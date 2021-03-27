@@ -1,13 +1,23 @@
-import { format } from 'date-fns';
+import {
+  format,
+  formatDistance,
+  formatDistanceToNowStrict,
+  formatDuration,
+  intervalToDuration,
+} from 'date-fns';
+import { formatDistanceStrict, subSeconds } from 'date-fns/esm';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import DynamicList from 'src/components/layout/List/List';
-import { Ws } from 'src/components/Typo/Typo';
+import { Mono, Ws } from 'src/components/Typo/Typo';
 import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { minerPaymentsGet } from 'src/rdx/minerPayments/minerPayments.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
+import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
+import { dateUtils } from 'src/utils/date.utils';
+import { stringUtils } from 'src/utils/string.utils';
 
 export const MinerPaymentsList: React.FC<{
   address: string;
@@ -19,10 +29,10 @@ export const MinerPaymentsList: React.FC<{
   const counterTicker = useCounterTicker();
 
   React.useEffect(() => {
-    if (coin) {
-      d(minerPaymentsGet(coin?.ticker, address, counterTicker, currentPage));
+    if (coin?.ticker) {
+      d(minerPaymentsGet(coin.ticker, address, counterTicker, currentPage));
     }
-  }, [coin, address, counterTicker, currentPage, d]);
+  }, [coin?.ticker, address, counterTicker, currentPage, d]);
 
   const paymentsData = React.useMemo(() => {
     return minerPayments.data?.data || [];
@@ -36,8 +46,11 @@ export const MinerPaymentsList: React.FC<{
     };
   }, [minerPayments.data]);
 
+  const counterValuePrice = minerPayments.data?.countervalue || 1;
+
   return (
     <>
+      <h2>Payments</h2>
       <DynamicList
         pagination={{
           currentPage,
@@ -50,12 +63,12 @@ export const MinerPaymentsList: React.FC<{
             title: '#',
             Component: ({ data, index }) => {
               return (
-                <>
+                <Mono>
                   #
                   {(totalItems % 10) -
                     index +
                     (totalPages - (currentPage + 1)) * 10}
-                </>
+                </Mono>
               );
             },
           },
@@ -66,18 +79,65 @@ export const MinerPaymentsList: React.FC<{
             },
           },
           {
-            title: 'Reward',
+            title: 'Transaction Value',
+            alignRight: true,
             Component: ({ data }) => {
               const value = useActiveCoinTickerDisplayValue(data.value);
+              const tickerValue = coin
+                ? (data.value / Math.pow(10, coin.decimalPlaces)) *
+                  counterValuePrice
+                : null;
+
+              const tickerDisplayValue = getDisplayCounterTickerValue(
+                tickerValue,
+                counterTicker
+              );
+
+              //  * (minerPayments.data?.countervalue || 1)
               return (
                 <Ws>
-                  {value}
-                  <span className="reward">
-                    {/* {`(${countervalue.formatter(
-                (item.value / Math.pow(10, coin.decimalPlaces)) *
-                  countervaluePrice
-              )})`} */}
-                  </span>
+                  <Mono>
+                    {value} ({tickerDisplayValue})
+                    <span className="reward"></span>
+                  </Mono>
+                </Ws>
+              );
+            },
+          },
+          {
+            title: 'Fee',
+            alignRight: true,
+            Component: ({ data }) => {
+              return (
+                <Ws>
+                  <Mono>
+                    {Math.round(data.feePercent * 100 * 100) / 100}% (
+                    {coin &&
+                      getDisplayCounterTickerValue(
+                        (data.fee / Math.pow(10, coin.decimalPlaces)) *
+                          counterValuePrice,
+                        counterTicker
+                      )}
+                    )
+                  </Mono>
+                </Ws>
+              );
+            },
+          },
+          {
+            title: 'Duration',
+            alignRight: true,
+            Component: ({ data }) => {
+              return <Ws>{dateUtils.durationWords(data.duration)}</Ws>;
+            },
+          },
+          {
+            title: 'Hash',
+            alignRight: true,
+            Component: ({ data }) => {
+              return (
+                <Ws>
+                  <Mono>{stringUtils.shortenString(data.hash)}</Mono>
                 </Ws>
               );
             },

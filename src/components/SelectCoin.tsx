@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
-import { usePoolCoins } from 'src/rdx/poolCoins/poolCoins.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import styled from 'styled-components/macro';
 import { Select } from './Form/Select/Select';
@@ -18,7 +17,7 @@ const LabelWrap = styled.div`
 
 export const SelectCoin = () => {
   const localSettingsState = useReduxState('localSettings');
-  const poolCoinsState = usePoolCoins();
+  const poolCoinsState = useReduxState('poolCoins');
   const d = useDispatch();
 
   const options = React.useMemo(() => {

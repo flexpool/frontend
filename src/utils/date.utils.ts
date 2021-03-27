@@ -1,4 +1,10 @@
-import { format, formatRelative, formatDistanceToNowStrict } from "date-fns";
+import {
+  format,
+  formatRelative,
+  formatDistanceToNowStrict,
+  intervalToDuration,
+  formatDuration,
+} from 'date-fns';
 
 // export const isValidDate = (date: any) => {
 //   return (
@@ -24,7 +30,7 @@ const dateFormat = (d: DateInput, formatString: string) => {
   if (dateIsValid(date)) {
     return format(date, formatString);
   }
-  return "?";
+  return '?';
 };
 
 const relativeNow = (d: DateInput) => {
@@ -33,7 +39,7 @@ const relativeNow = (d: DateInput) => {
   if (dateIsValid(date)) {
     return formatRelative(date, new Date());
   }
-  return "?";
+  return '?';
 };
 
 const formatDistance = (d: DateInput) => {
@@ -44,15 +50,29 @@ const formatDistance = (d: DateInput) => {
       addSuffix: true,
     });
   }
-  return "?";
+  return '?';
+};
+
+const durationWords = (seconds: number) => {
+  return formatDuration(
+    intervalToDuration({
+      start: 0,
+      end: new Date(seconds * 1000),
+    }),
+    {
+      delimiter: ', ',
+      format: ['years', 'months', 'weeks', 'days', 'hours', 'minutes'],
+    }
+  );
 };
 
 export const dateUtils = {
   dateInputToDate,
   isValidDate,
-  short: (d: DateInput) => dateFormat(d, "PP"),
-  shortWithTime: (d: DateInput) => dateFormat(d, "Pp"),
+  short: (d: DateInput) => dateFormat(d, 'PP'),
+  shortWithTime: (d: DateInput) => dateFormat(d, 'Pp'),
   format: dateFormat,
   relativeNow,
   formatDistance,
+  durationWords,
 };

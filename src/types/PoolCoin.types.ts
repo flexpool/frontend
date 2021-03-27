@@ -28,7 +28,7 @@ export type ApiPoolCoin = {
   marketData: ApiCoinMarketData;
   minerCount: number;
   name: string;
-  ticker: string;
+  ticker: Ticker;
   websiteLink: string;
   whitepaperLibk: string;
 };

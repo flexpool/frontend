@@ -82,7 +82,7 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
   }, [coin, asyncState.data]);
 
   React.useEffect(() => {
-    if (coin) {
+    if (coin?.decimalPlaces && coin?.ticker) {
       asyncState.start(
         fetchApi<ChartData>('/miner/paymentsChart', {
           query: {
@@ -98,7 +98,7 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
         })
       );
     }
-  }, [coin, address]);
+  }, [coin?.ticker, coin?.decimalPlaces, address]);
 
   return (
     <>

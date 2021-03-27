@@ -55,7 +55,7 @@ const tickers: {
   {
     ticker: 'czk',
     symbol: 'Kč',
-    symbolPosition: 'START',
+    symbolPosition: 'END',
   },
   {
     ticker: 'pln',
@@ -65,7 +65,7 @@ const tickers: {
 ];
 
 export const getDisplayCounterTickerValue = (
-  value?: number,
+  value?: number | null,
   ticker: Ticker = 'usd'
 ) => {
   if (typeof value !== 'number') {
@@ -78,6 +78,7 @@ export const getDisplayCounterTickerValue = (
   );
 
   const tickerSettings = tickers.find((item) => item.ticker === ticker);
+
   if (!tickerSettings) {
     return val;
   }

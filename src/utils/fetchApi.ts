@@ -11,7 +11,6 @@ const buildUri = (url = '', query?: object) => {
     return url;
   }
   const resUrl = new URL(`${apiURL}${url}`);
-  console.log(url, resUrl);
   resUrl.search = (query && transformQuery(query)) || '';
 
   return resUrl.toString();

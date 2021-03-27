@@ -1,4 +1,3 @@
-import { usePoolCoins } from 'src/rdx/poolCoins/poolCoins.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 
 export const useActiveCoinTicker = () => {
@@ -8,7 +7,7 @@ export const useActiveCoinTicker = () => {
 
 export const useActiveCoin = (ticker?: string) => {
   const activeCoinTicker = useActiveCoinTicker();
-  const poolCoinsState = usePoolCoins();
+  const poolCoinsState = useReduxState('poolCoins');
 
   const tickerToFind = ticker || activeCoinTicker;
   const coin = poolCoinsState.data.find((item) => item.ticker === tickerToFind);

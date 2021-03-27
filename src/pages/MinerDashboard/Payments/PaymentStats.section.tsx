@@ -39,7 +39,7 @@ export const GeneralPaymentStatsSection: React.FC<{
   const couterTicker = useCounterTicker();
 
   React.useEffect(() => {
-    if (coin) {
+    if (coin?.ticker) {
       asyncState.start(
         fetchApi('/miner/paymentsStats', {
           query: {
@@ -50,10 +50,9 @@ export const GeneralPaymentStatsSection: React.FC<{
         })
       );
     }
-  }, [coin]);
+  }, [coin?.ticker, address, couterTicker]);
 
   const data = asyncState.data;
-  console.log(data?.stats.totalPaid);
 
   const totalPaidCounter =
     data && coin

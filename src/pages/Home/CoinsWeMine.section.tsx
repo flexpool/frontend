@@ -2,7 +2,7 @@ import { Button } from 'src/components/Button';
 import { Content } from 'src/components/layout/Content';
 import DynamicList from 'src/components/layout/List/List';
 import { Mono, Ws } from 'src/components/Typo/Typo';
-import { usePoolCoins } from 'src/rdx/poolCoins/poolCoins.hooks';
+import { useReduxState } from 'src/rdx/useReduxState';
 import { useCounterValue } from 'src/utils/currencyValue';
 import { formatSi } from 'src/utils/si.utils';
 import styled from 'styled-components/macro';
@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 `;
 
 export const CoinsWeMineSection = () => {
-  const poolCoinsState = usePoolCoins();
+  const poolCoinsState = useReduxState('poolCoins');
 
   return (
     <Wrapper>

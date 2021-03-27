@@ -14,6 +14,7 @@ import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { LinkOut } from 'src/components/LinkOut';
 import { Ws } from 'src/components/Typo/Typo';
 import { ListPagination } from 'src/components/layout/List/ListPagination';
+import { dateUtils } from 'src/utils/date.utils';
 
 type ApiBlock = {
   confirmed: boolean;
@@ -146,11 +147,7 @@ export const BlocksSection = () => {
             title: 'Round Time',
             skeletonWidth: 75,
             Component: ({ data }) => {
-              return (
-                <>
-                  {format(data.roundTime * 1000 - 1000 * 60 * 60, 'HH:mm:ss')}
-                </>
-              );
+              return <>{dateUtils.durationWords(data.roundTime)}</>;
             },
           },
           {

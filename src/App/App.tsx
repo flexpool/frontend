@@ -24,11 +24,14 @@ import { SupportPage } from 'src/pages/Support/Support.page';
 import { MinerDashboardPage } from 'src/pages/MinerDashboard/MinerDashboard.page';
 
 import './init';
+import { usePoolCoins } from 'src/rdx/poolCoins/poolCoins.hooks';
 
 const store = createReduxStore();
 
 const AppContent = () => {
   const location = useLocation();
+
+  usePoolCoins();
 
   // hash
   React.useLayoutEffect(() => {
