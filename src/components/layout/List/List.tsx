@@ -2,6 +2,7 @@ import React from 'react';
 import { clx } from 'src/utils/clx';
 import { Skeleton } from '../Skeleton';
 import { HorizontalScrollWrapepr, Table } from './components';
+import { ListPagination } from './ListPagination';
 
 export interface DynamicListColumn<D extends {}, CP extends {} = {}> {
   title?: React.ReactNode;
@@ -37,6 +38,11 @@ export type DynamicListProps<
   isLoading?: boolean;
   loadingRowsCount?: number;
   onColumnHeaderClick?: (value: string) => void;
+  pagination?: {
+    currentPage: number;
+    setCurrentPage: (page: number) => void;
+    totalPages: number;
+  };
 };
 
 export const DynamicList = <D extends {}, CP extends {}>(
@@ -51,6 +57,7 @@ export const DynamicList = <D extends {}, CP extends {}>(
     hideHead,
     isLoading,
     loadingRowsCount = 5,
+    pagination,
     onColumnHeaderClick,
   } = props;
 
@@ -127,6 +134,7 @@ export const DynamicList = <D extends {}, CP extends {}>(
         )}
         {tFooterChildren && <tfoot>{tFooterChildren}</tfoot>}
       </Table.Container>
+      {pagination && <ListPagination {...pagination} />}
     </HorizontalScrollWrapepr>
   );
 };

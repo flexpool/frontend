@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouteMatch } from 'react-router';
 import { Spacer } from 'src/components/layout/Spacer';
-import StatsChart from './StatCharts';
+import StatsChart from './MinerStats.chart';
 import { MinerStats } from './Stats.section';
 import { MinerWorkers } from './Workers.section';
 

@@ -7,7 +7,7 @@ const Container = styled.table`
   border-spacing: 0 3px;
   color: var(--text-secondary);
   border-collapse: separate;
-  border: 1px solid var(--border-color);
+  border: none;
 `;
 
 const shared = `
@@ -79,4 +79,6 @@ export const Table = {
 export const HorizontalScrollWrapepr = styled.div`
   width: 100%;
   overflow-x: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
 `;

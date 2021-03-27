@@ -13,6 +13,7 @@ import { getBlockLink } from 'src/utils/blockLink.utils';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { LinkOut } from 'src/components/LinkOut';
 import { Ws } from 'src/components/Typo/Typo';
+import { ListPagination } from 'src/components/layout/List/ListPagination';
 
 type ApiBlock = {
   confirmed: boolean;
@@ -54,77 +55,6 @@ const TypeUncle = styled.span`
   color: var(--warning);
 `;
 
-const PaginationContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-`;
-
-const PaginationItems = styled.div`
-  display: flex;
-  align-items: center;
-  & > * {
-    margin: 0 0.25rem;
-  }
-
-  @media screen and (max-width: 660px) {
-    display: none;
-  }
-`;
-
-const PaginSplit = styled.span`
-  opacity: 0.3;
-`;
-
-const Pagination: React.FC<{
-  currentPage: number;
-  totalPages: number;
-  onPageSelect: React.MouseEventHandler<HTMLButtonElement>;
-}> = ({ currentPage, totalPages, onPageSelect }) => {
-  const showStart = currentPage - 1 > 0;
-  const showEnd = currentPage + 2 < totalPages;
-
-  const pageList = [
-    currentPage - 1,
-    currentPage,
-    currentPage + 1,
-    currentPage + 2,
-  ]
-    .filter((item) => item >= 0 && item < totalPages)
-    .slice(0, 3);
-  return (
-    <PaginationItems>
-      {showStart && (
-        <>
-          <Button size="sm" onClick={onPageSelect} value={0}>
-            {1}
-          </Button>
-          <PaginSplit>—</PaginSplit>
-        </>
-      )}
-      {pageList.map((item) => (
-        <Button
-          variant={currentPage === item ? 'primary' : undefined}
-          key={item}
-          size="sm"
-          onClick={onPageSelect}
-          value={item}
-        >
-          {item + 1}
-        </Button>
-      ))}
-      {showEnd && (
-        <>
-          <PaginSplit>—</PaginSplit>
-          <Button size="sm" onClick={onPageSelect} value={totalPages - 1}>
-            {totalPages}
-          </Button>
-        </>
-      )}
-    </PaginationItems>
-  );
-};
-
 export const BlocksSection = () => {
   const blockState = useAsyncState<ApiBlocks>('blocks', {
     totalItems: 0,
@@ -149,24 +79,14 @@ export const BlocksSection = () => {
     return blockState.data?.data || [];
   }, [blockState.data]);
 
-  const handleChangePage = React.useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      const nextPage = Number((e.target as HTMLButtonElement).value);
-      if (
-        totalPages &&
-        typeof nextPage === 'number' &&
-        nextPage >= 0 &&
-        nextPage < totalPages
-      ) {
-        setCurrentPage(nextPage);
-      }
-    },
-    [totalPages]
-  );
-
   return (
     <div>
       <DynamicList
+        pagination={{
+          currentPage,
+          setCurrentPage,
+          totalPages,
+        }}
         isLoading={blockState.isLoading}
         loadingRowsCount={10}
         data={blocks}
@@ -240,29 +160,6 @@ export const BlocksSection = () => {
           },
         ]}
       />
-      <PaginationContainer>
-        <Button
-          disabled={currentPage === 0}
-          size="sm"
-          onClick={handleChangePage}
-          value={currentPage - 1}
-        >
-          Prev
-        </Button>
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages || 0}
-          onPageSelect={handleChangePage}
-        />
-        <Button
-          disabled={currentPage >= totalPages - 1}
-          size="sm"
-          onClick={handleChangePage}
-          value={currentPage + 1}
-        >
-          Next
-        </Button>
-      </PaginationContainer>
     </div>
   );
 };

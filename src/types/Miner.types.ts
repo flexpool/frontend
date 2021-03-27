@@ -39,3 +39,18 @@ export type ApiMinerWorker = {
   staleShares: number;
   validShares: number;
 };
+
+export type ApiMinerPayment = {
+  duration: number;
+  fee: number;
+  feePercent: number;
+  hash: string;
+  timestamp: number;
+  value: number;
+};
+export type ApiMinerPayments = {
+  countervalue: number;
+  data: ApiMinerPayment[];
+  totalItems: number;
+  totalPages: number;
+};
