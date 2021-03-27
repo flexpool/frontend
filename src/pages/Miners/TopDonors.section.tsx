@@ -21,7 +21,6 @@ export const TopDonatorsSection = () => {
   return (
     <>
       <h2>Top Donators</h2>
-      <br />
       <DynamicList
         isLoading={donorsState.isLoading}
         loadingRowsCount={10}

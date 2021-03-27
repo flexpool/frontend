@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useRouteMatch } from 'react-router';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import {
@@ -64,6 +65,9 @@ export const MinerRewardsPage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Miner rewards</title>
+      </Helmet>
       <RewardsChart
         counterPrice={minerRewardsState.data?.price || 0}
         rewards={minerRewardsState.data?.data || []}

@@ -1,7 +1,9 @@
 import { isBefore, subDays } from 'date-fns';
 import React from 'react';
 import { CardGrid } from 'src/components/layout/Card';
-import DynamicList from 'src/components/layout/List/List';
+import DynamicList, {
+  DynamicListColumn,
+} from 'src/components/layout/List/List';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { getActiveCoinDisplayValue } from 'src/hooks/useDisplayReward';
 import {
@@ -92,13 +94,17 @@ export const MinerRewardStatsSection: React.FC<{
         : 0;
 
     return [1, 7, 30.5].map((item) => ({
-      coinValue: getActiveCoinDisplayValue(daily * item, activeCoin),
-      counterValue: getDisplayCounterTickerValue(
-        ((item * daily) /
-          Math.pow(10, activeCoin?.decimalPlaces || 1000000000)) *
-          counterPrice,
-        counterTicker
-      ),
+      coinValue: daily
+        ? getActiveCoinDisplayValue(daily * item, activeCoin)
+        : '-',
+      counterValue: daily
+        ? getDisplayCounterTickerValue(
+            ((item * daily) /
+              Math.pow(10, activeCoin?.decimalPlaces || 1000000000)) *
+              counterPrice,
+            counterTicker
+          )
+        : '-',
     }));
   }, [
     averagePoolHashrate,
@@ -109,64 +115,40 @@ export const MinerRewardStatsSection: React.FC<{
     counterTicker,
   ]);
 
-  console.log('pastData', pastData);
+  const earningsCols: DynamicListColumn<{
+    coinValue: React.ReactNode;
+    counterValue: React.ReactNode;
+  }>[] = [
+    {
+      title: '',
+      Component: ({ index }) => {
+        return <strong>{getIndexInterval(index)}</strong>;
+      },
+    },
+    {
+      title: coinTicker,
+      Component: ({ data }) => {
+        return <>{data.coinValue}</>;
+      },
+    },
+    {
+      title: counterTicker,
+      Component: ({ data }) => {
+        return <>{data.counterValue}</>;
+      },
+    },
+  ];
 
   return (
-    <div>
-      <CardGrid>
-        <div>
-          <h2>Past Earnings</h2>
-          <DynamicList
-            data={pastData}
-            columns={[
-              {
-                title: '',
-                Component: ({ index }) => {
-                  return <strong>{getIndexInterval(index)}</strong>;
-                },
-              },
-              {
-                title: coinTicker,
-                Component: ({ data }) => {
-                  return <>{data.coinValue}</>;
-                },
-              },
-              {
-                title: counterTicker,
-                Component: ({ data }) => {
-                  return <>{data.counterValue}</>;
-                },
-              },
-            ]}
-          />
-        </div>
-        <div>
-          <h2>Forecasted Earnings</h2>
-          <DynamicList
-            data={futureData}
-            columns={[
-              {
-                title: '',
-                Component: ({ index }) => {
-                  return <strong>{getIndexInterval(index)}</strong>;
-                },
-              },
-              {
-                title: coinTicker,
-                Component: ({ data }) => {
-                  return <>{data.coinValue}</>;
-                },
-              },
-              {
-                title: counterTicker,
-                Component: ({ data }) => {
-                  return <>{data.counterValue}</>;
-                },
-              },
-            ]}
-          />
-        </div>
-      </CardGrid>
-    </div>
+    <CardGrid>
+      <div>
+        <h2>Past Earnings</h2>
+        <DynamicList data={pastData} columns={earningsCols} />
+      </div>
+      <div>
+        <h2>Forecasted Earnings</h2>
+        <DynamicList data={futureData} columns={earningsCols} />
+      </div>
+    </CardGrid>
   );
 };

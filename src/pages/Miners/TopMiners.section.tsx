@@ -22,7 +22,6 @@ export const TopMinersSection = () => {
   return (
     <>
       <h2>Top Miners</h2>
-      <br />
       <DynamicList
         isLoading={minersState.isLoading}
         data={minersState.data}
