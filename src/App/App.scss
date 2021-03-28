@@ -17,6 +17,8 @@ body {
   --warning: #edb431;
   --border-color: #e8eff7;
 
+  background: var(--bg-primary);
+
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   color: var(--text-primary);

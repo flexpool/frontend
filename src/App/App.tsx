@@ -28,6 +28,8 @@ import { usePoolCoins } from 'src/rdx/poolCoins/poolCoins.hooks';
 
 const store = createReduxStore();
 
+const Theme = () => {};
+
 const AppContent = () => {
   const location = useLocation();
 
@@ -78,6 +80,19 @@ const AppContent = () => {
 const App = () => {
   return (
     <>
+      <style>{`body {
+      --bg-primary: #151519;
+      --bg-secondary: #2c2c31;
+      --border-color: #333;
+      --text-secondary: #ccc;
+      --text-primary: #eee;
+      }
+      
+      svg tspan {
+        fill: var(--text-primary);
+      }
+      
+      `}</style>
       <HelmetProvider>
         <ReduxProvider store={store}>
           <Helmet titleTemplate="%s | Flexpool" />

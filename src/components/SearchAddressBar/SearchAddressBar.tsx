@@ -68,7 +68,7 @@ const FieldWrapper = styled.div`
 
 const Input = styled(Field)`
   height: 100%;
-  background-color: white;
+  background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 5px 0px 0px 5px;
   padding: 0 1rem;

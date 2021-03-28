@@ -10,7 +10,7 @@ const ItemWrapper = styled.a`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: var(--bg-primary);
   text-decoration: none;
   color: var(--texxt-primary);
   transition: 300ms;

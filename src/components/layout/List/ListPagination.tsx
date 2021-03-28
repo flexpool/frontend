@@ -15,6 +15,7 @@ const PageButton = styled(Button)`
   &:disabled {
     border-color: transparent;
     color: var(--text-secondary);
+    background: transparent;
   }
   &.active {
     background: var(--primary);

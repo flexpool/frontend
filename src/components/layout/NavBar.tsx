@@ -1,5 +1,4 @@
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import Logo from 'src/assets/logo.svg';
 import { Content } from 'src/components/layout/Content';
 import { Button } from 'src/components/Button';
 import { ScrollArea } from 'src/components/layout/ScrollArea';
@@ -16,6 +15,12 @@ import { Ws } from '../Typo/Typo';
 import { OuterEvent } from '../DivOuterEvents';
 import { Burger } from '../Burger/Burger';
 import { clx } from 'src/utils/clx';
+
+import { ReactComponent as ReactLogo } from 'src/assets/logo.svg';
+const Logo = styled(ReactLogo)`
+  height: 30px;
+  fill: var(--text-primary);
+`;
 
 const NLink = styled(NavLink)`
   height: 100%;
@@ -94,9 +99,6 @@ const NavContainerOuter = styled.div`
   @media screen and (max-width: 1100px) {
     display: none;
   }
-  img {
-    height: 30px;
-  }
   border-bottom: 1px solid var(--border-color);
 `;
 
@@ -172,7 +174,7 @@ export const NavBar: React.FC<NavBarType> = (props) => {
       <NavContainerOuter>
         <NavContainer>
           <NavLink to="/">
-            <img src={Logo} alt="Flexpool Logo" />
+            <Logo />
           </NavLink>
           <NavSection>
             <NLink to="/statistics">Statistics</NLink>

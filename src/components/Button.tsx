@@ -27,15 +27,14 @@ export const Button = styled.button<ButtonProps>`
   border: 1px solid var(--border-color);
   outline: none;
   font-size: 1rem;
-  background-color: white;
+  background-color: var(--bg-primary);
   cursor: pointer;
   &:hover,
   &:active,
   &:focus {
-    background: #fafafb;
-    border-color: #eae8f0;
+    background: var(--bg-secondary);
   }
-  color: #111432;
+  color: var(--text-primary);
   font-weight: 400;
 
   &:disabled {
