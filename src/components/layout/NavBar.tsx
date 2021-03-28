@@ -13,6 +13,9 @@ import Modal from '../Modal/Modal';
 import { SearchAddressCachedResult } from '../SearchAddressBar/SearchAddressCachedResult';
 import { SearchAddressBar } from '../SearchAddressBar/SearchAddressBar';
 import { Ws } from '../Typo/Typo';
+import { OuterEvent } from '../DivOuterEvents';
+import { Burger } from '../Burger/Burger';
+import { clx } from 'src/utils/clx';
 
 const NLink = styled(NavLink)`
   height: 100%;
@@ -48,7 +51,9 @@ const NavSection = styled.div`
   }
 `;
 
-const MobileSlide = styled(ScrollArea)<{ isOpen?: boolean }>`
+const MobileSlide = styled(OuterEvent)<{ isOpen?: boolean }>`
+  overflow-y: auto; /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;
   width: 100%;
   max-width: 400px;
   position: fixed;
@@ -56,7 +61,7 @@ const MobileSlide = styled(ScrollArea)<{ isOpen?: boolean }>`
   left: 100%;
   bottom: 0;
   background: var(--bg-primary);
-  z-index: 1000;
+  z-index: 800;
   padding: 1rem;
 
   display: flex;
@@ -74,6 +79,10 @@ const MobileSlide = styled(ScrollArea)<{ isOpen?: boolean }>`
     `
     transform: translateX(-100%);
   `}
+  box-shadow: 0 0 30px 0 rgba(0,0,0,0.1);
+  ${NLink} {
+    justify-content: flex-start;
+  }
 `;
 
 const NavContainerOuter = styled.div`
@@ -92,6 +101,15 @@ const NavContainerOuter = styled.div`
     height: 30px;
   }
   border-bottom: 1px solid var(--border-color);
+`;
+
+const BurgerWrap = styled(Button)`
+  border: none;
+  margin-left: 1rem;
+  &:active,
+  &.active {
+    background: transparent;
+  }
 `;
 
 export type NavBarType = {};
@@ -200,7 +218,12 @@ export const NavBar: React.FC<NavBarType> = (props) => {
             <NLink as="button" onClick={modalSearchOpenState.handleOpen}>
               <FaSearch />
             </NLink>
-            <Button onClick={openState.handleToggle}> x </Button>
+            <BurgerWrap
+              className={clx({ active: openState.value })}
+              onClick={openState.handleToggle}
+            >
+              <Burger isOpen={openState.value} />
+            </BurgerWrap>
           </NavSection>
         </NavContainer>
         <MobileSlide isOpen={openState.value}>

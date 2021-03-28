@@ -1,13 +1,22 @@
-import React from "react";
+import React from 'react';
 
 export const useBoolState = (value: boolean = false) => {
   const [val, setVal] = React.useState(value);
 
-  const handleToggle = React.useCallback(() => {
-    setVal(!val);
-  }, [val]);
+  const handleToggle = React.useCallback(
+    (e?: any) => {
+      if (e) {
+        e.preventDefault();
+      }
+      setVal(!val);
+    },
+    [val]
+  );
 
-  const handleTrue = React.useCallback(() => {
+  const handleTrue = React.useCallback((e?: any) => {
+    if (e) {
+      e.preventDefault();
+    }
     setVal(true);
   }, []);
   const handleFalse = React.useCallback(() => {
