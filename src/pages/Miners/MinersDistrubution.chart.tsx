@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect } from 'react';
+import React from 'react';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 
@@ -8,12 +8,14 @@ import { formatSi } from 'src/utils/si.utils';
 import { Card } from 'src/components/layout/Card';
 
 export const MinersDistributionChart = () => {
-  const chart = useRef(null);
   const coinTicker = useActiveCoinTicker();
 
-  useLayoutEffect(() => {
-    let x = am4core.create('chartdiv', am4charts.PieChart);
-    x.colors.list = [am4core.color('#b6c0d1'), am4core.color('#0069ff')];
+  React.useLayoutEffect(() => {
+    const chartDistribution = am4core.create('chartdiv', am4charts.PieChart);
+    chartDistribution.colors.list = [
+      am4core.color('#b6c0d1'),
+      am4core.color('#0069ff'),
+    ];
 
     if (coinTicker === undefined) return;
 
@@ -43,9 +45,9 @@ export const MinersDistributionChart = () => {
           return 0;
         });
 
-      x.data = data;
+      chartDistribution.data = data;
 
-      var pieSeries = x.series.push(new am4charts.PieSeries());
+      var pieSeries = chartDistribution.series.push(new am4charts.PieSeries());
       pieSeries.colors.list = [
         am4core.color('#0069ff'),
         am4core.color('#3788ff'),
@@ -65,13 +67,10 @@ export const MinersDistributionChart = () => {
       pieSeries.hiddenState.properties.opacity = 1;
       pieSeries.hiddenState.properties.endAngle = -90;
       pieSeries.hiddenState.properties.startAngle = -90;
-
-      // @ts-ignore
-      chart.current = x;
-      return () => {
-        x.dispose();
-      };
     });
+    return () => {
+      chartDistribution.dispose();
+    };
   }, [coinTicker]);
 
   return (

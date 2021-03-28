@@ -10,10 +10,12 @@ const Hero = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  --text-primary: white;
-
   h1 {
     font-size: 3rem;
+    color: var(--text-on-bg);
+  }
+  p {
+    color: var(--text-on-bg);
   }
 
   position: relative;

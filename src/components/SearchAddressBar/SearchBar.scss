@@ -1,0 +1,152 @@
+@import "../colors";
+
+.search-bar-wrapper {
+  display: flex;
+  border-radius: 5px;
+
+  &.active {
+    box-shadow: 0px 0px 0px 3px rgba($accent-color, 0.6);
+  }
+
+  .search-bar-group {
+    position: relative;
+    display: flex;
+    width: 100%;
+
+    &:hover {
+      .search-bar {
+        input {
+          border: 1px solid #ccc;
+        }
+      }
+
+      .suggestions {
+        border: 1px solid #ccc;
+      }
+    }
+
+    .search-bar {
+      display: flex;
+      border-radius: 5px;
+      transition: 150ms;
+      width: 100%;
+
+      &.active {
+        input {
+          border-bottom: 1px solid #0000 !important;
+
+          &.with-suggestions {
+            border-radius: 5px 0px 0px 0px;
+          }
+        }
+      }
+
+      input {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 5px 0px 0px 5px;
+        padding: 10px;
+        font-size: 16px;
+        outline: none;
+        width: 100%;
+        font-family: "Roboto Mono", monospace;
+        font-weight: 400;
+      }
+    }
+
+    .suggestions {
+      display: none;
+      width: 100%;
+      position: absolute;
+      top: 100%;
+      background-color: #fff;
+      border-radius: 0px 0px 5px 5px;
+
+      border: 1px solid #ddd;
+      border-top: 0px solid black !important;
+
+      &.active {
+        display: block;
+      }
+
+      .suggestion {
+        border-top: 1px solid #eee;
+        height: 55px;
+        color: black;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        padding-left: 15px;
+        overflow: hidden;
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none;
+
+        &:hover {
+          background-color: #f5f5f5;
+        }
+
+        &:active {
+          background-color: #eee;
+        }
+      }
+    }
+  }
+
+  button {
+    cursor: pointer;
+    border: 0;
+    border-radius: 0px 5px 5px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: $accent-color;
+    transition: 50ms;
+
+    svg {
+      display: block;
+      fill: white;
+      height: 40%;
+      width: 40%;
+    }
+
+    &:active {
+      background-color: darken($accent-color, 3%);
+    }
+  }
+
+  &.in-nav {
+    height: 45px;
+    button {
+      width: 45px;
+    }
+    width: 90%;
+
+    @media (max-width: 980px) {
+      width: 100%;
+    }
+  }
+
+  &.in-home {
+    margin-top: 40px;
+    height: 55px;
+    button {
+      width: 55px;
+    }
+
+    width: 600px;
+    transition: width 200ms;
+
+    @media (min-width: 980px) {
+      /*&.active {
+      width: 650px;
+    } -- Uncomment this to enable search bar animation */
+    }
+
+    @media (max-width: 980px) {
+      width: 100%;
+    }
+  }
+}

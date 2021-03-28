@@ -5,9 +5,14 @@ import { Button } from 'src/components/Button';
 import { ScrollArea } from 'src/components/layout/ScrollArea';
 import styled from 'styled-components/macro';
 
-import { FaChartArea, FaCubes } from 'react-icons/fa';
+import { FaChartArea, FaCubes, FaSearch } from 'react-icons/fa';
 import { useBoolState } from 'src/hooks/useBoolState';
 import React from 'react';
+import { useOpenState } from 'src/hooks/useOpenState';
+import Modal from '../Modal/Modal';
+import { SearchAddressCachedResult } from '../SearchAddressBar/SearchAddressCachedResult';
+import { SearchAddressBar } from '../SearchAddressBar/SearchAddressBar';
+import { Ws } from '../Typo/Typo';
 
 const NLink = styled(NavLink)`
   height: 100%;
@@ -15,11 +20,16 @@ const NLink = styled(NavLink)`
   align-items: center;
   color: var(--text-primary);
   text-decoration: none;
-  padding: 1rem;
+  padding: 0.75rem;
   font-weight: 600;
+  border: none;
+  outline: none;
+  background: transparent;
+  min-width: 70px;
+  justify-content: center;
   svg {
-    height: 1.25rem;
-    width: 1.25rem;
+    height: 50%;
+    width: 50%;
   }
   &.active {
     color: var(--primary);
@@ -75,7 +85,7 @@ const NavContainerOuter = styled.div`
   z-index: 1000;
   background: var(--bg-primary);
   display: flex;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1100px) {
     display: none;
   }
   img {
@@ -96,7 +106,7 @@ const NavContainer = styled(Content)`
 
 const ContainerMobile = styled(NavContainerOuter)`
   display: none;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1100px) {
     display: flex;
   }
 
@@ -109,17 +119,41 @@ const FixedMargin = styled.div`
   height: 70px;
 `;
 
+const SearchContainer = styled.div`
+  & > * {
+    height: 46px;
+  }
+`;
+
 export const NavBar: React.FC<NavBarType> = (props) => {
   const openState = useBoolState();
+  const modalSearchOpenState = useOpenState();
 
   const location = useLocation();
 
   React.useEffect(() => {
     openState.handleFalse();
+    modalSearchOpenState.handleClose();
   }, [location]);
 
   return (
     <>
+      <Modal
+        size="sm"
+        mobileFull
+        closeOnOuterClick
+        {...modalSearchOpenState.modalProps}
+      >
+        <Modal.Header>
+          <h2>Search miner</h2>
+        </Modal.Header>
+        <Modal.Body>
+          <SearchAddressBar showResult={false} />
+        </Modal.Body>
+        <ScrollArea>
+          <SearchAddressCachedResult isOpen={modalSearchOpenState.isOpen} />
+        </ScrollArea>
+      </Modal>
       <FixedMargin />
       <NavContainerOuter>
         <NavContainer>
@@ -132,10 +166,20 @@ export const NavBar: React.FC<NavBarType> = (props) => {
             <NLink to="/miners">Miners</NLink>
           </NavSection>
           <NavSection>
+            <SearchContainer>
+              <SearchAddressBar />
+            </SearchContainer>
+          </NavSection>
+          <NavSection>
             <NLink to="/faq">FAQ</NLink>
             <NLink to="/support">Support</NLink>
-            <Button variant="primary" as={Link} to="/get-started">
-              Get Started
+            <Button
+              style={{ marginLeft: 10 }}
+              variant="primary"
+              as={Link}
+              to="/get-started"
+            >
+              <Ws>Get Started</Ws>
             </Button>
           </NavSection>
         </NavContainer>
@@ -153,11 +197,16 @@ export const NavBar: React.FC<NavBarType> = (props) => {
             <NLink to="/blocks">
               <FaCubes />
             </NLink>
+            <NLink as="button" onClick={modalSearchOpenState.handleOpen}>
+              <FaSearch />
+            </NLink>
             <Button onClick={openState.handleToggle}> x </Button>
           </NavSection>
         </NavContainer>
         <MobileSlide isOpen={openState.value}>
-          <Button variant="primary">Get Started</Button>
+          <Button variant="primary">
+            <Ws>Get Started</Ws>
+          </Button>
           <NLink to="/statistics">Statistics</NLink>
           <NLink to="/blocks">Blocks</NLink>
           <NLink to="/miners">Miners</NLink>

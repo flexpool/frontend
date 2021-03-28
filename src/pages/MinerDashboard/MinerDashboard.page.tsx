@@ -24,7 +24,7 @@ import { MinerDetails } from './Header/MinerDetails';
 import { MinerStatsPage } from './Stats/MinerStats.page';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { FaChartBar, FaWallet } from 'react-icons/fa';
+import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
 import { Spacer } from 'src/components/layout/Spacer';
 import { MinerPaymentsPage } from './Payments/MinerPayments.page';
 import { Helmet } from 'react-helmet-async';
@@ -110,7 +110,7 @@ export const MinerDashboardPage: React.FC<
           <FaChartBar /> Rewards
         </TabLink>
         <TabLink to={`${match.url}/blocks`}>
-          <FaWallet /> Blocks
+          <FaCube /> Blocks
         </TabLink>
       </TabLinkContainer>
       <TabContent>
