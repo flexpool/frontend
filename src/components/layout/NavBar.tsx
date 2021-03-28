@@ -28,11 +28,11 @@ const NLink = styled(NavLink)`
   border: none;
   outline: none;
   background: transparent;
-  min-width: 70px;
+  min-width: 50px;
   justify-content: center;
   svg {
-    height: 50%;
-    width: 50%;
+    height: 1.4rem;
+    width: 1.4rem;
   }
   &.active {
     color: var(--primary);
@@ -55,7 +55,7 @@ const MobileSlide = styled(OuterEvent)<{ isOpen?: boolean }>`
   overflow-y: auto; /* has to be scroll, not auto */
   -webkit-overflow-scrolling: touch;
   width: 100%;
-  max-width: 400px;
+  max-width: 300px;
   position: fixed;
   top: 70px;
   left: 100%;
@@ -67,11 +67,6 @@ const MobileSlide = styled(OuterEvent)<{ isOpen?: boolean }>`
   display: flex;
   flex-direction: column;
 
-  a {
-    height: 50px;
-    padding: 0 1rem;
-  }
-
   transition: 0.2s all;
 
   ${(p) =>
@@ -82,6 +77,8 @@ const MobileSlide = styled(OuterEvent)<{ isOpen?: boolean }>`
   box-shadow: 0 0 30px 0 rgba(0,0,0,0.1);
   ${NLink} {
     justify-content: flex-start;
+    height: 50px;
+    padding: 0 0rem;
   }
 `;
 
@@ -105,7 +102,6 @@ const NavContainerOuter = styled.div`
 
 const BurgerWrap = styled(Button)`
   border: none;
-  margin-left: 1rem;
   &:active,
   &.active {
     background: transparent;

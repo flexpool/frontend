@@ -96,12 +96,12 @@ Modal.Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--border-color);
+  }
 `;
 Modal.Body = styled.div`
   padding: 1.5rem 1.5rem;
-  &:not(:first-child) {
-    border-top: 1px solid var(--border-color);
-  }
 `;
 
 export default Modal;
