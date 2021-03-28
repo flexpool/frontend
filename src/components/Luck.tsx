@@ -11,6 +11,5 @@ const LuckValue = styled.span<{ value: number }>`
 `;
 
 export const Luck: React.FC<{ value: number }> = ({ value }) => {
-  console.log(value);
   return <LuckValue value={value}>{getDisplayLuck(value)}</LuckValue>;
 };

@@ -3,22 +3,17 @@ import DynamicList, {
   DynamicListColumn,
 } from 'src/components/layout/List/List';
 import { useAsyncState } from 'src/hooks/useAsyncState';
-import { useReduxState } from 'src/rdx/useReduxState';
 import { fetchApi } from 'src/utils/fetchApi';
 import format from 'date-fns/format';
 import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
 import { LinkMiner } from 'src/components/LinkMiner';
 import { Luck } from 'src/components/Luck';
 import styled from 'styled-components';
-import { Button } from 'src/components/Button';
 import { getBlockLink } from 'src/utils/blockLink.utils';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
-import { LinkOut } from 'src/components/LinkOut';
+import { LinkOut, LinkOutCoin } from 'src/components/LinkOut';
 import { Mono, Ws } from 'src/components/Typo/Typo';
-import { ListPagination } from 'src/components/layout/List/ListPagination';
 import { dateUtils } from 'src/utils/date.utils';
-import { config } from 'react-transition-group';
-import { stringUtils } from 'src/utils/string.utils';
 
 type ApiBlock = {
   confirmed: boolean;
@@ -120,7 +115,11 @@ const blockCols: {
     title: 'Miner',
     skeletonWidth: 210,
     Component: ({ data, config }) => (
-      <LinkMiner coin={config.coinTicker} address={data.miner} />
+      <Mono>
+        <Ws>
+          <LinkMiner coin={config.coinTicker} address={data.miner} />
+        </Ws>
+      </Mono>
     ),
   },
   reward: {
@@ -142,11 +141,11 @@ const blockCols: {
     skeletonWidth: 75,
     Component: ({ data }) => {
       return (
-        <>
+        <Ws>
           {dateUtils.durationWords(data.roundTime, {
             includeSeconds: true,
           })}
-        </>
+        </Ws>
       );
     },
   },
@@ -159,8 +158,17 @@ const blockCols: {
     title: 'Hash',
     skeletonWidth: 200,
     alignRight: true,
-    Component: ({ data }) => (
-      <Mono>{stringUtils.shortenString(data.hash, 16)}</Mono>
+    Component: ({ data, config }) => (
+      <Mono>
+        <Ws>
+          <LinkOutCoin
+            type="block"
+            hash={data.hash}
+            hashLength={10}
+            coin={config.coinTicker}
+          />
+        </Ws>
+      </Mono>
     ),
   },
 };

@@ -9,6 +9,7 @@ import {
 } from 'src/rdx/localSettings/localSettings.hooks';
 import { ApiMinerReward } from 'src/types/Miner.types';
 import { fetchApi } from 'src/utils/fetchApi';
+import { MinerPplnsStats } from './MinerPplnsStats.section';
 import { MinerRewardStatsSection } from './MinerRewardStats.section';
 import RewardsChart from './Rewards.chart';
 
@@ -76,6 +77,10 @@ export const MinerRewardsPage = () => {
         counterPrice={minerRewardsState.data?.price || 0}
         rewards={minerRewardsState.data?.data || []}
         averagePoolHashrate={poolStatsState.data && poolStatsState.data[1]}
+      />
+      <MinerPplnsStats
+        averagePoolHashrate={poolStatsState.data && poolStatsState.data[1]}
+        poolHashrate={poolStatsState.data && poolStatsState.data[0].total}
       />
     </>
   );

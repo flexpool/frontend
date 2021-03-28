@@ -1,9 +1,13 @@
+import React from 'react';
 import { Button } from 'src/components/Button';
 import { Content } from 'src/components/layout/Content';
 import DynamicList from 'src/components/layout/List/List';
 import { Mono, Ws } from 'src/components/Typo/Typo';
+import { useAsyncState } from 'src/hooks/useAsyncState';
 import { useReduxState } from 'src/rdx/useReduxState';
+import { ApiPoolCoinFull } from 'src/types/PoolCoin.types';
 import { useCounterValue } from 'src/utils/currencyValue';
+import { fetchApi } from 'src/utils/fetchApi';
 import { formatSi } from 'src/utils/si.utils';
 import styled from 'styled-components/macro';
 
@@ -17,7 +21,10 @@ const Wrapper = styled.div`
 `;
 
 export const CoinsWeMineSection = () => {
-  const poolCoinsState = useReduxState('poolCoins');
+  const dataState = useAsyncState<ApiPoolCoinFull[]>('coinsFull');
+  React.useEffect(() => {
+    dataState.start(fetchApi('/pool/coinsFull'));
+  }, []);
 
   return (
     <Wrapper>
@@ -29,8 +36,9 @@ export const CoinsWeMineSection = () => {
         </p>
         <br />
         <DynamicList
-          isLoading={poolCoinsState.isLoading}
+          isLoading={dataState.isLoading}
           loadingRowsCount={1}
+          data={dataState.data || []}
           columns={[
             {
               title: 'Name',
@@ -98,7 +106,6 @@ export const CoinsWeMineSection = () => {
               },
             },
           ]}
-          data={poolCoinsState.data}
         />
       </Content>
     </Wrapper>

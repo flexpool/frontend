@@ -1,13 +1,18 @@
 import {
-  createGetArrayReducer,
+  createGetReducer,
   composeReducers,
-  defaultReducerArrayState,
-  DefaultArrayState,
+  defaultReducerState,
+  DefaultState,
 } from 'src/rdx/@utils';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 
-export const defaultState = defaultReducerArrayState as DefaultArrayState<ApiPoolCoin>;
+type CoinsState = {
+  coins: ApiPoolCoin[];
+  countervalues: string[];
+};
 
-const getReducer = createGetArrayReducer<ApiPoolCoin>();
+export const defaultState = defaultReducerState as DefaultState<CoinsState>;
+
+const getReducer = createGetReducer<CoinsState>();
 
 export const reducer = composeReducers('@poolCoins', defaultState)(getReducer);

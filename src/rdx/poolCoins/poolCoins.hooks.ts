@@ -8,7 +8,7 @@ export const usePoolCoins = () => {
   const d = useDispatch();
 
   React.useEffect(() => {
-    if (poolCoinsState.data.length < 1 && !poolCoinsState.isLoading) {
+    if (!poolCoinsState.data && !poolCoinsState.isLoading) {
       d(poolCoinsGet());
     }
   }, [poolCoinsState.data, poolCoinsState.isLoading, d]);

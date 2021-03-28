@@ -9,6 +9,7 @@ import { formatDistanceStrict, subSeconds } from 'date-fns/esm';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import DynamicList from 'src/components/layout/List/List';
+import { LinkOutCoin } from 'src/components/LinkOut';
 import { Mono, Ws } from 'src/components/Typo/Typo';
 import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
@@ -137,7 +138,13 @@ export const MinerPaymentsList: React.FC<{
             Component: ({ data }) => {
               return (
                 <Ws>
-                  <Mono>{stringUtils.shortenString(data.hash)}</Mono>
+                  <Mono>
+                    <LinkOutCoin
+                      type="transaction"
+                      hash={data.hash}
+                      coin={coin?.ticker}
+                    />
+                  </Mono>
                 </Ws>
               );
             },

@@ -3,5 +3,5 @@ import { fetchApi } from 'src/utils/fetchApi';
 
 export const poolCoinsGet = () => ({
   type: '@poolCoins/GET',
-  payload: fetchApi<ApiPoolCoin[]>('/pool/coinsFull'),
+  payload: fetchApi<ApiPoolCoin[]>('/pool/coins'),
 });

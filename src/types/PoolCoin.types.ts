@@ -12,7 +12,7 @@ type ApiCoinMarketData = {
   };
 };
 
-export type ApiPoolCoin = {
+export type ApiPoolCoinFull = {
   algorithm: string;
   applicableHashrateSiPrefixes?: Si[];
   chainData: {
@@ -31,4 +31,13 @@ export type ApiPoolCoin = {
   ticker: Ticker;
   websiteLink: string;
   whitepaperLibk: string;
+};
+
+export type ApiPoolCoin = {
+  decimalPlaces: number;
+  lowestMinPayoutThreshold: number;
+  name: String;
+  shareDifficulty: number;
+  ticker: Ticker;
+  transactionSize: number;
 };

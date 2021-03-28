@@ -21,7 +21,7 @@ export const SelectCoin = () => {
   const d = useDispatch();
 
   const options = React.useMemo(() => {
-    return poolCoinsState.data.map((item) => ({
+    return (poolCoinsState.data?.coins || []).map((item) => ({
       label: (
         <LabelWrap>
           <CoinLogo

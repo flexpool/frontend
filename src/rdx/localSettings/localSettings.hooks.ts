@@ -10,7 +10,10 @@ export const useActiveCoin = (ticker?: string) => {
   const poolCoinsState = useReduxState('poolCoins');
 
   const tickerToFind = ticker || activeCoinTicker;
-  const coin = poolCoinsState.data.find((item) => item.ticker === tickerToFind);
+
+  const coin = poolCoinsState.data?.coins.find(
+    (item) => item.ticker === tickerToFind
+  );
 
   return coin;
 };

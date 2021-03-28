@@ -16,7 +16,7 @@ export const Card = styled.div<{ padding?: boolean; paddingShort?: boolean }>`
   `}
 `;
 
-export const CardTitle = styled.h2`
+export const CardTitle = styled.h3`
   font-size: 1.125rem;
   font-weight: 600;
   & + * {
