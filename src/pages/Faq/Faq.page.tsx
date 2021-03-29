@@ -1,10 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Content } from 'src/components/layout/Content';
 import styled from 'styled-components/macro';
 import FAQIndex from '../../docs/faq/index.json';
 import copy from 'copy-to-clipboard';
 import { Page } from 'src/components/layout/Page';
+import { useOpenState } from 'src/hooks/useOpenState';
+import { Helmet } from 'react-helmet-async';
+import { CopyButton } from 'src/components/CopyButton';
 
 type FaqDataSection = {
   name: string;
@@ -20,35 +23,6 @@ type FaqDataSection = {
   }[];
 };
 
-const ListLink = styled(Link)`
-  display: block;
-  line-height: 1.4;
-  margin-bottom: 0.5rem;
-`;
-
-const ListSection = styled.div`
-  margin-bottom: 2rem;
-
-  h3 {
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 1rem;
-  }
-`;
-
-const FaqUl: React.FC<FaqDataSection> = ({ name, contents }) => {
-  return (
-    <ListSection>
-      <h3>{name}</h3>
-      {contents.map(({ key, md: { attributes: { title } } }) => (
-        <ListLink key={key} to={`#${key}`}>
-          {title}
-        </ListLink>
-      ))}
-    </ListSection>
-  );
-};
-
 /**
  *
  *
@@ -58,89 +32,86 @@ const FaqUl: React.FC<FaqDataSection> = ({ name, contents }) => {
  */
 
 const SectionItem = styled.div`
-  margin-top: 2rem;
+  margin-top: -1px;
+  border: 1px solid var(--border-color);
 `;
-
-const CopyHash = styled.button`
+const SectionItemHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+const SectionTitle = styled.h3`
+  font-size: 1.125rem;
   cursor: pointer;
-  color: var(--primary);
-  display: inline-block;
-  margin-right: 0.3rem;
-  outline: none;
-  border: none;
-  height: auto;
-  padding: 0;
-  background: none !important;
-  font-weight: 700;
-  font-size: inherit;
+  padding: 1rem 1.25rem;
   &:hover {
-    opacity: 0.6;
+    color: var(--primary);
   }
-  &:active {
-    opacity: 1;
-  }
+`;
+const CopyWrapper = styled.div`
+  padding-right: 0.75rem;
+  padding-left: 1rem;
+  margin-top: 0;
+`;
+const SectionContent = styled.div`
+  padding: 1.25rem;
+  padding-top: 0;
 `;
 
 const FSection = styled.div`
   margin-bottom: 5rem;
+  margin-top: 1rem;
 `;
-const FaqSection: React.FC<FaqDataSection> = ({ name, contents }) => {
-  const handleCopyToClipboard = React.useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      const idCopy = (e.target as HTMLButtonElement).value;
-      const urlCopy = `${window.location.href.split('#')[0]}#${idCopy}`;
-      copy(urlCopy);
-    },
-    []
-  );
 
+const FaqQuestion: React.FC<{ data: FaqDataSection['contents'][0] }> = ({
+  data: {
+    key,
+    md: {
+      react: Comp,
+      attributes: { title },
+    },
+  },
+}) => {
+  const location = useLocation();
+
+  const openState = useOpenState(location.hash.replace('#', '') === key);
+
+  return (
+    <SectionItem>
+      <SectionItemHeader>
+        <SectionTitle id={key} onClick={openState.handleToggle}>
+          <span>{title}</span>
+        </SectionTitle>
+        <CopyWrapper>
+          <CopyButton
+            description="Copy link"
+            text={`${window.location.href.split('#')[0]}#${key}`}
+          />
+        </CopyWrapper>
+      </SectionItemHeader>
+      {openState.isOpen && (
+        <SectionContent>
+          <Comp />
+        </SectionContent>
+      )}
+    </SectionItem>
+  );
+};
+
+const FaqSection: React.FC<FaqDataSection> = ({ name, contents }) => {
   return (
     <>
       <FSection>
         <h2>{name}</h2>
-        {contents.map(({ key, md: { react: Comp, attributes: { title } } }) => (
-          <SectionItem key={key}>
-            <h3 id={key}>
-              <CopyHash value={key} onClick={handleCopyToClipboard}>
-                #
-              </CopyHash>
-              {title}
-            </h3>
-            <Comp />
-          </SectionItem>
+        {contents.map((item) => (
+          <FaqQuestion key={item.key} data={item} />
         ))}
       </FSection>
     </>
   );
 };
 
-const Split = styled.div`
-  & > *:not(:first-child) {
-    margin-left: 2rem;
-  }
-
-  @media screen and (min-width: 920px) {
-    width: 100%;
-    display: flex;
-  }
-`;
-
-const FaqList = styled.div`
-  width: 260px;
-  flex-grow: 0;
-  flex-shrink: 0;
-  display: none;
-  @media screen and (min-width: 920px) {
-    display: block;
-  }
-`;
-
 const FaqContent = styled.div`
-  @media screen and (min-width: 920px) {
-    flex-shrink: 1;
-    width: 1px;
-    flex-grow: 1;
-  }
   p + table {
     margin-top: 1rem;
   }
@@ -158,8 +129,11 @@ const FaqContent = styled.div`
     max-width: 100%;
   }
 
+  h2 {
+    margin-bottom: 1rem;
+  }
   h3 {
-    font-size: 1.35rem;
+    font-size: 1.125rem;
   }
   h4 {
     font-size: 1.25rem;
@@ -184,19 +158,15 @@ export const FaqPage = () => {
   }));
   return (
     <Page>
+      <Helmet>
+        <title>FAQ</title>
+      </Helmet>
       <Content paddingLg>
-        <Split>
-          <FaqContent>
-            {faqSections.map((item) => (
-              <FaqSection key={item.name} {...item} />
-            ))}
-          </FaqContent>
-          <FaqList>
-            {faqSections.map((item) => (
-              <FaqUl key={item.name} {...item} />
-            ))}
-          </FaqList>
-        </Split>
+        <FaqContent>
+          {faqSections.map((item) => (
+            <FaqSection key={item.name} {...item} />
+          ))}
+        </FaqContent>
       </Content>
     </Page>
   );
