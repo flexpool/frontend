@@ -30,6 +30,7 @@ import { Helmet } from 'react-helmet-async';
 import { MinerBlocksPage } from './Blocks/MinerBlocks.page';
 import { MinerRewardsPage } from './Rewards/MinerRewards.page';
 import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
+import { useReduxState } from 'src/rdx/useReduxState';
 
 const TabContent = styled.div`
   box-shadow: inset -1px 18px 19px -13px var(--bg-secondary);
@@ -70,6 +71,7 @@ export const MinerDashboardPage: React.FC<
   }>
 > = (props) => {
   const { coin: coinTicker, address } = props.match.params;
+  const poolCoins = useReduxState('poolCoins');
   const activeCoin = useActiveCoin(coinTicker);
   const match = useRouteMatch();
   const counterTicker = useCounterTicker();
@@ -78,8 +80,13 @@ export const MinerDashboardPage: React.FC<
 
   // globaly set active coin ticker
   React.useEffect(() => {
-    d(localSettingsSet({ coin: coinTicker }));
-  }, [coinTicker, d]);
+    if (
+      poolCoins.data &&
+      poolCoins.data.coins.find((item) => item.ticker === coinTicker)
+    ) {
+      d(localSettingsSet({ coin: coinTicker }));
+    }
+  }, [coinTicker, d, poolCoins.data]);
 
   React.useEffect(() => {
     d(minerHeaderStatsGet(coinTicker, address, counterTicker));

@@ -261,7 +261,7 @@ export const MinerWorkers: React.FC<{
   }, [coinTicker, address, d]);
 
   const dataWithTotalShare = React.useMemo(() => {
-    return minerWorkersState.data.map((item) => ({
+    return (minerWorkersState.data || []).map((item) => ({
       ...item,
       totalShares: item.invalidShares + item.staleShares + item.validShares,
     }));

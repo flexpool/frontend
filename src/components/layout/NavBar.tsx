@@ -33,7 +33,8 @@ const NLink = styled(NavLink)`
   align-items: center;
   color: var(--text-primary);
   text-decoration: none;
-  padding: 0.75rem;
+  padding: 0 0.75rem;
+  align-items: center;
   font-weight: 600;
   border: none;
   outline: none;
@@ -46,6 +47,18 @@ const NLink = styled(NavLink)`
   }
   &.active {
     color: var(--primary);
+  }
+  &:hover {
+    text-decoration: none;
+  }
+
+  @media screen and (min-width: 1101px) {
+    border-bottom: 2px solid transparent;
+    margin: 0 2px;
+    &:hover,
+    &.active {
+      border-color: var(--primary);
+    }
   }
 `;
 
