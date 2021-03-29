@@ -5,7 +5,7 @@ import './Page.scss';
 export const Page: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <CSSTransition in={true} timeout={0} appear unmountOnExit>
-      <div className="page-transition">{children}</div>
+      <main className="page-transition">{children}</main>
     </CSSTransition>
   );
 };

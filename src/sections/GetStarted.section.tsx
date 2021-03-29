@@ -1,6 +1,12 @@
+import { Link } from 'react-router-dom';
 import { Button } from 'src/components/Button';
 import { Content } from 'src/components/layout/Content';
+import { Ws } from 'src/components/Typo/Typo';
 import styled from 'styled-components/macro';
+
+const StartButton = styled(Button)`
+  color: var(--primary);
+`;
 
 const Wrapper = styled.section`
   background: var(--primary);
@@ -14,6 +20,12 @@ const Split = styled.div`
   align-items: center;
   padding-top: 3rem;
   padding-bottom: 3rem;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    & > *:not(:first-child) {
+      margin-top: 1rem;
+    }
+  }
 `;
 
 export const GetStartedSection = () => {
@@ -22,7 +34,9 @@ export const GetStartedSection = () => {
       <Content>
         <Split>
           <h2>Ready to get started?</h2>
-          <Button size="lg">Start Mining</Button>
+          <StartButton as={Link} to="/get-started" size="lg">
+            <Ws>Start Mining</Ws>
+          </StartButton>
         </Split>
       </Content>
     </Wrapper>

@@ -6,6 +6,7 @@ import { Button } from 'src/components/Button';
 import styled from 'styled-components';
 import { LinkOut } from 'src/components/LinkOut';
 import { Spacer } from 'src/components/layout/Spacer';
+import { Helmet } from 'react-helmet-async';
 
 const ColorContainer = styled.div`
   display: flex;
@@ -47,6 +48,7 @@ const LogoContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 5px;
   img {
     height: 50px;
   }
@@ -81,6 +83,9 @@ const Color: React.FC<{ colorCode: string; colorName: string }> = ({
 export const BrandAssetsPage = () => {
   return (
     <Page>
+      <Helmet>
+        <title>Brand Assets</title>
+      </Helmet>
       <Content md paddingLg>
         <h1>Our Brand Name</h1>
         <p>
