@@ -33,6 +33,8 @@ export const MinerPplnsStats: React.FC<{
   const activeCoinTicker = useActiveCoinTicker();
   const activeCoin = useActiveCoin();
 
+  console.log(dataNotAvailable);
+
   React.useEffect(() => {
     fetchApi<number[]>('/miner/shareLog', {
       query: {

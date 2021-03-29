@@ -1,38 +1,7 @@
-// import Tippy from '@tippyjs/react';
-// import copy from 'copy-to-clipboard';
-import { Button } from 'src/components/Button';
 import { Card } from 'src/components/layout/Card';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import styled from 'styled-components/macro';
 import { MinerSettingsModal } from '../Settings/MinerSettings.modal';
-
-// function CopyButton(props) {
-//   const [justCopied, setJustCopied] = useState(false);
-//   return (
-//     <Tippy
-//       content={
-//         <div style={{ padding: '5px' }}>
-//           {justCopied ? 'Copied!' : 'Copy wallet address'}
-//         </div>
-//       }
-//       delay={0}
-//       animation="shift-away"
-//       theme="light"
-//       interactive={true}
-//     >
-//       <div
-//         className="copy-button"
-//         onClick={() => {
-//           copy(props.address);
-//           setJustCopied(true);
-//         }}
-//         onMouseLeave={() => setTimeout(() => setJustCopied(false), 200)}
-//       >
-//         {justCopied ? <HiCheck /> : <HiOutlineClipboardCopy />}
-//       </div>
-//     </Tippy>
-//   );
-// }
 
 const Wrap = styled(Card)`
   display: flex;

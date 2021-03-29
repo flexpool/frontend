@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { localStorage } from 'src/utils/localStorage';
 import styled from 'styled-components';
 import { searchAddressStorage } from './searchCache';
 

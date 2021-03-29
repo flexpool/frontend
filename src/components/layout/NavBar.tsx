@@ -155,7 +155,7 @@ export const NavBar: React.FC<NavBarType> = (props) => {
   React.useEffect(() => {
     openState.handleFalse();
     modalSearchOpenState.handleClose();
-  }, [location]);
+  }, [location, openState.handleFalse, modalSearchOpenState.handleClose]);
 
   return (
     <>

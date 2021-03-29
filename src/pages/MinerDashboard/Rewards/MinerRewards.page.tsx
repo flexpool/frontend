@@ -32,7 +32,6 @@ export const MinerRewardsPage = () => {
   }>('minerRewards', { price: 0, data: [] });
 
   const coinTicker = useActiveCoinTicker();
-  const coin = useActiveCoin();
 
   const counterTicker = useCounterTicker();
 

@@ -1,11 +1,4 @@
-import {
-  format,
-  formatDistance,
-  formatDistanceToNowStrict,
-  formatDuration,
-  intervalToDuration,
-} from 'date-fns';
-import { formatDistanceStrict, subSeconds } from 'date-fns/esm';
+import { format } from 'date-fns';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import DynamicList from 'src/components/layout/List/List';
@@ -18,7 +11,6 @@ import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import { dateUtils } from 'src/utils/date.utils';
-import { stringUtils } from 'src/utils/string.utils';
 
 export const MinerPaymentsList: React.FC<{
   address: string;

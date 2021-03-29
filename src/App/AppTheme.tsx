@@ -24,7 +24,7 @@ export const AppTheme = () => {
         const newColorScheme = e.matches ? 'dark' : 'light';
         d(localSettingsSet({ systemColorMode: newColorScheme }));
       });
-  }, []);
+  }, [d]);
 
   const colorMode =
     localSettingsState.colorMode !== 'system'

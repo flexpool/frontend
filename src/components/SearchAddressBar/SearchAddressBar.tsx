@@ -1,7 +1,7 @@
 import { Field, Form, Formik } from 'formik';
 import React from 'react';
 import { FaSearch } from 'react-icons/fa';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { fetchApi } from 'src/utils/fetchApi';
 import styled from 'styled-components/macro';
@@ -89,21 +89,24 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
   const searchState = useAsyncState<string | null>('addressSearch', null);
   const history = useHistory();
 
-  const handleSearch = React.useCallback(async (address: string) => {
-    return searchState
-      .start(fetchApi('/miner/locateAddress', { query: { address } }))
-      .then((res) => {
-        if (res) {
-          saveAddressToCache(res, address);
-          history.push(`/miners/${res}/${address}`);
-        } else {
-          alert(
-            'Specified address was not found in our system. Try waiting some time if you are already mining.'
-          );
-        }
-        return res;
-      });
-  }, []);
+  const handleSearch = React.useCallback(
+    async (address: string) => {
+      return searchState
+        .start(fetchApi('/miner/locateAddress', { query: { address } }))
+        .then((res) => {
+          if (res) {
+            saveAddressToCache(res, address);
+            history.push(`/miners/${res}/${address}`);
+          } else {
+            alert(
+              'Specified address was not found in our system. Try waiting some time if you are already mining.'
+            );
+          }
+          return res;
+        });
+    },
+    [history]
+  );
 
   return (
     <Container>

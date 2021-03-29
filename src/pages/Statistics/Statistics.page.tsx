@@ -1,6 +1,5 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import Chart from 'src/components/Chart';
 
 import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';

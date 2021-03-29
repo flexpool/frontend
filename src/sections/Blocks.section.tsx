@@ -94,12 +94,16 @@ const blockCols: {
   type: {
     title: 'Type',
     skeletonWidth: 50,
-    Component: ({ data }) =>
-      data.type === 'uncle' ? (
-        <TypeUncle>{data.type}</TypeUncle>
-      ) : (
-        <TypeBlock>{data.type}</TypeBlock>
-      ),
+    Component: ({ data }) => {
+      switch (data.type) {
+        case 'uncle':
+          return <TypeUncle>{data.type}</TypeUncle>;
+        case 'orphan':
+          return <TypeOrphan>{data.type}</TypeOrphan>;
+        default:
+          return <TypeBlock>{data.type}</TypeBlock>;
+      }
+    },
   },
   date: {
     title: 'Date',

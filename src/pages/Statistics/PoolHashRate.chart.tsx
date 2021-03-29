@@ -1,9 +1,8 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
-import { fetchApi } from 'src/utils/fetchApi';
 import { formatRegionName } from 'src/utils/region.utils';
 import { ApiRegion } from 'src/types/Region.types';
 import { Card } from 'src/components/layout/Card';
@@ -11,15 +10,6 @@ import { useDispatch } from 'react-redux';
 import { poolHashrateGet } from 'src/rdx/poolHashrate/poolHashrate.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ChartTitle } from 'src/components/Typo/ChartTitle';
-
-type HashrateItem = {
-  minerCount: number;
-  regions: {
-    [key in ApiRegion]: number;
-  };
-  timestamp: number;
-  total: number;
-};
 
 const PoolHashrateChart = () => {
   const chartRef = useRef<HTMLDivElement>(null);

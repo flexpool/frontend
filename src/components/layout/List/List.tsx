@@ -26,7 +26,7 @@ export type DynamicListProps<
   className?: string;
   activeColName?: string;
   activeColOrder?: 'ASC' | 'DESC';
-  contentEmpty?: React.ReactNode;
+  // contentEmpty?: React.ReactNode;
   /**
    * More padding from sides
    */
@@ -51,7 +51,7 @@ export const DynamicList = <D extends {}, CP extends {}>(
   const {
     data,
     columns,
-    contentEmpty,
+    // contentEmpty,
     tBodyChildren,
     tFooterChildren,
     hideHead,
