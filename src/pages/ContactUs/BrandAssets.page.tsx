@@ -1,11 +1,5 @@
-import React from 'react';
 import { Page } from 'src/components/layout/Page';
-import copy from 'copy-to-clipboard';
 import { Content } from 'src/components/layout/Content';
-import { Button } from 'src/components/Button';
-import styled from 'styled-components';
-import { LinkOut } from 'src/components/LinkOut';
-import { Spacer } from 'src/components/layout/Spacer';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
