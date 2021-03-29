@@ -1,7 +1,7 @@
 import Tippy from '@tippyjs/react';
 import copy from 'copy-to-clipboard';
 import React from 'react';
-import { FaClipboard, FaClipboardCheck } from 'react-icons/fa';
+import { FaCheck, FaClipboard } from 'react-icons/fa';
 import styled from 'styled-components';
 import { Button } from './Button';
 
@@ -26,10 +26,11 @@ const Btn = styled(Button)`
   }
 `;
 
-export const CopyButton: React.FC<{ text: string; description?: string }> = ({
-  text,
-  description = 'Copy',
-}) => {
+export const CopyButton: React.FC<{
+  text: string;
+  description?: string;
+  icon?: React.ReactNode;
+}> = ({ text, description = 'Copy', icon }) => {
   const [justCopied, setJustCopied] = React.useState(false);
   return (
     <Tippy
@@ -50,7 +51,7 @@ export const CopyButton: React.FC<{ text: string; description?: string }> = ({
         }}
         onMouseLeave={() => setTimeout(() => setJustCopied(false), 1000)}
       >
-        {justCopied ? <FaClipboardCheck /> : <FaClipboard />}
+        {justCopied ? <FaCheck /> : icon || <FaClipboard />}
       </Btn>
     </Tippy>
   );

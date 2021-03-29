@@ -8,6 +8,7 @@ import { Page } from 'src/components/layout/Page';
 import { useOpenState } from 'src/hooks/useOpenState';
 import { Helmet } from 'react-helmet-async';
 import { CopyButton } from 'src/components/CopyButton';
+import { FaLink } from 'react-icons/fa';
 
 type FaqDataSection = {
   name: string;
@@ -84,6 +85,7 @@ const FaqQuestion: React.FC<{ data: FaqDataSection['contents'][0] }> = ({
         </SectionTitle>
         <CopyWrapper>
           <CopyButton
+            icon={<FaLink />}
             description="Copy link"
             text={`${window.location.href.split('#')[0]}#${key}`}
           />
