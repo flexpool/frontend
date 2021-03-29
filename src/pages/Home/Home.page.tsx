@@ -6,6 +6,8 @@ import { GetStartedSection } from 'src/sections/GetStarted.section';
 import { NewsSection } from './News.section';
 import styled from 'styled-components/macro';
 import { SearchAddressBar } from 'src/components/SearchAddressBar/SearchAddressBar';
+import { CoinNews } from 'src/sections/CoinNews';
+import Modal from 'src/components/Modal/Modal';
 
 const Hero = styled(HeroBlue)`
   min-height: 40vh;
@@ -22,6 +24,12 @@ const SearchWrapper = styled.div`
 export const HomePage = () => {
   return (
     <Page>
+      <Modal size="lg" isOpen={true} handleClose={() => {}}>
+        <Modal.Body>
+          <h2>Featured stories</h2>
+          <CoinNews coinTicker="eth" />
+        </Modal.Body>
+      </Modal>
       <Hero>
         <Content contentCenter>
           <h1>Mining pool that enables innovation</h1>

@@ -1,10 +1,15 @@
 import { applyMiddleware, createStore, AnyAction, compose } from 'redux';
 
-import { rootReducer, defaultReduxState } from './rootReducer';
+import { rootReducer, defaultReduxState, AppState } from './rootReducer';
 import { createPromise as createPromiseMiddleware } from 'redux-promise-middleware';
 import { isDev } from 'src/utils/devUtils';
 
-export const createReduxStore = (preloadedState = defaultReduxState) => {
+export const createReduxStore = (preloadedState?: Partial<AppState>) => {
+  const state = {
+    ...defaultReduxState,
+    ...preloadedState,
+  };
+
   const isServer = process.env.BUILD_TARGET === 'server';
 
   const promiseMiddleware = createPromiseMiddleware({
@@ -26,7 +31,7 @@ export const createReduxStore = (preloadedState = defaultReduxState) => {
 
   const store = createStore(
     rootReducer,
-    preloadedState,
+    state,
     compose(applyMiddleware(...middleware))
   );
 

@@ -10,6 +10,7 @@ import * as minerDetails from 'src/rdx/minerDetails/minerDetails.reducer';
 import * as minerStats from 'src/rdx/minerStats/minerStats.reducer';
 import * as minerWorkers from 'src/rdx/minerWorkers/minerWorkers.reducer';
 import * as minerPayments from 'src/rdx/minerPayments/minerPayments.reducer';
+import { localStorage } from 'src/utils/localStorage';
 
 export const defaultReduxState = {
   localSettings: localSettings.defaultState,
@@ -40,16 +41,15 @@ const combinedReducer = combineReducers({
 export type AppState = ReturnType<typeof combinedReducer>;
 
 export const rootReducer: Reducer = (state, action) => {
-  // do some global
-  if (
-    action &&
-    ['@user/LOGOUT_SUCCESS', '@user/LOGOUT'].includes(action.type)
-  ) {
-    console.log('REDUX CACHE RESET');
-    return defaultReduxState;
+  const nextState = combinedReducer(state, action);
+
+  // save localSettings to app_state
+  if (action.type.startsWith('@localSettings')) {
+    localStorage('app_state').set({
+      localSettings: nextState.localSettings,
+    });
   }
 
-  const nextState = combinedReducer(state, action);
   return nextState;
 };
 

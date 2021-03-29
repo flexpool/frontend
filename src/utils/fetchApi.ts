@@ -7,10 +7,9 @@ const transformQuery = (query?: object) => {
 };
 
 const buildUri = (url = '', query?: object) => {
-  if (url.startsWith('http')) {
-    return url;
-  }
-  const resUrl = new URL(`${apiURL}${url}`);
+  const resUrl = url.startsWith('http')
+    ? new URL(url)
+    : new URL(`${apiURL}${url}`);
   resUrl.search = (query && transformQuery(query)) || '';
 
   return resUrl.toString();
@@ -56,8 +55,13 @@ export const fetchApi = async <T>(
     // body: JSON.stringify(init?.body),
     body: transformBody(init?.body),
     headers: {
-      'Content-type': 'application/json',
+      accept: 'application/json',
       ...init?.headers,
+      ...(init.method
+        ? {
+            'Content-type': 'application/json',
+          }
+        : {}),
     },
   };
 

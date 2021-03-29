@@ -176,7 +176,7 @@ export const MinerPplnsStats: React.FC<{
         </Card>
         <Card padding>
           <CardTitle>
-            Share Log Wipeout Duration
+            Share Log Wipeout Duration{' '}
             <Tooltip>
               <TooltipContent
                 message={'Time for the round share to drop to zero'}

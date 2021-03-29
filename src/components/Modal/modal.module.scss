@@ -183,14 +183,12 @@
 
   & > * {
     transition: 0.2s all;
-    opacity: 0;
   }
 
   &:global(.enter) {
     opacity: 1;
 
     & > * {
-      opacity: 0;
       opacity: 0;
     }
   }

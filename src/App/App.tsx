@@ -25,14 +25,17 @@ import { MinerDashboardPage } from 'src/pages/MinerDashboard/MinerDashboard.page
 
 import './init';
 import { usePoolCoins } from 'src/rdx/poolCoins/poolCoins.hooks';
+import { localStorage } from 'src/utils/localStorage';
+import { AppState } from 'src/rdx/rootReducer';
 
-const store = createReduxStore();
+import { AppTheme } from './AppTheme';
 
-const Theme = () => {};
+const cachedState = localStorage<AppState>('app_state').get() || {};
+const store = createReduxStore(cachedState);
 
 const AppContent = () => {
   const location = useLocation();
-
+  // initial load of /pool/coins
   usePoolCoins();
 
   // hash
@@ -61,6 +64,7 @@ const AppContent = () => {
 
   return (
     <>
+      <AppTheme />
       <NavBar />
       <Switch>
         <Route exact strict component={StatisticsPage} path="/statistics" />
@@ -80,19 +84,6 @@ const AppContent = () => {
 const App = () => {
   return (
     <>
-      <style>{`body {
-      --bg-primary: #151519;
-      --bg-secondary: #2c2c31;
-      --border-color: #333;
-      --text-secondary: #ccc;
-      --text-primary: #eee;
-      }
-      
-      svg tspan {
-        fill: var(--text-primary);
-      }
-      
-      `}</style>
       <HelmetProvider>
         <ReduxProvider store={store}>
           <Helmet titleTemplate="%s | Flexpool" />

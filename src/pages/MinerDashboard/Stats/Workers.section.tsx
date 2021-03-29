@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import DynamicList, {
   DynamicListColumn,
@@ -47,6 +47,7 @@ const SearchInput = styled.input`
   outline: none;
   padding-left: 1.5rem;
   display: block;
+  background: var(--bg-primary);
 
   &:focus {
     padding-bottom: 0px;
