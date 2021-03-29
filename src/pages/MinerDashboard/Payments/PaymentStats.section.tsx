@@ -21,7 +21,7 @@ type ApiPaymentStats = {
     hash: string;
     timestamp: number;
     value: number;
-  };
+  } | null;
   stats: {
     averageDuration: number;
     averageFee: number;
@@ -30,7 +30,7 @@ type ApiPaymentStats = {
     totalFees: number;
     totalPaid: number;
     transactionCount: number;
-  };
+  } | null;
 };
 export const GeneralPaymentStatsSection: React.FC<{
   address: string;
@@ -53,10 +53,24 @@ export const GeneralPaymentStatsSection: React.FC<{
     }
   }, [coin?.ticker, address, couterTicker]);
 
-  const data = asyncState.data;
+  const data = {
+    ...asyncState.data,
+    stats:
+      asyncState.data?.stats === null
+        ? {
+            averageDuration: 0,
+            averageFee: 0,
+            averageFeePercent: 0,
+            averageValue: 0,
+            totalFees: 0,
+            totalPaid: 1,
+            transactionCount: 0,
+          }
+        : asyncState.data?.stats,
+  };
 
   const totalPaidCounter =
-    data && coin
+    data && data.stats && coin && data.countervalue
       ? getDisplayCounterTickerValue(
           (data.stats.totalPaid / Math.pow(10, coin.decimalPlaces)) *
             data.countervalue,
@@ -65,12 +79,12 @@ export const GeneralPaymentStatsSection: React.FC<{
       : undefined;
 
   const totalPaid = useActiveCoinTickerDisplayValue(
-    data?.stats.totalPaid,
+    data?.stats?.totalPaid,
     coin
   );
 
   const averageTransactionFeeCounter =
-    data && coin
+    data && coin && data.stats && data.countervalue
       ? getDisplayCounterTickerValue(
           (data.stats.averageFee / Math.pow(10, coin.decimalPlaces)) *
             data.countervalue,
@@ -79,13 +93,13 @@ export const GeneralPaymentStatsSection: React.FC<{
       : undefined;
 
   const averageTransactionFee = useActiveCoinTickerDisplayValue(
-    data?.stats.averageFee,
+    data?.stats?.averageFee,
     coin,
     10000000
   );
 
   const lastPaymentCounter =
-    data && coin
+    data && data.lastPayment && coin && data.countervalue
       ? getDisplayCounterTickerValue(
           (data.lastPayment.value / Math.pow(10, coin.decimalPlaces)) *
             data.countervalue,
@@ -94,7 +108,7 @@ export const GeneralPaymentStatsSection: React.FC<{
       : undefined;
 
   const lastPayment = useActiveCoinTickerDisplayValue(
-    data?.lastPayment.value,
+    data?.lastPayment?.value,
     coin
   );
 
@@ -112,9 +126,9 @@ export const GeneralPaymentStatsSection: React.FC<{
         <Card padding>
           <CardTitle>Total Transactions</CardTitle>
           <StatItem
-            value={data?.stats.transactionCount}
+            value={data?.stats?.transactionCount}
             subValue={
-              data
+              data && data.stats
                 ? `${
                     Math.round(
                       (data.stats.totalFees / data.stats.totalPaid) * 100 * 100
@@ -128,7 +142,7 @@ export const GeneralPaymentStatsSection: React.FC<{
           <CardTitle>Average Payout Duration</CardTitle>
           <StatItem
             value={
-              data
+              data && data.stats
                 ? formatDistance(0, data.stats.averageDuration * 1000)
                 : 'N/A'
             }
@@ -143,7 +157,7 @@ export const GeneralPaymentStatsSection: React.FC<{
           <StatItem
             value={lastPaymentCounter}
             subValue={
-              data ? (
+              data && data.lastPayment ? (
                 <>
                   {lastPayment} •{' '}
                   {dateUtils.formatDistance(data.lastPayment.timestamp * 1000)}{' '}
@@ -168,7 +182,7 @@ export const GeneralPaymentStatsSection: React.FC<{
           <CardTitle>Average Transaction Fee %</CardTitle>
           <StatItem
             value={
-              data && data.stats.averageFeePercent
+              data && data.stats && data.stats.averageFeePercent
                 ? `${
                     Math.round(data.stats.averageFeePercent * 100 * 1000) / 1000
                   }%`

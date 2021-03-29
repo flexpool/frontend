@@ -28,7 +28,7 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
 
   React.useEffect(() => {
     let paymentsChart: am4charts.XYChart | null = null;
-    if (coin && asyncState.data) {
+    if (coin && asyncState.data && asyncState.data.length > 0) {
       paymentsChart = am4core.create('payments-chart', am4charts.XYChart);
       paymentsChart.colors.list = [
         am4core.color('#0069ff'),
@@ -90,7 +90,7 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
             coin: coin.ticker,
           },
         }).then((resp) => {
-          return resp.map((item) => ({
+          return (resp || []).map((item) => ({
             date: new Date(item.timestamp * 1000),
             value: item.value / Math.pow(10, coin.decimalPlaces),
             fee: item.fee / Math.pow(10, coin.decimalPlaces),
