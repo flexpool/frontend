@@ -12,6 +12,9 @@ import {
   FaGithub,
 } from 'react-icons/fa';
 import React from 'react';
+import { SelectCounterTicker } from 'src/components/SelectCounterTicker';
+import { SelectTheme } from 'src/components/SelectTheme';
+import { Spacer } from 'src/components/layout/Spacer';
 
 const LinkOut: React.FC<{ href: string; children: React.ReactNode }> = ({
   href,
@@ -27,8 +30,6 @@ const Footer = styled.footer`
   background: #020e1f;
   padding-top: 5rem;
   padding-bottom: 5rem;
-  --text-primary: #fff;
-  --text-secondary: #77869e;
 
   color: var(--text-secondary);
 
@@ -43,7 +44,7 @@ const Footer = styled.footer`
 `;
 
 const FSectionTitle = styled.h3`
-  color: var(--text-primary);
+  color: var(--text-on-bg);
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
@@ -56,6 +57,7 @@ const SectionContainer = styled.div`
 
 const Section = styled.div`
   min-width: 200px;
+  width: 1px;
   flex-grow: 1;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -144,10 +146,9 @@ export const FooterSection = () => {
           </Section>
           <Section>
             <FSectionTitle>Preferences</FSectionTitle>
-            <LinkOut href="https://flexpool.statuspage.io/">
-              Services Status
-            </LinkOut>
-            <Link to="/support">Support</Link>
+            <SelectCounterTicker />
+            <Spacer />
+            <SelectTheme />
           </Section>
         </SectionContainer>
         <FooterEnd>

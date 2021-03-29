@@ -76,7 +76,22 @@ export const AnchoredPop: React.FC<AnchoredPopProps> = ({
     let top = anchorRect.y;
     let left = anchorRect.x;
 
-    switch (position[0]) {
+    const fitsToBottom =
+      top + popHeight + anchorRect.height < window.innerHeight;
+    const fitsToTop = top - popHeight > 0;
+
+    const posTop =
+      position[0] === 'top'
+        ? fitsToTop
+          ? 'top'
+          : 'bottom'
+        : position[0] === 'bottom'
+        ? fitsToBottom
+          ? 'bottom'
+          : 'top'
+        : 'center';
+
+    switch (posTop) {
       case 'bottom': {
         top += anchorRect.height + offset[0];
         break;
