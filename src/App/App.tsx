@@ -29,6 +29,7 @@ import { localStorage } from 'src/utils/localStorage';
 import { AppState } from 'src/rdx/rootReducer';
 
 import { AppTheme } from './AppTheme';
+import { BrandAssetsPage } from 'src/pages/BrandAssets/BrandAssets.page';
 
 const cachedState = localStorage<AppState>('app_state').get() || {};
 const store = createReduxStore(cachedState);
@@ -73,6 +74,7 @@ const AppContent = () => {
         <Route component={MinerDashboardPage} path="/miners/:coin/:address" />
         <Route exact strict component={BlocksPage} path="/blocks" />
         <Route exact strict component={SupportPage} path="/support" />
+        <Route exact strict component={BrandAssetsPage} path="/brand-assets" />
         <Route exact strict component={HomePage} path="/" />
         <Redirect to="/" />
       </Switch>
