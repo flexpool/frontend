@@ -101,17 +101,7 @@ export const MinerDetails: React.FC<{
         <div>Joined:&nbsp;</div>
         <div>
           {settings ? (
-            <>
-              {dateUtils.formatDistance(settings.firstJoined * 1000)}
-              {/* {settings.firstJoined !== 0
-                ? humanizeDuration(
-                    Date.now() - settings.firstJoined * 1000,
-                    {
-                      largest: 1,
-                    }
-                  ) + " ago"
-                : "Never"} */}
-            </>
+            <>{dateUtils.formatDistance(settings.firstJoined * 1000)}</>
           ) : (
             <Skeleton width={50} />
           )}

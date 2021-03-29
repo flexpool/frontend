@@ -3,12 +3,12 @@ import styled from 'styled-components/macro';
 import { BaseFormFieldProps, getInputProps } from './formikUtils';
 
 const SErrorWrapper = styled.div`
-  color: ${(p) => p.theme.color.danger};
+  color: var(--danger);
   margin-top: 0.5rem;
 `;
 
 const SLabel = styled.label`
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   text-transform: uppercase;
   color: ${(p) => p.theme.text.primary};
   font-weight: 700;
@@ -18,6 +18,8 @@ const SLabel = styled.label`
   }
 `;
 
+const Wrapper = styled.div``;
+
 export const FieldWrap = <
   P extends BaseFormFieldProps & { children: React.ReactNode }
 >(
@@ -25,12 +27,12 @@ export const FieldWrap = <
 ) => {
   const { label, children, errorMessage, name, desc } = getInputProps(p);
   return (
-    <div data-id="field-wrap">
+    <Wrapper>
       {label && <SLabel htmlFor={name}>{label}</SLabel>}
       {children}
       {desc && <p>{desc}</p>}
       {errorMessage && <SErrorWrapper>{errorMessage}</SErrorWrapper>}
-    </div>
+    </Wrapper>
   );
 };
 

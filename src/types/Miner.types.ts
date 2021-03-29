@@ -1,4 +1,4 @@
-export type ApiMinerDetails = {
+export type ApiMinerSettings = {
   clientIPAddress: string;
   firstJoined: number;
   ipAddress: string;

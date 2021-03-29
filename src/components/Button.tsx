@@ -14,6 +14,7 @@ export const getBtnPxHeight = (height: keyof typeof btnHeights = 'default') => {
 export type ButtonProps = {
   size?: keyof typeof btnHeights | undefined;
   variant?: UIVariant;
+  block?: boolean;
 };
 
 export const Button = styled.button<ButtonProps>`
@@ -74,6 +75,13 @@ export const Button = styled.button<ButtonProps>`
   &:active {
     box-shadow: inset 0 0 40px 0 rgba(0, 0, 0, 0.1);
   }
+
+  ${(p) =>
+    p.block &&
+    `
+    width: 100%;
+    justify-content: center;
+  `}
 `;
 
 Button.defaultProps = {

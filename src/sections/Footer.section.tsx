@@ -34,11 +34,12 @@ const Footer = styled.footer`
   color: var(--text-secondary);
 
   a {
-    color: var(--text-secondary);
+    color: #77869e;
     display: block;
     padding: 0.3rem 0;
     &:hover {
-      color: var(--text-primary);
+      color: var(--text-on-bg);
+      text-decoration: none;
     }
   }
 `;

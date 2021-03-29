@@ -1,4 +1,5 @@
 import { Field, FieldProps } from 'formik';
+import React from 'react';
 import styled from 'styled-components/macro';
 import { BaseFormFieldProps, getInputProps } from './formikUtils';
 import { FieldWrap } from './FormWrap';
@@ -20,10 +21,22 @@ const SText = styled.input`
   padding: 0 1rem;
 `;
 
+const SUnit = styled.div`
+  flex-grow: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  background: var(--border-color);
+  font-size: 0.875rem;
+  font-family: 'Roboto mono';
+  font-weight: 500;
+`;
+
 const Wrapper = styled.div`
   border-radius: 5px;
   overflow: hidden;
   border: 1px solid var(--bg-secondary);
+  display: flex;
   &:focus-within,
   &:hover {
     border-color: var(--primary);
@@ -31,9 +44,13 @@ const Wrapper = styled.div`
 `;
 
 export const TextInput: React.FC<
-  JSX.IntrinsicElements['input'] & BaseFormFieldProps & Partial<FieldProps<any>>
+  JSX.IntrinsicElements['input'] &
+    BaseFormFieldProps &
+    Partial<FieldProps<any>> & {
+      unit?: React.ReactNode;
+    }
 > = (p) => {
-  const props = getInputProps(p);
+  const { unit, ...props } = getInputProps(p);
 
   return (
     <FieldWrap {...props}>
@@ -45,6 +62,7 @@ export const TextInput: React.FC<
           name={props.name}
           placeholder={props.placeholder}
         />
+        {unit && <SUnit>{unit}</SUnit>}
       </Wrapper>
     </FieldWrap>
   );

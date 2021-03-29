@@ -16,7 +16,6 @@ import {
 import { minerDetailsGet } from 'src/rdx/minerDetails/minerDetails.actions';
 import { minerHeaderStatsGet } from 'src/rdx/minerHeaderStats/minerHeaderStats.actions';
 import { minerStatsGet } from 'src/rdx/minerStats/minerStats.actions';
-import { useReduxState } from 'src/rdx/useReduxState';
 import { AccountHeader } from './Header/AccountHeader';
 import { HeaderGreetings } from './Header/Greetings';
 import { HeaderStats } from './Header/Stats';

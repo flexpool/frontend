@@ -4,6 +4,7 @@ import { Button } from 'src/components/Button';
 import { Card } from 'src/components/layout/Card';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import styled from 'styled-components/macro';
+import { MinerSettingsModal } from '../Settings/MinerSettings.modal';
 
 // function CopyButton(props) {
 //   const [justCopied, setJustCopied] = useState(false);
@@ -83,9 +84,7 @@ export const AccountHeader: React.FC<{
         <Address>{address}</Address>
         {/* <CopyButton address={props.address} asd/> */}
       </AddressContainer>
-      <Button size="sm" variant="primary">
-        Settings
-      </Button>
+      <MinerSettingsModal />
     </Wrap>
   );
 };
