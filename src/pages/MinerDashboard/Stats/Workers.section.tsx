@@ -22,7 +22,7 @@ const Percentage: React.FC<{ total: number; value: number }> = ({
   value,
 }) => (
   <PercentageItem>
-    ({Math.round((value / total) * 100 * 10) / 10}%)
+    ({(Math.round((value / total) * 100 * 10) / 10).toFixed(1)}%)
   </PercentageItem>
 );
 

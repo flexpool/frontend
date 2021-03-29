@@ -6,6 +6,7 @@ import { GetStartedSection } from 'src/sections/GetStarted.section';
 import { NewsSection } from './News.section';
 import styled from 'styled-components/macro';
 import { SearchAddressBar } from 'src/components/SearchAddressBar/SearchAddressBar';
+import { Helmet } from 'react-helmet-async';
 
 const Hero = styled(HeroBlue)`
   min-height: 40vh;
@@ -22,6 +23,9 @@ const SearchWrapper = styled.div`
 export const HomePage = () => {
   return (
     <Page>
+      <Helmet>
+        <title>The Largest North American Ethereum Pool</title>
+      </Helmet>
       <Hero>
         <Content contentCenter>
           <h1>Mining pool that enables innovation</h1>
