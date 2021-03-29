@@ -8,6 +8,7 @@ import { OuterEvent, OuterEventProps } from '../DivOuterEvents';
 import { Button } from '../Button';
 import { FaTimes } from 'react-icons/fa';
 import styled from 'styled-components/macro';
+import { Helmet } from 'react-helmet-async';
 
 export type ModalStateControls = OpenStateControls['modalProps'];
 export type ModalProps = ModalStateControls &
@@ -48,6 +49,13 @@ export const Modal = (props: ModalProps) => {
     ...rest
   } = props;
 
+  const [open, setOpen] = React.useState(isOpen);
+  React.useEffect(() => {
+    setTimeout(() => {
+      setOpen(isOpen);
+    }, 50);
+  }, [isOpen]);
+
   const el = (
     <OuterEvent
       className={clx(cls['modal'], className, {
@@ -58,7 +66,7 @@ export const Modal = (props: ModalProps) => {
         [cls.hasCloseButton]: !hideCloseButton,
         [cls.desktopFull]: desktopFull,
       })}
-      onOuterEvent={closeOnOuterClick ? handleClose : undefined}
+      onOuterEvent={closeOnOuterClick && open ? handleClose : undefined}
       {...rest}
     >
       {handleClose && !hideCloseButton && (
@@ -79,14 +87,17 @@ export const Modal = (props: ModalProps) => {
     return el;
   }
   return (
-    <Overlay
-      isOpen={isOpen}
-      portalEl={portalEl}
-      mobileFull={mobileFull}
-      desktopFull={desktopFull}
-    >
-      {el}
-    </Overlay>
+    <>
+      {isOpen && <Helmet bodyAttributes={{ class: 'scroll-lock' }} />}
+      <Overlay
+        isOpen={isOpen}
+        portalEl={portalEl}
+        mobileFull={mobileFull}
+        desktopFull={desktopFull}
+      >
+        {el}
+      </Overlay>
+    </>
   );
 };
 

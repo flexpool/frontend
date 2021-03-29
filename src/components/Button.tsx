@@ -33,6 +33,7 @@ export const Button = styled.button<ButtonProps>`
   &:active,
   &:focus {
     background: var(--bg-secondary);
+    text-decoration: none;
   }
   color: var(--text-primary);
   font-weight: 400;

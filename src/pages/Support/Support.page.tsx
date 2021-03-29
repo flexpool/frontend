@@ -6,11 +6,6 @@ import { Content } from 'src/components/layout/Content';
 import { Divider } from 'src/components/layout/Divider';
 import { HeroBlue } from 'src/components/layout/Hero/HeroBlue';
 import { Page } from 'src/components/layout/Page';
-import { HeaderStat } from 'src/components/layout/StatHeader';
-import { StatBox, StatBoxContainer } from 'src/components/StatBox';
-import { useAsyncState } from 'src/hooks/useAsyncState';
-import { fetchApi } from 'src/utils/fetchApi';
-import { formatSi } from 'src/utils/si.utils';
 import styled from 'styled-components/macro';
 
 const SupportChannelWrapper = styled.a`

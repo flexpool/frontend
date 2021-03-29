@@ -25,6 +25,10 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+body.scroll-lock {
+  overflow: hidden;
+}
+
 h1 {
   font-size: 2rem;
 }
@@ -140,4 +144,34 @@ th {
   text-align: left;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+
+/**
+scrllbar
+**/
+
+* {
+  scrollbar-color: var(--border-color);
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+    background-color: var(--bg-primary);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--bg-secondary);
+    // background-color: rgba(128, 128, 128, 0.1);
+    border-radius: 9px;
+  }
+
+  @media screen and (max-width: 768px) {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar-thumb,
+    &::-webkit-scrollbar {
+      display: none;
+      width: 0px;
+      background: transparent; /* make scrollbar transparent */
+    }
+  }
 }

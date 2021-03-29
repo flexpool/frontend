@@ -25,7 +25,7 @@ const TickBox = styled.span`
   height: 1.25rem;
   border-radius: 5px;
   border: ${(p) => p.theme.border.default};
-  background: white;
+  background: var(--bg-secondary);
   transition: 0.2s all;
   margin-right: 0.5rem;
 `;

@@ -174,15 +174,16 @@
   -webkit-overflow-scrolling: touch;
   height: 100vh;
   width: 100vw;
-  z-index: 30000;
+  z-index: 1200;
   top: 0;
   left: 0;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.3);
 
   transition: 0.2s all;
 
   & > * {
     transition: 0.2s all;
+    opacity: 0;
   }
 
   &:global(.enter) {

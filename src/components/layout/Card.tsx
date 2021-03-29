@@ -16,6 +16,13 @@ export const Card = styled.div<{ padding?: boolean; paddingShort?: boolean }>`
   `}
 `;
 
+export const CardBody = styled.div`
+  padding: 1rem 1.25rem;
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--border-color);
+  }
+`;
+
 export const CardTitle = styled.h3`
   font-size: 1.125rem;
   font-weight: 600;

@@ -40,6 +40,8 @@ const ArticleImage = styled.img`
 `;
 
 const ArticleImageContainer = styled.div`
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
   height: 100px;
   width: 100px;
   overflow: hidden;
@@ -89,67 +91,6 @@ export const CoinNews: React.FC<{ coinTicker: string }> = ({ coinTicker }) => {
       })
     );
   }, [coinTicker]);
-
-  // function CoinListItemMenuNewsItem(props) {
-  //   return (
-  //     <a
-  //       href={props.link}
-  //       className="coin-news-item"
-  //       target="blank"
-  //       rel="noopener noreferer"
-  //     >
-  //       <div className="article-text">
-  //         <div className="title">{props.title}</div>
-  //         <div className="description">{props.description}</div>
-  //         <div className="details">
-  //           <img
-  //             className="source-favicon"
-  //             src={props.favicon}
-  //             alt={props.source + ' Icon'}
-  //           />
-  //           <div className="source">{props.source}</div>
-  //           <div className="date">
-  //             {humanizeDuration(Date.now() - props.timestamp * 1000, {
-  //               largest: 1,
-  //             })}{' '}
-  //             ago
-  //           </div>
-  //         </div>
-  //       </div>
-  //       <img
-  //         className="article-image"
-  //         src={props.image}
-  //         alt={props.title + ' - ' + props.source}
-  //       />
-  //     </a>
-  //   );
-  // }
-
-  // function CoinListItemMenuNewsItemSkeleton() {
-  //   return (
-  //     <div
-  //       href={props.link}
-  //       className="coin-news-item"
-  //       target="blank"
-  //       rel="noopener noreferer"
-  //     >
-  //       <div className="article-text">
-  //         <Skeleton className="title" style={{ maxWidth: '400px' }} />
-  //         <Skeleton className="description" style={{ maxWidth: '90%' }} />
-  //         <Skeleton className="source" style={{ maxWidth: '200px' }} />
-  //       </div>
-  //       <Skeleton className="article-image" />
-  //     </div>
-  //   );
-  // }
-
-  // var blankElements = [];
-
-  // const newsCount = 3;
-
-  // for (var i = 0; i < newsCount; i++) {
-  //   blankElements.push(<CoinListItemMenuNewsItemSkeleton />);
-  // }
 
   return (
     <>

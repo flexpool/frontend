@@ -14,13 +14,13 @@ type ApiCoinMarketData = {
 
 export type ApiPoolCoinFull = {
   algorithm: string;
-  applicableHashrateSiPrefixes?: Si[];
+  applicableHashrateSiPrefixes: Si[];
   chainData: {
     reward: number;
     difficulty: number;
     hashrate: number;
     blockTime: number;
-    dailyRewardPerGigaHasSec: number;
+    dailyRewardPerGigaHashSec: number;
   };
   decimalPlaces: number;
   defaultHashrateSiPrefix: Si;
@@ -30,7 +30,7 @@ export type ApiPoolCoinFull = {
   name: string;
   ticker: Ticker;
   websiteLink: string;
-  whitepaperLibk: string;
+  whitepaperLink: string;
 };
 
 export type ApiPoolCoin = {

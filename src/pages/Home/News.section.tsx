@@ -74,11 +74,12 @@ const HomeNewsItem: React.FC<{
   );
 };
 
-const Wrapper = styled(Content)`
+const Wrapper = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
   z-index: 1;
+  box-shadow: inset 0 100px 50px -50px var(--bg-secondary);
 `;
 const WrapperInner = styled.div`
   position: relative;
@@ -99,26 +100,28 @@ const WrapperInner = styled.div`
 export const NewsSection = () => {
   return (
     <Wrapper>
-      <WrapperInner>
-        <HomeNewsItem
-          category="JOIN US"
-          title="Connect to Flexpool"
-          action="Get Started"
-          to="/get-started"
-        />
-        <HomeNewsItem
-          category="LEARN"
-          title="Read our Blog"
-          action="Learn"
-          href="https://medium.com/flexpool/"
-        />
-        <HomeNewsItem
-          category="SUPPORT"
-          title="Get support"
-          action="Contact"
-          to="/support"
-        />
-      </WrapperInner>
+      <Content>
+        <WrapperInner>
+          <HomeNewsItem
+            category="JOIN US"
+            title="Connect to Flexpool"
+            action="Get Started"
+            to="/get-started"
+          />
+          <HomeNewsItem
+            category="LEARN"
+            title="Read our Blog"
+            action="Learn"
+            href="https://medium.com/flexpool/"
+          />
+          <HomeNewsItem
+            category="SUPPORT"
+            title="Get support"
+            action="Contact"
+            to="/support"
+          />
+        </WrapperInner>
+      </Content>
     </Wrapper>
   );
 };

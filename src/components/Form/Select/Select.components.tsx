@@ -14,11 +14,15 @@ const SelectArrowImg = styled.img`
 `;
 
 const SCSelectButton = styled(Button)`
-  min-width: 230px;
+  min-width: 140px;
   font-weight: 600;
   position: relative;
   padding-right: 2.5rem;
   width: 100%;
+  background: var(--bg-secondary);
+  &:hover {
+    border-color: var(--primary);
+  }
 `;
 
 const Placeholder = styled.span`
@@ -41,7 +45,7 @@ export const SelectButton = React.forwardRef<HTMLElement, SelectButtonProps>(
 );
 
 export const DropdownList = styled(AnchoredPop)`
-  background: white;
+  background: var(--bg-secondary);
   ${(p) => p.theme.boxShadow};
   ${(p) => p.theme.border};
   padding: 10px;
@@ -52,7 +56,7 @@ export const DropdownList = styled(AnchoredPop)`
 `;
 
 export const SelectOptionButton = styled(Button)`
-  background-color: var(--bg-primary);
+  background-color: var(--bg-secondary);
   border: none;
   font-weight: 600;
   display: block;

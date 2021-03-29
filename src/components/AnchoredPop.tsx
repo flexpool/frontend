@@ -12,7 +12,7 @@ const PopEl = styled(OuterEvent)`
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
-  z-index: 500;
+  z-index: 10000;
 
   ${(p: { visible?: boolean }) =>
     p.visible &&

@@ -22,6 +22,11 @@ const Logo = styled(ReactLogo)`
   fill: var(--text-primary);
 `;
 
+const LogoMobile = styled(ReactLogo)`
+  height: 24px;
+  fill: var(--text-primary);
+`;
+
 const NLink = styled(NavLink)`
   height: 100%;
   display: flex;
@@ -204,7 +209,7 @@ export const NavBar: React.FC<NavBarType> = (props) => {
       <ContainerMobile>
         <NavContainer>
           <NavLink to="/">
-            <img src={Logo} alt="Flexpool Logo" />
+            <LogoMobile />
           </NavLink>
           <NavSection>
             <NLink to="/statistics">
