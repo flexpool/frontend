@@ -32,6 +32,22 @@ const Wrapper = styled.div`
   & > * {
     margin: 0 0.25rem;
   }
+  @media screen and (max-width: 560px) {
+    justify-content: space-between;
+  }
+`;
+
+const PageNumbers = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & > * {
+    margin: 0 0.25rem;
+  }
+
+  @media screen and (max-width: 560px) {
+    display: none;
+  }
 `;
 
 const PaginationSpacer = styled.span`
@@ -106,27 +122,29 @@ export const ListPagination: React.FC<{
         <BsArrowLeft style={{ marginRight: '10px' }} />
         Previous
       </PageButton>
-      {/* First page (enabled only if not available via regular selection) */}
-      {firstSelectionShown !== null && firstSelectionShown > 0 ? (
-        <>
-          <PageButton onClick={setPage} value={0}>
-            1
-          </PageButton>
-          <PaginationSpacer>—</PaginationSpacer>
-        </>
-      ) : undefined}
-      {selectionsAvailable}
-      {/* Last page (enabled only if not available via regular selection) */}
-      {currentPage <= totalPages - pagesShown ? (
-        <>
-          {lastSelectionShown !== totalPages && totalPages !== 1 ? (
+      <PageNumbers>
+        {/* First page (enabled only if not available via regular selection) */}
+        {firstSelectionShown !== null && firstSelectionShown > 0 ? (
+          <>
+            <PageButton onClick={setPage} value={0}>
+              1
+            </PageButton>
             <PaginationSpacer>—</PaginationSpacer>
-          ) : null}
-          <PageButton onClick={setPage} value={totalPages - 1}>
-            {totalPages}
-          </PageButton>
-        </>
-      ) : null}
+          </>
+        ) : undefined}
+        {selectionsAvailable}
+        {/* Last page (enabled only if not available via regular selection) */}
+        {currentPage <= totalPages - pagesShown ? (
+          <>
+            {lastSelectionShown !== totalPages && totalPages !== 1 ? (
+              <PaginationSpacer>—</PaginationSpacer>
+            ) : null}
+            <PageButton onClick={setPage} value={totalPages - 1}>
+              {totalPages}
+            </PageButton>
+          </>
+        ) : null}
+      </PageNumbers>
       <PageButton
         disabled={currentPage + 1 >= totalPages || totalPages === 1}
         value={currentPage + 1}

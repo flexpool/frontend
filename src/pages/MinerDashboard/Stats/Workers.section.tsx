@@ -123,10 +123,12 @@ const columns: DynamicListColumn<ApiMinerWorker & { totalShares: number }>[] = [
     alignRight: true,
     onClickValue: 'staleShares',
     Component: ({ data }) => (
-      <Mono>
-        {data.staleShares}{' '}
-        <Percentage total={data.totalShares} value={data.staleShares} />
-      </Mono>
+      <Ws>
+        <Mono>
+          {data.staleShares}{' '}
+          <Percentage total={data.totalShares} value={data.staleShares} />
+        </Mono>
+      </Ws>
     ),
   },
   {

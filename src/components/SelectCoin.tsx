@@ -15,6 +15,19 @@ const LabelWrap = styled.div`
   align-items: center;
 `;
 
+const CoinNameShort = styled.span`
+  text-transform: uppercase;
+  display: none;
+  @media screen and (max-width: 560px) {
+    display: inline;
+  }
+`;
+const CoinName = styled.span`
+  @media screen and (max-width: 560px) {
+    display: none;
+  }
+`;
+
 export const SelectCoin = () => {
   const localSettingsState = useReduxState('localSettings');
   const poolCoinsState = useReduxState('poolCoins');
@@ -28,7 +41,8 @@ export const SelectCoin = () => {
             src={`https://static.flexpool.io/assets/coinLogos/thumb/${item.ticker}.png`}
             alt={`${item.name} Logo`}
           />
-          {item.name}
+          <CoinName>{item.name}</CoinName>
+          <CoinNameShort>{item.ticker}</CoinNameShort>
         </LabelWrap>
       ),
       value: item.ticker,

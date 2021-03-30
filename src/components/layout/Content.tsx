@@ -25,14 +25,18 @@ export const Content = styled.div<{
   ${(p) =>
     p.padding &&
     `
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
   `};
   ${(p) =>
     p.paddingLg &&
     `
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+      @media screen and (min-width: 768px) {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+      }
   `};
   ${(p) =>
     p.md &&

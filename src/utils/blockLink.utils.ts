@@ -1,11 +1,16 @@
 const blockUrlMap = {
   eth: 'https://etherscan.io/block/%v',
 };
+
 export const getBlockLink = (blockHash: string, coin?: string) => {
   if (typeof coin === 'string' && coin in blockUrlMap) {
     const key = coin as keyof typeof blockUrlMap;
     const url = blockUrlMap[key];
-    return url.replaceAll('%v', blockHash);
+    try {
+      return url.replaceAll('%v', blockHash);
+    } catch {
+      return null;
+    }
   }
 
   return null;
@@ -18,7 +23,11 @@ export const getTransactionLink = (transactionHash: string, coin?: string) => {
   if (typeof coin === 'string' && coin in transactionUrlMap) {
     const key = coin as keyof typeof transactionUrlMap;
     const url = transactionUrlMap[key];
-    return url.replaceAll('%v', transactionHash);
+    try {
+      return url.replaceAll('%v', transactionHash);
+    } catch {
+      return null;
+    }
   }
 
   return null;

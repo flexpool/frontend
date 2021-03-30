@@ -14,7 +14,7 @@ const SelectArrowImg = styled.img`
 `;
 
 const SCSelectButton = styled(Button)`
-  min-width: 140px;
+  min-width: 100px;
   font-weight: 600;
   position: relative;
   padding-right: 2.5rem;

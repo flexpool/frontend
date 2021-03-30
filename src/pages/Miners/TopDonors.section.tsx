@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { donorsGet } from 'src/rdx/topDonors/topDonors.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { dateUtils } from 'src/utils/date.utils';
-import { Mono } from 'src/components/Typo/Typo';
+import { Mono, Ws } from 'src/components/Typo/Typo';
 
 export const TopDonatorsSection = () => {
   const activeCoin = useActiveCoinTicker();
@@ -46,14 +46,16 @@ export const TopDonatorsSection = () => {
             title: 'Donation',
             skeletonWidth: 60,
             Component: ({ data }) => {
-              return <Mono>{data.donation * 100} %</Mono>;
+              return <Mono>{(data.donation * 100).toFixed(1)} %</Mono>;
             },
           },
           {
             title: 'Joined',
             skeletonWidth: 120,
             Component: ({ data }) => {
-              return <>{dateUtils.formatDistance(data.firstJoined * 1000)}</>;
+              return (
+                <Ws>{dateUtils.formatDistance(data.firstJoined * 1000)}</Ws>
+              );
             },
           },
         ]}
