@@ -24,6 +24,11 @@ class ErrorBoundary extends React.Component<
     // You can also log the error to an error reporting service
     // logErrorToMyService(error, errorInfo);
     console.log(error, errorInfo);
+    this.setState((state) => ({
+      ...state,
+      errorInfo,
+      error,
+    }));
   }
 
   render() {
@@ -33,6 +38,7 @@ class ErrorBoundary extends React.Component<
         <div>
           <h1>Something went wrong.</h1>
           {JSON.stringify(this.state.error)}
+          {JSON.stringify(this.state.errorInfo)}
         </div>
       );
     }
