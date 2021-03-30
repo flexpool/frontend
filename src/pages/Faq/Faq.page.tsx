@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Content } from 'src/components/layout/Content';
 import styled from 'styled-components/macro';
 import FAQIndex from '../../docs/faq/index.json';
-import copy from 'copy-to-clipboard';
 import { Page } from 'src/components/layout/Page';
 import { useOpenState } from 'src/hooks/useOpenState';
 import { Helmet } from 'react-helmet-async';
