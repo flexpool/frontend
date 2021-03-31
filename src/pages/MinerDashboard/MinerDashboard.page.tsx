@@ -31,6 +31,7 @@ import { MinerBlocksPage } from './Blocks/MinerBlocks.page';
 import { MinerRewardsPage } from './Rewards/MinerRewards.page';
 import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
+import { MinerSettingsModal } from './Settings/MinerSettings.modal';
 
 const TabContent = styled.div`
   box-shadow: inset -1px 18px 19px -13px var(--bg-secondary);

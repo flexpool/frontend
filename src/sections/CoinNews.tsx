@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card } from 'src/components/layout/Card';
+import { LinkOut } from 'src/components/LinkOut';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { dateUtils } from 'src/utils/date.utils';
 import { fetchApi } from 'src/utils/fetchApi';
@@ -16,9 +17,40 @@ type ApiCoinNewsArticle = {
   title: string;
 };
 
-const ArticleWrapper = styled(Card)`
+const ArticleWrapper = styled(LinkOut)`
+  padding: 1rem 1.25rem;
+  display: block;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  transition: 0.2s all;
   & + * {
     margin-top: 0.5rem;
+  }
+  position: relative;
+  /* &:before {
+    content: 'Read more';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-secondary);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: 0.2s all;
+  } */
+  &:hover {
+    /* background: var(--bg-secondary); */
+    text-decoration: none;
+    border-color: var(--primary);
+    h3 {
+      color: var(--primary);
+    }
+    /* & > * {
+      filter: blur(10px);
+    } */
   }
 `;
 const ArticleSplit = styled.div`
@@ -52,7 +84,7 @@ const ArticleImageContainer = styled.div`
 
 const CoinNewsItem: React.FC<{ data: ApiCoinNewsArticle }> = ({ data }) => {
   return (
-    <ArticleWrapper padding>
+    <ArticleWrapper href={data.link}>
       <ArticleSplit>
         <ArticleImageContainer>
           <ArticleImage

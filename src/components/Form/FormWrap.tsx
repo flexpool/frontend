@@ -18,7 +18,17 @@ const SLabel = styled.label`
   }
 `;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  *:disabled {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+`;
+
+const Desc = styled.div`
+  margin-top: 0.5rem;
+  line-height: 1.4;
+`;
 
 export const FieldWrap = <
   P extends BaseFormFieldProps & { children: React.ReactNode }
@@ -30,7 +40,7 @@ export const FieldWrap = <
     <Wrapper>
       {label && <SLabel htmlFor={name}>{label}</SLabel>}
       {children}
-      {desc && <p>{desc}</p>}
+      {desc && <Desc>{desc}</Desc>}
       {errorMessage && <SErrorWrapper>{errorMessage}</SErrorWrapper>}
     </Wrapper>
   );

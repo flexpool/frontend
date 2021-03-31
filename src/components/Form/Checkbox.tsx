@@ -1,10 +1,17 @@
+import { Field } from 'formik';
 import styled from 'styled-components/macro';
 import { BaseFormFieldProps, getInputProps } from './formikUtils';
 import { FieldWrap } from './FormWrap';
 
-const LabelWrap = styled.label`
+const LabelWrap = styled.label<{ disabled?: boolean }>`
   position: relative;
   cursor: pointer;
+  ${(p) =>
+    p.disabled &&
+    `
+    pointer-events: none;
+    opacity: .6;
+  `}
 `;
 
 const Check = styled.div`
@@ -57,12 +64,13 @@ export const Checkbox = (
 
   return (
     <FieldWrap>
-      <LabelWrap>
+      <LabelWrap disabled={props.disabled}>
         <SInput
           type="checkbox"
           checked={value}
           {...{ placeholder, name, value, onChange, onBlur }}
           {...props.field}
+          disabled={props.disabled}
         />
         <TickBox>
           <Check />
@@ -71,4 +79,11 @@ export const Checkbox = (
       </LabelWrap>
     </FieldWrap>
   );
+};
+
+/**
+ * Formik version
+ */
+export const CheckboxField: typeof Checkbox = (props) => {
+  return <Field component={Checkbox} {...props} />;
 };

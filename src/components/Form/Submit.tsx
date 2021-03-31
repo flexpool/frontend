@@ -13,12 +13,7 @@ const ButtonField: React.FunctionComponent<
 > = (props) => {
   const { children, form, field, disableWhenFormNotDirty, ...rest } = props;
   return (
-    <Button
-      {...rest}
-      type="submit"
-      variant="primary"
-      disabled={!form.dirty || !form.isValid}
-    >
+    <Button {...rest} type="submit" variant="primary" disabled={!form.dirty}>
       {form.isSubmitting ? <LoaderDots /> : children}
     </Button>
   );

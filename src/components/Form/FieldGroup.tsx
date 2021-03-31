@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
 
-const gap = '1rem';
+const gap = '1.5rem';
 
 const FGBase = styled.div`
   & > *:not(:last-child) {

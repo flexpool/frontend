@@ -1,4 +1,5 @@
 import { FieldProps } from 'formik';
+import React from 'react';
 
 /**
  * flattens props if component is inside formik
@@ -27,5 +28,5 @@ export type BaseFormFieldProps = {
   placeholder?: string;
   label?: React.ReactNode;
   errorMessage?: React.ReactNode;
-  desc?: string;
+  desc?: React.ReactNode;
 } & Partial<FieldProps<any>>;

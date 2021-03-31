@@ -1,3 +1,5 @@
+import { Link, useLocation } from 'react-router-dom';
+import { Button } from 'src/components/Button';
 import { Card } from 'src/components/layout/Card';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import styled from 'styled-components/macro';
@@ -41,6 +43,8 @@ export const AccountHeader: React.FC<{
   coin?: ApiPoolCoin;
   address: string;
 }> = ({ coin, address }) => {
+  const location = useLocation();
+
   return (
     <Wrap paddingShort>
       <AddressContainer>

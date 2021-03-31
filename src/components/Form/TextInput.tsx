@@ -59,8 +59,10 @@ export const TextInput: React.FC<
           type="text"
           value={props.value}
           onChange={props.onChange}
+          onBlur={props.onBlur}
           name={props.name}
           placeholder={props.placeholder}
+          disabled={props.disabled}
         />
         {unit && <SUnit>{unit}</SUnit>}
       </Wrapper>

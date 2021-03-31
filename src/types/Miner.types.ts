@@ -3,7 +3,10 @@ export type ApiMinerSettings = {
   firstJoined: number;
   ipAddress: string;
   maxFeePrice: number;
-  notificationPreferences: null;
+  notificationPreferences: null | {
+    payoutNotifications: boolean;
+    workersOfflineNotifications: boolean;
+  };
   notifications: { email: string | null };
   payoutLimit: number;
   poolDonation: number;

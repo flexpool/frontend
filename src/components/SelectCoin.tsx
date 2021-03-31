@@ -3,13 +3,9 @@ import { useDispatch } from 'react-redux';
 import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import styled from 'styled-components/macro';
+import { CoinLogo } from './CoinLogo';
 import { Select } from './Form/Select/Select';
 
-const CoinLogo = styled.img`
-  height: 20px;
-  width: 20px;
-  margin-right: 0.5rem;
-`;
 const LabelWrap = styled.div`
   display: flex;
   align-items: center;
@@ -37,10 +33,7 @@ export const SelectCoin = () => {
     return (poolCoinsState.data?.coins || []).map((item) => ({
       label: (
         <LabelWrap>
-          <CoinLogo
-            src={`https://static.flexpool.io/assets/coinLogos/thumb/${item.ticker}.png`}
-            alt={`${item.name} Logo`}
-          />
+          <CoinLogo ticker={item.ticker} />
           <CoinName>{item.name}</CoinName>
           <CoinNameShort>{item.ticker}</CoinNameShort>
         </LabelWrap>

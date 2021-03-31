@@ -78,6 +78,7 @@ export const PayoutSettings: React.FC = () => {
           minerSettings.data.payoutLimit /
           Math.pow(10, activeCoin.decimalPlaces),
       }}
+      validateOnChange={false}
       validationSchema={yup.object().shape({
         maxFeePrice: yup
           .number()
@@ -88,12 +89,14 @@ export const PayoutSettings: React.FC = () => {
           .positive()
           .min(minPayoutLimit, `Must be higher than ${minPayoutLimit}`)
           .required(),
+        ip: yup.string().required('Required'),
       })}
     >
       {({ values }) => {
         return (
           <Form>
             <FieldGroup.V>
+              <h3>Payout Settings</h3>
               <ErrorBox error={minerSettings.error} />
               <TextField
                 name="payoutLimit"
@@ -101,36 +104,42 @@ export const PayoutSettings: React.FC = () => {
                 unit={activeCoinTicker.toUpperCase()}
                 type="number"
                 inputMode="decimal"
+                desc={
+                  <>
+                    You will be paid only after your unpaid balance will reach{' '}
+                    {values.payoutLimit} {activeCoin.ticker.toUpperCase()}.
+                  </>
+                }
               />
-              <p>
-                You will be paid only after your unpaid balance will reach{' '}
-                {values.payoutLimit} {activeCoin.ticker.toUpperCase()}.
-              </p>
+              <p></p>
               <TextField
                 name="maxFeePrice"
                 label={`${feeDetails?.title} Limit`}
                 unit={feeDetails?.unit}
                 type="number"
                 inputMode="decimal"
+                desc={
+                  values.maxFeePrice > 0 ? (
+                    <p>
+                      Your transaction fee {feeDetails?.title.toLowerCase()}{' '}
+                      would be limited to {values.maxFeePrice}{' '}
+                      {feeDetails?.unit} (
+                      {getDisplayCounterTickerValue(
+                        ((values.maxFeePrice *
+                          activeCoin.transactionSize *
+                          feeDetails.multiplier) /
+                          Math.pow(10, activeCoin.decimalPlaces)) *
+                          minerHeaderStats.data!.countervaluePrice,
+                        counterTicker
+                      )}
+                      ). You will not receive any payouts if gas price is
+                      higher.
+                    </p>
+                  ) : (
+                    <p>Your transaction fee will not be limited.</p>
+                  )
+                }
               />
-
-              {values.maxFeePrice > 0 ? (
-                <p>
-                  Your transaction fee {feeDetails?.title.toLowerCase()} would
-                  be limited to {values.maxFeePrice} {feeDetails?.unit} (
-                  {getDisplayCounterTickerValue(
-                    ((values.maxFeePrice *
-                      activeCoin.transactionSize *
-                      feeDetails.multiplier) /
-                      Math.pow(10, activeCoin.decimalPlaces)) *
-                      minerHeaderStats.data!.countervaluePrice,
-                    counterTicker
-                  )}
-                  ).
-                </p>
-              ) : (
-                <p>Your transaction fee will not be limited.</p>
-              )}
               <Spacer />
               <TextField
                 name="ip"
