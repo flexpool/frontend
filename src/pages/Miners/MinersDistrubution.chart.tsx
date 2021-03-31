@@ -6,44 +6,55 @@ import { fetchApi } from 'src/utils/fetchApi';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { formatSi } from 'src/utils/si.utils';
 import { Card } from 'src/components/layout/Card';
+import { ChartContainer } from 'src/components/Chart/ChartContainer';
+import { useAsyncState } from 'src/hooks/useAsyncState';
+
+type Distribution = {
+  hashrate: number;
+  hashrateLowerThan: number;
+}[];
 
 export const MinersDistributionChart = () => {
   const coinTicker = useActiveCoinTicker();
+  const dataState = useAsyncState<Distribution>('distrubutionState', []);
+
+  React.useEffect(() => {
+    if (coinTicker) {
+      dataState.start(
+        fetchApi('/pool/minersDistribution', {
+          query: { coin: coinTicker },
+        })
+      );
+    }
+  }, [coinTicker]);
+
+  const data = React.useMemo(() => {
+    return (dataState.data || [])
+      .map((item) => ({
+        name: `${formatSi(item.hashrateLowerThan / 10, 'H/s')} - ${formatSi(
+          item.hashrateLowerThan,
+          'H/s'
+        )}`,
+        hashrate: item.hashrate,
+      }))
+      .sort(function (a, b) {
+        if (a.hashrate > b.hashrate) {
+          return -1;
+        }
+        if (a.hashrate < b.hashrate) {
+          return 1;
+        }
+        return 0;
+      });
+  }, [dataState.data]);
 
   React.useLayoutEffect(() => {
-    const chartDistribution = am4core.create('chartdiv', am4charts.PieChart);
-    chartDistribution.colors.list = [
-      am4core.color('#b6c0d1'),
-      am4core.color('#0069ff'),
-    ];
-
-    if (coinTicker === undefined) return;
-
-    fetchApi<
-      {
-        hashrate: number;
-        hashrateLowerThan: number;
-      }[]
-    >('/pool/minersDistribution', {
-      query: { coin: coinTicker },
-    }).then((resp) => {
-      const data = resp
-        .map((item) => ({
-          name: `${formatSi(item.hashrateLowerThan / 10, 'H/s')} - ${formatSi(
-            item.hashrateLowerThan,
-            'H/s'
-          )}`,
-          hashrate: item.hashrate,
-        }))
-        .sort(function (a, b) {
-          if (a.hashrate > b.hashrate) {
-            return -1;
-          }
-          if (a.hashrate < b.hashrate) {
-            return 1;
-          }
-          return 0;
-        });
+    if (data.length > 0) {
+      const chartDistribution = am4core.create('chartdiv', am4charts.PieChart);
+      chartDistribution.colors.list = [
+        am4core.color('#b6c0d1'),
+        am4core.color('#0069ff'),
+      ];
 
       chartDistribution.data = data;
 
@@ -67,19 +78,18 @@ export const MinersDistributionChart = () => {
       pieSeries.hiddenState.properties.opacity = 1;
       pieSeries.hiddenState.properties.endAngle = -90;
       pieSeries.hiddenState.properties.startAngle = -90;
-    });
-    return () => {
-      chartDistribution.dispose();
-    };
-  }, [coinTicker]);
+      return () => {
+        chartDistribution.dispose();
+      };
+    }
+  }, [data]);
 
   return (
     <>
       <h2>Miners Distribution by Hashrate </h2>
-      <Card padding>
-        {/* <ChartTitle>Miners Distribution by Hashrate </ChartTitle> */}
+      <ChartContainer isLoading={dataState.isLoading && data.length === 0}>
         <div id="chartdiv" style={{ width: '100%', height: '300px' }}></div>
-      </Card>
+      </ChartContainer>
     </>
   );
 };

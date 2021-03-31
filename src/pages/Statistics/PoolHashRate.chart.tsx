@@ -5,11 +5,10 @@ import * as am4charts from '@amcharts/amcharts4/charts';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { formatRegionName } from 'src/utils/region.utils';
 import { ApiRegion } from 'src/types/Region.types';
-import { Card } from 'src/components/layout/Card';
 import { useDispatch } from 'react-redux';
 import { poolHashrateGet } from 'src/rdx/poolHashrate/poolHashrate.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
-import { ChartTitle } from 'src/components/Typo/ChartTitle';
+import { ChartContainer } from 'src/components/Chart/ChartContainer';
 
 const PoolHashrateChart = () => {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -22,16 +21,17 @@ const PoolHashrateChart = () => {
   }, [activeCoin, d]);
 
   React.useLayoutEffect(() => {
-    let x = am4core.create('chartdiv', am4charts.XYChart);
-    x.colors.list = [
-      am4core.color('#000000'),
-      am4core.color('#edb431'),
-      am4core.color('#5d42f5'),
-      am4core.color('#15cd72'),
-      am4core.color('#ed4f32'),
-      am4core.color('#0069ff'),
-    ];
     if (poolHasrateState.data.length > 1) {
+      let x = am4core.create('chartdiv', am4charts.XYChart);
+      x.responsive.enabled = true;
+      x.colors.list = [
+        am4core.color('#000000'),
+        am4core.color('#edb431'),
+        am4core.color('#5d42f5'),
+        am4core.color('#15cd72'),
+        am4core.color('#ed4f32'),
+        am4core.color('#0069ff'),
+      ];
       var data = [];
 
       for (var i = 0; i < poolHasrateState.data.length; i++) {
@@ -89,17 +89,22 @@ const PoolHashrateChart = () => {
       x.legend = new am4charts.Legend();
       // @ts-ignore
       chartRef.current = x;
+      return () => {
+        x.dispose();
+      };
     }
-    return () => {
-      x.dispose();
-    };
   }, [poolHasrateState.data]);
 
   return (
-    <Card padding>
-      <ChartTitle>Pool Hashrate</ChartTitle>
+    <ChartContainer
+      isLoading={
+        poolHasrateState.isLoading &&
+        (!poolHasrateState.data || poolHasrateState.data.length < 1)
+      }
+      title="Pool Hashrate"
+    >
       <div id="chartdiv" style={{ width: '100%', height: '400px' }}></div>
-    </Card>
+    </ChartContainer>
   );
 };
 export default PoolHashrateChart;
