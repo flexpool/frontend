@@ -7,7 +7,7 @@ export const OverlayWithin = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--overlay);
   z-index: 50;
   display: flex;
   justify-content: center;
@@ -15,16 +15,6 @@ export const OverlayWithin = styled.div`
   flex-direction: column;
   padding: 1rem;
   text-align: center;
-  backdrop-filter: blur(3px);
-  &.dark {
-    background: rgba(0, 0, 0, 0.8);
-  }
-  &.indigo {
-    background: $color-primary;
-    text-align: center;
-    & *,
-    & {
-      color: white;
-    }
-  }
+  backdrop-filter: blur(6px);
+  border-radius: 5px;
 `;

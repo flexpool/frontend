@@ -8,7 +8,7 @@ const Wrapper = styled.div`
 `;
 
 const Image = styled.img`
-  width: 600px;
+  height: 240px;
 `;
 
 const Title = styled.div`

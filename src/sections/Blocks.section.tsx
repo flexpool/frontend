@@ -23,6 +23,9 @@ const UnconfirmedSpinner = styled(LoaderSpinner)`
   overflow: hidden;
   display: inline-block;
   margin-left: 0.5rem;
+  svg circle {
+    stroke: var(--text-tertiary);
+  }
 `;
 
 type ApiBlock = {
@@ -108,14 +111,14 @@ const blockCols: {
       const url = getBlockLink(data.hash, config.coinTicker);
 
       const content = (
-        <>
+        <Ws>
           {data.number}
           {!data.confirmed && (
             <Tooltip icon={<UnconfirmedSpinner />}>
               <TooltipContent message="Block waiting for confirmation" />
             </Tooltip>
           )}
-        </>
+        </Ws>
       );
 
       if (url) {
