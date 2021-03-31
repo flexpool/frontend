@@ -109,7 +109,7 @@ const NavContainerOuter = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 70px;
   z-index: 1000;
   background: var(--bg-primary);

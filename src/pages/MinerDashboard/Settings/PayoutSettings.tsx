@@ -1,6 +1,8 @@
 import { Form, Formik } from 'formik';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useRouteMatch } from 'react-router';
+import { ErrorBox } from 'src/components/Form/ErrorBox';
 import { FieldGroup } from 'src/components/Form/FieldGroup';
 import { Submit } from 'src/components/Form/Submit';
 import { TextField } from 'src/components/Form/TextInput';
@@ -10,9 +12,9 @@ import {
   useActiveCoinTicker,
   useCounterTicker,
 } from 'src/rdx/localSettings/localSettings.hooks';
+import { minerDetailsUpdatePayoutSettings } from 'src/rdx/minerDetails/minerDetails.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
-import { fetchApi } from 'src/utils/fetchApi';
 import * as yup from 'yup';
 
 const feePayoutLimitDetails = {
@@ -36,6 +38,7 @@ export const PayoutSettings: React.FC = () => {
   const minerSettings = useReduxState('minerDetails');
   const minerHeaderStats = useReduxState('minerHeaderStats');
   const counterTicker = useCounterTicker();
+  const d = useDispatch();
   const {
     params: { address },
   } = useRouteMatch<{ address: string; coin: string }>();
@@ -57,18 +60,16 @@ export const PayoutSettings: React.FC = () => {
 
   return (
     <Formik
-      onSubmit={(data) => {
-        fetchApi('/miner/payoutSettings', {
-          method: 'PUT',
-          query: {
-            coin: activeCoin.ticker,
-            address: address,
+      onSubmit={async (data, { setSubmitting }) => {
+        await d(
+          minerDetailsUpdatePayoutSettings(activeCoin.ticker, address, {
             payoutLimit:
               data.payoutLimit * Math.pow(10, activeCoin.decimalPlaces),
             maxFeePrice: data.maxFeePrice,
             ipAddress: data.ip,
-          },
-        });
+          })
+        );
+        setSubmitting(false);
       }}
       initialValues={{
         maxFeePrice: minerSettings.data.maxFeePrice,
@@ -93,6 +94,7 @@ export const PayoutSettings: React.FC = () => {
         return (
           <Form>
             <FieldGroup.V>
+              <ErrorBox error={minerSettings.error} />
               <TextField
                 name="payoutLimit"
                 label={`Payout Limit (Min: ${minPayoutLimit})`}

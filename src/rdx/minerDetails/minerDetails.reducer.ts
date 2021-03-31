@@ -3,6 +3,7 @@ import {
   composeReducers,
   defaultReducerState,
   DefaultState,
+  createUpdateReducer,
 } from 'src/rdx/@utils';
 import { ApiMinerSettings } from 'src/types/Miner.types';
 
@@ -12,7 +13,9 @@ const getReducer = createGetReducer<ApiMinerSettings>(defaultState, {
   flushOnStart: true,
 });
 
-export const reducer = composeReducers(
-  '@minerDetails',
-  defaultState
-)(getReducer);
+const updateReducer = createUpdateReducer<ApiMinerSettings>(defaultState);
+
+export const reducer = composeReducers('@minerDetails', defaultState)(
+  getReducer,
+  updateReducer
+);

@@ -31,6 +31,7 @@ import { AppState } from 'src/rdx/rootReducer';
 import { AppTheme } from './AppTheme';
 import { BrandAssetsPage } from 'src/pages/BrandAssets/BrandAssets.page';
 import { ContactUsPage } from 'src/pages/ContactUs/BrandAssets.page';
+import { SnackViewControl } from 'src/components/Snacks/SnackViewControl';
 
 const cachedState = localStorage<AppState>('app_state').get() || {};
 const store = createReduxStore(cachedState);
@@ -68,6 +69,7 @@ const AppContent = () => {
     <>
       <AppTheme />
       <NavBar />
+      <SnackViewControl />
       <Switch>
         <Route exact strict component={StatisticsPage} path="/statistics" />
         <Route exact strict component={FaqPage} path="/faq" />

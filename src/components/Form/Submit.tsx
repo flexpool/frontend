@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, FieldProps } from 'formik';
 import { Button } from 'src/components/Button';
 import { PropsOf } from 'src/types/ReactHelp.types';
+import { LoaderDots } from 'src/components/Loader/LoaderDots';
 
 type ButtonSubmitFieldProps = PropsOf<typeof Button> & {
   disableWhenFormNotDirty?: boolean;
@@ -16,9 +17,9 @@ const ButtonField: React.FunctionComponent<
       {...rest}
       type="submit"
       variant="primary"
-      disabled={disableWhenFormNotDirty && !form.dirty}
+      disabled={!form.dirty || !form.isValid}
     >
-      {children}
+      {form.isSubmitting ? <LoaderDots /> : children}
     </Button>
   );
 };
