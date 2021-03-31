@@ -43,6 +43,19 @@ const Wrapper = styled.div`
   }
 `;
 
+const CoinName = styled(Link)`
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  & > * {
+    margin-right: 0.5rem;
+  }
+`;
+
+const TickerName = styled.span`
+  color: var(--text-tertiary);
+`;
+
 const ModalNews: React.FC<{ data?: ApiPoolCoinFull[] | null }> = ({ data }) => {
   const location = useLocation();
   const history = useHistory();
@@ -84,10 +97,11 @@ const cols: DynamicListColumn<ApiPoolCoinFull>[] = [
     skeletonWidth: 110,
     Component: ({ data }) => {
       return (
-        <Link to={{ search: `news=${data.ticker}` }}>
-          <CoinLogo ticker={data.ticker} />
-          {data.name}
-        </Link>
+        <CoinName to={{ search: `news=${data.ticker}` }}>
+          <CoinLogo size="lg" ticker={data.ticker} />
+          <span>{data.name}</span>
+          <TickerName>{data.ticker.toUpperCase()}</TickerName>
+        </CoinName>
       );
     },
   },
