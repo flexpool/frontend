@@ -20,6 +20,10 @@ const IconWrapper = styled.span<{ variant?: UIVariant }>`
   }}
 `;
 
+const Message = styled.div`
+  line-height: 1.4;
+`;
+
 export const TooltipContent: React.FC<{
   message: React.ReactNode;
   action?: React.ReactNode;
@@ -28,7 +32,7 @@ export const TooltipContent: React.FC<{
     <div
       className={`info-tooltip-content` + (props.action ? ' has-action' : '')}
     >
-      <div className="message">{props.message}</div>
+      <Message>{props.message}</Message>
       <div className="action-wrapper">{props.action}</div>
     </div>
   );

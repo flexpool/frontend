@@ -14,6 +14,16 @@ import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { LinkOut, LinkOutCoin } from 'src/components/LinkOut';
 import { Mono, Ws } from 'src/components/Typo/Typo';
 import { dateUtils } from 'src/utils/date.utils';
+import { Tooltip, TooltipContent } from 'src/components/Tooltip';
+import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
+
+const UnconfirmedSpinner = styled(LoaderSpinner)`
+  width: 14px;
+  height: 14px;
+  overflow: hidden;
+  display: inline-block;
+  margin-left: 0.5rem;
+`;
 
 type ApiBlock = {
   confirmed: boolean;
@@ -26,7 +36,7 @@ type ApiBlock = {
   reward: number;
   roundTime: number;
   timestamp: number;
-  type: string;
+  type: 'block' | 'uncle' | 'orphan';
 };
 
 type ApiBlocks = {
@@ -39,20 +49,31 @@ const Region = styled.span`
   text-transform: uppercase;
 `;
 
-const TypeOrphan = styled.span`
-  text-transform: capitalize;
-  color: var(--text-tertiary);
-`;
-
 const BlockLink = styled(LinkOut)`
   color: var(--text-primary);
 `;
-const TypeBlock = styled.span`
+
+const BlockType = styled.span<{ type: ApiBlock['type'] }>`
+  display: inline-block;
   text-transform: capitalize;
-`;
-const TypeUncle = styled.span`
-  text-transform: capitalize;
-  color: var(--warning);
+  & + * {
+    margin-left: 0.5rem;
+  }
+
+  ${(p) =>
+    p.type === 'uncle' &&
+    `
+      color: var(--warning);
+  `}
+  ${(p) =>
+    p.type === 'orphan' &&
+    `
+      color: var(--text-tertiary);
+  `}
+
+  + * svg {
+    fill: var(--text-tertiary);
+  }
 `;
 
 const blockCols: {
@@ -85,24 +106,48 @@ const blockCols: {
     skeletonWidth: 80,
     Component: ({ data, config }) => {
       const url = getBlockLink(data.hash, config.coinTicker);
+
+      const content = (
+        <>
+          {data.number}
+          {!data.confirmed && (
+            <Tooltip icon={<UnconfirmedSpinner />}>
+              <TooltipContent message="Block waiting for confirmation" />
+            </Tooltip>
+          )}
+        </>
+      );
+
       if (url) {
-        return <BlockLink href={url}>{data.number}</BlockLink>;
+        return <BlockLink href={url}>{content}</BlockLink>;
       }
-      return <>{data.number}</>;
+      return <>{content}</>;
     },
   },
   type: {
     title: 'Type',
     skeletonWidth: 50,
     Component: ({ data }) => {
-      switch (data.type) {
-        case 'uncle':
-          return <TypeUncle>{data.type}</TypeUncle>;
-        case 'orphan':
-          return <TypeOrphan>{data.type}</TypeOrphan>;
-        default:
-          return <TypeBlock>{data.type}</TypeBlock>;
-      }
+      const msg =
+        data.type === 'orphan'
+          ? 'Orphan blocks are the blocks that were not included to the canonical chain. Typically, it happens because of the internal infrastructure problem on the Mining Pool, or due to the chain reorganizations, 51% attacks.'
+          : data.type === 'uncle'
+          ? 'Uncle blocks are blocks that have the same parent hash and number. They are caused because of the high latency between mining pools. Typically, they appear when two mining pools mine two blocks at the same time, both having the same block number.'
+          : null;
+
+      return (
+        <>
+          <BlockType type={data.type}>{data.type}</BlockType>
+          {msg && (
+            <Tooltip>
+              <TooltipContent
+                message={msg}
+                // action={<a href="/">Learn more</a>}
+              />
+            </Tooltip>
+          )}
+        </>
+      );
     },
   },
   date: {
