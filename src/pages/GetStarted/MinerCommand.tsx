@@ -93,11 +93,25 @@ export const MinerCommand: React.FC<{
       replaceWith: <HighlightItem>{`${workerNane}`}</HighlightItem>,
     },
   ]);
+  const copyText = replaceStringWithNodes(command, [
+    {
+      replace: 'CLOSEST_SERVER',
+      replaceWith: `${selectedServer}`,
+    },
+    {
+      replace: 'WALLET_ADDRESS',
+      replaceWith: `${walletAddress}`,
+    },
+    {
+      replace: 'WORKER_NAME',
+      replaceWith: `${workerNane}`,
+    },
+  ]).join('');
 
   return (
     <CommandCodeContainer>
       <code>{replacedText}</code>
-      <CopyButton text="test" />
+      <CopyButton text={copyText} />
     </CommandCodeContainer>
   );
 };
