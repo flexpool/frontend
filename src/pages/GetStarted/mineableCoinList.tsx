@@ -1,5 +1,5 @@
 type GpuHardwareDetails = {
-  os: string[];
+  os: ('linux' | 'windows' | 'hiveos')[];
   title: string;
   key: string;
   description: string;
@@ -54,7 +54,7 @@ export const mineableCoins: MineableCoin[] = [
         key: 'GPU',
         miners: [
           {
-            os: ['windows, linux'],
+            os: ['windows', 'linux', 'hiveos'],
             title: 'TeamRedMiner',
             key: 'teamreadminer',
             description: 'Best miner for AMD GPUs',
@@ -65,7 +65,7 @@ export const mineableCoins: MineableCoin[] = [
               'teamredminer.exe -a ethash -o stratum+ssl://CLOSEST_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME -p x --eth_stratum ethproxy',
           },
           {
-            os: ['windows, linux'],
+            os: ['windows', 'linux', 'hiveos'],
             title: 'T-Rex Miner',
             key: 'trexminer',
             description: 'Best miner for NVIDIA 20/30 Series GPUs',
@@ -76,7 +76,7 @@ export const mineableCoins: MineableCoin[] = [
               't-rex.exe -a ethash -o stratum+ssl://CLOSEST_SERVER:5555 -u WALLET_ADDRESS -p x -w WORKER_NAME',
           },
           {
-            os: ['windows, linux'],
+            os: ['windows', 'linux', 'hiveos'],
             title: 'ethminer',
             key: 'ethminer',
             description:

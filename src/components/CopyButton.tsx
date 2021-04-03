@@ -4,6 +4,7 @@ import React from 'react';
 import { FaCheck, FaClipboard } from 'react-icons/fa';
 import styled from 'styled-components';
 import { Button } from './Button';
+import { TooltipContent } from './Tooltip';
 
 const Btn = styled(Button)`
   border-radius: 50%;
@@ -35,9 +36,7 @@ export const CopyButton: React.FC<{
   return (
     <Tippy
       content={
-        <div style={{ padding: '5px' }}>
-          {justCopied ? 'Copied!' : description}
-        </div>
+        <TooltipContent message={justCopied ? 'Copied!' : description} />
       }
       delay={0}
       animation="shift-away"

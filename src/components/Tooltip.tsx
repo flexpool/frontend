@@ -22,6 +22,7 @@ const IconWrapper = styled.span<{ variant?: UIVariant }>`
 
 const Message = styled.div`
   line-height: 1.4;
+  color: var(--text-primary);
 `;
 
 export const TooltipContent: React.FC<{

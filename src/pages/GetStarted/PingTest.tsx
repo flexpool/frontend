@@ -7,6 +7,11 @@ import { w3cwebsocket } from 'websocket';
 import { differenceInMilliseconds } from 'date-fns';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
+import qs from 'query-string';
+import { useHistory, useLocation } from 'react-router';
+import { Button } from 'src/components/Button';
+import { FaCheck } from 'react-icons/fa';
+import { Highlight } from 'src/components/Typo/Typo';
 
 const testConnection = (domain: string) => {
   const latencyPromise = new Promise<number>((resolve, reject) => {
@@ -14,7 +19,7 @@ const testConnection = (domain: string) => {
     let startTime = new Date();
     const wsPingTestClient = new w3cwebsocket(`ws://${domain}:28246`);
 
-    const TEST_COUNT = 10;
+    const TEST_COUNT = 6;
 
     wsPingTestClient.onmessage = () => {
       latencyData.push(differenceInMilliseconds(new Date(), startTime));
@@ -76,10 +81,52 @@ const cols: DynamicListColumn<MineableCoinRegion>[] = [
       return <div>{latency ? `${latency} ms` : 'n/a'}</div>;
     },
   },
+  {
+    title: '',
+    alignRight: true,
+    Component: ({ data }) => {
+      const { search } = useLocation();
+      const history = useHistory();
+      const searchParams = qs.parse(search);
+      const isSelected = searchParams.selectedServer === data.domain;
+
+      const handleClick = React.useCallback(() => {
+        const searchP = qs.parse(search);
+        history.replace({
+          search: qs.stringify({
+            ...searchP,
+            selectedServer: data.domain,
+          }),
+        });
+      }, [search]);
+
+      return isSelected ? (
+        <Button size="sm" variant="primary">
+          <FaCheck />
+        </Button>
+      ) : (
+        <Button onClick={handleClick} size="sm">
+          <FaCheck />
+        </Button>
+      );
+    },
+  },
 ];
 
 export const PingTest: React.FC<{ data: MineableCoinRegion[] }> = ({
   data,
 }) => {
-  return <DynamicList data={data} columns={cols} />;
+  return (
+    <>
+      <h2>
+        <Highlight>#2</Highlight> Select your server
+      </h2>
+      <p>
+        For the best performance, you should choose server with lowest latency
+        to your mining rig or computer. The chart is displaying latency between
+        servers and this device.
+      </p>
+      <DynamicList data={data} columns={cols} />
+    </>
+  );
 };

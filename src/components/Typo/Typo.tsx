@@ -9,3 +9,7 @@ export const Mono = styled.span`
 export const Ws = styled.span`
   white-space: nowrap;
 `;
+
+export const Highlight = styled.span`
+  color: var(--primary);
+`;

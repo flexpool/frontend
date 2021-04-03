@@ -72,7 +72,7 @@ const AppContent = () => {
       <NavBar />
       <SnackViewControl />
       <Switch>
-        <Route component={GetStartedPage} path="/get-started/:ticker?/:hw?" />
+        <Route component={GetStartedPage} path="/get-started" />
         <Route exact strict component={StatisticsPage} path="/statistics" />
         <Route exact strict component={FaqPage} path="/faq" />
         <Route exact strict component={MinersPage} path="/miners" />

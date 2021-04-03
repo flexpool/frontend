@@ -1,20 +1,30 @@
 import React from 'react';
-import { getCoinIconUrl } from 'src/utils/coin.utils';
+import { getCoinIconUrl } from 'src/utils/staticImage.utils';
 import styled from 'styled-components';
-const CoinImg = styled.img<{ size?: 'lg' }>`
+
+type CoinSize = 'lg' | 'xl';
+const CoinImg = styled.img<{ size?: CoinSize }>`
   height: 20px;
   width: 20px;
   margin-right: 0.5rem;
 
-  ${(p) =>
-    p.size === 'lg' &&
-    `
-    height: 28px;
-    width: 28px;
-  `}
+  ${(p) => {
+    switch (p.size) {
+      case 'lg':
+        return `
+          height: 28px;
+          width: 28px;
+        `;
+      case 'xl':
+        return `
+          height: 48px;
+          width: 48px;
+        `;
+    }
+  }}
 `;
 
-export const CoinLogo: React.FC<{ ticker: string; size?: 'lg' }> = ({
+export const CoinLogo: React.FC<{ ticker: string; size?: CoinSize }> = ({
   ticker,
   size,
 }) => {

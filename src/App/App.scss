@@ -58,6 +58,9 @@ h4,
 h5 {
   color: var(--text-primary);
   & + * {
+    margin-top: 1rem;
+  }
+  & + p {
     margin-top: 0.5rem;
   }
 }
@@ -188,4 +191,9 @@ scrllbar
     display: flex;
     flex-direction: column;
   }
+}
+
+code {
+  font-family: 'Roboto Mono';
+  line-height: 1.4;
 }
