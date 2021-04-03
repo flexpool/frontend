@@ -60,10 +60,6 @@ const replaceStringWithNodes = (
   let result: React.ReactNode[] = [text];
   items.forEach((item) => {
     result = replaceStringsWithNodes(result, item.replace, item.replaceWith);
-    console.log(
-      replaceStringsWithNodes(result, item.replace, item.replaceWith)
-    );
-    console.log(result);
   });
 
   return result;

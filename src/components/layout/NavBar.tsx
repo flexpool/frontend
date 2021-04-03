@@ -17,6 +17,9 @@ import { Burger } from '../Burger/Burger';
 import { clx } from 'src/utils/clx';
 
 import { ReactComponent as ReactLogo } from 'src/assets/logo.svg';
+import { SelectCoin } from '../SelectCoin';
+import { SelectTheme } from '../SelectTheme';
+import { Spacer } from './Spacer';
 const Logo = styled(ReactLogo)`
   height: 30px;
   fill: var(--text-primary);
@@ -86,9 +89,11 @@ const MobileSlide = styled(OuterEvent)<{ isOpen?: boolean }>`
   background: var(--bg-primary);
   z-index: 800;
   padding: 1rem;
+  padding-bottom: 1.5rem;
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
   transition: 0.2s all;
 
@@ -157,6 +162,12 @@ const SearchContainer = styled.div`
   & > * {
     height: 46px;
   }
+`;
+
+const MobileNavLink = styled(Link)`
+  padding: 1rem;
+  font-weight: 600;
+  display: block;
 `;
 
 export const NavBar: React.FC<NavBarType> = (props) => {
@@ -243,14 +254,21 @@ export const NavBar: React.FC<NavBarType> = (props) => {
           </NavSection>
         </NavContainer>
         <MobileSlide isOpen={openState.value}>
-          <Button variant="primary">
-            <Ws>Get Started</Ws>
-          </Button>
-          <NLink to="/statistics">Statistics</NLink>
-          <NLink to="/blocks">Blocks</NLink>
-          <NLink to="/miners">Miners</NLink>
-          <NLink to="/faq">FAQ</NLink>
-          <NLink to="/support">Support</NLink>
+          <ScrollArea>
+            <Button as={Link} to="/get-started" variant="primary">
+              <Ws>Get Started</Ws>
+            </Button>
+            <MobileNavLink to="/statistics">Statistics</MobileNavLink>
+            <MobileNavLink to="/blocks">Blocks</MobileNavLink>
+            <MobileNavLink to="/miners">Miners</MobileNavLink>
+            <MobileNavLink to="/faq">FAQ</MobileNavLink>
+            <MobileNavLink to="/support">Support</MobileNavLink>
+          </ScrollArea>
+          <div>
+            <SelectCoin />
+            <Spacer />
+            <SelectTheme />
+          </div>
         </MobileSlide>
       </ContainerMobile>
     </>

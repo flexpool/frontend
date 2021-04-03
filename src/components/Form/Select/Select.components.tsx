@@ -11,6 +11,7 @@ const SelectArrowImg = styled.img`
   right: 1rem;
   top: 50%;
   transform: translateY(-50%);
+  height: auto !important;
 `;
 
 const SCSelectButton = styled(Button)`

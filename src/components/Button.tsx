@@ -15,16 +15,16 @@ export type ButtonProps = {
   size?: keyof typeof btnHeights | undefined;
   variant?: UIVariant;
   block?: boolean;
+  shape?: 'square' | 'circle';
 };
 
 export const Button = styled.button<ButtonProps>`
   transition: 0.2s all;
   display: flex;
-  align-items: center;
-  min-height: 50px;
   padding-left: 1rem;
   padding-right: 1rem;
   border-radius: 5px;
+  align-items: center;
   border: 1px solid var(--border-color);
   outline: none;
   font-size: 1rem;
@@ -46,10 +46,25 @@ export const Button = styled.button<ButtonProps>`
   & > * {
     pointer-events: none;
   }
+
   ${(p) => `
-    line-height: ${getBtnPxHeight(p.size)}px;
     height: ${getBtnPxHeight(p.size)}px;
-    min-height: ${getBtnPxHeight(p.size)}px;
+  `};
+
+  ${(p) =>
+    p.shape === 'square' &&
+    `
+      padding: 0;
+  justify-content: center;
+      width: ${getBtnPxHeight(p.size)}px;
+  `};
+  ${(p) =>
+    p.shape === 'circle' &&
+    `
+      padding: 0;
+  justify-content: center;
+      border-radius: 50%;
+      width: ${getBtnPxHeight(p.size)}px;
   `};
 
   font-weight: 700;
@@ -86,4 +101,5 @@ export const Button = styled.button<ButtonProps>`
 
 Button.defaultProps = {
   type: 'button',
+  size: 'default',
 };

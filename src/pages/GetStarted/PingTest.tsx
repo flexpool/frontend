@@ -9,9 +9,10 @@ import { useAsyncState } from 'src/hooks/useAsyncState';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import qs from 'query-string';
 import { useHistory, useLocation } from 'react-router';
-import { Button } from 'src/components/Button';
 import { FaCheck } from 'react-icons/fa';
-import { Highlight } from 'src/components/Typo/Typo';
+import { Highlight, Mono, Ws } from 'src/components/Typo/Typo';
+import { CopyButton } from 'src/components/CopyButton';
+import styled from 'styled-components';
 
 const testConnection = (domain: string) => {
   const latencyPromise = new Promise<number>((resolve, reject) => {
@@ -55,14 +56,42 @@ const testConnection = (domain: string) => {
   return latencyPromise;
 };
 
+const SelectButton = styled.button<{ selected?: boolean }>`
+  height: 32px;
+  width: 32px;
+  border: none;
+  border-radius: 50%;
+  color: var(--text-tertiary);
+  background: var(--bg-secondary);
+  outline: none;
+  transition: 0.2s all;
+  border: 1px solid transparent;
+  &:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+  }
+  ${(p) =>
+    p.selected &&
+    `
+    background: var(--primary);
+    color: var(--text-on-bg) !important;
+  `}
+`;
+
 const cols: DynamicListColumn<MineableCoinRegion>[] = [
   {
     title: 'Server location',
-    Component: ({ data }) => <>{data.title}</>,
+    Component: ({ data }) => <Ws>{data.title}</Ws>,
   },
   {
     title: 'Domain',
-    Component: ({ data }) => <>{data.domain}</>,
+    Component: ({ data }) => (
+      <Mono>
+        <Ws>
+          {data.domain} <CopyButton text={data.domain} />
+        </Ws>
+      </Mono>
+    ),
   },
   {
     title: 'Average Latency',
@@ -98,16 +127,12 @@ const cols: DynamicListColumn<MineableCoinRegion>[] = [
             selectedServer: data.domain,
           }),
         });
-      }, [search]);
+      }, [search, history, data.domain]);
 
-      return isSelected ? (
-        <Button size="sm" variant="primary">
+      return (
+        <SelectButton onClick={handleClick} selected={isSelected}>
           <FaCheck />
-        </Button>
-      ) : (
-        <Button onClick={handleClick} size="sm">
-          <FaCheck />
-        </Button>
+        </SelectButton>
       );
     },
   },

@@ -55,7 +55,7 @@ export const SelectTheme = () => {
         {
           label: (
             <OptionWrapper>
-              <CircleSystem /> System Theme
+              <CircleSystem /> Default theme
             </OptionWrapper>
           ),
           value: 'system',

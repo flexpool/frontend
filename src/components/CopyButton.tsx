@@ -1,7 +1,7 @@
 import Tippy from '@tippyjs/react';
 import copy from 'copy-to-clipboard';
 import React from 'react';
-import { FaCheck, FaClipboard } from 'react-icons/fa';
+import { FaCheck, FaCopy } from 'react-icons/fa';
 import styled from 'styled-components';
 import { Button } from './Button';
 import { TooltipContent } from './Tooltip';
@@ -10,9 +10,9 @@ const Btn = styled(Button)`
   border-radius: 50%;
   color: var(--text-tertiary);
   background: var(--bg-secondary);
-  height: 35px;
-  min-height: 35px;
-  width: 35px;
+  height: 32px;
+  min-height: 32px;
+  width: 32px;
   padding: 0;
   justify-content: center;
   display: inline-flex;
@@ -50,7 +50,7 @@ export const CopyButton: React.FC<{
         }}
         onMouseLeave={() => setTimeout(() => setJustCopied(false), 1000)}
       >
-        {justCopied ? <FaCheck /> : icon || <FaClipboard />}
+        {justCopied ? <FaCheck /> : icon || <FaCopy />}
       </Btn>
     </Tippy>
   );

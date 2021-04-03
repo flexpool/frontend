@@ -2,7 +2,7 @@ import { Form, Formik } from 'formik';
 import { useHistory, useLocation } from 'react-router';
 import qs from 'query-string';
 import { TextField } from 'src/components/Form/TextInput';
-import { Highlight } from 'src/components/Typo/Typo';
+import { Highlight, Ws } from 'src/components/Typo/Typo';
 import { Submit } from 'src/components/Form/Submit';
 import styled from 'styled-components';
 import { Spacer } from 'src/components/layout/Spacer';
@@ -53,7 +53,9 @@ export const SetWallet = () => {
               name="walletAddress"
               placeholder="Enter your wallet address"
             />
-            <Submit>Set wallet</Submit>
+            <Submit>
+              <Ws>Set wallet</Ws>
+            </Submit>
           </FieldContainer>
         </Form>
       </Formik>

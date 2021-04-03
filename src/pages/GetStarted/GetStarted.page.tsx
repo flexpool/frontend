@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaDownload, FaLinux, FaWindows } from 'react-icons/fa';
 import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 import { Button } from 'src/components/Button';
 import { Card, CardBody } from 'src/components/layout/Card';
@@ -18,6 +19,9 @@ import { SetWallet } from './SetWallet';
 const MinerHeader = styled.div`
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 600px) {
+    display: block;
+  }
 `;
 
 const Fee: React.FC<{ fee: [number] | [number, number] }> = ({ fee }) => {
@@ -71,14 +75,10 @@ const OsContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: 0.5rem;
-  margin-right: 1rem;
+  align-items: center;
   & > * {
     margin-left: 0.5rem;
   }
-`;
-
-const MinerRight = styled.div`
-  display: flex;
 `;
 
 const MineableCoinPage: React.FC = () => {
@@ -128,25 +128,24 @@ const MineableCoinPage: React.FC = () => {
                     <strong>Fee: </strong> <Fee fee={miner.fee} />
                   </p>
                 </div>
-                <MinerRight>
-                  <OsContainer>
-                    {miner.os.map((osItem) => (
-                      <OsLogo
-                        src={getOsLogoUrl(osItem)}
-                        alt={`${osItem} logo`}
-                        key={osItem}
-                      />
-                    ))}
-                  </OsContainer>
+                <OsContainer>
+                  {miner.os.map((osItem) => (
+                    <OsLogo
+                      src={getOsLogoUrl(osItem)}
+                      alt={`${osItem} logo`}
+                      key={osItem}
+                    />
+                  ))}
                   <Button
+                    shape="square"
                     variant="primary"
                     size="sm"
                     as={LinkOut}
                     href={miner.downloadLink}
                   >
-                    Download
+                    <FaDownload />
                   </Button>
-                </MinerRight>
+                </OsContainer>
               </MinerHeader>
             </CardBody>
             <MinerCommand command={miner.cmd} />
