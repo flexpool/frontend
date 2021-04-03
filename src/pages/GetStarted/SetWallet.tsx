@@ -29,7 +29,12 @@ export const SetWallet = () => {
       <p>Some description</p>
       <Spacer />
       <Formik
-        initialValues={{ walletAddress: `${parsedSearch.walletAddress}` }}
+        initialValues={{
+          walletAddress:
+            typeof parsedSearch.walletAddress === 'string'
+              ? parsedSearch.walletAddress
+              : '',
+        }}
         onSubmit={(data, { setSubmitting }) => {
           const parsedSearch = qs.parse(search);
           history.replace({

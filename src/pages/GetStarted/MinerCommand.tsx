@@ -21,6 +21,9 @@ const CommandCodeContainer = styled.div`
   code {
     flex-grow: 1;
   }
+  & > *:last-child {
+    flex-shrink: 0;
+  }
 `;
 
 const replaceStringsWithNodes = (
