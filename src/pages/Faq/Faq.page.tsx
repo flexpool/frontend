@@ -44,6 +44,7 @@ const SectionTitle = styled.h3`
   font-size: 1.125rem;
   cursor: pointer;
   padding: 1rem 1.25rem;
+  flex-grow: 1;
   &:hover {
     color: var(--primary);
   }

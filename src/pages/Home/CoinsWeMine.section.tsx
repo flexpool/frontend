@@ -70,13 +70,7 @@ const ModalNews: React.FC<{ data?: ApiPoolCoinFull[] | null }> = ({ data }) => {
   }, [restSearch, history]);
 
   return (
-    <Modal
-      closeOnOuterClick
-      size="xl"
-      isOpen={!!openedCoin}
-      handleClose={handleClose}
-      mobileFull
-    >
+    <Modal size="xl" isOpen={!!openedCoin} handleClose={handleClose} mobileFull>
       <ScrollArea>
         <Modal.Body>
           <CardGrid>
