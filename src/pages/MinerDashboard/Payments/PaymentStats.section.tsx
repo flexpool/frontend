@@ -11,6 +11,7 @@ import { dateUtils } from 'src/utils/date.utils';
 import { formatDistance } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { MinerPaymentsList } from './MinerPayments.list';
 
 type ApiPaymentStats = {
   countervalue: number;
@@ -112,6 +113,10 @@ export const GeneralPaymentStatsSection: React.FC<{
     coin
   );
 
+  if (data && !data.lastPayment) {
+    return null;
+  }
+
   return (
     <>
       <Helmet>
@@ -192,6 +197,7 @@ export const GeneralPaymentStatsSection: React.FC<{
           />
         </Card>
       </CardGrid>
+      <MinerPaymentsList address={address} coin={coin} />
     </>
   );
 };

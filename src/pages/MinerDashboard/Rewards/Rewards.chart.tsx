@@ -7,17 +7,20 @@ import {
   useActiveCoin,
   useCounterTicker,
 } from 'src/rdx/localSettings/localSettings.hooks';
-import { Card } from 'src/components/layout/Card';
-import { ChartTitle } from 'src/components/Typo/ChartTitle';
-import { ChartDataNotAvailable } from 'src/components/Chart/NotAvailable';
+import { ChartContainer } from 'src/components/Chart/ChartContainer';
 
 const RewardsChart: React.FC<{
   rewards: ApiMinerReward[];
   counterPrice: number;
+  error?: any;
+  isLoading: boolean;
 }> = (props) => {
   const { rewards, counterPrice } = props;
   const coin = useActiveCoin();
   const counterTicker = useCounterTicker();
+
+  React.useEffect(() => {}, []);
+
   React.useEffect(() => {
     if (!rewards || !counterPrice || !coin) return;
 
@@ -64,12 +67,16 @@ const RewardsChart: React.FC<{
 
   return (
     <>
-      <Card padding>
-        <ChartTitle>Earnings This Month</ChartTitle>
-        <div id="rewards-chart" style={{ width: '100%', height: '250px' }}>
-          {rewards.length < 1 && <ChartDataNotAvailable />}
-        </div>
-      </Card>
+      <ChartContainer
+        title="Earnings This Month"
+        dataState={{
+          error: props.error,
+          isLoading: props.isLoading,
+          data: rewards,
+        }}
+      >
+        <div id="rewards-chart" style={{ width: '100%', height: '250px' }} />
+      </ChartContainer>
     </>
   );
 };

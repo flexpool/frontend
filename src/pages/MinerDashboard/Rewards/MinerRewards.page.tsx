@@ -71,6 +71,8 @@ export const MinerRewardsPage = () => {
       <RewardsChart
         counterPrice={minerRewardsState.data?.price || 0}
         rewards={minerRewardsState.data?.data || []}
+        error={minerRewardsState.error}
+        isLoading={minerRewardsState.isLoading}
       />
       <MinerRewardStatsSection
         counterPrice={minerRewardsState.data?.price || 0}

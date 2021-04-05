@@ -89,3 +89,7 @@ export const useAsyncState = <T = any, E = any>(
     clearErrorMessage,
   };
 };
+
+export type AsyncState<D> = ReturnType<typeof useAsyncState> & {
+  data: D | null | undefined;
+};

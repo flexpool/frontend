@@ -1,4 +1,7 @@
-import { OverlayWithin } from 'src/components/OverlayWithin';
+import {
+  OverlayWithin,
+  OverlayWithinOpacity,
+} from 'src/components/OverlayWithin';
 import React from 'react';
 import { LoaderSpinner } from './LoaderSpinner';
 
@@ -11,6 +14,7 @@ export const LoaderOverlayWithin = ({
   ...rest
 }: React.ComponentPropsWithoutRef<typeof OverlayWithin>) => (
   <OverlayWithin {...rest}>
+    <OverlayWithinOpacity />
     <LoaderSpinner />
     {children}
   </OverlayWithin>

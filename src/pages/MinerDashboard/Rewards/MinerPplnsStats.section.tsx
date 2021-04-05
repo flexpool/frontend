@@ -4,7 +4,6 @@ import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';
 import { Spacer } from 'src/components/layout/Spacer';
 import { StatItem } from 'src/components/StatItem';
 import { TooltipContent, Tooltip } from 'src/components/Tooltip';
-import { ChartTitle } from 'src/components/Typo/ChartTitle';
 import {
   useActiveCoin,
   useActiveCoinTicker,
@@ -15,16 +14,14 @@ import { formatSi } from 'src/utils/si.utils';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import { dateUtils } from 'src/utils/date.utils';
+import { useAsyncState } from 'src/hooks/useAsyncState';
+import { ChartContainer } from 'src/components/Chart/ChartContainer';
 
 export const MinerPplnsStats: React.FC<{
   averagePoolHashrate: number | null;
   poolHashrate: number | null;
 }> = ({ averagePoolHashrate = 0, poolHashrate = 0 }) => {
   const { data: headerStatsData } = useReduxState('minerHeaderStats');
-
-  const [dataNotAvailable, setDataNotAvailable] = React.useState<
-    null | boolean
-  >(null);
 
   const [shareLogLength, setShareLogLength] = React.useState(0);
   const {
@@ -33,15 +30,25 @@ export const MinerPplnsStats: React.FC<{
   const activeCoinTicker = useActiveCoinTicker();
   const activeCoin = useActiveCoin();
 
-  console.log(dataNotAvailable);
+  const shareLogState = useAsyncState<number[]>();
 
   React.useEffect(() => {
-    fetchApi<number[]>('/miner/shareLog', {
-      query: {
-        address: address,
-        coin: activeCoinTicker,
-      },
-    }).then((data) => {
+    if (address && activeCoinTicker) {
+      shareLogState.start(
+        fetchApi<number[]>('/miner/shareLog', {
+          query: {
+            address: address,
+            coin: activeCoinTicker,
+          },
+        })
+      );
+    }
+  }, [address, activeCoinTicker]);
+
+  React.useEffect(() => {
+    const data = shareLogState.data || [];
+
+    if (data && data.length > 0) {
       var sharesDataTmp: {
         [key: string]: {
           number: string;
@@ -50,8 +57,8 @@ export const MinerPplnsStats: React.FC<{
         };
       } = {};
 
-      var totalShares = 0;
-      var totalYour = 0;
+      let totalShares = 0;
+      let totalYour = 0;
       for (var i = 0; i < data.length; i++) {
         const item = data[i];
         if (item === 0) break;
@@ -78,12 +85,6 @@ export const MinerPplnsStats: React.FC<{
       }
 
       setShareLogLength(totalShares);
-
-      if (totalYour === 0) {
-        setDataNotAvailable(true);
-        return;
-      }
-      setDataNotAvailable(false);
 
       let sharesChart = am4core.create('shares-chart', am4charts.XYChart);
       sharesChart.colors.list = [
@@ -124,8 +125,8 @@ export const MinerPplnsStats: React.FC<{
       return () => {
         sharesChart.dispose();
       };
-    });
-  }, [activeCoinTicker, address]);
+    }
+  }, [shareLogState.data]);
 
   return (
     <>
@@ -210,10 +211,9 @@ export const MinerPplnsStats: React.FC<{
         </Card>
       </CardGrid>
       <Spacer />
-      <Card padding>
-        <ChartTitle>Shares in the PPLNS Log</ChartTitle>
+      <ChartContainer title="Shares in the PPLNS Log" dataState={shareLogState}>
         <div id="shares-chart" style={{ width: '100%', height: '250px' }}></div>
-      </Card>
+      </ChartContainer>
     </>
   );
 };

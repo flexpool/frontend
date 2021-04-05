@@ -19,7 +19,6 @@ export const MinerPaymentsPage = () => {
       </Helmet>
       <PaymentsChart address={address} coin={coinData} />
       <GeneralPaymentStatsSection address={address} coin={coinData} />
-      <MinerPaymentsList address={address} coin={coinData} />
     </>
   );
 };

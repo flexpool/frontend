@@ -6,6 +6,7 @@ import { fetchApi } from 'src/utils/fetchApi';
 import { Card } from 'src/components/layout/Card';
 import { ChartTitle } from 'src/components/Typo/ChartTitle';
 import { useAsyncState } from 'src/hooks/useAsyncState';
+import { ChartContainer } from 'src/components/Chart/ChartContainer';
 
 type ChartData = {
   fee: number;
@@ -17,7 +18,6 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
   coin,
   address,
 }) => {
-  const paymentsChartRef = React.useRef<HTMLDivElement>(null);
   const asyncState = useAsyncState<
     {
       fee: number;
@@ -27,9 +27,8 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
   >();
 
   React.useEffect(() => {
-    let paymentsChart: am4charts.XYChart | null = null;
     if (coin && asyncState.data && asyncState.data.length > 0) {
-      paymentsChart = am4core.create('payments-chart', am4charts.XYChart);
+      const paymentsChart = am4core.create('payments-chart', am4charts.XYChart);
       paymentsChart.colors.list = [
         am4core.color('#0069ff'),
         am4core.color('#edb431'),
@@ -70,15 +69,10 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
       paymentsChart.cursor = new am4charts.XYCursor();
       paymentsChart.legend = new am4charts.Legend();
       paymentsChart.data = asyncState.data.reverse();
-      // @ts-ignore
-      paymentsChartRef.current = paymentsChart;
-    }
-
-    return () => {
-      if (paymentsChart && paymentsChart.dispose) {
+      return () => {
         paymentsChart.dispose();
-      }
-    };
+      };
+    }
   }, [coin, asyncState.data]);
 
   React.useEffect(() => {
@@ -102,14 +96,9 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
 
   return (
     <>
-      <Card padding>
-        <ChartTitle>Payments This Year</ChartTitle>
-        <div
-          ref={paymentsChartRef}
-          id="payments-chart"
-          style={{ width: '100%', height: '250px' }}
-        />
-      </Card>
+      <ChartContainer title="Payments This Year" dataState={asyncState}>
+        <div id="payments-chart" style={{ width: '100%', height: '250px' }} />
+      </ChartContainer>
     </>
   );
 };

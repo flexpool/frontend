@@ -96,13 +96,7 @@ const PoolHashrateChart = () => {
   }, [poolHasrateState.data]);
 
   return (
-    <ChartContainer
-      isLoading={
-        poolHasrateState.isLoading &&
-        (!poolHasrateState.data || poolHasrateState.data.length < 1)
-      }
-      title="Pool Hashrate"
-    >
+    <ChartContainer dataState={poolHasrateState} title="Pool Hashrate">
       <div id="chartdiv" style={{ width: '100%', height: '400px' }}></div>
     </ChartContainer>
   );
