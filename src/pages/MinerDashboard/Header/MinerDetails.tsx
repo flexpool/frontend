@@ -37,21 +37,33 @@ const getRank = (value: number): [string, MinerRank] => {
   else return ['MVP', 'mvp'];
 };
 
-const Wrap = styled(Card)`
-  display: flex;
-  margin-top: 1rem;
-  padding: 1rem;
-`;
-
 const Item = styled.div`
   display: flex;
   font-weight: 600;
   margin-right: 2rem;
-  @media screen and (max-width: 920px) {
-    display: block;
-  }
+  white-space: nowrap;
 `;
 
+const Content = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  @media screen and (max-width: 900px) {
+    margin-top: -0.5rem;
+    ${Item} {
+      margin-top: 0.5rem;
+      flex-grow: 1;
+      flex-shrink: 0;
+      margin-right: 1rem;
+      display: block;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    margin-top: -0.5rem;
+    ${Item} {
+      width: calc(50% - 2rem);
+    }
+  }
+`;
 export const MinerDetails: React.FC<{
   coin?: ApiPoolCoin;
 }> = ({ coin }) => {
@@ -69,44 +81,46 @@ export const MinerDetails: React.FC<{
   const payoutLimit = useActiveCoinTickerDisplayValue(settings?.payoutLimit);
 
   return (
-    <Wrap paddingShort>
-      <Item>
-        <div>Rank:&nbsp;</div>
-        <div>
-          {rank ? (
-            <Rank rank={rank[1]}>{rank[0]}</Rank>
-          ) : (
-            <Skeleton width={80} />
-          )}
-        </div>
-      </Item>
-      <Item>
-        <div>Pool Donation:&nbsp;</div>
-        <div>
-          {settings ? (
-            settings.poolDonation * 100
-          ) : (
-            <>
-              <Skeleton width={40} />{' '}
-            </>
-          )}
-          %
-        </div>
-      </Item>
-      <Item>
-        <div>Payout Limit:&nbsp;</div>
-        <div>{settings && coin ? payoutLimit : <Skeleton width={40} />}</div>
-      </Item>
-      <Item>
-        <div>Joined:&nbsp;</div>
-        <div>
-          {settings ? (
-            <>{dateUtils.formatDistance(settings.firstJoined * 1000)}</>
-          ) : (
-            <Skeleton width={50} />
-          )}
-        </div>
-      </Item>
-    </Wrap>
+    <Card paddingShort>
+      <Content>
+        <Item>
+          <div>Rank:&nbsp;</div>
+          <div>
+            {rank ? (
+              <Rank rank={rank[1]}>{rank[0]}</Rank>
+            ) : (
+              <Skeleton width={80} />
+            )}
+          </div>
+        </Item>
+        <Item>
+          <div>Pool Donation:&nbsp;</div>
+          <div>
+            {settings ? (
+              settings.poolDonation * 100
+            ) : (
+              <>
+                <Skeleton width={40} />{' '}
+              </>
+            )}
+            %
+          </div>
+        </Item>
+        <Item>
+          <div>Payout Limit:&nbsp;</div>
+          <div>{settings && coin ? payoutLimit : <Skeleton width={40} />}</div>
+        </Item>
+        <Item>
+          <div>Joined:&nbsp;</div>
+          <div>
+            {settings ? (
+              <>{dateUtils.formatDistance(settings.firstJoined * 1000)}</>
+            ) : (
+              <Skeleton width={50} />
+            )}
+          </div>
+        </Item>
+      </Content>
+    </Card>
   );
 };

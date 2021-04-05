@@ -20,6 +20,7 @@ import { ReactComponent as ReactLogo } from 'src/assets/logo.svg';
 import { SelectCoin } from '../SelectCoin';
 import { SelectTheme } from '../SelectTheme';
 import { Spacer } from './Spacer';
+import { Helmet } from 'react-helmet-async';
 const Logo = styled(ReactLogo)`
   height: 30px;
   fill: var(--text-primary);
@@ -253,6 +254,10 @@ export const NavBar: React.FC<NavBarType> = (props) => {
             </BurgerWrap>
           </NavSection>
         </NavContainer>
+
+        {openState.value && (
+          <Helmet bodyAttributes={{ class: 'scroll-lock' }} />
+        )}
         <MobileSlide isOpen={openState.value}>
           <ScrollArea>
             <Button as={Link} to="/get-started" variant="primary">
