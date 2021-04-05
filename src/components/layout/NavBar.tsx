@@ -4,7 +4,13 @@ import { Button } from 'src/components/Button';
 import { ScrollArea } from 'src/components/layout/ScrollArea';
 import styled from 'styled-components/macro';
 
-import { FaChartArea, FaCubes, FaSearch } from 'react-icons/fa';
+import {
+  FaChartArea,
+  FaCubes,
+  FaDiscord,
+  FaReddit,
+  FaSearch,
+} from 'react-icons/fa';
 import { useBoolState } from 'src/hooks/useBoolState';
 import React from 'react';
 import { useOpenState } from 'src/hooks/useOpenState';
@@ -21,6 +27,8 @@ import { SelectCoin } from '../SelectCoin';
 import { SelectTheme } from '../SelectTheme';
 import { Spacer } from './Spacer';
 import { Helmet } from 'react-helmet-async';
+import { SelectCounterTicker } from '../SelectCounterTicker';
+import { LinkOut } from '../LinkOut';
 const Logo = styled(ReactLogo)`
   height: 30px;
   fill: var(--text-primary);
@@ -78,9 +86,7 @@ const NavSection = styled.div`
   }
 `;
 
-const MobileSlide = styled(OuterEvent)<{ isOpen?: boolean }>`
-  overflow-y: auto; /* has to be scroll, not auto */
-  -webkit-overflow-scrolling: touch;
+const MobileSlide = styled.div<{ isOpen?: boolean }>`
   width: 100%;
   max-width: 300px;
   position: fixed;
@@ -109,6 +115,23 @@ const MobileSlide = styled(OuterEvent)<{ isOpen?: boolean }>`
     height: 50px;
     padding: 0 0rem;
   }
+`;
+
+const SlideHideRest = styled.div<{ isOpen?: boolean }>`
+  position: absolute;
+  top: 0;
+  right: 100%;
+  width: 200%;
+  bottom: 0;
+  background: var(--bg-primary);
+  opacity: 0;
+  visibility: hidden;
+  ${(p) =>
+    p.isOpen &&
+    `
+    opacity: .5;
+    visibility: visible;
+  `}
 `;
 
 const NavContainerOuter = styled.div`
@@ -165,10 +188,24 @@ const SearchContainer = styled.div`
   }
 `;
 
-const MobileNavLink = styled(Link)`
-  padding: 1rem;
+const MobileNavTitle = styled.div`
+  font-size: 0.75rem;
   font-weight: 600;
-  display: block;
+  padding-left: 1rem;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+`;
+
+const MobileNavLink = styled(Link)`
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  svg {
+    margin-right: 0.5rem;
+  }
 `;
 
 export const NavBar: React.FC<NavBarType> = (props) => {
@@ -259,18 +296,44 @@ export const NavBar: React.FC<NavBarType> = (props) => {
           <Helmet bodyAttributes={{ class: 'scroll-lock' }} />
         )}
         <MobileSlide isOpen={openState.value}>
+          <SlideHideRest
+            isOpen={openState.value}
+            onClick={openState.handleFalse}
+          />
           <ScrollArea>
-            <Button as={Link} to="/get-started" variant="primary">
-              <Ws>Get Started</Ws>
-            </Button>
             <MobileNavLink to="/statistics">Statistics</MobileNavLink>
             <MobileNavLink to="/blocks">Blocks</MobileNavLink>
             <MobileNavLink to="/miners">Miners</MobileNavLink>
             <MobileNavLink to="/faq">FAQ</MobileNavLink>
             <MobileNavLink to="/support">Support</MobileNavLink>
+            <MobileNavTitle>Join the community</MobileNavTitle>
+            <MobileNavLink as={LinkOut} href="https://discord.gg/Pvw74Cv">
+              <FaDiscord /> Discord
+            </MobileNavLink>
+            <MobileNavLink
+              as={LinkOut}
+              href="https://www.reddit.com/user/flexpool"
+            >
+              <FaReddit /> Reddit
+            </MobileNavLink>
+
+            {/* <SupportChannel
+            name={'Discord'}
+            icon={<FaDiscord />}
+            href={'https://discord.gg/Pvw74Cv'}
+          />
+          <SupportChannel
+            name={'Telegram'}
+            icon={<FaTelegram />}
+            href={'https://t.me/flexpool'}
+          /> */}
           </ScrollArea>
           <div>
-            <SelectCoin />
+            <Button block as={Link} to="/get-started" variant="primary">
+              <Ws>Get Started</Ws>
+            </Button>
+            <Spacer />
+            <SelectCounterTicker />
             <Spacer />
             <SelectTheme />
           </div>
