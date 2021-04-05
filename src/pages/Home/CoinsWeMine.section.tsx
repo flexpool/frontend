@@ -168,7 +168,12 @@ const cols: DynamicListColumn<ApiPoolCoinFull>[] = [
           >
             <FaCalculator />
           </ActionIcon>
-          <Button size="xs" variant="primary">
+          <Button
+            size="xs"
+            variant="primary"
+            as={Link}
+            to={`/get-started/${data.ticker}`}
+          >
             Mine
           </Button>
         </ActionIconContainer>
