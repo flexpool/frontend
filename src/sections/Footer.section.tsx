@@ -90,6 +90,7 @@ const FooterCompany = styled.div`
 
 const SocialIcons = styled.div`
   display: flex;
+  flex-wrap: wrap;
   svg {
     height: 30px;
     width: 30px;
@@ -156,8 +157,8 @@ export const FooterSection = () => {
           <FooterCompany>
             <FooterLogo src={IconLogo} alt="Flexpool Icon White" />
             <div>
-              © 2020-{new Date().getFullYear()} Flexpool, LLC or its
-              affilliates. All rights reserved.
+              © 2020-{new Date().getFullYear()} Flexpool or its affilliates. All
+              rights reserved.
             </div>
           </FooterCompany>
           <SocialIcons>
