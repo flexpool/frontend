@@ -4,6 +4,7 @@ import { CardGrid } from 'src/components/layout/Card';
 import DynamicList, {
   DynamicListColumn,
 } from 'src/components/layout/List/List';
+import { Ws } from 'src/components/Typo/Typo';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { getActiveCoinDisplayValue } from 'src/hooks/useDisplayReward';
 import {
@@ -127,14 +128,16 @@ export const MinerRewardStatsSection: React.FC<{
     },
     {
       title: coinTicker,
+      alignRight: true,
       Component: ({ data }) => {
-        return <>{data.coinValue}</>;
+        return <Ws>{data.coinValue}</Ws>;
       },
     },
     {
       title: counterTicker,
+      alignRight: true,
       Component: ({ data }) => {
-        return <>{data.counterValue}</>;
+        return <Ws>{data.counterValue}</Ws>;
       },
     },
   ];

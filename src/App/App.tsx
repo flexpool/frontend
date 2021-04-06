@@ -60,7 +60,6 @@ const AppContent = () => {
   // location
 
   React.useLayoutEffect(() => {
-    console.log(location.state?.noscroll);
     if (location.state?.noscroll) {
       return;
     }
