@@ -206,7 +206,7 @@ const MinerWorkersTable: React.FC<{
         ...item,
         title: (
           <>
-            {item.title} <Icon />
+            {item.title} {item.onClickValue && <Icon />}
           </>
         ),
       };

@@ -2,7 +2,9 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button } from 'src/components/Button';
 import { CopyButton } from 'src/components/CopyButton';
 import { Card } from 'src/components/layout/Card';
+import { LinkOut } from 'src/components/LinkOut';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
+import { getCoinLink } from 'src/utils/coinLinks.utils';
 import styled from 'styled-components/macro';
 import { MinerSettingsModal } from '../Settings/MinerSettings.modal';
 
@@ -14,6 +16,7 @@ const Wrap = styled(Card)`
 const AddressContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   flex-shrink: 1;
   width: 1px;
   flex-grow: 1;
@@ -26,7 +29,7 @@ const AddressContainer = styled.div`
   }
 `;
 
-const Address = styled.span`
+const Address = styled(LinkOut)`
   margin-left: 1rem;
   margin-right: 1rem;
   font-weight: 500;
@@ -36,11 +39,9 @@ const Address = styled.span`
   text-overflow: ellipsis;
   white-space: nowrap;
   flex-shrink: 1;
-  width: 1px;
-  flex-grow: 1;
-
+  color: var(--text-primary);
   &:hover {
-    color: $accent-color;
+    color: var(--primary);
   }
 `;
 
@@ -57,7 +58,9 @@ export const AccountHeader: React.FC<{
             alt={`${coin.name} logo`}
           />
         )}
-        <Address>{address}</Address>
+        <Address href={getCoinLink('wallet', address, coin?.ticker)}>
+          {address}
+        </Address>
         <CopyButton text={address} />
       </AddressContainer>
       <MinerSettingsModal />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CoinLinkType, getCoinLink } from 'src/utils/blockLink.utils';
+import { CoinLinkType, getCoinLink } from 'src/utils/coinLinks.utils';
 import { stringUtils } from 'src/utils/string.utils';
 
 export const LinkOut: React.FC<JSX.IntrinsicElements['a']> = ({
@@ -20,6 +20,10 @@ export const LinkOutCoin: React.FC<{
   hashLength?: number;
   type: CoinLinkType;
 }> = ({ hash, coin, type, children, hashLength = 8 }) => {
+  if (!coin) {
+    return <>{children}</>;
+  }
+
   const href = getCoinLink(type, hash, coin);
 
   const childContent = children || stringUtils.shortenString(hash, hashLength);

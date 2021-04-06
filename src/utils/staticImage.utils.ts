@@ -1,7 +1,5 @@
-const publicUrl = process.env.PUBLIC_URL;
-
 export const getCoinIconUrl = (ticker: string) =>
-  `${publicUrl}/icons/coins/${ticker}.svg`;
+  `https://static.flexpool.io/assets/coinLogos/small/${ticker}.png`;
 
 export const getOsLogoUrl = (os: 'linux' | 'windows' | 'hiveos') =>
   `https://static.flexpool.io/assets/os/${os}.png`;

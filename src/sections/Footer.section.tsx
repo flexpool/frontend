@@ -132,7 +132,7 @@ export const FooterSection = () => {
           </Section>
           <Section>
             <FSectionTitle>Community</FSectionTitle>
-            <LinkOut href="https://discord.gg/96TS7h3uj8">Discord</LinkOut>
+            <LinkOut href="https://discord.gg/Pvw74Cv">Discord</LinkOut>
             <LinkOut href="https://www.reddit.com/user/flexpool">
               Reddit
             </LinkOut>

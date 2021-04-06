@@ -59,10 +59,10 @@ const navItems = [
     val: 'notifications',
     title: 'Notifications',
   },
-  {
-    val: 'donation',
-    title: 'Donation',
-  },
+  // {
+  //   val: 'donation',
+  //   title: 'Donation',
+  // },
 ];
 
 const pageComponents = {
@@ -74,6 +74,9 @@ const pageComponents = {
 type SettingsPageKey = keyof typeof pageComponents;
 
 const SettingsBtn = styled(Button)`
+  span {
+    margin-left: 0.5rem;
+  }
   @media screen and (max-width: 768px) {
     width: 42px;
     padding: 0;

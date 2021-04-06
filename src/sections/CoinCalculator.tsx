@@ -14,7 +14,6 @@ import styled from 'styled-components';
 const FieldContainer = styled.div`
   display: flex;
   margin-top: 0.75rem;
-  flex-wrap: wrap;
   margin-left: -0.25rem;
   margin-right: -0.25rem;
   & > * {
@@ -22,6 +21,7 @@ const FieldContainer = styled.div`
   }
 
   @media screen and (max-width: 1280px) {
+    flex-wrap: wrap;
     & > *:first-child {
       width: 100%;
     }

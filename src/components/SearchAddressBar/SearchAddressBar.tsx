@@ -6,7 +6,7 @@ import { useAsyncState } from 'src/hooks/useAsyncState';
 import { fetchApi } from 'src/utils/fetchApi';
 import styled from 'styled-components/macro';
 import { SearchAddressCachedResult } from './SearchAddressCachedResult';
-import { saveAddressToCache } from './searchCache';
+import { saveAddressToCache, searchAddressStorage } from './searchCache';
 
 const SearchButton = styled.button`
   cursor: pointer;
@@ -44,7 +44,7 @@ const Wrapper = styled.div`
 `;
 const ResultWrapper = styled.div`
   position: absolute;
-  z-index: 100;
+  z-index: 0;
   top: 100%;
   width: 100%;
   left: 0;
@@ -55,6 +55,15 @@ const ResultWrapper = styled.div`
   border-top: none;
 
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
+  &:before {
+    content: '';
+    height: 5px;
+    width: 100%;
+    position: absolute;
+    bottom: 100%;
+    left: -1px;
+    background: var(--bg-secondary);
+  }
 `;
 const FieldWrapper = styled.div`
   height: 100%;
@@ -79,9 +88,7 @@ const Input = styled(Field)`
   font-family: 'Roboto Mono', monospace;
   font-weight: 400;
   display: block;
-  &:focus {
-    border-radius: 5px 0px 0px 0px;
-  }
+  color: var(--text-primary);
 `;
 
 export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
@@ -89,6 +96,7 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
 }) => {
   const searchState = useAsyncState<string | null>('addressSearch', null);
   const history = useHistory();
+  const searchData = searchAddressStorage.get() || [];
 
   const handleSearch = React.useCallback(
     async (address: string) => {
@@ -125,7 +133,7 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
                 name="search"
                 placeholder="Search by your mining address"
               />
-              {showResult && (
+              {showResult && searchData && searchData.length > 0 && (
                 <ResultWrapper>
                   <SearchAddressCachedResult />
                 </ResultWrapper>

@@ -30,8 +30,8 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
     if (coin && asyncState.data && asyncState.data.length > 0) {
       const paymentsChart = am4core.create('payments-chart', am4charts.XYChart);
       paymentsChart.colors.list = [
-        am4core.color('#0069ff'),
         am4core.color('#edb431'),
+        am4core.color('#0069ff'),
       ];
 
       var paymentsAxis = paymentsChart.yAxes.push(new am4charts.ValueAxis());
@@ -44,6 +44,16 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
         count: 1,
       };
 
+      let feeSeries = paymentsChart.series.push(new am4charts.ColumnSeries());
+
+      feeSeries.dataFields.dateX = 'date';
+      feeSeries.name = 'Fee (' + coin.ticker.toUpperCase() + ')';
+      feeSeries.yAxis = paymentsAxis;
+      feeSeries.dataFields.valueY = 'fee';
+      feeSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.0000")}`;
+      feeSeries.strokeWidth = 3;
+      feeSeries.stacked = true;
+
       let paymentSeries = paymentsChart.series.push(
         new am4charts.ColumnSeries()
       );
@@ -55,16 +65,6 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
       paymentSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.0000")}`;
       paymentSeries.strokeWidth = 3;
       paymentSeries.stacked = true;
-
-      let feeSeries = paymentsChart.series.push(new am4charts.ColumnSeries());
-
-      feeSeries.dataFields.dateX = 'date';
-      feeSeries.name = 'Fee (' + coin.ticker.toUpperCase() + ')';
-      feeSeries.yAxis = paymentsAxis;
-      feeSeries.dataFields.valueY = 'fee';
-      feeSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.0000")}`;
-      feeSeries.strokeWidth = 3;
-      feeSeries.stacked = true;
 
       paymentsChart.cursor = new am4charts.XYCursor();
       paymentsChart.legend = new am4charts.Legend();

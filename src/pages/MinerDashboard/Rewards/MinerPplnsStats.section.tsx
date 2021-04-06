@@ -159,7 +159,7 @@ export const MinerPplnsStats: React.FC<{
             }
           />
         </Card>
-        <Card padding>
+        {/* <Card padding>
           <CardTitle>
             Current Round Share&nbsp;
             <Tooltip>
@@ -176,7 +176,7 @@ export const MinerPplnsStats: React.FC<{
             }
             subValue="Aproximate reward: __TODO calc"
           />
-        </Card>
+        </Card> */}
         <Card padding>
           <CardTitle>
             Share Log Wipeout Duration{' '}
@@ -194,8 +194,7 @@ export const MinerPplnsStats: React.FC<{
               `${dateUtils.durationWords(
                 ((shareLogLength * activeCoin.shareDifficulty) /
                   averagePoolHashrate) *
-                  1000,
-                { includeSeconds: true }
+                  1000
               )}`
             }
             subValue={

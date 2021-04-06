@@ -9,7 +9,7 @@ import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
 import { LinkMiner } from 'src/components/LinkMiner';
 import { Luck } from 'src/components/Luck';
 import styled from 'styled-components';
-import { getBlockLink } from 'src/utils/blockLink.utils';
+import { getCoinLink } from 'src/utils/coinLinks.utils';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { LinkOut, LinkOutCoin } from 'src/components/LinkOut';
 import { Mono, Ws } from 'src/components/Typo/Typo';
@@ -109,7 +109,7 @@ const blockCols: {
     title: 'Number',
     skeletonWidth: 80,
     Component: ({ data, config }) => {
-      const url = getBlockLink(data.hash, config.coinTicker);
+      const url = getCoinLink('block', data.hash, config.coinTicker);
 
       const content = (
         <Ws>

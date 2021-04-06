@@ -43,7 +43,6 @@ const TabLinkContainer = styled(Content)`
   margin-top: 3rem;
   display: flex;
   overflow-x: auto;
-  overflow-y: hidden;
 `;
 
 const TabLink = styled(NavLink)`
@@ -55,13 +54,18 @@ const TabLink = styled(NavLink)`
   color: var(--text-primary);
   padding: 0 1.5rem;
   border-bottom: 2px solid transparent;
-  margin-bottom: -2px;
+
+  position: relative;
+  z-index: 1;
   svg {
     margin-right: 0.5rem;
   }
   &.active {
     color: var(--primary);
     border-color: var(--primary);
+  }
+  &:hover {
+    color: var(--primary);
   }
   text-decoration: none !important;
 `;

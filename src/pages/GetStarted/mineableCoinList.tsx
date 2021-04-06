@@ -77,6 +77,18 @@ export const mineableCoins: MineableCoin[] = [
           },
           {
             os: ['windows', 'linux', 'hiveos'],
+            title: 'lolminer',
+            key: 'lolminer',
+            description: '',
+            fee: [0.75],
+            compatibleGpus: ['AMD', 'NVIDIA'],
+            downloadLink:
+              'https://github.com/Lolliedieb/lolMiner-releases/releases',
+            cmd:
+              'lolMiner.exe --algo ETHASH --pool stratum+ssl://CLOSEST_SERVER:5555 --user WALLET_ADDRESS.WORKER_NAME',
+          },
+          {
+            os: ['windows', 'linux', 'hiveos'],
             title: 'ethminer',
             key: 'ethminer',
             description:
