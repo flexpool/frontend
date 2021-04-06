@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from 'src/components/Button';
+import { CopyButton } from 'src/components/CopyButton';
 import { Card } from 'src/components/layout/Card';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import styled from 'styled-components/macro';
@@ -16,18 +17,22 @@ const AddressContainer = styled.div`
   flex-shrink: 1;
   width: 1px;
   flex-grow: 1;
+  margin-right: 1rem;
   img {
     width: 40px;
+  }
+  button {
+    flex-shrink: 0;
   }
 `;
 
 const Address = styled.span`
-  margin-left: 15px;
+  margin-left: 1rem;
+  margin-right: 1rem;
   font-weight: 500;
   font-size: 1.5rem;
   cursor: pointer;
   overflow: hidden;
-  margin-right: 2rem;
   text-overflow: ellipsis;
   white-space: nowrap;
   flex-shrink: 1;
@@ -43,8 +48,6 @@ export const AccountHeader: React.FC<{
   coin?: ApiPoolCoin;
   address: string;
 }> = ({ coin, address }) => {
-  const location = useLocation();
-
   return (
     <Wrap paddingShort>
       <AddressContainer>
@@ -55,7 +58,7 @@ export const AccountHeader: React.FC<{
           />
         )}
         <Address>{address}</Address>
-        {/* <CopyButton address={props.address} asd/> */}
+        <CopyButton text={address} />
       </AddressContainer>
       <MinerSettingsModal />
     </Wrap>

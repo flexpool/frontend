@@ -63,6 +63,7 @@ const TabLink = styled(NavLink)`
     color: var(--primary);
     border-color: var(--primary);
   }
+  text-decoration: none !important;
 `;
 
 export const MinerDashboardPage: React.FC<
@@ -103,20 +104,34 @@ export const MinerDashboardPage: React.FC<
       <Content>
         <HeaderGreetings coin={activeCoin} />
         <AccountHeader coin={activeCoin} address={address} />
+        <Spacer />
         <MinerDetails coin={activeCoin} />
         <HeaderStats coin={activeCoin} />
       </Content>
       <TabLinkContainer>
-        <TabLink to={`${match.url}/stats`}>
+        <TabLink
+          to={{
+            pathname: `${match.url}/stats`,
+            state: {
+              noscroll: true,
+            },
+          }}
+        >
           <FaChartBar /> Stats
         </TabLink>
-        <TabLink to={`${match.url}/payments`}>
+        <TabLink
+          to={{ pathname: `${match.url}/payments`, state: { noscroll: true } }}
+        >
           <FaWallet /> Payments
         </TabLink>
-        <TabLink to={`${match.url}/rewards`}>
+        <TabLink
+          to={{ pathname: `${match.url}/rewards`, state: { noscroll: true } }}
+        >
           <FaChartBar /> Rewards
         </TabLink>
-        <TabLink to={`${match.url}/blocks`}>
+        <TabLink
+          to={{ pathname: `${match.url}/blocks`, state: { noscroll: true } }}
+        >
           <FaCube /> Blocks
         </TabLink>
       </TabLinkContainer>

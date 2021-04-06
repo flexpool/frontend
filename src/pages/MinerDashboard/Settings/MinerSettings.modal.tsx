@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaCog } from 'react-icons/fa';
 import { useRouteMatch } from 'react-router';
 import { Button } from 'src/components/Button';
 import { ScrollArea } from 'src/components/layout/ScrollArea';
@@ -72,6 +73,17 @@ const pageComponents = {
 
 type SettingsPageKey = keyof typeof pageComponents;
 
+const SettingsBtn = styled(Button)`
+  @media screen and (max-width: 768px) {
+    width: 42px;
+    padding: 0;
+    justify-content: center;
+    span {
+      display: none;
+    }
+  }
+`;
+
 export const MinerSettingsModal = () => {
   const openState = useOpenState();
   const [page, setPage] = React.useState<SettingsPageKey>('payouts');
@@ -87,9 +99,9 @@ export const MinerSettingsModal = () => {
 
   return (
     <>
-      <Button onClick={openState.handleOpen} size="sm" variant="primary">
-        Settings
-      </Button>
+      <SettingsBtn onClick={openState.handleOpen} size="sm" variant="primary">
+        <FaCog /> <span>Settings</span>
+      </SettingsBtn>
       <Modal mobileFull {...openState.modalProps}>
         <Modal.Header>
           <h2>Settings</h2>

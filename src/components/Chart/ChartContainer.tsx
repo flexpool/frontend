@@ -20,7 +20,6 @@ export const ChartContainer: React.FC<{
     error?: any;
   };
 }> = ({ children, title, isLoading, dataState }) => {
-  console.log(dataState);
   return (
     <Card padding>
       {dataState &&

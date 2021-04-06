@@ -186,7 +186,6 @@ export const MinerPplnsStats: React.FC<{
               />
             </Tooltip>
           </CardTitle>
-          {console.log(activeCoin)}
           <StatItem
             value={
               averagePoolHashrate &&

@@ -6,6 +6,9 @@ const StatItemWrapper = styled.div``;
 const StatItemValue = styled.div`
   font-size: 1.5rem;
   font-weight: 700;
+  @media screen and (max-width: 560px) {
+    font-size: 1.35rem;
+  }
 `;
 const StatItemSubValue = styled.div`
   font-weight: 700;
@@ -13,7 +16,10 @@ const StatItemSubValue = styled.div`
   color: var(--text-secondary);
 `;
 const StatItemTitle = styled.div`
-  margin-top: 0.5rem;
+  margin-top: 0.5em;
+  @media screen and (max-width: 560px) {
+    font-size: 0.875rem;
+  }
 `;
 
 export const StatItem: React.FC<{

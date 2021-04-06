@@ -38,7 +38,7 @@ const cachedState = localStorage<AppState>('app_state').get() || {};
 const store = createReduxStore(cachedState);
 
 const AppContent = () => {
-  const location = useLocation();
+  const location = useLocation<{ noscroll?: boolean } | null>();
   // initial load of /pool/coins
   usePoolCoins();
 
@@ -60,11 +60,15 @@ const AppContent = () => {
   // location
 
   React.useLayoutEffect(() => {
+    console.log(location.state?.noscroll);
+    if (location.state?.noscroll) {
+      return;
+    }
     window.scrollTo({
       top: 0,
       left: 0,
     });
-  }, [location.pathname]);
+  }, [location.pathname, location.state]);
 
   return (
     <>

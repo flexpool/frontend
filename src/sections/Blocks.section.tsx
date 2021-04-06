@@ -59,6 +59,7 @@ const BlockLink = styled(LinkOut)`
 const BlockType = styled.span<{ type: ApiBlock['type'] }>`
   display: inline-block;
   text-transform: capitalize;
+  white-space: nowrap;
   & + * {
     margin-left: 0.5rem;
   }
@@ -139,7 +140,7 @@ const blockCols: {
           : null;
 
       return (
-        <>
+        <Ws>
           <BlockType type={data.type}>{data.type}</BlockType>
           {msg && (
             <Tooltip>
@@ -149,7 +150,7 @@ const blockCols: {
               />
             </Tooltip>
           )}
-        </>
+        </Ws>
       );
     },
   },
