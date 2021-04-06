@@ -44,6 +44,7 @@ const Wrapper = styled.div`
 `;
 const ResultWrapper = styled.div`
   position: absolute;
+  z-index: 100;
   top: 100%;
   width: 100%;
   left: 0;

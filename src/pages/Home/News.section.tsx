@@ -5,7 +5,7 @@ import { Content } from 'src/components/layout/Content';
 
 const ItemWrapper = styled.a`
   min-height: 120px;
-  padding: 30px;
+  padding: 2rem;
   width: 1px;
   flex-grow: 1;
   display: flex;
@@ -24,6 +24,12 @@ const ItemWrapper = styled.a`
     --text-primary: white;
     * {
       color: var(--text-primary);
+    }
+  }
+  @media screen and (max-width: 800px) {
+    padding: 1rem 1.25rem;
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--border-color);
     }
   }
 `;
@@ -75,18 +81,23 @@ const HomeNewsItem: React.FC<{
 };
 
 const Wrapper = styled.div`
-  position: relative;
+  position: absolute;
+  @media screen and (max-width: 800px) {
+    position: relative;
+  }
+  width: 100%;
+  bottom: 0;
   display: flex;
   justify-content: center;
-  z-index: 1;
   box-shadow: inset 0 100px 50px -50px var(--bg-secondary);
 `;
 const WrapperInner = styled.div`
-  position: relative;
-  width: 100%;
+  position: absolute;
   top: -4rem;
+  width: 100%;
   display: flex;
   box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.06);
+  z-index: 10;
   @media screen and (max-width: 800px) {
     position: relative;
     display: block;
