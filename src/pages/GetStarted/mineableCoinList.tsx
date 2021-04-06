@@ -19,6 +19,7 @@ type MineableCoin = {
   ticker: string;
   algorithm: string;
   regions: MineableCoinRegion[];
+  description: string;
   hardware: {
     title: string;
     key: 'GPU';
@@ -31,6 +32,7 @@ export const mineableCoins: MineableCoin[] = [
     name: 'Ethereum',
     ticker: 'eth',
     algorithm: 'Ethash',
+    description: '',
     regions: [
       {
         domain: 'eth-us-east.flexpool.io',
