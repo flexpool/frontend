@@ -12,6 +12,7 @@ export type MineableCoinRegion = {
   domain: string;
   code: string;
   title: string;
+  imageCode: string;
 };
 
 type MineableCoin = {
@@ -36,19 +37,46 @@ export const mineableCoins: MineableCoin[] = [
     regions: [
       {
         domain: 'eth-us-east.flexpool.io',
-        title: 'United States East',
+        title: 'United States (East)',
         code: 'us-east',
+        imageCode: 'us',
       },
       {
         domain: 'eth-us-west.flexpool.io',
-        title: 'United States West',
+        title: 'United States (West)',
         code: 'us-west',
+        imageCode: 'us',
       },
-      { domain: 'eth-de.flexpool.io', title: 'Germany', code: 'de' },
-      { domain: 'eth-se.flexpool.io', title: 'Sweden', code: 'se' },
-      { domain: 'eth-sg.flexpool.io', title: 'Singapore', code: 'sg' },
-      { domain: 'eth-au.flexpool.io', title: 'Australia', code: 'au' },
-      { domain: 'eth-br.flexpool.io', title: 'Brazil', code: 'br' },
+      {
+        domain: 'eth-de.flexpool.io',
+        title: 'Germany',
+        code: 'de',
+        imageCode: 'de',
+      },
+      {
+        domain: 'eth-se.flexpool.io',
+        title: 'Sweden',
+        code: 'se',
+        imageCode: 'se',
+      },
+      {
+        domain: 'eth-sg.flexpool.io',
+        title: 'Singapore',
+        code: 'sg',
+        imageCode: 'sg',
+      },
+      {
+        domain: 'eth-au.flexpool.io',
+        title: 'Australia',
+        code: 'au',
+        imageCode: 'au',
+      },
+      {
+        domain: 'eth-br.flexpool.io',
+        title: 'Brazil',
+        code: 'br',
+        imageCode: 'br',
+      },
     ],
     hardware: [
       {
