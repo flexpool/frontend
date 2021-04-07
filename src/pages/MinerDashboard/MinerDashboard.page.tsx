@@ -6,6 +6,7 @@ import {
   Switch,
   useRouteMatch,
   Redirect,
+  useLocation,
 } from 'react-router';
 import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
@@ -31,7 +32,7 @@ import { MinerBlocksPage } from './Blocks/MinerBlocks.page';
 import { MinerRewardsPage } from './Rewards/MinerRewards.page';
 import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
-import { MinerSettingsModal } from './Settings/MinerSettings.modal';
+import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
 
 const TabContent = styled.div`
   box-shadow: inset -1px 18px 19px -13px var(--bg-secondary);
@@ -94,11 +95,22 @@ export const MinerDashboardPage: React.FC<
     }
   }, [coinTicker, d, poolCoins.data]);
 
+  const worker = useActiveSearchParamWorker();
+
   React.useEffect(() => {
     d(minerHeaderStatsGet(coinTicker, address, counterTicker));
     d(minerDetailsGet(coinTicker, address));
-    d(minerStatsGet(coinTicker, address));
   }, [coinTicker, address, d, counterTicker]);
+
+  React.useEffect(() => {
+    d(
+      minerStatsGet(
+        coinTicker,
+        address,
+        typeof worker === 'string' ? worker : undefined
+      )
+    );
+  }, [coinTicker, address, d, counterTicker, worker]);
 
   return (
     <Page>
@@ -139,7 +151,7 @@ export const MinerDashboardPage: React.FC<
           <FaCube /> Blocks
         </TabLink>
       </TabLinkContainer>
-      <TabContent>
+      <TabContent id="workertabs">
         <Content>
           <Switch>
             <Route path={`${match.path}/stats`} component={MinerStatsPage} />

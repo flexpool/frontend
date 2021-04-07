@@ -6,16 +6,21 @@ import { fetchApi } from 'src/utils/fetchApi';
 import { Card } from 'src/components/layout/Card';
 import { ChartTitle } from 'src/components/Typo/ChartTitle';
 import { Spacer } from 'src/components/layout/Spacer';
+import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
+import { ChartContainer } from 'src/components/Chart/ChartContainer';
+import { useAsyncState } from 'src/hooks/useAsyncState';
 
 export const StatsChart: React.FC<{
   coinTicker: string;
   address: string;
-  worker?: string;
 }> = (props) => {
   const [noDataAvailable, setNoDataAvailable] = useState(false);
   const hashrateChartRef = useRef<HTMLDivElement>(null);
   const sharesChartRef = useRef<HTMLDivElement>(null);
   const reportedHashrateSeriesRef = useRef<HTMLDivElement>(null);
+
+  const worker = useActiveSearchParamWorker();
+
   useEffect(() => {
     let hashrateChart = am4core.create('hashrate-chart', am4charts.XYChart);
     hashrateChart.colors.list = [
@@ -137,10 +142,6 @@ export const StatsChart: React.FC<{
 
   useEffect(() => {
     if (props.coinTicker === null) return;
-    // @ts-ignore
-    sharesChartRef.current.data = [];
-    // @ts-ignore
-    hashrateChartRef.current.data = [];
     fetchApi<
       {
         averageEffectiveHashrate: number;
@@ -155,7 +156,7 @@ export const StatsChart: React.FC<{
       query: {
         address: props.address,
         coin: props.coinTicker,
-        worker: props.worker,
+        worker,
       },
     }).then((resp) => {
       if (resp === null) {
@@ -203,24 +204,22 @@ export const StatsChart: React.FC<{
       /// @ts-ignore
       hashrateChartRef.current.data = hashrateChartData.reverse();
     });
-  }, [props.coinTicker, props.address, props.worker]);
+  }, [props.coinTicker, props.address, worker]);
 
   return (
     <>
       {!noDataAvailable ? (
         <>
-          <Card padding>
-            <ChartTitle>Hashrate</ChartTitle>
+          <ChartContainer title="Hashrate">
             <div
               id="hashrate-chart"
               style={{ width: '100%', height: '250px' }}
             />
-          </Card>
+          </ChartContainer>
           <Spacer />
-          <Card padding>
-            <ChartTitle>Shares</ChartTitle>
+          <ChartContainer title="Shares">
             <div id="shares-chart" style={{ width: '100%', height: '250px' }} />
-          </Card>
+          </ChartContainer>
         </>
       ) : (
         <SectionNotAvailable
