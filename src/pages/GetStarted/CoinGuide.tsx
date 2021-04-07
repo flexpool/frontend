@@ -22,7 +22,6 @@ const MinerHeader = styled.div`
 `;
 
 const Fee: React.FC<{ fee: [number] | [number, number] }> = ({ fee }) => {
-  console.log(fee);
   if (fee.length === 1) {
     return <>{fee[0]}%</>;
   }
@@ -108,7 +107,7 @@ export const MineableCoinGuidePage: React.FC = () => {
       </h2>
       <SoftwareWrapper>
         {mineableCoinConfig?.miners.map((miner) => (
-          <Card>
+          <Card key={miner.key}>
             <CardBody>
               <MinerHeader>
                 <div>

@@ -88,13 +88,6 @@ const durationWords = (
     format.push('seconds');
   }
 
-  console.log(
-    intervalToDuration({
-      start: 0,
-      end: new Date(seconds * 1000),
-    })
-  );
-
   const intervalDuration = intervalToDuration({
     start: 0,
     end: new Date(seconds * 1000),

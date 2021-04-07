@@ -143,7 +143,7 @@ export const DynamicList = <D extends {}, CP extends {}>(
           {tFooterChildren && <tfoot>{tFooterChildren}</tfoot>}
         </Table.Container>
       </HorizontalScrollWrapepr>
-      {}
+      {pagination && <ListPagination {...pagination} />}
     </ListWrapper>
   );
 };

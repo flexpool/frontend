@@ -106,7 +106,11 @@ export const MinerCommand: React.FC<{
 
   return (
     <CommandCodeContainer>
-      <code>{replacedText}</code>
+      <code>
+        {replacedText.map((item, index) => (
+          <React.Fragment key={index}>{item}</React.Fragment>
+        ))}
+      </code>
       <CopyButton text={copyText} />
     </CommandCodeContainer>
   );
