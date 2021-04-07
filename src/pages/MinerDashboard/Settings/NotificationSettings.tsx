@@ -116,7 +116,7 @@ export const NotificationSettings: React.FC = () => {
                   </p>
                 }
               />
-              <Submit block>Apply changes</Submit>
+              <Submit shape="block">Apply changes</Submit>
             </FieldGroup.V>
           </Form>
         );

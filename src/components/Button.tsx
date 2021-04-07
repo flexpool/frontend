@@ -14,8 +14,7 @@ export const getBtnPxHeight = (height: keyof typeof btnHeights = 'default') => {
 export type ButtonProps = {
   size?: keyof typeof btnHeights | undefined;
   variant?: UIVariant;
-  block?: boolean;
-  shape?: 'square' | 'circle';
+  shape?: 'square' | 'circle' | 'block';
 };
 
 export const Button = styled.button<ButtonProps>`
@@ -75,13 +74,14 @@ export const Button = styled.button<ButtonProps>`
   ${(p) => {
     if (p.variant) {
       return `
-      background-color: ${p.theme.color[p.variant]};
+      background-color: var(--${p.variant});
       color: ${p.theme.color.onBg};
       border-color: rgba(0,0,0,0.05);
+        box-shadow: 0 2px 10px 0 var(--${p.variant}-shadow);
       &:hover, &:active, &:focus {
-        background-color: ${p.theme.color[p.variant]};
         border-color: rgba(0,0,0,0.05);
-        box-shadow: inset 10px 50px 10px -20px rgba(0,0,0,0.05);
+      background-color: var(--${p.variant});
+        box-shadow: 0 5px 15px 0 var(--${p.variant}-shadow);
       }
       `;
     }
@@ -92,7 +92,7 @@ export const Button = styled.button<ButtonProps>`
   }
 
   ${(p) =>
-    p.block &&
+    p.shape === 'block' &&
     `
     width: 100%;
     justify-content: center;

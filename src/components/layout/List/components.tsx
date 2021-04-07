@@ -4,9 +4,8 @@ const Container = styled.table`
   width: 100%;
   border-collapse: collapse;
   border-radius: 5px;
-  border-spacing: 0 3px;
+  border-spacing: 0;
   color: var(--text-secondary);
-  border-collapse: separate;
   border: none;
 `;
 
@@ -53,20 +52,22 @@ const Td = styled.td<{ alignRight?: boolean }>`
 
   ${shared};
   color: var(--text-primary);
-  background: var(--bg-primary);
-  &:first-child {
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-  }
-  &:last-child {
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-  }
   ${(p) => p.alignRight && `text-align: right;`};
 `;
 
-const Tr = styled.tr`
-  margin-top: 2px;
+const Tr = styled.tr<{ clickable?: boolean }>`
+  ${(p) =>
+    p.clickable &&
+    `
+    cursor: pointer;
+    &:hover {
+
+      td {
+        
+        background: var(--bg-secondary);
+      }
+    }
+  `};
 `;
 
 export const Table = {

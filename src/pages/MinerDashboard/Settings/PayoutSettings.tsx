@@ -150,7 +150,7 @@ export const PayoutSettings: React.FC = () => {
                 Hint: You are visiting this webpage from{' '}
                 <b>{minerSettings.data!.clientIPAddress}</b>.
               </p>
-              <Submit block>Apply changes</Submit>
+              <Submit shape="block">Apply changes</Submit>
             </FieldGroup.V>
           </Form>
         );

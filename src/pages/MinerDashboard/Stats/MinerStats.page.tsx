@@ -21,6 +21,7 @@ const Worker = styled.div`
 
 const WorkerCard = styled(Card)`
   background: var(--primary);
+  color: var(--text-on-bg);
   display: flex;
   justify-content: space-between;
   align-items: center;

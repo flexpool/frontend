@@ -12,7 +12,7 @@ import { dateUtils } from 'src/utils/date.utils';
 import { formatSi } from 'src/utils/si.utils';
 import styled from 'styled-components/macro';
 import { FaSearch, FaSort, FaSortDown, FaSortUp } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const PercentageItem = styled.span`
   color: var(--text-tertiary);
@@ -26,13 +26,16 @@ const Percentage: React.FC<{ total: number; value: number }> = ({
   </PercentageItem>
 );
 
-const WorkerName = styled(Link)<{ offline?: boolean }>`
+const WorkerName = styled.span`
   color: var(--text-primary);
   &:hover {
     color: var(--primary);
   }
-  ${(p) => p.offline && `color: var(--danger) !important;`};
   font-weight: 700;
+`;
+
+const WorkerNameOffline = styled(WorkerName)`
+  color: var(--danger) !important;
 `;
 
 const SearchInput = styled.input`
@@ -80,14 +83,12 @@ const columns: DynamicListColumn<ApiMinerWorker & { totalShares: number }>[] = [
   {
     title: 'Name',
     onClickValue: 'name',
-    Component: ({ data }) => (
-      <WorkerName
-        to={{ search: `?worker=${data.name}` }}
-        offline={!data.isOnline}
-      >
-        {data.name}
-      </WorkerName>
-    ),
+    Component: ({ data }) =>
+      data.isOnline ? (
+        <WorkerName>{data.name}</WorkerName>
+      ) : (
+        <WorkerNameOffline>{data.name}</WorkerNameOffline>
+      ),
   },
   {
     title: 'Reported Hashrate',
@@ -160,6 +161,7 @@ const MinerWorkersTable: React.FC<{
   const [sortKey, setSortKey] = React.useState<keyof ApiMinerWorker>('name');
   const [sortOrder, setSortOrder] = React.useState<-1 | 1>(1);
   const [search, setSearch] = React.useState('');
+  const history = useHistory();
 
   const data = React.useMemo(() => {
     let res = unfilteredData;
@@ -193,6 +195,10 @@ const MinerWorkersTable: React.FC<{
     },
     [sortKey, sortOrder]
   );
+
+  const onRowClick = (data: ApiMinerWorker) => {
+    history.push({ search: `?worker=${data.name}` });
+  };
 
   const cols = React.useMemo(() => {
     return columns.map((item) => {
@@ -245,6 +251,7 @@ const MinerWorkersTable: React.FC<{
         onColumnHeaderClick={handleColClick}
         data={data}
         columns={cols}
+        onRowClick={onRowClick}
       />
     </div>
   );

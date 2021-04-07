@@ -11,10 +11,14 @@ body {
   --bg-primary: #fff;
   --bg-secondary: #f5f5f9;
   --primary: #0069ff;
+  --primary-shadow: rgba(0, 105, 255, 0.5);
   --secondary: #1633ff;
   --success: #15cd72;
+  --success-shadow: rgba(21, 205, 114, 0.5);
   --danger: #ed4f32;
+  --danger-shadow: rgba(237, 79, 50, 0.5);
   --warning: #edb431;
+  --warning-shadow: rgba(237, 180, 49, 0.5);
   --border-color: #e8eff7;
   --overlay: rgba(255, 255, 255, 0.5);
 
@@ -98,9 +102,8 @@ table {
   width: 100%;
   border-collapse: collapse;
   border-radius: 5px;
-  border-spacing: 0 3px;
+  border-spacing: 0;
   color: var(--text-secondary);
-  border-collapse: separate;
   border: 1px solid var(--border-color);
 }
 // table tbody,
@@ -130,15 +133,6 @@ td {
   border-top: 1px solid var(--border-color);
 
   color: var(--text-primary);
-  background: var(--bg-primary);
-  &:first-child {
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-  }
-  &:last-child {
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-  }
 }
 
 th {

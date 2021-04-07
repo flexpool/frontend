@@ -48,7 +48,7 @@ export const MineableCoinList: React.FC = () => {
       <Spacer />
       <MineableCoinGrid>
         {mineableCoins.map((item) => (
-          <MineableCoinWrapper>
+          <MineableCoinWrapper key={item.name}>
             <CoinContent>
               <CoinLogo ticker={item.ticker} size="xl" />
               <Title>{item.name}</Title>
@@ -56,6 +56,7 @@ export const MineableCoinList: React.FC = () => {
 
             {item.hardware.map((itemHw) => (
               <MineBtn
+                key={itemHw.key}
                 as={Link}
                 to={`/get-started/${item.ticker}/${itemHw.key}`}
               >

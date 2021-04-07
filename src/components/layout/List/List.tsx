@@ -43,6 +43,7 @@ export type DynamicListProps<
     setCurrentPage: (page: number) => void;
     totalPages: number;
   };
+  onRowClick?: (data: D) => void;
 };
 
 export const DynamicList = <D extends {}, CP extends {}>(
@@ -60,6 +61,7 @@ export const DynamicList = <D extends {}, CP extends {}>(
     pagination,
     onColumnHeaderClick,
     config = {},
+    onRowClick,
   } = props;
 
   return (
@@ -116,7 +118,11 @@ export const DynamicList = <D extends {}, CP extends {}>(
                 data.length > 0 &&
                 data.map((item, index) => {
                   return (
-                    <Table.Tr key={index}>
+                    <Table.Tr
+                      key={index}
+                      clickable={!!onRowClick}
+                      onClick={onRowClick && (() => onRowClick(item))}
+                    >
                       {columns.map((col, cindex) => {
                         return (
                           <Table.Td key={cindex} alignRight={col.alignRight}>
@@ -137,7 +143,7 @@ export const DynamicList = <D extends {}, CP extends {}>(
           {tFooterChildren && <tfoot>{tFooterChildren}</tfoot>}
         </Table.Container>
       </HorizontalScrollWrapepr>
-      {pagination && <ListPagination {...pagination} />}
+      {}
     </ListWrapper>
   );
 };

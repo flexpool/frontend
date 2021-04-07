@@ -34,7 +34,7 @@ const SignatureGen: React.FC<{ ticker: string; address: string }> = ({
 
   return (
     <div>
-      <Button block>Generate Signature</Button>
+      <Button shape="block">Generate Signature</Button>
     </div>
   );
 };
@@ -110,7 +110,7 @@ export const PoolDonationSettings: React.FC = () => {
                   </p>
                 }
               />
-              <Submit block>Apply changes</Submit>
+              <Submit shape="block">Apply changes</Submit>
             </FieldGroup.V>
           </Form>
         );

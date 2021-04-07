@@ -327,7 +327,7 @@ export const NavBar: React.FC<NavBarType> = (props) => {
           /> */}
           </ScrollArea>
           <div>
-            <Button block as={Link} to="/get-started" variant="primary">
+            <Button shape="block" as={Link} to="/get-started" variant="primary">
               <Ws>Get Started</Ws>
             </Button>
             <Spacer />

@@ -170,7 +170,7 @@ export const BrandAssetsPage = () => {
         <div>
           <Button
             variant="primary"
-            block
+            shape="block"
             as={LinkOut}
             href="http://static.flexpool.io/dl/Flexpool_Brand.zip"
           >

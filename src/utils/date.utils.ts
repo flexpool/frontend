@@ -53,6 +53,31 @@ const formatDistance = (d: DateInput) => {
   return '?';
 };
 
+const durationToParse = (duration: Duration) => {
+  const { years, months, days, hours, minutes } = duration;
+  if (years) {
+    return {
+      years,
+      months,
+      days,
+    };
+  } else if (months) {
+    return {
+      months,
+      days,
+      hours,
+    };
+  } else if (days) {
+    return {
+      days,
+      hours,
+      minutes,
+    };
+  } else {
+    return duration;
+  }
+};
+
 const durationWords = (
   seconds: number,
   options?: { includeSeconds: boolean }
@@ -62,16 +87,23 @@ const durationWords = (
   if (options?.includeSeconds) {
     format.push('seconds');
   }
-  return formatDuration(
+
+  console.log(
     intervalToDuration({
       start: 0,
       end: new Date(seconds * 1000),
-    }),
-    {
-      delimiter: ', ',
-      format,
-    }
+    })
   );
+
+  const intervalDuration = intervalToDuration({
+    start: 0,
+    end: new Date(seconds * 1000),
+  });
+
+  return formatDuration(durationToParse(intervalDuration), {
+    delimiter: ', ',
+    format,
+  });
 };
 
 export const dateUtils = {
