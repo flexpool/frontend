@@ -1,5 +1,10 @@
 import React from 'react';
-import { FaCalculator, FaNewspaper } from 'react-icons/fa';
+import {
+  FaArrowDown,
+  FaArrowUp,
+  FaCalculator,
+  FaNewspaper,
+} from 'react-icons/fa';
 import { Button } from 'src/components/Button';
 import { Content } from 'src/components/layout/Content';
 import DynamicList, {
@@ -56,6 +61,26 @@ const TickerName = styled.span`
   color: var(--text-tertiary);
 `;
 
+const PriceChange = styled.span<{ direction: 'up' | 'down' }>`
+  svg {
+    height: 14px;
+    width: 10px;
+    margin-right: 0.25rem;
+  }
+  ${(p) => {
+    switch (p.direction) {
+      case 'up':
+        return `
+        color: var(--danger);
+      `;
+      case 'down':
+        return `
+        color: var(--success);
+      `;
+    }
+  }}
+`;
+
 const ModalNews: React.FC<{ data?: ApiPoolCoinFull[] | null }> = ({ data }) => {
   const location = useLocation();
   const history = useHistory();
@@ -104,8 +129,20 @@ const cols: DynamicListColumn<ApiPoolCoinFull>[] = [
     alignRight: true,
     skeletonWidth: 80,
     Component: ({ data }) => {
+      const priceChange = data.marketData.priceChange;
+      const priceChangeDirection = priceChange >= 0 ? 'up' : 'down';
       const v = useCounterValue(data.marketData.prices);
-      return <>{v}</>;
+      return (
+        <Mono>
+          <Ws>
+            {v}{' '}
+            <PriceChange direction={priceChangeDirection}>
+              ({priceChangeDirection ? <FaArrowUp /> : <FaArrowDown />}
+              {Math.round(Math.abs(priceChange) * 10) / 10}%)
+            </PriceChange>
+          </Ws>
+        </Mono>
+      );
     },
   },
   {
