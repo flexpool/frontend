@@ -61,23 +61,30 @@ export const BlocksPage = () => {
         <StatBoxContainer>
           <StatBox
             title="Average Luck"
-            isLoading={statsState.isLoading}
-            value={getDisplayLuck((statsState.data && statsState.data[0]) || 0)}
+            value={
+              statsState.data &&
+              statsState.data[0] &&
+              getDisplayLuck(statsState.data[0] || 0)
+            }
           />
           <StatBox
             title="Current Luck"
-            isLoading={statsState.isLoading}
-            value={<Luck value={blockStats.currentLuck} />}
+            value={
+              blockStats.currentLuck && <Luck value={blockStats.currentLuck} />
+            }
           />
           <StatBox
             title="Network hashrate"
-            isLoading={statsState.isLoading}
-            value={`${formatSi(blockStats.networkHashrate, 'H/s')}`}
+            value={
+              blockStats.networkHashrate &&
+              `${formatSi(blockStats.networkHashrate, 'H/s')}`
+            }
           />
           <StatBox
             title="Network difficulty"
-            isLoading={statsState.isLoading}
-            value={`${formatSi(blockStats.difficulty, 'H')}`}
+            value={
+              blockStats.difficulty && `${formatSi(blockStats.difficulty, 'H')}`
+            }
           />
         </StatBoxContainer>
         <BlocksSection />

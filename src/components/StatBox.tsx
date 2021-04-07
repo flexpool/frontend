@@ -42,12 +42,11 @@ const Value = styled.span`
 export const StatBox: React.FC<{
   title: string;
   value: React.ReactNode;
-  isLoading?: boolean;
-}> = ({ title, value, isLoading }) => (
+}> = ({ title, value }) => (
   <StatBoxC padding>
     <Title>{title}</Title>
-    {(isLoading && <Skeleton style={{ height: 33, width: 70 }} />) || (
-      <Value>{value}</Value>
-    )}
+    {((typeof value === 'undefined' || !value) && (
+      <Skeleton style={{ height: 33, width: 70 }} />
+    )) || <Value>{value}</Value>}
   </StatBoxC>
 );

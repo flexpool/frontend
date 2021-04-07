@@ -2,12 +2,22 @@ import React, { useState } from 'react';
 
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { useReduxState } from 'src/rdx/useReduxState';
-import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
+import {
+  useActiveCoin,
+  useActiveCoinTicker,
+  useCounterTicker,
+} from 'src/rdx/localSettings/localSettings.hooks';
 import styled from 'styled-components/macro';
 import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';
-import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
+import {
+  getActiveCoinDisplayValue,
+  useActiveCoinTickerDisplayValue,
+} from 'src/hooks/useDisplayReward';
 import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import { StatItem } from 'src/components/StatItem';
+import { useDailyRewardPerGhState } from 'src/hooks/useDailyRewardPerGhState';
+import { poolStatsGet } from 'src/rdx/poolStats/poolStats.actions';
+import { useDispatch } from 'react-redux';
 //
 
 const ProgressBarWrapper = styled.div`
@@ -28,6 +38,10 @@ const ProgressBar = styled.div`
   border-radius: 0px 0px 5px 5px;
 
   background-color: var(--primary);
+`;
+
+const ErrorText = styled.span`
+  color: var(--danger);
 `;
 
 const BalanceProgressBar: React.FC<{ value: number }> = ({ value }) => {
@@ -51,34 +65,68 @@ export const HeaderStats: React.FC<{
   const minerDetailsState = useReduxState('minerDetails');
   const data = minerHeaderStatsState.data;
   const counterTicker = useCounterTicker();
+  const activeTicker = useActiveCoinTicker();
+  const activeCoin = useActiveCoin();
   const settings = minerDetailsState.data;
+  const d = useDispatch();
 
-  const approximateBlockShare = useActiveCoinTickerDisplayValue(
-    data?.approximateBlockShare,
-    coin,
-    1000000
-  );
+  React.useEffect(() => {
+    d(poolStatsGet(activeTicker));
+  }, [activeTicker, d]);
+
+  const poolStatsState = useReduxState('poolStats');
+
+  // const approximateBlockShare = useActiveCoinTickerDisplayValue(
+  //   data?.approximateBlockShare,
+  //   coin,
+  //   1000000
+  // );
   const balance = useActiveCoinTickerDisplayValue(data?.balance, coin, 1000000);
   const tickerBalance = getDisplayCounterTickerValue(
     data?.balanceCountervalue,
     counterTicker
   );
 
+  const dailyRewardPerGhState = useDailyRewardPerGhState();
+
+  const estimatedDailyEarnings =
+    poolStatsState.data?.averageHashrate &&
+    dailyRewardPerGhState.data &&
+    minerHeaderStatsState.data?.roundShare
+      ? (poolStatsState.data?.averageHashrate *
+          dailyRewardPerGhState.data *
+          minerHeaderStatsState.data?.roundShare) /
+        1000000000
+      : 0;
+  const estimated = {
+    ticker: estimatedDailyEarnings
+      ? getActiveCoinDisplayValue(estimatedDailyEarnings, activeCoin)
+      : null,
+    counterTicker:
+      estimatedDailyEarnings && data?.countervaluePrice
+        ? getDisplayCounterTickerValue(
+            (estimatedDailyEarnings /
+              Math.pow(10, activeCoin?.decimalPlaces || 1000000000)) *
+              data.countervaluePrice,
+            counterTicker
+          )
+        : null,
+  };
+
   return (
     <CardGrid>
       <Card padding>
         <CardTitle>
           Workers <span style={{ fontWeight: 600 }}>Online</span>/
-          <span className="accent" style={{ fontWeight: 600 }}>
-            Offline
-          </span>
+          <span>Offline</span>
         </CardTitle>
         <StatItem
           value={
             data ? (
               <>
-                {data.workersOnline}/
-                <span className="accent">{data.workersOffline}</span>
+                {data.workersOnline}
+                {' / '}
+                <ErrorText>{data.workersOffline}</ErrorText>
               </>
             ) : null
           }
@@ -102,6 +150,13 @@ export const HeaderStats: React.FC<{
         />
       </Card>
       <Card padding>
+        <CardTitle>Estimated daily earnings</CardTitle>
+        <StatItem
+          value={estimated.ticker}
+          subValue={estimated.counterTicker && <>≈ {estimated.counterTicker}</>}
+        />
+      </Card>
+      {/* <Card padding>
         <CardTitle>Next Block Share</CardTitle>
         <StatItem
           value={
@@ -109,7 +164,7 @@ export const HeaderStats: React.FC<{
           }
           subValue={<>Approximate Reward: {approximateBlockShare}</>}
         />
-      </Card>
+      </Card> */}
     </CardGrid>
   );
 };

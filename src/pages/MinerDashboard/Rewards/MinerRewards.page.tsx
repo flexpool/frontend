@@ -7,6 +7,7 @@ import {
   useActiveCoinTicker,
   useCounterTicker,
 } from 'src/rdx/localSettings/localSettings.hooks';
+import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiMinerReward } from 'src/types/Miner.types';
 import { fetchApi } from 'src/utils/fetchApi';
 import { MinerPplnsStats } from './MinerPplnsStats.section';
@@ -17,14 +18,8 @@ export const MinerRewardsPage = () => {
   const {
     params: { address },
   } = useRouteMatch<{ address: string }>();
-  const poolStatsState = useAsyncState<
-    [
-      {
-        total: number;
-      },
-      number
-    ]
-  >('stats', [{ total: 0 }, 0]);
+
+  const poolStatsState = useReduxState('poolStats');
 
   const minerRewardsState = useAsyncState<{
     price: number;
@@ -32,7 +27,6 @@ export const MinerRewardsPage = () => {
   }>('minerRewards', { price: 0, data: [] });
 
   const coinTicker = useActiveCoinTicker();
-
   const counterTicker = useCounterTicker();
 
   React.useEffect(() => {
@@ -46,22 +40,6 @@ export const MinerRewardsPage = () => {
       })
     );
   }, [address, coinTicker, counterTicker]);
-
-  React.useEffect(() => {
-    const init = {
-      query: {
-        coin: coinTicker,
-      },
-    };
-    poolStatsState.start(
-      Promise.all([
-        fetchApi<{
-          total: number;
-        }>('/pool/hashrate', init),
-        fetchApi<number>('/pool/averageHashrate', init),
-      ])
-    );
-  }, [coinTicker]);
 
   return (
     <>
@@ -77,11 +55,11 @@ export const MinerRewardsPage = () => {
       <MinerRewardStatsSection
         counterPrice={minerRewardsState.data?.price || 0}
         rewards={minerRewardsState.data?.data || []}
-        averagePoolHashrate={poolStatsState.data && poolStatsState.data[1]}
+        averagePoolHashrate={poolStatsState.data?.averageHashrate}
       />
       <MinerPplnsStats
-        averagePoolHashrate={poolStatsState.data && poolStatsState.data[1]}
-        poolHashrate={poolStatsState.data && poolStatsState.data[0].total}
+        averagePoolHashrate={poolStatsState.data?.averageHashrate}
+        poolHashrate={poolStatsState.data?.hashrate.total}
       />
     </>
   );

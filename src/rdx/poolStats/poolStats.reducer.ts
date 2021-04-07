@@ -10,4 +10,4 @@ export const defaultState = defaultReducerState as DefaultState<ApiPoolStats>;
 
 const getReducer = createGetReducer<ApiPoolStats>();
 
-export const reducer = composeReducers('@poolCoins', defaultState)(getReducer);
+export const reducer = composeReducers('@poolStats', defaultState)(getReducer);

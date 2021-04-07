@@ -16,10 +16,11 @@ import * as am4charts from '@amcharts/amcharts4/charts';
 import { dateUtils } from 'src/utils/date.utils';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { ChartContainer } from 'src/components/Chart/ChartContainer';
+import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
 
 export const MinerPplnsStats: React.FC<{
-  averagePoolHashrate: number | null;
-  poolHashrate: number | null;
+  averagePoolHashrate: number | null | undefined;
+  poolHashrate: number | null | undefined;
 }> = ({ averagePoolHashrate = 0, poolHashrate = 0 }) => {
   const { data: headerStatsData } = useReduxState('minerHeaderStats');
 
@@ -31,6 +32,12 @@ export const MinerPplnsStats: React.FC<{
   const activeCoin = useActiveCoin();
 
   const shareLogState = useAsyncState<number[]>();
+
+  const approximateBlockShare = useActiveCoinTickerDisplayValue(
+    headerStatsData?.approximateBlockShare,
+    activeCoin,
+    1000000
+  );
 
   React.useEffect(() => {
     if (address && activeCoinTicker) {
@@ -159,7 +166,7 @@ export const MinerPplnsStats: React.FC<{
             }
           />
         </Card>
-        {/* <Card padding>
+        <Card padding>
           <CardTitle>
             Current Round Share&nbsp;
             <Tooltip>
@@ -174,9 +181,13 @@ export const MinerPplnsStats: React.FC<{
                 100000000
               }%`
             }
-            subValue="Aproximate reward: __TODO calc"
+            subValue={
+              approximateBlockShare && (
+                <>Aproximate reward: {approximateBlockShare}</>
+              )
+            }
           />
-        </Card> */}
+        </Card>
         <Card padding>
           <CardTitle>
             Share Log Wipeout Duration{' '}
