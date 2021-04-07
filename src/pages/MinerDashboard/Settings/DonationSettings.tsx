@@ -3,7 +3,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useRouteMatch } from 'react-router';
 import { Button } from 'src/components/Button';
-import { CheckboxField } from 'src/components/Form/Checkbox';
 import { ErrorBox } from 'src/components/Form/ErrorBox';
 import { FieldGroup } from 'src/components/Form/FieldGroup';
 import { Submit } from 'src/components/Form/Submit';

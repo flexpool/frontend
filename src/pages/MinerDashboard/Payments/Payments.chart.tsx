@@ -3,8 +3,6 @@ import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { fetchApi } from 'src/utils/fetchApi';
-import { Card } from 'src/components/layout/Card';
-import { ChartTitle } from 'src/components/Typo/ChartTitle';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { ChartContainer } from 'src/components/Chart/ChartContainer';
 

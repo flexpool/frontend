@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { useRouteMatch } from 'react-router';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import {
-  useActiveCoin,
   useActiveCoinTicker,
   useCounterTicker,
 } from 'src/rdx/localSettings/localSettings.hooks';

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Card } from 'src/components/layout/Card';
 import { LinkOut } from 'src/components/LinkOut';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { dateUtils } from 'src/utils/date.utils';

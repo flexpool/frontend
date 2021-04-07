@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { useRouteMatch } from 'react-router';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
-import { MinerPaymentsList } from './MinerPayments.list';
 import PaymentsChart from './Payments.chart';
 import { GeneralPaymentStatsSection } from './PaymentStats.section';
 

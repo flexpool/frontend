@@ -18,12 +18,10 @@ import Modal from '../Modal/Modal';
 import { SearchAddressCachedResult } from '../SearchAddressBar/SearchAddressCachedResult';
 import { SearchAddressBar } from '../SearchAddressBar/SearchAddressBar';
 import { Ws } from '../Typo/Typo';
-import { OuterEvent } from '../DivOuterEvents';
 import { Burger } from '../Burger/Burger';
 import { clx } from 'src/utils/clx';
 
 import { ReactComponent as ReactLogo } from 'src/assets/logo.svg';
-import { SelectCoin } from '../SelectCoin';
 import { SelectTheme } from '../SelectTheme';
 import { Spacer } from './Spacer';
 import { Helmet } from 'react-helmet-async';

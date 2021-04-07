@@ -1,5 +1,3 @@
-import { Link, useLocation } from 'react-router-dom';
-import { Button } from 'src/components/Button';
 import { CopyButton } from 'src/components/CopyButton';
 import { Card } from 'src/components/layout/Card';
 import { LinkOut } from 'src/components/LinkOut';

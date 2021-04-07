@@ -3,12 +3,9 @@ import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import { SectionNotAvailable } from 'src/components/SectionNotAvailable';
 import { fetchApi } from 'src/utils/fetchApi';
-import { Card } from 'src/components/layout/Card';
-import { ChartTitle } from 'src/components/Typo/ChartTitle';
 import { Spacer } from 'src/components/layout/Spacer';
 import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
 import { ChartContainer } from 'src/components/Chart/ChartContainer';
-import { useAsyncState } from 'src/hooks/useAsyncState';
 
 export const StatsChart: React.FC<{
   coinTicker: string;
