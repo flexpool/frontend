@@ -18,7 +18,7 @@ export type ButtonProps = {
 };
 
 export const Button = styled.button<ButtonProps>`
-  transition: 0.2s all;
+  transition: 0.1s all;
   display: flex;
   padding-left: 1rem;
   padding-right: 1rem;
