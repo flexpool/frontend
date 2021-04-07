@@ -43,8 +43,8 @@ const Th = styled.th<{ alignRight?: boolean; hoverable?: boolean }>`
 `;
 
 const Td = styled.td<{ alignRight?: boolean }>`
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   text-align: left;
   color: var(--text-secondary);
   font-weight: 500;
@@ -56,17 +56,16 @@ const Td = styled.td<{ alignRight?: boolean }>`
 `;
 
 const Tr = styled.tr<{ clickable?: boolean }>`
+  transition: 0.2s all;
+  &:hover {
+    td {
+      background: rgba(0, 0, 0, 0.02);
+    }
+  }
   ${(p) =>
     p.clickable &&
     `
     cursor: pointer;
-    &:hover {
-
-      td {
-        
-        background: var(--bg-secondary);
-      }
-    }
   `};
 `;
 

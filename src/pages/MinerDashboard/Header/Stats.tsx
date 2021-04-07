@@ -18,7 +18,6 @@ import { StatItem } from 'src/components/StatItem';
 import { useDailyRewardPerGhState } from 'src/hooks/useDailyRewardPerGhState';
 import { poolStatsGet } from 'src/rdx/poolStats/poolStats.actions';
 import { useDispatch } from 'react-redux';
-import { useLocalCollectionState } from 'src/hooks/useLocalState';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { FaCalendar, FaCalendarDay, FaCalendarWeek } from 'react-icons/fa';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
@@ -26,6 +25,7 @@ import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 
 const EstimatedIntervalSwitch = styled.span`
   cursor: pointer;
+  user-select: none;
   &:hover {
     color: var(--primary);
   }
