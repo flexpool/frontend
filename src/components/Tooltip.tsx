@@ -26,14 +26,15 @@ const Message = styled.div`
 `;
 
 export const TooltipContent: React.FC<{
-  message: React.ReactNode;
+  message?: React.ReactNode;
+  children?: React.ReactNode;
   action?: React.ReactNode;
 }> = (props) => {
   return (
     <div
       className={`info-tooltip-content` + (props.action ? ' has-action' : '')}
     >
-      <Message>{props.message}</Message>
+      <Message>{props.message || props.children}</Message>
       <div className="action-wrapper">{props.action}</div>
     </div>
   );

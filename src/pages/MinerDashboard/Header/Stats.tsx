@@ -18,7 +18,18 @@ import { StatItem } from 'src/components/StatItem';
 import { useDailyRewardPerGhState } from 'src/hooks/useDailyRewardPerGhState';
 import { poolStatsGet } from 'src/rdx/poolStats/poolStats.actions';
 import { useDispatch } from 'react-redux';
+import { useLocalCollectionState } from 'src/hooks/useLocalState';
+import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
+import { FaCalendar, FaCalendarDay, FaCalendarWeek } from 'react-icons/fa';
+import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 //
+
+const EstimatedIntervalSwitch = styled.span`
+  cursor: pointer;
+  &:hover {
+    color: var(--primary);
+  }
+`;
 
 const ProgressBarWrapper = styled.div`
   margin-top: 8px;
@@ -43,6 +54,9 @@ const ProgressBar = styled.div`
 const ErrorText = styled.span`
   color: var(--danger);
 `;
+const SecondaryText = styled.span`
+  color: var(--text-tertiary);
+`;
 
 const BalanceProgressBar: React.FC<{ value: number }> = ({ value }) => {
   const [progress, setProgress] = useState(0);
@@ -58,6 +72,8 @@ const BalanceProgressBar: React.FC<{ value: number }> = ({ value }) => {
   );
 };
 
+type EstimateInterval = 1 | 7 | 30;
+
 export const HeaderStats: React.FC<{
   coin?: ApiPoolCoin;
 }> = ({ coin }) => {
@@ -69,6 +85,11 @@ export const HeaderStats: React.FC<{
   const activeCoin = useActiveCoin();
   const settings = minerDetailsState.data;
   const d = useDispatch();
+
+  const [
+    estimateInterval,
+    setEstimateInterval,
+  ] = useLocalStorageState<EstimateInterval>('estimateInterval', 1);
 
   React.useEffect(() => {
     d(poolStatsGet(activeTicker));
@@ -100,12 +121,15 @@ export const HeaderStats: React.FC<{
       : 0;
   const estimated = {
     ticker: estimatedDailyEarnings
-      ? getActiveCoinDisplayValue(estimatedDailyEarnings, activeCoin)
+      ? getActiveCoinDisplayValue(
+          estimatedDailyEarnings * estimateInterval,
+          activeCoin
+        )
       : null,
     counterTicker:
       estimatedDailyEarnings && data?.countervaluePrice
         ? getDisplayCounterTickerValue(
-            (estimatedDailyEarnings /
+            ((estimatedDailyEarnings * estimateInterval) /
               Math.pow(10, activeCoin?.decimalPlaces || 1000000000)) *
               data.countervaluePrice,
             counterTicker
@@ -113,20 +137,51 @@ export const HeaderStats: React.FC<{
         : null,
   };
 
+  const CalendarIcon =
+    estimateInterval === 1
+      ? FaCalendarDay
+      : estimateInterval === 7
+      ? FaCalendarWeek
+      : FaCalendar;
+  const estimateText =
+    estimateInterval === 1
+      ? 'daily'
+      : estimateInterval === 7
+      ? 'weekly'
+      : 'monthly';
+
+  const handleToggleEstimateInterval = () => {
+    switch (estimateInterval) {
+      case 1: {
+        setEstimateInterval(7);
+        return;
+      }
+      case 7: {
+        setEstimateInterval(30);
+        return;
+      }
+      case 30: {
+        setEstimateInterval(1);
+        return;
+      }
+    }
+  };
+
   return (
     <CardGrid>
       <Card padding>
-        <CardTitle>
-          Workers <span style={{ fontWeight: 600 }}>Online</span>/
-          <span>Offline</span>
-        </CardTitle>
+        <CardTitle>Workers Online/Offline</CardTitle>
         <StatItem
           value={
             data ? (
               <>
                 {data.workersOnline}
-                {' / '}
-                <ErrorText>{data.workersOffline}</ErrorText>
+                {'/'}
+                {data.workersOffline > 0 ? (
+                  <ErrorText>{data.workersOffline}</ErrorText>
+                ) : (
+                  <SecondaryText>{data.workersOffline}</SecondaryText>
+                )}
               </>
             ) : null
           }
@@ -150,7 +205,17 @@ export const HeaderStats: React.FC<{
         />
       </Card>
       <Card padding>
-        <CardTitle>Estimated daily earnings</CardTitle>
+        <CardTitle>
+          Estimated earnings{' '}
+          <EstimatedIntervalSwitch onClick={handleToggleEstimateInterval}>
+            ({estimateText}){' '}
+            <Tooltip icon={<CalendarIcon />}>
+              <TooltipContent>
+                Click to change between daily, weekly and monthly estimate.
+              </TooltipContent>
+            </Tooltip>
+          </EstimatedIntervalSwitch>
+        </CardTitle>
         <StatItem
           value={estimated.ticker}
           subValue={estimated.counterTicker && <>≈ {estimated.counterTicker}</>}

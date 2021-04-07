@@ -9,6 +9,9 @@ const StatItemValue = styled.div`
   @media screen and (max-width: 560px) {
     font-size: 1.35rem;
   }
+  .ticker {
+    color: var(--text-primary);
+  }
 `;
 const StatItemSubValue = styled.div`
   font-weight: 700;

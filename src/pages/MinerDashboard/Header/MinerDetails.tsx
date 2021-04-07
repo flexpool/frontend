@@ -47,6 +47,9 @@ const Item = styled.div`
 const Content = styled.div`
   display: flex;
   flex-wrap: wrap;
+  .ticker {
+    color: var(--text-primary);
+  }
   @media screen and (max-width: 900px) {
     margin-top: -0.5rem;
     ${Item} {
