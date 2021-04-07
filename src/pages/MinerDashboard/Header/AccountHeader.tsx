@@ -25,6 +25,9 @@ const AddressContainer = styled.div`
   button {
     flex-shrink: 0;
   }
+  &:hover {
+    text-decoration: none;
+  }
 `;
 
 const Address = styled(LinkOut)`
