@@ -18,7 +18,7 @@ const testConnection = (domain: string) => {
   const latencyPromise = new Promise<number>((resolve, reject) => {
     const latencyData: number[] = [];
     let startTime = new Date();
-    const wsPingTestClient = new w3cwebsocket(`ws://${domain}:28246`);
+    const wsPingTestClient = new w3cwebsocket(`wss://${domain}:28246`);
 
     const TEST_COUNT = 6;
 
@@ -80,8 +80,18 @@ const SelectButton = styled.button<{ selected?: boolean }>`
 
 const cols: DynamicListColumn<MineableCoinRegion>[] = [
   {
-    title: 'Server location',
-    Component: ({ data }) => <Ws>{data.title}</Ws>,
+    title: 'Region location',
+    Component: ({ data }) => (
+      <Ws>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <img
+            src={`https://static.flexpool.io/assets/countries/${data.imageCode}.svg`}
+            style={{ width: '32px', marginRight: '10px' }}
+          ></img>
+          {data.title}
+        </div>
+      </Ws>
+    ),
   },
   {
     title: 'Domain',
@@ -144,7 +154,7 @@ export const PingTest: React.FC<{ data: MineableCoinRegion[] }> = ({
   return (
     <>
       <h2>
-        <Highlight>#2</Highlight> Select your server
+        <Highlight>#2</Highlight> Select your region
       </h2>
       <p>
         For the best performance, you should choose server with lowest latency
