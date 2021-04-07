@@ -18,7 +18,7 @@ const testConnection = (domain: string) => {
   const latencyPromise = new Promise<number>((resolve, reject) => {
     const latencyData: number[] = [];
     let startTime = new Date();
-    const wsPingTestClient = new w3cwebsocket(`ws://${domain}:28246`);
+    const wsPingTestClient = new w3cwebsocket(`wss://${domain}:28246`);
 
     const TEST_COUNT = 6;
 
