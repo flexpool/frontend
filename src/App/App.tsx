@@ -49,12 +49,12 @@ const AppContent = () => {
       const scrollToEl = document.getElementById(hash.replace('#', ''));
       if (scrollToEl) {
         window.scrollTo({
-          top: scrollToEl.offsetTop - 50,
+          top: scrollToEl.getBoundingClientRect().top - 50 + window.scrollY,
           left: 0,
           behavior: 'smooth',
         });
       }
-    }, 40);
+    }, 50);
   }, [location.hash]);
 
   // location
