@@ -221,21 +221,23 @@ export const PingTest: React.FC<{ data: MineableCoinRegion[] }> = ({
       </p>
       <div>
         <table style={{ width: 'auto' }}>
-          <tr>
-            <td>
-              <strong>Secure SSL Port</strong>
-            </td>
-            <td>
-              <Sticker variant="success">5555</Sticker>
-            </td>
-          </tr>
-          <tr>
-            <td>TCP Port</td>
-            <td>
-              <Sticker>4444</Sticker>
-              <WarningIcon />
-            </td>
-          </tr>
+          <tbody>
+            <tr>
+              <td>
+                <strong>Secure SSL Port</strong>
+              </td>
+              <td>
+                <Sticker variant="success">5555</Sticker>
+              </td>
+            </tr>
+            <tr>
+              <td>TCP Port</td>
+              <td>
+                <Sticker>4444</Sticker>
+                <WarningIcon />
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </>
