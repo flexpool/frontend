@@ -132,7 +132,7 @@ const cols: DynamicListColumn<ApiPoolCoinFull>[] = [
       const priceChange = data.marketData.priceChange;
       const priceChangeDirection = priceChange >= 0 ? 'up' : 'down';
       const v = useCounterValue(data.marketData.prices);
-      console.log(priceChangeDirection);
+
       return (
         <Mono>
           <Ws>
