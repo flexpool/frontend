@@ -157,8 +157,8 @@ export const FooterSection = () => {
           <FooterCompany>
             <FooterLogo src={IconLogo} alt="Flexpool Icon White" />
             <div>
-              © 2020-{new Date().getFullYear()} Flexpool or its affilliates. All
-              rights reserved.
+              © 2020-{new Date().getFullYear()} Flexpool.io or its affilliates.
+              All rights reserved.
             </div>
           </FooterCompany>
           <SocialIcons>

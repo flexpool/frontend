@@ -97,7 +97,7 @@ const App = () => {
     <>
       <HelmetProvider>
         <ReduxProvider store={store}>
-          <Helmet titleTemplate="%s | Flexpool" />
+          <Helmet titleTemplate="%s | Flexpool.io" />
           <ThemeProvider theme={mainTheme}>
             <Router>
               <AppContent />
