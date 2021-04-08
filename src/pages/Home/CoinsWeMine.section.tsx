@@ -137,7 +137,7 @@ const cols: DynamicListColumn<ApiPoolCoinFull>[] = [
           <Ws>
             {v}{' '}
             <PriceChange direction={priceChangeDirection}>
-              ({priceChangeDirection ? <FaArrowUp /> : <FaArrowDown />}
+              ({priceChangeDirection === 'up' ? <FaArrowUp /> : <FaArrowDown />}
               {Math.round(Math.abs(priceChange) * 10) / 10}%)
             </PriceChange>
           </Ws>
