@@ -16,11 +16,12 @@ import { SelectCounterTicker } from 'src/components/SelectCounterTicker';
 import { SelectTheme } from 'src/components/SelectTheme';
 import { Spacer } from 'src/components/layout/Spacer';
 
-const LinkOut: React.FC<{ href: string; children: React.ReactNode }> = ({
-  href,
-  children,
-}) => (
-  <a href={href} target="_blank" rel="noopener noreferrer">
+const LinkOut: React.FC<{
+  href: string;
+  style?: Object;
+  children: React.ReactNode;
+}> = ({ href, children, style }) => (
+  <a href={href} target="_blank" rel="noopener noreferrer" style={style}>
     {children}
   </a>
 );
@@ -156,9 +157,15 @@ export const FooterSection = () => {
         <FooterEnd>
           <FooterCompany>
             <FooterLogo src={IconLogo} alt="Flexpool Icon White" />
-            <div>
-              © 2020-{new Date().getFullYear()} Flexpool or its affilliates. All
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              © 2020-{new Date().getFullYear()} Flexpool or its affiliates. All
               rights reserved.
+              <LinkOut
+                href="https://github.com/flexpool/frontend"
+                style={{ marginLeft: '10px' }}
+              >
+                Open Source
+              </LinkOut>
             </div>
           </FooterCompany>
           <SocialIcons>
