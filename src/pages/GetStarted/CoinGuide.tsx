@@ -3,6 +3,7 @@ import { FaDownload } from 'react-icons/fa';
 import { Redirect, useRouteMatch } from 'react-router-dom';
 import { Button } from 'src/components/Button';
 import { Card, CardBody } from 'src/components/layout/Card';
+import { Page } from 'src/components/layout/Page';
 import { LinkOut } from 'src/components/LinkOut';
 import { Highlight } from 'src/components/Typo/Typo';
 import { getOsLogoUrl } from 'src/utils/staticImage.utils';
@@ -98,7 +99,7 @@ export const MineableCoinGuidePage: React.FC = () => {
   }
 
   return (
-    <div>
+    <Page>
       <h1>{mineableCoin.name} mining</h1>
       <SetWallet />
       {mineableCoin && <PingTest data={mineableCoin.regions} />}
@@ -148,6 +149,6 @@ export const MineableCoinGuidePage: React.FC = () => {
           </Card>
         ))}
       </SoftwareWrapper>
-    </div>
+    </Page>
   );
 };

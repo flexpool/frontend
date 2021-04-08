@@ -15,6 +15,7 @@ export const mainTheme = {
     success: 'var(--success)',
     danger: 'var(--secondary)',
     primary: 'var(--primary)',
+    warning: 'var(--warning)',
     onBg: '#fff',
   },
   border: {

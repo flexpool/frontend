@@ -9,17 +9,6 @@ const Container = styled.table`
   border: none;
 `;
 
-const shared = `
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  &:first-child {
-    padding-left: 1.5rem;
-  }
-  &:last-child {
-    padding-right: 1.5rem;
-  }
-`;
-
 const Th = styled.th<{ alignRight?: boolean; hoverable?: boolean }>`
   text-transform: uppercase;
   font-weight: 600;
@@ -28,9 +17,6 @@ const Th = styled.th<{ alignRight?: boolean; hoverable?: boolean }>`
 
   font-weight: 700;
   text-align: left;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  ${shared};
   ${(p) => p.alignRight && `text-align: right;`};
   ${(p) =>
     p.hoverable &&
@@ -50,7 +36,6 @@ const Td = styled.td<{ alignRight?: boolean }>`
   font-weight: 500;
   border-top: 1px solid var(--border-color);
 
-  ${shared};
   color: var(--text-primary);
   ${(p) => p.alignRight && `text-align: right;`};
 `;

@@ -15,6 +15,7 @@ import { CopyButton } from 'src/components/CopyButton';
 import styled from 'styled-components';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { Sticker } from 'src/components/Sticker';
+import { Link } from 'react-router-dom';
 
 const testConnection = (domain: string) => {
   const latencyPromise = new Promise<number>((resolve, reject) => {
@@ -204,6 +205,33 @@ export const PingTest: React.FC<{ data: MineableCoinRegion[] }> = ({
         data={data}
         columns={cols}
       />
+      <h3>Ports</h3>
+      <p>
+        We highly encourage everyone to use secured port when connecting to
+        Flexpool servers. Read more on{' '}
+        <Link to="/faq#should-i-use-ssl">
+          why you shouldn't use unsecured ports
+        </Link>
+        .
+      </p>
+      <div>
+        <table style={{ width: 'auto' }}>
+          <tr>
+            <td>
+              <strong>Secure SSL Port</strong>
+            </td>
+            <td>
+              <Sticker variant="success">5555</Sticker>
+            </td>
+          </tr>
+          <tr>
+            <td>Port</td>
+            <td>
+              <Sticker>5555</Sticker>
+            </td>
+          </tr>
+        </table>
+      </div>
     </>
   );
 };

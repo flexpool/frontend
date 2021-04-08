@@ -49,7 +49,7 @@ const AppContent = () => {
       const scrollToEl = document.getElementById(hash.replace('#', ''));
       if (scrollToEl) {
         window.scrollTo({
-          top: scrollToEl.getBoundingClientRect().top - 50 + window.scrollY,
+          top: scrollToEl.getBoundingClientRect().top - 80 + window.scrollY,
           left: 0,
           behavior: 'smooth',
         });

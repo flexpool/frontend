@@ -21,6 +21,7 @@ type MineableCoin = {
   algorithm: string;
   regions: MineableCoinRegion[];
   description: string;
+  poolDetails: { key: string; value: string }[];
   hardware: {
     title: string;
     key: 'GPU';
@@ -34,6 +35,16 @@ export const mineableCoins: MineableCoin[] = [
     ticker: 'eth',
     algorithm: 'Ethash',
     description: '',
+    poolDetails: [
+      { key: 'Reward Scheme', value: 'PPLNS (Pay Per Last N Shares)' },
+      { key: 'We pay', value: 'Everything' },
+      { key: 'Pool Donation', value: '1% (Can be changed in settings)' },
+      { key: 'Payout Round', value: 'Every hour' },
+      { key: 'Payouts', value: 'from 0.05 ETH up to 100 ETH' },
+      { key: 'Block confirmation time', value: '120 Blocks' },
+      { key: 'Share Difficulty', value: '4 GH' },
+      { key: 'Mining Algorithm', value: 'Ethash' },
+    ],
     regions: [
       {
         domain: 'eth-us-east.flexpool.io',

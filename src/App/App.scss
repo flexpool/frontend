@@ -46,7 +46,7 @@ h2 {
 
 p,
 li {
-  max-width: 660px;
+  max-width: 830px;
   line-height: 1.4;
   color: var(--text-primary);
   & + * {
@@ -114,8 +114,8 @@ table {
 
 td,
 th {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   &:first-child {
     padding-left: 1.5rem;
   }
@@ -125,14 +125,18 @@ th {
 }
 
 td {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   text-align: left;
   color: var(--text-secondary);
   font-weight: 500;
   border-top: 1px solid var(--border-color);
 
   color: var(--text-primary);
+}
+
+tr:first-child td {
+  border-top: none;
 }
 
 th {
@@ -145,6 +149,7 @@ th {
   text-align: left;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
 }
 
 /**

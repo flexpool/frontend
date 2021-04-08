@@ -9,7 +9,7 @@ export const Sticker = styled.span<{
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: 0.75rem;
+  background-color: var(--bg-secondary);
   ${(p) => {
     if (p.variant) {
       return `
