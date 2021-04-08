@@ -1,13 +1,16 @@
 import React from 'react';
+import { isDev } from 'src/utils/devUtils';
 
 const style1 = 'color: #aaa; font-weight: "normal"';
 const style2 = 'font-weight: bold;';
 
 const consola = (title: string, desc: string, ...t: any[]) => {
-  console.group(`%c${title} %c${desc}`, style1, style2);
+  if (isDev()) {
+    console.group(`%c${title} %c${desc}`, style1, style2);
 
-  console.log(...t);
-  console.groupEnd();
+    console.log(...t);
+    console.groupEnd();
+  }
 };
 
 export const useAsyncState = <T = any, E = any>(
