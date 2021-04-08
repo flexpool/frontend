@@ -31,7 +31,7 @@ export const HomePage = () => {
   return (
     <Page>
       <Helmet>
-        <title>The Largest North American Ethereum Pool</title>
+        <title>The Most Advanced Mining Pool</title>
       </Helmet>
       <Hero>
         <Content contentCenter style={{ position: 'relative', zIndex: 100 }}>
