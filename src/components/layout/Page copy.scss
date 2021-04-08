@@ -1,0 +1,20 @@
+.page-transition {
+  transform: translate(0);
+  transition: 1s all;
+  opacity: 0;
+
+  &.enter {
+    opacity: 0;
+  }
+  &.enter-active {
+    opacity: 0;
+  }
+
+  &.enter-done {
+    opacity: 1;
+  }
+
+  &.exit {
+    opacity: 0;
+  }
+}

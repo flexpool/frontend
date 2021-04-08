@@ -71,11 +71,11 @@ const PriceChange = styled.span<{ direction: 'up' | 'down' }>`
     switch (p.direction) {
       case 'up':
         return `
-        color: var(--danger);
+        color: var(--success);
       `;
       case 'down':
         return `
-        color: var(--success);
+        color: var(--danger);
       `;
     }
   }}
@@ -132,12 +132,13 @@ const cols: DynamicListColumn<ApiPoolCoinFull>[] = [
       const priceChange = data.marketData.priceChange;
       const priceChangeDirection = priceChange >= 0 ? 'up' : 'down';
       const v = useCounterValue(data.marketData.prices);
+
       return (
         <Mono>
           <Ws>
             {v}{' '}
             <PriceChange direction={priceChangeDirection}>
-              ({priceChangeDirection ? <FaArrowUp /> : <FaArrowDown />}
+              ({priceChangeDirection === 'up' ? <FaArrowUp /> : <FaArrowDown />}
               {Math.round(Math.abs(priceChange) * 10) / 10}%)
             </PriceChange>
           </Ws>

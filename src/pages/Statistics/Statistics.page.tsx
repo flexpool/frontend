@@ -62,7 +62,7 @@ export const StatisticsPage = () => {
               }
             />
             <StatBox title="Miners" value={poolStatsState.data?.minerCount} />
-            <StatBox title="Workers" value={poolStatsState.data?.minerCount} />
+            <StatBox title="Workers" value={poolStatsState.data?.workerCount} />
           </StatBoxContainer>
         </Content>
         <Content>

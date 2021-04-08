@@ -7,46 +7,39 @@ import { StatBox, StatBoxContainer } from 'src/components/StatBox';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { fetchApi } from 'src/utils/fetchApi';
 import { formatSi } from 'src/utils/si.utils';
-
-import useWebSocket from 'react-use-websocket';
-import { useReduxState } from 'src/rdx/useReduxState';
-import { getDisplayLuck } from 'src/utils/luck.utils';
 import { BlocksSection } from 'src/sections/Blocks.section';
 import { Luck } from 'src/components/Luck';
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
-
-const SOCKET_URL = (process.env.REACT_APP_API_URL || '').replace('http', 'ws');
+import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 
 export const BlocksPage = () => {
-  const statsState = useAsyncState('poolStats', [0]);
-  const init = { query: { coin: 'eth' } };
-
-  const localSettingsState = useReduxState('localSettings');
-  const websocket = useWebSocket(
-    `${SOCKET_URL}/poolws/blocks?coin=${localSettingsState.coin}`
-  );
-
-  type ApiBlockSocket = {
+  const statsState = useAsyncState<{
+    averageLuck: number;
     currentLuck: number;
-    difficulty: number;
     networkHashrate: number;
-  };
-  const blockStats = React.useMemo(() => {
-    const lastMessage = (websocket.lastJsonMessage as ApiBlockSocket) || {
-      currentLuck: 0,
-      difficulty: 0,
-      networkHasrate: 0,
-    };
-
-    return lastMessage;
-  }, [websocket.lastJsonMessage]);
+    networkDifficulty: number;
+  } | null>('poolStats', null);
+  const activeCoinTicker = useActiveCoinTicker();
 
   React.useEffect(() => {
+    const init = { query: { coin: activeCoinTicker } };
     statsState.start(
-      Promise.all([fetchApi<number>('/pool/averageLuck', init)])
+      Promise.all([
+        fetchApi<number>('/pool/averageLuck', init),
+        fetchApi<number>('/pool/currentLuck', init),
+        fetchApi<number>('/pool/networkHashrate', init),
+        fetchApi<number>('/pool/networkDifficulty', init),
+      ]).then(
+        ([averageLuck, currentLuck, networkHashrate, networkDifficulty]) => ({
+          averageLuck,
+          currentLuck,
+          networkHashrate,
+          networkDifficulty,
+        })
+      )
     );
-  }, []);
+  }, [activeCoinTicker]);
 
   return (
     <Page>
@@ -62,28 +55,27 @@ export const BlocksPage = () => {
           <StatBox
             title="Average Luck"
             value={
-              statsState.data &&
-              statsState.data[0] &&
-              getDisplayLuck(statsState.data[0] || 0)
+              statsState.data && <Luck value={statsState.data.averageLuck} />
             }
           />
           <StatBox
             title="Current Luck"
             value={
-              blockStats.currentLuck && <Luck value={blockStats.currentLuck} />
+              statsState.data && <Luck value={statsState.data.currentLuck} />
             }
           />
           <StatBox
             title="Network hashrate"
             value={
-              blockStats.networkHashrate &&
-              `${formatSi(blockStats.networkHashrate, 'H/s')}`
+              statsState.data &&
+              `${formatSi(statsState.data.networkHashrate, 'H/s')}`
             }
           />
           <StatBox
             title="Network difficulty"
             value={
-              blockStats.difficulty && `${formatSi(blockStats.difficulty, 'H')}`
+              statsState.data &&
+              `${formatSi(statsState.data.networkDifficulty, 'H')}`
             }
           />
         </StatBoxContainer>

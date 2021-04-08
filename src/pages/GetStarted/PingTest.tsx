@@ -13,6 +13,8 @@ import { FaCheck } from 'react-icons/fa';
 import { Highlight, Mono, Ws } from 'src/components/Typo/Typo';
 import { CopyButton } from 'src/components/CopyButton';
 import styled from 'styled-components';
+import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
+import { Sticker } from 'src/components/Sticker';
 
 const testConnection = (domain: string) => {
   const latencyPromise = new Promise<number>((resolve, reject) => {
@@ -78,20 +80,29 @@ const SelectButton = styled.button<{ selected?: boolean }>`
   `}
 `;
 
-const cols: DynamicListColumn<MineableCoinRegion>[] = [
+const cols: DynamicListColumn<
+  MineableCoinRegion,
+  {
+    setLowestLatency: (latency: number) => void;
+    lowestLatency: number;
+  }
+>[] = [
   {
     title: 'Region location',
-    Component: ({ data }) => (
-      <Ws>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <img
-            src={`https://static.flexpool.io/assets/countries/${data.imageCode}.svg`}
-            style={{ width: '32px', marginRight: '10px' }}
-          ></img>
-          {data.title}
-        </div>
-      </Ws>
-    ),
+    Component: ({ data }) => {
+      return (
+        <Ws>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <img
+              src={`https://static.flexpool.io/assets/countries/${data.imageCode}.svg`}
+              style={{ width: '32px', marginRight: '10px' }}
+              alt={data.imageCode}
+            />
+            {data.title}
+          </div>
+        </Ws>
+      );
+    },
   },
   {
     title: 'Domain',
@@ -105,19 +116,35 @@ const cols: DynamicListColumn<MineableCoinRegion>[] = [
   },
   {
     title: 'Average Latency',
-    Component: ({ data }) => {
-      const connectionState = useAsyncState();
+    Component: ({ data, config: { setLowestLatency, lowestLatency } }) => {
+      const connectionState = useAsyncState<number>();
       React.useEffect(() => {
         connectionState.start(testConnection(data.domain));
       }, []);
 
       const latency = connectionState.data;
 
+      React.useEffect(() => {
+        if (latency) {
+          setLowestLatency(latency);
+        }
+      }, [latency, setLowestLatency]);
+
       if (connectionState.isLoading) {
         return <LoaderSpinner size="xs" />;
       }
 
-      return <div>{latency ? `${latency} ms` : 'n/a'}</div>;
+      return (
+        <Ws>
+          {latency ? `${latency} ms` : 'n/a'}{' '}
+          {latency === lowestLatency && (
+            <>
+              &nbsp;
+              <Sticker variant="success">Fastest</Sticker>
+            </>
+          )}
+        </Ws>
+      );
     },
   },
   {
@@ -151,6 +178,17 @@ const cols: DynamicListColumn<MineableCoinRegion>[] = [
 export const PingTest: React.FC<{ data: MineableCoinRegion[] }> = ({
   data,
 }) => {
+  const [lowestLatency, setLowestLatency] = React.useState<number>(10000);
+
+  const handleSetLowestLatency = React.useCallback(
+    (l: number) => {
+      if (lowestLatency > l) {
+        setLowestLatency(l);
+      }
+    },
+    [lowestLatency]
+  );
+
   return (
     <>
       <h2>
@@ -161,7 +199,11 @@ export const PingTest: React.FC<{ data: MineableCoinRegion[] }> = ({
         to your mining rig or computer. The chart is displaying latency between
         servers and this device.
       </p>
-      <DynamicList data={data} columns={cols} />
+      <DynamicList
+        config={{ setLowestLatency: handleSetLowestLatency, lowestLatency }}
+        data={data}
+        columns={cols}
+      />
     </>
   );
 };

@@ -192,3 +192,12 @@ code {
   font-family: 'Roboto Mono';
   line-height: 1.4;
 }
+
+input,
+button,
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: none !important;
+}
