@@ -9,13 +9,17 @@ import { useAsyncState } from 'src/hooks/useAsyncState';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import qs from 'query-string';
 import { useHistory, useLocation } from 'react-router';
-import { FaCheck } from 'react-icons/fa';
+import { FaCheck, FaExclamationCircle } from 'react-icons/fa';
 import { Highlight, Mono, Ws } from 'src/components/Typo/Typo';
 import { CopyButton } from 'src/components/CopyButton';
 import styled from 'styled-components';
-import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { Sticker } from 'src/components/Sticker';
 import { Link } from 'react-router-dom';
+
+const WarningIcon = styled(FaExclamationCircle)`
+  color: var(--danger);
+  margin-left: 0.5rem;
+`;
 
 const testConnection = (domain: string) => {
   const latencyPromise = new Promise<number>((resolve, reject) => {
@@ -212,7 +216,8 @@ export const PingTest: React.FC<{ data: MineableCoinRegion[] }> = ({
         <Link to="/faq#should-i-use-ssl">
           why you shouldn't use unsecured ports
         </Link>
-        .
+        . <strong>IMPORTANT</strong>: Using SSL does not increase the stale
+        rate.
       </p>
       <div>
         <table style={{ width: 'auto' }}>
@@ -225,9 +230,10 @@ export const PingTest: React.FC<{ data: MineableCoinRegion[] }> = ({
             </td>
           </tr>
           <tr>
-            <td>Port</td>
+            <td>TCP Port</td>
             <td>
-              <Sticker>5555</Sticker>
+              <Sticker>4444</Sticker>
+              <WarningIcon />
             </td>
           </tr>
         </table>
