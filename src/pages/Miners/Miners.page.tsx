@@ -5,7 +5,6 @@ import { Spacer } from 'src/components/layout/Spacer';
 
 import { HeaderStat } from 'src/components/layout/StatHeader';
 import { MinersDistributionChart } from './MinersDistrubution.chart';
-import { TopDonatorsSection } from './TopDonors.section';
 import { TopMinersSection } from './TopMiners.section';
 
 export const MinersPage = () => {
@@ -19,9 +18,7 @@ export const MinersPage = () => {
       </HeaderStat>
       <Content padding>
         <TopMinersSection />
-
         <MinersDistributionChart />
-        <TopDonatorsSection />
       </Content>
       <Spacer size="xl" />
     </Page>
