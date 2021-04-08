@@ -8,22 +8,28 @@ export const AppTheme = () => {
   const localSettingsState = useReduxState('localSettings');
   // load system color scheme
   React.useEffect(() => {
-    if (
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-    ) {
-      d(localSettingsSet({ systemColorMode: 'dark' }));
-    } else {
-      d(localSettingsSet({ systemColorMode: 'light' }));
-    }
+    if (typeof window !== 'undefined') {
+      if (
+        window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+      ) {
+        d(localSettingsSet({ systemColorMode: 'dark' }));
+      } else {
+        d(localSettingsSet({ systemColorMode: 'light' }));
+      }
 
-    // system scheme watcher
-    window
-      .matchMedia('(prefers-color-scheme: dark)')
-      .addEventListener('change', (e) => {
-        const newColorScheme = e.matches ? 'dark' : 'light';
-        d(localSettingsSet({ systemColorMode: newColorScheme }));
-      });
+      // system scheme watcher
+      try {
+        window
+          .matchMedia('(prefers-color-scheme: dark)')
+          .addEventListener('change', (e) => {
+            const newColorScheme = e.matches ? 'dark' : 'light';
+            d(localSettingsSet({ systemColorMode: newColorScheme }));
+          });
+      } catch {
+        //
+      }
+    }
   }, [d]);
 
   const colorMode =

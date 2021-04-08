@@ -100,6 +100,5 @@ export const Button = styled.button<ButtonProps>`
 `;
 
 Button.defaultProps = {
-  type: 'button',
   size: 'default',
 };
