@@ -10,18 +10,12 @@ import {
   Redirect,
   useLocation,
 } from 'react-router-dom';
+
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { NavBar } from 'src/components/layout/NavBar';
 import { ThemeProvider } from 'styled-components/macro';
 import { mainTheme } from './styledTheme';
-import { HomePage } from 'src/pages/Home/Home.page';
 import { FooterSection } from 'src/sections/Footer.section';
-import { StatisticsPage } from 'src/pages/Statistics/Statistics.page';
-import { BlocksPage } from 'src/pages/Blocks/Blocks.page';
-import { MinersPage } from 'src/pages/Miners/Miners.page';
-import { FaqPage } from 'src/pages/Faq/Faq.page';
-import { SupportPage } from 'src/pages/Support/Support.page';
-import { MinerDashboardPage } from 'src/pages/MinerDashboard/MinerDashboard.page';
 
 import './init';
 import { usePoolCoins } from 'src/rdx/poolCoins/poolCoins.hooks';
@@ -29,10 +23,46 @@ import { localStorage } from 'src/utils/localStorage';
 import { AppState } from 'src/rdx/rootReducer';
 
 import { AppTheme } from './AppTheme';
-import { BrandAssetsPage } from 'src/pages/BrandAssets/BrandAssets.page';
-import { ContactUsPage } from 'src/pages/ContactUs/BrandAssets.page';
 import { SnackViewControl } from 'src/components/Snacks/SnackViewControl';
-import { GetStartedPage } from 'src/pages/GetStarted/GetStarted.page';
+
+/**
+ * Pages
+ */
+// const GetStartedPage = React.lazy(
+//   () => import('../pages/GetStarted/GetStarted.page')
+// );
+// const ContactUsPage = React.lazy(
+//   () => import('../pages/ContactUs/ContactUs.page')
+// );
+// const BrandAssetsPage = React.lazy(
+//   () => import('../pages/BrandAssets/BrandAssets.page')
+// );
+// const StatisticsPage = React.lazy(
+//   () => import('../pages/Statistics/Statistics.page')
+// );
+// const MinerDashboardPage = React.lazy(
+//   () => import('../pages/MinerDashboard/MinerDashboard.page')
+// );
+// const HomePage = React.lazy(() => import('../pages/Home/Home.page'));
+// const SupportPage = React.lazy(() => import('../pages/Support/Support.page'));
+// const MinersPage = React.lazy(() => import('../pages/Miners/Miners.page'));
+// const BlocksPage = React.lazy(() => import('../pages/Blocks/Blocks.page'));
+// const FaqPage = React.lazy(() => import('../pages/Faq/Faq.page'));
+
+import GetStartedPage from '../pages/GetStarted/GetStarted.page';
+import ContactUsPage from '../pages/ContactUs/ContactUs.page';
+import BrandAssetsPage from '../pages/BrandAssets/BrandAssets.page';
+import StatisticsPage from '../pages/Statistics/Statistics.page';
+import MinerDashboardPage from '../pages/MinerDashboard/MinerDashboard.page';
+import HomePage from '../pages/Home/Home.page';
+import SupportPage from '../pages/Support/Support.page';
+import MinersPage from '../pages/Miners/Miners.page';
+import BlocksPage from '../pages/Blocks/Blocks.page';
+import FaqPage from '../pages/Faq/Faq.page';
+
+/**
+ * init redux state
+ */
 
 const cachedState = localStorage<AppState>('app_state').get() || {};
 const store = createReduxStore(cachedState);
@@ -74,19 +104,26 @@ const AppContent = () => {
       <AppTheme />
       <NavBar />
       <SnackViewControl />
-      <Switch>
-        <Route component={GetStartedPage} path="/get-started" />
-        <Route exact strict component={StatisticsPage} path="/statistics" />
-        <Route exact strict component={FaqPage} path="/faq" />
-        <Route exact strict component={MinersPage} path="/miners" />
-        <Route component={MinerDashboardPage} path="/miners/:coin/:address" />
-        <Route exact strict component={BlocksPage} path="/blocks" />
-        <Route exact strict component={SupportPage} path="/support" />
-        <Route exact strict component={BrandAssetsPage} path="/brand-assets" />
-        <Route exact strict component={ContactUsPage} path="/contact" />
-        <Route exact strict component={HomePage} path="/" />
-        <Redirect to="/" />
-      </Switch>
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <Switch>
+          <Route component={GetStartedPage} path="/get-started" />
+          <Route exact strict component={StatisticsPage} path="/statistics" />
+          <Route exact strict component={FaqPage} path="/faq" />
+          <Route exact strict component={MinersPage} path="/miners" />
+          <Route component={MinerDashboardPage} path="/miners/:coin/:address" />
+          <Route exact strict component={BlocksPage} path="/blocks" />
+          <Route exact strict component={SupportPage} path="/support" />
+          <Route
+            exact
+            strict
+            component={BrandAssetsPage}
+            path="/brand-assets"
+          />
+          <Route exact strict component={ContactUsPage} path="/contact" />
+          <Route exact strict component={HomePage} path="/" />
+          <Redirect to="/" />
+        </Switch>
+      </React.Suspense>
       <FooterSection />
     </>
   );

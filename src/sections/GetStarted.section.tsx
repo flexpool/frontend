@@ -6,12 +6,19 @@ import styled from 'styled-components/macro';
 
 const StartButton = styled(Button)`
   color: var(--primary);
+  background: var(--text-on-bg);
+  border: none !important;
+  &:hover {
+    background: var(--text-on-bg);
+    opacity: 0.9;
+  }
 `;
 
 const Wrapper = styled.section`
   background: var(--primary);
-  color: var(--text-on-bg);
-  --text-primary: white;
+  h2 {
+    color: var(--text-on-bg);
+  }
 `;
 
 const Split = styled.div`

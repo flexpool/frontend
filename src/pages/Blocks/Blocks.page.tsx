@@ -85,3 +85,5 @@ export const BlocksPage = () => {
     </Page>
   );
 };
+
+export default BlocksPage;

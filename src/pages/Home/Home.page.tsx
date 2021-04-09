@@ -30,6 +30,8 @@ const SearchWrapper = styled.div`
   max-width: 600px;
   width: 100%;
   margin-top: 2rem;
+  border-radius: 5px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
 `;
 
 const PageContainer = styled(Page)`
@@ -69,4 +71,4 @@ export const HomePage = () => {
   );
 };
 
-// force build
+export default HomePage;

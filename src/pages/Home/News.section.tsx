@@ -17,7 +17,7 @@ const ItemWrapper = styled.a`
   &:hover {
     text-decoration: none;
     background-color: var(--primary);
-    margin: -10px;
+    margin: -8px;
     padding: 40px;
     z-index: 10;
     box-shadow: 0px 5px 20px 5px rgba(0, 0, 0, 0.2);

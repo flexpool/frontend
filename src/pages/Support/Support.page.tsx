@@ -107,3 +107,5 @@ export const SupportPage = () => {
     </Page>
   );
 };
+
+export default SupportPage;

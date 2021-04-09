@@ -73,3 +73,5 @@ export const StatisticsPage = () => {
     </Page>
   );
 };
+
+export default StatisticsPage;

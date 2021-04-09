@@ -173,3 +173,5 @@ export const FaqPage = () => {
     </Page>
   );
 };
+
+export default FaqPage;

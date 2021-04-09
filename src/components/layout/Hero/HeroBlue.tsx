@@ -38,7 +38,7 @@ export const HeroBlue: React.FC<{
 }> = ({ children, className }) => {
   return (
     <Hero className={className}>
-      <WorldMap src={MapSvg} alt="map" />
+      <WorldMap loading="lazy" src={MapSvg} alt="map" />
       {children}
     </Hero>
   );

@@ -35,3 +35,5 @@ export const GetStartedPage = () => {
     </Page>
   );
 };
+
+export default GetStartedPage;

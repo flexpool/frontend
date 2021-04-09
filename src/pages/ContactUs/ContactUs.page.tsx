@@ -21,3 +21,5 @@ export const ContactUsPage = () => {
     </Page>
   );
 };
+
+export default ContactUsPage;

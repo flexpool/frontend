@@ -24,3 +24,5 @@ export const MinersPage = () => {
     </Page>
   );
 };
+
+export default MinersPage;

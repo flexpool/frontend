@@ -190,3 +190,5 @@ export const BrandAssetsPage = () => {
     </Page>
   );
 };
+
+export default BrandAssetsPage;

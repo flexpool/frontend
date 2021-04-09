@@ -15,6 +15,7 @@ import { CopyButton } from 'src/components/CopyButton';
 import styled from 'styled-components';
 import { Sticker } from 'src/components/Sticker';
 import { Link } from 'react-router-dom';
+import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 
 const WarningIcon = styled(FaExclamationCircle)`
   color: var(--danger);
@@ -234,7 +235,16 @@ export const PingTest: React.FC<{ data: MineableCoinRegion[] }> = ({
               <td>TCP Port</td>
               <td>
                 <Sticker>4444</Sticker>
-                <WarningIcon />
+                <Tooltip icon={<WarningIcon />}>
+                  <TooltipContent>
+                    We are strongly against using unencrypted (TCP) connection
+                    while mining on our pool. This connection is vulnerable to
+                    MITM (Man-In-The-Middle) attacks, which means that if
+                    someone will maliciously stand in between of your worker and
+                    pool, some % of your hashrate may be stolen. Read more on
+                    our <Link to="/faq#should-i-use-ssl">FAQ page</Link>.
+                  </TooltipContent>
+                </Tooltip>
               </td>
             </tr>
           </tbody>

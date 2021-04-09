@@ -147,8 +147,8 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
             Estimated earnings{' '}
             <Tooltip>
               <TooltipContent>
-                Estimated earnings are based on performance of 7 day average of
-                our mining pool.
+                Estimated earnings are based on performance of mining last 100
+                blocks on our pool.
               </TooltipContent>
             </Tooltip>
           </p>

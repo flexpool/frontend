@@ -172,3 +172,5 @@ export const MinerDashboardPage: React.FC<
     </Page>
   );
 };
+
+export default MinerDashboardPage;

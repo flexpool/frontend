@@ -78,6 +78,7 @@
     "@types/redux": "^3.6.0",
     "@types/redux-logger": "^3.0.8",
     "@types/websocket": "^1.0.2",
+    "cra-bundle-analyzer": "^0.1.0",
     "frontmatter-markdown-loader": "^3.6.2",
     "prettier": "^2.2.1",
     "react-app-rewire-frontmatter-markdown": "^1.4.0",
