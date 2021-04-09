@@ -35,12 +35,12 @@ const EarningBox = styled.div`
   * {
     color: white;
   }
-  background: var(--bg-primary);
-  background: linear-gradient(
+  background: rgba(255, 255, 255, 0.1);
+  /* background: linear-gradient(
     -1450deg,
     rgba(2, 0, 36, 0.1) 0%,
     rgba(255, 255, 255, 0.3) 100%
-  );
+  ); */
   border-radius: 5px;
   /* border: 1px solid rgba(0, 0, 0, 0.1); */
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
