@@ -1,14 +1,15 @@
-import {
-  FaCoins,
-  FaEye,
-  FaQuestion,
-  FaQuestionCircle,
-  FaRocket,
-} from 'react-icons/fa';
+import React from 'react';
+import { FaRocket } from 'react-icons/fa';
 import { Button } from 'src/components/Button';
 import { Content } from 'src/components/layout/Content';
+import { Skeleton } from 'src/components/layout/Skeleton';
 import { Spacer } from 'src/components/layout/Spacer';
-import { getCoinIconSrc, getCoinIconUrl } from 'src/utils/staticImage.utils';
+import { Tooltip, TooltipContent } from 'src/components/Tooltip';
+import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
+import { useReduxState } from 'src/rdx/useReduxState';
+import { ApiPoolCoinFull } from 'src/types/PoolCoin.types';
+import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
+import { getCoinIconUrl } from 'src/utils/staticImage.utils';
 import styled from 'styled-components/macro';
 
 const UnknownCoin = styled.div`
@@ -57,6 +58,12 @@ const Container = styled.div`
   gap: 2rem;
 `;
 
+const HeadContent = styled.div`
+  margin-left: 1rem;
+  p {
+    margin-top: 0.25rem;
+  }
+`;
 const HeadSplit = styled.div`
   display: flex;
   & > *:first-child {
@@ -65,19 +72,29 @@ const HeadSplit = styled.div`
   & > *:last-child {
     margin-top: 0.25rem;
   }
-`;
+  @media screen and (max-width: 540px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 
-const HeadContent = styled.div`
-  margin-left: 1rem;
-  p {
-    margin-top: 0.25rem;
+    ${HeadContent} {
+      margin-left: 0;
+    }
   }
 `;
+
 const IntervalContainer = styled.div`
   display: flex;
-  margin-top: 1.5rem;
   justify-content: space-between;
   flex-grow: 1;
+  flex-wrap: wrap;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  & > * {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding-top: 1.5rem;
+  }
 `;
 
 const FiatValue = styled.p`
@@ -86,9 +103,13 @@ const FiatValue = styled.p`
   margin-top: 0.5rem;
 `;
 const IntervalItem = styled.div`
-  margin-right: 2rem;
   p {
     margin-top: 0.25rem;
+  }
+  flex-grow: 1;
+  @media screen and (max-width: 540px) {
+    justify-content: center;
+    text-align: center;
   }
 `;
 
@@ -96,37 +117,100 @@ const StartMiningContainer = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
+  flex-grow: 1;
+  @media screen and (max-width: 540px) {
+    justify-content: center;
+  }
 `;
 
+const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
+  const counterTicker = useCounterTicker();
+  const counterPrice = data?.marketData.prices[counterTicker] || 0;
+
+  const dailyPer100 = data
+    ? data.chainData.dailyRewardPerGigaHashSec /
+      10 /
+      Math.pow(10, data.decimalPlaces)
+    : 0;
+  const monthlyPer100 = dailyPer100 * 30.5;
+
+  const monthlyCounterPrice = monthlyPer100 * counterPrice;
+  const dailyCounterPrice = dailyPer100 * counterPrice;
+
+  return (
+    <EarningBox>
+      <HeadSplit>
+        <CoinIcon src={getCoinIconUrl('eth')} />
+        <HeadContent>
+          <h2>{data ? data.name : <Skeleton />}</h2>
+          <p>
+            Estimated earnings{' '}
+            <Tooltip>
+              <TooltipContent>
+                Estimated earnings are based on performance of 7 day average of
+                our mining pool.
+              </TooltipContent>
+            </Tooltip>
+          </p>
+        </HeadContent>
+      </HeadSplit>
+      <IntervalContainer>
+        <IntervalItem>
+          <p>100 MH/s daily</p>
+          <FiatValue>
+            {dailyCounterPrice ? (
+              getDisplayCounterTickerValue(dailyCounterPrice, counterTicker)
+            ) : (
+              <Skeleton style={{ height: 25 }} />
+            )}
+          </FiatValue>
+          <p>
+            {dailyPer100 ? (
+              <>{dailyPer100.toFixed(6)} ETH</>
+            ) : (
+              <Skeleton style={{ height: 10 }} />
+            )}
+          </p>
+        </IntervalItem>
+        <IntervalItem>
+          <p>100 MH/s monthly</p>
+          <FiatValue>
+            {monthlyCounterPrice ? (
+              getDisplayCounterTickerValue(monthlyCounterPrice, counterTicker)
+            ) : (
+              <Skeleton style={{ height: 25 }} />
+            )}
+          </FiatValue>
+          <p>
+            {monthlyPer100 ? (
+              <>{monthlyPer100.toFixed(6)} ETH</>
+            ) : (
+              <Skeleton style={{ height: 10 }} />
+            )}
+          </p>
+        </IntervalItem>
+        <StartMiningContainer>
+          <Button variant="success">Start mining</Button>
+        </StartMiningContainer>
+      </IntervalContainer>
+    </EarningBox>
+  );
+};
+
 export const CoinEarnings = () => {
+  const coinsFull = useReduxState('poolCoinsFull');
+
   return (
     <Content>
       <Spacer size="xl" />
       <Container>
-        <EarningBox>
-          <HeadSplit>
-            <CoinIcon src={getCoinIconUrl('eth')} />
-            <HeadContent>
-              <h2>Ethereum</h2>
-              <p>Estimated daily earnings mining with Flexpool</p>
-            </HeadContent>
-          </HeadSplit>
-          <IntervalContainer>
-            <IntervalItem>
-              <p>100 MH/s daily</p>
-              <FiatValue>$9.25</FiatValue>
-              <p>0.00445 ETH</p>
-            </IntervalItem>
-            <IntervalItem>
-              <p>100 MH/s monthly</p>
-              <FiatValue>${9.25 * 30.5}</FiatValue>
-              <p>0.00445 ETH</p>
-            </IntervalItem>
-            <StartMiningContainer>
-              <Button variant="success">Start mining</Button>
-            </StartMiningContainer>
-          </IntervalContainer>
-        </EarningBox>
+        {coinsFull.data.length > 0 ? (
+          coinsFull.data.map((item) => (
+            <CoinEarningsItem key={item.ticker} data={item} />
+          ))
+        ) : (
+          <CoinEarningsItem />
+        )}
         <EarningBox>
           <HeadSplit>
             {/* <CoinIcon src={getCoinIconSrc('zec')} /> */}
@@ -143,7 +227,6 @@ export const CoinEarnings = () => {
             </HeadContent>
           </HeadSplit>
           <IntervalContainer>
-            <IntervalItem></IntervalItem>
             <StartMiningContainer>
               <Button variant="warning">Join Our Discord</Button>
             </StartMiningContainer>

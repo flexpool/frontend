@@ -12,7 +12,7 @@ const pulse = keyframes`
 }
 `;
 
-export const Skeleton = styled.div<{ width?: number }>`
+export const Skeleton = styled.div<{ width?: number; sHeight?: number }>`
   background: var(--bg-secondary);
   width: 100px;
   height: 1rem;
@@ -21,5 +21,6 @@ export const Skeleton = styled.div<{ width?: number }>`
   margin-top: 3px;
   margin-bottom: 3px;
   display: inline-block;
-  ${(p) => p.width && `width: ${p.width}`};
+  ${(p) => p.width && `width: ${p.width};`};
+  ${(p) => p.sHeight && `height: ${p.sHeight} !important;`};
 `;

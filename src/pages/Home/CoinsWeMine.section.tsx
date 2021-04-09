@@ -26,6 +26,8 @@ import { ScrollArea } from 'src/components/layout/ScrollArea';
 import { CoinCalculator } from 'src/sections/CoinCalculator';
 import { CardGrid } from 'src/components/layout/Card';
 import { CoinLogo } from 'src/components/CoinLogo';
+import { useDispatch } from 'react-redux';
+import { useReduxState } from 'src/rdx/useReduxState';
 const ActionIconContainer = styled.div`
   display: inline-flex;
   & > * {
@@ -40,10 +42,8 @@ const ActionIcon = styled(Button)`
 `;
 
 const Wrapper = styled.div`
-  border-top: 1px solid var(--border-color);
   padding-top: 5rem;
   padding-bottom: 5rem;
-  background: var(--bg-primary);
   h2 {
     font-size: 2rem;
   }
@@ -222,15 +222,11 @@ const cols: DynamicListColumn<ApiPoolCoinFull>[] = [
 ];
 
 export const CoinsWeMineSection = () => {
-  const dataState = useAsyncState<ApiPoolCoinFull[]>('coinsFull');
-
-  React.useEffect(() => {
-    dataState.start(fetchApi('/pool/coinsFull'));
-  }, []);
+  const poolCoinsFullState = useReduxState('poolCoinsFull');
 
   return (
     <Wrapper>
-      <ModalNews data={dataState.data} />
+      <ModalNews data={poolCoinsFullState.data} />
       <Content contentCenter>
         <h2>Coins we mine</h2>
         <p>
@@ -239,9 +235,9 @@ export const CoinsWeMineSection = () => {
         </p>
         <br />
         <DynamicList
-          isLoading={dataState.isLoading}
+          isLoading={poolCoinsFullState.isLoading}
           loadingRowsCount={1}
-          data={dataState.data || []}
+          data={poolCoinsFullState.data || []}
           columns={cols}
         />
       </Content>

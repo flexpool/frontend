@@ -11,6 +11,7 @@ import * as minerWorkers from 'src/rdx/minerWorkers/minerWorkers.reducer';
 import * as minerPayments from 'src/rdx/minerPayments/minerPayments.reducer';
 import * as snacks from 'src/rdx/snacks/snacks.reducer';
 import * as poolStats from 'src/rdx/poolStats/poolStats.reducer';
+import * as poolCoinsFull from 'src/rdx/poolCoinsFull/poolCoinsFull.reducer';
 import { localStorage } from 'src/utils/localStorage';
 
 export const defaultReduxState = {
@@ -25,6 +26,7 @@ export const defaultReduxState = {
   minerPayments: minerPayments.defaultState,
   snacks: snacks.defaultState,
   poolStats: poolStats.defaultState,
+  poolCoinsFull: poolCoinsFull.defaultState,
 };
 
 const combinedReducer = combineReducers({
@@ -39,6 +41,7 @@ const combinedReducer = combineReducers({
   minerPayments: minerPayments.reducer,
   snacks: snacks.reducer,
   poolStats: poolStats.reducer,
+  poolCoinsFull: poolCoinsFull.reducer,
 });
 
 export type AppState = ReturnType<typeof combinedReducer>;

@@ -10,6 +10,9 @@ import { Helmet } from 'react-helmet-async';
 import { Spacer } from 'src/components/layout/Spacer';
 import { CoinEarnings } from './CoinEarnings';
 import { WhyFlexpool } from './WhyFlexpool';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { poolCoinsFullGet } from 'src/rdx/poolCoinsFull/poolCoinsFull.actions';
 
 const Hero = styled(HeroBlue)`
   min-height: 40vh;
@@ -34,6 +37,11 @@ const PageContainer = styled(Page)`
 `;
 
 export const HomePage = () => {
+  const d = useDispatch();
+  React.useEffect(() => {
+    d(poolCoinsFullGet());
+  }, [d]);
+
   return (
     <PageContainer>
       <Helmet>
@@ -54,8 +62,8 @@ export const HomePage = () => {
         <Spacer />
         <NewsSection />
       </Hero>
-      <WhyFlexpool />
       <CoinsWeMineSection />
+      <WhyFlexpool />
       <GetStartedSection />
     </PageContainer>
   );

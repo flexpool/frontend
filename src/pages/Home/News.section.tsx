@@ -89,7 +89,6 @@ const Wrapper = styled.div`
   bottom: 0;
   display: flex;
   justify-content: center;
-  box-shadow: inset 0 100px 50px -50px var(--bg-secondary);
 `;
 const WrapperInner = styled.div`
   position: absolute;
@@ -101,6 +100,7 @@ const WrapperInner = styled.div`
   @media screen and (max-width: 800px) {
     position: relative;
     display: block;
+    width: calc(100%);
     top: 2rem;
     & > * {
       width: 100%;
