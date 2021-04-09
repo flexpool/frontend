@@ -94,7 +94,7 @@ const Wrapper = styled.div`
 const WrapperInner = styled.div`
   position: absolute;
   top: -4rem;
-  width: 100%;
+  width: calc(100% - 2rem);
   display: flex;
   box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.06);
   z-index: 10;

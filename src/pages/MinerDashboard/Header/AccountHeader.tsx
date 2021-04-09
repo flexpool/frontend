@@ -3,6 +3,7 @@ import { Card } from 'src/components/layout/Card';
 import { LinkOut } from 'src/components/LinkOut';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { getCoinLink } from 'src/utils/coinLinks.utils';
+import { getCoinIconUrl } from 'src/utils/staticImage.utils';
 import styled from 'styled-components/macro';
 import { MinerSettingsModal } from '../Settings/MinerSettings.modal';
 
@@ -52,10 +53,7 @@ export const AccountHeader: React.FC<{
     <Wrap paddingShort>
       <AddressContainer>
         {coin && (
-          <img
-            src={`https://static.flexpool.io/assets/coinLogos/small/${coin.ticker}.png`}
-            alt={`${coin.name} logo`}
-          />
+          <img src={getCoinIconUrl(coin.ticker)} alt={`${coin.name} logo`} />
         )}
         <Address href={getCoinLink('wallet', address, coin?.ticker)}>
           {address}

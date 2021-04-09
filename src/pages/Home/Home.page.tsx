@@ -8,11 +8,13 @@ import styled from 'styled-components/macro';
 import { SearchAddressBar } from 'src/components/SearchAddressBar/SearchAddressBar';
 import { Helmet } from 'react-helmet-async';
 import { Spacer } from 'src/components/layout/Spacer';
+import { CoinEarnings } from './CoinEarnings';
+import { WhyFlexpool } from './WhyFlexpool';
 
 const Hero = styled(HeroBlue)`
   min-height: 40vh;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
   margin-bottom: 4rem;
   position: relative;
   @media screen and (max-width: 800px) {
@@ -27,9 +29,13 @@ const SearchWrapper = styled.div`
   margin-top: 2rem;
 `;
 
+const PageContainer = styled(Page)`
+  background: var(--bg-secondary);
+`;
+
 export const HomePage = () => {
   return (
-    <Page>
+    <PageContainer>
       <Helmet>
         <title>The Most Advanced Mining Pool</title>
       </Helmet>
@@ -44,10 +50,13 @@ export const HomePage = () => {
           </SearchWrapper>
         </Content>
         <Spacer />
+        <CoinEarnings />
+        <Spacer />
         <NewsSection />
       </Hero>
+      <WhyFlexpool />
       <CoinsWeMineSection />
       <GetStartedSection />
-    </Page>
+    </PageContainer>
   );
 };

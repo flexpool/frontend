@@ -40,9 +40,10 @@ const ActionIcon = styled(Button)`
 `;
 
 const Wrapper = styled.div`
+  border-top: 1px solid var(--border-color);
   padding-top: 5rem;
   padding-bottom: 5rem;
-
+  background: var(--bg-primary);
   h2 {
     font-size: 2rem;
   }

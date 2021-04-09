@@ -42,7 +42,7 @@ export const AppTheme = () => {
     return (
       <style>{`body {
     --bg-primary: #151519;
-    --bg-secondary: #2c2c31;
+    --bg-secondary: #1c1c1f;
     --border-color: #333;
     --text-secondary: #ccc;
     --text-primary: #eee;

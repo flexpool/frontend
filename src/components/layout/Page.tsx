@@ -1,5 +1,6 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
+import { clx } from 'src/utils/clx';
 import './Page.scss';
 
 type ErrorBoundaryProps = {
@@ -47,11 +48,14 @@ class ErrorBoundary extends React.Component<
   }
 }
 
-export const Page: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const Page: React.FC<{
+  children: React.ReactNode;
+  className?: string;
+}> = ({ children, className }) => {
   return (
     <ErrorBoundary>
       <CSSTransition in={true} timeout={0} appear unmountOnExit>
-        <main className="page-transition">{children}</main>
+        <main className={clx('page-transition', className)}>{children}</main>
       </CSSTransition>
     </ErrorBoundary>
   );

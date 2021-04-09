@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import MapSvg from './bg.svg';
+import MapSvg from './world_map_dots.svg';
 
 const Hero = styled.div`
   padding-top: 3rem;
@@ -29,7 +29,7 @@ const WorldMap = styled.img`
   height: 100%;
   width: 100%;
   z-index: 1;
-  opacity: 1;
+  opacity: 0.2;
 `;
 
 export const HeroBlue: React.FC<{
