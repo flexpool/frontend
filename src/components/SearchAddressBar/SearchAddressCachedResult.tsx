@@ -50,7 +50,7 @@ export const SearchAddressCachedResult: React.FC<{ isOpen?: boolean }> = ({
     <>
       {data.map((item) => (
         <HistoryItem
-          to={`/miners/${item.coin}/${item.address}`}
+          to={`/miner/${item.coin}/${item.address}`}
           key={item.address}
         >
           <Address>{item.address}</Address>
