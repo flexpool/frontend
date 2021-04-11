@@ -110,7 +110,7 @@ const AppContent = () => {
           <Route exact strict component={StatisticsPage} path="/statistics" />
           <Route exact strict component={FaqPage} path="/faq" />
           <Route exact strict component={MinersPage} path="/miners" />
-          <Route component={MinerDashboardPage} path="/miners/:coin/:address" />
+          <Route component={MinerDashboardPage} path="/miner/:coin/:address" />
           <Route exact strict component={BlocksPage} path="/blocks" />
           <Route exact strict component={SupportPage} path="/support" />
           <Route
