@@ -59,6 +59,7 @@ import SupportPage from '../pages/Support/Support.page';
 import MinersPage from '../pages/Miners/Miners.page';
 import BlocksPage from '../pages/Blocks/Blocks.page';
 import FaqPage from '../pages/Faq/Faq.page';
+import OpenDataReportsPage from 'src/pages/Reports/OpenDataReports.page';
 
 /**
  * init redux state
@@ -106,6 +107,12 @@ const AppContent = () => {
       <SnackViewControl />
       <React.Suspense fallback={<div>Loading...</div>}>
         <Switch>
+          <Route
+            exact
+            strict
+            component={OpenDataReportsPage}
+            path="/open-data-reports"
+          />
           <Route component={GetStartedPage} path="/get-started" />
           <Route exact strict component={StatisticsPage} path="/statistics" />
           <Route exact strict component={FaqPage} path="/faq" />
