@@ -116,7 +116,7 @@
   margin-bottom: -1.25rem;
 }
 
-.modal-btn-close {
+button.modal-btn-close {
   position: absolute;
   top: 0rem;
   right: 0rem;
@@ -126,6 +126,9 @@
   background: none !important;
   &:hover {
     opacity: 1;
+    &:after {
+      display: none;
+    }
   }
 
   & + * .modal-actions {
