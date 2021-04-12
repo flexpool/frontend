@@ -25,6 +25,7 @@ export const MinersDistributionChart = () => {
         })
       );
     }
+    // eslint-disable-next-line
   }, [coinTicker]);
 
   const data = React.useMemo(() => {

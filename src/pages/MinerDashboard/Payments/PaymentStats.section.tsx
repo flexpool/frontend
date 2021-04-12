@@ -52,6 +52,7 @@ export const GeneralPaymentStatsSection: React.FC<{
         })
       );
     }
+    // eslint-disable-next-line
   }, [coin?.ticker, address, couterTicker]);
 
   const data = {

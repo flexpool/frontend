@@ -15,6 +15,7 @@ export const useDailyRewardPerGhState = () => {
         },
       })
     );
+    // eslint-disable-next-line
   }, [coinTicker]);
 
   return dailyRewardPerGhState;

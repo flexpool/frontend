@@ -114,6 +114,7 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
           return res;
         });
     },
+    // eslint-disable-next-line
     [history]
   );
 

@@ -50,6 +50,7 @@ export const MinerRewardStatsSection: React.FC<{
         },
       })
     );
+    // eslint-disable-next-line
   }, [coinTicker]);
 
   const summary: [number, number, number] = React.useMemo(() => {

@@ -50,6 +50,7 @@ export const MinerPplnsStats: React.FC<{
         })
       );
     }
+    // eslint-disable-next-line
   }, [address, activeCoinTicker]);
 
   React.useEffect(() => {
@@ -87,6 +88,7 @@ export const MinerPplnsStats: React.FC<{
         }
 
         sharesDataTmp[`${Math.floor(totalShares / 10000)}`].your++;
+        // eslint-disable-next-line
         totalYour++;
         totalShares++;
       }

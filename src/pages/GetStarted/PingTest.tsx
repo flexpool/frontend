@@ -126,7 +126,8 @@ const cols: DynamicListColumn<
       const connectionState = useAsyncState<number>();
       React.useEffect(() => {
         connectionState.start(testConnection(data.domain));
-      }, []);
+        // eslint-disable-next-line
+      }, [data.domain]);
 
       const latency = connectionState.data;
 

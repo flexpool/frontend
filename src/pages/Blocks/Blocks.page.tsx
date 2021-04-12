@@ -39,6 +39,7 @@ export const BlocksPage = () => {
         })
       )
     );
+    // eslint-disable-next-line
   }, [activeCoinTicker]);
 
   return (

@@ -38,6 +38,7 @@ export const MinerRewardsPage = () => {
         },
       })
     );
+    // eslint-disable-next-line
   }, [address, coinTicker, counterTicker]);
 
   return (

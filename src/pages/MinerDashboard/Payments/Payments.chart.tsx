@@ -90,6 +90,7 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
         })
       );
     }
+    // eslint-disable-next-line
   }, [coin?.ticker, coin?.decimalPlaces, address]);
 
   return (

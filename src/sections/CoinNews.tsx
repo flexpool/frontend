@@ -121,6 +121,7 @@ export const CoinNews: React.FC<{ coinTicker: string }> = ({ coinTicker }) => {
         },
       })
     );
+    // eslint-disable-next-line
   }, [coinTicker]);
 
   return (

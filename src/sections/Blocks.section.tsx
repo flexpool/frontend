@@ -241,6 +241,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         query: { coin: coinTicker, page: currentPage, address },
       })
     );
+    // eslint-disable-next-line
   }, [currentPage, coinTicker, address]);
 
   const totalPages = blockState.data?.totalPages || 0;

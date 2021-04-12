@@ -223,6 +223,7 @@ export const NavBar: React.FC<NavBarType> = (props) => {
   React.useEffect(() => {
     openState.handleFalse();
     modalSearchOpenState.handleClose();
+    // eslint-disable-next-line
   }, [location, openState.handleFalse, modalSearchOpenState.handleClose]);
 
   const colorMode = useAppTheme();
