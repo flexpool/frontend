@@ -1,4 +1,5 @@
 export type Ticker =
+  | 'eth'
   | 'usd'
   | 'cad'
   | 'eur'

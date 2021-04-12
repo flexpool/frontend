@@ -128,6 +128,17 @@ const StartMiningContainer = styled.div`
   }
 `;
 
+const PoolDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-grow: 1;
+  text-align: right;
+  @media screen and (max-width: 540px) {
+    text-align: center;
+  }
+`;
+
 const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
   const counterTicker = useCounterTicker();
   const counterPrice = data?.marketData.prices[counterTicker] || 0;
@@ -158,6 +169,15 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
             </Tooltip>
           </p>
         </HeadContent>
+        {data?.ticker === 'eth' && (
+          <PoolDetails>
+            <p>
+              0.5% Pool Fee
+              <br />
+              +90% MEV Bonus
+            </p>
+          </PoolDetails>
+        )}
       </HeadSplit>
       <IntervalContainer>
         <IntervalItem>
