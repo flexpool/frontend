@@ -79,11 +79,15 @@ const NavSection = styled.div`
   height: 100%;
   align-items: center;
   &:not(:first-child) {
-    margin-left: 2rem;
+    margin-left: 1rem;
   }
   &:not(:last-child) {
-    margin-right: 2rem;
+    margin-right: 1rem;
   }
+`;
+
+const NavSectionSearch = styled(NavSection)`
+  flex-grow: 1;
 `;
 
 const MobileSlide = styled.div<{ isOpen?: boolean }>`
@@ -186,6 +190,7 @@ const SearchContainer = styled.div`
   & > * {
     height: 46px;
   }
+  flex-grow: 1;
 `;
 
 const MobileNavTitle = styled.div`
@@ -240,19 +245,21 @@ export const NavBar: React.FC<NavBarType> = (props) => {
       <FixedMargin />
       <NavContainerOuter>
         <NavContainer>
-          <NavLink to="/">
-            <Logo />
-          </NavLink>
+          <NavSection>
+            <NavLink to="/">
+              <Logo />
+            </NavLink>
+          </NavSection>
           <NavSection>
             <NLink to="/statistics">Statistics</NLink>
             <NLink to="/blocks">Blocks</NLink>
             <NLink to="/miners">Miners</NLink>
           </NavSection>
-          <NavSection>
+          <NavSectionSearch>
             <SearchContainer>
               <SearchAddressBar />
             </SearchContainer>
-          </NavSection>
+          </NavSectionSearch>
           <NavSection>
             <NLink to="/faq">FAQ</NLink>
             <NLink to="/support">Support</NLink>
