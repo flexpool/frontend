@@ -4,6 +4,7 @@ import {
   formatDistanceToNowStrict,
   intervalToDuration,
   formatDuration,
+  differenceInSeconds,
 } from 'date-fns';
 
 // export const isValidDate = (date: any) => {
@@ -46,6 +47,12 @@ const formatDistance = (d: DateInput) => {
   const date = dateInputToDate(d);
 
   if (dateIsValid(date)) {
+    const diff = Math.abs(differenceInSeconds(date, new Date()));
+
+    if (diff < 61) {
+      return 'now';
+    }
+
     return formatDistanceToNowStrict(date, {
       addSuffix: true,
     });

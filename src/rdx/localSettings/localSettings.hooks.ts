@@ -22,3 +22,14 @@ export const useCounterTicker = () => {
   const localSettingsState = useReduxState('localSettings');
   return localSettingsState.counterTicker;
 };
+
+export const useAppTheme = () => {
+  const localSettingsState = useReduxState('localSettings');
+
+  const colorMode =
+    localSettingsState.colorMode !== 'system'
+      ? localSettingsState.colorMode
+      : localSettingsState.systemColorMode;
+
+  return colorMode;
+};

@@ -1,11 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
-import { useReduxState } from 'src/rdx/useReduxState';
+import { useAppTheme } from 'src/rdx/localSettings/localSettings.hooks';
 
 export const AppTheme = () => {
   const d = useDispatch();
-  const localSettingsState = useReduxState('localSettings');
   // load system color scheme
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -32,10 +31,7 @@ export const AppTheme = () => {
     }
   }, [d]);
 
-  const colorMode =
-    localSettingsState.colorMode !== 'system'
-      ? localSettingsState.colorMode
-      : localSettingsState.systemColorMode;
+  const colorMode = useAppTheme();
 
   // bu default, theme is light, we only add these items to make it dark
   if (colorMode === 'dark') {

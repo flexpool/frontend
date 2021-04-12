@@ -22,19 +22,20 @@ import { Ws } from '../Typo/Typo';
 import { Burger } from '../Burger/Burger';
 import { clx } from 'src/utils/clx';
 
-import { ReactComponent as ReactLogo } from 'src/assets/logo.svg';
 import { SelectTheme } from '../SelectTheme';
 import { Spacer } from './Spacer';
 import { Helmet } from 'react-helmet-async';
 import { SelectCounterTicker } from '../SelectCounterTicker';
 import { LinkOut } from '../LinkOut';
 import { DISCORD_LINK, REDDIT_LINK, TELEGRAM_LINK } from 'src/constants';
-const Logo = styled(ReactLogo)`
+import { useAppTheme } from 'src/rdx/localSettings/localSettings.hooks';
+const Logo = styled.img`
   height: 32px;
+  width: 160px;
   fill: var(--text-primary);
 `;
 
-const LogoMobile = styled(ReactLogo)`
+const LogoMobile = styled.img`
   height: 24px;
   fill: var(--text-primary);
 `;
@@ -224,6 +225,12 @@ export const NavBar: React.FC<NavBarType> = (props) => {
     modalSearchOpenState.handleClose();
   }, [location, openState.handleFalse, modalSearchOpenState.handleClose]);
 
+  const colorMode = useAppTheme();
+  const logoSrc =
+    colorMode === 'light'
+      ? 'https://static.flexpool.io/assets/brand/light.svg'
+      : 'https://static.flexpool.io/assets/brand/dark.svg';
+
   return (
     <>
       <Modal
@@ -247,7 +254,7 @@ export const NavBar: React.FC<NavBarType> = (props) => {
         <NavContainer>
           <NavSection>
             <NavLink to="/">
-              <Logo />
+              <Logo src={logoSrc} />
             </NavLink>
           </NavSection>
           <NavSection>
@@ -278,7 +285,7 @@ export const NavBar: React.FC<NavBarType> = (props) => {
       <ContainerMobile>
         <NavContainer>
           <NavLink to="/">
-            <LogoMobile />
+            <LogoMobile src={logoSrc} />
           </NavLink>
           <NavSection>
             <NLink to="/statistics">
