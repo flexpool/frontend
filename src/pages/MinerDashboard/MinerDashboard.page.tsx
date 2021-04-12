@@ -6,7 +6,6 @@ import {
   Switch,
   useRouteMatch,
   Redirect,
-  useLocation,
 } from 'react-router';
 import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';

@@ -26,12 +26,7 @@ const validationSchema = yup.object().shape({
     }),
 });
 
-const SignatureGen: React.FC<{ ticker: string; address: string }> = ({
-  address,
-  ticker,
-}) => {
-  const signatureState = useAsyncState();
-
+const SignatureGen: React.FC<{ ticker: string; address: string }> = () => {
   return (
     <div>
       <Button shape="block">Generate Signature</Button>

@@ -12,11 +12,9 @@ import DynamicList, {
 } from 'src/components/layout/List/List';
 import Modal from 'src/components/Modal/Modal';
 import { Mono, Ws } from 'src/components/Typo/Typo';
-import { useAsyncState } from 'src/hooks/useAsyncState';
 import { CoinNews } from 'src/sections/CoinNews';
 import { ApiPoolCoinFull } from 'src/types/PoolCoin.types';
 import { useCounterValue } from 'src/utils/currencyValue';
-import { fetchApi } from 'src/utils/fetchApi';
 import { formatSi } from 'src/utils/si.utils';
 import styled from 'styled-components/macro';
 import { Link, useHistory, useLocation } from 'react-router-dom';
@@ -26,7 +24,6 @@ import { ScrollArea } from 'src/components/layout/ScrollArea';
 import { CoinCalculator } from 'src/sections/CoinCalculator';
 import { CardGrid } from 'src/components/layout/Card';
 import { CoinLogo } from 'src/components/CoinLogo';
-import { useDispatch } from 'react-redux';
 import { useReduxState } from 'src/rdx/useReduxState';
 const ActionIconContainer = styled.div`
   display: inline-flex;

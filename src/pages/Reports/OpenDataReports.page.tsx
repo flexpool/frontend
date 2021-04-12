@@ -1,9 +1,7 @@
 import { format, isAfter, subMonths } from 'date-fns';
-import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import { Content } from 'src/components/layout/Content';
-import { Divider } from 'src/components/layout/Divider';
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOut } from 'src/components/LinkOut';
