@@ -37,7 +37,8 @@ export const mineableCoins: MineableCoin[] = [
     description: '',
     poolDetails: [
       { key: 'Reward Scheme', value: 'PPLNS (Pay Per Last N Shares)' },
-      { key: 'Pool Donation', value: '1% (Can be changed in settings)' },
+      { key: 'Pool Fee', value: '0.5%' },
+      { key: 'Bonuses', value: '+90% MEV' },
       { key: 'Payout Round', value: 'Every hour' },
       { key: 'Payouts', value: 'from 0.05 ETH up to 100 ETH' },
       { key: 'Block confirmation time', value: '120 Blocks' },

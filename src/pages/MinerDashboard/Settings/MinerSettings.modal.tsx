@@ -5,7 +5,6 @@ import { ScrollArea } from 'src/components/layout/ScrollArea';
 import Modal from 'src/components/Modal/Modal';
 import { useOpenState } from 'src/hooks/useOpenState';
 import styled from 'styled-components';
-import { PoolDonationSettings } from './DonationSettings';
 import { NotificationSettings } from './NotificationSettings';
 import { PayoutSettings } from './PayoutSettings';
 
@@ -57,16 +56,11 @@ const navItems = [
     val: 'notifications',
     title: 'Notifications',
   },
-  // {
-  //   val: 'donation',
-  //   title: 'Donation',
-  // },
 ];
 
 const pageComponents = {
   payouts: PayoutSettings,
   notifications: NotificationSettings,
-  donation: PoolDonationSettings,
 };
 
 type SettingsPageKey = keyof typeof pageComponents;

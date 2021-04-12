@@ -21,7 +21,11 @@ const topMinersCol: DynamicListColumn<ApiTopMiner, { coinTicker: string }>[] = [
       return (
         <Mono>
           <Ws>
-            <LinkMiner address={data.address} coin={config.coinTicker} />
+            <LinkMiner
+              chars={16}
+              address={data.address}
+              coin={config.coinTicker}
+            />
           </Ws>
         </Mono>
       );
@@ -48,13 +52,6 @@ const topMinersCol: DynamicListColumn<ApiTopMiner, { coinTicker: string }>[] = [
           <Mono>{value}</Mono>
         </Ws>
       );
-    },
-  },
-  {
-    title: 'Donation',
-    skeletonWidth: 60,
-    Component: ({ data }) => {
-      return <>{data.donation * 100} %</>;
     },
   },
   {
