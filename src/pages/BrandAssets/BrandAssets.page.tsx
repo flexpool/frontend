@@ -143,7 +143,7 @@ export const BrandAssetsPage = () => {
         <Logos>
           <LogoContainer>
             <img
-              src="https://static.flexpool.io/assets/brand/logo.svg"
+              src="https://static.flexpool.io/assets/brand/light.svg"
               alt="Flexpool Logo"
             />
           </LogoContainer>
@@ -155,14 +155,14 @@ export const BrandAssetsPage = () => {
           </LogoContainer>
           <LogoContainerDark>
             <img
-              src="https://static.flexpool.io/assets/brand/logo-white.svg"
-              alt="Flexpool Logo (White)"
+              src="https://static.flexpool.io/assets/brand/dark.svg"
+              alt="Flexpool Logo (Dark)"
             />
           </LogoContainerDark>
           <LogoContainerDark>
             <img
-              src="https://static.flexpool.io/assets/brand/icon-white.svg"
-              alt="Flexpool Icon (White)"
+              src="https://static.flexpool.io/assets/brand/icon.svg"
+              alt="Flexpool Icon"
             />
           </LogoContainerDark>
         </Logos>

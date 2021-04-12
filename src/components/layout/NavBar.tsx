@@ -30,7 +30,7 @@ import { SelectCounterTicker } from '../SelectCounterTicker';
 import { LinkOut } from '../LinkOut';
 import { DISCORD_LINK, REDDIT_LINK, TELEGRAM_LINK } from 'src/constants';
 const Logo = styled(ReactLogo)`
-  height: 30px;
+  height: 32px;
   fill: var(--text-primary);
 `;
 
