@@ -15,6 +15,14 @@ import React from 'react';
 import { SelectCounterTicker } from 'src/components/SelectCounterTicker';
 import { SelectTheme } from 'src/components/SelectTheme';
 import { Spacer } from 'src/components/layout/Spacer';
+import {
+  DISCORD_LINK,
+  GITHUB_LINK,
+  MEDIUM_LINK,
+  REDDIT_LINK,
+  TELEGRAM_LINK,
+  TWITTER_LINK,
+} from 'src/constants';
 
 const LinkOut: React.FC<{
   href: string;
@@ -134,11 +142,9 @@ export const FooterSection = () => {
           </Section>
           <Section>
             <FSectionTitle>Community</FSectionTitle>
-            <LinkOut href="https://discord.gg/Pvw74Cv">Discord</LinkOut>
-            <LinkOut href="https://www.reddit.com/user/flexpool">
-              Reddit
-            </LinkOut>
-            <LinkOut href="https://t.me/flexpool">Telegram</LinkOut>
+            <LinkOut href={DISCORD_LINK}>Discord</LinkOut>
+            <LinkOut href={REDDIT_LINK}>Reddit</LinkOut>
+            <LinkOut href={TELEGRAM_LINK}>Telegram</LinkOut>
           </Section>
           <Section>
             <FSectionTitle>Contact</FSectionTitle>
@@ -158,8 +164,8 @@ export const FooterSection = () => {
           <FooterCompany>
             <FooterLogo src={IconLogo} alt="Flexpool Icon White" />
             <div style={{ display: 'flex', alignItems: 'center' }}>
-              © 2020-{new Date().getFullYear()} Flexpool.io or its affiliates. All
-              rights reserved.
+              © 2020-{new Date().getFullYear()} Flexpool.io or its affiliates.
+              All rights reserved.
               <LinkOut
                 href="https://github.com/flexpool/frontend"
                 style={{ marginLeft: '10px' }}
@@ -169,22 +175,22 @@ export const FooterSection = () => {
             </div>
           </FooterCompany>
           <SocialIcons>
-            <LinkOut href="https://discord.gg/Pvw74Cv">
+            <LinkOut href={DISCORD_LINK}>
               <FaDiscord />
             </LinkOut>
-            <LinkOut href="https://t.me/flexpool">
+            <LinkOut href={TELEGRAM_LINK}>
               <FaTelegram />
             </LinkOut>
-            <LinkOut href="https://www.reddit.com/user/flexpool">
+            <LinkOut href={REDDIT_LINK}>
               <FaReddit />
             </LinkOut>
-            <LinkOut href="https://twitter.com/flexpool_io">
+            <LinkOut href={TWITTER_LINK}>
               <FaTwitter />
             </LinkOut>
-            <LinkOut href="https://medium.com/flexpool/">
+            <LinkOut href={MEDIUM_LINK}>
               <FaMedium />
             </LinkOut>
-            <LinkOut href="https://github.com/flexpool">
+            <LinkOut href={GITHUB_LINK}>
               <FaGithub />
             </LinkOut>
           </SocialIcons>

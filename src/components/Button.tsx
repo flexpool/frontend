@@ -29,6 +29,8 @@ export const Button = styled.button<ButtonProps>`
   font-size: 1rem;
   background-color: var(--bg-primary);
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
   &:hover,
   &:active,
   &:focus {
@@ -97,6 +99,30 @@ export const Button = styled.button<ButtonProps>`
     width: 100%;
     justify-content: center;
   `}
+
+  &:after {
+    content: '';
+    background: linear-gradient(
+      -1450deg,
+      rgba(2, 0, 36, 0.1) 0%,
+      rgba(255, 255, 255, 0.3) 100%
+    );
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    transform: translateY(-50%) translateX(-100%);
+    transition: 0.2s all;
+    opacity: 0;
+    z-index: 1;
+  }
+  &:hover {
+    &:after {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+  }
 `;
 
 Button.defaultProps = {

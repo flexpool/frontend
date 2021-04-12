@@ -10,6 +10,7 @@ import {
   FaDiscord,
   FaReddit,
   FaSearch,
+  FaTelegram,
 } from 'react-icons/fa';
 import { useBoolState } from 'src/hooks/useBoolState';
 import React from 'react';
@@ -27,6 +28,7 @@ import { Spacer } from './Spacer';
 import { Helmet } from 'react-helmet-async';
 import { SelectCounterTicker } from '../SelectCounterTicker';
 import { LinkOut } from '../LinkOut';
+import { DISCORD_LINK, REDDIT_LINK, TELEGRAM_LINK } from 'src/constants';
 const Logo = styled(ReactLogo)`
   height: 30px;
   fill: var(--text-primary);
@@ -305,26 +307,15 @@ export const NavBar: React.FC<NavBarType> = (props) => {
             <MobileNavLink to="/faq">FAQ</MobileNavLink>
             <MobileNavLink to="/support">Support</MobileNavLink>
             <MobileNavTitle>Join the community</MobileNavTitle>
-            <MobileNavLink as={LinkOut} href="https://discord.gg/Pvw74Cv">
+            <MobileNavLink as={LinkOut} href={DISCORD_LINK}>
               <FaDiscord /> Discord
             </MobileNavLink>
-            <MobileNavLink
-              as={LinkOut}
-              href="https://www.reddit.com/user/flexpool"
-            >
-              <FaReddit /> Reddit
+            <MobileNavLink as={LinkOut} href={REDDIT_LINK}>
+              <FaReddit /> Telegram
             </MobileNavLink>
-
-            {/* <SupportChannel
-            name={'Discord'}
-            icon={<FaDiscord />}
-            href={'https://discord.gg/Pvw74Cv'}
-          />
-          <SupportChannel
-            name={'Telegram'}
-            icon={<FaTelegram />}
-            href={'https://t.me/flexpool'}
-          /> */}
+            <MobileNavLink as={LinkOut} href={TELEGRAM_LINK}>
+              <FaTelegram /> Telegram
+            </MobileNavLink>
           </ScrollArea>
           <div>
             <Button shape="block" as={Link} to="/get-started" variant="primary">

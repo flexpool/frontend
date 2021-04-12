@@ -17,6 +17,7 @@ export const mainTheme = {
     primary: 'var(--primary)',
     warning: 'var(--warning)',
     onBg: '#fff',
+    'color-discord': 'var(--color-discord)',
   },
   border: {
     default: '1px solid var(--border-color)',
