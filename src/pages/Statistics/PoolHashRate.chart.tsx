@@ -2,7 +2,10 @@ import React, { useRef } from 'react';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 
-import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
+import {
+  useActiveCoinTicker,
+  useAppTheme,
+} from 'src/rdx/localSettings/localSettings.hooks';
 import { formatRegionName } from 'src/utils/region.utils';
 import { ApiRegion } from 'src/types/Region.types';
 import { useDispatch } from 'react-redux';
@@ -20,12 +23,14 @@ const PoolHashrateChart = () => {
     d(poolHashrateGet(activeCoin));
   }, [activeCoin, d]);
 
+  const appTheme = useAppTheme();
+
   React.useLayoutEffect(() => {
     if (poolHasrateState.data.length > 1) {
       let x = am4core.create('chartdiv', am4charts.XYChart);
       x.responsive.enabled = true;
       x.colors.list = [
-        am4core.color('#000000'),
+        am4core.color(appTheme === 'dark' ? '#aaa' : '#000000'),
         am4core.color('#edb431'),
         am4core.color('#5d42f5'),
         am4core.color('#15cd72'),
@@ -93,7 +98,7 @@ const PoolHashrateChart = () => {
         x.dispose();
       };
     }
-  }, [poolHasrateState.data]);
+  }, [poolHasrateState.data, appTheme]);
 
   return (
     <ChartContainer dataState={poolHasrateState} title="Pool Hashrate">

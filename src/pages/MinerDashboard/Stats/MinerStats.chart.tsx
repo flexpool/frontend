@@ -6,6 +6,7 @@ import { fetchApi } from 'src/utils/fetchApi';
 import { Spacer } from 'src/components/layout/Spacer';
 import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
 import { ChartContainer } from 'src/components/Chart/ChartContainer';
+import { useAppTheme } from 'src/rdx/localSettings/localSettings.hooks';
 
 export const StatsChart: React.FC<{
   coinTicker: string;
@@ -17,11 +18,11 @@ export const StatsChart: React.FC<{
   const reportedHashrateSeriesRef = useRef<HTMLDivElement>(null);
 
   const worker = useActiveSearchParamWorker();
-
+  const appTheme = useAppTheme();
   useEffect(() => {
     let hashrateChart = am4core.create('hashrate-chart', am4charts.XYChart);
     hashrateChart.colors.list = [
-      am4core.color('#000000'),
+      am4core.color(appTheme === 'dark' ? '#aaa' : '#000000'),
       am4core.color('#0069ff'),
       am4core.color('#15cd72'),
     ];
@@ -135,7 +136,7 @@ export const StatsChart: React.FC<{
       hashrateChart.dispose();
       sharesChart.dispose();
     };
-  }, []);
+  }, [appTheme]);
 
   useEffect(() => {
     if (props.coinTicker === null) return;
