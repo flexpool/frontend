@@ -69,7 +69,9 @@ export const MinerPplnsStats: React.FC<{
       let totalYour = 0;
       for (var i = 0; i < data.length; i++) {
         const item = data[i];
-        if (item === 0) break;
+        if (item === 0) {
+          continue;
+        }
         for (var j = 0; j < item; j++) {
           if (!sharesDataTmp[`${Math.floor(totalShares / 10000)}`]) {
             sharesDataTmp[`${Math.floor(totalShares / 10000)}`] = {
@@ -84,7 +86,7 @@ export const MinerPplnsStats: React.FC<{
         }
 
         if (!sharesDataTmp[`${Math.floor(totalShares / 10000)}`]) {
-          break;
+          continue;
         }
 
         sharesDataTmp[`${Math.floor(totalShares / 10000)}`].your++;

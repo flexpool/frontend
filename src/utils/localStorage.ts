@@ -40,7 +40,6 @@ export const localStorage = <T>(
           return defaultValue;
         }
       } catch (e) {
-        console.log('Local Storage Error', e);
         return defaultValue;
       }
     },
