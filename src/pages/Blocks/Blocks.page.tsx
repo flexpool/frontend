@@ -49,7 +49,7 @@ export const BlocksPage = () => {
       </Helmet>
       <HeaderStat>
         <h1>Blocks</h1>
-        <p>History of mined blocks by Flexpool community</p>
+        <p>History of mined blocks by community</p>
       </HeaderStat>
       <Content>
         <StatBoxContainer>

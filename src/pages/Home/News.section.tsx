@@ -13,7 +13,7 @@ const ItemWrapper = styled.a`
   background-color: var(--bg-primary);
   text-decoration: none;
   color: var(--texxt-primary);
-  transition: 300ms;
+  transition: 0.2s;
   &:hover {
     text-decoration: none;
     background-color: var(--primary);

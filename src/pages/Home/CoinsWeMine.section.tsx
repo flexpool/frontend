@@ -39,8 +39,9 @@ const ActionIcon = styled(Button)`
 `;
 
 const Wrapper = styled.div`
-  padding-top: 5rem;
+  padding-top: 9rem;
   padding-bottom: 5rem;
+  background: var(--bg-secondary);
   h2 {
     font-size: 2rem;
   }

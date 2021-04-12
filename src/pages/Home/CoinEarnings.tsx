@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaDiscord, FaRocket, FaTelegram } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import { Button } from 'src/components/Button';
 import { Content } from 'src/components/layout/Content';
 import { Skeleton } from 'src/components/layout/Skeleton';
@@ -170,8 +171,8 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
             Estimated earnings{' '}
             <Tooltip>
               <TooltipContent>
-                Estimated earnings are based on performance of mining last 100
-                blocks on our pool.
+                Estimated earnings are based on performance of mining last 7
+                days on our pool.
               </TooltipContent>
             </Tooltip>
           </Desc>
@@ -221,9 +222,17 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
             )}
           </Desc>
         </IntervalItem>
-        <StartMiningContainer>
-          <Button variant="success">Start mining</Button>
-        </StartMiningContainer>
+        {data?.ticker && (
+          <StartMiningContainer>
+            <Button
+              variant="success"
+              as={Link}
+              to={`/get-started/${data?.ticker}`}
+            >
+              Start mining
+            </Button>
+          </StartMiningContainer>
+        )}
       </IntervalContainer>
     </EarningBox>
   );
