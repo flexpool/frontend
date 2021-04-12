@@ -23,6 +23,7 @@ import {
   TELEGRAM_LINK,
   TWITTER_LINK,
 } from 'src/constants';
+import { partnersData } from 'src/pages/Partners/partnersData';
 
 const LinkOut: React.FC<{
   href: string;
@@ -126,7 +127,7 @@ export const FooterSection = () => {
             {/* <Link to="/">
               Careers
             </Link> */}
-            <Link to="/partners">Partners</Link>
+            {partnersData.length > 0 && <Link to="/partners">Partners</Link>}
             <LinkOut href="https://medium.com/flexpool/">Blog</LinkOut>
             <LinkOut href="https://flexpool.io/legal/FP-TO.pdf">Terms</LinkOut>
             <LinkOut href="https://flexpool.io/legal/FP-PP.pdf">

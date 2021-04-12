@@ -99,7 +99,7 @@ const IntervalContainer = styled.div`
   }
 `;
 
-const FiatValue = styled.p`
+const FiatValue = styled.div`
   font-size: 2rem;
   font-weight: 700;
   margin-top: 0.5rem;
@@ -139,6 +139,11 @@ const PoolDetails = styled.div`
   }
 `;
 
+const Desc = styled.div`
+  line-height: 1.4;
+  margin-top: 0.5rem;
+`;
+
 const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
   const counterTicker = useCounterTicker();
   const counterPrice = data?.marketData.prices[counterTicker] || 0;
@@ -156,10 +161,12 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
   return (
     <EarningBox>
       <HeadSplit>
-        <CoinIcon src={getCoinIconUrl('eth')} />
+        {(data?.ticker && <CoinIcon src={getCoinIconUrl(data?.ticker)} />) || (
+          <UnknownCoin />
+        )}
         <HeadContent>
           <h2>{data ? data.name : <Skeleton />}</h2>
-          <p>
+          <Desc>
             Estimated earnings{' '}
             <Tooltip>
               <TooltipContent>
@@ -167,7 +174,7 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
                 blocks on our pool.
               </TooltipContent>
             </Tooltip>
-          </p>
+          </Desc>
         </HeadContent>
         {data?.ticker === 'eth' && (
           <PoolDetails>
@@ -206,13 +213,13 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
               <Skeleton style={{ height: 25 }} />
             )}
           </FiatValue>
-          <p>
+          <Desc>
             {monthlyPer100 ? (
               <>{monthlyPer100.toFixed(6)} ETH</>
             ) : (
               <Skeleton style={{ height: 10 }} />
             )}
-          </p>
+          </Desc>
         </IntervalItem>
         <StartMiningContainer>
           <Button variant="success">Start mining</Button>

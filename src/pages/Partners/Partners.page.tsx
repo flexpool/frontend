@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { Redirect } from 'react-router';
 import { Card } from 'src/components/layout/Card';
 
 import { Content } from 'src/components/layout/Content';
@@ -39,6 +40,9 @@ const Item = styled(Card)`
 `;
 
 export const PartnersPage = () => {
+  if (partnersData.length < 1) {
+    return <Redirect to="/" />;
+  }
   return (
     <Page>
       <Helmet>
