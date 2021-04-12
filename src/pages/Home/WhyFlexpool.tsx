@@ -42,7 +42,7 @@ export const WhyFlexpool = () => {
         <Title>Why Flexpool</Title>
         <ItemsContainer>
           <Item>
-            <Image src="https://flexpool.io/static/assets/moon.svg" />
+            <Image src="/illustrations/moon.svg" />
             <h3>Lightning speed</h3>
             <p>
               We use specialized high-performance server clusters powered by
@@ -50,15 +50,7 @@ export const WhyFlexpool = () => {
             </p>
           </Item>
           <Item>
-            <Image src="https://flexpool.io/static/assets/fees.svg" />
-            <h3>No Fees</h3>
-            <p>
-              On <strong>Flexpool</strong>, there's no required fees. We only
-              have an optional <strong>Pool Donation</strong> chosen by you.
-            </p>
-          </Item>
-          <Item>
-            <Image src="https://flexpool.io/static/assets/horseride.svg" />
+            <Image src="/illustrations/horseride.svg" />
             <h3>Just Better</h3>
             <p>
               You can forget your poor mining experience. The Flexpool is backed

@@ -12,7 +12,7 @@ const pulse = keyframes`
 }
 `;
 
-export const Skeleton = styled.div<{ width?: number; sHeight?: number }>`
+export const Skeleton = styled.span<{ width?: number; sHeight?: number }>`
   background: var(--bg-secondary);
   width: 100px;
   height: 1rem;

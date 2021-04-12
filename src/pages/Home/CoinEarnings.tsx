@@ -1,10 +1,12 @@
 import React from 'react';
-import { FaRocket } from 'react-icons/fa';
+import { FaDiscord, FaRocket, FaTelegram } from 'react-icons/fa';
 import { Button } from 'src/components/Button';
 import { Content } from 'src/components/layout/Content';
 import { Skeleton } from 'src/components/layout/Skeleton';
 import { Spacer } from 'src/components/layout/Spacer';
+import { LinkOut } from 'src/components/LinkOut';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
+import { DISCORD_LINK, TELEGRAM_LINK } from 'src/constants';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoinFull } from 'src/types/PoolCoin.types';
@@ -97,7 +99,7 @@ const IntervalContainer = styled.div`
   }
 `;
 
-const FiatValue = styled.p`
+const FiatValue = styled.div`
   font-size: 2rem;
   font-weight: 700;
   margin-top: 0.5rem;
@@ -121,6 +123,25 @@ const StartMiningContainer = styled.div`
   @media screen and (max-width: 540px) {
     justify-content: center;
   }
+  & > *:not(:last-child) {
+    margin-right: 0.5rem;
+  }
+`;
+
+const PoolDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-grow: 1;
+  text-align: right;
+  @media screen and (max-width: 540px) {
+    text-align: center;
+  }
+`;
+
+const Desc = styled.div`
+  line-height: 1.4;
+  margin-top: 0.5rem;
 `;
 
 const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
@@ -140,10 +161,12 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
   return (
     <EarningBox>
       <HeadSplit>
-        <CoinIcon src={getCoinIconUrl('eth')} />
+        {(data?.ticker && <CoinIcon src={getCoinIconUrl(data?.ticker)} />) || (
+          <UnknownCoin />
+        )}
         <HeadContent>
           <h2>{data ? data.name : <Skeleton />}</h2>
-          <p>
+          <Desc>
             Estimated earnings{' '}
             <Tooltip>
               <TooltipContent>
@@ -151,8 +174,17 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
                 blocks on our pool.
               </TooltipContent>
             </Tooltip>
-          </p>
+          </Desc>
         </HeadContent>
+        {data?.ticker === 'eth' && (
+          <PoolDetails>
+            <p>
+              0.5% Pool Fee
+              <br />
+              +90% MEV Bonus
+            </p>
+          </PoolDetails>
+        )}
       </HeadSplit>
       <IntervalContainer>
         <IntervalItem>
@@ -181,13 +213,13 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
               <Skeleton style={{ height: 25 }} />
             )}
           </FiatValue>
-          <p>
+          <Desc>
             {monthlyPer100 ? (
               <>{monthlyPer100.toFixed(6)} ETH</>
             ) : (
               <Skeleton style={{ height: 10 }} />
             )}
-          </p>
+          </Desc>
         </IntervalItem>
         <StartMiningContainer>
           <Button variant="success">Start mining</Button>
@@ -218,17 +250,23 @@ export const CoinEarnings = () => {
               <FaRocket />
             </UnknownCoin>
             <HeadContent>
-              <h2>More coins to mine soon!</h2>
+              <h2>More Coins Coming Soon!</h2>
               <p>
-                We are preparing to launch multiple pools in the nearest future.
-                Stay connected with us to be there when the next altcoin hits
-                Flexppol!
+                We are working to launch multiple pools in the near future. Stay
+                connected by joining our discord or telegram.
               </p>
             </HeadContent>
           </HeadSplit>
           <IntervalContainer>
             <StartMiningContainer>
-              <Button variant="warning">Join Our Discord</Button>
+              <Button variant="primary" as={LinkOut} href={TELEGRAM_LINK}>
+                <FaTelegram /> &nbsp; Telegram
+              </Button>{' '}
+              &nbsp;
+              <Button variant="warning" as={LinkOut} href={DISCORD_LINK}>
+                <FaDiscord />
+                &nbsp;Discord
+              </Button>
             </StartMiningContainer>
           </IntervalContainer>
         </EarningBox>

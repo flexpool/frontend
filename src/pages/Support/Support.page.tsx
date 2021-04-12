@@ -6,6 +6,7 @@ import { Content } from 'src/components/layout/Content';
 import { Divider } from 'src/components/layout/Divider';
 import { HeroBlue } from 'src/components/layout/Hero/HeroBlue';
 import { Page } from 'src/components/layout/Page';
+import { DISCORD_LINK, TELEGRAM_LINK } from 'src/constants';
 import styled from 'styled-components/macro';
 
 const SupportChannelWrapper = styled.a`
@@ -81,12 +82,12 @@ export const SupportPage = () => {
           <SupportChannel
             name={'Discord'}
             icon={<FaDiscord />}
-            href={'https://discord.gg/Pvw74Cv'}
+            href={DISCORD_LINK}
           />
           <SupportChannel
             name={'Telegram'}
             icon={<FaTelegram />}
-            href={'https://t.me/flexpool'}
+            href={TELEGRAM_LINK}
           />
         </div>
         <Divider margin />

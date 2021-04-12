@@ -7,35 +7,35 @@ import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { dateUtils } from 'src/utils/date.utils';
 import styled from 'styled-components';
 
-type MinerRank = 'freeloader' | 'loyalminer' | 'vip' | 'mvp';
-const getRankColor = (rank: MinerRank) => {
-  switch (rank) {
-    case 'freeloader':
-      return 'var(--text-primary)';
-    case 'loyalminer':
-      return 'var(--success)';
-    case 'vip':
-      return 'var(--secondary)';
-    case 'mvp':
-      return 'var(--primary)';
-  }
-};
+// type MinerRank = 'freeloader' | 'loyalminer' | 'vip' | 'mvp';
+// const getRankColor = (rank: MinerRank) => {
+//   switch (rank) {
+//     case 'freeloader':
+//       return 'var(--text-primary)';
+//     case 'loyalminer':
+//       return 'var(--success)';
+//     case 'vip':
+//       return 'var(--secondary)';
+//     case 'mvp':
+//       return 'var(--primary)';
+//   }
+// };
 
-const Rank = styled.span<{
-  rank: MinerRank;
-}>`
-  ${(p) => `
-    color: ${getRankColor(p.rank)}
-  `}
-`;
+// const Rank = styled.span<{
+//   rank: MinerRank;
+// }>`
+//   ${(p) => `
+//     color: ${getRankColor(p.rank)}
+//   `}
+// `;
 
-const getRank = (value: number): [string, MinerRank] => {
-  const donation = value * 100;
-  if (donation === 0) return ['Freeloader', 'freeloader'];
-  else if (donation > 0 && donation <= 1) return ['Loyal Miner', 'loyalminer'];
-  else if (donation > 1 && donation < 5) return ['VIP', 'vip'];
-  else return ['MVP', 'mvp'];
-};
+// const getRank = (value: number): [string, MinerRank] => {
+//   const donation = value * 100;
+//   if (donation === 0) return ['Freeloader', 'freeloader'];
+//   else if (donation > 0 && donation <= 1) return ['Loyal Miner', 'loyalminer'];
+//   else if (donation > 1 && donation < 5) return ['VIP', 'vip'];
+//   else return ['MVP', 'mvp'];
+// };
 
 const Item = styled.div`
   display: flex;
@@ -73,20 +73,20 @@ export const MinerDetails: React.FC<{
   const minerDetailsState = useReduxState('minerDetails');
   const settings = minerDetailsState.data;
 
-  const rank = React.useMemo(() => {
-    if (settings) {
-      return getRank(settings.poolDonation);
-    }
+  // const rank = React.useMemo(() => {
+  //   if (settings) {
+  //     return getRank(settings.poolDonation);
+  //   }
 
-    return null;
-  }, [settings]);
+  //   return null;
+  // }, [settings]);
 
   const payoutLimit = useActiveCoinTickerDisplayValue(settings?.payoutLimit);
 
   return (
     <Card paddingShort>
       <Content>
-        <Item>
+        {/* <Item>
           <div>Rank:&nbsp;</div>
           <div>
             {rank ? (
@@ -108,7 +108,7 @@ export const MinerDetails: React.FC<{
             )}
             %
           </div>
-        </Item>
+        </Item> */}
         <Item>
           <div>Payout Limit:&nbsp;</div>
           <div>{settings && coin ? payoutLimit : <Skeleton width={40} />}</div>

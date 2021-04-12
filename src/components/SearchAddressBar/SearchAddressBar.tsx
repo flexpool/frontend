@@ -105,7 +105,7 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
         .then((res) => {
           if (res) {
             saveAddressToCache(res, address);
-            history.push(`/miners/${res}/${address}`);
+            history.push(`/miner/${res}/${address}`);
           } else {
             alert(
               'Specified address was not found in our system. Try waiting some time if you are already mining.'

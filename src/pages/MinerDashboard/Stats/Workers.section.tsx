@@ -12,7 +12,7 @@ import { dateUtils } from 'src/utils/date.utils';
 import { formatSi } from 'src/utils/si.utils';
 import styled from 'styled-components/macro';
 import { FaSearch, FaSort, FaSortDown, FaSortUp } from 'react-icons/fa';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const PercentageItem = styled.span`
   color: var(--text-tertiary);

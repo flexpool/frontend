@@ -59,6 +59,8 @@ import SupportPage from '../pages/Support/Support.page';
 import MinersPage from '../pages/Miners/Miners.page';
 import BlocksPage from '../pages/Blocks/Blocks.page';
 import FaqPage from '../pages/Faq/Faq.page';
+import OpenDataReportsPage from 'src/pages/Reports/OpenDataReports.page';
+import PartnersPage from 'src/pages/Partners/Partners.page';
 
 /**
  * init redux state
@@ -106,21 +108,22 @@ const AppContent = () => {
       <SnackViewControl />
       <React.Suspense fallback={<div>Loading...</div>}>
         <Switch>
-          <Route component={GetStartedPage} path="/get-started" />
-          <Route exact strict component={StatisticsPage} path="/statistics" />
-          <Route exact strict component={FaqPage} path="/faq" />
-          <Route exact strict component={MinersPage} path="/miners" />
-          <Route component={MinerDashboardPage} path="/miners/:coin/:address" />
-          <Route exact strict component={BlocksPage} path="/blocks" />
-          <Route exact strict component={SupportPage} path="/support" />
           <Route
             exact
-            strict
-            component={BrandAssetsPage}
-            path="/brand-assets"
+            component={OpenDataReportsPage}
+            path="/open-data-reports"
           />
-          <Route exact strict component={ContactUsPage} path="/contact" />
-          <Route exact strict component={HomePage} path="/" />
+          <Route exact path="/partners" component={PartnersPage} />
+          <Route component={GetStartedPage} path="/get-started" />
+          <Route exact component={StatisticsPage} path="/statistics" />
+          <Route exact component={FaqPage} path="/faq" />
+          <Route exact component={MinersPage} path="/miners" />
+          <Route component={MinerDashboardPage} path="/miner/:coin/:address" />
+          <Route exact component={BlocksPage} path="/blocks" />
+          <Route exact component={SupportPage} path="/support" />
+          <Route exact component={BrandAssetsPage} path="/brand-assets" />
+          <Route exact component={ContactUsPage} path="/contact" />
+          <Route exact component={HomePage} path="/" />
           <Redirect to="/" />
         </Switch>
       </React.Suspense>
