@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Content } from 'src/components/layout/Content';
 import styled from 'styled-components/macro';
-import IconLogo from 'src/assets/logo_icon_white.svg';
+import IconLogo from 'src/assets/icon.svg';
 
 import {
   FaDiscord,
