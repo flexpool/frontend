@@ -11,8 +11,9 @@ import { PayoutSettings } from './PayoutSettings';
 const Split = styled.div`
   display: flex;
   flex-grow: 1;
+  flex-shrink: 1;
   @media screen and (max-width: 768px) {
-    display: block;
+    flex-direction: column;
   }
 `;
 
@@ -42,6 +43,9 @@ const NavItem = styled(Button)`
 const PageWrapper = styled(ScrollArea)`
   padding: 1rem 1.25rem;
   flex-grow: 1;
+  @media screen and (max-width: 768px) {
+    height: 1px;
+  }
   & > * {
     width: 100%;
   }

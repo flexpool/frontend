@@ -61,6 +61,7 @@ import BlocksPage from '../pages/Blocks/Blocks.page';
 import FaqPage from '../pages/Faq/Faq.page';
 import OpenDataReportsPage from 'src/pages/Reports/OpenDataReports.page';
 import PartnersPage from 'src/pages/Partners/Partners.page';
+import BusinessDevelopmentPage from 'src/pages/BusinessDevelopment/BusinessDevelopment.page';
 
 /**
  * init redux state
@@ -112,6 +113,11 @@ const AppContent = () => {
             exact
             component={OpenDataReportsPage}
             path="/open-data-reports"
+          />
+          <Route
+            exact
+            path="/business-development"
+            component={BusinessDevelopmentPage}
           />
           <Route exact path="/partners" component={PartnersPage} />
           <Route component={GetStartedPage} path="/get-started" />
