@@ -1,29 +1,34 @@
 # Flexpool Front-End (v2)
 
-[![Production Deployment](https://github.com/flexpool/frontend/actions/workflows/deploy.yml/badge.svg)](https://github.com/flexpool/frontend/actions/workflows/deploy.yml)
+[![Production Deployment](https://github.com/flexpool/frontend/actions/workflows/deploy.yml/badge.svg)](https://github.com/flexpool/frontend/actions/workflows/deploy.yml)  
 
 <h2 align="center">
-<p><img src="https://static.flexpool.io/assets/brand/light.svg" width="50%"></p>
+<p><a href="https://beta.flexpool.io"><img src="https://static.flexpool.io/assets/brand/light.svg" width="50%"></p>
 <p>Welcome to Flexpool.io v2 Website!</p>
 </h2>
 
 # Running locally
 
-Clone the repository
+#### Prerequisites
+
+[Yarn](https://classic.yarnpkg.com/en/docs/install) is needed to run the frontend locally
+
+#### Clone the repository
 
 ```
 git clone https://github.com/flexpool/frontend.git
 ```
 
-Install dependencies
+#### Install dependencies
 
 ```
+cd frontend
 yarn install
 ```
 
-Run the development server
+#### Run the development server
 
-```sh
+```
 yarn start
 ```
 
@@ -32,6 +37,12 @@ That's it! You can access the website at `http://localhost:3000`. It automatical
 # Contributing
 
 Contributions are welcome here! Make a fork, commit the changes, and submit the Pull Request to us. We will review it as soon as possible and merge it to the main repository if all is good to us.
+
+### Join the Community
+
+* [Discord](https://discord.gg/SmRMHTV4np)
+* [Telegram](https://t.me/flexpool/)
+* [Reddit](https://reddit.com/r/flexpool)
 
 # License
 
