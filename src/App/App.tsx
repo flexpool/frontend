@@ -62,6 +62,7 @@ import FaqPage from '../pages/Faq/Faq.page';
 import OpenDataReportsPage from 'src/pages/Reports/OpenDataReports.page';
 import PartnersPage from 'src/pages/Partners/Partners.page';
 import BusinessDevelopmentPage from 'src/pages/BusinessDevelopment/BusinessDevelopment.page';
+import { MinerOldUrlSupportPage } from 'src/pages/MinerOldUrlSupport/MinerOldUrlSupport.page';
 
 /**
  * init redux state
@@ -130,6 +131,7 @@ const AppContent = () => {
           <Route exact component={BrandAssetsPage} path="/brand-assets" />
           <Route exact component={ContactUsPage} path="/contact" />
           <Route exact component={HomePage} path="/" />
+          <Route path="/:address" component={MinerOldUrlSupportPage} />
           <Redirect to="/" />
         </Switch>
       </React.Suspense>
