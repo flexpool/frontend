@@ -18,7 +18,6 @@
       "type": "image/png"
     }
   ],
-  "start_url": "https://beta.flexpool.io/",
   "display": "standalone",
   "theme_color": "#0069FF",
   "background_color": "#ffffff"
