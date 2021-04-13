@@ -1,5 +1,6 @@
 import React from 'react';
 import { clx } from 'src/utils/clx';
+import styled from 'styled-components';
 import { Skeleton } from '../Skeleton';
 import { HorizontalScrollWrapepr, ListWrapper, Table } from './components';
 import { ListPagination } from './ListPagination';
@@ -44,6 +45,7 @@ export type DynamicListProps<
     totalPages: number;
   };
   onRowClick?: (data: D) => void;
+  contentEmpty?: React.ReactNode;
 };
 
 export const DynamicList = <D extends {}, CP extends {}>(
@@ -52,7 +54,7 @@ export const DynamicList = <D extends {}, CP extends {}>(
   const {
     data,
     columns,
-    // contentEmpty,
+    contentEmpty,
     tBodyChildren,
     tFooterChildren,
     hideHead,
@@ -142,6 +144,9 @@ export const DynamicList = <D extends {}, CP extends {}>(
           )}
           {tFooterChildren && <tfoot>{tFooterChildren}</tfoot>}
         </Table.Container>
+        {!isLoading && (!data || data.length < 1) && contentEmpty ? (
+          <DynamicListEmpty>{contentEmpty}</DynamicListEmpty>
+        ) : null}
       </HorizontalScrollWrapepr>
       {pagination && <ListPagination {...pagination} />}
     </ListWrapper>
@@ -149,3 +154,28 @@ export const DynamicList = <D extends {}, CP extends {}>(
 };
 
 export default DynamicList;
+
+const EmptyContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  flex-direction: column;
+`;
+
+const EmptyImg = styled.img`
+  max-height: 180px;
+  max-width: 300px;
+  margin-bottom: 2rem;
+`;
+
+export const DynamicListEmpty: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  return (
+    <EmptyContainer>
+      <EmptyImg src="/illustrations/stats.svg" alt="Empty chart" />
+      {children}
+    </EmptyContainer>
+  );
+};

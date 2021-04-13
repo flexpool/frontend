@@ -275,15 +275,11 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
     ];
   }, [address]);
 
-  const title = address
-    ? blockState.data && blockState.data.totalItems > 1
-      ? `You have mined ${blockState.data.totalItems} blocks.`
-      : "You haven't mined any block yet."
-    : null;
-
   return (
     <>
-      {title && <h2>{title}</h2>}
+      {blockState.data && blockState.data.totalItems > 0 && (
+        <h2>{`You have mined ${blockState.data.totalItems} block(s).`}</h2>
+      )}
       <DynamicList
         pagination={{
           currentPage,
@@ -300,6 +296,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
           currentPage,
         }}
         columns={columns}
+        contentEmpty={<h3>You haven't mined any blocks yet</h3>}
       />
     </>
   );
