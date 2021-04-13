@@ -160,6 +160,11 @@ const BurgerWrap = styled(Button)`
   &.active {
     background: transparent;
   }
+  background: none !important;
+  outline: none !important;
+  &:after {
+    display: none !important;
+  }
 `;
 
 export type NavBarType = {};
@@ -326,7 +331,7 @@ export const NavBar: React.FC<NavBarType> = (props) => {
               <FaDiscord /> Discord
             </MobileNavLink>
             <MobileNavLink as={LinkOut} href={REDDIT_LINK}>
-              <FaReddit /> Telegram
+              <FaReddit /> Reddit
             </MobileNavLink>
             <MobileNavLink as={LinkOut} href={TELEGRAM_LINK}>
               <FaTelegram /> Telegram

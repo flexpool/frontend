@@ -132,6 +132,8 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
             <FieldWrapper>
               <Input
                 name="search"
+                spellCheck="false"
+                autoComplete="false"
                 placeholder="Search by your mining address"
               />
               {showResult && searchData && searchData.length > 0 && (

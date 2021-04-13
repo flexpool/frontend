@@ -30,7 +30,6 @@ export const localStorage = <T>(
               defaultValue
             );
           } catch (e) {
-            console.log(e);
             return defaultValue;
           }
         } else {

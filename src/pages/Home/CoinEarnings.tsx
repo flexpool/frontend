@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaDiscord, FaRocket, FaTelegram } from 'react-icons/fa';
+import { FaDiscord, FaReddit, FaRocket, FaTelegram } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { Button } from 'src/components/Button';
 import { Content } from 'src/components/layout/Content';
@@ -7,7 +7,7 @@ import { Skeleton } from 'src/components/layout/Skeleton';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOut } from 'src/components/LinkOut';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
-import { DISCORD_LINK, TELEGRAM_LINK } from 'src/constants';
+import { DISCORD_LINK, REDDIT_LINK, TELEGRAM_LINK } from 'src/constants';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoinFull } from 'src/types/PoolCoin.types';
@@ -140,6 +140,15 @@ const PoolDetails = styled.div`
   }
 `;
 
+const ButtonGroup = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: -0.5rem;
+  & > * {
+    margin: 0.5rem;
+  }
+`;
 const Desc = styled.div`
   line-height: 1.4;
   margin-top: 0.5rem;
@@ -268,14 +277,18 @@ export const CoinEarnings = () => {
           </HeadSplit>
           <IntervalContainer>
             <StartMiningContainer>
-              <Button variant="primary" as={LinkOut} href={TELEGRAM_LINK}>
-                <FaTelegram /> &nbsp; Telegram
-              </Button>{' '}
-              &nbsp;
-              <Button variant="warning" as={LinkOut} href={DISCORD_LINK}>
-                <FaDiscord />
-                &nbsp;Discord
-              </Button>
+              <ButtonGroup>
+                <Button variant="danger" as={LinkOut} href={REDDIT_LINK}>
+                  <FaReddit /> &nbsp; Reddit
+                </Button>{' '}
+                <Button variant="primary" as={LinkOut} href={TELEGRAM_LINK}>
+                  <FaTelegram /> &nbsp; Telegram
+                </Button>{' '}
+                <Button variant="warning" as={LinkOut} href={DISCORD_LINK}>
+                  <FaDiscord />
+                  &nbsp;Discord
+                </Button>
+              </ButtonGroup>
             </StartMiningContainer>
           </IntervalContainer>
         </EarningBox>
