@@ -7,7 +7,7 @@ import { Skeleton } from 'src/components/layout/Skeleton';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOut } from 'src/components/LinkOut';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
-import { DISCORD_LINK, TELEGRAM_LINK } from 'src/constants';
+import { DISCORD_LINK, REDDIT_LINK, TELEGRAM_LINK } from 'src/constants';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoinFull } from 'src/types/PoolCoin.types';
@@ -278,7 +278,7 @@ export const CoinEarnings = () => {
           <IntervalContainer>
             <StartMiningContainer>
               <ButtonGroup>
-                <Button variant="danger" as={LinkOut} href={TELEGRAM_LINK}>
+                <Button variant="danger" as={LinkOut} href={REDDIT_LINK}>
                   <FaReddit /> &nbsp; Reddit
                 </Button>{' '}
                 <Button variant="primary" as={LinkOut} href={TELEGRAM_LINK}>
