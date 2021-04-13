@@ -7,6 +7,7 @@ import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 import { HeaderStat } from 'src/components/layout/StatHeader';
 import { StatBox, StatBoxContainer } from 'src/components/StatBox';
+import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { poolStatsGet } from 'src/rdx/poolStats/poolStats.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
@@ -52,6 +53,13 @@ export const StatisticsPage = () => {
             />
             <StatBox
               title="Average Luck"
+              tooltip={
+                <Tooltip>
+                  <TooltipContent>
+                    Last 30 days average block luck.
+                  </TooltipContent>
+                </Tooltip>
+              }
               value={
                 poolStatsState.data?.averageLuck &&
                 `${

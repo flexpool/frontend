@@ -39,12 +39,20 @@ const Value = styled.span`
   font-weight: 600;
 `;
 
+const TooltipWrapper = styled.div`
+  display: inline-block;
+  font-size: 1rem;
+`;
+
 export const StatBox: React.FC<{
-  title: string;
+  title: React.ReactNode;
   value: React.ReactNode;
-}> = ({ title, value }) => (
+  tooltip?: React.ReactNode;
+}> = ({ title, value, tooltip }) => (
   <StatBoxC padding>
-    <Title>{title}</Title>
+    <Title>
+      {title} {tooltip && <TooltipWrapper>{tooltip}</TooltipWrapper>}
+    </Title>
     {((typeof value === 'undefined' || !value) && (
       <Skeleton style={{ height: 33, width: 70 }} />
     )) || <Value>{value}</Value>}

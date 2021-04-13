@@ -12,6 +12,7 @@ import { Luck } from 'src/components/Luck';
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
+import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 
 export const BlocksPage = () => {
   const statsState = useAsyncState<{
@@ -54,12 +55,27 @@ export const BlocksPage = () => {
       <Content>
         <StatBoxContainer>
           <StatBox
-            title="Average Luck"
+            tooltip={
+              <Tooltip>
+                <TooltipContent>
+                  Last 30 days average block luck.
+                </TooltipContent>
+              </Tooltip>
+            }
+            title={<>Average Luck&nbsp;</>}
             value={
               statsState.data && <Luck value={statsState.data.averageLuck} />
             }
           />
           <StatBox
+            tooltip={
+              <Tooltip>
+                <TooltipContent>
+                  Current round's block luck. This value is updated in
+                  real-time.
+                </TooltipContent>
+              </Tooltip>
+            }
             title="Current Luck"
             value={
               statsState.data && <Luck value={statsState.data.currentLuck} />
@@ -73,7 +89,15 @@ export const BlocksPage = () => {
             }
           />
           <StatBox
-            title="Network difficulty"
+            tooltip={
+              <Tooltip>
+                <TooltipContent>
+                  Average amount of how many hashes pool should produce to mine
+                  a block.
+                </TooltipContent>
+              </Tooltip>
+            }
+            title="Network Difficulty"
             value={
               statsState.data &&
               `${formatSi(statsState.data.networkDifficulty, 'H')}`
