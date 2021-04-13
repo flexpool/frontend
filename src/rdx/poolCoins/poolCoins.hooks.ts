@@ -8,10 +8,14 @@ export const usePoolCoins = () => {
   const d = useDispatch();
 
   React.useEffect(() => {
-    if (!poolCoinsState.data && !poolCoinsState.isLoading) {
+    if (
+      !poolCoinsState.data &&
+      !poolCoinsState.isLoading &&
+      !poolCoinsState.error
+    ) {
       d(poolCoinsGet());
     }
-  }, [poolCoinsState.data, poolCoinsState.isLoading, d]);
+  }, [poolCoinsState.data, poolCoinsState.isLoading, d, poolCoinsState.error]);
 
   return poolCoinsState;
 };
