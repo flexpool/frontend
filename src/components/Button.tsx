@@ -105,7 +105,7 @@ export const Button = styled.button<ButtonProps>`
     background: linear-gradient(
       -1450deg,
       rgba(2, 0, 36, 0.1) 0%,
-      rgba(255, 255, 255, 0.3) 100%
+      rgba(255, 255, 255, 0.2) 100%
     );
     position: absolute;
     top: -50%;
