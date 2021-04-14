@@ -1,5 +1,5 @@
 import React from 'react';
-import Tippy from '@tippyjs/react';
+import Tippy, { TippyProps } from '@tippyjs/react';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/shift-away.css';
@@ -43,9 +43,11 @@ export const TooltipContent: React.FC<{
 
 export const Tooltip: React.FC<{
   children: React.ReactNode;
-  icon?: React.ReactNode;
+  icon?: React.ReactElement;
   variant?: UIVariant;
-}> = ({ children, icon, variant = 'primary' }) => {
+  wrapIcon?: boolean;
+  placement?: TippyProps['placement'];
+}> = ({ children, icon, variant = 'primary', wrapIcon = true, placement }) => {
   return (
     <Tippy
       content={children}
@@ -53,10 +55,15 @@ export const Tooltip: React.FC<{
       animation="shift-away"
       theme="light"
       interactive={true}
+      placement={placement}
     >
-      <IconWrapper variant={variant}>
-        {icon || <AiOutlineInfoCircle />}
-      </IconWrapper>
+      {wrapIcon ? (
+        <IconWrapper variant={variant}>
+          {icon || <AiOutlineInfoCircle />}
+        </IconWrapper>
+      ) : (
+        icon || <AiOutlineInfoCircle />
+      )}
     </Tippy>
   );
 };
