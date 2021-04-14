@@ -21,6 +21,8 @@ import { useDispatch } from 'react-redux';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { FaCalendar, FaCalendarDay, FaCalendarWeek } from 'react-icons/fa';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
+import { dateUtils } from 'src/utils/date.utils';
+import { addSeconds } from 'date-fns';
 //
 
 const EstimatedIntervalSwitch = styled.span`
@@ -58,17 +60,60 @@ const SecondaryText = styled.span`
   color: var(--text-tertiary);
 `;
 
-const BalanceProgressBar: React.FC<{ value: number }> = ({ value }) => {
+const PayoutText = styled.p`
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+`;
+
+const PayoutNumber = styled.span`
+  color: var(--success);
+`;
+
+const BalanceProgressBar: React.FC<{
+  value: number;
+  payoutInSeconds: number;
+}> = ({ value, payoutInSeconds }) => {
   const [progress, setProgress] = useState(0);
   React.useLayoutEffect(() => {
     setTimeout(() => {
-      setProgress(value);
+      setProgress(Math.round(value));
     }, 100);
   }, [value]);
   return (
-    <ProgressBarWrapper>
-      <ProgressBar style={{ width: `${progress}%` }}></ProgressBar>
-    </ProgressBarWrapper>
+    <Tooltip
+      wrapIcon={false}
+      placement="bottom"
+      icon={
+        <ProgressBarWrapper>
+          <ProgressBar
+            style={{
+              width: `${progress}%`,
+              ...(progress === 100
+                ? { backgroundColor: 'var(--success)' }
+                : {}),
+            }}
+          />
+        </ProgressBarWrapper>
+      }
+    >
+      <TooltipContent>
+        <PayoutText>
+          <PayoutNumber>{progress}%</PayoutNumber> of the payout limit reached.
+        </PayoutText>
+        {payoutInSeconds && (
+          <PayoutText>
+            The limit will be reached in{' '}
+            <PayoutNumber>
+              {dateUtils.formatDistance(
+                addSeconds(new Date(), payoutInSeconds)
+              )}
+            </PayoutNumber>
+            .
+          </PayoutText>
+        )}
+      </TooltipContent>
+    </Tooltip>
   );
 };
 
@@ -167,6 +212,19 @@ export const HeaderStats: React.FC<{
     }
   };
 
+  const balanceProgress =
+    settings && data
+      ? data.balance / settings.payoutLimit > 1
+        ? 100
+        : (data.balance / settings.payoutLimit) * 100
+      : 0;
+
+  const estimatedEarningsPerSecond = estimatedDailyEarnings / 24 / 60 / 60;
+  const amountToPayout =
+    settings && data ? settings.payoutLimit - data.balance : 0;
+  const amountToPayoutTimeInSeconds =
+    amountToPayout / estimatedEarningsPerSecond || 0;
+
   return (
     <CardGrid>
       <Card padding>
@@ -195,13 +253,8 @@ export const HeaderStats: React.FC<{
         />
         {/* TODO: Test 100% balances */}
         <BalanceProgressBar
-          value={
-            settings && data
-              ? data.balance / settings.payoutLimit > 1
-                ? 100
-                : (data.balance / settings.payoutLimit) * 100
-              : 0
-          }
+          value={balanceProgress}
+          payoutInSeconds={amountToPayoutTimeInSeconds}
         />
       </Card>
       <Card padding>

@@ -9,8 +9,6 @@ export const Content = styled.div<{
   width: 100%;
   margin: 0 auto;
   max-width: 1200px;
-  position: relative;
-  z-index: 1;
   padding-left: 1rem;
   padding-right: 1rem;
   ${(p) =>

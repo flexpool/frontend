@@ -1,7 +1,6 @@
-$color: var(--bg-primary);
-$transparent-light: rgba(0, 8, 16, 0.08);
-$transparent-dark: rgba(0, 8, 16, 0.15);
-$transparent-darker: rgba(0, 8, 16, 0.2);
+$color: var(--bg-secondary);
+$transparent-dark: var(--border-color);
+$transparent-darker: var(--border-color);
 $arrow-size: 16px;
 
 .tippy-box[data-theme~='light'] {
@@ -9,10 +8,10 @@ $arrow-size: 16px;
   background-clip: padding-box;
   border: 1px solid $transparent-dark;
   color: #333;
-  box-shadow: 0 4px 14px -2px $transparent-light;
+  box-shadow: 0 4px 14px -2px rgba(0, 8, 16, 0.08);
 
   > .tippy-backdrop {
-    background-color: $color;
+    background-color: red;
   }
 
   > .tippy-arrow,
