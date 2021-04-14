@@ -11,7 +11,7 @@ $arrow-size: 16px;
   box-shadow: 0 4px 14px -2px rgba(0, 8, 16, 0.08);
 
   > .tippy-backdrop {
-    background-color: red;
+    background-color: var(--bg-secondary);
   }
 
   > .tippy-arrow,
