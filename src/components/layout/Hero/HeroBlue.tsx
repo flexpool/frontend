@@ -19,6 +19,10 @@ const Hero = styled.div`
   }
 
   position: relative;
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
 `;
 
 const WorldMap = styled.img`
@@ -28,7 +32,7 @@ const WorldMap = styled.img`
   left: 0;
   height: 100%;
   width: 100%;
-  z-index: 1;
+  z-index: 0;
   opacity: 0.2;
 `;
 
@@ -38,8 +42,8 @@ export const HeroBlue: React.FC<{
 }> = ({ children, className }) => {
   return (
     <Hero className={className}>
-      <WorldMap loading="lazy" src={MapSvg} alt="map" />
       {children}
+      <WorldMap loading="lazy" src={MapSvg} alt="map" />
     </Hero>
   );
 };

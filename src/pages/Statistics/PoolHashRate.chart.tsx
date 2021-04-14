@@ -11,7 +11,10 @@ import { ApiRegion } from 'src/types/Region.types';
 import { useDispatch } from 'react-redux';
 import { poolHashrateGet } from 'src/rdx/poolHashrate/poolHashrate.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
-import { ChartContainer } from 'src/components/Chart/ChartContainer';
+import {
+  ChartContainer,
+  responsiveRule,
+} from 'src/components/Chart/ChartContainer';
 
 const PoolHashrateChart = () => {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -28,7 +31,11 @@ const PoolHashrateChart = () => {
   React.useLayoutEffect(() => {
     if (poolHasrateState.data.length > 1) {
       let x = am4core.create('chartdiv', am4charts.XYChart);
+
       x.responsive.enabled = true;
+      x.responsive.useDefault = false;
+      x.responsive.rules.push(responsiveRule);
+
       x.colors.list = [
         am4core.color(appTheme === 'dark' ? '#aaa' : '#000000'),
         am4core.color('#edb431'),
@@ -77,7 +84,7 @@ const PoolHashrateChart = () => {
       for (const region in poolHasrateState.data[0].regions) {
         let hashrateSeries = x.series.push(new am4charts.LineSeries());
         hashrateSeries.dataFields.dateX = 'date';
-        hashrateSeries.name = `${formatRegionName(region as ApiRegion)} Region`;
+        hashrateSeries.name = `${formatRegionName(region as ApiRegion)}`;
         hashrateSeries.yAxis = hashrateAxis;
         hashrateSeries.dataFields.valueY = region;
         hashrateSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.00 aH/s")}`;

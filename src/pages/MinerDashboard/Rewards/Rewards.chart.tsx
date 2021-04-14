@@ -7,7 +7,10 @@ import {
   useActiveCoin,
   useCounterTicker,
 } from 'src/rdx/localSettings/localSettings.hooks';
-import { ChartContainer } from 'src/components/Chart/ChartContainer';
+import {
+  ChartContainer,
+  responsiveRule,
+} from 'src/components/Chart/ChartContainer';
 
 const RewardsChart: React.FC<{
   rewards: ApiMinerReward[];
@@ -25,6 +28,10 @@ const RewardsChart: React.FC<{
     if (!rewards || !counterPrice || !coin) return;
 
     let rewardsChart = am4core.create('rewards-chart', am4charts.XYChart);
+
+    rewardsChart.responsive.enabled = true;
+    rewardsChart.responsive.useDefault = false;
+    rewardsChart.responsive.rules.push(responsiveRule);
     rewardsChart.colors.list = [am4core.color('#0069ff')];
     const rewardsChartData = rewards.map((item) => ({
       date: new Date(item.timestamp * 1000),
