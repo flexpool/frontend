@@ -8,7 +8,7 @@ import {
   Redirect,
 } from 'react-router';
 import { Content } from 'src/components/layout/Content';
-import { Page } from 'src/components/layout/Page';
+import { Page, PageLoading } from 'src/components/layout/Page';
 import {
   useActiveCoin,
   useCounterTicker,
@@ -32,6 +32,9 @@ import { MinerRewardsPage } from './Rewards/MinerRewards.page';
 import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
+import { useAsyncState } from 'src/hooks/useAsyncState';
+import { fetchApi } from 'src/utils/fetchApi';
+import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 
 const TabContent = styled.div`
   box-shadow: inset -1px 18px 19px -13px var(--bg-secondary);
@@ -70,7 +73,7 @@ const TabLink = styled(NavLink)`
   text-decoration: none !important;
 `;
 
-export const MinerDashboardPage: React.FC<
+export const MinerDashboardPageContent: React.FC<
   RouteComponentProps<{
     coin: string;
     address: string;
@@ -170,6 +173,57 @@ export const MinerDashboardPage: React.FC<
       <Spacer size="xl" />
     </Page>
   );
+};
+
+/**
+ * Checking if the address is valid from the database first
+ * This wrapps the whole miner page, allowing to do subsequent api fetches
+ * when the address really exist
+ * @param props
+ * @returns
+ */
+export const MinerDashboardPage: React.FC<
+  RouteComponentProps<{
+    coin: string;
+    address: string;
+  }>
+> = (props) => {
+  const { coin: coinTicker, address } = props.match.params;
+  const locateAddressState = useAsyncState<string | null>();
+
+  React.useEffect(() => {
+    locateAddressState.start(
+      fetchApi<string | null>('/miner/locateAddress', {
+        query: { address },
+      }).then((res) => {
+        if (res !== coinTicker) {
+          // not found
+          return Promise.reject({
+            message: 'Address not found',
+          });
+        }
+        return res;
+      })
+    );
+    // eslint-disable-next-line
+  }, [coinTicker, address]);
+
+  if (locateAddressState.error) {
+    return <Redirect to="/not-found" />;
+  }
+
+  /**
+   * Still loading
+   */
+  if (locateAddressState.data !== coinTicker) {
+    return (
+      <PageLoading>
+        <LoaderSpinner />
+      </PageLoading>
+    );
+  }
+
+  return <MinerDashboardPageContent {...props} />;
 };
 
 export default MinerDashboardPage;
