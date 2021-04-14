@@ -17,12 +17,12 @@
 
 ```
 git clone https://github.com/flexpool/frontend.git
+cd frontend
 ```
 
 #### Install dependencies
 
 ```
-cd frontend
 yarn install
 ```
 
