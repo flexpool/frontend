@@ -40,6 +40,7 @@ const RewardsChart: React.FC<{
     var rewardsAxis = rewardsChart.yAxes.push(new am4charts.ValueAxis());
     rewardsAxis.numberFormatter = new am4core.NumberFormatter();
     rewardsAxis.renderer.grid.template.disabled = true;
+    rewardsAxis.min = 0;
     let dateAxis = rewardsChart.xAxes.push(new am4charts.DateAxis());
     dateAxis.renderer.grid.template.location = 0;
     dateAxis.baseInterval = {
