@@ -67,7 +67,7 @@ const BalanceProgressBar: React.FC<{ value: number }> = ({ value }) => {
   }, [value]);
   return (
     <ProgressBarWrapper>
-      <ProgressBar style={{ width: `${progress}%` }}></ProgressBar>
+      <ProgressBar style={{ width: `${progress}%`, backgroundColor: progress!=100?'var(--primary)':'var(--success)' }}></ProgressBar>
     </ProgressBarWrapper>
   );
 };
