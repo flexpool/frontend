@@ -84,7 +84,7 @@ const PoolHashrateChart = () => {
       for (const region in poolHasrateState.data[0].regions) {
         let hashrateSeries = x.series.push(new am4charts.LineSeries());
         hashrateSeries.dataFields.dateX = 'date';
-        hashrateSeries.name = `${formatRegionName(region as ApiRegion)} Region`;
+        hashrateSeries.name = `${formatRegionName(region as ApiRegion)}`;
         hashrateSeries.yAxis = hashrateAxis;
         hashrateSeries.dataFields.valueY = region;
         hashrateSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.00 aH/s")}`;

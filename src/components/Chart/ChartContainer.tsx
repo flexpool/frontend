@@ -4,8 +4,14 @@ import { LoaderOverlayWithin } from '../Loader/LoaderOverlayWithin';
 import { OverlayWithin, OverlayWithinContent } from '../OverlayWithin';
 import { ChartTitle } from '../Typo/ChartTitle';
 import styled from 'styled-components/macro';
-import { AxisRendererY, Chart } from '@amcharts/amcharts4/charts';
-import { Container } from '@amcharts/amcharts4/core';
+import {
+  AxisRendererY,
+  Chart,
+  AxisLabel,
+  Legend,
+  LegendSettings,
+} from '@amcharts/amcharts4/charts';
+import { Container, color } from '@amcharts/amcharts4/core';
 
 const EmptyImg = styled.img`
   height: 70%;
@@ -65,7 +71,7 @@ export const responsiveRule = {
       state.properties.paddingRight = 0;
       state.properties.paddingBottom = 0;
       state.properties.paddingLeft = -5;
-      state.properties.fontSize = 9;
+      state.properties.fontSize = 12;
       return state;
     }
 
@@ -73,6 +79,13 @@ export const responsiveRule = {
       const state = target.states.create(stateId);
       state.properties.maxLabelPosition = 0.99;
       state.properties.marginRight = -10;
+      return state;
+    }
+    if (target instanceof Legend) {
+      const state = target.states.create(stateId);
+      state.properties.paddingRight = -10;
+      state.properties.paddingLeft = -10;
+
       return state;
     }
   },
