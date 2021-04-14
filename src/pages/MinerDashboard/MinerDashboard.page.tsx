@@ -116,8 +116,8 @@ export const MinerDashboardPageContent: React.FC<
 
   return (
     <Page>
-      <Helmet>
-        <title>Miner Dashboard</title>
+      <Helmet titleTemplate={`${address} | %s | Flexpool.io`}>
+        <title>Dashboard</title>
       </Helmet>
       <Content>
         <HeaderGreetings coin={activeCoin} />
