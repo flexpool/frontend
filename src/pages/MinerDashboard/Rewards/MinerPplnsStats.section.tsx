@@ -94,7 +94,6 @@ export const MinerPplnsStats: React.FC<{
         totalYour++;
         totalShares++;
       }
-
       setShareLogLength(totalShares);
 
       let sharesChart = am4core.create('shares-chart', am4charts.XYChart);
