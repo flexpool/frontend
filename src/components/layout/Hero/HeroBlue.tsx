@@ -19,6 +19,10 @@ const Hero = styled.div`
   }
 
   position: relative;
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
 `;
 
 const WorldMap = styled.img`
