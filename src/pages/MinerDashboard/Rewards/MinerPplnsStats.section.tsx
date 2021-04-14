@@ -15,7 +15,10 @@ import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import { dateUtils } from 'src/utils/date.utils';
 import { useAsyncState } from 'src/hooks/useAsyncState';
-import { ChartContainer } from 'src/components/Chart/ChartContainer';
+import {
+  ChartContainer,
+  responsiveRule,
+} from 'src/components/Chart/ChartContainer';
 import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
 
 export const MinerPplnsStats: React.FC<{
@@ -94,10 +97,13 @@ export const MinerPplnsStats: React.FC<{
         totalYour++;
         totalShares++;
       }
-
       setShareLogLength(totalShares);
 
       let sharesChart = am4core.create('shares-chart', am4charts.XYChart);
+
+      sharesChart.responsive.enabled = true;
+      sharesChart.responsive.useDefault = false;
+      sharesChart.responsive.rules.push(responsiveRule);
       sharesChart.colors.list = [
         am4core.color('#0069ff'),
         am4core.color('#edb431'),
