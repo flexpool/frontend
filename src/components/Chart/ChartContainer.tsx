@@ -4,14 +4,8 @@ import { LoaderOverlayWithin } from '../Loader/LoaderOverlayWithin';
 import { OverlayWithin, OverlayWithinContent } from '../OverlayWithin';
 import { ChartTitle } from '../Typo/ChartTitle';
 import styled from 'styled-components/macro';
-import {
-  AxisRendererY,
-  Chart,
-  AxisLabel,
-  Legend,
-  LegendSettings,
-} from '@amcharts/amcharts4/charts';
-import { Container, color } from '@amcharts/amcharts4/core';
+import { AxisRendererY, Chart, Legend } from '@amcharts/amcharts4/charts';
+import { Container } from '@amcharts/amcharts4/core';
 
 const EmptyImg = styled.img`
   height: 70%;
