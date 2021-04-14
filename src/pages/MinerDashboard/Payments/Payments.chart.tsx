@@ -4,7 +4,10 @@ import * as am4charts from '@amcharts/amcharts4/charts';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { fetchApi } from 'src/utils/fetchApi';
 import { useAsyncState } from 'src/hooks/useAsyncState';
-import { ChartContainer } from 'src/components/Chart/ChartContainer';
+import {
+  ChartContainer,
+  responsiveRule,
+} from 'src/components/Chart/ChartContainer';
 
 type ChartData = {
   fee: number;
@@ -27,6 +30,10 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
   React.useEffect(() => {
     if (coin && asyncState.data && asyncState.data.length > 0) {
       const paymentsChart = am4core.create('payments-chart', am4charts.XYChart);
+
+      paymentsChart.responsive.enabled = true;
+      paymentsChart.responsive.useDefault = false;
+      paymentsChart.responsive.rules.push(responsiveRule);
       paymentsChart.colors.list = [
         am4core.color('#edb431'),
         am4core.color('#0069ff'),

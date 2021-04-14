@@ -28,6 +28,7 @@ const Percentage: React.FC<{ total: number; value: number }> = ({
 
 const WorkerName = styled.span`
   color: var(--text-primary);
+  white-space: nowrap;
   &:hover {
     color: var(--primary);
   }
