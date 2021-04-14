@@ -111,7 +111,7 @@ const WrapperInner = styled.div`
 export const NewsSection = () => {
   return (
     <Wrapper>
-      <Content>
+      <Content style={{ position: 'relative' }}>
         <WrapperInner>
           <HomeNewsItem
             category="JOIN US"

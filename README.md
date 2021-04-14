@@ -11,18 +11,19 @@
 
 #### Prerequisites
 
-[Yarn](https://classic.yarnpkg.com/en/docs/install) is needed to run the frontend locally
+* [Node.js 14 LTS](https://nodejs.org/en/)
+* [Yarn](https://classic.yarnpkg.com/en/docs/install)
 
 #### Clone the repository
 
 ```
 git clone https://github.com/flexpool/frontend.git
+cd frontend
 ```
 
 #### Install dependencies
 
 ```
-cd frontend
 yarn install
 ```
 

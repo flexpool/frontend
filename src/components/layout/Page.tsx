@@ -1,6 +1,7 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { clx } from 'src/utils/clx';
+import styled from 'styled-components';
 import './Page.scss';
 
 type ErrorBoundaryProps = {
@@ -60,3 +61,11 @@ export const Page: React.FC<{
     </ErrorBoundary>
   );
 };
+
+export const PageLoading = styled(Page)`
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+`;
