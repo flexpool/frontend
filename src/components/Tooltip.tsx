@@ -47,7 +47,13 @@ export const Tooltip: React.FC<{
   variant?: UIVariant;
   wrapIcon?: boolean;
   placement?: TippyProps['placement'];
-}> = ({ children, icon, variant = 'primary', wrapIcon = true, placement }) => {
+}> = ({
+  children,
+  icon,
+  variant = 'primary',
+  wrapIcon = true,
+  placement = 'top',
+}) => {
   return (
     <Tippy
       content={children}
@@ -62,7 +68,11 @@ export const Tooltip: React.FC<{
           {icon || <AiOutlineInfoCircle />}
         </IconWrapper>
       ) : (
-        icon || <AiOutlineInfoCircle />
+        icon || (
+          <IconWrapper variant={variant}>
+            <AiOutlineInfoCircle />
+          </IconWrapper>
+        )
       )}
     </Tippy>
   );
