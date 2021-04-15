@@ -281,7 +281,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         <h2>{`You have mined ${blockState.data.totalItems} blocks.`}</h2>
       )}
       {address && blockState.data && blockState.data.totalItems == 1 && (
-        <h2>{`You have mined a block.`}</h2>
+        <h2>{`You have mined 1 block.`}</h2>
       )}
       {!address && blockState.data && blockState.data.totalItems > 0 && (
         <h2>{`Flexpool has mined ${blockState.data.totalItems} blocks.`}</h2>
