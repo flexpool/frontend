@@ -209,3 +209,39 @@ textarea {
   appearance: none;
   border-radius: none !important;
 }
+
+/** APP PRELOAD **/
+.full-page-loader {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.full-page-loader > img {
+  animation: 1.8s infinite heartbeat;
+  transition: 0.2s all;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
