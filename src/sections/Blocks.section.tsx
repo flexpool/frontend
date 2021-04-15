@@ -197,6 +197,7 @@ const blockCols: {
         <Ws>
           {dateUtils.durationWords(data.roundTime, {
             includeSeconds: true,
+            short: true,
           })}
         </Ws>
       );

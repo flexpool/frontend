@@ -7,14 +7,6 @@ import {
   differenceInSeconds,
 } from 'date-fns';
 
-// export const isValidDate = (date: any) => {
-//   return (
-//     date &&
-//     Object.prototype.toString.call(date) === "[object Date]" &&
-//     !isNaN(date)
-//   );
-// };
-
 type DateInput = Date | string | number;
 
 const dateInputToDate = (date: DateInput) => new Date(date);
@@ -85,9 +77,25 @@ const durationToParse = (duration: Duration) => {
   }
 };
 
+const DELIMITER = ', ';
+
+/**
+ * 1 hour, 7 minutes, 51 seconds => 1h, 7m, 51s
+ * @param text
+ */
+const durationWordsShort = (text: string) => {
+  const items = text.split(DELIMITER);
+
+  const res = items.map((item) => {
+    const [value, unit] = item.split(' ');
+    return `${value}${unit.charAt(0)}`;
+  });
+  return res.join(DELIMITER);
+};
+
 const durationWords = (
   seconds: number,
-  options?: { includeSeconds: boolean }
+  options?: { includeSeconds: boolean; short?: boolean }
 ) => {
   const format = ['years', 'months', 'weeks', 'days', 'hours', 'minutes'];
 
@@ -100,10 +108,16 @@ const durationWords = (
     end: new Date(seconds * 1000),
   });
 
-  return formatDuration(durationToParse(intervalDuration), {
-    delimiter: ', ',
+  const res = formatDuration(durationToParse(intervalDuration), {
+    delimiter: DELIMITER,
     format,
   });
+
+  if (options?.short) {
+    return durationWordsShort(res);
+  }
+
+  return res;
 };
 
 export const dateUtils = {
