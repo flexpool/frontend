@@ -1,8 +1,19 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { clx } from 'src/utils/clx';
-import styled from 'styled-components';
 import './Page.scss';
+
+import styled from 'styled-components/macro';
+
+const ErrorContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 3rem;
+  margin: auto;
+  min-height: 70vh;
+`;
 
 type ErrorBoundaryProps = {
   children: React.ReactNode;
@@ -36,12 +47,13 @@ class ErrorBoundary extends React.Component<
   render() {
     if (this.state.hasError) {
       // You can render any custom fallback UI
+      console.error('Error', this.state.error);
+      console.error('Error Info', this.state.errorInfo);
       return (
-        <div>
+        <ErrorContainer>
           <h1>Something went wrong.</h1>
-          {JSON.stringify(this.state.error)}
-          {JSON.stringify(this.state.errorInfo)}
-        </div>
+          <p>Apologies for any inconvenience! Please try again later. </p>
+        </ErrorContainer>
       );
     }
 
