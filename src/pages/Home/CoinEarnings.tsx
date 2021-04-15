@@ -250,14 +250,14 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
 export const CoinEarnings = () => {
   const coinsFull = useReduxState('poolCoinsFull');
 
+  const data = coinsFull.data || [];
+
   return (
     <Content>
       <Spacer size="xl" />
       <Container>
-        {coinsFull.data.length > 0 ? (
-          coinsFull.data.map((item) => (
-            <CoinEarningsItem key={item.ticker} data={item} />
-          ))
+        {data.length > 0 ? (
+          data.map((item) => <CoinEarningsItem key={item.ticker} data={item} />)
         ) : (
           <CoinEarningsItem />
         )}
