@@ -277,8 +277,14 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
 
   return (
     <>
-      {blockState.data && blockState.data.totalItems > 0 && (
-        <h2>{`You have mined ${blockState.data.totalItems} block(s).`}</h2>
+      {address && blockState.data && blockState.data.totalItems > 1 && (
+        <h2>{`You have mined ${blockState.data.totalItems} blocks.`}</h2>
+      )}
+      {address && blockState.data && blockState.data.totalItems == 1 && (
+        <h2>{`You have mined 1 block.`}</h2>
+      )}
+      {!address && blockState.data && blockState.data.totalItems > 0 && (
+        <h2>{`Flexpool has mined ${blockState.data.totalItems} blocks.`}</h2>
       )}
       <DynamicList
         pagination={{

@@ -4,6 +4,8 @@ import { Button } from 'src/components/Button';
 import { ScrollArea } from 'src/components/layout/ScrollArea';
 import Modal from 'src/components/Modal/Modal';
 import { useOpenState } from 'src/hooks/useOpenState';
+import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
+import { useReduxState } from 'src/rdx/useReduxState';
 import styled from 'styled-components';
 import { NotificationSettings } from './NotificationSettings';
 import { PayoutSettings } from './PayoutSettings';
@@ -87,6 +89,13 @@ export const MinerSettingsModal = () => {
   const openState = useOpenState();
   const [page, setPage] = React.useState<SettingsPageKey>('payouts');
 
+  const activeCoin = useActiveCoin();
+  const minerSettings = useReduxState('minerDetails');
+  const minerHeaderStats = useReduxState('minerHeaderStats');
+
+  // disable opening when data is not loaded
+  const disabled = !activeCoin || !minerSettings.data || !minerHeaderStats.data;
+
   const handleChangePage = React.useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       setPage((e.target as HTMLButtonElement).value as SettingsPageKey);
@@ -98,7 +107,12 @@ export const MinerSettingsModal = () => {
 
   return (
     <>
-      <SettingsBtn onClick={openState.handleOpen} size="sm" variant="primary">
+      <SettingsBtn
+        disabled={disabled}
+        onClick={openState.handleOpen}
+        size="sm"
+        variant="primary"
+      >
         <FaCog /> <span>Settings</span>
       </SettingsBtn>
       <Modal mobileFull {...openState.modalProps}>
