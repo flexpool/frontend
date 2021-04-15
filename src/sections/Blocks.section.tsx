@@ -280,7 +280,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
       {address && blockState.data && blockState.data.totalItems > 1 && (
         <h2>{`You have mined ${blockState.data.totalItems} blocks.`}</h2>
       )}
-      {address && blockState.data && blockState.data.totalItems == 1 && (
+      {address && blockState.data && blockState.data.totalItems === 1 && (
         <h2>{`You have mined 1 block.`}</h2>
       )}
       {!address && blockState.data && blockState.data.totalItems > 0 && (
