@@ -3,7 +3,7 @@ import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 
 import { fetchApi } from 'src/utils/fetchApi';
-import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
+import { useActiveCoinTicker, useAppTheme } from 'src/rdx/localSettings/localSettings.hooks';
 import { formatSi } from 'src/utils/si.utils';
 import { ChartContainer } from 'src/components/Chart/ChartContainer';
 import { useAsyncState } from 'src/hooks/useAsyncState';
@@ -15,6 +15,7 @@ type Distribution = {
 
 export const MinersDistributionChart = () => {
   const coinTicker = useActiveCoinTicker();
+  const colorMode = useAppTheme();
   const dataState = useAsyncState<Distribution>('distrubutionState', []);
 
   React.useEffect(() => {
@@ -70,7 +71,11 @@ export const MinersDistributionChart = () => {
       pieSeries.dataFields.value = 'hashrate';
       pieSeries.dataFields.category = 'name';
       pieSeries.slices.template.tooltipText = `{category}: {value.formatNumber("#.00 aH/s")}`;
-      pieSeries.slices.template.stroke = am4core.color('#fff');
+      if (colorMode === 'dark') {
+        pieSeries.slices.template.stroke = am4core.color('#fff');
+      } else {
+        pieSeries.slices.template.stroke = am4core.color('#111432');
+      }
       pieSeries.slices.template.strokeWidth = 2;
       pieSeries.slices.template.strokeOpacity = 1;
 
