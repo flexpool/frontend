@@ -101,7 +101,7 @@ const BalanceProgressBar: React.FC<{
         <PayoutText>
           <PayoutNumber>{progress}%</PayoutNumber> of the payout limit reached.
         </PayoutText>
-        {payoutInSeconds && (
+        {payoutInSeconds && payoutInSeconds > 0 ? (
           <PayoutText>
             The limit will be reached in{' '}
             <PayoutNumber>
@@ -110,6 +110,11 @@ const BalanceProgressBar: React.FC<{
               )}
             </PayoutNumber>
             .
+          </PayoutText>
+        ) : (
+          <PayoutText>
+            Your payout will be processed on the next payment round if the fees
+            match your preferences
           </PayoutText>
         )}
       </TooltipContent>
