@@ -1,4 +1,5 @@
 import React from 'react';
+import { Img } from 'src/components/Img';
 import { clx } from 'src/utils/clx';
 import styled from 'styled-components';
 import { Skeleton } from '../Skeleton';
@@ -163,7 +164,7 @@ const EmptyContainer = styled.div`
   flex-direction: column;
 `;
 
-const EmptyImg = styled.img`
+const EmptyImg = styled(Img)`
   max-height: 180px;
   max-width: 300px;
   margin-bottom: 2rem;

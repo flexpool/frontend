@@ -115,7 +115,10 @@ const cols: DynamicListColumn<ApiPoolCoinFull>[] = [
     skeletonWidth: 110,
     Component: ({ data }) => {
       return (
-        <CoinName to={{ search: `news=${data.ticker}` }}>
+        <CoinName
+          aria-label={`${data.ticker} news`}
+          to={{ search: `news=${data.ticker}` }}
+        >
           <CoinLogo size="lg" ticker={data.ticker} />
           <span>{data.name}</span>
           <TickerName>{data.ticker.toUpperCase()}</TickerName>
@@ -191,6 +194,7 @@ const cols: DynamicListColumn<ApiPoolCoinFull>[] = [
         <ActionIconContainer>
           <ActionIcon
             as={Link}
+            aria-label={`${data.ticker} news`}
             to={{ search: `news=${data.ticker}` }}
             size="xs"
             variant="primary"
@@ -199,6 +203,7 @@ const cols: DynamicListColumn<ApiPoolCoinFull>[] = [
           </ActionIcon>
           <ActionIcon
             as={Link}
+            aria-label={`${data.ticker} calculator`}
             to={{ search: `news=${data.ticker}` }}
             size="xs"
             variant="primary"

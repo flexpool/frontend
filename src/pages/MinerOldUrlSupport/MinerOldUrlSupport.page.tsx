@@ -10,3 +10,5 @@ export const MinerOldUrlSupportPage: React.FC<
 }) => {
   return <Redirect to={`/miner/eth/${address}`} />;
 };
+
+export default MinerOldUrlSupportPage;

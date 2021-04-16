@@ -122,16 +122,16 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
     <Container>
       <Formik
         onSubmit={async (data, { setSubmitting }) => {
-          await handleSearch(data.search);
+          await handleSearch(data.addrsearch);
           setSubmitting(false);
         }}
-        initialValues={{ search: '' }}
+        initialValues={{ addrsearch: '' }}
       >
-        <Form>
+        <Form autoComplete="off">
           <Wrapper>
             <FieldWrapper>
               <Input
-                name="search"
+                name="addrsearch"
                 spellCheck="false"
                 autoComplete="false"
                 placeholder="Search by your mining address"
@@ -142,7 +142,7 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
                 </ResultWrapper>
               )}
             </FieldWrapper>
-            <SearchButton type="submit">
+            <SearchButton aria-label="Search address" type="submit">
               <FaSearch />
             </SearchButton>
           </Wrapper>

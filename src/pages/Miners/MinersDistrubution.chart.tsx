@@ -1,12 +1,12 @@
 import React from 'react';
-import * as am4core from '@amcharts/amcharts4/core';
-import * as am4charts from '@amcharts/amcharts4/charts';
 
 import { fetchApi } from 'src/utils/fetchApi';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { formatSi } from 'src/utils/si.utils';
 import { ChartContainer } from 'src/components/Chart/ChartContainer';
 import { useAsyncState } from 'src/hooks/useAsyncState';
+
+import { color, create, PieChart, PieSeries } from 'src/plugins/amcharts';
 
 type Distribution = {
   hashrate: number;
@@ -50,27 +50,24 @@ export const MinersDistributionChart = () => {
 
   React.useLayoutEffect(() => {
     if (data.length > 0) {
-      const chartDistribution = am4core.create('chartdiv', am4charts.PieChart);
-      chartDistribution.colors.list = [
-        am4core.color('#b6c0d1'),
-        am4core.color('#0069ff'),
-      ];
+      const chartDistribution = create('chartdiv', PieChart);
+      chartDistribution.colors.list = [color('#b6c0d1'), color('#0069ff')];
 
       chartDistribution.data = data;
 
-      var pieSeries = chartDistribution.series.push(new am4charts.PieSeries());
+      var pieSeries = chartDistribution.series.push(new PieSeries());
       pieSeries.colors.list = [
-        am4core.color('#0069ff'),
-        am4core.color('#3788ff'),
-        am4core.color('#62a6ff'),
-        am4core.color('#8ec2ff'),
-        am4core.color('#bbdcff'),
-        am4core.color('#ebf5ff'),
+        color('#0069ff'),
+        color('#3788ff'),
+        color('#62a6ff'),
+        color('#8ec2ff'),
+        color('#bbdcff'),
+        color('#ebf5ff'),
       ];
       pieSeries.dataFields.value = 'hashrate';
       pieSeries.dataFields.category = 'name';
       pieSeries.slices.template.tooltipText = `{category}: {value.formatNumber("#.00 aH/s")}`;
-      pieSeries.slices.template.stroke = am4core.color('#fff');
+      pieSeries.slices.template.stroke = color('#fff');
       pieSeries.slices.template.strokeWidth = 2;
       pieSeries.slices.template.strokeOpacity = 1;
 

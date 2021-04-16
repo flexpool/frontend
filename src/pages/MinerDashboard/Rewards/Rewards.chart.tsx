@@ -1,6 +1,4 @@
 import React from 'react';
-import * as am4core from '@amcharts/amcharts4/core';
-import * as am4charts from '@amcharts/amcharts4/charts';
 import { ApiMinerReward } from 'src/types/Miner.types';
 import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import {
@@ -11,6 +9,18 @@ import {
   ChartContainer,
   responsiveRule,
 } from 'src/components/Chart/ChartContainer';
+
+import {
+  color,
+  NumberFormatter,
+  create,
+  Legend,
+  XYChart,
+  XYCursor,
+  DateAxis,
+  ValueAxis,
+  ColumnSeries,
+} from 'src/plugins/amcharts';
 
 const RewardsChart: React.FC<{
   rewards: ApiMinerReward[];
@@ -27,12 +37,12 @@ const RewardsChart: React.FC<{
   React.useEffect(() => {
     if (!rewards || !counterPrice || !coin) return;
 
-    let rewardsChart = am4core.create('rewards-chart', am4charts.XYChart);
+    let rewardsChart = create('rewards-chart', XYChart);
 
     rewardsChart.responsive.enabled = true;
     rewardsChart.responsive.useDefault = false;
     rewardsChart.responsive.rules.push(responsiveRule);
-    rewardsChart.colors.list = [am4core.color('#0069ff')];
+    rewardsChart.colors.list = [color('#0069ff')];
     const rewardsChartData = rewards.map((item) => ({
       date: new Date(item.timestamp * 1000),
       totalRewards: item.totalRewards / Math.pow(10, coin.decimalPlaces),
@@ -44,18 +54,18 @@ const RewardsChart: React.FC<{
 
     rewardsChart.data = rewardsChartData.reverse();
 
-    var rewardsAxis = rewardsChart.yAxes.push(new am4charts.ValueAxis());
-    rewardsAxis.numberFormatter = new am4core.NumberFormatter();
+    var rewardsAxis = rewardsChart.yAxes.push(new ValueAxis());
+    rewardsAxis.numberFormatter = new NumberFormatter();
     rewardsAxis.renderer.grid.template.disabled = true;
     rewardsAxis.min = 0;
-    let dateAxis = rewardsChart.xAxes.push(new am4charts.DateAxis());
+    let dateAxis = rewardsChart.xAxes.push(new DateAxis());
     dateAxis.renderer.grid.template.location = 0;
     dateAxis.baseInterval = {
       timeUnit: 'day',
       count: 1,
     };
 
-    let rewardSeries = rewardsChart.series.push(new am4charts.ColumnSeries());
+    let rewardSeries = rewardsChart.series.push(new ColumnSeries());
 
     rewardSeries.dataFields.dateX = 'date';
     rewardSeries.name = 'Earnings (' + coin.ticker.toUpperCase() + ')';
@@ -64,8 +74,8 @@ const RewardsChart: React.FC<{
 
     rewardSeries.tooltipText = `Daily Income: {valueY.value.formatNumber("#.0000000")} ETH ({countervaluedRewards})`;
 
-    rewardsChart.cursor = new am4charts.XYCursor();
-    rewardsChart.legend = new am4charts.Legend();
+    rewardsChart.cursor = new XYCursor();
+    rewardsChart.legend = new Legend();
 
     return () => {
       rewardsChart.dispose();

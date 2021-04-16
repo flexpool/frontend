@@ -7,6 +7,7 @@ import EarthSrc from './assets/earth.svg';
 import MoonSrc from './assets/moon.svg';
 import AstronautSrc from './assets/astronaut.svg';
 import { keyframes } from 'styled-components';
+import { Img } from 'src/components/Img';
 
 const Wrapper = styled(Page)`
   background-image: linear-gradient(80deg, #0e418a 0%, #2b2749 100%);
@@ -52,13 +53,13 @@ const StarsContainer = styled.div`
   }
 `;
 
-const Earth = styled.img`
+const Earth = styled(Img)`
   height: 5rem;
   position: absolute;
   top: -0rem;
   left: -10rem;
 `;
-const Moon = styled.img`
+const Moon = styled(Img)`
   height: 5rem;
   position: absolute;
   top: -5rem;
@@ -77,7 +78,7 @@ const astroAnimation = keyframes`
   }
 `;
 
-const Astronaut = styled.img`
+const Astronaut = styled(Img)`
   height: 3rem;
   animation: ${astroAnimation} 30s linear infinite;
 `;
@@ -107,13 +108,15 @@ export const NotFoundPage = () => {
       </StarsContainer>
       <MiddleContainer>
         <h1>404</h1>
-        <Earth src={EarthSrc} />
-        <Moon src={MoonSrc} />
+        <Earth alt="Earth" src={EarthSrc} />
+        <Moon alt="Moon" src={MoonSrc} />
         <AstronautContainer>
-          <Astronaut src={AstronautSrc} />
+          <Astronaut alt="Astronaut" src={AstronautSrc} />
         </AstronautContainer>
         <h2>Can't find the moon?</h2>
       </MiddleContainer>
     </Wrapper>
   );
 };
+
+export default NotFoundPage;

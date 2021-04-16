@@ -29,13 +29,14 @@ import { SelectCounterTicker } from '../SelectCounterTicker';
 import { LinkOut } from '../LinkOut';
 import { DISCORD_LINK, REDDIT_LINK, TELEGRAM_LINK } from 'src/constants';
 import { useAppTheme } from 'src/rdx/localSettings/localSettings.hooks';
-const Logo = styled.img`
+import { Img } from '../Img';
+const Logo = styled(Img)`
   height: 32px;
   width: 160px;
   fill: var(--text-primary);
 `;
 
-const LogoMobile = styled.img`
+const LogoMobile = styled(Img)`
   height: 24px;
   fill: var(--text-primary);
 `;
@@ -260,7 +261,7 @@ export const NavBar: React.FC<NavBarType> = (props) => {
         <NavContainer>
           <NavSection>
             <NavLink to="/">
-              <Logo src={logoSrc} />
+              <Logo src={logoSrc} alt="Flexpool.io Logo" />
             </NavLink>
           </NavSection>
           <NavSection>
@@ -290,20 +291,30 @@ export const NavBar: React.FC<NavBarType> = (props) => {
 
       <ContainerMobile>
         <NavContainer>
-          <NavLink to="/">
-            <LogoMobile src={logoSrc} />
+          <NavLink to="/" aria-label="Home page">
+            <LogoMobile
+              height="20"
+              width="114"
+              src={logoSrc}
+              alt="Flexpool.io Logo"
+            />
           </NavLink>
           <NavSection>
-            <NLink to="/statistics">
+            <NLink aria-label="Statistics" to="/statistics">
               <FaChartArea />
             </NLink>
-            <NLink to="/blocks">
+            <NLink to="/blocks" aria-label="Blocks">
               <FaCubes />
             </NLink>
-            <NLink as="button" onClick={modalSearchOpenState.handleOpen}>
+            <NLink
+              as="button"
+              aria-label="Search Address"
+              onClick={modalSearchOpenState.handleOpen}
+            >
               <FaSearch />
             </NLink>
             <BurgerWrap
+              aria-label="Open menu"
               className={clx({ active: openState.value })}
               onClick={openState.handleToggle}
             >

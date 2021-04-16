@@ -1,6 +1,4 @@
 import React, { useRef } from 'react';
-import * as am4core from '@amcharts/amcharts4/core';
-import * as am4charts from '@amcharts/amcharts4/charts';
 
 import {
   useActiveCoinTicker,
@@ -16,6 +14,18 @@ import {
   responsiveRule,
 } from 'src/components/Chart/ChartContainer';
 
+import {
+  color,
+  NumberFormatter,
+  create,
+  Legend,
+  XYChart,
+  XYCursor,
+  DateAxis,
+  ValueAxis,
+  LineSeries,
+} from 'src/plugins/amcharts';
+
 const PoolHashrateChart = () => {
   const chartRef = useRef<HTMLDivElement>(null);
   const activeCoin = useActiveCoinTicker();
@@ -30,19 +40,19 @@ const PoolHashrateChart = () => {
 
   React.useLayoutEffect(() => {
     if (poolHasrateState.data.length > 1) {
-      let x = am4core.create('chartdiv', am4charts.XYChart);
+      let x = create('chartdiv', XYChart);
 
       x.responsive.enabled = true;
       x.responsive.useDefault = false;
       x.responsive.rules.push(responsiveRule);
 
       x.colors.list = [
-        am4core.color(appTheme === 'dark' ? '#aaa' : '#000000'),
-        am4core.color('#edb431'),
-        am4core.color('#5d42f5'),
-        am4core.color('#15cd72'),
-        am4core.color('#ed4f32'),
-        am4core.color('#0069ff'),
+        color(appTheme === 'dark' ? '#aaa' : '#000000'),
+        color('#edb431'),
+        color('#5d42f5'),
+        color('#15cd72'),
+        color('#ed4f32'),
+        color('#0069ff'),
       ];
       var data = [];
 
@@ -55,13 +65,13 @@ const PoolHashrateChart = () => {
         });
       }
 
-      var hashrateAxis = x.yAxes.push(new am4charts.ValueAxis());
-      hashrateAxis.numberFormatter = new am4core.NumberFormatter();
+      var hashrateAxis = x.yAxes.push(new ValueAxis());
+      hashrateAxis.numberFormatter = new NumberFormatter();
       hashrateAxis.renderer.grid.template.disabled = true;
       hashrateAxis.numberFormatter.numberFormat = '#.0 aH/s';
-      var minerCountAxis = x.yAxes.push(new am4charts.ValueAxis());
-      minerCountAxis.numberFormatter = new am4core.NumberFormatter();
-      let dateAxis = x.xAxes.push(new am4charts.DateAxis());
+      var minerCountAxis = x.yAxes.push(new ValueAxis());
+      minerCountAxis.numberFormatter = new NumberFormatter();
+      let dateAxis = x.xAxes.push(new DateAxis());
       dateAxis.renderer.grid.template.location = 0;
       dateAxis.baseInterval = {
         timeUnit: 'minute',
@@ -70,7 +80,7 @@ const PoolHashrateChart = () => {
 
       x.data = data.reverse();
 
-      let totalHashrateSeries = x.series.push(new am4charts.LineSeries());
+      let totalHashrateSeries = x.series.push(new LineSeries());
       totalHashrateSeries.dataFields.dateX = 'date';
       totalHashrateSeries.name = 'Total Hashrate';
       totalHashrateSeries.yAxis = hashrateAxis;
@@ -82,7 +92,7 @@ const PoolHashrateChart = () => {
       // totalHashrateSeries.monotoneY = 0.9;
 
       for (const region in poolHasrateState.data[0].regions) {
-        let hashrateSeries = x.series.push(new am4charts.LineSeries());
+        let hashrateSeries = x.series.push(new LineSeries());
         hashrateSeries.dataFields.dateX = 'date';
         hashrateSeries.name = `${formatRegionName(region as ApiRegion)}`;
         hashrateSeries.yAxis = hashrateAxis;
@@ -96,9 +106,9 @@ const PoolHashrateChart = () => {
         // hashrateSeries.monotoneY = 0.9;
       }
 
-      x.cursor = new am4charts.XYCursor();
+      x.cursor = new XYCursor();
 
-      x.legend = new am4charts.Legend();
+      x.legend = new Legend();
       // @ts-ignore
       chartRef.current = x;
       return () => {

@@ -1,3 +1,4 @@
+import { Img } from 'src/components/Img';
 import { Content } from 'src/components/layout/Content';
 import { Spacer } from 'src/components/layout/Spacer';
 import styled from 'styled-components/macro';
@@ -10,7 +11,7 @@ const Title = styled.h2`
   margin-bottom: 3rem;
 `;
 
-const Image = styled.img`
+const Image = styled(Img)`
   height: 150px;
 `;
 
@@ -42,7 +43,12 @@ export const WhyFlexpool = () => {
         <Title>Why Flexpool</Title>
         <ItemsContainer>
           <Item>
-            <Image src="/illustrations/moon.svg" />
+            <Image
+              height="150"
+              width="185"
+              src="/illustrations/moon.svg"
+              alt="Lightining speed"
+            />
             <h3>Lightning speed</h3>
             <p>
               We use specialized high-performance server clusters powered by
@@ -50,7 +56,12 @@ export const WhyFlexpool = () => {
             </p>
           </Item>
           <Item>
-            <Image src="/illustrations/horseride.svg" />
+            <Image
+              height="150"
+              width="242"
+              src="/illustrations/horseride.svg"
+              alt="Great support"
+            />
             <h3>Just Better</h3>
             <p>
               You can forget your poor mining experience. The Flexpool is backed
