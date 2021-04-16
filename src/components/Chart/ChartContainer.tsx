@@ -4,10 +4,19 @@ import { LoaderOverlayWithin } from '../Loader/LoaderOverlayWithin';
 import { OverlayWithin, OverlayWithinContent } from '../OverlayWithin';
 import { ChartTitle } from '../Typo/ChartTitle';
 import styled from 'styled-components/macro';
-import { AxisRendererY, Chart, Legend } from '@amcharts/amcharts4/charts';
-import { Container } from '@amcharts/amcharts4/core';
+import {
+  AxisRendererY,
+  Chart,
+  Legend,
+  Container,
+  amChartTheme,
+  setTheme,
+} from 'src/plugins/amcharts';
+import { Img } from '../Img';
 
-const EmptyImg = styled.img`
+setTheme(amChartTheme);
+
+const EmptyImg = styled(Img)`
   height: 70%;
   margin-top: 2rem;
 `;

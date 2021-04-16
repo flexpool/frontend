@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import { Img } from './Img';
 
 const Wrapper = styled.div`
   margin-top: 100px;
@@ -7,7 +8,7 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const Image = styled.img`
+const Image = styled(Img)`
   height: 240px;
 `;
 
@@ -27,7 +28,7 @@ export const SectionNotAvailable: React.FC<{
   imageAlt?: string;
   description: string;
   title: string;
-}> = ({ imageURL, imageAlt, title, description }) => (
+}> = ({ imageURL, imageAlt = 'not available', title, description }) => (
   <Wrapper>
     <div className="image">
       <Image src={imageURL} alt={imageAlt} />

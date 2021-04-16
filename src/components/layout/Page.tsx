@@ -4,6 +4,7 @@ import { clx } from 'src/utils/clx';
 import './Page.scss';
 
 import styled from 'styled-components/macro';
+import { LoaderSpinner } from '../Loader/LoaderSpinner';
 
 const ErrorContainer = styled.div`
   display: flex;
@@ -81,3 +82,9 @@ export const PageLoading = styled(Page)`
   align-items: center;
   padding: 3rem;
 `;
+
+export const PageLoader = () => (
+  <PageLoading>
+    <LoaderSpinner />
+  </PageLoading>
+);

@@ -2,6 +2,7 @@ import React from 'react';
 import { FaDownload } from 'react-icons/fa';
 import { Redirect, useRouteMatch } from 'react-router-dom';
 import { Button } from 'src/components/Button';
+import { Img } from 'src/components/Img';
 import { Card, CardBody } from 'src/components/layout/Card';
 import { Page } from 'src/components/layout/Page';
 import { LinkOut } from 'src/components/LinkOut';
@@ -65,7 +66,7 @@ const SoftwareWrapper = styled.div`
   }
 `;
 
-const OsLogo = styled.img`
+const OsLogo = styled(Img)`
   height: 30px;
 `;
 const OsContainer = styled.div`

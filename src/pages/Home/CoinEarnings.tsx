@@ -2,6 +2,7 @@ import React from 'react';
 import { FaDiscord, FaReddit, FaRocket, FaTelegram } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { Button } from 'src/components/Button';
+import { Img } from 'src/components/Img';
 import { Content } from 'src/components/layout/Content';
 import { Skeleton } from 'src/components/layout/Skeleton';
 import { Spacer } from 'src/components/layout/Spacer';
@@ -29,7 +30,7 @@ const UnknownCoin = styled.div`
   }
 `;
 
-const CoinIcon = styled.img`
+const CoinIcon = styled(Img)`
   width: 60px;
   height: 60px;
 `;
@@ -171,9 +172,12 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
   return (
     <EarningBox>
       <HeadSplit>
-        {(data?.ticker && <CoinIcon src={getCoinIconUrl(data?.ticker)} />) || (
-          <UnknownCoin />
-        )}
+        {(data?.ticker && (
+          <CoinIcon
+            alt={data.ticker}
+            src={getCoinIconUrl(data?.ticker, 'medium')}
+          />
+        )) || <UnknownCoin />}
         <HeadContent>
           <h2>{data ? data.name : <Skeleton />}</h2>
           <Desc>

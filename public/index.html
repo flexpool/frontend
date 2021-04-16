@@ -14,6 +14,9 @@
 
     <!-- Icons and theme -->
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="preconnect" href="https://static.flexpool.io" />
+    <link ref="preconnect" href="https://js.intercomcdn.com" />
+    <link rel="preload" as="image" href="/illustrations/world_map_dots.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
 
@@ -61,28 +64,67 @@
     <title>Flexpool.io</title>
 
     <link
+      rel="preconnect"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <style>
+      /** APP PRELOAD **/
+      .full-page-loader {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+      }
+
+      .full-page-loader > img {
+        height: 70px;
+        animation: 1.8s infinite heartbeat;
+        transition: 0.2s all;
+      }
+
+      @keyframes heartbeat {
+        0% {
+          transform: scale(1);
+        }
+        25% {
+          transform: scale(1.15);
+        }
+        50% {
+          transform: scale(1);
+        }
+        75% {
+          transform: scale(1.15);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    </style>
   </head>
 
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <div id="root">
+      <div class="full-page-loader">
+        <img
+          width="200"
+          loading="lazy"
+          src="https://static.flexpool.io/assets/brand/icon.svg"
+          alt="Flexpool.io logo"
+        />
+      </div>
+    </div>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
       async
+      rel="preconnect"
       src="https://www.googletagmanager.com/gtag/js?id=G-PWS9985F4X"
     ></script>
     <script>
@@ -95,7 +137,11 @@
       gtag('config', 'G-PWS9985F4X');
     </script>
     <!-- Statuspage Embed -->
-    <script src="https://xtwj9bs7n2j9.statuspage.io/embed/script.js"></script>
+    <script
+      async
+      rel="preconnect"
+      src="https://xtwj9bs7n2j9.statuspage.io/embed/script.js"
+    ></script>
     <!-- Intercom -->
     <script>
       window.intercomSettings = {

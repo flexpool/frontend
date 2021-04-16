@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import * as am4core from '@amcharts/amcharts4/core';
-import * as am4charts from '@amcharts/amcharts4/charts';
 import { SectionNotAvailable } from 'src/components/SectionNotAvailable';
 import { fetchApi } from 'src/utils/fetchApi';
 import { Spacer } from 'src/components/layout/Spacer';
@@ -10,6 +8,19 @@ import {
   responsiveRule,
 } from 'src/components/Chart/ChartContainer';
 import { useAppTheme } from 'src/rdx/localSettings/localSettings.hooks';
+
+import {
+  color,
+  NumberFormatter,
+  create,
+  Legend,
+  XYChart,
+  XYCursor,
+  DateAxis,
+  ValueAxis,
+  ColumnSeries,
+  LineSeries,
+} from 'src/plugins/amcharts';
 
 export const StatsChart: React.FC<{
   coinTicker: string;
@@ -23,42 +34,40 @@ export const StatsChart: React.FC<{
   const worker = useActiveSearchParamWorker();
   const appTheme = useAppTheme();
   useEffect(() => {
-    let hashrateChart = am4core.create('hashrate-chart', am4charts.XYChart);
+    let hashrateChart = create('hashrate-chart', XYChart);
 
     hashrateChart.responsive.enabled = true;
     hashrateChart.responsive.useDefault = false;
     hashrateChart.responsive.rules.push(responsiveRule);
 
     hashrateChart.colors.list = [
-      am4core.color(appTheme === 'dark' ? '#aaa' : '#000000'),
-      am4core.color('#0069ff'),
-      am4core.color('#15cd72'),
+      color(appTheme === 'dark' ? '#aaa' : '#000000'),
+      color('#0069ff'),
+      color('#15cd72'),
     ];
 
-    let sharesChart = am4core.create('shares-chart', am4charts.XYChart);
+    let sharesChart = create('shares-chart', XYChart);
     sharesChart.responsive.enabled = true;
     sharesChart.responsive.useDefault = false;
     sharesChart.responsive.rules.push(responsiveRule);
     sharesChart.colors.list = [
-      am4core.color('#444444'),
-      am4core.color('#edb431'),
-      am4core.color('#0069ff'),
+      color('#444444'),
+      color('#edb431'),
+      color('#0069ff'),
     ];
 
-    var hashrateAxis = hashrateChart.yAxes.push(new am4charts.ValueAxis());
-    hashrateAxis.numberFormatter = new am4core.NumberFormatter();
+    var hashrateAxis = hashrateChart.yAxes.push(new ValueAxis());
+    hashrateAxis.numberFormatter = new NumberFormatter();
     hashrateAxis.renderer.grid.template.disabled = true;
     hashrateAxis.numberFormatter.numberFormat = '#.0 aH/s';
-    let dateAxis = hashrateChart.xAxes.push(new am4charts.DateAxis());
+    let dateAxis = hashrateChart.xAxes.push(new DateAxis());
     dateAxis.renderer.grid.template.location = 0;
     dateAxis.baseInterval = {
       timeUnit: 'minute',
       count: 1,
     };
 
-    let reportedHashrateSeries = hashrateChart.series.push(
-      new am4charts.LineSeries()
-    );
+    let reportedHashrateSeries = hashrateChart.series.push(new LineSeries());
     reportedHashrateSeries.dataFields.dateX = 'date';
     reportedHashrateSeries.name = 'Reported Hashrate';
     reportedHashrateSeries.yAxis = hashrateAxis;
@@ -72,9 +81,7 @@ export const StatsChart: React.FC<{
     /// @ts-ignore
     reportedHashrateSeriesRef.current = reportedHashrateSeries;
 
-    let effectiveHashrateSeries = hashrateChart.series.push(
-      new am4charts.LineSeries()
-    );
+    let effectiveHashrateSeries = hashrateChart.series.push(new LineSeries());
     effectiveHashrateSeries.dataFields.dateX = 'date';
     effectiveHashrateSeries.name = 'Effective Hashrate';
     effectiveHashrateSeries.yAxis = hashrateAxis;
@@ -86,7 +93,7 @@ export const StatsChart: React.FC<{
     // effectiveHashrateSeries.monotoneY = 0.9;
 
     let averageEffectiveHashrateSeries = hashrateChart.series.push(
-      new am4charts.LineSeries()
+      new LineSeries()
     );
     averageEffectiveHashrateSeries.dataFields.dateX = 'date';
     averageEffectiveHashrateSeries.name = 'Average Effective Hashrate';
@@ -99,14 +106,14 @@ export const StatsChart: React.FC<{
     // averageEffectiveHashrateSeries.monotoneX = 0.9;
     // averageEffectiveHashrateSeries.monotoneY = 0.9;
 
-    hashrateChart.cursor = new am4charts.XYCursor();
-    hashrateChart.legend = new am4charts.Legend();
+    hashrateChart.cursor = new XYCursor();
+    hashrateChart.legend = new Legend();
 
-    var sharesAxis = sharesChart.yAxes.push(new am4charts.ValueAxis());
-    sharesAxis.numberFormatter = new am4core.NumberFormatter();
+    var sharesAxis = sharesChart.yAxes.push(new ValueAxis());
+    sharesAxis.numberFormatter = new NumberFormatter();
     sharesAxis.renderer.grid.template.disabled = true;
     sharesAxis.numberFormatter.numberFormat = '#';
-    let dateAxisShares = sharesChart.xAxes.push(new am4charts.DateAxis());
+    let dateAxisShares = sharesChart.xAxes.push(new DateAxis());
     dateAxisShares.renderer.grid.template.location = 0;
     dateAxisShares.baseInterval = {
       timeUnit: 'minute',
@@ -120,7 +127,7 @@ export const StatsChart: React.FC<{
     };
 
     for (const share in shares) {
-      let shareSeries = sharesChart.series.push(new am4charts.ColumnSeries());
+      let shareSeries = sharesChart.series.push(new ColumnSeries());
       shareSeries.dataFields.dateX = 'date';
 
       /// @ts-ignore
@@ -135,8 +142,8 @@ export const StatsChart: React.FC<{
       shareSeries.stacked = true;
     }
 
-    sharesChart.cursor = new am4charts.XYCursor();
-    sharesChart.legend = new am4charts.Legend();
+    sharesChart.cursor = new XYCursor();
+    sharesChart.legend = new Legend();
     sharesChart.legend.reverseOrder = true;
     // @ts-ignore
     hashrateChartRef.current = hashrateChart;
