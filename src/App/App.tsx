@@ -17,13 +17,29 @@ import { ThemeProvider } from 'styled-components/macro';
 import { mainTheme } from './styledTheme';
 import { FooterSection } from 'src/sections/Footer.section';
 
-import './init';
 import { usePoolCoins } from 'src/rdx/poolCoins/poolCoins.hooks';
 import { localStorage } from 'src/utils/localStorage';
 import { AppState } from 'src/rdx/rootReducer';
 
 import { AppTheme } from './AppTheme';
 import { SnackViewControl } from 'src/components/Snacks/SnackViewControl';
+
+import GetStartedPage from '../pages/GetStarted/GetStarted.page';
+import ContactUsPage from '../pages/ContactUs/ContactUs.page';
+import BrandAssetsPage from '../pages/BrandAssets/BrandAssets.page';
+// import StatisticsPage from '../pages/Statistics/Statistics.page';
+// import MinerDashboardPage from '../pages/MinerDashboard/MinerDashboard.page';
+import HomePage from '../pages/Home/Home.page';
+import SupportPage from '../pages/Support/Support.page';
+// import MinersPage from '../pages/Miners/Miners.page';
+// import BlocksPage from '../pages/Blocks/Blocks.page';
+import FaqPage from '../pages/Faq/Faq.page';
+import OpenDataReportsPage from 'src/pages/Reports/OpenDataReports.page';
+import PartnersPage from 'src/pages/Partners/Partners.page';
+import BusinessDevelopmentPage from 'src/pages/BusinessDevelopment/BusinessDevelopment.page';
+import { MinerOldUrlSupportPage } from 'src/pages/MinerOldUrlSupport/MinerOldUrlSupport.page';
+import { NotFoundPage } from 'src/pages/NotFound/NotFound.page';
+import { PageLoader } from 'src/components/layout/Page';
 
 /**
  * Pages
@@ -37,33 +53,17 @@ import { SnackViewControl } from 'src/components/Snacks/SnackViewControl';
 // const BrandAssetsPage = React.lazy(
 //   () => import('../pages/BrandAssets/BrandAssets.page')
 // );
-// const StatisticsPage = React.lazy(
-//   () => import('../pages/Statistics/Statistics.page')
-// );
-// const MinerDashboardPage = React.lazy(
-//   () => import('../pages/MinerDashboard/MinerDashboard.page')
-// );
+const StatisticsPage = React.lazy(
+  () => import('../pages/Statistics/Statistics.page')
+);
+const MinerDashboardPage = React.lazy(
+  () => import('../pages/MinerDashboard/MinerDashboard.page')
+);
 // const HomePage = React.lazy(() => import('../pages/Home/Home.page'));
 // const SupportPage = React.lazy(() => import('../pages/Support/Support.page'));
-// const MinersPage = React.lazy(() => import('../pages/Miners/Miners.page'));
-// const BlocksPage = React.lazy(() => import('../pages/Blocks/Blocks.page'));
+const MinersPage = React.lazy(() => import('../pages/Miners/Miners.page'));
+const BlocksPage = React.lazy(() => import('../pages/Blocks/Blocks.page'));
 // const FaqPage = React.lazy(() => import('../pages/Faq/Faq.page'));
-
-import GetStartedPage from '../pages/GetStarted/GetStarted.page';
-import ContactUsPage from '../pages/ContactUs/ContactUs.page';
-import BrandAssetsPage from '../pages/BrandAssets/BrandAssets.page';
-import StatisticsPage from '../pages/Statistics/Statistics.page';
-import MinerDashboardPage from '../pages/MinerDashboard/MinerDashboard.page';
-import HomePage from '../pages/Home/Home.page';
-import SupportPage from '../pages/Support/Support.page';
-import MinersPage from '../pages/Miners/Miners.page';
-import BlocksPage from '../pages/Blocks/Blocks.page';
-import FaqPage from '../pages/Faq/Faq.page';
-import OpenDataReportsPage from 'src/pages/Reports/OpenDataReports.page';
-import PartnersPage from 'src/pages/Partners/Partners.page';
-import BusinessDevelopmentPage from 'src/pages/BusinessDevelopment/BusinessDevelopment.page';
-import { MinerOldUrlSupportPage } from 'src/pages/MinerOldUrlSupport/MinerOldUrlSupport.page';
-import { NotFoundPage } from 'src/pages/NotFound/NotFound.page';
 
 /**
  * init redux state
@@ -109,7 +109,7 @@ const AppContent = () => {
       <AppTheme />
       <NavBar />
       <SnackViewControl />
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<PageLoader />}>
         <Switch>
           <Route
             exact
