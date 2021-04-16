@@ -133,7 +133,7 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
               <Input
                 name="addrsearch"
                 spellCheck="false"
-                autoComplete="false"
+                autoComplete="off"
                 placeholder="Search by your mining address"
               />
               {showResult && searchData && searchData.length > 0 && (
