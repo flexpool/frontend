@@ -27,9 +27,6 @@ export const StatsChart: React.FC<{
   address: string;
 }> = (props) => {
   const [noDataAvailable, setNoDataAvailable] = useState(false);
-  const hashrateChartRef = useRef<HTMLDivElement>(null);
-  const sharesChartRef = useRef<HTMLDivElement>(null);
-  const reportedHashrateSeriesRef = useRef<HTMLDivElement>(null);
 
   const [sharesData, setSharesData] = React.useState<
     | {
