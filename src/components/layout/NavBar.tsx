@@ -31,13 +31,12 @@ import { DISCORD_LINK, REDDIT_LINK, TELEGRAM_LINK } from 'src/constants';
 import { useAppTheme } from 'src/rdx/localSettings/localSettings.hooks';
 import { Img } from '../Img';
 const Logo = styled(Img)`
-  height: 32px;
-  width: 160px;
+  height: 29px;
   fill: var(--text-primary);
 `;
 
 const LogoMobile = styled(Img)`
-  height: 24px;
+  height: 25px;
   fill: var(--text-primary);
 `;
 
@@ -185,7 +184,7 @@ const ContainerMobile = styled(NavContainerOuter)`
   }
 
   img {
-    height: 20px;
+    height: 25px;
   }
 `;
 
@@ -261,7 +260,12 @@ export const NavBar: React.FC<NavBarType> = (props) => {
         <NavContainer>
           <NavSection>
             <NavLink to="/">
-              <Logo src={logoSrc} alt="Flexpool.io Logo" />
+              <Logo
+                height="29px"
+                width="165px"
+                src={logoSrc}
+                alt="Flexpool.io Logo"
+              />
             </NavLink>
           </NavSection>
           <NavSection>
@@ -293,8 +297,8 @@ export const NavBar: React.FC<NavBarType> = (props) => {
         <NavContainer>
           <NavLink to="/" aria-label="Home page">
             <LogoMobile
-              height="20"
-              width="114"
+              height="25px"
+              width="141px"
               src={logoSrc}
               alt="Flexpool.io Logo"
             />
