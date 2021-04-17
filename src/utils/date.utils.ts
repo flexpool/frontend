@@ -86,10 +86,16 @@ const DELIMITER = ', ';
 const durationWordsShort = (text: string) => {
   const items = text.split(DELIMITER);
 
-  const res = items.map((item) => {
-    const [value, unit] = item.split(' ');
-    return `${value}${unit.charAt(0)}`;
-  });
+  const res = items
+    .map((item) => {
+      if (item) {
+        const [value, unit] = item.split(' ');
+        return `${value || 0}${unit?.charAt(0) || ''}`;
+      }
+
+      return '';
+    })
+    .filter((item) => !!item);
   return res.join(DELIMITER);
 };
 
@@ -108,10 +114,18 @@ const durationWords = (
     end: new Date(seconds * 1000),
   });
 
-  const res = formatDuration(durationToParse(intervalDuration), {
-    delimiter: DELIMITER,
-    format,
-  });
+  const res =
+    seconds > 0
+      ? formatDuration(durationToParse(intervalDuration), {
+          delimiter: DELIMITER,
+          format,
+        })
+      : // will render 0 seconds, by default it returns empty string
+        formatDuration(durationToParse(intervalDuration), {
+          delimiter: DELIMITER,
+          format: ['seconds'],
+          zero: true,
+        });
 
   if (options?.short) {
     return durationWordsShort(res);
