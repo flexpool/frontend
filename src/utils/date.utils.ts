@@ -86,10 +86,16 @@ const DELIMITER = ', ';
 const durationWordsShort = (text: string) => {
   const items = text.split(DELIMITER);
 
-  const res = items.map((item) => {
-    const [value, unit] = item.split(' ');
-    return `${value}${unit.charAt(0)}`;
-  });
+  const res = items
+    .map((item) => {
+      if (item) {
+        const [value, unit] = item.split(' ');
+        return `${value || 0}${unit?.charAt(0) || ''}`;
+      }
+
+      return '';
+    })
+    .filter((item) => !!item);
   return res.join(DELIMITER);
 };
 
