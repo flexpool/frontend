@@ -2,6 +2,8 @@ import React from 'react';
 import { Card } from 'src/components/layout/Card';
 import { Skeleton } from 'src/components/layout/Skeleton';
 import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
+import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
+import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { dateUtils } from 'src/utils/date.utils';
@@ -69,6 +71,7 @@ export const MinerDetails: React.FC<{
 }> = ({ coin }) => {
   const minerDetailsState = useReduxState('minerDetails');
   const settings = minerDetailsState.data;
+  const activeCoinTicker = useActiveCoinTicker();
 
   // const rank = React.useMemo(() => {
   //   if (settings) {
@@ -79,6 +82,8 @@ export const MinerDetails: React.FC<{
   // }, [settings]);
 
   const payoutLimit = useActiveCoinTickerDisplayValue(settings?.payoutLimit);
+  const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
+  const maxFeePrice = settings?.maxFeePrice;
 
   return (
     <Card paddingShort>
@@ -110,6 +115,13 @@ export const MinerDetails: React.FC<{
           <div>Payout Limit:&nbsp;</div>
           <div>{settings && coin ? payoutLimit : <Skeleton width={40} />}</div>
         </Item>
+        {
+        (maxFeePrice !== undefined && maxFeePrice > 0) ? (
+        <Item>
+          <div>Gas Limit:&nbsp;</div>
+          <div>{maxFeePrice}{' '}{feeDetails?.unit}</div>
+        </Item>) : (null)
+        }
         <Item>
           <div>Joined:&nbsp;</div>
           <div>

@@ -12,25 +12,11 @@ import {
   useActiveCoinTicker,
   useCounterTicker,
 } from 'src/rdx/localSettings/localSettings.hooks';
+import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
 import { minerDetailsUpdatePayoutSettings } from 'src/rdx/minerDetails/minerDetails.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import * as yup from 'yup';
-
-const feePayoutLimitDetails = {
-  eth: {
-    unit: 'Gwei',
-    title: 'Gas Price',
-    multiplier: 1000000000,
-  },
-};
-
-const getFeePayoutLimitDetails = (coin: string) => {
-  if (coin in feePayoutLimitDetails) {
-    return feePayoutLimitDetails[coin as keyof typeof feePayoutLimitDetails];
-  }
-  return null;
-};
 
 export const PayoutSettings: React.FC = () => {
   const activeCoinTicker = useActiveCoinTicker();
@@ -43,7 +29,7 @@ export const PayoutSettings: React.FC = () => {
     params: { address },
   } = useRouteMatch<{ address: string; coin: string }>();
 
-  const feeDetails = getFeePayoutLimitDetails(activeCoinTicker);
+  const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
 
   if (
     !minerSettings.data ||
