@@ -53,7 +53,7 @@ class ErrorBoundary extends React.Component<
       return (
         <ErrorContainer>
           <h1>Something went wrong.</h1>
-          <p>Apologies for any inconvenience! Please try again later. </p>
+          <p>Apologies for the inconvenience! Please try again later. </p>
         </ErrorContainer>
       );
     }
