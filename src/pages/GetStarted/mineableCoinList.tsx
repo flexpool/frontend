@@ -141,6 +141,19 @@ export const mineableCoins: MineableCoin[] = [
             cmd:
               'ethminer.exe -R -P stratum1+ssl://WALLET_ADDRESS.WORKER_NAME@CLOSEST_SERVER:5555',
           },
+          {
+            os: ['windows', 'linux', 'hiveos'],
+            title: 'PhoenixMiner',
+            key: 'phoenixminer',
+            description:
+              'Fastest Ethereum/Ethash miner with lowest devfee.',
+            fee: [0.9],
+            compatibleGpus: ['AMD', 'NVIDIA'],
+            downloadLink:
+              'https://github.com/PhoenixMinerDevTeam/PhoenixMiner/releases',
+            cmd:
+              'PhoenixMiner.exe -pool ssl://CLOSEST_SERVER:5555 -wal WALLET_ADDRESS.WORKER_NAME',
+          },
         ],
       },
     ],
