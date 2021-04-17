@@ -114,10 +114,18 @@ const durationWords = (
     end: new Date(seconds * 1000),
   });
 
-  const res = formatDuration(durationToParse(intervalDuration), {
-    delimiter: DELIMITER,
-    format,
-  });
+  const res =
+    seconds > 0
+      ? formatDuration(durationToParse(intervalDuration), {
+          delimiter: DELIMITER,
+          format,
+        })
+      : // will render 0 seconds, by default it returns empty string
+        formatDuration(durationToParse(intervalDuration), {
+          delimiter: DELIMITER,
+          format: ['seconds'],
+          zero: true,
+        });
 
   if (options?.short) {
     return durationWordsShort(res);
