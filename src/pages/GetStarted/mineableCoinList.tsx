@@ -146,8 +146,8 @@ export const mineableCoins: MineableCoin[] = [
             title: 'PhoenixMiner',
             key: 'phoenixminer',
             description:
-              'Fastest Ethereum/Ethash miner with lowest devfee.',
-            fee: [0.9],
+              'Proprietary Ethash miner with the lowest devfee.',
+            fee: [0.65],
             compatibleGpus: ['AMD', 'NVIDIA'],
             downloadLink:
               'https://github.com/PhoenixMinerDevTeam/PhoenixMiner/releases',
