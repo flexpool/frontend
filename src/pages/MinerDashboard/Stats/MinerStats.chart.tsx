@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SectionNotAvailable } from 'src/components/SectionNotAvailable';
 import { fetchApi } from 'src/utils/fetchApi';
 import { Spacer } from 'src/components/layout/Spacer';
