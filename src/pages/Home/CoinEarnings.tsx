@@ -195,7 +195,7 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
             <p>
               0.5% Pool Fee
               <br />
-              90% MEV Bonus
+              90% of MEV Bonus
             </p>
           </PoolDetails>
         )}
