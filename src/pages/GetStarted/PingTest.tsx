@@ -56,9 +56,9 @@ const testConnection = (domain: string) => {
       wsPingTestClient.send('ping\n');
     };
 
-    wsPingTestClient.onerror = () => {
+    wsPingTestClient.onerror = (e) => {
       wsPingTestClient.close();
-      reject({ message: 'Connection error' });
+      reject(e);
     };
   });
 
