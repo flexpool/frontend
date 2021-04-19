@@ -54,7 +54,7 @@ export const HeaderGreetings: React.FC<{
         {minerStatsState.data
           ? minerStatsState.data.reportedHashrate > 0
             ? formatSi(minerStatsState.data.reportedHashrate, 'H/s')
-            : formatSi(minerStatsState.data.averageEffectiveHashrate, 'H/s')
+            : formatSi(minerStatsState.data.currentEffectiveHashrate, 'H/s')
           : '- H/s'}{' '}
         in total.
       </span>
