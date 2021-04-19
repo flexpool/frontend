@@ -103,11 +103,11 @@ const BalanceProgressBar: React.FC<{
         </PayoutText>
         {payoutInSeconds && payoutInSeconds > 0 ? (
           <PayoutText>
-            The limit will be reached in{' '}
+            The limit will be reached{' '}
             <PayoutNumber>
               {dateUtils.formatDistance(
                 addSeconds(new Date(), payoutInSeconds)
-              ).toString().substring(3)}
+              )}
             </PayoutNumber>
             .
           </PayoutText>
