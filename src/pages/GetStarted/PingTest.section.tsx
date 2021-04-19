@@ -183,7 +183,7 @@ const cols: DynamicListColumn<
   },
 ];
 
-export const PingTest: React.FC<{ data: MineableCoinRegion[] }> = ({
+export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   data,
 }) => {
   const [lowestLatency, setLowestLatency] = React.useState<number>(10000);

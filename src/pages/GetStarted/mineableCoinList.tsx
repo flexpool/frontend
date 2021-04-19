@@ -1,4 +1,4 @@
-type GpuHardwareDetails = {
+export type GpuHardwareDetails = {
   os: ('linux' | 'windows' | 'hiveos')[];
   title: string;
   key: string;
@@ -15,6 +15,12 @@ export type MineableCoinRegion = {
   imageCode: string;
 };
 
+export type MineableCoinHardware = {
+  title: string;
+  key: 'GPU';
+  miners: GpuHardwareDetails[];
+};
+
 type MineableCoin = {
   name: string;
   ticker: string;
@@ -22,11 +28,7 @@ type MineableCoin = {
   regions: MineableCoinRegion[];
   description: string;
   poolDetails: { key: string; value: string }[];
-  hardware: {
-    title: string;
-    key: 'GPU';
-    miners: GpuHardwareDetails[];
-  }[];
+  hardware: MineableCoinHardware[];
 };
 
 export const mineableCoins: MineableCoin[] = [
@@ -38,7 +40,7 @@ export const mineableCoins: MineableCoin[] = [
     poolDetails: [
       { key: 'Reward Scheme', value: 'PPLNS (Pay Per Last N Shares)' },
       { key: 'Pool Fee', value: '0.5%' },
-      { key: 'Bonuses', value: '+90% MEV' },
+      { key: 'Bonuses', value: '90% of MEV bonus' },
       { key: 'Payout Round', value: 'Every 10 minutes' },
       { key: 'Payouts', value: 'from 0.01 ETH up to 100 ETH' },
       { key: 'Block confirmation time', value: '120 Blocks' },
@@ -145,8 +147,7 @@ export const mineableCoins: MineableCoin[] = [
             os: ['windows', 'linux', 'hiveos'],
             title: 'PhoenixMiner',
             key: 'phoenixminer',
-            description:
-              'Proprietary Ethash miner with the lowest devfee.',
+            description: 'Proprietary Ethash miner with the lowest devfee.',
             fee: [0.65],
             compatibleGpus: ['AMD', 'NVIDIA'],
             downloadLink:
