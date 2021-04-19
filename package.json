@@ -56,12 +56,6 @@
       "react-app/jest"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-push": "yarn lint",
-      "pre-commit": "yarn lint"
-    }
-  },
   "browserslist": {
     "production": [
       ">0.2%",
