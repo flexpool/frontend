@@ -16,6 +16,7 @@ import styled from 'styled-components';
 import { Sticker } from 'src/components/Sticker';
 import { Link } from 'react-router-dom';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
+import { Img } from 'src/components/Img';
 
 const WarningIcon = styled(FaExclamationCircle)`
   color: var(--danger);
@@ -99,7 +100,7 @@ const cols: DynamicListColumn<
       return (
         <Ws>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <img
+            <Img
               src={`https://static.flexpool.io/assets/countries/${data.imageCode}.svg`}
               style={{ width: '32px', marginRight: '10px' }}
               alt={data.imageCode}

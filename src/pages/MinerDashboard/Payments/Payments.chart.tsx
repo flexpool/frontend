@@ -1,6 +1,16 @@
 import React from 'react';
-import * as am4core from '@amcharts/amcharts4/core';
-import * as am4charts from '@amcharts/amcharts4/charts';
+import {
+  color,
+  NumberFormatter,
+  create,
+  Legend,
+  XYChart,
+  XYCursor,
+  DateAxis,
+  ValueAxis,
+  ColumnSeries,
+} from 'src/plugins/amcharts';
+
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { fetchApi } from 'src/utils/fetchApi';
 import { useAsyncState } from 'src/hooks/useAsyncState';
@@ -29,27 +39,24 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
 
   React.useEffect(() => {
     if (coin && asyncState.data && asyncState.data.length > 0) {
-      const paymentsChart = am4core.create('payments-chart', am4charts.XYChart);
+      const paymentsChart = create('payments-chart', XYChart);
 
       paymentsChart.responsive.enabled = true;
       paymentsChart.responsive.useDefault = false;
       paymentsChart.responsive.rules.push(responsiveRule);
-      paymentsChart.colors.list = [
-        am4core.color('#edb431'),
-        am4core.color('#0069ff'),
-      ];
+      paymentsChart.colors.list = [color('#edb431'), color('#0069ff')];
 
-      var paymentsAxis = paymentsChart.yAxes.push(new am4charts.ValueAxis());
-      paymentsAxis.numberFormatter = new am4core.NumberFormatter();
+      var paymentsAxis = paymentsChart.yAxes.push(new ValueAxis());
+      paymentsAxis.numberFormatter = new NumberFormatter();
       paymentsAxis.renderer.grid.template.disabled = true;
-      let dateAxis = paymentsChart.xAxes.push(new am4charts.DateAxis());
+      let dateAxis = paymentsChart.xAxes.push(new DateAxis());
       dateAxis.renderer.grid.template.location = 0;
       dateAxis.baseInterval = {
         timeUnit: 'day',
         count: 1,
       };
 
-      let feeSeries = paymentsChart.series.push(new am4charts.ColumnSeries());
+      let feeSeries = paymentsChart.series.push(new ColumnSeries());
 
       feeSeries.dataFields.dateX = 'date';
       feeSeries.name = 'Fee (' + coin.ticker.toUpperCase() + ')';
@@ -59,9 +66,7 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
       feeSeries.strokeWidth = 3;
       feeSeries.stacked = true;
 
-      let paymentSeries = paymentsChart.series.push(
-        new am4charts.ColumnSeries()
-      );
+      let paymentSeries = paymentsChart.series.push(new ColumnSeries());
 
       paymentSeries.dataFields.dateX = 'date';
       paymentSeries.name = 'Value (' + coin.ticker.toUpperCase() + ')';
@@ -71,8 +76,8 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
       paymentSeries.strokeWidth = 3;
       paymentSeries.stacked = true;
 
-      paymentsChart.cursor = new am4charts.XYCursor();
-      paymentsChart.legend = new am4charts.Legend();
+      paymentsChart.cursor = new XYCursor();
+      paymentsChart.legend = new Legend();
       paymentsChart.data = asyncState.data.reverse();
       return () => {
         paymentsChart.dispose();

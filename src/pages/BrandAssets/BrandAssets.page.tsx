@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { LinkOut } from 'src/components/LinkOut';
 import { Spacer } from 'src/components/layout/Spacer';
 import { Helmet } from 'react-helmet-async';
+import { Img } from 'src/components/Img';
 
 const ColorContainer = styled.div`
   display: flex;
@@ -142,25 +143,25 @@ export const BrandAssetsPage = () => {
         </p>
         <Logos>
           <LogoContainer>
-            <img
+            <Img
               src="https://static.flexpool.io/assets/brand/light.svg"
               alt="Flexpool Logo"
             />
           </LogoContainer>
           <LogoContainer>
-            <img
+            <Img
               src="https://static.flexpool.io/assets/brand/icon.svg"
               alt="Flexpool Icon"
             />
           </LogoContainer>
           <LogoContainerDark>
-            <img
+            <Img
               src="https://static.flexpool.io/assets/brand/dark.svg"
               alt="Flexpool Logo (Dark)"
             />
           </LogoContainerDark>
           <LogoContainerDark>
-            <img
+            <Img
               src="https://static.flexpool.io/assets/brand/icon.svg"
               alt="Flexpool Icon"
             />

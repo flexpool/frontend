@@ -6,8 +6,9 @@ import { useReduxState } from 'src/rdx/useReduxState';
 import { Ticker } from 'src/types/Ticker.types';
 import styled from 'styled-components/macro';
 import { Select } from './Form/Select/Select';
+import { Img } from './Img';
 
-const TickerFlag = styled.img`
+const TickerFlag = styled(Img)`
   height: 20px;
   margin-right: 0.5rem;
 `;
@@ -42,6 +43,8 @@ export const SelectCounterTicker = () => {
         label: (
           <TickerWrapper>
             <TickerFlag
+              width="20"
+              height="20"
               src={`https://static.flexpool.io/assets/countervalues/${item}.svg`}
               alt={`${item.toUpperCase()} Currency Flag`}
             />

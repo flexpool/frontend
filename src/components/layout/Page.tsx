@@ -1,8 +1,20 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { clx } from 'src/utils/clx';
-import styled from 'styled-components';
 import './Page.scss';
+
+import styled from 'styled-components/macro';
+import { LoaderSpinner } from '../Loader/LoaderSpinner';
+
+const ErrorContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 3rem;
+  margin: auto;
+  min-height: 70vh;
+`;
 
 type ErrorBoundaryProps = {
   children: React.ReactNode;
@@ -25,7 +37,8 @@ class ErrorBoundary extends React.Component<
   componentDidCatch(error: any, errorInfo: any) {
     // You can also log the error to an error reporting service
     // logErrorToMyService(error, errorInfo);
-    console.log(error, errorInfo);
+    console.error('Error', this.state.error);
+    console.error('Error Info', this.state.errorInfo);
     this.setState((state) => ({
       ...state,
       errorInfo,
@@ -37,11 +50,10 @@ class ErrorBoundary extends React.Component<
     if (this.state.hasError) {
       // You can render any custom fallback UI
       return (
-        <div>
+        <ErrorContainer>
           <h1>Something went wrong.</h1>
-          {JSON.stringify(this.state.error)}
-          {JSON.stringify(this.state.errorInfo)}
-        </div>
+          <p>Apologies for the inconvenience! Please try again later. </p>
+        </ErrorContainer>
       );
     }
 
@@ -69,3 +81,9 @@ export const PageLoading = styled(Page)`
   align-items: center;
   padding: 3rem;
 `;
+
+export const PageLoader = () => (
+  <PageLoading>
+    <LoaderSpinner />
+  </PageLoading>
+);

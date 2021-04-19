@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Content } from 'src/components/layout/Content';
 import styled from 'styled-components/macro';
-import IconLogo from 'src/assets/icon.svg';
 
 import {
   FaDiscord,
@@ -24,17 +23,8 @@ import {
   TWITTER_LINK,
 } from 'src/constants';
 import { partnersData } from 'src/pages/Partners/partnersData';
-
-const LinkOut: React.FC<{
-  href: string;
-  style?: Object;
-  children: React.ReactNode;
-}> = ({ href, children, style }) => (
-  <a href={href} target="_blank" rel="noopener noreferrer" style={style}>
-    {children}
-  </a>
-);
-
+import { LinkOut } from 'src/components/LinkOut';
+import { Img } from 'src/components/Img';
 const Footer = styled.footer`
   border-top: 6px solid var(--primary);
   background: #020e1f;
@@ -46,7 +36,7 @@ const Footer = styled.footer`
   a {
     color: #77869e;
     display: block;
-    padding: 0.3rem 0;
+    padding: 0.6rem 0;
     &:hover {
       color: var(--text-on-bg);
       text-decoration: none;
@@ -88,7 +78,7 @@ const FooterEnd = styled.div`
   }
 `;
 
-const FooterLogo = styled.img`
+const FooterLogo = styled(Img)`
   height: 30px;
   margin-right: 1rem;
 `;
@@ -163,7 +153,12 @@ export const FooterSection = () => {
         </SectionContainer>
         <FooterEnd>
           <FooterCompany>
-            <FooterLogo src={IconLogo} alt="Flexpool Icon White" />
+            <FooterLogo
+              width="50"
+              height="30"
+              src="https://static.flexpool.io/assets/brand/icon.svg"
+              alt="Flexpool Icon White"
+            />
             <div style={{ display: 'flex', alignItems: 'center' }}>
               © 2020-{new Date().getFullYear()} Flexpool.io or its affiliates.
               All rights reserved.
@@ -176,22 +171,22 @@ export const FooterSection = () => {
             </div>
           </FooterCompany>
           <SocialIcons>
-            <LinkOut href={DISCORD_LINK}>
+            <LinkOut aria-label="Discord chat" href={DISCORD_LINK}>
               <FaDiscord />
             </LinkOut>
-            <LinkOut href={TELEGRAM_LINK}>
+            <LinkOut aria-label="Telegram bot" href={TELEGRAM_LINK}>
               <FaTelegram />
             </LinkOut>
-            <LinkOut href={REDDIT_LINK}>
+            <LinkOut aria-label="Reddit community page" href={REDDIT_LINK}>
               <FaReddit />
             </LinkOut>
-            <LinkOut href={TWITTER_LINK}>
+            <LinkOut aria-label="Twitter account" href={TWITTER_LINK}>
               <FaTwitter />
             </LinkOut>
-            <LinkOut href={MEDIUM_LINK}>
+            <LinkOut aria-label="Medium articles" href={MEDIUM_LINK}>
               <FaMedium />
             </LinkOut>
-            <LinkOut href={GITHUB_LINK}>
+            <LinkOut aria-label="Github repositories" href={GITHUB_LINK}>
               <FaGithub />
             </LinkOut>
           </SocialIcons>

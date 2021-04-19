@@ -29,14 +29,14 @@ import { SelectCounterTicker } from '../SelectCounterTicker';
 import { LinkOut } from '../LinkOut';
 import { DISCORD_LINK, REDDIT_LINK, TELEGRAM_LINK } from 'src/constants';
 import { useAppTheme } from 'src/rdx/localSettings/localSettings.hooks';
-const Logo = styled.img`
-  height: 32px;
-  width: 160px;
+import { Img } from '../Img';
+const Logo = styled(Img)`
+  height: 29px;
   fill: var(--text-primary);
 `;
 
-const LogoMobile = styled.img`
-  height: 24px;
+const LogoMobile = styled(Img)`
+  height: 25px;
   fill: var(--text-primary);
 `;
 
@@ -184,7 +184,7 @@ const ContainerMobile = styled(NavContainerOuter)`
   }
 
   img {
-    height: 20px;
+    height: 25px;
   }
 `;
 
@@ -260,7 +260,12 @@ export const NavBar: React.FC<NavBarType> = (props) => {
         <NavContainer>
           <NavSection>
             <NavLink to="/">
-              <Logo src={logoSrc} />
+              <Logo
+                height="29px"
+                width="165px"
+                src={logoSrc}
+                alt="Flexpool.io Logo"
+              />
             </NavLink>
           </NavSection>
           <NavSection>
@@ -290,20 +295,30 @@ export const NavBar: React.FC<NavBarType> = (props) => {
 
       <ContainerMobile>
         <NavContainer>
-          <NavLink to="/">
-            <LogoMobile src={logoSrc} />
+          <NavLink to="/" aria-label="Home page">
+            <LogoMobile
+              height="25px"
+              width="141px"
+              src={logoSrc}
+              alt="Flexpool.io Logo"
+            />
           </NavLink>
           <NavSection>
-            <NLink to="/statistics">
+            <NLink aria-label="Statistics" to="/statistics">
               <FaChartArea />
             </NLink>
-            <NLink to="/blocks">
+            <NLink to="/blocks" aria-label="Blocks">
               <FaCubes />
             </NLink>
-            <NLink as="button" onClick={modalSearchOpenState.handleOpen}>
+            <NLink
+              as="button"
+              aria-label="Search Address"
+              onClick={modalSearchOpenState.handleOpen}
+            >
               <FaSearch />
             </NLink>
             <BurgerWrap
+              aria-label="Open menu"
               className={clx({ active: openState.value })}
               onClick={openState.handleToggle}
             >

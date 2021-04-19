@@ -7,14 +7,6 @@ import {
   differenceInSeconds,
 } from 'date-fns';
 
-// export const isValidDate = (date: any) => {
-//   return (
-//     date &&
-//     Object.prototype.toString.call(date) === "[object Date]" &&
-//     !isNaN(date)
-//   );
-// };
-
 type DateInput = Date | string | number;
 
 const dateInputToDate = (date: DateInput) => new Date(date);
@@ -85,9 +77,31 @@ const durationToParse = (duration: Duration) => {
   }
 };
 
+const DELIMITER = ', ';
+
+/**
+ * 1 hour, 7 minutes, 51 seconds => 1h, 7m, 51s
+ * @param text
+ */
+const durationWordsShort = (text: string) => {
+  const items = text.split(DELIMITER);
+
+  const res = items
+    .map((item) => {
+      if (item) {
+        const [value, unit] = item.split(' ');
+        return `${value || 0}${unit?.charAt(0) || ''}`;
+      }
+
+      return '';
+    })
+    .filter((item) => !!item);
+  return res.join(DELIMITER);
+};
+
 const durationWords = (
   seconds: number,
-  options?: { includeSeconds: boolean }
+  options?: { includeSeconds: boolean; short?: boolean }
 ) => {
   const format = ['years', 'months', 'weeks', 'days', 'hours', 'minutes'];
 
@@ -100,10 +114,24 @@ const durationWords = (
     end: new Date(seconds * 1000),
   });
 
-  return formatDuration(durationToParse(intervalDuration), {
-    delimiter: ', ',
-    format,
-  });
+  const res =
+    seconds > 0
+      ? formatDuration(durationToParse(intervalDuration), {
+          delimiter: DELIMITER,
+          format,
+        })
+      : // will render 0 seconds, by default it returns empty string
+        formatDuration(durationToParse(intervalDuration), {
+          delimiter: DELIMITER,
+          format: ['seconds'],
+          zero: true,
+        });
+
+  if (options?.short) {
+    return durationWordsShort(res);
+  }
+
+  return res;
 };
 
 export const dateUtils = {

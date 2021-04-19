@@ -1,4 +1,5 @@
 import React from 'react';
+import { Img } from 'src/components/Img';
 import { LinkOut } from 'src/components/LinkOut';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { dateUtils } from 'src/utils/date.utils';
@@ -60,11 +61,11 @@ const ArticleFooter = styled.div`
   align-items: center;
   margin-top: 1rem;
 `;
-const SourceImage = styled.img`
+const SourceImage = styled(Img)`
   height: 1.25rem;
   margin-right: 0.5rem;
 `;
-const ArticleImage = styled.img`
+const ArticleImage = styled(Img)`
   object-fit: cover;
   height: 100%;
   width: 100%;
