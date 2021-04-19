@@ -21,5 +21,3 @@ export const formatSi = (value?: number, unit: string = '', decimals = 1) => {
     Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals)
   } ${siSymbols[siN]}${unit}`;
 };
-
-// test push
