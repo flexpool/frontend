@@ -107,7 +107,7 @@ const BalanceProgressBar: React.FC<{
             <PayoutNumber>
               {dateUtils.formatDistance(
                 addSeconds(new Date(), payoutInSeconds)
-              )}
+              ).toString().substring(3)}
             </PayoutNumber>
             .
           </PayoutText>
