@@ -58,6 +58,7 @@ export const OpenDataReportsPage = () => {
         </p>
         <LatestReport />
         <Spacer />
+        <h2>Reports Archive</h2>
         {dates.map((item) => (
           <ReportArchiveItem
             key={format(item, 'MMMM yy')}
