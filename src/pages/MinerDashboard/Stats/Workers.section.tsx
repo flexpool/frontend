@@ -52,9 +52,12 @@ const SearchInput = styled.input`
   padding-left: 1.5rem;
   display: block;
   background: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--text-primary);
 
   &:focus {
     padding-bottom: 0px;
+    border-width: 2px;
     border-color: var(--primary);
   }
 `;
