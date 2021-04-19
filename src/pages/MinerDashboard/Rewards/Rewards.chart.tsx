@@ -43,14 +43,18 @@ const RewardsChart: React.FC<{
     rewardsChart.responsive.useDefault = false;
     rewardsChart.responsive.rules.push(responsiveRule);
     rewardsChart.colors.list = [color('#0069ff')];
-    const rewardsChartData = rewards.map((item) => ({
-      date: new Date(item.timestamp * 1000),
-      totalRewards: item.totalRewards / Math.pow(10, coin.decimalPlaces),
-      countervaluedRewards: getDisplayCounterTickerValue(
-        (item.totalRewards / Math.pow(10, coin.decimalPlaces)) * counterPrice,
-        counterTicker
-      ),
-    }));
+    const rewardsChartData = rewards.map((item) => {
+      return {
+        date: new Date(
+          item.timestamp * 1000 + new Date().getTimezoneOffset() * 60 * 1000
+        ),
+        totalRewards: item.totalRewards / Math.pow(10, coin.decimalPlaces),
+        countervaluedRewards: getDisplayCounterTickerValue(
+          (item.totalRewards / Math.pow(10, coin.decimalPlaces)) * counterPrice,
+          counterTicker
+        ),
+      };
+    });
 
     rewardsChart.data = rewardsChartData.reverse();
 

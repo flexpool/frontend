@@ -42,7 +42,6 @@ export const MinerDetails: React.FC<{
   const minerDetailsState = useReduxState('minerDetails');
   const settings = minerDetailsState.data;
   const activeCoinTicker = useActiveCoinTicker();
-
   const payoutLimit = useActiveCoinTickerDisplayValue(settings?.payoutLimit);
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
   const maxFeePrice = settings?.maxFeePrice;
