@@ -1,6 +1,6 @@
 import React from 'react';
+import { Img } from 'src/components/Img';
 import styled from 'styled-components/macro';
-import MapSvg from './world_map_dots.svg';
 
 const Hero = styled.div`
   padding-top: 3rem;
@@ -25,7 +25,7 @@ const Hero = styled.div`
   }
 `;
 
-const WorldMap = styled.img`
+const WorldMap = styled(Img)`
   object-fit: cover;
   position: absolute;
   top: 0;
@@ -43,7 +43,7 @@ export const HeroBlue: React.FC<{
   return (
     <Hero className={className}>
       {children}
-      <WorldMap loading="lazy" src={MapSvg} alt="map" />
+      <WorldMap src="/illustrations/world_map_dots.svg" alt="World map" />
     </Hero>
   );
 };

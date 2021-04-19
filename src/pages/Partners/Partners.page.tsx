@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { Redirect } from 'react-router';
+import { Img } from 'src/components/Img';
 import { Card } from 'src/components/layout/Card';
 
 import { Content } from 'src/components/layout/Content';
@@ -9,7 +10,7 @@ import { LinkOut } from 'src/components/LinkOut';
 import styled from 'styled-components/macro';
 import { partnersData } from './partnersData';
 
-const LogoImg = styled.img`
+const LogoImg = styled(Img)`
   height: 50px;
 `;
 

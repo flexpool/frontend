@@ -11,8 +11,18 @@ import {
 import { useReduxState } from 'src/rdx/useReduxState';
 import { fetchApi } from 'src/utils/fetchApi';
 import { formatSi } from 'src/utils/si.utils';
-import * as am4core from '@amcharts/amcharts4/core';
-import * as am4charts from '@amcharts/amcharts4/charts';
+
+import {
+  color,
+  NumberFormatter,
+  create,
+  Legend,
+  XYChart,
+  XYCursor,
+  CategoryAxis,
+  ValueAxis,
+  ColumnSeries,
+} from 'src/plugins/amcharts';
 import { dateUtils } from 'src/utils/date.utils';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import {
@@ -99,28 +109,26 @@ export const MinerPplnsStats: React.FC<{
       }
       setShareLogLength(totalShares);
 
-      let sharesChart = am4core.create('shares-chart', am4charts.XYChart);
+      let sharesChart = create('shares-chart', XYChart);
 
       sharesChart.responsive.enabled = true;
       sharesChart.responsive.useDefault = false;
       sharesChart.responsive.rules.push(responsiveRule);
       sharesChart.colors.list = [
-        am4core.color('#0069ff'),
-        am4core.color('#edb431'),
-        am4core.color('#444444'),
+        color('#0069ff'),
+        color('#edb431'),
+        color('#444444'),
       ];
 
-      var sharesAxis = sharesChart.yAxes.push(new am4charts.ValueAxis());
+      var sharesAxis = sharesChart.yAxes.push(new ValueAxis());
 
-      sharesAxis.numberFormatter = new am4core.NumberFormatter();
+      sharesAxis.numberFormatter = new NumberFormatter();
       sharesAxis.renderer.grid.template.disabled = true;
 
-      let categoryAxis = sharesChart.xAxes.push(new am4charts.CategoryAxis());
+      let categoryAxis = sharesChart.xAxes.push(new CategoryAxis());
       categoryAxis.dataFields.category = 'number';
 
-      let yourSharesSeries = sharesChart.series.push(
-        new am4charts.ColumnSeries()
-      );
+      let yourSharesSeries = sharesChart.series.push(new ColumnSeries());
 
       yourSharesSeries.dataFields.categoryX = 'number';
       yourSharesSeries.name = 'Valid Shares';
@@ -128,8 +136,8 @@ export const MinerPplnsStats: React.FC<{
       yourSharesSeries.dataFields.valueY = 'your';
       yourSharesSeries.tooltipText = `{valueY} Shares ({roundShare}%)`;
 
-      sharesChart.cursor = new am4charts.XYCursor();
-      sharesChart.legend = new am4charts.Legend();
+      sharesChart.cursor = new XYCursor();
+      sharesChart.legend = new Legend();
 
       const sharesDataTmpUnwrapped = Object.values(sharesDataTmp).map(
         (item) => ({

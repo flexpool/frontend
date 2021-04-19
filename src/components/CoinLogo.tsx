@@ -1,9 +1,10 @@
 import React from 'react';
 import { getCoinIconUrl } from 'src/utils/staticImage.utils';
 import styled from 'styled-components';
+import { Img } from './Img';
 
 type CoinSize = 'lg' | 'xl';
-const CoinImg = styled.img<{ size?: CoinSize }>`
+const CoinImg = styled(Img)<{ size?: CoinSize }>`
   height: 20px;
   width: 20px;
   margin-right: 0.5rem;

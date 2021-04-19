@@ -4,6 +4,7 @@ import { clx } from 'src/utils/clx';
 import './Page.scss';
 
 import styled from 'styled-components/macro';
+import { LoaderSpinner } from '../Loader/LoaderSpinner';
 
 const ErrorContainer = styled.div`
   display: flex;
@@ -36,7 +37,8 @@ class ErrorBoundary extends React.Component<
   componentDidCatch(error: any, errorInfo: any) {
     // You can also log the error to an error reporting service
     // logErrorToMyService(error, errorInfo);
-    console.log(error, errorInfo);
+    console.error('Error', this.state.error);
+    console.error('Error Info', this.state.errorInfo);
     this.setState((state) => ({
       ...state,
       errorInfo,
@@ -47,12 +49,10 @@ class ErrorBoundary extends React.Component<
   render() {
     if (this.state.hasError) {
       // You can render any custom fallback UI
-      console.error('Error', this.state.error);
-      console.error('Error Info', this.state.errorInfo);
       return (
         <ErrorContainer>
           <h1>Something went wrong.</h1>
-          <p>Apologies for any inconvenience! Please try again later. </p>
+          <p>Apologies for the inconvenience! Please try again later. </p>
         </ErrorContainer>
       );
     }
@@ -81,3 +81,9 @@ export const PageLoading = styled(Page)`
   align-items: center;
   padding: 3rem;
 `;
+
+export const PageLoader = () => (
+  <PageLoading>
+    <LoaderSpinner />
+  </PageLoading>
+);
