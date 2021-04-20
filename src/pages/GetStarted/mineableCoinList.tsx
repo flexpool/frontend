@@ -1,3 +1,5 @@
+import { validateEthAddress } from 'src/utils/validators/ethWalletAddress.validator';
+
 export type GpuHardwareDetails = {
   os: ('linux' | 'windows' | 'hiveos')[];
   title: string;
@@ -29,6 +31,7 @@ export type MineableCoin = {
   description: string;
   walletAddressExample: string;
   regex: RegExp;
+  validator: (address: string) => null | string;
   poolDetails: { key: string; value: string }[];
   hardware: MineableCoinHardware[];
 };
@@ -40,6 +43,7 @@ export const mineableCoins: MineableCoin[] = [
     algorithm: 'Ethash',
     description: '',
     regex: /^0x[a-fA-F0-9]{40}$/g,
+    validator: validateEthAddress,
     walletAddressExample: '0xBf08F613ccE234c96e0e889a0B660bD819D23795',
     poolDetails: [
       { key: 'Reward Scheme', value: 'PPLNS (Pay Per Last N Shares)' },

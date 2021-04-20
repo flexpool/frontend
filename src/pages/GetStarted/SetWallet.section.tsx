@@ -7,7 +7,7 @@ import { LinkOut } from 'src/components/LinkOut';
 import React from 'react';
 import { MineableCoin } from './mineableCoinList';
 export const SetWalletSection: React.FC<{ data: MineableCoin }> = ({
-  data: { regex, walletAddressExample },
+  data: { walletAddressExample, validator },
 }) => {
   const history = useHistory();
   const { search } = useLocation();
@@ -18,25 +18,26 @@ export const SetWalletSection: React.FC<{ data: MineableCoin }> = ({
     // eslint-disable-next-line
   }, []);
 
-  const [regexpError, setRegexpError] = React.useState(false);
+  const [checksumError, setChecksumError] = React.useState(false);
   const [value, setValue] = React.useState(initValue || '');
 
   const handleInputChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       setValue(value);
-      const isValid = new RegExp(regex).test(value);
-
       const parsedSearch = qs.parse(search);
-      setRegexpError(!isValid);
+
+      const checksum = validator(value);
+
+      setChecksumError(!checksum);
       history.replace({
         search: qs.stringify({
           ...parsedSearch,
-          walletAddress: isValid ? value : '',
+          walletAddress: !!checksum ? value : '',
         }),
       });
     },
-    [search, history, regex]
+    [search, history, validator]
   );
 
   return (
@@ -69,7 +70,7 @@ export const SetWalletSection: React.FC<{ data: MineableCoin }> = ({
           placeholder={walletAddressExample}
           value={value}
           onChange={handleInputChange}
-          errorMessage={regexpError ? 'Invalid wallet address' : null}
+          errorMessage={checksumError ? 'Invalid wallet address' : null}
         />
       </DivText>
     </>
