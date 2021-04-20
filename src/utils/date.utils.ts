@@ -41,7 +41,7 @@ const formatDistance = (d: DateInput) => {
   if (dateIsValid(date)) {
     const diff = Math.abs(differenceInSeconds(date, new Date()));
 
-    if (diff < 61) {
+    if (diff < 1) {
       return 'now';
     }
 
