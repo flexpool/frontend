@@ -39,6 +39,10 @@ import styled from 'styled-components';
 //   else return ['MVP', 'mvp'];
 // };
 
+const NoFeeLimit = styled.div`
+  color: var(--text-secondary);
+`;
+
 const Item = styled.div`
   display: flex;
   font-weight: 600;
@@ -124,7 +128,7 @@ export const MinerDetails: React.FC<{
           </div>
           {maxFeePrice && feeDetails
             ?  <div>{maxFeePrice + " " + feeDetails?.unit}</div>
-            : <div>{maxFeePrice === 0 ? "None" : <Skeleton width={40} />}</div>
+            : <NoFeeLimit>{maxFeePrice === 0 ? "None" : <Skeleton width={40} />}</NoFeeLimit>
           }
         </Item>
         <Item>
