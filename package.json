@@ -47,7 +47,8 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "eject": "react-app-rewired eject",
+    "lint": "eslint src"
   },
   "eslintConfig": {
     "extends": [
@@ -79,7 +80,9 @@
     "@types/redux-logger": "^3.0.8",
     "@types/websocket": "^1.0.2",
     "cra-bundle-analyzer": "^0.1.0",
+    "cross-env": "^7.0.3",
     "frontmatter-markdown-loader": "^3.6.2",
+    "husky": "^6.0.0",
     "prettier": "^2.2.1",
     "react-app-rewire-frontmatter-markdown": "^1.4.0",
     "react-app-rewired": "^2.1.8",
