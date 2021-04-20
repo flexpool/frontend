@@ -15,6 +15,7 @@ export const SetWalletSection: React.FC<{ data: MineableCoin }> = ({
   const initValue = React.useMemo(() => {
     const parsedSearch = qs.parse(search);
     return parsedSearch.walletAddress || '';
+    // eslint-disable-next-line
   }, []);
 
   const [regexpError, setRegexpError] = React.useState(false);
