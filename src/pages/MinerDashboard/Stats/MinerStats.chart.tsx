@@ -242,7 +242,9 @@ export const StatsChart: React.FC<{
             'https://static.flexpool.io/assets/website-illustrations/stats.svg'
           }
           title={'Not enough data'}
-          description={"It looks like you haven't submitted any valid share"}
+          description={
+            "We don't have enough data to show charts. If your workers are already mining, please allow up to 10 minutes for the data to be processed."
+          }
         />
       )}
     </>
