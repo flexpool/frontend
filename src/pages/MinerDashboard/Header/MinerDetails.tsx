@@ -9,6 +9,7 @@ import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { dateUtils } from 'src/utils/date.utils';
 import styled from 'styled-components';
 
+
 const NoFeeLimit = styled.div`
   color: var(--text-secondary);
 `;
@@ -46,15 +47,6 @@ export const MinerDetails: React.FC<{
   const minerDetailsState = useReduxState('minerDetails');
   const settings = minerDetailsState.data;
   const activeCoinTicker = useActiveCoinTicker();
-
-  // const rank = React.useMemo(() => {
-  //   if (settings) {
-  //     return getRank(settings.poolDonation);
-  //   }
-
-  //   return null;
-  // }, [settings]);
-
   const payoutLimit = useActiveCoinTickerDisplayValue(settings?.payoutLimit);
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
   const maxFeePrice = settings?.maxFeePrice;
@@ -62,29 +54,6 @@ export const MinerDetails: React.FC<{
   return (
     <Card paddingShort>
       <Content>
-        {/* <Item>
-          <div>Rank:&nbsp;</div>
-          <div>
-            {rank ? (
-              <Rank rank={rank[1]}>{rank[0]}</Rank>
-            ) : (
-              <Skeleton width={80} />
-            )}
-          </div>
-        </Item>
-        <Item>
-          <div>Pool Donation:&nbsp;</div>
-          <div>
-            {settings ? (
-              settings.poolDonation * 100
-            ) : (
-              <>
-                <Skeleton width={40} />{' '}
-              </>
-            )}
-            %
-          </div>
-        </Item> */}
         <Item>
           <div>Payout Limit:&nbsp;</div>
           <div>{settings && coin ? payoutLimit : <Skeleton width={40} />}</div>
@@ -101,16 +70,19 @@ export const MinerDetails: React.FC<{
             : <NoFeeLimit>{maxFeePrice === 0 ? "None" : <Skeleton width={40} />}</NoFeeLimit>
           }
         </Item>
-        <Item>
-          <div>Joined:&nbsp;</div>
-          <div>
-            {settings ? (
-              <>{dateUtils.formatDistance(settings.firstJoined * 1000)}</>
-            ) : (
-              <Skeleton width={50} />
-            )}
-          </div>
-        </Item>
+        {settings &&
+          !!settings.firstJoined && ( // will be hidden if unix timestamp is zero
+            <Item>
+              <div>Joined:&nbsp;</div>
+              <div>
+                {settings ? (
+                  <>{dateUtils.formatDistance(settings.firstJoined * 1000)}</>
+                ) : (
+                  <Skeleton width={50} />
+                )}
+              </div>
+            </Item>
+          )}
       </Content>
     </Card>
   );

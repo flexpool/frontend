@@ -5,13 +5,13 @@ import DynamicList, {
 import { LinkMiner } from 'src/components/LinkMiner';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { formatSi } from 'src/utils/si.utils';
-import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
 import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { useDispatch } from 'react-redux';
 import { topMinersGet } from 'src/rdx/topMiners/topMiners.actions';
 import { Mono, Ws } from 'src/components/Typo/Typo';
 import { ApiTopMiner } from 'src/types/TopMiner.types';
+import { dateUtils } from 'src/utils/date.utils';
 
 const topMinersCol: DynamicListColumn<ApiTopMiner, { coinTicker: string }>[] = [
   {
@@ -65,7 +65,7 @@ const topMinersCol: DynamicListColumn<ApiTopMiner, { coinTicker: string }>[] = [
     title: 'Joined',
     skeletonWidth: 120,
     Component: ({ data }) => {
-      return <Ws>{formatDistanceToNowStrict(data.firstJoined * 1000)} ago</Ws>;
+      return <Ws>{dateUtils.formatDistance(data.firstJoined * 1000)}</Ws>;
     },
   },
 ];

@@ -63,7 +63,7 @@ export const MinerStats = () => {
               totalShares,
               data?.validShares
             )}
-            value={formatSi(data?.validShares)}
+            value={formatSi(data?.validShares, '', { shortenAbove: 100000 })}
           />
           <StatItem
             title={getDisplayPercentage(
@@ -71,7 +71,7 @@ export const MinerStats = () => {
               totalShares,
               data?.staleShares
             )}
-            value={formatSi(data?.staleShares)}
+            value={formatSi(data?.staleShares, '', { shortenAbove: 100000 })}
           />
           <StatItem
             title={getDisplayPercentage(
@@ -79,7 +79,7 @@ export const MinerStats = () => {
               totalShares,
               data?.invalidShares
             )}
-            value={formatSi(data?.invalidShares)}
+            value={formatSi(data?.invalidShares, '', { shortenAbove: 100000 })}
           />
         </StatItemGrid>
       </Card>
