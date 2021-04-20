@@ -30,12 +30,16 @@ export const SetWalletSection: React.FC<{ data: MineableCoin }> = ({
       const checksum = validator(value);
 
       setChecksumError(!checksum);
-      history.replace({
-        search: qs.stringify({
-          ...parsedSearch,
-          walletAddress: !!checksum ? value : '',
-        }),
-      });
+
+      if (!!checksum) {
+        history.replace({
+          search: qs.stringify({
+            ...parsedSearch,
+            walletAddress: !!checksum ? checksum : '',
+          }),
+        });
+        setValue(checksum);
+      }
     },
     [search, history, validator]
   );
