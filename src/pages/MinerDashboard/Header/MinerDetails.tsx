@@ -115,18 +115,18 @@ export const MinerDetails: React.FC<{
           <div>Payout Limit:&nbsp;</div>
           <div>{settings && coin ? payoutLimit : <Skeleton width={40} />}</div>
         </Item>
-        {
-        (maxFeePrice !== undefined) ? (
         <Item>
-          <div>{feeDetails ? feeDetails?.title : <Skeleton width={10} />} Limit:&nbsp;</div>
-          {maxFeePrice && feeDetails ?  <div>{maxFeePrice + " " + feeDetails?.unit}</div> :
-          <div>None</div>}
-        </Item>) : (
-        <Item>
-          <div>{feeDetails ? feeDetails?.title : <Skeleton width={10} />} Limit:&nbsp;</div>
-          <div>{<Skeleton width={40} />}</div>
-        </Item>)
-        }
+          <div>
+            {feeDetails
+              ? feeDetails?.title
+              : <Skeleton width={10} />
+            } Limit:&nbsp;
+          </div>
+          {maxFeePrice && feeDetails
+            ?  <div>{maxFeePrice + " " + feeDetails?.unit}</div>
+            : <div>{maxFeePrice === 0 ? "None" : <Skeleton width={40} />}</div>
+          }
+        </Item>
         <Item>
           <div>Joined:&nbsp;</div>
           <div>
