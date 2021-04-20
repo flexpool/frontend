@@ -100,12 +100,26 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
 
   const handleSearch = React.useCallback(
     async (address: string) => {
+      let searchAddress: string = address;
+
+      if (!searchAddress) {
+        if (searchData.length > 0) {
+          searchAddress = searchData[0].address; // Fetch latest address from cache.
+        } else {
+          return;
+        }
+      }
+
       return searchState
-        .start(fetchApi('/miner/locateAddress', { query: { address } }))
+        .start(
+          fetchApi('/miner/locateAddress', {
+            query: { address: searchAddress },
+          })
+        )
         .then((res) => {
           if (res) {
-            saveAddressToCache(res, address);
-            history.push(`/miner/${res}/${address}`);
+            saveAddressToCache(res, searchAddress);
+            history.push(`/miner/${res}/${searchAddress}`);
           } else {
             alert(
               'Specified address was not found in our system. Try waiting some time if you are already mining.'
@@ -115,7 +129,7 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
         });
     },
     // eslint-disable-next-line
-    [history]
+    [history, searchData[0]?.address]
   );
 
   return (

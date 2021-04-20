@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { searchAddressStorage } from './searchCache';
+import { saveAddressToCache, searchAddressStorage } from './searchCache';
 
 const HistoryItem = styled(Link)`
   border-top: 1px solid var(--border-color);
@@ -50,6 +50,7 @@ export const SearchAddressCachedResult: React.FC<{ isOpen?: boolean }> = ({
     <>
       {data.map((item) => (
         <HistoryItem
+          onClick={() => saveAddressToCache(item.coin, item.address)}
           to={`/miner/${item.coin}/${item.address}`}
           key={item.address}
         >
