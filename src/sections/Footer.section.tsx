@@ -139,7 +139,7 @@ export const FooterSection = () => {
           </Section>
           <Section>
             <FSectionTitle>Contact</FSectionTitle>
-            <LinkOut href="https://flexpool.statuspage.io/">
+            <LinkOut href="https://status.flexpool.io">
               Services Status
             </LinkOut>
             <Link to="/support">Support</Link>
