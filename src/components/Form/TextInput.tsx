@@ -50,7 +50,7 @@ export const TextInput: React.FC<
       unit?: React.ReactNode;
     }
 > = (p) => {
-  const { unit, ...props } = getInputProps(p);
+  const { unit, autoComplete, spellCheck, ...props } = getInputProps(p);
 
   return (
     <FieldWrap {...props}>
@@ -63,6 +63,8 @@ export const TextInput: React.FC<
           name={props.name}
           placeholder={props.placeholder}
           disabled={props.disabled}
+          autoComplete={autoComplete}
+          spellCheck={spellCheck}
         />
         {unit && <SUnit>{unit}</SUnit>}
       </Wrapper>

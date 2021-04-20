@@ -33,7 +33,7 @@ export const MineableCoinGuidePage: React.FC = () => {
   return (
     <Page>
       <h1>{mineableCoin.name} mining</h1>
-      <SetWalletSection />
+      <SetWalletSection data={mineableCoin} />
       <Spacer size="xl" />
       <PingTestSection data={mineableCoin.regions} />
       <Spacer size="xl" />

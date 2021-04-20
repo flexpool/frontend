@@ -1,7 +1,7 @@
 import { useHistory, useLocation } from 'react-router';
 import qs from 'query-string';
 import { TextInput } from 'src/components/Form/TextInput';
-import { Highlight } from 'src/components/Typo/Typo';
+import { DivText, Highlight } from 'src/components/Typo/Typo';
 import { Spacer } from 'src/components/layout/Spacer';
 import React from 'react';
 
@@ -39,14 +39,16 @@ export const SetWorkerNameSection = () => {
         mining rigs perform on your dashboard page.
       </p>
       <Spacer />
-      <p>
+      <DivText>
         <TextInput
-          label="Worker name (optional)"
+          label="Worker name"
           placeholder="e.g. MY_RIG_580x2"
           value={value}
           onChange={handleInputChange}
+          spellCheck="false"
+          autoComplete="off"
         />
-      </p>
+      </DivText>
     </>
   );
 };

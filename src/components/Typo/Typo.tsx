@@ -13,3 +13,8 @@ export const Ws = styled.span`
 export const Highlight = styled.span`
   color: var(--primary);
 `;
+
+export const DivText = styled.div`
+  max-width: 760px;
+  line-height: 1.4;
+`;

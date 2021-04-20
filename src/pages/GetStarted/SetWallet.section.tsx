@@ -1,31 +1,41 @@
 import { useHistory, useLocation } from 'react-router';
 import qs from 'query-string';
 import { TextInput } from 'src/components/Form/TextInput';
-import { Highlight } from 'src/components/Typo/Typo';
+import { DivText, Highlight } from 'src/components/Typo/Typo';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOut } from 'src/components/LinkOut';
 import React from 'react';
-export const SetWalletSection = () => {
+import { MineableCoin } from './mineableCoinList';
+export const SetWalletSection: React.FC<{ data: MineableCoin }> = ({
+  data: { regex, walletAddressExample },
+}) => {
   const history = useHistory();
   const { search } = useLocation();
 
-  const value = React.useMemo(() => {
+  const initValue = React.useMemo(() => {
     const parsedSearch = qs.parse(search);
     return parsedSearch.walletAddress || '';
-  }, [search]);
+  }, []);
+
+  const [regexpError, setRegexpError] = React.useState(false);
+  const [value, setValue] = React.useState(initValue || '');
 
   const handleInputChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
+      setValue(value);
+      const isValid = new RegExp(regex).test(value);
+
       const parsedSearch = qs.parse(search);
+      setRegexpError(!isValid);
       history.replace({
         search: qs.stringify({
           ...parsedSearch,
-          walletAddress: value,
+          walletAddress: isValid ? value : '',
         }),
       });
     },
-    [search, history]
+    [search, history, regex]
   );
 
   return (
@@ -50,14 +60,17 @@ export const SetWalletSection = () => {
         ones.
       </p>
       <Spacer />
-      <p>
+      <DivText>
         <TextInput
-          label="Wallet Address (optional)"
-          placeholder="0xYOURWALLETADDRESS"
+          autoComplete="off"
+          spellCheck="false"
+          label="Wallet Address"
+          placeholder={walletAddressExample}
           value={value}
           onChange={handleInputChange}
+          errorMessage={regexpError ? 'Invalid wallet address' : null}
         />
-      </p>
+      </DivText>
     </>
   );
 };

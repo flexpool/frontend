@@ -21,12 +21,14 @@ export type MineableCoinHardware = {
   miners: GpuHardwareDetails[];
 };
 
-type MineableCoin = {
+export type MineableCoin = {
   name: string;
   ticker: string;
   algorithm: string;
   regions: MineableCoinRegion[];
   description: string;
+  walletAddressExample: string;
+  regex: RegExp;
   poolDetails: { key: string; value: string }[];
   hardware: MineableCoinHardware[];
 };
@@ -37,6 +39,8 @@ export const mineableCoins: MineableCoin[] = [
     ticker: 'eth',
     algorithm: 'Ethash',
     description: '',
+    regex: /^0x[a-fA-F0-9]{40}$/g,
+    walletAddressExample: '0xBf08F613ccE234c96e0e889a0B660bD819D23795',
     poolDetails: [
       { key: 'Reward Scheme', value: 'PPLNS (Pay Per Last N Shares)' },
       { key: 'Pool Fee', value: '0.5%' },
