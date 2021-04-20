@@ -9,6 +9,11 @@ import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { dateUtils } from 'src/utils/date.utils';
 import styled from 'styled-components';
 
+
+const NoFeeLimit = styled.div`
+  color: var(--text-secondary);
+`;
+
 const Item = styled.div`
   display: flex;
   font-weight: 600;
@@ -53,14 +58,18 @@ export const MinerDetails: React.FC<{
           <div>Payout Limit:&nbsp;</div>
           <div>{settings && coin ? payoutLimit : <Skeleton width={40} />}</div>
         </Item>
-        {maxFeePrice !== undefined && maxFeePrice > 0 ? (
-          <Item>
-            <div>Gas Limit:&nbsp;</div>
-            <div>
-              {maxFeePrice} {feeDetails?.unit}
-            </div>
-          </Item>
-        ) : null}
+        <Item>
+          <div>
+            {feeDetails
+              ? feeDetails?.title
+              : <Skeleton width={10} />
+            } Limit:&nbsp;
+          </div>
+          {maxFeePrice && feeDetails
+            ?  <div>{maxFeePrice + " " + feeDetails?.unit}</div>
+            : <NoFeeLimit>{maxFeePrice === 0 ? "None" : <Skeleton width={40} />}</NoFeeLimit>
+          }
+        </Item>
         {settings &&
           !!settings.firstJoined && ( // will be hidden if unix timestamp is zero
             <Item>
