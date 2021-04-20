@@ -306,8 +306,8 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         contentEmpty={
           <h3>
             {!!address
-              ? "You haven't mined any blocks yet"
-              : 'Unable to retrieve pool data'}
+              ? `You haven't mined any blocks yet`
+              : `Unable to retrieve pool data`}
           </h3>
         }
       />
