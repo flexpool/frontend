@@ -7,7 +7,6 @@ import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { dateUtils } from 'src/utils/date.utils';
-//import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import styled from 'styled-components';
 
 // type MinerRank = 'freeloader' | 'loyalminer' | 'vip' | 'mvp';
@@ -119,18 +118,12 @@ export const MinerDetails: React.FC<{
         {
         (maxFeePrice !== undefined) ? (
         <Item>
-          <div>Gas Limit:&nbsp;</div>
-          {maxFeePrice && feeDetails ?  <div>{maxFeePrice + " " + feeDetails.unit}</div> :
-          <div>None Set&nbsp;&nbsp;
-            {/*}<Tooltip>
-              <TooltipContent
-                message={'No gas limit has been set. The payment transaction will be executed when the payment limit is reached, regardless of current gas fees.'}
-              />
-            </Tooltip>*/}
-          </div>}
+          <div>{feeDetails ? feeDetails?.title : <Skeleton width={10} />} Limit:&nbsp;</div>
+          {maxFeePrice && feeDetails ?  <div>{maxFeePrice + " " + feeDetails?.unit}</div> :
+          <div>None</div>}
         </Item>) : (
         <Item>
-          <div>Gas Limit:&nbsp;</div>
+          <div>{feeDetails ? feeDetails?.title : <Skeleton width={10} />} Limit:&nbsp;</div>
           <div>{<Skeleton width={40} />}</div>
         </Item>)
         }
