@@ -126,7 +126,7 @@ export const PayoutSettings: React.FC = () => {
                           values.payoutLimit *
                           100
                       }
-                      % of minimum payout). You will not receive any payouts if {feeDetails?.title.toLowerCase()} is
+                      % of payout limit). You will not receive any payouts if {feeDetails?.title.toLowerCase()} is
                       higher.
                     </p>
                   ) : (
