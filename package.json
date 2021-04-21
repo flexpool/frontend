@@ -48,10 +48,16 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
+    "postbuild": "react-snap",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
     "lint": "eslint src",
     "prepare": "husky install"
+  },
+  "reactSnap": {
+    "include": [
+      "/blocks"
+    ]
   },
   "eslintConfig": {
     "extends": [
@@ -89,6 +95,7 @@
     "prettier": "^2.2.1",
     "react-app-rewire-frontmatter-markdown": "^1.4.0",
     "react-app-rewired": "^2.1.8",
+    "react-snap": "^1.23.0",
     "sass": "^1.32.8"
   }
 }
