@@ -3,8 +3,13 @@ import { Card } from 'src/components/layout/Card';
 import { Skeleton } from 'src/components/layout/Skeleton';
 import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
 import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
-import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
+import {
+  useActiveCoin,
+  useActiveCoinTicker
+  } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
+import { useDailyRewardPerGhState } from 'src/hooks/useDailyRewardPerGhState';
+import { poolStatsGet } from 'src/rdx/poolStats/poolStats.actions';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { dateUtils } from 'src/utils/date.utils';
 import styled from 'styled-components';
@@ -69,9 +74,12 @@ const Content = styled.div`
 export const MinerDetails: React.FC<{
   coin?: ApiPoolCoin;
 }> = ({ coin }) => {
+  const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const minerDetailsState = useReduxState('minerDetails');
   const settings = minerDetailsState.data;
   const activeCoinTicker = useActiveCoinTicker();
+  const activeCoin = useActiveCoin();
+  const data = minerHeaderStatsState.data;
 
   // const rank = React.useMemo(() => {
   //   if (settings) {
@@ -80,10 +88,25 @@ export const MinerDetails: React.FC<{
 
   //   return null;
   // }, [settings]);
-
+  const poolStatsState = useReduxState('poolStats');
+  const dailyRewardPerGhState = useDailyRewardPerGhState();
+  const estimatedDailyEarnings =
+    poolStatsState.data?.averageHashrate &&
+    dailyRewardPerGhState.data &&
+    minerHeaderStatsState.data?.roundShare
+      ? (poolStatsState.data?.averageHashrate *
+          dailyRewardPerGhState.data *
+          minerHeaderStatsState.data?.roundShare) /
+        1000000000
+      : 0;
   const payoutLimit = useActiveCoinTickerDisplayValue(settings?.payoutLimit);
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
   const maxFeePrice = settings?.maxFeePrice;
+  const estimatedEarningsPerSecond = estimatedDailyEarnings / 24 / 60 / 60;
+  const amountToPayout =
+    settings && data ? settings.payoutLimit - data.balance : 0;
+  const amountToPayoutTimeInSeconds =
+    amountToPayout / estimatedEarningsPerSecond || 0;
 
   return (
     <Card paddingShort>
@@ -119,7 +142,23 @@ export const MinerDetails: React.FC<{
         (maxFeePrice !== undefined && maxFeePrice > 0) ? (
         <Item>
           <div>Gas Limit:&nbsp;</div>
-          <div>{maxFeePrice}{' '}{feeDetails?.unit}</div>
+          <div>{maxFeePrice}{' '}{feeDetails?.unit}&nbsp;</div>
+          {activeCoin && feeDetails && settings && data
+            ? amountToPayoutTimeInSeconds && amountToPayoutTimeInSeconds > 0 && data
+              ? <div>({
+                (maxFeePrice *
+                  activeCoin.transactionSize *
+                  feeDetails.multiplier) /
+                  settings.payoutLimit *
+                  100}% of minimum payout)</div>
+              : <div>({
+                (maxFeePrice *
+                  activeCoin.transactionSize *
+                  feeDetails.multiplier) /
+                  data.balanceCountervalue *
+                  100}% of unpaid balance)</div>
+            : ' '
+          }
         </Item>) : (null)
         }
         <Item>
