@@ -143,6 +143,7 @@ tr:first-child td {
   border-top: none;
 }
 
+thead td,
 th {
   text-transform: uppercase;
   font-weight: 600;
@@ -209,4 +210,21 @@ textarea {
   -moz-appearance: none;
   appearance: none;
   border-radius: none !important;
+}
+
+input {
+  display: block;
+  width: 100%;
+  cursor: text;
+  font-weight: 600;
+  background: var(--bg-secondary);
+  border: 1px solid transparent;
+  &:focus {
+    border-color: var(--primary);
+  }
+  height: 48px;
+  outline: none;
+  border-radius: none;
+  color: var(--text-primary);
+  padding: 0 1rem;
 }
