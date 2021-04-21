@@ -33,6 +33,11 @@ const tickers: {
     symbolPosition: 'START',
   },
   {
+    ticker: 'aud',
+    symbol: '$',
+    symbolPosition: 'START',
+  },
+  {
     ticker: 'brl',
     symbol: 'R$',
     symbolPosition: 'START',
