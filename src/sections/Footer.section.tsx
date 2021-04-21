@@ -129,7 +129,7 @@ export const FooterSection = () => {
             <Link to="/get-started">Getting Started</Link>
             <Link to="/faq">FAQ</Link>
             <Link to="/open-data-reports">Open Data Reports</Link>
-            <LinkOut href="/">API Documentation</LinkOut>
+            <Link to="/docs/api">API Documentation</Link>
           </Section>
           <Section>
             <FSectionTitle>Community</FSectionTitle>
@@ -139,9 +139,7 @@ export const FooterSection = () => {
           </Section>
           <Section>
             <FSectionTitle>Contact</FSectionTitle>
-            <LinkOut href="https://status.flexpool.io">
-              Services Status
-            </LinkOut>
+            <LinkOut href="https://status.flexpool.io">Services Status</LinkOut>
             <Link to="/support">Support</Link>
           </Section>
           <Section>
