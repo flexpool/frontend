@@ -5,6 +5,7 @@ export type Ticker =
   | 'eur'
   | 'gbp'
   | 'sgd'
+  | 'aud'
   | 'brl'
   | 'cny'
   | 'rub'
