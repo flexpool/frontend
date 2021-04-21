@@ -38,7 +38,7 @@ export const StatisticsPage = () => {
 
   return (
     <Page>
-      {/* <Hero>
+      <Hero>
         <Helmet>
           <title>Statistics</title>
         </Helmet>
@@ -77,7 +77,7 @@ export const StatisticsPage = () => {
           <PoolHashrateChart />
         </Content>
         <Spacer size="xl" />
-      </Hero> */}
+      </Hero>
     </Page>
   );
 };

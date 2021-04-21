@@ -14,6 +14,8 @@ const ItemWrapper = styled.a`
   text-decoration: none;
   color: var(--texxt-primary);
   transition: 0.2s;
+  will-change: transform;
+  transform: translateX(0);
 
   &:hover {
     text-decoration: none;

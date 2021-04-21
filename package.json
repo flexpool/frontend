@@ -24,6 +24,7 @@
     "formik": "^2.2.6",
     "lodash.debounce": "^4.0.8",
     "lodash.defaultsdeep": "^4.6.1",
+    "prerender-spa-plugin": "^3.4.0",
     "query-string": "^7.0.0",
     "react": "^17.0.1",
     "react-chartjs-2": "^2.11.1",
@@ -48,7 +49,6 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "postbuild": "react-snap",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
     "lint": "eslint src",

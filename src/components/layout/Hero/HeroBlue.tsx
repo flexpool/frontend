@@ -34,6 +34,7 @@ const WorldMap = styled(Img)`
   width: 100%;
   z-index: 0;
   opacity: 0.2;
+  will-change: transform;
 `;
 
 export const HeroBlue: React.FC<{
