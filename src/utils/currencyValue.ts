@@ -34,7 +34,7 @@ const tickers: {
   },
   {
     ticker: 'aud',
-    symbol: '$',
+    symbol: 'AU$',
     symbolPosition: 'START',
   },
   {
