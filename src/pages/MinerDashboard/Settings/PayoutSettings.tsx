@@ -119,12 +119,12 @@ export const PayoutSettings: React.FC = () => {
                         counterTicker
                       )},{' '}
                       {
-                        (values.maxFeePrice *
+                        ((values.maxFeePrice *
                           activeCoin.transactionSize *
                           feeDetails.multiplier) /
                           Math.pow(10, activeCoin.decimalPlaces) /
                           values.payoutLimit *
-                          100
+                          100).toFixed(3)
                       }
                       % of payout limit). You will not receive any payouts if {feeDetails?.title.toLowerCase()} is
                       higher.
