@@ -80,6 +80,7 @@ const PartnersPage = React.lazy(
 const MinerOldUrlSupportPage = React.lazy(
   () => import('../pages/MinerOldUrlSupport/MinerOldUrlSupport.page')
 );
+const ApiDocsPage = React.lazy(() => import('../pages/Docs/ApiDocs.page'));
 
 /**
  * init redux state
@@ -127,6 +128,7 @@ const AppContent = () => {
       <SnackViewControl />
       <React.Suspense fallback={<PageLoader />}>
         <Switch>
+          <Route exact component={ApiDocsPage} path="/docs/api" />
           <Route
             exact
             component={OpenDataReportsPage}
