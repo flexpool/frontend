@@ -1,4 +1,6 @@
-type GpuHardwareDetails = {
+import { validateEthAddress } from 'src/utils/validators/ethWalletAddress.validator';
+
+export type GpuHardwareDetails = {
   os: ('linux' | 'windows' | 'hiveos')[];
   title: string;
   key: string;
@@ -15,18 +17,23 @@ export type MineableCoinRegion = {
   imageCode: string;
 };
 
-type MineableCoin = {
+export type MineableCoinHardware = {
+  title: string;
+  key: 'GPU';
+  miners: GpuHardwareDetails[];
+};
+
+export type MineableCoin = {
   name: string;
   ticker: string;
   algorithm: string;
   regions: MineableCoinRegion[];
   description: string;
+  walletAddressExample: string;
+  regex: RegExp;
+  validator: (address: string) => null | string;
   poolDetails: { key: string; value: string }[];
-  hardware: {
-    title: string;
-    key: 'GPU';
-    miners: GpuHardwareDetails[];
-  }[];
+  hardware: MineableCoinHardware[];
 };
 
 export const mineableCoins: MineableCoin[] = [
@@ -35,10 +42,13 @@ export const mineableCoins: MineableCoin[] = [
     ticker: 'eth',
     algorithm: 'Ethash',
     description: '',
+    regex: /^0x[a-fA-F0-9]{40}$/g,
+    validator: validateEthAddress,
+    walletAddressExample: '0xBf08F613ccE234c96e0e889a0B660bD819D23795',
     poolDetails: [
       { key: 'Reward Scheme', value: 'PPLNS (Pay Per Last N Shares)' },
       { key: 'Pool Fee', value: '0.5%' },
-      { key: 'Bonuses', value: '+90% MEV' },
+      { key: 'Bonuses', value: '90% of MEV bonus' },
       { key: 'Payout Round', value: 'Every 10 minutes' },
       { key: 'Payouts', value: 'from 0.01 ETH up to 100 ETH' },
       { key: 'Block confirmation time', value: '120 Blocks' },
@@ -145,8 +155,7 @@ export const mineableCoins: MineableCoin[] = [
             os: ['windows', 'linux', 'hiveos'],
             title: 'PhoenixMiner',
             key: 'phoenixminer',
-            description:
-              'Proprietary Ethash miner with the lowest devfee.',
+            description: 'Proprietary Ethash miner with the lowest devfee.',
             fee: [0.65],
             compatibleGpus: ['AMD', 'NVIDIA'],
             downloadLink:

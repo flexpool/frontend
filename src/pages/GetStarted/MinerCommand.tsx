@@ -72,7 +72,7 @@ export const MinerCommand: React.FC<{
   const {
     selectedServer = 'CLOSEST_SERVER',
     walletAddress = 'WALLET_ADDRESS',
-    workerNane = 'WORKER_NAME',
+    workerName = 'WORKER_NAME',
   } = qs.parse(search);
 
   const replacedText = replaceStringWithNodes(command, [
@@ -86,7 +86,7 @@ export const MinerCommand: React.FC<{
     },
     {
       replace: 'WORKER_NAME',
-      replaceWith: <HighlightItem>{`${workerNane}`}</HighlightItem>,
+      replaceWith: <HighlightItem>{`${workerName}`}</HighlightItem>,
     },
   ]);
   const copyText = replaceStringWithNodes(command, [
@@ -100,7 +100,7 @@ export const MinerCommand: React.FC<{
     },
     {
       replace: 'WORKER_NAME',
-      replaceWith: `${workerNane}`,
+      replaceWith: `${workerName}`,
     },
   ]).join('');
 

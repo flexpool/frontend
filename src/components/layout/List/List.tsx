@@ -47,6 +47,7 @@ export type DynamicListProps<
   };
   onRowClick?: (data: D) => void;
   contentEmpty?: React.ReactNode;
+  wrapperProps?: Omit<JSX.IntrinsicElements['div'], 'ref'>;
 };
 
 export const DynamicList = <D extends {}, CP extends {}>(
@@ -65,10 +66,11 @@ export const DynamicList = <D extends {}, CP extends {}>(
     onColumnHeaderClick,
     config = {},
     onRowClick,
+    wrapperProps,
   } = props;
 
   return (
-    <ListWrapper>
+    <ListWrapper {...wrapperProps}>
       <HorizontalScrollWrapepr>
         <Table.Container>
           {!hideHead && (

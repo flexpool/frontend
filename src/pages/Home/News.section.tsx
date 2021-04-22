@@ -14,16 +14,24 @@ const ItemWrapper = styled.a`
   text-decoration: none;
   color: var(--texxt-primary);
   transition: 0.2s;
+
   &:hover {
     text-decoration: none;
-    background-color: var(--primary);
-    margin: -8px;
-    padding: 40px;
-    z-index: 10;
-    box-shadow: 0px 5px 20px 5px rgba(0, 0, 0, 0.2);
-    --text-primary: white;
-    * {
-      color: var(--text-primary);
+    color: var(--primary);
+  }
+
+  @media screen and (min-width: 768px) {
+    &:hover {
+      text-decoration: none;
+      margin: -8px;
+      padding: 40px;
+      z-index: 10;
+      box-shadow: 0px 5px 20px 5px rgba(0, 0, 0, 0.2);
+      background-color: var(--primary);
+      --text-primary: white;
+      * {
+        color: var(--text-primary);
+      }
     }
   }
   @media screen and (max-width: 800px) {

@@ -93,22 +93,3 @@ export const minerDetailsUpdateNotificationSettings = (
     }
   }),
 });
-
-// coin: eth
-// address: 0x5b1aa71641b3495DE5040dF0CbD87E2DCD8a7Ad0
-// ipAddress: 176.114.240.38
-// emailEnabled: true
-// email: march08@outlook.com
-// workersOfflineNotifications: false
-// paymentNotifications: false
-
-// coin: eth
-// address: 0x5b1aa71641b3495DE5040dF0CbD87E2DCD8a7Ad0
-// ipAddress: 176.114.240.38
-// emailEnabled: true
-// email: march08%40outlook.com
-// workersOfflineNotifications: false
-// paymentNotifications: false
-
-// https://api-staging.flexpool.io/api/v2/miner/payoutSettings?address=0x5b1aa71641b3495DE5040dF0CbD87E2DCD8a7Ad0&coin=eth&email=march08%40outlook.com&emailEnabled=true&ipAddress=176.114.240.38&paymentNotifications=false&workersOfflineNotifications=false
-// https://api-staging.flexpool.io/api/v2/miner/notificationSettings?coin=eth&address=0x5b1aa71641b3495DE5040dF0CbD87E2DCD8a7Ad0&ipAddress=176.114.240.38&emailEnabled=true&email=march08%40outlook.com&workersOfflineNotifications=true&paymentNotifications=true
