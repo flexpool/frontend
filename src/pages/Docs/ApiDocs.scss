@@ -1,0 +1,245 @@
+.swagger-ui {
+  h2 {
+    font-size: 2rem;
+    pre {
+      font-size: 1rem;
+      display: inline-block;
+      padding: 0.25rem 0.5rem !important;
+      margin: 0;
+      margin-left: 1rem;
+      background: var(--primary);
+      color: white;
+      transform: translateY(-0.5rem);
+    }
+    margin-bottom: 0.5rem;
+  }
+  .svg-assets {
+    display: none;
+  }
+  input {
+    margin-top: 1rem;
+  }
+  button,
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: 0.1s all;
+    display: flex;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 5px;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    outline: none;
+    font-size: 1rem;
+    background-color: var(--bg-primary);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    height: 40px;
+    line-height: 40px;
+    &:hover,
+    &:active,
+    &:focus {
+      background: var(--bg-secondary);
+      text-decoration: none;
+    }
+    color: var(--text-primary);
+    font-weight: 400;
+
+    &:disabled {
+      pointer-events: none;
+      opacity: 0.3;
+    }
+    & > * {
+      pointer-events: none;
+    }
+  }
+
+  button.execute {
+    background: var(--primary);
+    color: white;
+  }
+}
+
+.opblock-tag {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  cursor: pointer;
+  position: relative;
+  a {
+    text-decoration: none !important;
+  }
+  small {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 0.5rem;
+  }
+
+  button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: none !important;
+    background: transparent;
+  }
+}
+
+.opblock {
+  border: 1px solid var(--border-color);
+  margin-bottom: 1rem;
+  border-radius: 5px;
+
+  table {
+    thead {
+      border-top: 1px solid var(--border-color);
+    }
+    // background: red;
+    // overflow: hidden;
+    border: none;
+    margin-right: -1rem;
+    td {
+      border-bottom: 1px solid var(--border-color);
+    }
+  }
+
+  table tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+.opblock-summary {
+  cursor: pointer;
+  padding: 1rem 1.5rem;
+  & + * {
+    border-top: 1px solid var(--border-color);
+  }
+}
+
+.opblock-summary-method {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  background: var(--primary);
+  color: white;
+  margin-right: 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.opblock-summary-get .opblock-summary-method {
+  background: var(--primary);
+}
+.opblock-summary-put .opblock-summary-method {
+  background: var(--warning);
+}
+.opblock-summary-post .opblock-summary-method {
+  background: var(--danger);
+}
+
+.opblock-summary-path {
+  font-weight: 600;
+}
+
+.opblock-summary-description {
+  line-height: 1.4;
+  margin-top: 0.5rem;
+}
+
+.opblock-body {
+  margin-top: 1rem;
+  h4 {
+    font-size: 1.25rem;
+  }
+}
+
+.opblock-section-header,
+.execute-wrapper,
+.curl-command {
+  padding: 1rem 1.5rem;
+}
+
+.curl-command {
+  background: var(--bg-secondary);
+}
+
+.parameter__name {
+  font-weight: 700;
+}
+.parameter__name.required span {
+  color: var(--danger);
+  font-size: 0.875rem;
+  color: transparent;
+  &:after {
+    content: 'required';
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    color: white;
+    background: var(--danger);
+    border-radius: 5px;
+  }
+}
+
+.parameter__type {
+  margin-top: 0.5rem;
+}
+
+.parameter__in {
+  font-style: italic;
+  margin-top: 0.5rem;
+  opacity: 0.7;
+}
+
+.try-out {
+  margin-top: 1rem;
+}
+
+.responses-inner {
+  overflow-x: auto;
+  h4 {
+    padding: 1rem 1.5rem;
+  }
+}
+
+.btn-group {
+  display: flex;
+  padding: 1rem 1.5rem;
+  & > * {
+    margin-right: 1rem;
+  }
+}
+
+pre {
+  margin: 1rem 0;
+  padding: 1rem 1.5rem !important;
+  border-radius: 5px;
+  background: var(--bg-secondary);
+}
+
+.copy-to-clipboard {
+  display: none;
+}
+
+.request-url {
+  margin-top: 0;
+  padding: 0 1.5rem;
+  pre {
+    margin: 0;
+  }
+}
+
+.description {
+  line-height: 1.4;
+  margin-top: 1rem;
+}
+
+.scheme-container {
+  padding: 1rem 1.5rem;
+  background: var(--bg-secondary);
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  .servers-title {
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+}

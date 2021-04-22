@@ -16,6 +16,7 @@ body {
   --success: #15cd72;
   --success-shadow: rgba(21, 205, 114, 0.5);
   --danger: #ed4f32;
+  --error: #ed4f32;
   --danger-shadow: rgba(237, 79, 50, 0.5);
   --warning: #edb431;
   --warning-shadow: rgba(237, 180, 49, 0.5);
@@ -142,6 +143,7 @@ tr:first-child td {
   border-top: none;
 }
 
+thead td,
 th {
   text-transform: uppercase;
   font-weight: 600;
@@ -208,4 +210,21 @@ textarea {
   -moz-appearance: none;
   appearance: none;
   border-radius: none !important;
+}
+
+input {
+  display: block;
+  width: 100%;
+  cursor: text;
+  font-weight: 600;
+  background: var(--bg-secondary);
+  border: 1px solid transparent;
+  &:focus {
+    border-color: var(--primary);
+  }
+  height: 48px;
+  outline: none;
+  border-radius: none;
+  color: var(--text-primary);
+  padding: 0 1rem;
 }
