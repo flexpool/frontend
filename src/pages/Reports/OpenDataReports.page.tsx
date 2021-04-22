@@ -7,6 +7,7 @@ import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOut } from 'src/components/LinkOut';
 import { Sticker } from 'src/components/Sticker';
 import styled from 'styled-components/macro';
+import { LatestReport } from './LatestReport';
 
 const ReportArchiveItem = styled(LinkOut)`
   display: block;
@@ -55,6 +56,7 @@ export const OpenDataReportsPage = () => {
           Our initiative to provide clear and transparent progress reports about
           what we are doing at Flexpool.
         </p>
+        <LatestReport />
         <Spacer />
         {dates.map((item) => (
           <ReportArchiveItem
