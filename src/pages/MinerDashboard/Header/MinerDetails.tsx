@@ -2,8 +2,12 @@ import React from 'react';
 import { Card } from 'src/components/layout/Card';
 import { Skeleton } from 'src/components/layout/Skeleton';
 import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
+import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
-import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
+import {
+  useActiveCoinTicker,
+  useCounterTicker
+} from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { dateUtils } from 'src/utils/date.utils';
@@ -45,6 +49,8 @@ export const MinerDetails: React.FC<{
   coin?: ApiPoolCoin;
 }> = ({ coin }) => {
   const minerDetailsState = useReduxState('minerDetails');
+  const minerHeaderStats = useReduxState('minerHeaderStats');
+  const counterTicker = useCounterTicker();
   const settings = minerDetailsState.data;
   const activeCoinTicker = useActiveCoinTicker();
   const payoutLimit = useActiveCoinTickerDisplayValue(settings?.payoutLimit);
@@ -69,6 +75,14 @@ export const MinerDetails: React.FC<{
             ?  <div>{maxFeePrice + " " + feeDetails?.unit}</div>
             : <NoFeeLimit>{maxFeePrice === 0 ? "None" : <Skeleton width={40} />}</NoFeeLimit>
           }
+        </Item>
+        <Item>
+          <div>
+            {coin?.name} Price:&nbsp;
+          </div>
+          <div>{minerHeaderStats.data
+            ? getDisplayCounterTickerValue(minerHeaderStats.data.countervaluePrice,counterTicker)
+            : <Skeleton width={40} />}</div>
         </Item>
         {settings &&
           !!settings.firstJoined && ( // will be hidden if unix timestamp is zero
