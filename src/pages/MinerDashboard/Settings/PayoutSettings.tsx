@@ -117,8 +117,16 @@ export const PayoutSettings: React.FC = () => {
                           Math.pow(10, activeCoin.decimalPlaces)) *
                           minerHeaderStats.data!.countervaluePrice,
                         counterTicker
-                      )}
-                      ). You will not receive any payouts if gas price is
+                      )},{' '}
+                      {
+                        ((values.maxFeePrice *
+                          activeCoin.transactionSize *
+                          feeDetails.multiplier) /
+                          Math.pow(10, activeCoin.decimalPlaces) /
+                          values.payoutLimit *
+                          100).toFixed(3)
+                      }
+                      % of payout limit). You will not receive any payouts if {feeDetails?.title.toLowerCase()} is
                       higher.
                     </p>
                   ) : (
