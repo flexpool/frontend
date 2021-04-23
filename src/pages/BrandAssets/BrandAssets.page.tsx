@@ -120,7 +120,7 @@ export const BrandAssetsPage = () => {
           By using our Branding Assets, you must follow our branding guidelines:
           <ul style={{ marginLeft: '30px', marginTop: '15px' }}>
             <li>
-              You are now allowed to alter the logo. This includes shape and
+              You are not allowed to alter the logo. This includes shape and
               color changes.
             </li>
             <li style={{ marginTop: '5px' }}>
