@@ -4,9 +4,13 @@ import { Skeleton } from 'src/components/layout/Skeleton';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
 import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
-import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
+import {
+  useActiveCoinTicker,
+  useCounterTicker,
+} from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
+import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import { dateUtils } from 'src/utils/date.utils';
 import styled from 'styled-components';
 
@@ -49,7 +53,14 @@ export const MinerDetails: React.FC<{
   const activeCoinTicker = useActiveCoinTicker();
   const payoutLimit = useActiveCoinTickerDisplayValue(settings?.payoutLimit);
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
+  const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const maxFeePrice = settings?.maxFeePrice;
+  const counterTicker = useCounterTicker();
+
+  const counterValuePrice = getDisplayCounterTickerValue(
+    minerHeaderStatsState.data?.countervaluePrice,
+    counterTicker
+  );
 
   return (
     <Card paddingShort>
@@ -100,6 +111,10 @@ export const MinerDetails: React.FC<{
               </TooltipContent>
             </Tooltip>
           )}
+        <Item>
+          <div>{coin?.name} Price:&nbsp;</div>
+          <div>{counterValuePrice || <Skeleton width={40} />}</div>
+        </Item>
       </Content>
     </Card>
   );
