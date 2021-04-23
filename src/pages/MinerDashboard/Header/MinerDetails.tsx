@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from 'src/components/layout/Card';
 import { Skeleton } from 'src/components/layout/Skeleton';
+import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
 import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
@@ -8,7 +9,6 @@ import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { dateUtils } from 'src/utils/date.utils';
 import styled from 'styled-components';
-
 
 const NoFeeLimit = styled.div`
   color: var(--text-secondary);
@@ -60,28 +60,45 @@ export const MinerDetails: React.FC<{
         </Item>
         <Item>
           <div>
-            {feeDetails
-              ? feeDetails?.title
-              : <Skeleton width={10} />
-            } Limit:&nbsp;
+            {feeDetails ? feeDetails?.title : <Skeleton width={10} />}{' '}
+            Limit:&nbsp;
           </div>
-          {maxFeePrice && feeDetails
-            ?  <div>{maxFeePrice + " " + feeDetails?.unit}</div>
-            : <NoFeeLimit>{maxFeePrice === 0 ? "None" : <Skeleton width={40} />}</NoFeeLimit>
-          }
+          {maxFeePrice && feeDetails ? (
+            <div>{maxFeePrice + ' ' + feeDetails?.unit}</div>
+          ) : (
+            <NoFeeLimit>
+              {maxFeePrice === 0 ? 'None' : <Skeleton width={40} />}
+            </NoFeeLimit>
+          )}
         </Item>
         {settings &&
           !!settings.firstJoined && ( // will be hidden if unix timestamp is zero
-            <Item>
-              <div>Joined:&nbsp;</div>
-              <div>
-                {settings ? (
-                  <>{dateUtils.formatDistance(settings.firstJoined * 1000)}</>
-                ) : (
-                  <Skeleton width={50} />
-                )}
-              </div>
-            </Item>
+            <Tooltip
+              wrapIcon={false}
+              icon={
+                <Item>
+                  <div>Joined:&nbsp;</div>
+                  <div>
+                    {settings ? (
+                      <>
+                        {dateUtils.formatDistance(settings.firstJoined * 1000)}
+                      </>
+                    ) : (
+                      <Skeleton width={50} />
+                    )}
+                  </div>
+                </Item>
+              }
+            >
+              <TooltipContent>
+                <p>
+                  <strong>
+                    Your first share has been recorded on{' '}
+                    {dateUtils.format(settings.firstJoined * 1000, 'PPp')}
+                  </strong>
+                </p>
+              </TooltipContent>
+            </Tooltip>
           )}
       </Content>
     </Card>
