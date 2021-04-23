@@ -51,7 +51,10 @@ const ServiceWorkerWrapper: FC = () => {
   };
 
   useEffect(() => {
-    serviceWorker.register({ onUpdate: onSWUpdate });
+    serviceWorker.register({
+      onUpdate: onSWUpdate,
+      onSuccess: window.location.reload,
+    });
   }, []);
 
   const reloadPage = () => {
