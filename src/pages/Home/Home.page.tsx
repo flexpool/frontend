@@ -50,7 +50,7 @@ export const HomePage = () => {
       </Helmet>
       <Hero>
         <Content contentCenter style={{ position: 'relative', zIndex: 100 }}>
-          <h1>Building the Future of Mining Pools</h1>
+          <h1>Test update Building the Future of Mining Pools</h1>
           <p>
             Innovative mining pool created for modern cryptocurrency mining.
           </p>
