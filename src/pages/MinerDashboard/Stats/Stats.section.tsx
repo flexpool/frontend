@@ -1,8 +1,10 @@
 import { Card, CardTitle } from 'src/components/layout/Card';
 import { StatItem } from 'src/components/StatItem';
+import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { formatSi } from 'src/utils/si.utils';
 import styled from 'styled-components';
+import { AverageEffectivePeriods } from './minerStats.types';
 
 const StatItemGrid = styled.div`
   display: grid;
@@ -29,7 +31,18 @@ const getDisplayPercentage = (
   return `${prefix} (${displayValue}%)`;
 };
 
-export const MinerStats = () => {
+const AverageTooltipItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+  line-height: 1.4;
+  strong {
+    margin-left: 1rem;
+  }
+`;
+
+export const MinerStats: React.FC<{
+  averageEffectivePeriods: AverageEffectivePeriods;
+}> = ({ averageEffectivePeriods }) => {
   const minerStatsState = useReduxState('minerStats');
   const data = minerStatsState.data;
   const totalShares =
@@ -44,10 +57,26 @@ export const MinerStats = () => {
             title="Current Effective"
             value={formatSi(data?.currentEffectiveHashrate, 'H/s')}
           />
-          <StatItem
-            title="Average Effective"
-            value={formatSi(data?.averageEffectiveHashrate, 'H/s')}
-          />
+          <Tooltip
+            icon={
+              <StatItem
+                title="Average Effective"
+                value={formatSi(data?.averageEffectiveHashrate, 'H/s')}
+              />
+            }
+            wrapIcon={false}
+          >
+            <TooltipContent>
+              <AverageTooltipItem>
+                12h Average:{' '}
+                <strong>{formatSi(averageEffectivePeriods[12], 'H/s')}</strong>
+              </AverageTooltipItem>
+              <AverageTooltipItem>
+                6h Average:{' '}
+                <strong>{formatSi(averageEffectivePeriods[6], 'H/s')}</strong>
+              </AverageTooltipItem>
+            </TooltipContent>
+          </Tooltip>
           <StatItem
             title="Reported"
             value={formatSi(data?.reportedHashrate, 'H/s')}

@@ -21,11 +21,16 @@ import {
   ColumnSeries,
   LineSeries,
 } from 'src/plugins/amcharts';
+import { isAfter, subHours } from 'date-fns';
+import { average } from 'src/utils/number.utils';
+import { AverageEffectivePeriods } from './minerStats.types';
 
 export const StatsChart: React.FC<{
   coinTicker: string;
   address: string;
+  setAverageEffectivePeriods: (data: AverageEffectivePeriods) => void;
 }> = (props) => {
+  const { setAverageEffectivePeriods } = props;
   const [noDataAvailable, setNoDataAvailable] = useState(false);
 
   const [sharesData, setSharesData] = React.useState<
@@ -196,30 +201,53 @@ export const StatsChart: React.FC<{
         return;
       }
       setNoDataAvailable(false);
-      var hashrateChartData = [];
-      var sharesChartData = [];
+      const hashrateChartData = [];
+      const sharesChartData = [];
+      const averageSixHours = [];
+      const averageTwelveHours = [];
 
-      for (var i = 0; i < resp.length; i++) {
+      const nowMinus12 = subHours(new Date(), 12);
+      const nowMinus6 = subHours(new Date(), 6);
+
+      for (let i = 0; i < resp.length; i++) {
         const item = resp[i];
+
+        const itemTimestamp = new Date(item.timestamp * 1000);
+
         hashrateChartData.push({
-          date: new Date(item.timestamp * 1000),
+          date: itemTimestamp,
           effectiveHashrate: item.effectiveHashrate,
           averageEffectiveHashrate: item.averageEffectiveHashrate,
           reportedHashrate: item.reportedHashrate,
         });
 
         sharesChartData.push({
-          date: new Date(item.timestamp * 1000),
+          date: itemTimestamp,
           validShares: item.validShares,
           staleShares: item.staleShares,
           invalidShares: item.invalidShares,
         });
+
+        if (isAfter(itemTimestamp, nowMinus12)) {
+          averageTwelveHours.push(item.effectiveHashrate);
+          if (isAfter(itemTimestamp, nowMinus6)) {
+            averageSixHours.push(item.effectiveHashrate);
+          }
+        }
       }
+
+      console.log(average(averageSixHours));
+      console.log(average(averageTwelveHours));
+
+      setAverageEffectivePeriods({
+        '6': average(averageSixHours),
+        '12': average(averageTwelveHours),
+      });
 
       setSharesData(sharesChartData);
       setHashrateData(hashrateChartData);
     });
-  }, [props.coinTicker, props.address, worker]);
+  }, [props.coinTicker, props.address, worker, setAverageEffectivePeriods]);
 
   return (
     <>
