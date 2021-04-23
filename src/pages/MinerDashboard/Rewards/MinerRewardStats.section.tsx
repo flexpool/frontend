@@ -17,6 +17,23 @@ import { ApiMinerReward } from 'src/types/Miner.types';
 import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import { fetchApi } from 'src/utils/fetchApi';
 
+type SummaryItem = {
+  coinValue: React.ReactNode;
+  counterValue: React.ReactNode;
+};
+
+const getIndexPastInterval = (index: number) => {
+  switch (index) {
+    case 0:
+      return 'Yesterday';
+    case 1:
+      return 'Last week';
+    case 2:
+      return 'Last Month';
+    default:
+      return 'Unknown';
+  }
+};
 const getIndexInterval = (index: number) => {
   switch (index) {
     case 0:
@@ -122,12 +139,6 @@ export const MinerRewardStatsSection: React.FC<{
     counterValue: React.ReactNode;
   }>[] = [
     {
-      title: '',
-      Component: ({ index }) => {
-        return <strong>{getIndexInterval(index)}</strong>;
-      },
-    },
-    {
       title: coinTicker,
       alignRight: true,
       Component: ({ data }) => {
@@ -147,11 +158,33 @@ export const MinerRewardStatsSection: React.FC<{
     <CardGrid>
       <div>
         <h2>Past Earnings</h2>
-        <DynamicList data={pastData} columns={earningsCols} />
+        <DynamicList
+          data={pastData}
+          columns={[
+            {
+              title: '',
+              Component: ({ index }) => {
+                return <strong>{getIndexPastInterval(index)}</strong>;
+              },
+            },
+            ...earningsCols,
+          ]}
+        />
       </div>
       <div>
         <h2>Forecasted Earnings</h2>
-        <DynamicList data={futureData} columns={earningsCols} />
+        <DynamicList
+          data={futureData}
+          columns={[
+            {
+              title: '',
+              Component: ({ index }) => {
+                return <strong>{getIndexInterval(index)}</strong>;
+              },
+            },
+            ...earningsCols,
+          ]}
+        />
       </div>
     </CardGrid>
   );
