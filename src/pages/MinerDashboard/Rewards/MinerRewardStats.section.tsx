@@ -17,11 +17,6 @@ import { ApiMinerReward } from 'src/types/Miner.types';
 import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import { fetchApi } from 'src/utils/fetchApi';
 
-type SummaryItem = {
-  coinValue: React.ReactNode;
-  counterValue: React.ReactNode;
-};
-
 const getIndexPastInterval = (index: number) => {
   switch (index) {
     case 0:
