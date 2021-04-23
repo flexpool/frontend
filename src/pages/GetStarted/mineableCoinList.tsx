@@ -1,4 +1,4 @@
-import { validateEthAddress } from 'src/utils/validators/ethWalletAddress.validator';
+import { checksumEth } from 'src/utils/validators/ethWalletAddress.validator';
 
 export type GpuHardwareDetails = {
   os: ('linux' | 'windows' | 'hiveos')[];
@@ -43,7 +43,7 @@ export const mineableCoins: MineableCoin[] = [
     algorithm: 'Ethash',
     description: '',
     regex: /^0x[a-fA-F0-9]{40}$/g,
-    validator: validateEthAddress,
+    validator: checksumEth,
     walletAddressExample: '0xBf08F613ccE234c96e0e889a0B660bD819D23795',
     poolDetails: [
       { key: 'Reward Scheme', value: 'PPLNS (Pay Per Last N Shares)' },

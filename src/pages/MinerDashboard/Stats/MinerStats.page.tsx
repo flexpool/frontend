@@ -9,6 +9,7 @@ import { MinerWorkers } from './Workers.section';
 import styled from 'styled-components/macro';
 import { Button } from 'src/components/Button';
 import qs from 'query-string';
+import { AverageEffectivePeriods } from './minerStats.types';
 const WorkerTitle = styled.div`
   text-transform: uppercase;
   font-weight: 600;
@@ -31,6 +32,11 @@ export const MinerStatsPage = () => {
   const {
     params: { address, coin },
   } = useRouteMatch<{ address: string; coin: string }>();
+  const [
+    averageEffectivePeriods,
+    setAverageEffectivePeriods,
+  ] = React.useState<AverageEffectivePeriods>({ 6: 0, 12: 0 });
+
   const worker = useActiveSearchParamWorker();
   const history = useHistory();
   const location = useLocation();
@@ -77,9 +83,13 @@ export const MinerStatsPage = () => {
           <Spacer />
         </>
       )}
-      <MinerStats />
+      <MinerStats averageEffectivePeriods={averageEffectivePeriods} />
       <Spacer />
-      <StatsChart address={address} coinTicker={coin} />
+      <StatsChart
+        setAverageEffectivePeriods={setAverageEffectivePeriods}
+        address={address}
+        coinTicker={coin}
+      />
       <MinerWorkers address={address} />
     </>
   );

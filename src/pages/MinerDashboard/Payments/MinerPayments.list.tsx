@@ -1,7 +1,9 @@
 import { format } from 'date-fns';
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { Button } from 'src/components/Button';
 import DynamicList from 'src/components/layout/List/List';
+import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOutCoin } from 'src/components/LinkOut';
 import { Mono, Ws } from 'src/components/Typo/Typo';
 import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
@@ -11,6 +13,12 @@ import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import { dateUtils } from 'src/utils/date.utils';
+import styled from 'styled-components';
+
+const HeaderSplit = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 export const MinerPaymentsList: React.FC<{
   address: string;
@@ -43,7 +51,20 @@ export const MinerPaymentsList: React.FC<{
 
   return (
     <>
-      <h2>Payments</h2>
+      <Spacer size="lg" />
+      <HeaderSplit>
+        <div>
+          <h2>Payments</h2>
+        </div>
+        <Button
+          size="xs"
+          as="a"
+          className="export-button"
+          href={`${process.env.REACT_APP_API_URL}/miner/export/payments.csv?coin=${coin?.ticker}&address=${address}&countervalue=${counterTicker}`}
+        >
+          Download CSV
+        </Button>
+      </HeaderSplit>
       <DynamicList
         pagination={{
           currentPage,
