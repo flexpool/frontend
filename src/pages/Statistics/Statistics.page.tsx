@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
 import { Content } from 'src/components/layout/Content';
@@ -35,29 +36,28 @@ export const StatisticsPage = () => {
   }, [activeTicker, d]);
 
   const poolStatsState = useReduxState('poolStats');
+  const { t } = useTranslation('statistics');
 
   return (
     <Page>
       <Hero>
         <Helmet>
-          <title>Statistics</title>
+          <title>{t('head_title')}</title>
         </Helmet>
         <HeaderStat>
-          <h1>Statistics</h1>
+          <h1>{t('title')}</h1>
         </HeaderStat>
         <Content>
           <StatBoxContainer>
             <StatBox
-              title="Pool hashrate"
+              title={t('pool_hashrate')}
               value={formatSi(poolStatsState.data?.hashrate.total, 'H/s')}
             />
             <StatBox
-              title="Average Luck"
+              title={t('average_luck')}
               tooltip={
                 <Tooltip>
-                  <TooltipContent>
-                    Last 30 days average block luck.
-                  </TooltipContent>
+                  <TooltipContent>{t('average_luck_tooltip')}</TooltipContent>
                 </Tooltip>
               }
               value={
@@ -69,8 +69,14 @@ export const StatisticsPage = () => {
                 }%`
               }
             />
-            <StatBox title="Miners" value={poolStatsState.data?.minerCount} />
-            <StatBox title="Workers" value={poolStatsState.data?.workerCount} />
+            <StatBox
+              title={t('miners')}
+              value={poolStatsState.data?.minerCount}
+            />
+            <StatBox
+              title={t('workers')}
+              value={poolStatsState.data?.workerCount}
+            />
           </StatBoxContainer>
         </Content>
         <Content>
