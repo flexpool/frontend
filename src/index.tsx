@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
 import { isProd } from './utils/devUtils';
+import './i18n';
 
 if (isProd()) {
   Sentry.init({

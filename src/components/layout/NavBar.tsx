@@ -30,6 +30,7 @@ import { LinkOut } from '../LinkOut';
 import { DISCORD_LINK, REDDIT_LINK, TELEGRAM_LINK } from 'src/constants';
 import { useAppTheme } from 'src/rdx/localSettings/localSettings.hooks';
 import { Img } from '../Img';
+import { useTranslation } from 'react-i18next';
 const Logo = styled(Img)`
   height: 29px;
   fill: var(--text-primary);
@@ -222,6 +223,7 @@ const MobileNavLink = styled(Link)`
 export const NavBar: React.FC<NavBarType> = (props) => {
   const openState = useBoolState();
   const modalSearchOpenState = useOpenState();
+  const { t } = useTranslation(['common']);
 
   const location = useLocation();
 
@@ -269,9 +271,9 @@ export const NavBar: React.FC<NavBarType> = (props) => {
             </NavLink>
           </NavSection>
           <NavSection>
-            <NLink to="/statistics">Statistics</NLink>
-            <NLink to="/blocks">Blocks</NLink>
-            <NLink to="/miners">Miners</NLink>
+            <NLink to="/statistics">{t('nav.statistics')}</NLink>
+            <NLink to="/blocks">{t('nav.blocks')}</NLink>
+            <NLink to="/miners">{t('nav.miners')}</NLink>
           </NavSection>
           <NavSectionSearch>
             <SearchContainer>
@@ -279,15 +281,15 @@ export const NavBar: React.FC<NavBarType> = (props) => {
             </SearchContainer>
           </NavSectionSearch>
           <NavSection>
-            <NLink to="/faq">FAQ</NLink>
-            <NLink to="/support">Support</NLink>
+            <NLink to="/faq">{t('nav.faq')}</NLink>
+            <NLink to="/support">{t('nav.support')}</NLink>
             <Button
               style={{ marginLeft: 10 }}
               variant="primary"
               as={Link}
               to="/get-started"
             >
-              <Ws>Get Started</Ws>
+              <Ws>{t('nav.get_started')}</Ws>
             </Button>
           </NavSection>
         </NavContainer>
