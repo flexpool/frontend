@@ -36,7 +36,10 @@ export const StatisticsPage = () => {
   }, [activeTicker, d]);
 
   const poolStatsState = useReduxState('poolStats');
-  const { t } = useTranslation('statistics');
+  const { t, i18n } = useTranslation('statistics');
+
+  const averageLuck =
+    Math.round((poolStatsState.data?.averageLuck || 0) * 100 * 10) / 10;
 
   return (
     <Page>
@@ -51,7 +54,9 @@ export const StatisticsPage = () => {
           <StatBoxContainer>
             <StatBox
               title={t('pool_hashrate')}
-              value={formatSi(poolStatsState.data?.hashrate.total, 'H/s')}
+              value={formatSi(poolStatsState.data?.hashrate.total, 'H/s', {
+                lang: i18n.language,
+              })}
             />
             <StatBox
               title={t('average_luck')}
@@ -62,20 +67,26 @@ export const StatisticsPage = () => {
               }
               value={
                 poolStatsState.data?.averageLuck &&
-                `${
-                  Math.round(
-                    (poolStatsState.data?.averageLuck || 0) * 100 * 10
-                  ) / 10
-                }%`
+                `${Intl.NumberFormat(i18n.language).format(averageLuck)}%`
               }
             />
             <StatBox
               title={t('miners')}
-              value={poolStatsState.data?.minerCount}
+              value={
+                poolStatsState.data?.minerCount &&
+                Intl.NumberFormat(i18n.language).format(
+                  poolStatsState.data?.minerCount
+                )
+              }
             />
             <StatBox
               title={t('workers')}
-              value={poolStatsState.data?.workerCount}
+              value={
+                poolStatsState.data?.workerCount &&
+                Intl.NumberFormat(i18n.language).format(
+                  poolStatsState.data?.workerCount
+                )
+              }
             />
           </StatBoxContainer>
         </Content>

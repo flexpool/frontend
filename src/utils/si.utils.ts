@@ -12,6 +12,7 @@ export const formatSi = (
      * 100000: 23402 => 23,402, 1504 => 1,504
      */
     shortenAbove?: number;
+    lang?: string;
   }
 ) => {
   const options = {
@@ -38,7 +39,7 @@ export const formatSi = (
 
   if (value < 10 && decimals === 1) decimals = 2;
 
-  return `${Intl.NumberFormat().format(
+  return `${Intl.NumberFormat(options.lang).format(
     Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals)
   )} ${siSymbols[siN]}${unit}`;
 };
