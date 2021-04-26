@@ -25,7 +25,7 @@ import {
 import { partnersData } from 'src/pages/Partners/partnersData';
 import { LinkOut } from 'src/components/LinkOut';
 import { Img } from 'src/components/Img';
-import { SelectSiteLang } from 'src/components/SelectSiteLang';
+import { SelectLanguage } from 'src/components/SelectLanguage';
 import { useTranslation } from 'react-i18next';
 const Footer = styled.footer`
   border-top: 6px solid var(--primary);
@@ -163,7 +163,7 @@ export const FooterSection = () => {
             <Spacer />
             <SelectTheme />
             <Spacer />
-            <SelectSiteLang />
+            <SelectLanguage />
           </Section>
         </SectionContainer>
         <FooterEnd>

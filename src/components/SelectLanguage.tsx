@@ -27,6 +27,11 @@ const langs = [
     flag: 'ru',
   },
   {
+    code: 'pt',
+    title: 'Português',
+    flag: 'br',
+  },
+  {
     code: 'de',
     title: 'Deutsch',
     flag: 'de',
@@ -48,7 +53,7 @@ const langs = [
   },
 ];
 
-export const SelectSiteLang = () => {
+export const SelectLanguage = () => {
   const { i18n } = useTranslation(['common']);
   const handleLangChange = React.useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {

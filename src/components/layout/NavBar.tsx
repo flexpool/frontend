@@ -31,7 +31,7 @@ import { DISCORD_LINK, REDDIT_LINK, TELEGRAM_LINK } from 'src/constants';
 import { useAppTheme } from 'src/rdx/localSettings/localSettings.hooks';
 import { Img } from '../Img';
 import { useTranslation } from 'react-i18next';
-import { SelectSiteLang } from '../SelectSiteLang';
+import { SelectLanguage } from '../SelectLanguage';
 const Logo = styled(Img)`
   height: 29px;
   fill: var(--text-primary);
@@ -366,7 +366,7 @@ export const NavBar: React.FC<NavBarType> = (props) => {
             <Spacer />
             <SelectTheme />
             <Spacer />
-            <SelectSiteLang />
+            <SelectLanguage />
           </div>
         </MobileSlide>
       </ContainerMobile>
