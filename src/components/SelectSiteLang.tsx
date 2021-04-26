@@ -15,22 +15,38 @@ const TickerWrapper = styled.div`
   align-items: center;
 `;
 
-const langs = ['en', 'ru'];
-
-const options = langs.map((item) => ({
-  label: (
-    <TickerWrapper>
-      <TickerFlag
-        width="20"
-        height="20"
-        src={`/locales_flags/${item}.svg`}
-        alt={`${item.toUpperCase()} Currency Flag`}
-      />
-      {item.toUpperCase()}
-    </TickerWrapper>
-  ),
-  value: item,
-}));
+const langs = [
+  {
+    code: 'en-US',
+    title: 'English',
+    flag: 'en',
+  },
+  {
+    code: 'ru',
+    title: 'Русский',
+    flag: 'ru',
+  },
+  {
+    code: 'de',
+    title: 'Deutsch',
+    flag: 'de',
+  },
+  {
+    code: 'es-ES',
+    title: 'Español',
+    flag: 'es',
+  },
+  {
+    code: 'zh-CN',
+    title: '中国人',
+    flag: 'cn',
+  },
+  {
+    code: 'cs',
+    title: 'Česky',
+    flag: 'cz',
+  },
+];
 
 export const SelectSiteLang = () => {
   const { i18n } = useTranslation(['common']);
@@ -47,7 +63,20 @@ export const SelectSiteLang = () => {
     <Select
       value={i18n.language}
       onChange={handleLangChange}
-      options={options}
+      options={langs.map((item) => ({
+        label: (
+          <TickerWrapper>
+            <TickerFlag
+              width="20"
+              height="20"
+              src={`/locales_flags/${item.flag}.svg`}
+              alt={`${item.title} Language`}
+            />
+            {item.title}
+          </TickerWrapper>
+        ),
+        value: item.code,
+      }))}
     />
   );
 };

@@ -1,13 +1,52 @@
 {
+  "lang_title": "Русский",
   "searchbar": {
     "placeholder": "Искать по адресу"
   },
   "nav": {
-    "statistics": "Пул",
+    "statistics": "Статистика",
     "blocks": "Блоки",
     "miners": "Майнеры",
-    "faq": "FAQ",
-    "support": "Support",
-    "get_started": "Support"
+    "faq": "ЧаВо",
+    "support": "Поддержка",
+    "get_started": "Начать Майнить",
+    "community_title": "Присоединиться к сообществу"
+  },
+  "footer": {
+    "company": {
+      "title": "Компания",
+      "contact_us": "Связаться с Нами",
+      "brand_assets": "Бренд",
+      "partners": "Партнёры",
+      "business_dev": "Business Development",
+      "blog": "Блог",
+      "terms": "Условия и положения",
+      "pp": "Политика конфиденциальности"
+    },
+    "resources": {
+      "title": "Ресурсы",
+      "get_started": "Начать Майнить",
+      "faq": "ЧаВо",
+      "reports": "Open Data Reports",
+      "api_docs": "Документация по API"
+    },
+    "community": {
+      "title": "Сообщество"
+    },
+    "contact": {
+      "title": "Связаться с Нами",
+      "service_status": "Статус сервиса",
+      "support": "Поддержка"
+    },
+    "preferences": {
+      "title": "Настройки"
+    },
+    "bottom_message": "© 2020 -{{currentYear}} Flexpool.io или его филиалы. Все права защищены.",
+    "open_source": "Open Source"
+  },
+  "theme": {
+    "default": "Default Theme",
+    "dark": "Dark Theme",
+    "light": "Light Theme"
   }
 }

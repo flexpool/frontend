@@ -1,4 +1,5 @@
 {
+  "lang_title": "English",
   "searchbar": {
     "placeholder": "Search by your mining address"
   },
@@ -42,5 +43,10 @@
     },
     "bottom_message": "© 2020-{{currentYear}} Flexpool.io or its affiliates. All rights reserved.",
     "open_source": "Open Source"
+  },
+  "theme": {
+    "default": "Default Theme",
+    "dark": "Dark Theme",
+    "light": "Light Theme"
   }
 }

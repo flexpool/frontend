@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { FaDiscord, FaReddit, FaRocket, FaTelegram } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { Button } from 'src/components/Button';
@@ -169,6 +170,8 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
   const monthlyCounterPrice = monthlyPer100 * counterPrice;
   const dailyCounterPrice = dailyPer100 * counterPrice;
 
+  const { t } = useTranslation('home');
+
   return (
     <EarningBox>
       <HeadSplit>
@@ -181,28 +184,26 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
         <HeadContent>
           <h2>{data ? data.name : <Skeleton />}</h2>
           <Desc>
-            Estimated earnings{' '}
+            {t('coin_earnings_cards.estimated')}{' '}
             <Tooltip>
               <TooltipContent>
-                Estimated earnings are based on performance of mining last 7
-                days on our pool.
+                {t('coin_earnings_cards.estimated_tooltip')}
               </TooltipContent>
             </Tooltip>
           </Desc>
         </HeadContent>
-        {data?.ticker === 'eth' && (
-          <PoolDetails>
-            <p>
-              0.5% Pool Fee
-              <br />
-              90% of MEV Bonus
-            </p>
-          </PoolDetails>
-        )}
+        <PoolDetails>
+          <p>
+            {t('coin_earnings_cards.pool_fee', { value: '0.5%' })}
+            <br />
+            {data?.ticker === 'eth' &&
+              t('coin_earnings_cards.mev', { value: '90%' })}
+          </p>
+        </PoolDetails>
       </HeadSplit>
       <IntervalContainer>
         <IntervalItem>
-          <p>100 MH/s daily</p>
+          <p>100 MH/s {t('coin_earnings_cards.daily')}</p>
           <FiatValue>
             {dailyCounterPrice ? (
               getDisplayCounterTickerValue(dailyCounterPrice, counterTicker)
@@ -212,14 +213,16 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
           </FiatValue>
           <p>
             {dailyPer100 ? (
-              <>{dailyPer100.toFixed(6)} ETH</>
+              <>
+                {dailyPer100.toFixed(6)} {data?.ticker.toUpperCase()}
+              </>
             ) : (
               <Skeleton style={{ height: 10 }} />
             )}
           </p>
         </IntervalItem>
         <IntervalItem>
-          <p>100 MH/s monthly</p>
+          <p>100 MH/s {t('coin_earnings_cards.monthly')}</p>
           <FiatValue>
             {monthlyCounterPrice ? (
               getDisplayCounterTickerValue(monthlyCounterPrice, counterTicker)
@@ -229,7 +232,9 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
           </FiatValue>
           <Desc>
             {monthlyPer100 ? (
-              <>{monthlyPer100.toFixed(6)} ETH</>
+              <>
+                {monthlyPer100.toFixed(6)} {data?.ticker.toUpperCase()}
+              </>
             ) : (
               <Skeleton style={{ height: 10 }} />
             )}
@@ -242,7 +247,7 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
               as={Link}
               to={`/get-started/${data?.ticker}`}
             >
-              Start mining
+              {t('coin_earnings_cards.cta')}
             </Button>
           </StartMiningContainer>
         )}
@@ -255,6 +260,7 @@ export const CoinEarnings = () => {
   const coinsFull = useReduxState('poolCoinsFull');
 
   const data = coinsFull.data || [];
+  const { t } = useTranslation('home');
 
   return (
     <Content>
@@ -272,11 +278,8 @@ export const CoinEarnings = () => {
               <FaRocket />
             </UnknownCoin>
             <HeadContent>
-              <h2>More Coins Coming Soon!</h2>
-              <p>
-                We are working to launch multiple pools in the near future. Stay
-                connected by joining our discord or telegram.
-              </p>
+              <h2>{t('coin_earnings_cards.more_title')}</h2>
+              <p>{t('coin_earnings_cards.more_description')}</p>
             </HeadContent>
           </HeadSplit>
           <IntervalContainer>

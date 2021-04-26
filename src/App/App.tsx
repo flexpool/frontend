@@ -128,7 +128,7 @@ const AppContent = () => {
     <>
       <ServiceWorkerWrapper />
       <AppTheme />
-      <React.Suspense fallback={<PageLoader />}>
+      <React.Suspense fallback={<React.Fragment />}>
         {' '}
         {/** __TODO header loader */}
         <NavBar />
@@ -163,7 +163,7 @@ const AppContent = () => {
           <Redirect to="/" />
         </Switch>
       </React.Suspense>
-      <React.Suspense fallback={<PageLoader />}>
+      <React.Suspense fallback={<React.Fragment />}>
         {/** __TODO footer loader */}
         <FooterSection />
       </React.Suspense>
