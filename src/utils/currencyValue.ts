@@ -11,9 +11,10 @@ export const getDisplayCounterTickerValue = (
   }
 
   // todo localized number
-  return Intl.NumberFormat('', { currency: ticker, style: 'currency' }).format(
-    value
-  );
+  return Intl.NumberFormat('en-US', {
+    currency: ticker,
+    style: 'currency',
+  }).format(value);
 };
 
 export const useCounterValue = (prices: { [k in Ticker]: number }) => {
