@@ -15,7 +15,7 @@ import { Mono, Ws } from 'src/components/Typo/Typo';
 import { CoinNews } from 'src/sections/CoinNews';
 import { ApiPoolCoinFull } from 'src/types/PoolCoin.types';
 import { useCounterValue } from 'src/utils/currencyValue';
-import { formatSi } from 'src/utils/si.utils';
+import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components/macro';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import qs from 'query-string';
@@ -115,6 +115,7 @@ const ModalNews: React.FC<{ data?: ApiPoolCoinFull[] | null }> = ({ data }) => {
 export const CoinsWeMineSection = () => {
   const poolCoinsFullState = useReduxState('poolCoinsFull');
   const { t } = useTranslation('home');
+  const siFormatter = useLocalizedSiFormatter();
 
   const columns: DynamicListColumn<ApiPoolCoinFull>[] = React.useMemo(() => {
     return [
@@ -185,7 +186,7 @@ export const CoinsWeMineSection = () => {
         Component: ({ data }) => {
           return (
             <Ws>
-              <Mono>{formatSi(data.hashrate, 'H/s')}</Mono>
+              <Mono>{siFormatter(data.hashrate, { unit: 'H/s' })}</Mono>
             </Ws>
           );
         },
@@ -236,7 +237,7 @@ export const CoinsWeMineSection = () => {
         },
       },
     ];
-  }, [t]);
+  }, [t, siFormatter]);
 
   return (
     <Wrapper>

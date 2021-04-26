@@ -1,7 +1,7 @@
 import React from 'react';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
-import { formatSi } from 'src/utils/si.utils';
+import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components';
 
 export function getGreeting() {
@@ -32,6 +32,7 @@ export const HeaderGreetings: React.FC<{
 }> = ({ coin }) => {
   const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const minerStatsState = useReduxState('minerStats');
+  const siFormatter = useLocalizedSiFormatter();
 
   const data = minerHeaderStatsState.data;
 
@@ -53,8 +54,12 @@ export const HeaderGreetings: React.FC<{
         , and are hashing{' '}
         {minerStatsState.data
           ? minerStatsState.data.reportedHashrate > 0
-            ? formatSi(minerStatsState.data.reportedHashrate, 'H/s')
-            : formatSi(minerStatsState.data.currentEffectiveHashrate, 'H/s')
+            ? siFormatter(minerStatsState.data.reportedHashrate, {
+                unit: 'H/s',
+              })
+            : siFormatter(minerStatsState.data.currentEffectiveHashrate, {
+                unit: 'H/s',
+              })
           : '- H/s'}{' '}
         in total.
       </span>

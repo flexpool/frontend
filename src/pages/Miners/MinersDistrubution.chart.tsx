@@ -5,7 +5,7 @@ import {
   useActiveCoinTicker,
   useAppTheme,
 } from 'src/rdx/localSettings/localSettings.hooks';
-import { formatSi } from 'src/utils/si.utils';
+import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import { ChartContainer } from 'src/components/Chart/ChartContainer';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 
@@ -37,6 +37,7 @@ export const MinersDistributionChart = () => {
   const coinTicker = useActiveCoinTicker();
   const dataState = useAsyncState<Distribution>('distrubutionState', []);
   const appTheme = useAppTheme();
+  const siFormatter = useLocalizedSiFormatter();
 
   React.useEffect(() => {
     if (coinTicker) {
@@ -52,10 +53,9 @@ export const MinersDistributionChart = () => {
   const data = React.useMemo(() => {
     return (dataState.data || [])
       .map((item) => ({
-        name: `${formatSi(item.hashrateLowerThan / 10, 'H/s')} - ${formatSi(
-          item.hashrateLowerThan,
-          'H/s'
-        )}`,
+        name: `${siFormatter(item.hashrateLowerThan / 10, {
+          unit: 'H/s',
+        })} - ${siFormatter(item.hashrateLowerThan, { unit: 'H/s' })}`,
         hashrate: item.hashrate,
       }))
       .sort(function (a, b) {
@@ -67,7 +67,7 @@ export const MinersDistributionChart = () => {
         }
         return 0;
       });
-  }, [dataState.data]);
+  }, [dataState.data, siFormatter]);
 
   React.useLayoutEffect(() => {
     if (data.length > 0) {

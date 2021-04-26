@@ -2,7 +2,7 @@ import { Card, CardTitle } from 'src/components/layout/Card';
 import { StatItem } from 'src/components/StatItem';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useReduxState } from 'src/rdx/useReduxState';
-import { formatSi } from 'src/utils/si.utils';
+import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components';
 import { AverageEffectivePeriods } from './minerStats.types';
 
@@ -47,6 +47,7 @@ export const MinerStats: React.FC<{
   const data = minerStatsState.data;
   const totalShares =
     (data && data.invalidShares + data.staleShares + data.validShares) || 0;
+  const siFormatter = useLocalizedSiFormatter();
 
   return (
     <StatGrid>
@@ -55,13 +56,15 @@ export const MinerStats: React.FC<{
         <StatItemGrid>
           <StatItem
             title="Current Effective"
-            value={formatSi(data?.currentEffectiveHashrate, 'H/s')}
+            value={siFormatter(data?.currentEffectiveHashrate, { unit: 'H/s' })}
           />
           <Tooltip
             icon={
               <StatItem
                 title="Average Effective"
-                value={formatSi(data?.averageEffectiveHashrate, 'H/s')}
+                value={siFormatter(data?.averageEffectiveHashrate, {
+                  unit: 'H/s',
+                })}
               />
             }
             wrapIcon={false}
@@ -69,17 +72,21 @@ export const MinerStats: React.FC<{
             <TooltipContent>
               <AverageTooltipItem>
                 12h Average:{' '}
-                <strong>{formatSi(averageEffectivePeriods[12], 'H/s')}</strong>
+                <strong>
+                  {siFormatter(averageEffectivePeriods[12], { unit: 'H/s' })}
+                </strong>
               </AverageTooltipItem>
               <AverageTooltipItem>
                 6h Average:{' '}
-                <strong>{formatSi(averageEffectivePeriods[6], 'H/s')}</strong>
+                <strong>
+                  {siFormatter(averageEffectivePeriods[6], { unit: 'H/s' })}
+                </strong>
               </AverageTooltipItem>
             </TooltipContent>
           </Tooltip>
           <StatItem
             title="Reported"
-            value={formatSi(data?.reportedHashrate, 'H/s')}
+            value={siFormatter(data?.reportedHashrate, { unit: 'H/s' })}
           />
         </StatItemGrid>
       </Card>
@@ -92,7 +99,7 @@ export const MinerStats: React.FC<{
               totalShares,
               data?.validShares
             )}
-            value={formatSi(data?.validShares, '', { shortenAbove: 100000 })}
+            value={siFormatter(data?.validShares, { shortenAbove: 100000 })}
           />
           <StatItem
             title={getDisplayPercentage(
@@ -100,7 +107,7 @@ export const MinerStats: React.FC<{
               totalShares,
               data?.staleShares
             )}
-            value={formatSi(data?.staleShares, '', { shortenAbove: 100000 })}
+            value={siFormatter(data?.staleShares, { shortenAbove: 100000 })}
           />
           <StatItem
             title={getDisplayPercentage(
@@ -108,7 +115,9 @@ export const MinerStats: React.FC<{
               totalShares,
               data?.invalidShares
             )}
-            value={formatSi(data?.invalidShares, '', { shortenAbove: 100000 })}
+            value={siFormatter(data?.invalidShares, {
+              shortenAbove: 100000,
+            })}
           />
         </StatItemGrid>
       </Card>
