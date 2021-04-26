@@ -1,12 +1,12 @@
 {
-  "head_title": "Nejpokročilejší mining pool",
+  "head_title": "Nejpokročilejší Mining Pool",
   "title": "Tvoříme budoucnost mining poolů",
   "description": "Inovativní mining pool stvořený pro moderní crypto těžbu.",
   "coin_earnings_cards": {
     "estimated": "Odhadovaná výtěžnost",
     "estimated_tooltip": "Odhadovaná výtěžnost je kalkulována na základě výkonu našeho poolu za posledních 7 dní.",
-    "daily": "denně",
-    "monthly": "měsíčně",
+    "daily": "za den",
+    "monthly": "za měsíc",
     "cta_mine": "Chci těžit",
     "pool_fee": "{{value}} poplatek poolu",
     "mev": "{{value}} bonusu MVE",
@@ -71,7 +71,7 @@
     },
     "item_2": {
       "title": "Prostě lepší",
-      "description": "Můžete zapomenout na svůj složité nastavování. Flexpool je tu pro vás s vysoce kvalitní podporou a jsme připraveni kdykoliv nabídnout pomoc!"
+      "description": "Můžete zapomenout na složité nastavování. Flexpool je tu pro vás s vysoce kvalitní podporou a jsme připraveni kdykoliv nabídnout pomoc!"
     }
   },
   "get_started_section": {
