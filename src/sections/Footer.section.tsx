@@ -26,6 +26,7 @@ import { partnersData } from 'src/pages/Partners/partnersData';
 import { LinkOut } from 'src/components/LinkOut';
 import { Img } from 'src/components/Img';
 import { SelectSiteLang } from 'src/components/SelectSiteLang';
+import { useTranslation } from 'react-i18next';
 const Footer = styled.footer`
   border-top: 6px solid var(--primary);
   background: #020e1f;
@@ -103,48 +104,61 @@ const SocialIcons = styled.div`
 `;
 
 export const FooterSection = () => {
+  const { t } = useTranslation(['common']);
   return (
     <Footer>
       <Content>
         <SectionContainer>
           <Section>
-            <FSectionTitle>Company</FSectionTitle>
+            <FSectionTitle>{t('footer.company.title')}</FSectionTitle>
             {/*<Link to="/" className="link">
               About
               </Link>*/}
-            <Link to="/contact">Contact Us</Link>
-            <Link to="/brand-assets">Brand Assets</Link>
-            <Link to="/business-development">Business Development</Link>
+            <Link to="/contact">{t('footer.company.contact_us')}</Link>
+            <Link to="/brand-assets">{t('footer.company.brand_assets')}</Link>
+            <Link to="/business-development">
+              {t('footer.company.business_dev')}
+            </Link>
             {/* <Link to="/">
               Careers
             </Link> */}
-            {partnersData.length > 0 && <Link to="/partners">Partners</Link>}
-            <LinkOut href="https://medium.com/flexpool/">Blog</LinkOut>
-            <LinkOut href="https://flexpool.io/legal/FP-TO.pdf">Terms</LinkOut>
+            {partnersData.length > 0 && (
+              <Link to="/partners"> {t('footer.company.partners')}</Link>
+            )}
+            <LinkOut href="https://medium.com/flexpool/">
+              {' '}
+              {t('footer.company.blog')}
+            </LinkOut>
+            <LinkOut href="https://flexpool.io/legal/FP-TO.pdf">
+              {' '}
+              {t('footer.company.terms')}
+            </LinkOut>
             <LinkOut href="https://flexpool.io/legal/FP-PP.pdf">
-              Privacy Policy
+              {t('footer.company.pp')}
             </LinkOut>
           </Section>
           <Section>
-            <FSectionTitle>Resources</FSectionTitle>
-            <Link to="/get-started">Getting Started</Link>
-            <Link to="/faq">FAQ</Link>
-            <Link to="/open-data-reports">Open Data Reports</Link>
-            <Link to="/docs/api">API Documentation</Link>
+            <FSectionTitle>{t('footer.resources.title')}</FSectionTitle>
+            <Link to="/get-started">{t('footer.resources.get_started')}</Link>
+            <Link to="/faq">{t('footer.resources.faq')}</Link>
+            <Link to="/open-data-reports">{t('footer.resources.reports')}</Link>
+            <Link to="/docs/api">{t('footer.resources.api_docs')}</Link>
           </Section>
           <Section>
-            <FSectionTitle>Community</FSectionTitle>
+            <FSectionTitle>{t('footer.community.title')}</FSectionTitle>
             <LinkOut href={DISCORD_LINK}>Discord</LinkOut>
             <LinkOut href={REDDIT_LINK}>Reddit</LinkOut>
             <LinkOut href={TELEGRAM_LINK}>Telegram</LinkOut>
           </Section>
           <Section>
-            <FSectionTitle>Contact</FSectionTitle>
-            <LinkOut href="https://status.flexpool.io">Services Status</LinkOut>
-            <Link to="/support">Support</Link>
+            <FSectionTitle>{t('footer.contact.title')}</FSectionTitle>
+            <LinkOut href="https://status.flexpool.io">
+              {t('footer.contact.service_status')}
+            </LinkOut>
+            <Link to="/support">{t('footer.contact.support')}</Link>
           </Section>
           <Section>
-            <FSectionTitle>Preferences</FSectionTitle>
+            <FSectionTitle>{t('footer.preferences.title')}</FSectionTitle>
             <SelectCounterTicker />
             <Spacer />
             <SelectTheme />
@@ -161,13 +175,14 @@ export const FooterSection = () => {
               alt="Flexpool Icon White"
             />
             <div style={{ display: 'flex', alignItems: 'center' }}>
-              © 2020-{new Date().getFullYear()} Flexpool.io or its affiliates.
-              All rights reserved.
+              {t('footer.bottom_message', {
+                currentYear: new Date().getFullYear(),
+              })}
               <LinkOut
                 href="https://github.com/flexpool/frontend"
                 style={{ marginLeft: '10px' }}
               >
-                Open Source
+                {t('footer.open_source')}
               </LinkOut>
             </div>
           </FooterCompany>

@@ -1,4 +1,7 @@
 {
+  "searchbar": {
+    "placeholder": "Искать по адресу"
+  },
   "nav": {
     "statistics": "Пул",
     "blocks": "Блоки",
