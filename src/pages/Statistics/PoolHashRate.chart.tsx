@@ -4,8 +4,6 @@ import {
   useActiveCoinTicker,
   useAppTheme,
 } from 'src/rdx/localSettings/localSettings.hooks';
-import { formatRegionName } from 'src/utils/region.utils';
-import { ApiRegion } from 'src/types/Region.types';
 import { useDispatch } from 'react-redux';
 import { poolHashrateGet } from 'src/rdx/poolHashrate/poolHashrate.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
