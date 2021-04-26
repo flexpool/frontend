@@ -48,9 +48,10 @@ const ServiceWorkerWrapper: FC = () => {
     const waitingServiceWorker = registration.waiting;
 
     if (waitingServiceWorker) {
-      console.log('NEW SERVICE WORKER AVAILABLE');
+      console.log('[SW]: New update available.');
       waitingServiceWorker.addEventListener('statechange', (event) => {
         if ((event.target as any)?.state === 'activated') {
+          console.log('[SW]: New service worker has been activated');
           window.location.reload();
           setShowReload(false);
         }
@@ -68,6 +69,7 @@ const ServiceWorkerWrapper: FC = () => {
   }, []);
 
   const reloadPage = () => {
+    console.log('[SW]: Skip waiting.');
     waitingWorker?.postMessage({ type: 'SKIP_WAITING' });
   };
 
@@ -83,7 +85,7 @@ const ServiceWorkerWrapper: FC = () => {
         </div>
         <div>
           <Button color="inherit" size="sm" onClick={reloadPage}>
-            Reload
+            Get latest
           </Button>
         </div>
       </ReloadBanner>
