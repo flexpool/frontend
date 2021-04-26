@@ -31,6 +31,7 @@ import { DISCORD_LINK, REDDIT_LINK, TELEGRAM_LINK } from 'src/constants';
 import { useAppTheme } from 'src/rdx/localSettings/localSettings.hooks';
 import { Img } from '../Img';
 import { useTranslation } from 'react-i18next';
+import { SelectSiteLang } from '../SelectSiteLang';
 const Logo = styled(Img)`
   height: 29px;
   fill: var(--text-primary);
@@ -338,12 +339,14 @@ export const NavBar: React.FC<NavBarType> = (props) => {
             onClick={openState.handleFalse}
           />
           <ScrollArea>
-            <MobileNavLink to="/statistics">Statistics</MobileNavLink>
-            <MobileNavLink to="/blocks">Blocks</MobileNavLink>
-            <MobileNavLink to="/miners">Miners</MobileNavLink>
-            <MobileNavLink to="/faq">FAQ</MobileNavLink>
-            <MobileNavLink to="/support">Support</MobileNavLink>
-            <MobileNavTitle>Join the community</MobileNavTitle>
+            <MobileNavLink to="/statistics">
+              {t('nav.statistics')}
+            </MobileNavLink>
+            <MobileNavLink to="/blocks">{t('nav.blocks')}</MobileNavLink>
+            <MobileNavLink to="/miners">{t('nav.miners')}</MobileNavLink>
+            <MobileNavLink to="/faq">{t('nav.faq')}</MobileNavLink>
+            <MobileNavLink to="/support">{t('nav.support')}</MobileNavLink>
+            <MobileNavTitle>{t('nav.community_title')}</MobileNavTitle>
             <MobileNavLink as={LinkOut} href={DISCORD_LINK}>
               <FaDiscord /> Discord
             </MobileNavLink>
@@ -356,12 +359,14 @@ export const NavBar: React.FC<NavBarType> = (props) => {
           </ScrollArea>
           <div>
             <Button shape="block" as={Link} to="/get-started" variant="primary">
-              <Ws>Get Started</Ws>
+              <Ws>{t('nav.get_started')}</Ws>
             </Button>
             <Spacer />
             <SelectCounterTicker />
             <Spacer />
             <SelectTheme />
+            <Spacer />
+            <SelectSiteLang />
           </div>
         </MobileSlide>
       </ContainerMobile>
