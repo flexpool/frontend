@@ -45,22 +45,30 @@ const ServiceWorkerWrapper: FC = () => {
   ] = React.useState<ServiceWorker | null>(null);
 
   const onSWUpdate = (registration: ServiceWorkerRegistration) => {
-    console.log('NEW SERVICE WORKER AVAILABLE');
-    setShowReload(true);
-    setWaitingWorker(registration.waiting);
+    const waitingServiceWorker = registration.waiting;
+
+    if (waitingServiceWorker) {
+      console.log('NEW SERVICE WORKER AVAILABLE');
+      waitingServiceWorker.addEventListener('statechange', (event) => {
+        if ((event.target as any)?.state === 'activated') {
+          window.location.reload();
+          setShowReload(false);
+        }
+      });
+
+      setShowReload(true);
+      setWaitingWorker(waitingServiceWorker);
+    }
   };
 
   useEffect(() => {
     serviceWorker.register({
       onUpdate: onSWUpdate,
-      onSuccess: window.location.reload,
     });
   }, []);
 
   const reloadPage = () => {
     waitingWorker?.postMessage({ type: 'SKIP_WAITING' });
-    setShowReload(false);
-    window.location.reload();
   };
 
   if (!showReload) {

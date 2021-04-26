@@ -85,7 +85,6 @@ registerRoute(
 self.addEventListener('message', async (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
     await self.skipWaiting();
-    window.location.reload();
   }
 });
 
