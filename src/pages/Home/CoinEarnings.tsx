@@ -247,7 +247,7 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
               as={Link}
               to={`/get-started/${data?.ticker}`}
             >
-              {t('coin_earnings_cards.cta')}
+              {t('coin_earnings_cards.cta_mine')}
             </Button>
           </StartMiningContainer>
         )}
