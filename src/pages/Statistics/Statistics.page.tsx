@@ -12,7 +12,7 @@ import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { poolStatsGet } from 'src/rdx/poolStats/poolStats.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
-import { formatSi } from 'src/utils/si.utils';
+import { useLocalizedFormatSi } from 'src/utils/si.utils';
 import styled from 'styled-components/macro';
 import PoolHashrateChart from './PoolHashRate.chart';
 
@@ -37,6 +37,7 @@ export const StatisticsPage = () => {
 
   const poolStatsState = useReduxState('poolStats');
   const { t, i18n } = useTranslation('statistics');
+  const formatSi = useLocalizedFormatSi();
 
   const averageLuck =
     Math.round((poolStatsState.data?.averageLuck || 0) * 100 * 10) / 10;
@@ -54,9 +55,7 @@ export const StatisticsPage = () => {
           <StatBoxContainer>
             <StatBox
               title={t('pool_hashrate')}
-              value={formatSi(poolStatsState.data?.hashrate.total, 'H/s', {
-                lang: i18n.language,
-              })}
+              value={formatSi(poolStatsState.data?.hashrate.total, 'H/s')}
             />
             <StatBox
               title={t('average_luck')}
