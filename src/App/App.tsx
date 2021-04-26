@@ -124,8 +124,12 @@ const AppContent = () => {
   return (
     <>
       <AppTheme />
-      <NavBar />
-      <SnackViewControl />
+      <React.Suspense fallback={<PageLoader />}>
+        {' '}
+        {/** __TODO header loader */}
+        <NavBar />
+        <SnackViewControl />
+      </React.Suspense>
       <React.Suspense fallback={<PageLoader />}>
         <Switch>
           <Route exact component={ApiDocsPage} path="/docs/api" />
@@ -155,7 +159,10 @@ const AppContent = () => {
           <Redirect to="/" />
         </Switch>
       </React.Suspense>
-      <FooterSection />
+      <React.Suspense fallback={<PageLoader />}>
+        {/** __TODO footer loader */}
+        <FooterSection />
+      </React.Suspense>
     </>
   );
 };

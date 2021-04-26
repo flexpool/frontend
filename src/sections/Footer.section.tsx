@@ -25,6 +25,7 @@ import {
 import { partnersData } from 'src/pages/Partners/partnersData';
 import { LinkOut } from 'src/components/LinkOut';
 import { Img } from 'src/components/Img';
+import { SelectSiteLang } from 'src/components/SelectSiteLang';
 const Footer = styled.footer`
   border-top: 6px solid var(--primary);
   background: #020e1f;
@@ -147,6 +148,8 @@ export const FooterSection = () => {
             <SelectCounterTicker />
             <Spacer />
             <SelectTheme />
+            <Spacer />
+            <SelectSiteLang />
           </Section>
         </SectionContainer>
         <FooterEnd>
