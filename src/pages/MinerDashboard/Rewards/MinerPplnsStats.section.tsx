@@ -29,7 +29,7 @@ import {
   ChartContainer,
   responsiveRule,
 } from 'src/components/Chart/ChartContainer';
-import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
+import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 
 export const MinerPplnsStats: React.FC<{
   averagePoolHashrate: number | null | undefined;
@@ -46,11 +46,10 @@ export const MinerPplnsStats: React.FC<{
   const activeCoin = useActiveCoin();
 
   const shareLogState = useAsyncState<number[]>();
-
-  const approximateBlockShare = useActiveCoinTickerDisplayValue(
+  const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
+  const approximateBlockShare = activeCoinFormatter(
     headerStatsData?.approximateBlockShare,
-    activeCoin,
-    1000000
+    { maximumFractionDigits: 8 }
   );
 
   React.useEffect(() => {

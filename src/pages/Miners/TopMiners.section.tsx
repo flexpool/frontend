@@ -5,7 +5,7 @@ import DynamicList, {
 import { LinkMiner } from 'src/components/LinkMiner';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { useLocalizedSiFormatter } from 'src/utils/si.utils';
-import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
+import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { useDispatch } from 'react-redux';
 import { topMinersGet } from 'src/rdx/topMiners/topMiners.actions';
@@ -22,6 +22,7 @@ export const TopMinersSection = () => {
     d(topMinersGet(activeCoinTicker));
   }, [activeCoinTicker, d]);
   const siFormatter = useLocalizedSiFormatter();
+  const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
 
   const topMinersCol: DynamicListColumn<
     ApiTopMiner,
@@ -60,10 +61,9 @@ export const TopMinersSection = () => {
         title: 'Balance',
         skeletonWidth: 75,
         Component: ({ data }) => {
-          const value = useActiveCoinTickerDisplayValue(data.balance);
           return (
             <Ws>
-              <Mono>{value}</Mono>
+              <Mono>{activeCoinFormatter(data.balance)}</Mono>
             </Ws>
           );
         },
@@ -83,7 +83,7 @@ export const TopMinersSection = () => {
         },
       },
     ],
-    [siFormatter]
+    [siFormatter, activeCoinFormatter]
   );
 
   return (

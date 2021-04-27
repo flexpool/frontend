@@ -9,10 +9,7 @@ import {
 } from 'src/rdx/localSettings/localSettings.hooks';
 import styled from 'styled-components/macro';
 import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';
-import {
-  getActiveCoinDisplayValue,
-  useActiveCoinTickerDisplayValue,
-} from 'src/hooks/useDisplayReward';
+import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import { StatItem } from 'src/components/StatItem';
 import { useDailyRewardPerGhState } from 'src/hooks/useDailyRewardPerGhState';
@@ -135,6 +132,8 @@ export const HeaderStats: React.FC<{
   const activeCoin = useActiveCoin();
   const settings = minerDetailsState.data;
   const d = useDispatch();
+  const poolStatsState = useReduxState('poolStats');
+  const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
 
   const [
     estimateInterval,
@@ -145,14 +144,9 @@ export const HeaderStats: React.FC<{
     d(poolStatsGet(activeTicker));
   }, [activeTicker, d]);
 
-  const poolStatsState = useReduxState('poolStats');
-
-  // const approximateBlockShare = useActiveCoinTickerDisplayValue(
-  //   data?.approximateBlockShare,
-  //   coin,
-  //   1000000
-  // );
-  const balance = useActiveCoinTickerDisplayValue(data?.balance, coin, 1000000);
+  const balance = activeCoinFormatter(data?.balance, {
+    maximumFractionDigits: 6,
+  });
   const tickerBalance = getDisplayCounterTickerValue(
     data?.balanceCountervalue,
     counterTicker
@@ -171,10 +165,7 @@ export const HeaderStats: React.FC<{
       : 0;
   const estimated = {
     ticker: estimatedDailyEarnings
-      ? getActiveCoinDisplayValue(
-          estimatedDailyEarnings * estimateInterval,
-          activeCoin
-        )
+      ? activeCoinFormatter(estimatedDailyEarnings * estimateInterval)
       : null,
     counterTicker:
       estimatedDailyEarnings && data?.countervaluePrice

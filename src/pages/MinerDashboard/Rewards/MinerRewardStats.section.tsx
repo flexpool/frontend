@@ -6,7 +6,7 @@ import DynamicList, {
 } from 'src/components/layout/List/List';
 import { Ws } from 'src/components/Typo/Typo';
 import { useAsyncState } from 'src/hooks/useAsyncState';
-import { getActiveCoinDisplayValue } from 'src/hooks/useDisplayReward';
+import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import {
   useActiveCoin,
   useActiveCoinTicker,
@@ -51,6 +51,7 @@ export const MinerRewardStatsSection: React.FC<{
   const coinTicker = useActiveCoinTicker();
   const counterTicker = useCounterTicker();
   const activeCoin = useActiveCoin();
+  const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
 
   const headerStatsState = useReduxState('minerHeaderStats');
 
@@ -85,7 +86,7 @@ export const MinerRewardStatsSection: React.FC<{
 
   const pastData = React.useMemo(() => {
     return summary.map((item) => ({
-      coinValue: item ? getActiveCoinDisplayValue(item, activeCoin) : '-',
+      coinValue: item ? activeCoinFormatter(item) : '-',
       counterValue: item
         ? getDisplayCounterTickerValue(
             (item / Math.pow(10, activeCoin?.decimalPlaces || 1000)) *
@@ -94,7 +95,7 @@ export const MinerRewardStatsSection: React.FC<{
           )
         : '-',
     }));
-  }, [summary, activeCoin, counterPrice, counterTicker]);
+  }, [summary, activeCoin, counterPrice, counterTicker, activeCoinFormatter]);
 
   const futureData = React.useMemo(() => {
     const daily =
@@ -108,9 +109,7 @@ export const MinerRewardStatsSection: React.FC<{
         : 0;
 
     return [1, 7, 30.5].map((item) => ({
-      coinValue: daily
-        ? getActiveCoinDisplayValue(daily * item, activeCoin)
-        : '-',
+      coinValue: daily ? activeCoinFormatter(daily * item) : '-',
       counterValue: daily
         ? getDisplayCounterTickerValue(
             ((item * daily) /
@@ -127,6 +126,7 @@ export const MinerRewardStatsSection: React.FC<{
     headerStatsState.data?.roundShare,
     counterPrice,
     counterTicker,
+    activeCoinFormatter,
   ]);
 
   const earningsCols: DynamicListColumn<{

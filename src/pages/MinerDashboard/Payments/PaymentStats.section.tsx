@@ -6,7 +6,7 @@ import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { fetchApi } from 'src/utils/fetchApi';
 import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
-import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
+import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { dateUtils } from 'src/utils/date.utils';
 import { formatDistance } from 'date-fns';
 import { Link } from 'react-router-dom';
@@ -39,6 +39,7 @@ export const GeneralPaymentStatsSection: React.FC<{
 }> = ({ address, coin }) => {
   const asyncState = useAsyncState<ApiPaymentStats>('paymentStats');
   const couterTicker = useCounterTicker();
+  const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
 
   React.useEffect(() => {
     if (coin?.ticker) {
@@ -80,10 +81,7 @@ export const GeneralPaymentStatsSection: React.FC<{
         )
       : undefined;
 
-  const totalPaid = useActiveCoinTickerDisplayValue(
-    data?.stats?.totalPaid,
-    coin
-  );
+  const totalPaid = activeCoinFormatter(data?.stats?.totalPaid);
 
   const averageTransactionFeeCounter =
     data && coin && data.stats && data.countervalue
@@ -94,11 +92,9 @@ export const GeneralPaymentStatsSection: React.FC<{
         )
       : undefined;
 
-  const averageTransactionFee = useActiveCoinTickerDisplayValue(
-    data?.stats?.averageFee,
-    coin,
-    10000000
-  );
+  const averageTransactionFee = activeCoinFormatter(data?.stats?.averageFee, {
+    maximumFractionDigits: 8,
+  });
 
   const lastPaymentCounter =
     data && data.lastPayment && coin && data.countervalue
@@ -109,10 +105,7 @@ export const GeneralPaymentStatsSection: React.FC<{
         )
       : undefined;
 
-  const lastPayment = useActiveCoinTickerDisplayValue(
-    data?.lastPayment?.value,
-    coin
-  );
+  const lastPayment = activeCoinFormatter(data?.lastPayment?.value);
 
   if (data && !data.lastPayment) {
     return null;

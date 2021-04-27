@@ -6,13 +6,14 @@ import DynamicList from 'src/components/layout/List/List';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOutCoin } from 'src/components/LinkOut';
 import { Mono, Ws } from 'src/components/Typo/Typo';
-import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
+import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { minerPaymentsGet } from 'src/rdx/minerPayments/minerPayments.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import { dateUtils } from 'src/utils/date.utils';
+import { useLocalizedNumberValueFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components';
 
 const HeaderSplit = styled.div`
@@ -28,6 +29,8 @@ export const MinerPaymentsList: React.FC<{
   const d = useDispatch();
   const minerPayments = useReduxState('minerPayments');
   const counterTicker = useCounterTicker();
+  const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
+  const numberFormatter = useLocalizedNumberValueFormatter();
 
   React.useEffect(() => {
     if (coin?.ticker) {
@@ -96,7 +99,7 @@ export const MinerPaymentsList: React.FC<{
             title: 'Transaction Value',
             alignRight: true,
             Component: ({ data }) => {
-              const value = useActiveCoinTickerDisplayValue(data.value);
+              const value = activeCoinFormatter(data.value);
               const tickerValue = coin
                 ? (data.value / Math.pow(10, coin.decimalPlaces)) *
                   counterValuePrice
@@ -125,7 +128,11 @@ export const MinerPaymentsList: React.FC<{
               return (
                 <Ws>
                   <Mono>
-                    {Math.round(data.feePercent * 100 * 100) / 100}% (
+                    {numberFormatter(data.feePercent, {
+                      style: 'percent',
+                      maximumFractionDigits: 3,
+                    })}{' '}
+                    (
                     {coin &&
                       getDisplayCounterTickerValue(
                         (data.fee / Math.pow(10, coin.decimalPlaces)) *

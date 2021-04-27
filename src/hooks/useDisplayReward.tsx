@@ -1,5 +1,6 @@
+import React from 'react';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
-import { ApiPoolCoin } from 'src/types/PoolCoin.types';
+import { useLocalizedNumberValueFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components';
 
 const Tick = styled.span`
@@ -7,45 +8,36 @@ const Tick = styled.span`
   text-transform: uppercase;
 `;
 
-export const useActiveCoinTickerDisplayValue = (
-  value?: number,
-  coin?: ApiPoolCoin,
-  dec: number = 10000
+export const useLocalizedActiveCoinValueFormatter = (
+  defaultOptions?: Intl.NumberFormatOptions | undefined
 ) => {
-  const globalCoin = useActiveCoin();
-  const activeCoin = coin || globalCoin;
+  const activeCoin = useActiveCoin();
 
-  if (!activeCoin || typeof value !== 'number') {
-    return null;
-  }
+  const numberFormatter = useLocalizedNumberValueFormatter();
 
-  const val =
-    Math.round((value / Math.pow(10, activeCoin?.decimalPlaces || 100)) * dec) /
-    dec;
-  return (
-    <span>
-      {val} <Tick className="ticker">{activeCoin?.ticker}</Tick>
-    </span>
+  const formatter = React.useCallback(
+    (value?: number, options?: Intl.NumberFormatOptions | undefined) => {
+      const opts: Intl.NumberFormatOptions = {
+        maximumFractionDigits: 4,
+        ...defaultOptions,
+        ...options,
+      };
+
+      if (!activeCoin || typeof value !== 'number') {
+        return null;
+      }
+      return (
+        <span>
+          {numberFormatter(
+            value / Math.pow(10, activeCoin?.decimalPlaces || 100),
+            opts
+          )}{' '}
+          <Tick className="ticker">{activeCoin?.ticker}</Tick>
+        </span>
+      );
+    },
+    [defaultOptions, activeCoin, numberFormatter]
   );
-};
 
-export const getActiveCoinDisplayValue = (
-  value?: number,
-  coin?: ApiPoolCoin,
-  dec: number = 10000
-) => {
-  const activeCoin = coin;
-
-  if (!activeCoin || typeof value !== 'number') {
-    return null;
-  }
-
-  const val =
-    Math.round((value / Math.pow(10, activeCoin?.decimalPlaces || 100)) * dec) /
-    dec;
-  return (
-    <span>
-      {val} <Tick className="ticker">{activeCoin?.ticker}</Tick>
-    </span>
-  );
+  return formatter;
 };
