@@ -47,5 +47,9 @@
     "default": "Default Theme",
     "dark": "Dark Theme",
     "light": "Light Theme"
+  },
+  "list_navigation": {
+    "previous": "Previous",
+    "next": "Next"
   }
 }

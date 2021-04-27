@@ -16,6 +16,7 @@ import { Mono, Ws } from 'src/components/Typo/Typo';
 import { dateUtils } from 'src/utils/date.utils';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
+import { useTranslation } from 'react-i18next';
 
 const UnconfirmedSpinner = styled(LoaderSpinner)`
   width: 14px;
@@ -81,6 +82,7 @@ const BlockType = styled.span<{ type: ApiBlock['type'] }>`
 `;
 
 export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
+  const { t } = useTranslation('blocks');
   const blockState = useAsyncState<ApiBlocks>('blocks', {
     totalItems: 0,
     totalPages: 0,
@@ -133,7 +135,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         },
       },
       number: {
-        title: 'Number',
+        title: t('table.table_head.number'),
         skeletonWidth: 80,
         Component: ({ data, config }) => {
           const url = getCoinLink('block', data.hash, config.coinTicker);
@@ -143,7 +145,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
               {data.number}
               {!data.confirmed && (
                 <Tooltip icon={<UnconfirmedSpinner />}>
-                  <TooltipContent message="Block waiting for confirmation" />
+                  <TooltipContent message={t('waiting_confirmation_tooltip')} />
                 </Tooltip>
               )}
             </Ws>
@@ -156,19 +158,19 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         },
       },
       type: {
-        title: 'Type',
+        title: t('table.table_head.type'),
         skeletonWidth: 50,
         Component: ({ data }) => {
           const msg =
             data.type === 'orphan'
-              ? 'Orphan blocks are the blocks that were not included to the canonical chain. Typically, it happens because of the internal infrastructure problem on the Mining Pool, or due to the chain reorganizations, 51% attacks.'
+              ? t('orphan_tooltip')
               : data.type === 'uncle'
-              ? 'Uncle blocks are blocks that have the same parent hash and number. They are caused because of the high latency between mining pools. Typically, they appear when two mining pools mine two blocks at the same time, both having the same block number.'
+              ? t('uncle_tooltip')
               : null;
 
           return (
             <Ws>
-              <BlockType type={data.type}>{data.type}</BlockType>
+              <BlockType type={data.type}>{t(`type.${data.type}`)}</BlockType>
               {msg && (
                 <Tooltip>
                   <TooltipContent
@@ -182,19 +184,19 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         },
       },
       date: {
-        title: 'Date',
+        title: t('table.table_head.date'),
         skeletonWidth: 180,
         Component: ({ data }) => (
           <Ws>{format(data.timestamp * 1000, 'PPp')}</Ws>
         ),
       },
       region: {
-        title: 'Region',
+        title: t('table.table_head.region'),
         skeletonWidth: 40,
         Component: ({ data }) => <Region>{data.region}</Region>,
       },
       miner: {
-        title: 'Miner',
+        title: t('table.table_head.miner'),
         skeletonWidth: 210,
         Component: ({ data, config }) => (
           <Mono>
@@ -205,7 +207,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         ),
       },
       reward: {
-        title: 'Reward',
+        title: t('table.table_head.reward'),
         alignRight: true,
         skeletonWidth: 80,
         Component: ({ data }) => {
@@ -217,7 +219,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         },
       },
       roundTime: {
-        title: 'Round Time',
+        title: t('table.table_head.round_time'),
         skeletonWidth: 75,
         Component: ({ data }) => {
           return (
@@ -231,12 +233,12 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         },
       },
       luck: {
-        title: 'Luck',
+        title: t('table.table_head.luck'),
         skeletonWidth: 70,
         Component: ({ data }) => <Luck value={data.luck} />,
       },
       blockHash: {
-        title: 'Hash',
+        title: t('table.table_head.hash'),
         skeletonWidth: 200,
         alignRight: true,
         Component: ({ data, config }) => (
@@ -253,7 +255,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         ),
       },
     }),
-    [activeCoinFormatter]
+    [activeCoinFormatter, t]
   );
 
   const columns = React.useMemo(() => {
@@ -283,14 +285,11 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
 
   return (
     <>
-      {address && blockState.data && blockState.data.totalItems > 1 && (
-        <h2>{`You have mined ${blockState.data.totalItems} blocks.`}</h2>
-      )}
-      {address && blockState.data && blockState.data.totalItems === 1 && (
-        <h2>{`You have mined 1 block.`}</h2>
+      {address && blockState.data && blockState.data.totalItems > 0 && (
+        <h2>{t('table.title_miner', { count: blockState.data.totalItems })}</h2>
       )}
       {!address && blockState.data && blockState.data.totalItems > 0 && (
-        <h2>{`Flexpool has mined ${blockState.data.totalItems} blocks.`}</h2>
+        <h2>{t('table.title', { count: blockState.data.totalItems })}</h2>
       )}
       <DynamicList
         pagination={{
@@ -311,8 +310,8 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         contentEmpty={
           <h3>
             {!!address
-              ? `You haven't mined any blocks yet`
-              : `Unable to retrieve pool data`}
+              ? t('table.title_miner', { count: 0 })
+              : t('table.title', { count: 0 })}
           </h3>
         }
       />

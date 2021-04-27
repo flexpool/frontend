@@ -47,5 +47,9 @@
     "default": "Výchozí motiv",
     "dark": "Tmavý motiv",
     "light": "Světlý motiv"
+  },
+  "list_navigation": {
+    "previous": "Předchozí",
+    "next": "Další"
   }
 }

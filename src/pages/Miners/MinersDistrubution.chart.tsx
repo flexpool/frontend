@@ -10,6 +10,7 @@ import { ChartContainer } from 'src/components/Chart/ChartContainer';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 
 import { color, create, PieChart, PieSeries } from 'src/plugins/amcharts';
+import { useTranslation } from 'react-i18next';
 
 const colorListLight = [
   color('#0069ff'),
@@ -38,6 +39,7 @@ export const MinersDistributionChart = () => {
   const dataState = useAsyncState<Distribution>('distrubutionState', []);
   const appTheme = useAppTheme();
   const siFormatter = useLocalizedSiFormatter();
+  const { t } = useTranslation('miners');
 
   React.useEffect(() => {
     if (coinTicker) {
@@ -100,7 +102,7 @@ export const MinersDistributionChart = () => {
 
   return (
     <>
-      <h2>Miners Distribution by Hashrate </h2>
+      <h2>{t('distribution.title')}</h2>
       <ChartContainer dataState={dataState}>
         <div id="chartdiv" style={{ width: '100%', height: '300px' }}></div>
       </ChartContainer>

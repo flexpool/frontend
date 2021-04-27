@@ -1,0 +1,47 @@
+{
+  "head_title": "Vytěžené bloky",
+  "title": "Bloky",
+  "description": "Historie vytěžených bloků na Flexpoolu",
+  "average_luck": "Průměrný luck",
+  "average_luck_tooltip": "Počítáno na základě bloků vytěžených za posledních 30 dní.",
+  "current_luck": "Aktuální luck",
+  "current_luck_tooltip": "Luck bloku aktuálního těžení. Tato hodnota je aktualizována v reálném čase.",
+  "network_hashrate": "Síťová hashrate",
+  "network_difficulty": "Obtížnost sítě",
+  "network_difficulty_tooltip": "Průměrná výše počtu hashů pro těžbu bloku.",
+  "table": {
+    "title": "Nelze načíst data",
+    "title_1": "Flexpool vytěžil {{count}} blok",
+    "title_2": "Flexpool těžil {{count}} bloky",
+    "title_3": "Flexpool vytěžil {{count}} bloky",
+    "title_4": "Flexpool vytěžil {{count}} bloky",
+    "title_5": "Flexpool vytěžil {{count}} bloků",
+    "title_plural": "Flexpool vytěžil {{count}} bloků",
+    "title_miner": "Zatím jsi nevytěžil žádný blok",
+    "title_miner_1": "Vytěžil jsi {{count}} blok",
+    "title_miner_2": "Vytěžil jsi {{count}} bloky",
+    "title_miner_3": "Vytěžil jsi {{count}} bloky",
+    "title_miner_4": "Vytěžil jsi {{count}} bloky",
+    "title_miner_5": "Vytěžil jsi {{count}} bloků",
+    "title_miner_plural": "Vytěžil jsi {{count}} bloků",
+    "table_head": {
+      "number": "Číslo bloku",
+      "type": "Typ",
+      "date": "Datum a čas",
+      "region": "Region",
+      "miner": "Miner",
+      "reward": "Odměna",
+      "round_time": "Doba trvání",
+      "hash": "Hash",
+      "luck": "Luck"
+    }
+  },
+  "type": {
+    "block": "Blok",
+    "orphan": "Orphan",
+    "uncle": "Uncle"
+  },
+  "waiting_confirmation_tooltip": "Čekání na potvrzení",
+  "orphan_tooltip": "Orphan bloky jsou bloky, které nebyly zahrnuty do kanonického řetězce. Obvykle k tomu dochází kvůli interním problémům s infrastrukturou těžebního poolu nebo kvůli reorganizacím.",
+  "uncle_tooltip": "Uncly bloky jsou bloky, které mají stejný nadřazený hash a číslo. Jsou způsobeny kvůli latenci mezi těžebními pooly. Obvykle se objevují, když dva těžící pooly vytěží dva bloky současně, oba potom mají stejné číslo bloku."
+}
