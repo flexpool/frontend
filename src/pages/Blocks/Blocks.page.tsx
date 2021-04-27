@@ -6,7 +6,7 @@ import { HeaderStat } from 'src/components/layout/StatHeader';
 import { StatBox, StatBoxContainer } from 'src/components/StatBox';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { fetchApi } from 'src/utils/fetchApi';
-import { formatSi } from 'src/utils/si.utils';
+import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import { BlocksSection } from 'src/sections/Blocks.section';
 import { Luck } from 'src/components/Luck';
 import { Page } from 'src/components/layout/Page';
@@ -22,6 +22,7 @@ export const BlocksPage = () => {
     networkDifficulty: number;
   } | null>('poolStats', null);
   const activeCoinTicker = useActiveCoinTicker();
+  const siFormatter = useLocalizedSiFormatter();
 
   React.useEffect(() => {
     const init = { query: { coin: activeCoinTicker } };
@@ -85,7 +86,7 @@ export const BlocksPage = () => {
             title="Network hashrate"
             value={
               statsState.data &&
-              `${formatSi(statsState.data.networkHashrate, 'H/s')}`
+              `${siFormatter(statsState.data.networkHashrate, { unit: 'H/s' })}`
             }
           />
           <StatBox
@@ -100,7 +101,7 @@ export const BlocksPage = () => {
             title="Network Difficulty"
             value={
               statsState.data &&
-              `${formatSi(statsState.data.networkDifficulty, 'H')}`
+              `${siFormatter(statsState.data.networkDifficulty, { unit: 'H' })}`
             }
           />
         </StatBoxContainer>

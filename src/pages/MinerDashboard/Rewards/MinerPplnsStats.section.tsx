@@ -10,7 +10,7 @@ import {
 } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { fetchApi } from 'src/utils/fetchApi';
-import { formatSi } from 'src/utils/si.utils';
+import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 
 import {
   color,
@@ -29,13 +29,14 @@ import {
   ChartContainer,
   responsiveRule,
 } from 'src/components/Chart/ChartContainer';
-import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
+import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 
 export const MinerPplnsStats: React.FC<{
   averagePoolHashrate: number | null | undefined;
   poolHashrate: number | null | undefined;
 }> = ({ averagePoolHashrate = 0, poolHashrate = 0 }) => {
   const { data: headerStatsData } = useReduxState('minerHeaderStats');
+  const siFormatter = useLocalizedSiFormatter();
 
   const [shareLogLength, setShareLogLength] = React.useState(0);
   const {
@@ -45,11 +46,10 @@ export const MinerPplnsStats: React.FC<{
   const activeCoin = useActiveCoin();
 
   const shareLogState = useAsyncState<number[]>();
-
-  const approximateBlockShare = useActiveCoinTickerDisplayValue(
+  const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
+  const approximateBlockShare = activeCoinFormatter(
     headerStatsData?.approximateBlockShare,
-    activeCoin,
-    1000000
+    { maximumFractionDigits: 8 }
   );
 
   React.useEffect(() => {
@@ -172,14 +172,16 @@ export const MinerPplnsStats: React.FC<{
             value={
               averagePoolHashrate &&
               headerStatsData &&
-              formatSi(averagePoolHashrate * headerStatsData.roundShare, 'H/s')
+              siFormatter(averagePoolHashrate * headerStatsData.roundShare, {
+                unit: 'H/s',
+              })
             }
             subValue={
               poolHashrate &&
               headerStatsData &&
-              `Current: ${formatSi(
+              `Current: ${siFormatter(
                 poolHashrate * headerStatsData.roundShare,
-                'H/s'
+                { unit: 'H/s' }
               )}`
             }
           />
@@ -229,9 +231,11 @@ export const MinerPplnsStats: React.FC<{
             subValue={
               averagePoolHashrate &&
               shareLogLength &&
-              `${formatSi(shareLogLength, '')} Shares in Log • ${formatSi(
+              `${siFormatter(shareLogLength)} Shares in Log • ${siFormatter(
                 averagePoolHashrate,
-                'H/s'
+                {
+                  unit: 'H/s',
+                }
               )}`
             }
           />

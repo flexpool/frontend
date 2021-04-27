@@ -1,0 +1,51 @@
+{
+  "searchbar": {
+    "placeholder": "Search by your mining address"
+  },
+  "nav": {
+    "statistics": "Statistics",
+    "blocks": "Blocks",
+    "miners": "Miners",
+    "faq": "FAQ",
+    "support": "Support",
+    "get_started": "Get Started",
+    "community_title": "Join the community"
+  },
+  "footer": {
+    "company": {
+      "title": "Company",
+      "contact_us": "Contact Us",
+      "brand_assets": "Brand Assets",
+      "partners": "Partners",
+      "business_dev": "Business Development",
+      "blog": "Blog",
+      "terms": "Terms",
+      "pp": "Privacy Policy"
+    },
+    "resources": {
+      "title": "Resources",
+      "get_started": "Getting Started",
+      "faq": "FAQ",
+      "reports": "Open Data Reports",
+      "api_docs": "API Documentation"
+    },
+    "community": {
+      "title": "Community"
+    },
+    "contact": {
+      "title": "Contact",
+      "service_status": "Service Status",
+      "support": "Support"
+    },
+    "preferences": {
+      "title": "Preferences"
+    },
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io or its affiliates. All rights reserved.",
+    "open_source": "Open Source"
+  },
+  "theme": {
+    "default": "Default Theme",
+    "dark": "Dark Theme",
+    "light": "Light Theme"
+  }
+}

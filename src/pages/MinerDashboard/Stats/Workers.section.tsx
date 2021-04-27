@@ -9,7 +9,7 @@ import { minerWorkersGet } from 'src/rdx/minerWorkers/minerWorkers.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiMinerWorker } from 'src/types/Miner.types';
 import { dateUtils } from 'src/utils/date.utils';
-import { formatSi } from 'src/utils/si.utils';
+import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components/macro';
 import { FaSearch, FaSort, FaSortDown, FaSortUp } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
@@ -83,79 +83,6 @@ const ListHeader = styled.div`
 
 type MinerWorker = ApiMinerWorker & { totalShares: number };
 
-const columns: DynamicListColumn<ApiMinerWorker & { totalShares: number }>[] = [
-  {
-    title: 'Name',
-    onClickValue: 'name',
-    Component: ({ data }) =>
-      data.isOnline ? (
-        <WorkerName>{data.name}</WorkerName>
-      ) : (
-        <WorkerNameOffline>{data.name}</WorkerNameOffline>
-      ),
-  },
-  {
-    title: 'Reported Hashrate',
-    alignRight: true,
-    onClickValue: 'reportedHashrate',
-    Component: ({ data }) => (
-      <Mono>{formatSi(data.reportedHashrate, 'H/s')}</Mono>
-    ),
-  },
-  {
-    title: 'Current E. Hashrate',
-    alignRight: true,
-    onClickValue: 'currentEffectiveHashrate',
-    Component: ({ data }) => (
-      <Mono>{formatSi(data.currentEffectiveHashrate, 'H/s')}</Mono>
-    ),
-  },
-  {
-    title: 'Valid Shares',
-    alignRight: true,
-    onClickValue: 'validShares',
-    Component: ({ data }) => (
-      <Ws>
-        <Mono>
-          {data.validShares}{' '}
-          <Percentage total={data.totalShares} value={data.validShares} />
-        </Mono>
-      </Ws>
-    ),
-  },
-  {
-    title: 'Stale Shares',
-    alignRight: true,
-    onClickValue: 'staleShares',
-    Component: ({ data }) => (
-      <Ws>
-        <Mono>
-          {data.staleShares}{' '}
-          <Percentage total={data.totalShares} value={data.staleShares} />
-        </Mono>
-      </Ws>
-    ),
-  },
-  {
-    title: 'Invalid Shares',
-    alignRight: true,
-    onClickValue: 'invalidShares',
-    Component: ({ data }) => (
-      <Mono>
-        {data.invalidShares}{' '}
-        <Percentage total={data.totalShares} value={data.invalidShares} />
-      </Mono>
-    ),
-  },
-  {
-    title: 'Last Seen',
-    alignRight: true,
-    Component: ({ data }) => (
-      <Ws>{dateUtils.formatDistance(data.lastSeen * 1000)}</Ws>
-    ),
-  },
-];
-
 const MinerWorkersTable: React.FC<{
   data: MinerWorker[];
   isLoading: boolean;
@@ -166,6 +93,7 @@ const MinerWorkersTable: React.FC<{
   const [sortOrder, setSortOrder] = React.useState<-1 | 1>(1);
   const [search, setSearch] = React.useState('');
   const history = useHistory();
+  const siFormatter = useLocalizedSiFormatter();
 
   const data = React.useMemo(() => {
     let res = unfilteredData;
@@ -205,6 +133,83 @@ const MinerWorkersTable: React.FC<{
   };
 
   const cols = React.useMemo(() => {
+    const columns: DynamicListColumn<
+      ApiMinerWorker & { totalShares: number }
+    >[] = [
+      {
+        title: 'Name',
+        onClickValue: 'name',
+        Component: ({ data }) =>
+          data.isOnline ? (
+            <WorkerName>{data.name}</WorkerName>
+          ) : (
+            <WorkerNameOffline>{data.name}</WorkerNameOffline>
+          ),
+      },
+      {
+        title: 'Reported Hashrate',
+        alignRight: true,
+        onClickValue: 'reportedHashrate',
+        Component: ({ data }) => (
+          <Mono>{siFormatter(data.reportedHashrate, { unit: 'H/s' })}</Mono>
+        ),
+      },
+      {
+        title: 'Current E. Hashrate',
+        alignRight: true,
+        onClickValue: 'currentEffectiveHashrate',
+        Component: ({ data }) => (
+          <Mono>
+            {siFormatter(data.currentEffectiveHashrate, { unit: 'H/s' })}
+          </Mono>
+        ),
+      },
+      {
+        title: 'Valid Shares',
+        alignRight: true,
+        onClickValue: 'validShares',
+        Component: ({ data }) => (
+          <Ws>
+            <Mono>
+              {data.validShares}{' '}
+              <Percentage total={data.totalShares} value={data.validShares} />
+            </Mono>
+          </Ws>
+        ),
+      },
+      {
+        title: 'Stale Shares',
+        alignRight: true,
+        onClickValue: 'staleShares',
+        Component: ({ data }) => (
+          <Ws>
+            <Mono>
+              {data.staleShares}{' '}
+              <Percentage total={data.totalShares} value={data.staleShares} />
+            </Mono>
+          </Ws>
+        ),
+      },
+      {
+        title: 'Invalid Shares',
+        alignRight: true,
+        onClickValue: 'invalidShares',
+        Component: ({ data }) => (
+          <Mono>
+            {data.invalidShares}{' '}
+            <Percentage total={data.totalShares} value={data.invalidShares} />
+          </Mono>
+        ),
+      },
+      {
+        title: 'Last Seen',
+        alignRight: true,
+        Component: ({ data }) => (
+          <Ws>{dateUtils.formatDistance(data.lastSeen * 1000)}</Ws>
+        ),
+      },
+    ];
+
     return columns.map((item) => {
       const Icon =
         item.onClickValue !== sortKey
@@ -221,7 +226,7 @@ const MinerWorkersTable: React.FC<{
         ),
       };
     });
-  }, [sortKey, sortOrder]);
+  }, [sortKey, sortOrder, siFormatter]);
 
   const onSearchChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) =>

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Button } from 'src/components/Button';
 import { Content } from 'src/components/layout/Content';
@@ -36,13 +37,14 @@ const Split = styled.div`
 `;
 
 export const GetStartedSection = () => {
+  const { t } = useTranslation('home');
   return (
     <Wrapper>
       <Content>
         <Split>
-          <h2>Ready to get started?</h2>
+          <h2>{t('get_started_section.title')}</h2>
           <StartButton as={Link} to="/get-started" size="lg">
-            <Ws>Start Mining</Ws>
+            <Ws>{t('get_started_section.cta')}</Ws>
           </StartButton>
         </Split>
       </Content>

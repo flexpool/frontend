@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from 'src/components/layout/Card';
 import { Skeleton } from 'src/components/layout/Skeleton';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
-import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
+import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
 import {
   useActiveCoinTicker,
@@ -49,9 +49,10 @@ export const MinerDetails: React.FC<{
   coin?: ApiPoolCoin;
 }> = ({ coin }) => {
   const minerDetailsState = useReduxState('minerDetails');
+  const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const settings = minerDetailsState.data;
   const activeCoinTicker = useActiveCoinTicker();
-  const payoutLimit = useActiveCoinTickerDisplayValue(settings?.payoutLimit);
+  const payoutLimit = activeCoinFormatter(settings?.payoutLimit);
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
   const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const maxFeePrice = settings?.maxFeePrice;

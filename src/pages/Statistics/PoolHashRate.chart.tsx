@@ -4,8 +4,6 @@ import {
   useActiveCoinTicker,
   useAppTheme,
 } from 'src/rdx/localSettings/localSettings.hooks';
-import { formatRegionName } from 'src/utils/region.utils';
-import { ApiRegion } from 'src/types/Region.types';
 import { useDispatch } from 'react-redux';
 import { poolHashrateGet } from 'src/rdx/poolHashrate/poolHashrate.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
@@ -25,11 +23,13 @@ import {
   ValueAxis,
   LineSeries,
 } from 'src/plugins/amcharts';
+import { useTranslation } from 'react-i18next';
 
 const PoolHashrateChart = () => {
   const chartRef = useRef<HTMLDivElement>(null);
   const activeCoin = useActiveCoinTicker();
   const poolHasrateState = useReduxState('poolHashrate');
+  const { t } = useTranslation('statistics');
 
   const d = useDispatch();
   React.useEffect(() => {
@@ -82,7 +82,7 @@ const PoolHashrateChart = () => {
 
       let totalHashrateSeries = x.series.push(new LineSeries());
       totalHashrateSeries.dataFields.dateX = 'date';
-      totalHashrateSeries.name = 'Total Hashrate';
+      totalHashrateSeries.name = t('chart.total_hashrate');
       totalHashrateSeries.yAxis = hashrateAxis;
       totalHashrateSeries.dataFields.valueY = 'total';
       totalHashrateSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.00 aH/s")}`;
@@ -94,7 +94,7 @@ const PoolHashrateChart = () => {
       for (const region in poolHasrateState.data[0].regions) {
         let hashrateSeries = x.series.push(new LineSeries());
         hashrateSeries.dataFields.dateX = 'date';
-        hashrateSeries.name = `${formatRegionName(region as ApiRegion)}`;
+        hashrateSeries.name = t(`chart.${region}`);
         hashrateSeries.yAxis = hashrateAxis;
         hashrateSeries.dataFields.valueY = region;
         hashrateSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.00 aH/s")}`;
@@ -115,10 +115,10 @@ const PoolHashrateChart = () => {
         x.dispose();
       };
     }
-  }, [poolHasrateState.data, appTheme]);
+  }, [poolHasrateState.data, appTheme, t]);
 
   return (
-    <ChartContainer dataState={poolHasrateState} title="Pool Hashrate">
+    <ChartContainer dataState={poolHasrateState} title={t('chart.title')}>
       <div id="chartdiv" style={{ width: '100%', height: '400px' }}></div>
     </ChartContainer>
   );

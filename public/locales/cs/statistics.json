@@ -1,0 +1,18 @@
+{
+  "head_title": "Statistika",
+  "title": "Statistika",
+  "pool_hashrate": "Hashrate poolu",
+  "average_luck": "Průměrný luck",
+  "average_luck_tooltip": "Počítáno na základě bloků vytěžených za posledních 30 dní.",
+  "miners": "Mineři",
+  "workers": "Workeři",
+  "chart": {
+    "title": "Hashrate poolu",
+    "total_hashrate": "Celkový hashrate",
+    "as": "Asie, Tichomoří (AS)",
+    "au": "Austrálie (AU)",
+    "eu": "Evropa (EU)",
+    "sa": "Jižní Amerika (SA)",
+    "us": "Spojené státy americké (US)"
+  }
+}
