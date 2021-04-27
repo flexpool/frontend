@@ -17,6 +17,8 @@ import { minerDetailsUpdatePayoutSettings } from 'src/rdx/minerDetails/minerDeta
 import { useReduxState } from 'src/rdx/useReduxState';
 import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import * as yup from 'yup';
+import { Trans, useTranslation } from 'react-i18next';
+import { useLocalizedNumberValueFormatter } from 'src/utils/si.utils';
 
 export const PayoutSettings: React.FC = () => {
   const activeCoinTicker = useActiveCoinTicker();
@@ -24,6 +26,8 @@ export const PayoutSettings: React.FC = () => {
   const minerSettings = useReduxState('minerDetails');
   const minerHeaderStats = useReduxState('minerHeaderStats');
   const counterTicker = useCounterTicker();
+  const { t } = useTranslation(['dashboard', 'common']);
+  const numberFormatter = useLocalizedNumberValueFormatter();
   const d = useDispatch();
   const {
     params: { address },
@@ -69,82 +73,84 @@ export const PayoutSettings: React.FC = () => {
         maxFeePrice: yup
           .number()
           .nullable(true)
-          .min(0, 'Must be higher than 0'),
+          .min(0, t('common:errors.higher_than', { value: 0 })),
         payoutLimit: yup
           .number()
           .positive()
-          .min(minPayoutLimit, `Must be higher than ${minPayoutLimit}`)
+          .min(
+            minPayoutLimit,
+            t('common:errors.higher_than', { value: minPayoutLimit })
+          )
           .required(),
-        ip: yup.string().required('Required'),
+        ip: yup.string().required(t('common:errors.required')),
       })}
     >
       {({ values }) => {
         return (
           <Form>
             <FieldGroup.V>
-              <h3>Payout Settings</h3>
+              <h3>{t('dashboard:settings.payout.title')}</h3>
               <ErrorBox error={minerSettings.error} />
               <TextField
                 name="payoutLimit"
-                label={`Payout Limit (Min: ${minPayoutLimit})`}
+                label={t('dashboard:settings.payout.limit', {
+                  min: minPayoutLimit,
+                })}
                 unit={activeCoinTicker.toUpperCase()}
                 type="number"
                 inputMode="decimal"
-                desc={
-                  <>
-                    You will be paid only after your unpaid balance will reach{' '}
-                    {values.payoutLimit} {activeCoin.ticker.toUpperCase()}.
-                  </>
-                }
+                desc={t('dashboard:settings.payout.limit_desc', {
+                  value: `${
+                    values.payoutLimit
+                  } ${activeCoin.ticker.toUpperCase()}`,
+                })}
               />
               <p></p>
               <TextField
                 name="maxFeePrice"
-                label={`${feeDetails?.title} Limit`}
-                unit={feeDetails?.unit}
+                label={t('dashboard:settings.payout.gas_limit')}
+                unit={feeDetails?.unit.toUpperCase()}
                 type="number"
                 inputMode="decimal"
                 desc={
-                  values.maxFeePrice > 0 ? (
-                    <p>
-                      Your transaction fee {feeDetails?.title.toLowerCase()}{' '}
-                      would be limited to {values.maxFeePrice}{' '}
-                      {feeDetails?.unit} (
-                      {getDisplayCounterTickerValue(
-                        ((values.maxFeePrice *
-                          activeCoin.transactionSize *
-                          feeDetails.multiplier) /
-                          Math.pow(10, activeCoin.decimalPlaces)) *
-                          minerHeaderStats.data!.countervaluePrice,
-                        counterTicker
-                      )},{' '}
-                      {
-                        ((values.maxFeePrice *
-                          activeCoin.transactionSize *
-                          feeDetails.multiplier) /
-                          Math.pow(10, activeCoin.decimalPlaces) /
-                          values.payoutLimit *
-                          100).toFixed(3)
-                      }
-                      % of payout limit). You will not receive any payouts if {feeDetails?.title.toLowerCase()} is
-                      higher.
-                    </p>
-                  ) : (
-                    <p>Your transaction fee will not be limited.</p>
-                  )
+                  values.maxFeePrice > 0
+                    ? t('dashboard:settings.payout.gas_limit_desc', {
+                        value: values.maxFeePrice,
+                        valueUnit: feeDetails?.unit,
+                        valueTicker: getDisplayCounterTickerValue(
+                          ((values.maxFeePrice *
+                            activeCoin.transactionSize *
+                            feeDetails.multiplier) /
+                            Math.pow(10, activeCoin.decimalPlaces)) *
+                            minerHeaderStats.data!.countervaluePrice,
+                          counterTicker
+                        ),
+                        percent: numberFormatter(
+                          ((values.maxFeePrice *
+                            activeCoin.transactionSize *
+                            feeDetails.multiplier) /
+                            Math.pow(10, activeCoin.decimalPlaces) /
+                            values.payoutLimit) *
+                            100,
+                          { style: 'percent', maximumFractionDigits: 3 }
+                        ),
+                      })
+                    : t('dashboard:settings.payout.gas_limit_zero')
                 }
               />
               <Spacer />
               <TextField
                 name="ip"
-                label="Ip Address for Verification"
+                label={t('dashboard:settings.ip')}
                 placeholder={minerSettings.data!.ipAddress}
               />
               <p>
-                Hint: You are visiting this webpage from{' '}
+                {t('dashboard:settings.ip_hint')}{' '}
                 <b>{minerSettings.data!.clientIPAddress}</b>.
               </p>
-              <Submit shape="block">Apply changes</Submit>
+              <Submit shape="block">
+                {t('dashboard:settings.payout.submit')}
+              </Submit>
             </FieldGroup.V>
           </Form>
         );

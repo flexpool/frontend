@@ -51,5 +51,12 @@
   "list_navigation": {
     "previous": "Previous",
     "next": "Next"
+  },
+  "errors": {
+    "higher_than": "Must be higher than {{value}}",
+    "required": "Required",
+    "Invalid IP Address": "Invalid IP Address",
+    "email_invalid": "Invalid email address",
+    "email_required": "Please enter your email address"
   }
 }

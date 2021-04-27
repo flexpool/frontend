@@ -17,8 +17,8 @@ Czech language uses
 
 ```
 someKey: "Máš {{count}} kuře // Máš 1 kuře
-someKey_1: "Máš {{count}} chickens // You have (2-4) kuřata
-someKey_2: "Máš {{count}} chickens // You have (0,5-n) kuřat
+someKey_1: "Máš {{count}} chickens // Máš (2-4) kuřata
+someKey_2: "Máš {{count}} chickens // Máš (0,5-n) kuřat
 ```
 
 To check which indexes are used in your language, use this fiddle below:
