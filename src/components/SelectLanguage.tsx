@@ -7,6 +7,7 @@ import { localStorage } from 'src/utils/localStorage';
 
 const TickerFlag = styled(Img)`
   height: 20px;
+  width: 20px;
   margin-right: 0.5rem;
 `;
 
@@ -19,7 +20,7 @@ const langs = [
   {
     code: 'en-US',
     title: 'English',
-    flag: 'en',
+    flag: 'us',
   },
   {
     code: 'ru',
@@ -74,7 +75,7 @@ export const SelectLanguage = () => {
             <TickerFlag
               width="20"
               height="20"
-              src={`/locales_flags/${item.flag}.svg`}
+              src={`https://static.flexpool.io/assets/countries/${item.flag}.svg`}
               alt={`${item.title} Language`}
             />
             {item.title}
