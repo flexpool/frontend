@@ -19,8 +19,13 @@ const TickerWrapper = styled.div`
 const langs = [
   {
     code: 'en-US',
-    title: 'English',
+    title: 'English (US)',
     flag: 'us',
+  },
+  {
+    code: 'en-GB',
+    title: 'English (UK)',
+    flag: 'gb',
   },
   {
     code: 'ru',
@@ -28,9 +33,9 @@ const langs = [
     flag: 'ru',
   },
   {
-    code: 'pt',
+    code: 'pt-PT',
     title: 'Português',
-    flag: 'br',
+    flag: 'pt',
   },
   {
     code: 'de',
