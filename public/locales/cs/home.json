@@ -31,7 +31,7 @@
     }
   },
   "mined_coins_section": {
-    "title": "Coiny, které těžíme",
+    "title": "Kryptoměny, které těžíme",
     "description": "Flexpool je multipool, což znamená, že s námi můžeš těžit právě tvou oblíbenou kryptoměnu.",
     "table_head": {
       "name": "Název",
