@@ -1,5 +1,5 @@
-import { getDisplayLuck } from 'src/utils/luck.utils';
 import styled from 'styled-components';
+import { useLocalizedNumberValueFormatter } from 'src/utils/si.utils';
 
 const LuckValue = styled.span<{ value: number }>`
   font-weight: 600;
@@ -11,5 +11,10 @@ const LuckValue = styled.span<{ value: number }>`
 `;
 
 export const Luck: React.FC<{ value: number }> = ({ value }) => {
-  return <LuckValue value={value}>{getDisplayLuck(value)}</LuckValue>;
+  const numberFormatter = useLocalizedNumberValueFormatter();
+  return (
+    <LuckValue value={value}>
+      {numberFormatter(value, { style: 'percent', maximumFractionDigits: 1 })}
+    </LuckValue>
+  );
 };

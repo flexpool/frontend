@@ -16,11 +16,11 @@ type FormatSiOptions = {
   lang?: string;
 };
 
-const useLocalizedNumberValueFormatter = () => {
+export const useLocalizedNumberValueFormatter = () => {
   const { i18n } = useTranslation();
   const formatter = useCallback(
-    (value: number) => {
-      return Intl.NumberFormat(i18n.language).format(value);
+    (value: number, options?: Intl.NumberFormatOptions | undefined) => {
+      return Intl.NumberFormat(i18n.language, options).format(value);
     },
     [i18n.language]
   );
