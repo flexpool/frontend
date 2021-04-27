@@ -6,6 +6,7 @@ import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 import { HeaderStat } from 'src/components/layout/StatHeader';
+import { Luck } from 'src/components/Luck';
 import { StatBox, StatBoxContainer } from 'src/components/StatBox';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
@@ -38,9 +39,6 @@ export const StatisticsPage = () => {
   const { t, i18n } = useTranslation('statistics');
   const siFormatter = useLocalizedSiFormatter();
 
-  const averageLuck =
-    Math.round((poolStatsState.data?.averageLuck || 0) * 100 * 10) / 10;
-
   return (
     <Page>
       <Hero>
@@ -66,8 +64,9 @@ export const StatisticsPage = () => {
                 </Tooltip>
               }
               value={
-                poolStatsState.data?.averageLuck &&
-                `${Intl.NumberFormat(i18n.language).format(averageLuck)}%`
+                poolStatsState.data?.averageLuck && (
+                  <Luck value={poolStatsState.data?.averageLuck} />
+                )
               }
             />
             <StatBox
