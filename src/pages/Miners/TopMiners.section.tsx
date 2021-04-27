@@ -12,11 +12,13 @@ import { topMinersGet } from 'src/rdx/topMiners/topMiners.actions';
 import { Mono, Ws } from 'src/components/Typo/Typo';
 import { ApiTopMiner } from 'src/types/TopMiner.types';
 import { dateUtils } from 'src/utils/date.utils';
+import { useTranslation } from 'react-i18next';
 
 export const TopMinersSection = () => {
   const activeCoinTicker = useActiveCoinTicker();
   const minersState = useReduxState('topMiners');
   const d = useDispatch();
+  const { t } = useTranslation('miners');
 
   React.useEffect(() => {
     d(topMinersGet(activeCoinTicker));
@@ -30,7 +32,7 @@ export const TopMinersSection = () => {
   >[] = React.useMemo(
     () => [
       {
-        title: 'Miner',
+        title: t('top_miners.table_head.miner'),
         skeletonWidth: 200,
         Component: ({ data, config }) => {
           return (
@@ -47,7 +49,7 @@ export const TopMinersSection = () => {
         },
       },
       {
-        title: 'Hashrate',
+        title: t('top_miners.table_head.hashrate'),
         skeletonWidth: 90,
         Component: ({ data }) => {
           return (
@@ -58,7 +60,7 @@ export const TopMinersSection = () => {
         },
       },
       {
-        title: 'Balance',
+        title: t('top_miners.table_head.balance'),
         skeletonWidth: 75,
         Component: ({ data }) => {
           return (
@@ -69,26 +71,26 @@ export const TopMinersSection = () => {
         },
       },
       {
-        title: 'Workers',
+        title: t('top_miners.table_head.workers'),
         skeletonWidth: 60,
         Component: ({ data }) => {
           return <>{data.workerCount}</>;
         },
       },
       {
-        title: 'Joined',
+        title: t('top_miners.table_head.joined'),
         skeletonWidth: 120,
         Component: ({ data }) => {
           return <Ws>{dateUtils.formatDistance(data.firstJoined * 1000)}</Ws>;
         },
       },
     ],
-    [siFormatter, activeCoinFormatter]
+    [siFormatter, activeCoinFormatter, t]
   );
 
   return (
     <>
-      <h2>Top Miners</h2>
+      <h2>{t('top_miners.title')}</h2>
       <DynamicList
         isLoading={minersState.isLoading}
         data={minersState.data}
