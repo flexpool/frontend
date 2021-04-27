@@ -1,0 +1,14 @@
+{
+  "header": {
+    "greet_period_morning": "Dobré ráno",
+    "greet_period_afternoon": "Dobré odpoledne",
+    "greet_period_evening": "Dobrý večer",
+    "greet_desc": "{{count}} worker těží {{coin}} a hashuje {{hashrate}}",
+    "greet_desc_1": "{{count}} workeři těží {{coin}} a hashují {{hashrate}}",
+    "greet_desc_2": "{{count}} workerů těží {{coin}} a hashují {{hashrate}}",
+    "greet_desc_3": "",
+    "greet_desc_4": "",
+    "greet_desc_5": "",
+    "greet_desc_plural": ""
+  }
+}

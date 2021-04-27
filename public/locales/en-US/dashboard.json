@@ -1,0 +1,14 @@
+{
+  "header": {
+    "greet_period_morning": "Good morning",
+    "greet_period_afternoon": "Good afternoon",
+    "greet_period_evening": "Good evening",
+    "greet_desc": "{{count}} worker is mining {{coin}} and is hashing {{hashrate}} in total.",
+    "greet_desc_1": "",
+    "greet_desc_2": "",
+    "greet_desc_3": "",
+    "greet_desc_4": "",
+    "greet_desc_5": "",
+    "greet_desc_plural": "{{count}} workers are mining {{coin}} and are hashing {{hashrate}} in total."
+  }
+}
