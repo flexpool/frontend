@@ -64,7 +64,7 @@ export const WhyFlexpool = () => {
             />
             <h3>Just Better</h3>
             <p>
-              You can forget your poor mining experience. The Flexpool is backed
+              You can forget your poor mining experience. Flexpool is backed
               by high-quality support, and we are always happy to help!
             </p>
           </Item>
