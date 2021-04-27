@@ -279,7 +279,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
       blockCols.reward,
       blockCols.blockHash,
     ];
-  }, [address]);
+  }, [address, blockCols]);
 
   return (
     <>
