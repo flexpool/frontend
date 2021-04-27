@@ -1,7 +1,7 @@
 {
   "head_title": "Nejpokročilejší Mining Pool",
   "title": "Tvoříme budoucnost mining poolů",
-  "description": "Inovativní mining pool stvořený pro moderní crypto těžbu.",
+  "description": "Inovativní mining pool stvořený pro moderní těžbu kryptoměn.",
   "coin_earnings_cards": {
     "estimated": "Odhadovaná výtěžnost",
     "estimated_tooltip": "Odhadovaná výtěžnost je kalkulována na základě výkonu našeho poolu za posledních 7 dní.",
@@ -10,12 +10,12 @@
     "cta_mine": "Chci těžit",
     "pool_fee": "{{value}} poplatek poolu",
     "mev": "{{value}} bonusu MVE",
-    "more_title": "Více coinů již brzy!",
-    "more_description": "Pracujeme na spuštění dalších poolu pro více kryptoměn. Pro aktuální novinky se připojte k nám na discord či telegram."
+    "more_title": "Více kryptoměn již brzy!",
+    "more_description": "Pracujeme na spuštění dalších poolů pro těžbu různých kryptoměn. Pro aktuální novinky se připojte k nám na discord či telegram."
   },
   "news_section": {
     "join_us": {
-      "pre_title": "Připojte se k nám",
+      "pre_title": "Připoj se k nám",
       "title": "Připoj se k Flexpoolu",
       "cta": "Začít s těžbou"
     },
@@ -27,12 +27,12 @@
     "support": {
       "pre_title": "Podpora",
       "title": "Zeptej se nás",
-      "cta": "Kontakt"
+      "cta": "Kde nás najdeš"
     }
   },
   "mined_coins_section": {
     "title": "Coiny, které těžíme",
-    "description": "Flexpool je multipool, což znamená, že s námi můžeš těžit práve tvou oblíbenou kryptoměnu.",
+    "description": "Flexpool je multipool, což znamená, že s námi můžeš těžit právě tvou oblíbenou kryptoměnu.",
     "table_head": {
       "name": "Název",
       "price": "Cena",
@@ -46,14 +46,14 @@
   "coin_news_item": {
     "eth": {
       "title": "Co je Ethereum",
-      "description": "Ethereum je celosvětový počítač vytvořený k napájení decentralizovaných aplikací známých jako chytré smlouvy."
+      "description": "Ethereum je celosvětový počítač vytvořený k podpoře decentralizovaných aplikací známých jako chytré smlouvy."
     },
     "resources": "Zdroje",
     "website": "Webová stránka",
     "whitepaper": "Whitepaper",
     "calculator": {
       "title": "Kalkulačka příjmů",
-      "title_tooltip": "Odhadovaný příjem se vypočítá na základě 24 hodinové průměrné obtížnosti sítě a průměrné odměny bloku za 24 hodin. Tento výpočet nezahrnuje \"stale\" a \"invalid\" podíly.",
+      "title_tooltip": "Odhadovaný příjem se vypočítává na základě 24 hodinové průměrné obtížnosti sítě a průměrné odměny bloku za 24 hodin. Tento výpočet nezahrnuje \"stale\" a \"invalid\" podíly.",
       "per_day": "denně",
       "per_month": "měsíčně",
       "per_year": "ročně",
