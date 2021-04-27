@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation, Trans } from 'react-i18next';
 import { FaDiscord, FaTelegram } from 'react-icons/fa';
 
 import { Content } from 'src/components/layout/Content';
@@ -44,40 +45,26 @@ const SupportChannel: React.FC<{
 };
 
 export const SupportPage = () => {
+  const { t } = useTranslation('support');
   return (
     <Page>
       <Helmet>
-        <title>Support</title>
+        <title>{t('head_title')}</title>
       </Helmet>
       <HeroBlue>
         <Content md>
-          <h1>Support</h1>
+          <h1>{t('title')}</h1>
         </Content>
       </HeroBlue>
       <Content md paddingLg>
-        <h2>Contact Flexpool Support</h2>
-        <p>
-          Hi! Before you reach out, we would like to warn you that we do not
-          provide assistance on hardware-related topics. This includes
-          overclocking GPUs and further advanced configuration of the mining
-          software. We provide only pool-related support. If you want to get
-          help on overclocking GPUs, optimizing mining software, etc., you can
-          join our community and talk with people who want share their
-          experience.
-        </p>
+        <h2>{t('section_one.title')}</h2>
+        <p>{t('section_one.description')}</p>
         <Divider margin />
-        <h2>Reach us via the Website Messenger</h2>
-        <p>
-          The best way to reach us to get assistance is to use the built-in
-          website messenger. You can find it in the bottom-right corner.
-        </p>
+        <h2>{t('section_two.title')}</h2>
+        <p>{t('section_two.description')}</p>
         <Divider margin />
-        <h2>Join our Community</h2>
-        <p>
-          We also provide an official Discord Server and a Telegram Group, so
-          you can talk with other Flexpool miners, and get assistance from our
-          team there as well.
-        </p>
+        <h2>{t('section_three.title')}</h2>
+        <p>{t('section_three.description')}</p>
         <div className="support-channels">
           <SupportChannel
             name={'Discord'}
@@ -91,18 +78,30 @@ export const SupportPage = () => {
           />
         </div>
         <Divider margin />
-        <h2>Reach us via Email</h2>
+        <h2>{t('section_four.title')}</h2>
         <p>
-          We provide Email support, but we do not guarantee fast response time
-          via this support channel. We are available at{' '}
-          <a href="mailto:support@flexpool.io">support@flexpool.io</a>.
+          <Trans
+            ns={'support'}
+            i18nKey="section_four.description" // optional -> fallbacks to defaults if not provided
+            values={{ email: 'support@flexpool.io' }}
+            components={{
+              // eslint-disable-next-line
+              email: <a href="mailto:support@flexpool.io" />,
+            }}
+          />
         </p>
         <Divider margin />
-        <h2>Other questions</h2>
+        <h2>{t('section_five.title')}</h2>
         <p>
-          For business-related questions, please, contact us at{' '}
-          <a href="mailto:hq@flexpool.io">hq@flexpool.io</a>. Please, note that
-          we do not provide support via this Email.
+          <Trans
+            ns={'support'}
+            i18nKey="section_five.description" // optional -> fallbacks to defaults if not provided
+            values={{ email: 'hq@flexpool.io' }}
+            components={{
+              // eslint-disable-next-line
+              email: <a href="mailto:hq@flexpool.io" />,
+            }}
+          />
         </p>
       </Content>
     </Page>

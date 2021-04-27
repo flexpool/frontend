@@ -4,7 +4,7 @@
   "description": "Historie vytěžených bloků na Flexpoolu",
   "average_luck": "Průměrný luck",
   "average_luck_tooltip": "Počítáno na základě bloků vytěžených za posledních 30 dní.",
-  "current_luck": "Současný luck",
+  "current_luck": "Aktuální luck",
   "current_luck_tooltip": "Luck bloku aktuálního těžení. Tato hodnota je aktualizována v reálném čase.",
   "network_hashrate": "Síťová hashrate",
   "network_difficulty": "Obtížnost sítě",
