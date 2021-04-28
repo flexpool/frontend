@@ -20,6 +20,8 @@ import { FaCalendar, FaCalendarDay, FaCalendarWeek } from 'react-icons/fa';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { dateUtils } from 'src/utils/date.utils';
 import { addSeconds } from 'date-fns';
+import { Trans, useTranslation } from 'react-i18next';
+import { useLocalizedNumberValueFormatter } from 'src/utils/si.utils';
 //
 
 const EstimatedIntervalSwitch = styled.span`
@@ -77,6 +79,8 @@ const BalanceProgressBar: React.FC<{
       setProgress(Math.round(value));
     }, 100);
   }, [value]);
+  const { t } = useTranslation('dashboard');
+  const numberFormatter = useLocalizedNumberValueFormatter();
   return (
     <Tooltip
       wrapIcon={false}
@@ -96,23 +100,37 @@ const BalanceProgressBar: React.FC<{
     >
       <TooltipContent>
         <PayoutText>
-          <PayoutNumber>{progress}%</PayoutNumber> of the payout limit reached.
+          <Trans
+            i18nKey="header.stat_unpaid_balance_reach"
+            ns="dashboard"
+            values={{
+              value: numberFormatter(progress / 100, {
+                style: 'percent',
+                maximumFractionDigits: 2,
+              }),
+            }}
+            components={{
+              v: <PayoutNumber />,
+            }}
+          />
         </PayoutText>
         {payoutInSeconds && payoutInSeconds > 0 ? (
           <PayoutText>
-            The limit will be reached{' '}
-            <PayoutNumber>
-              {dateUtils.formatDistance(
-                addSeconds(new Date(), payoutInSeconds)
-              )}
-            </PayoutNumber>
-            .
+            <Trans
+              i18nKey="header.stat_unpaid_balance_reach_est"
+              ns="dashboard"
+              values={{
+                value: dateUtils.formatDistance(
+                  addSeconds(new Date(), payoutInSeconds)
+                ),
+              }}
+              components={{
+                v: <PayoutNumber />,
+              }}
+            />
           </PayoutText>
         ) : (
-          <PayoutText>
-            Your payout will be processed on the next payment round if the fees
-            match your preferences
-          </PayoutText>
+          <PayoutText>{t('header.stat_unpaid_balance_reach_ok')}</PayoutText>
         )}
       </TooltipContent>
     </Tooltip>
@@ -134,6 +152,7 @@ export const HeaderStats: React.FC<{
   const d = useDispatch();
   const poolStatsState = useReduxState('poolStats');
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
+  const { t } = useTranslation('dashboard');
 
   const [
     estimateInterval,
@@ -224,7 +243,7 @@ export const HeaderStats: React.FC<{
   return (
     <CardGrid>
       <Card padding>
-        <CardTitle>Workers Online/Offline</CardTitle>
+        <CardTitle>{t('header.stat_workers')}</CardTitle>
         <StatItem
           value={
             data ? (
@@ -242,7 +261,7 @@ export const HeaderStats: React.FC<{
         />
       </Card>
       <Card padding>
-        <CardTitle>Unpaid Balance</CardTitle>
+        <CardTitle>{t('header.stat_unpaid_balance')}</CardTitle>
         <StatItem
           value={balance}
           subValue={tickerBalance ? `≈ ${tickerBalance}` : null}
@@ -255,12 +274,12 @@ export const HeaderStats: React.FC<{
       </Card>
       <Card padding>
         <CardTitle>
-          Estimated earnings{' '}
+          {t('header.stat_estimate')}{' '}
           <EstimatedIntervalSwitch onClick={handleToggleEstimateInterval}>
-            ({estimateText}){' '}
+            ({t(`header.stat_estimate_${estimateText}`)}){' '}
             <Tooltip icon={<CalendarIcon />}>
               <TooltipContent>
-                Click to change between daily, weekly and monthly estimate.
+                {t('header.stat_estimate_tooltip')}
               </TooltipContent>
             </Tooltip>
           </EstimatedIntervalSwitch>
@@ -270,15 +289,6 @@ export const HeaderStats: React.FC<{
           subValue={estimated.counterTicker && <>≈ {estimated.counterTicker}</>}
         />
       </Card>
-      {/* <Card padding>
-        <CardTitle>Next Block Share</CardTitle>
-        <StatItem
-          value={
-            data && `${Math.round(data.roundShare * 100 * 10000) / 10000}%`
-          }
-          subValue={<>Approximate Reward: {approximateBlockShare}</>}
-        />
-      </Card> */}
     </CardGrid>
   );
 };

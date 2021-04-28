@@ -17,7 +17,7 @@ import { minerDetailsUpdatePayoutSettings } from 'src/rdx/minerDetails/minerDeta
 import { useReduxState } from 'src/rdx/useReduxState';
 import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import * as yup from 'yup';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useLocalizedNumberValueFormatter } from 'src/utils/si.utils';
 
 export const PayoutSettings: React.FC = () => {

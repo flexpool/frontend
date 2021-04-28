@@ -164,6 +164,10 @@ export const FooterSection = () => {
             <SelectTheme />
             <Spacer />
             <SelectLanguage />
+            <Spacer />
+            <p>
+              <LinkOut href="/">{t('footer.translation_help')}</LinkOut>
+            </p>
           </Section>
         </SectionContainer>
         <FooterEnd>
