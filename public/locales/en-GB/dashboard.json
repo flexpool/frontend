@@ -39,6 +39,7 @@
     "info_payout_limit": "Payout Limit",
     "info_gas_limit": "Gas Price Limit",
     "info_joined": "Joined",
+    "info_joined_tooltip": "Your first share has been recorded on",
     "info_coin_price": "{{coin}} Price",
     "stat_workers": "Workers Online/Offline",
     "stat_unpaid_balance": "Unpaid Balance",
