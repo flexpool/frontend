@@ -41,7 +41,8 @@
       "title": "Preferences"
     },
     "bottom_message": "© 2020-{{currentYear}} Flexpool.io or its affiliates. All rights reserved.",
-    "open_source": "Open Source"
+    "open_source": "Open Source",
+    "translation_help": "Help us translate the website to your language"
   },
   "theme": {
     "default": "Default Theme",

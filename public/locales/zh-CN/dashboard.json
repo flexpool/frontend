@@ -1,7 +1,7 @@
 {
   "settings": {
-    "cta": "Settings",
-    "title": "Settings",
+    "cta": "偏好设置",
+    "title": "偏好设置",
     "ip": "IP address for verification",
     "ip_hint": "Hint: You are visiting this webpage from",
     "payout": {
@@ -9,32 +9,173 @@
       "limit": "Payout limit (min: {{min}})",
       "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}.",
       "limit_err_higher": "Must be higher than {{min}}",
-      "gas_limit": "Gas price limit",
+      "gas_limit": "燃料价格限制",
       "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} of payout limit). You will not receive any payouts if gas price is higher.",
       "gas_limit_zero": "Your transaction fee will not be limited.",
-      "submit": "Apply changes"
+      "submit": "保存首选项"
     },
     "notifications": {
-      "title": "Email notifications",
-      "email_enabled": "Email notifications enabled",
-      "email_disabled": "Email notifications disabled",
+      "title": "电子邮件通知",
+      "email_enabled": "电子邮件通知已启用",
+      "email_disabled": "电子邮件通知已禁用",
       "send_to": "Send notifications to",
       "send_to_placeholder": "your@email.com",
       "check_worker_down": "Warn me when one of my workers goes down",
       "check_payout_sent": "Notify me when a payout has been sent",
-      "submit": "Apply changes"
+      "submit": "保存首选项"
     }
   },
   "header": {
-    "greet_period_morning": "Good morning",
-    "greet_period_afternoon": "Good afternoon",
-    "greet_period_evening": "Good evening",
+    "greet_period_morning": "早上好",
+    "greet_period_afternoon": "下午好",
+    "greet_period_evening": "晚上好",
     "greet_desc": "{{count}} worker is mining {{coin}} and is hashing {{hashrate}} in total.",
     "greet_desc_1": "",
     "greet_desc_2": "",
     "greet_desc_3": "",
     "greet_desc_4": "",
     "greet_desc_5": "",
-    "greet_desc_plural": "{{count}} workers are mining {{coin}} and are hashing {{hashrate}} in total."
+    "greet_desc_plural": "{{count}} workers are mining {{coin}} and are hashing {{hashrate}} in total.",
+    "info_payout_limit": "Payout Limit",
+    "info_gas_limit": "Gas Price Limit",
+    "info_joined": "Joined",
+    "info_coin_price": "{{coin}} Price",
+    "stat_workers": "Workers Online/Offline",
+    "stat_unpaid_balance": "Unpaid Balance",
+    "stat_unpaid_balance_reach": "<v>{{value}}</v> of the payout limit reached.",
+    "stat_unpaid_balance_reach_est": "The limit will be reached <v>{{value}}</v>.",
+    "stat_unpaid_balance_reach_ok": "Your payout will be processed on the next payment round if the fees match your preferences.",
+    "stat_estimate": "Estimated Earnings",
+    "stat_estimate_daily": "daily",
+    "stat_estimate_weekly": "weekly",
+    "stat_estimate_monthly": "monthly",
+    "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimate."
+  },
+  "nav": {
+    "stats": "Stats",
+    "payments": "Payments",
+    "rewards": "Rewards",
+    "blocks": "Blocks"
+  },
+  "rewards": {
+    "head_title": "Miner Rewards",
+    "earnings_chart": {
+      "title": "Earnings this month",
+      "earnings": "Earnings",
+      "daily_income": "Daily income"
+    },
+    "past_earnings": {
+      "title": "Past Earnings",
+      "yesterday": "Yesterday",
+      "last_week": "Last Week",
+      "last_month": "Last Month"
+    },
+    "forecasted_earnings": {
+      "title": "Forecasted Earnings",
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "monthly": "Monthly"
+    },
+    "pplns": {
+      "title": "Advanced PPLNS Statistics",
+      "avp": {
+        "title": "Average Paying Hashrate",
+        "tooltip": "Calculated based on current round share and the last 3 hours pool hashrate chart.",
+        "current": "Current"
+      },
+      "crs": {
+        "title": "Current Round Share",
+        "aprox": "Aproximate reward"
+      },
+      "log": {
+        "title": "Share Log Wipeout Duration",
+        "tooltip": "Time for the round share to drop to zero.",
+        "size": "{{value}} shares in log"
+      }
+    },
+    "pplns_chart": {
+      "title": "Shares in the PPLNS Log",
+      "valid_shares": "Valid Shares"
+    }
+  },
+  "payments": {
+    "head_title": "Miner Payments",
+    "chart": {
+      "title": "Payments This Year",
+      "fee": "Fee",
+      "value": "Value"
+    },
+    "general": {
+      "title": "General Payment Statistics",
+      "total_paid": "Total Paid",
+      "total_transactions": "Total Transactions",
+      "paid_in_fees": "{{value}} paid in fees",
+      "average_payout_duration": "Average Payout Duration",
+      "average_payout_duration_desc": "Average Time Between Payouts"
+    },
+    "transaction_fees": {
+      "title": "Transaction Fees",
+      "last": "Last Transaction",
+      "fee": "{{value}} fee",
+      "average": "Average Transaction Fee",
+      "average_percent": "Average Transaction Fee %",
+      "average_cta": "Tips on reducing fees"
+    },
+    "table": {
+      "title": "Payments",
+      "download": "Download CSV",
+      "table_head": {
+        "date": "Date",
+        "value": "Transaction Value",
+        "fee": "Fee",
+        "duration": "Duration",
+        "hash": "Hash"
+      }
+    }
+  },
+  "stats": {
+    "active_worker": {
+      "title": "Worker",
+      "reset": "Reset"
+    },
+    "hashrate": {
+      "title": "Hashrate",
+      "current": "Current Effective",
+      "average": "Average Effective",
+      "reported": "Reported"
+    },
+    "shares": {
+      "title": "Shares",
+      "valid": "Valid",
+      "stale": "Stale",
+      "invalid": "Invalid"
+    },
+    "hashrate_chart": {
+      "title": "Hashrate",
+      "effective": "Effective Hashrate",
+      "average": "Average Effective Hashrate",
+      "reported": "Reported Hashrate"
+    },
+    "shares_chart": {
+      "title": "Shares",
+      "valid": "Valid Shares",
+      "stale": "Stale Shares",
+      "invalid": "Invalid Shares"
+    },
+    "table": {
+      "title_active": "Active workers",
+      "title_inactive": "Inactive workers",
+      "search_placeholder": "Filter by worker",
+      "table_head": {
+        "name": "Name",
+        "reported_hashrate": "Reported Hashrate",
+        "current_e_hashrate": "Current E. Hashrate",
+        "average_hashrate": "Average Hashrate",
+        "valid": "Valid Shares",
+        "stale": "Stale Shares",
+        "invalid": "Invalid Shares",
+        "last_seen": "Last Seen"
+      }
+    }
   }
 }
