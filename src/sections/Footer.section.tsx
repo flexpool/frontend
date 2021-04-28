@@ -166,7 +166,9 @@ export const FooterSection = () => {
             <SelectLanguage />
             <Spacer />
             <p>
-              <LinkOut href="/">{t('footer.translation_help')}</LinkOut>
+              <LinkOut href="https://crowdin.com/project/flexpoolio-website">
+                {t('footer.translation_help')}
+              </LinkOut>
             </p>
           </Section>
         </SectionContainer>

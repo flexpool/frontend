@@ -57,7 +57,49 @@
     "rewards": "Rewards",
     "blocks": "Blocks"
   },
+  "rewards": {
+    "head_title": "Miner Rewards",
+    "earnings_chart": {
+      "title": "Earnings this month",
+      "earnings": "Earnings",
+      "daily_income": "Daily income"
+    },
+    "past_earnings": {
+      "title": "Past Earnings",
+      "yesterday": "Yesterday",
+      "last_week": "Last Week",
+      "last_month": "Last Month"
+    },
+    "forecasted_earnings": {
+      "title": "Forecasted Earnings",
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "monthly": "Monthly"
+    },
+    "pplns": {
+      "title": "Advanced PPLNS Statistics",
+      "avp": {
+        "title": "Average Paying Hashrate",
+        "tooltip": "Calculated based on current round share and the last 3 hours pool hashrate chart.",
+        "current": "Current"
+      },
+      "crs": {
+        "title": "Current Round Share",
+        "aprox": "Aproximate reward"
+      },
+      "log": {
+        "title": "Share Log Wipeout Duration",
+        "tooltip": "Time for the round share to drop to zero.",
+        "size": "{{value}} shares in log"
+      }
+    },
+    "pplns_chart": {
+      "title": "Shares in the PPLNS Log",
+      "valid_shares": "Valid Shares"
+    }
+  },
   "payments": {
+    "head_title": "Miner Payments",
     "chart": {
       "title": "Payments This Year",
       "fee": "Fee",

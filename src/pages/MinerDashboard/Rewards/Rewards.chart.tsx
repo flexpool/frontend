@@ -21,6 +21,7 @@ import {
   ValueAxis,
   ColumnSeries,
 } from 'src/plugins/amcharts';
+import { useTranslation } from 'react-i18next';
 
 const RewardsChart: React.FC<{
   rewards: ApiMinerReward[];
@@ -32,7 +33,7 @@ const RewardsChart: React.FC<{
   const coin = useActiveCoin();
   const counterTicker = useCounterTicker();
 
-  React.useEffect(() => {}, []);
+  const { t } = useTranslation('dashboard');
 
   React.useEffect(() => {
     if (!rewards || !counterPrice || !coin) return;
@@ -72,11 +73,15 @@ const RewardsChart: React.FC<{
     let rewardSeries = rewardsChart.series.push(new ColumnSeries());
 
     rewardSeries.dataFields.dateX = 'date';
-    rewardSeries.name = 'Earnings (' + coin.ticker.toUpperCase() + ')';
+    rewardSeries.name = `${t(
+      'rewards.earnings_chart.earnings'
+    )} (${coin.ticker.toUpperCase()})`;
     rewardSeries.yAxis = rewardsAxis;
     rewardSeries.dataFields.valueY = 'totalRewards';
 
-    rewardSeries.tooltipText = `Daily Income: {valueY.value.formatNumber("#.0000000")} ETH ({countervaluedRewards})`;
+    rewardSeries.tooltipText = `${t(
+      'rewards.earnings_chart.daily_income'
+    )} {valueY.value.formatNumber("#.0000000")} ETH ({countervaluedRewards})`;
 
     rewardsChart.cursor = new XYCursor();
     rewardsChart.legend = new Legend();
@@ -85,12 +90,12 @@ const RewardsChart: React.FC<{
       rewardsChart.dispose();
     };
     // eslint-disable-next-line
-  }, [coin, rewards, counterPrice]);
+  }, [coin, rewards, counterPrice, t]);
 
   return (
     <>
       <ChartContainer
-        title="Earnings This Month"
+        title={t('rewards.earnings_chart.title')}
         dataState={{
           error: props.error,
           isLoading: props.isLoading,

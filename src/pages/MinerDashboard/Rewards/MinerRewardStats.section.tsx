@@ -1,5 +1,6 @@
 import { isBefore, subDays } from 'date-fns';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { CardGrid } from 'src/components/layout/Card';
 import DynamicList, {
   DynamicListColumn,
@@ -20,11 +21,11 @@ import { fetchApi } from 'src/utils/fetchApi';
 const getIndexPastInterval = (index: number) => {
   switch (index) {
     case 0:
-      return 'Yesterday';
+      return 'rewards.past_earnings.yesterday';
     case 1:
-      return 'Last week';
+      return 'rewards.past_earnings.last_week';
     case 2:
-      return 'Last Month';
+      return 'rewards.past_earnings.last_month';
     default:
       return 'Unknown';
   }
@@ -32,11 +33,11 @@ const getIndexPastInterval = (index: number) => {
 const getIndexInterval = (index: number) => {
   switch (index) {
     case 0:
-      return 'Daily';
+      return 'rewards.forecasted_earnings.daily';
     case 1:
-      return 'Weekly';
+      return 'rewards.forecasted_earnings.weekly';
     case 2:
-      return 'Monthly';
+      return 'rewards.forecasted_earnings.monthly';
     default:
       return 'Unknown';
   }
@@ -52,6 +53,7 @@ export const MinerRewardStatsSection: React.FC<{
   const counterTicker = useCounterTicker();
   const activeCoin = useActiveCoin();
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
+  const { t } = useTranslation('dashboard');
 
   const headerStatsState = useReduxState('minerHeaderStats');
 
@@ -152,14 +154,14 @@ export const MinerRewardStatsSection: React.FC<{
   return (
     <CardGrid>
       <div>
-        <h2>Past Earnings</h2>
+        <h2>{t('rewards.past_earnings.title')}</h2>
         <DynamicList
           data={pastData}
           columns={[
             {
               title: '',
               Component: ({ index }) => {
-                return <strong>{getIndexPastInterval(index)}</strong>;
+                return <strong>{t(getIndexPastInterval(index))}</strong>;
               },
             },
             ...earningsCols,
@@ -167,14 +169,14 @@ export const MinerRewardStatsSection: React.FC<{
         />
       </div>
       <div>
-        <h2>Forecasted Earnings</h2>
+        <h2>{t('rewards.forecasted_earnings.title')}</h2>
         <DynamicList
           data={futureData}
           columns={[
             {
               title: '',
               Component: ({ index }) => {
-                return <strong>{getIndexInterval(index)}</strong>;
+                return <strong>{t(getIndexInterval(index))}</strong>;
               },
             },
             ...earningsCols,
