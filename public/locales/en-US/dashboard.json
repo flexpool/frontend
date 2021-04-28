@@ -57,6 +57,40 @@
     "rewards": "Rewards",
     "blocks": "Blocks"
   },
+  "payments": {
+    "chart": {
+      "title": "Payments This Year",
+      "fee": "Fee",
+      "value": "Value"
+    },
+    "general": {
+      "title": "General Payment Statistics",
+      "total_paid": "Total Paid",
+      "total_transactions": "Total Transactions",
+      "paid_in_fees": "{{value}} paid in fees",
+      "average_payout_duration": "Average Payout Duration",
+      "average_payout_duration_desc": "Average Time Between Payouts"
+    },
+    "transaction_fees": {
+      "title": "Transaction Fees",
+      "last": "Last Transaction",
+      "fee": "{{value}} fee",
+      "average": "Average Transaction Fee",
+      "average_percent": "Average Transaction Fee %",
+      "average_cta": "Tips on reducing fees"
+    },
+    "table": {
+      "title": "Payments",
+      "download": "Download CSV",
+      "table_head": {
+        "date": "Date",
+        "value": "Transaction Value",
+        "fee": "Fee",
+        "duration": "Duration",
+        "hash": "Hash"
+      }
+    }
+  },
   "stats": {
     "active_worker": {
       "title": "Worker",

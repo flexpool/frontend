@@ -18,6 +18,7 @@ import {
   ChartContainer,
   responsiveRule,
 } from 'src/components/Chart/ChartContainer';
+import { useTranslation } from 'react-i18next';
 
 type ChartData = {
   fee: number;
@@ -29,6 +30,7 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
   coin,
   address,
 }) => {
+  const { t } = useTranslation('dashboard');
   const asyncState = useAsyncState<
     {
       fee: number;
@@ -59,7 +61,9 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
       let feeSeries = paymentsChart.series.push(new ColumnSeries());
 
       feeSeries.dataFields.dateX = 'date';
-      feeSeries.name = 'Fee (' + coin.ticker.toUpperCase() + ')';
+      feeSeries.name = `${t(
+        'payments.chart.fee'
+      )} (${coin.ticker.toUpperCase()})`;
       feeSeries.yAxis = paymentsAxis;
       feeSeries.dataFields.valueY = 'fee';
       feeSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.0000")}`;
@@ -69,7 +73,9 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
       let paymentSeries = paymentsChart.series.push(new ColumnSeries());
 
       paymentSeries.dataFields.dateX = 'date';
-      paymentSeries.name = 'Value (' + coin.ticker.toUpperCase() + ')';
+      paymentSeries.name = `${t(
+        'payments.chart.value'
+      )} (${coin.ticker.toUpperCase()})`;
       paymentSeries.yAxis = paymentsAxis;
       paymentSeries.dataFields.valueY = 'value';
       paymentSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.0000")}`;
@@ -83,7 +89,7 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
         paymentsChart.dispose();
       };
     }
-  }, [coin, asyncState.data]);
+  }, [coin, asyncState.data, t]);
 
   React.useEffect(() => {
     if (coin?.decimalPlaces && coin?.ticker) {
@@ -107,7 +113,7 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
 
   return (
     <>
-      <ChartContainer title="Payments This Year" dataState={asyncState}>
+      <ChartContainer title={t('payments.chart.title')} dataState={asyncState}>
         <div id="payments-chart" style={{ width: '100%', height: '250px' }} />
       </ChartContainer>
     </>
