@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Card, CardTitle } from 'src/components/layout/Card';
 import { StatItem } from 'src/components/StatItem';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
@@ -48,20 +49,21 @@ export const MinerStats: React.FC<{
   const totalShares =
     (data && data.invalidShares + data.staleShares + data.validShares) || 0;
   const siFormatter = useLocalizedSiFormatter();
+  const { t } = useTranslation('dashboard');
 
   return (
     <StatGrid>
       <Card padding>
-        <CardTitle>Hashrate</CardTitle>
+        <CardTitle>{t('stats.hashrate.title')}</CardTitle>
         <StatItemGrid>
           <StatItem
-            title="Current Effective"
+            title={t('stats.hashrate.current')}
             value={siFormatter(data?.currentEffectiveHashrate, { unit: 'H/s' })}
           />
           <Tooltip
             icon={
               <StatItem
-                title="Average Effective"
+                title={t('stats.hashrate.average')}
                 value={siFormatter(data?.averageEffectiveHashrate, {
                   unit: 'H/s',
                 })}
@@ -85,17 +87,17 @@ export const MinerStats: React.FC<{
             </TooltipContent>
           </Tooltip>
           <StatItem
-            title="Reported"
+            title={t('stats.hashrate.reported')}
             value={siFormatter(data?.reportedHashrate, { unit: 'H/s' })}
           />
         </StatItemGrid>
       </Card>
       <Card padding>
-        <CardTitle>Shares</CardTitle>
+        <CardTitle>{t('stats.shares.title')}</CardTitle>
         <StatItemGrid>
           <StatItem
             title={getDisplayPercentage(
-              'Valid',
+              t('stats.shares.valid'),
               totalShares,
               data?.validShares
             )}
@@ -103,7 +105,7 @@ export const MinerStats: React.FC<{
           />
           <StatItem
             title={getDisplayPercentage(
-              'Stale',
+              t('stats.shares.stale'),
               totalShares,
               data?.staleShares
             )}
@@ -111,7 +113,7 @@ export const MinerStats: React.FC<{
           />
           <StatItem
             title={getDisplayPercentage(
-              'Invalid',
+              t('stats.shares.invalid'),
               totalShares,
               data?.invalidShares
             )}

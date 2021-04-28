@@ -9,10 +9,14 @@ import { minerWorkersGet } from 'src/rdx/minerWorkers/minerWorkers.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiMinerWorker } from 'src/types/Miner.types';
 import { dateUtils } from 'src/utils/date.utils';
-import { useLocalizedSiFormatter } from 'src/utils/si.utils';
+import {
+  useLocalizedNumberValueFormatter,
+  useLocalizedSiFormatter,
+} from 'src/utils/si.utils';
 import styled from 'styled-components/macro';
 import { FaSearch, FaSort, FaSortDown, FaSortUp } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const PercentageItem = styled.span`
   color: var(--text-tertiary);
@@ -94,6 +98,8 @@ const MinerWorkersTable: React.FC<{
   const [search, setSearch] = React.useState('');
   const history = useHistory();
   const siFormatter = useLocalizedSiFormatter();
+  const { t } = useTranslation('dashboard');
+  const numberFormatter = useLocalizedNumberValueFormatter();
 
   const data = React.useMemo(() => {
     let res = unfilteredData;
@@ -137,7 +143,7 @@ const MinerWorkersTable: React.FC<{
       ApiMinerWorker & { totalShares: number }
     >[] = [
       {
-        title: 'Name',
+        title: t('stats.table.table_head.name'),
         onClickValue: 'name',
         Component: ({ data }) =>
           data.isOnline ? (
@@ -147,7 +153,7 @@ const MinerWorkersTable: React.FC<{
           ),
       },
       {
-        title: 'Reported Hashrate',
+        title: t('stats.table.table_head.reported_hashrate'),
         alignRight: true,
         onClickValue: 'reportedHashrate',
         Component: ({ data }) => (
@@ -155,7 +161,7 @@ const MinerWorkersTable: React.FC<{
         ),
       },
       {
-        title: 'Current E. Hashrate',
+        title: t('stats.table.table_head.current_e_hashrate'),
         alignRight: true,
         onClickValue: 'currentEffectiveHashrate',
         Component: ({ data }) => (
@@ -165,44 +171,44 @@ const MinerWorkersTable: React.FC<{
         ),
       },
       {
-        title: 'Valid Shares',
+        title: t('stats.table.table_head.valid'),
         alignRight: true,
         onClickValue: 'validShares',
         Component: ({ data }) => (
           <Ws>
             <Mono>
-              {data.validShares}{' '}
+              {numberFormatter(data.validShares)}{' '}
               <Percentage total={data.totalShares} value={data.validShares} />
             </Mono>
           </Ws>
         ),
       },
       {
-        title: 'Stale Shares',
+        title: t('stats.table.table_head.stale'),
         alignRight: true,
         onClickValue: 'staleShares',
         Component: ({ data }) => (
           <Ws>
             <Mono>
-              {data.staleShares}{' '}
+              {numberFormatter(data.staleShares)}{' '}
               <Percentage total={data.totalShares} value={data.staleShares} />
             </Mono>
           </Ws>
         ),
       },
       {
-        title: 'Invalid Shares',
+        title: t('stats.table.table_head.invalid'),
         alignRight: true,
         onClickValue: 'invalidShares',
         Component: ({ data }) => (
           <Mono>
-            {data.invalidShares}{' '}
+            {numberFormatter(data.invalidShares)}{' '}
             <Percentage total={data.totalShares} value={data.invalidShares} />
           </Mono>
         ),
       },
       {
-        title: 'Last Seen',
+        title: t('stats.table.table_head.last_seen'),
         alignRight: true,
         Component: ({ data }) => (
           <Ws>{dateUtils.formatDistance(data.lastSeen * 1000)}</Ws>
@@ -226,7 +232,7 @@ const MinerWorkersTable: React.FC<{
         ),
       };
     });
-  }, [sortKey, sortOrder, siFormatter]);
+  }, [sortKey, sortOrder, siFormatter, numberFormatter, t]);
 
   const onSearchChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -271,6 +277,7 @@ export const MinerWorkers: React.FC<{
 }> = ({ address }) => {
   const d = useDispatch();
   const coinTicker = useActiveCoinTicker();
+  const { t } = useTranslation('dashboard');
 
   const minerWorkersState = useReduxState('minerWorkers');
 
@@ -299,12 +306,12 @@ export const MinerWorkers: React.FC<{
         hideIfEmpty
         isLoading={minerWorkersState.isLoading}
         data={offlineWorkersData}
-        title="Offline workers"
+        title={t('stats.table.title_inactive')}
       />
       <MinerWorkersTable
         isLoading={minerWorkersState.isLoading}
         data={activeWorkersData}
-        title="Active workers"
+        title={t('stats.table.title_active')}
       />
     </div>
   );

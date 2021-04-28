@@ -43,11 +43,63 @@
     "stat_workers": "Workers Online/Offline",
     "stat_unpaid_balance": "Unpaid Balance",
     "stat_unpaid_balance_reach": "<v>{{value}}</v> of the payout limit reached.",
-    "stat_unpaid_balance_reach_est": "The limit will be reached <v>{{value}}</v>",
+    "stat_unpaid_balance_reach_est": "The limit will be reached <v>{{value}}</v>.",
+    "stat_unpaid_balance_reach_ok": "Your payout will be processed on the next payment round if the fees match your preferences.",
     "stat_estimate": "Estimated Earnings",
     "stat_estimate_daily": "daily",
     "stat_estimate_weekly": "weekly",
     "stat_estimate_monthly": "monthly",
     "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimate."
+  },
+  "nav": {
+    "stats": "Stats",
+    "payments": "Payments",
+    "rewards": "Rewards",
+    "blocks": "Blocks"
+  },
+  "stats": {
+    "active_worker": {
+      "title": "Worker",
+      "reset": "Reset"
+    },
+    "hashrate": {
+      "title": "Hashrate",
+      "current": "Current Effective",
+      "average": "Average Effective",
+      "reported": "Reported"
+    },
+    "shares": {
+      "title": "Shares",
+      "valid": "Valid",
+      "stale": "Stale",
+      "invalid": "Invalid"
+    },
+    "hashrate_chart": {
+      "title": "Hashrate",
+      "effective": "Effective Hashrate",
+      "average": "Average Effective Hashrate",
+      "reported": "Reported Hashrate"
+    },
+    "shares_chart": {
+      "title": "Shares",
+      "valid": "Valid Shares",
+      "stale": "Stale Shares",
+      "invalid": "Invalid Shares"
+    },
+    "table": {
+      "title_active": "Active workers",
+      "title_inactive": "Inactive workers",
+      "search_placeholder": "Filter by worker",
+      "table_head": {
+        "name": "Name",
+        "reported_hashrate": "Reported Hashrate",
+        "current_e_hashrate": "Current E. Hashrate",
+        "average_hashrate": "Average Hashrate",
+        "valid": "Valid Shares",
+        "stale": "Stale Shares",
+        "invalid": "Invalid Shares",
+        "last_seen": "Last Seen"
+      }
+    }
   }
 }

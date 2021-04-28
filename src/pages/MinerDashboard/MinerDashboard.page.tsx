@@ -35,6 +35,7 @@ import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { fetchApi } from 'src/utils/fetchApi';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
+import { useTranslation } from 'react-i18next';
 
 const TabContent = styled.div`
   box-shadow: inset -1px 18px 19px -13px var(--bg-secondary);
@@ -84,6 +85,7 @@ export const MinerDashboardPageContent: React.FC<
   const activeCoin = useActiveCoin(coinTicker);
   const match = useRouteMatch();
   const counterTicker = useCounterTicker();
+  const { t } = useTranslation('dashboard');
 
   const d = useDispatch();
 
@@ -135,22 +137,22 @@ export const MinerDashboardPageContent: React.FC<
             },
           }}
         >
-          <FaChartBar /> Stats
+          <FaChartBar /> {t('nav.stats')}
         </TabLink>
         <TabLink
           to={{ pathname: `${match.url}/payments`, state: { noscroll: true } }}
         >
-          <FaWallet /> Payments
+          <FaWallet /> {t('nav.payments')}
         </TabLink>
         <TabLink
           to={{ pathname: `${match.url}/rewards`, state: { noscroll: true } }}
         >
-          <FaChartBar /> Rewards
+          <FaChartBar /> {t('nav.rewards')}
         </TabLink>
         <TabLink
           to={{ pathname: `${match.url}/blocks`, state: { noscroll: true } }}
         >
-          <FaCube /> Blocks
+          <FaCube /> {t('nav.blocks')}
         </TabLink>
       </TabLinkContainer>
       <TabContent id="workertabs">
