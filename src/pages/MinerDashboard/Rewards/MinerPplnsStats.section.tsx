@@ -10,7 +10,10 @@ import {
 } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { fetchApi } from 'src/utils/fetchApi';
-import { useLocalizedSiFormatter } from 'src/utils/si.utils';
+import {
+  useLocalizedNumberFormatter,
+  useLocalizedSiFormatter,
+} from 'src/utils/si.utils';
 
 import {
   color,
@@ -30,6 +33,7 @@ import {
   responsiveRule,
 } from 'src/components/Chart/ChartContainer';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
+import { useTranslation } from 'react-i18next';
 
 export const MinerPplnsStats: React.FC<{
   averagePoolHashrate: number | null | undefined;
@@ -37,6 +41,7 @@ export const MinerPplnsStats: React.FC<{
 }> = ({ averagePoolHashrate = 0, poolHashrate = 0 }) => {
   const { data: headerStatsData } = useReduxState('minerHeaderStats');
   const siFormatter = useLocalizedSiFormatter();
+  const { t } = useTranslation('dashboard');
 
   const [shareLogLength, setShareLogLength] = React.useState(0);
   const {
@@ -44,6 +49,7 @@ export const MinerPplnsStats: React.FC<{
   } = useRouteMatch<{ address: string }>();
   const activeCoinTicker = useActiveCoinTicker();
   const activeCoin = useActiveCoin();
+  const numberFormatter = useLocalizedNumberFormatter();
 
   const shareLogState = useAsyncState<number[]>();
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
@@ -131,10 +137,12 @@ export const MinerPplnsStats: React.FC<{
       let yourSharesSeries = sharesChart.series.push(new ColumnSeries());
 
       yourSharesSeries.dataFields.categoryX = 'number';
-      yourSharesSeries.name = 'Valid Shares';
+      yourSharesSeries.name = t('rewards.pplns_chart.valid_shares');
       yourSharesSeries.yAxis = sharesAxis;
       yourSharesSeries.dataFields.valueY = 'your';
-      yourSharesSeries.tooltipText = `{valueY} Shares ({roundShare}%)`;
+      yourSharesSeries.tooltipText = `{valueY} ${t(
+        'rewards.pplns_chart.valid_shares'
+      )} ({roundShare}%)`;
 
       sharesChart.cursor = new XYCursor();
       sharesChart.legend = new Legend();
@@ -151,21 +159,17 @@ export const MinerPplnsStats: React.FC<{
         sharesChart.dispose();
       };
     }
-  }, [shareLogState.data]);
+  }, [shareLogState.data, t]);
 
   return (
     <>
-      <h2>Advanced PPLNS Statistics</h2>
+      <h2>{t('rewards.pplns.title')}</h2>
       <CardGrid>
         <Card padding>
           <CardTitle>
-            {'Average Paying Hashrate '}
+            {t('rewards.pplns.avp.title')}{' '}
             <Tooltip>
-              <TooltipContent
-                message={
-                  'Calculated based on current round share and the last 3 hours pool hashrate chart'
-                }
-              />
+              <TooltipContent message={t('rewards.pplns.avp.tooltip')} />
             </Tooltip>
           </CardTitle>
           <StatItem
@@ -179,7 +183,7 @@ export const MinerPplnsStats: React.FC<{
             subValue={
               poolHashrate &&
               headerStatsData &&
-              `Current: ${siFormatter(
+              `${t('rewards.pplns.avp.current')}: ${siFormatter(
                 poolHashrate * headerStatsData.roundShare,
                 { unit: 'H/s' }
               )}`
@@ -188,29 +192,31 @@ export const MinerPplnsStats: React.FC<{
         </Card>
         <Card padding>
           <CardTitle>
-            Current Round Share&nbsp;
+            {t('rewards.pplns.crs.title')}&nbsp;
             <Tooltip>
-              <TooltipContent message={'Derived from the share log'} />
+              <TooltipContent message={t('rewards.pplns.crs.tooltip')} />
             </Tooltip>
           </CardTitle>
           <StatItem
             value={
               headerStatsData &&
-              `${
-                Math.round(headerStatsData.roundShare * 100 * 100000000) /
-                100000000
-              }%`
+              numberFormatter(headerStatsData.roundShare, {
+                style: 'percent',
+                maximumFractionDigits: 8,
+              })
             }
             subValue={
               approximateBlockShare && (
-                <>Aproximate reward: {approximateBlockShare}</>
+                <>
+                  {t('rewards.pplns.crs.aprox')}: {approximateBlockShare}
+                </>
               )
             }
           />
         </Card>
         <Card padding>
           <CardTitle>
-            Share Log Wipeout Duration{' '}
+            {t('rewards.pplns.log.title')}&nbsp;
             <Tooltip>
               <TooltipContent
                 message={'Time for the round share to drop to zero'}
@@ -231,18 +237,20 @@ export const MinerPplnsStats: React.FC<{
             subValue={
               averagePoolHashrate &&
               shareLogLength &&
-              `${siFormatter(shareLogLength)} Shares in Log • ${siFormatter(
-                averagePoolHashrate,
-                {
-                  unit: 'H/s',
-                }
-              )}`
+              `${t('rewards.pplns.log.size', {
+                value: siFormatter(shareLogLength),
+              })} • ${siFormatter(averagePoolHashrate, {
+                unit: 'H/s',
+              })}`
             }
           />
         </Card>
       </CardGrid>
       <Spacer />
-      <ChartContainer title="Shares in the PPLNS Log" dataState={shareLogState}>
+      <ChartContainer
+        title={t('rewards.pplns_chart.title')}
+        dataState={shareLogState}
+      >
         <div id="shares-chart" style={{ width: '100%', height: '250px' }}></div>
       </ChartContainer>
     </>

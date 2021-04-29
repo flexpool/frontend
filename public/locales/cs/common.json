@@ -41,7 +41,8 @@
       "title": "Nastavení"
     },
     "bottom_message": "© 2020-{{currentYear}} Flexpool.io nebo jeho partnerů. Všechna práva vyhrazena.",
-    "open_source": "Open Source"
+    "open_source": "Open Source",
+    "translation_help": "Pomozte nám s překladem"
   },
   "theme": {
     "default": "Výchozí motiv",
@@ -51,5 +52,12 @@
   "list_navigation": {
     "previous": "Předchozí",
     "next": "Další"
+  },
+  "errors": {
+    "higher_than": "Musí být vyšší než {{value}}",
+    "required": "Povinné",
+    "Invalid IP Address": "Neplatná IP adresa",
+    "email_invalid": "Neplatná emailová adresa",
+    "email_required": "Zadejte prosím svou e-mailovou adresu"
   }
 }

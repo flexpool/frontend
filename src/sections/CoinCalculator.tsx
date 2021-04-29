@@ -7,10 +7,13 @@ import { Card, CardBody } from 'src/components/layout/Card';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { ApiPoolCoinFull } from 'src/types/PoolCoin.types';
-import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import {
+  useLocalizedCurrencyFormatter,
+  useLocalizedNumberFormatter,
+} from 'src/utils/si.utils';
 
 const FieldContainer = styled.div`
   display: flex;
@@ -61,6 +64,8 @@ export const CoinCalculator: React.FC<{ coin: ApiPoolCoinFull }> = ({
   const siMap = { '': 1, k: 1000, M: 1000000, G: 1000000000, T: 1000000000000 };
   const counterTicker = useCounterTicker();
   const counterPrice = coin.marketData.prices[counterTicker];
+  const numberFormatter = useLocalizedNumberFormatter();
+  const currencyFormatter = useLocalizedCurrencyFormatter();
 
   const periodNameMap: PeriodObject<string> = {
     d: t('coin_news_item.calculator.per_day'),
@@ -87,26 +92,20 @@ export const CoinCalculator: React.FC<{ coin: ApiPoolCoinFull }> = ({
     <div>
       <Formik initialValues={initValues} onSubmit={() => {}}>
         {({ values }) => {
-          const revenueEth = `${
-            Math.round(
-              values.val *
-                siMap[values.si] *
-                incomePerHash *
-                periodMap[values.period] *
-                100000
-            ) / 100000
-          } ${coin.ticker.toUpperCase()}`;
+          const revenueEth = `${numberFormatter(
+            values.val *
+              siMap[values.si] *
+              incomePerHash *
+              periodMap[values.period],
+            { maximumFractionDigits: 5 }
+          )} ${coin.ticker.toUpperCase()}`;
 
-          const revenueCounter = getDisplayCounterTickerValue(
-            Math.round(
-              values.val *
-                siMap[values.si] *
-                incomePerHash *
-                periodMap[values.period] *
-                100 *
-                counterPrice
-            ) / 100,
-            counterTicker
+          const revenueCounter = currencyFormatter(
+            values.val *
+              siMap[values.si] *
+              incomePerHash *
+              periodMap[values.period] *
+              counterPrice
           );
 
           return (

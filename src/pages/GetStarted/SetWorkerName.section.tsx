@@ -4,10 +4,13 @@ import { TextInput } from 'src/components/Form/TextInput';
 import { DivText, Highlight } from 'src/components/Typo/Typo';
 import { Spacer } from 'src/components/layout/Spacer';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const SetWorkerNameSection = () => {
   const history = useHistory();
   const { search } = useLocation();
+
+  const { t } = useTranslation('get-started');
 
   const value = React.useMemo(() => {
     const parsedSearch = qs.parse(search);
@@ -31,18 +34,14 @@ export const SetWorkerNameSection = () => {
   return (
     <>
       <h2>
-        <Highlight>#3</Highlight> Name your worker
+        <Highlight>#3</Highlight> {t('detail.worker.title')}
       </h2>
-      <p>
-        Naming your worker is recommended if you have multiple mining rigs
-        connected to Flexpool. This will give you more clarity about how your
-        mining rigs perform on your dashboard page.
-      </p>
+      <p>{t('detail.worker.description')}</p>
       <Spacer />
       <DivText>
         <TextInput
-          label="Worker name"
-          placeholder="e.g. MY_RIG_580x2"
+          label={t('detail.worker.worker_name')}
+          placeholder={t('detail.worker.worker_name_placeholder')}
           value={value}
           onChange={handleInputChange}
           spellCheck="false"

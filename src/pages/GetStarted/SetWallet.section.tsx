@@ -6,11 +6,13 @@ import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOut } from 'src/components/LinkOut';
 import React from 'react';
 import { MineableCoin } from './mineableCoinList';
+import { Trans, useTranslation } from 'react-i18next';
 export const SetWalletSection: React.FC<{ data: MineableCoin }> = ({
   data: { walletAddressExample, validator },
 }) => {
   const history = useHistory();
   const { search } = useLocation();
+  const { t } = useTranslation('get-started');
 
   const initValue = React.useMemo(() => {
     const parsedSearch = qs.parse(search);
@@ -47,34 +49,43 @@ export const SetWalletSection: React.FC<{ data: MineableCoin }> = ({
   return (
     <>
       <h2>
-        <Highlight>#1</Highlight> Get your wallet address
+        <Highlight>#1</Highlight> {t('detail.wallet.title')}
       </h2>
       <p>
-        The easiest way to get a wallet is to register on a{' '}
-        <b>cryptocurrency exchange</b> like{' '}
-        <LinkOut href="https://www.binance.com/en/register?ref=B2675KF5">
-          Binance (Ref)
-        </LinkOut>{' '}
-        or <LinkOut href="https://www.coinbase.com">Coinbase</LinkOut>.
+        <Trans
+          ns="get-started"
+          i18nKey="detail.wallet.desc_one"
+          components={{
+            binance: (
+              <LinkOut href="https://www.binance.com/en/register?ref=B2675KF5" />
+            ),
+            coinbase: <LinkOut href="https://www.coinbase.com" />,
+          }}
+        />
       </p>
       <p>
-        Although exchanges are comfortable and easy to use, they are not very
-        secure. You can use a non-custodial wallet, but the safest way to store
-        your funds is to use a <b>hardware wallet</b>.{' '}
-        <LinkOut href="https://www.ledger.com/">Ledger</LinkOut> and{' '}
-        <LinkOut href="https://trezor.io/">Trezor</LinkOut> are the most popular
-        ones.
+        <Trans
+          ns="get-started"
+          i18nKey="detail.wallet.desc_two"
+          components={{
+            ledger: <LinkOut href="https://www.ledger.com/" />,
+            trezor: <LinkOut href="https://trezor.io/" />,
+            strong: <strong />,
+          }}
+        />
       </p>
       <Spacer />
       <DivText>
         <TextInput
           autoComplete="off"
           spellCheck="false"
-          label="Wallet Address"
+          label={t('detail.wallet.wallet_address')}
           placeholder={walletAddressExample}
           value={value}
           onChange={handleInputChange}
-          errorMessage={checksumError ? 'Invalid wallet address' : null}
+          errorMessage={
+            checksumError ? t('detail.wallet.invalid_address') : null
+          }
         />
       </DivText>
     </>

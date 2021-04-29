@@ -24,6 +24,7 @@ import {
 import { isAfter, subHours } from 'date-fns';
 import { average } from 'src/utils/number.utils';
 import { AverageEffectivePeriods } from './minerStats.types';
+import { useTranslation } from 'react-i18next';
 
 export const StatsChart: React.FC<{
   coinTicker: string;
@@ -32,6 +33,7 @@ export const StatsChart: React.FC<{
 }> = (props) => {
   const { setAverageEffectivePeriods } = props;
   const [noDataAvailable, setNoDataAvailable] = useState(false);
+  const { t } = useTranslation('dashboard');
 
   const [sharesData, setSharesData] = React.useState<
     | {
@@ -91,7 +93,7 @@ export const StatsChart: React.FC<{
 
       let reportedHashrateSeries = hashrateChart.series.push(new LineSeries());
       reportedHashrateSeries.dataFields.dateX = 'date';
-      reportedHashrateSeries.name = 'Reported Hashrate';
+      reportedHashrateSeries.name = t('stats.hashrate_chart.reported');
       reportedHashrateSeries.yAxis = hashrateAxis;
       reportedHashrateSeries.dataFields.valueY = 'reportedHashrate';
       reportedHashrateSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.00 aH/s")}`;
@@ -102,7 +104,7 @@ export const StatsChart: React.FC<{
 
       let effectiveHashrateSeries = hashrateChart.series.push(new LineSeries());
       effectiveHashrateSeries.dataFields.dateX = 'date';
-      effectiveHashrateSeries.name = 'Effective Hashrate';
+      effectiveHashrateSeries.name = t('stats.hashrate_chart.effective');
       effectiveHashrateSeries.yAxis = hashrateAxis;
       effectiveHashrateSeries.dataFields.valueY = 'effectiveHashrate';
       effectiveHashrateSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.00 aH/s")}`;
@@ -115,7 +117,7 @@ export const StatsChart: React.FC<{
         new LineSeries()
       );
       averageEffectiveHashrateSeries.dataFields.dateX = 'date';
-      averageEffectiveHashrateSeries.name = 'Average Effective Hashrate';
+      averageEffectiveHashrateSeries.name = t('stats.hashrate_chart.average');
       averageEffectiveHashrateSeries.yAxis = hashrateAxis;
       averageEffectiveHashrateSeries.dataFields.valueY =
         'averageEffectiveHashrate';
@@ -140,9 +142,9 @@ export const StatsChart: React.FC<{
       };
 
       const shares = {
-        invalidShares: 'Invalid Shares',
-        staleShares: 'Stale Shares',
-        validShares: 'Valid Shares',
+        invalidShares: t('stats.shares_chart.invalid'),
+        staleShares: t('stats.shares_chart.stale'),
+        validShares: t('stats.shares_chart.valid'),
       };
 
       for (const share in shares) {
@@ -173,7 +175,7 @@ export const StatsChart: React.FC<{
         sharesChart.dispose();
       };
     }
-  }, [appTheme, sharesData, hashrateData]);
+  }, [appTheme, sharesData, hashrateData, t]);
 
   useEffect(() => {
     if (props.coinTicker === null) return;
@@ -253,14 +255,14 @@ export const StatsChart: React.FC<{
     <>
       {!noDataAvailable ? (
         <>
-          <ChartContainer title="Hashrate">
+          <ChartContainer title={t('stats.hashrate_chart.title')}>
             <div
               id="hashrate-chart"
               style={{ width: '100%', height: '250px' }}
             />
           </ChartContainer>
           <Spacer />
-          <ChartContainer title="Shares">
+          <ChartContainer title={t('stats.shares_chart.title')}>
             <div id="shares-chart" style={{ width: '100%', height: '250px' }} />
           </ChartContainer>
         </>

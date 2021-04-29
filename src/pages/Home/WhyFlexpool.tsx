@@ -42,7 +42,7 @@ export const WhyFlexpool = () => {
     <Wrapper>
       <Content padding>
         <Spacer size="xl" />
-        <Title>Why Flexpool</Title>
+        <Title>{t('why_section.title')}</Title>
         <ItemsContainer>
           <Item>
             <Image

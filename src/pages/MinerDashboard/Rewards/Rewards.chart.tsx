@@ -1,10 +1,6 @@
 import React from 'react';
 import { ApiMinerReward } from 'src/types/Miner.types';
-import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
-import {
-  useActiveCoin,
-  useCounterTicker,
-} from 'src/rdx/localSettings/localSettings.hooks';
+import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import {
   ChartContainer,
   responsiveRule,
@@ -21,6 +17,8 @@ import {
   ValueAxis,
   ColumnSeries,
 } from 'src/plugins/amcharts';
+import { useTranslation } from 'react-i18next';
+import { useLocalizedCurrencyFormatter } from 'src/utils/si.utils';
 
 const RewardsChart: React.FC<{
   rewards: ApiMinerReward[];
@@ -30,9 +28,9 @@ const RewardsChart: React.FC<{
 }> = (props) => {
   const { rewards, counterPrice } = props;
   const coin = useActiveCoin();
-  const counterTicker = useCounterTicker();
 
-  React.useEffect(() => {}, []);
+  const { t } = useTranslation('dashboard');
+  const currencyFormatter = useLocalizedCurrencyFormatter();
 
   React.useEffect(() => {
     if (!rewards || !counterPrice || !coin) return;
@@ -49,9 +47,8 @@ const RewardsChart: React.FC<{
           item.timestamp * 1000 + new Date().getTimezoneOffset() * 60 * 1000
         ),
         totalRewards: item.totalRewards / Math.pow(10, coin.decimalPlaces),
-        countervaluedRewards: getDisplayCounterTickerValue(
-          (item.totalRewards / Math.pow(10, coin.decimalPlaces)) * counterPrice,
-          counterTicker
+        countervaluedRewards: currencyFormatter(
+          (item.totalRewards / Math.pow(10, coin.decimalPlaces)) * counterPrice
         ),
       };
     });
@@ -72,11 +69,15 @@ const RewardsChart: React.FC<{
     let rewardSeries = rewardsChart.series.push(new ColumnSeries());
 
     rewardSeries.dataFields.dateX = 'date';
-    rewardSeries.name = 'Earnings (' + coin.ticker.toUpperCase() + ')';
+    rewardSeries.name = `${t(
+      'rewards.earnings_chart.earnings'
+    )} (${coin.ticker.toUpperCase()})`;
     rewardSeries.yAxis = rewardsAxis;
     rewardSeries.dataFields.valueY = 'totalRewards';
 
-    rewardSeries.tooltipText = `Daily Income: {valueY.value.formatNumber("#.0000000")} ETH ({countervaluedRewards})`;
+    rewardSeries.tooltipText = `${t(
+      'rewards.earnings_chart.daily_income'
+    )} {valueY.value.formatNumber("#.0000000")} ETH ({countervaluedRewards})`;
 
     rewardsChart.cursor = new XYCursor();
     rewardsChart.legend = new Legend();
@@ -85,12 +86,12 @@ const RewardsChart: React.FC<{
       rewardsChart.dispose();
     };
     // eslint-disable-next-line
-  }, [coin, rewards, counterPrice]);
+  }, [coin, rewards, counterPrice, t, currencyFormatter]);
 
   return (
     <>
       <ChartContainer
-        title="Earnings This Month"
+        title={t('rewards.earnings_chart.title')}
         dataState={{
           error: props.error,
           isLoading: props.isLoading,

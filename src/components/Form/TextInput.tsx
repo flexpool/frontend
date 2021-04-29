@@ -50,13 +50,21 @@ export const TextInput: React.FC<
       unit?: React.ReactNode;
     }
 > = (p) => {
-  const { unit, autoComplete, spellCheck, ...props } = getInputProps(p);
+  const {
+    unit,
+    autoComplete,
+    spellCheck,
+    type = 'text',
+    inputMode,
+    ...props
+  } = getInputProps(p);
 
   return (
     <FieldWrap {...props}>
       <Wrapper>
         <SText
-          type="text"
+          type={type}
+          inputMode={inputMode}
           value={props.value}
           onChange={props.onChange}
           onBlur={props.onBlur}

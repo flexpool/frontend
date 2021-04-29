@@ -309,9 +309,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         columns={columns}
         contentEmpty={
           <h3>
-            {!!address
-              ? t('table.title_miner', { count: 0 })
-              : t('table.title', { count: 0 })}
+            {!!address ? t('table.title_miner_zero') : t('table.title_zero')}
           </h3>
         }
       />

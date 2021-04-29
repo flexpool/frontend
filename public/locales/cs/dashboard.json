@@ -1,0 +1,183 @@
+{
+  "settings": {
+    "cta": "Nastavení",
+    "title": "Nastavení",
+    "ip": "IP adresa pro ověření",
+    "ip_hint": "Tip: Prohlížíte tuto stránku z",
+    "payout": {
+      "title": "Nastavení vyplácení",
+      "limit": "Limit vyplacení (min: {{min}})",
+      "limit_desc": "Vyplacení proběhne v okamžik, kdy zůstatek překročí {{value}}.",
+      "limit_err_higher": "Musí být vyšší než {{min}}",
+      "gas_limit": "Limit transakčního poplatku",
+      "gas_limit_desc": "Váš poplatek za transakci bude omezen na {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} limit výplaty). Vyplácení zůstatku neproběhne, pokud bude poplatek za transakci vyšší.",
+      "gas_limit_zero": "Transakční poplatek nebude omezen.",
+      "submit": "Aplikovat změny"
+    },
+    "notifications": {
+      "title": "E-mailová upozornění",
+      "email_enabled": "E-mailová upozornění zapnuta",
+      "email_disabled": "E-mailová upozornění vypnuta",
+      "send_to": "Odeslat upozornění na",
+      "send_to_placeholder": "tvuj@email.cz",
+      "check_worker_down": "Upozornit mě, když jeden z mých rigů přestane těžit",
+      "check_payout_sent": "Upozornit mě na vyplacení zůstatku",
+      "submit": "Aplikovat změny"
+    }
+  },
+  "header": {
+    "greet_period_morning": "Dobré ráno",
+    "greet_period_afternoon": "Dobré odpoledne",
+    "greet_period_evening": "Dobrý večer",
+    "greet_desc": "{{count}} rig těží {{coin}} a celkově hashuje {{hashrate}}.",
+    "greet_desc_1": "\"{{count}} workeři těží {{coin}} a hashují {{hashrate}}\"",
+    "greet_desc_2": "\"{{count}} workerů těží {{coin}} a hashují {{hashrate}}\"",
+    "greet_desc_3": "",
+    "greet_desc_4": "",
+    "greet_desc_5": "",
+    "greet_desc_plural": ".",
+    "info_payout_limit": "Limit vyplacení",
+    "info_gas_limit": "Limit transakčního poplatku",
+    "info_joined": "Připojil se",
+    "info_joined_tooltip": "Tvůj první share byl zaznamenán",
+    "info_coin_price": "{{coin}} hodnota",
+    "stat_workers": "Workeři online/offline",
+    "stat_unpaid_balance": "Nevyplacený zůstatek",
+    "stat_unpaid_balance_reach": "Dosaženo <v>{{value}}</v> cíle pro vyplacení.",
+    "stat_unpaid_balance_reach_est": "Cíl bude dosažen <v>{{value}}</v>.",
+    "stat_unpaid_balance_reach_ok": "Vyplacení proběhne v dalším kole vyplacování, pokud transakční poplatky odpovídají tvému nastavení.",
+    "stat_estimate": "Odhadovaná výtěžnost",
+    "stat_estimate_daily": "denně",
+    "stat_estimate_weekly": "týdně",
+    "stat_estimate_monthly": "měsíčně",
+    "stat_estimate_tooltip": "Kliknutím změníte zobrazení mezi denním, týdenním a měsíčním odhadem."
+  },
+  "nav": {
+    "stats": "Statistiky",
+    "payments": "Vyplácení",
+    "rewards": "Vytěženo",
+    "blocks": "Bloky"
+  },
+  "rewards": {
+    "head_title": "Odměny za těžbu",
+    "earnings_chart": {
+      "title": "Vytěženo tento měsíc",
+      "earnings": "Vytěženo",
+      "daily_income": "Denní příjem"
+    },
+    "past_earnings": {
+      "title": "Minulé výnosy",
+      "yesterday": "Včera",
+      "last_week": "Minulý týden",
+      "last_month": "Minulý měsíc"
+    },
+    "forecasted_earnings": {
+      "title": "Předpokládané výnosy",
+      "daily": "Denně",
+      "weekly": "Týdně",
+      "monthly": "Měsíčně"
+    },
+    "pplns": {
+      "title": "Pokročilé PPLNS statistiky",
+      "avp": {
+        "title": "Průměrný vyplácený hashrate",
+        "tooltip": "Vypočteno na základě aktuálního kola sharů a poslední 3 hodiny v grafu hashrate poolu.",
+        "current": "Aktuální"
+      },
+      "crs": {
+        "title": "Aktuální share kola",
+        "aprox": "Přibližná odměna",
+        "tooltip": "Odvozeno z share logu"
+      },
+      "log": {
+        "title": "Vyprázdnění Share Logu",
+        "tooltip": "Čas, kdy share kola spadne na nula.",
+        "size": "{{value}} sharů v logu"
+      }
+    },
+    "pplns_chart": {
+      "title": "Shary v PPLNS logu",
+      "valid_shares": "Platné shary"
+    }
+  },
+  "payments": {
+    "head_title": "Vyplácení",
+    "chart": {
+      "title": "Vyplacení v tomto roce",
+      "fee": "Poplatek",
+      "value": "Výše vyplacení"
+    },
+    "general": {
+      "title": "Všeobecné statistiky",
+      "total_paid": "Celkem vyplaceno",
+      "total_transactions": "Celkem transakcí",
+      "paid_in_fees": "{{value}} zaplaceno v poplatcích",
+      "average_payout_duration": "Průměrná doba mezi vyplacením",
+      "average_payout_duration_desc": "Průměrná doba mezi jednotlivými platbami"
+    },
+    "transaction_fees": {
+      "title": "Transakční poplatky",
+      "last": "Poslední transakce",
+      "fee": "{{value}} poplatek",
+      "average": "Průměrná cena transakčního poplatku",
+      "average_percent": "Průměrná cena transakčního poplatku %",
+      "average_cta": "Tipy jak snížit poplatky"
+    },
+    "table": {
+      "title": "Vyplácení",
+      "download": "Stáhnout CSV",
+      "table_head": {
+        "date": "Datum a čas",
+        "value": "Hodnota",
+        "fee": "Poplatek",
+        "duration": "Doba trvání",
+        "hash": "Hash"
+      }
+    }
+  },
+  "stats": {
+    "active_worker": {
+      "title": "Worker",
+      "reset": "Zrušit"
+    },
+    "hashrate": {
+      "title": "Hashrate",
+      "current": "Aktuální efektivní",
+      "average": "Průměrný efektivní",
+      "reported": "Nahlášený"
+    },
+    "shares": {
+      "title": "Shary",
+      "valid": "Platné",
+      "stale": "Stale",
+      "invalid": "Neplatné"
+    },
+    "hashrate_chart": {
+      "title": "Hashrate",
+      "effective": "Efektivní hashrate",
+      "average": "Průměrný efektivní hashrate",
+      "reported": "Nahlášený hashrate"
+    },
+    "shares_chart": {
+      "title": "Shary",
+      "valid": "Platné shary",
+      "stale": "Stale shary",
+      "invalid": "Neplatné shary"
+    },
+    "table": {
+      "title_active": "Aktivní workeři",
+      "title_inactive": "Neaktivní workeři",
+      "search_placeholder": "Filtrovat podle workera",
+      "table_head": {
+        "name": "Název",
+        "reported_hashrate": "Nahlášený hashrate",
+        "current_e_hashrate": "Aktuální e. hashrate",
+        "average_hashrate": "Průměrný hashrate",
+        "valid": "Platné shary",
+        "stale": "Stale shary",
+        "invalid": "Neplatné shary",
+        "last_seen": "Naposledy spatřen"
+      }
+    }
+  }
+}

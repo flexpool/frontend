@@ -14,8 +14,11 @@ import Modal from 'src/components/Modal/Modal';
 import { Mono, Ws } from 'src/components/Typo/Typo';
 import { CoinNews } from 'src/sections/CoinNews';
 import { ApiPoolCoinFull } from 'src/types/PoolCoin.types';
-import { useCounterValue } from 'src/utils/currencyValue';
-import { useLocalizedSiFormatter } from 'src/utils/si.utils';
+import {
+  useLocalizedCurrencyFormatter,
+  useLocalizedNumberFormatter,
+  useLocalizedSiFormatter,
+} from 'src/utils/si.utils';
 import styled from 'styled-components/macro';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import qs from 'query-string';
@@ -26,6 +29,7 @@ import { CardGrid } from 'src/components/layout/Card';
 import { CoinLogo } from 'src/components/CoinLogo';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { useTranslation } from 'react-i18next';
+import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 const ActionIconContainer = styled.div`
   display: inline-flex;
   & > * {
@@ -116,6 +120,9 @@ export const CoinsWeMineSection = () => {
   const poolCoinsFullState = useReduxState('poolCoinsFull');
   const { t } = useTranslation('home');
   const siFormatter = useLocalizedSiFormatter();
+  const currencyFormatter = useLocalizedCurrencyFormatter();
+  const numberFormatter = useLocalizedNumberFormatter();
+  const activeCounterTicker = useCounterTicker();
 
   const columns: DynamicListColumn<ApiPoolCoinFull>[] = React.useMemo(() => {
     return [
@@ -142,12 +149,12 @@ export const CoinsWeMineSection = () => {
         Component: ({ data }) => {
           const priceChange = data.marketData.priceChange;
           const priceChangeDirection = priceChange >= 0 ? 'up' : 'down';
-          const v = useCounterValue(data.marketData.prices);
+          const value = data.marketData.prices[activeCounterTicker];
 
           return (
             <Mono>
               <Ws>
-                {v}{' '}
+                {currencyFormatter(value)}{' '}
                 <PriceChange direction={priceChangeDirection}>
                   (
                   {priceChangeDirection === 'up' ? (
@@ -167,8 +174,9 @@ export const CoinsWeMineSection = () => {
         alignRight: true,
         skeletonWidth: 140,
         Component: ({ data }) => {
-          const v = useCounterValue(data.marketData.marketCaps);
-          return <>{v}</>;
+          const value = data.marketData.marketCaps[activeCounterTicker];
+
+          return <>{currencyFormatter(value, { maximumFractionDigits: 0 })}</>;
         },
       },
       {
@@ -196,7 +204,7 @@ export const CoinsWeMineSection = () => {
         alignRight: true,
         skeletonWidth: 50,
         Component: ({ data }) => {
-          return <>{data.minerCount}</>;
+          return <>{numberFormatter(data.minerCount)}</>;
         },
       },
       {
@@ -237,7 +245,7 @@ export const CoinsWeMineSection = () => {
         },
       },
     ];
-  }, [t, siFormatter]);
+  }, [t, siFormatter, currencyFormatter, numberFormatter, activeCounterTicker]);
 
   return (
     <Wrapper>

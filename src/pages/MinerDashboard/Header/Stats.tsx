@@ -5,12 +5,10 @@ import { useReduxState } from 'src/rdx/useReduxState';
 import {
   useActiveCoin,
   useActiveCoinTicker,
-  useCounterTicker,
 } from 'src/rdx/localSettings/localSettings.hooks';
 import styled from 'styled-components/macro';
 import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
-import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import { StatItem } from 'src/components/StatItem';
 import { useDailyRewardPerGhState } from 'src/hooks/useDailyRewardPerGhState';
 import { poolStatsGet } from 'src/rdx/poolStats/poolStats.actions';
@@ -20,6 +18,11 @@ import { FaCalendar, FaCalendarDay, FaCalendarWeek } from 'react-icons/fa';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { dateUtils } from 'src/utils/date.utils';
 import { addSeconds } from 'date-fns';
+import { Trans, useTranslation } from 'react-i18next';
+import {
+  useLocalizedCurrencyFormatter,
+  useLocalizedNumberFormatter,
+} from 'src/utils/si.utils';
 //
 
 const EstimatedIntervalSwitch = styled.span`
@@ -77,6 +80,9 @@ const BalanceProgressBar: React.FC<{
       setProgress(Math.round(value));
     }, 100);
   }, [value]);
+  const { t } = useTranslation('dashboard');
+  const numberFormatter = useLocalizedNumberFormatter();
+
   return (
     <Tooltip
       wrapIcon={false}
@@ -96,23 +102,37 @@ const BalanceProgressBar: React.FC<{
     >
       <TooltipContent>
         <PayoutText>
-          <PayoutNumber>{progress}%</PayoutNumber> of the payout limit reached.
+          <Trans
+            i18nKey="header.stat_unpaid_balance_reach"
+            ns="dashboard"
+            values={{
+              value: numberFormatter(progress / 100, {
+                style: 'percent',
+                maximumFractionDigits: 2,
+              }),
+            }}
+            components={{
+              v: <PayoutNumber />,
+            }}
+          />
         </PayoutText>
         {payoutInSeconds && payoutInSeconds > 0 ? (
           <PayoutText>
-            The limit will be reached{' '}
-            <PayoutNumber>
-              {dateUtils.formatDistance(
-                addSeconds(new Date(), payoutInSeconds)
-              )}
-            </PayoutNumber>
-            .
+            <Trans
+              i18nKey="header.stat_unpaid_balance_reach_est"
+              ns="dashboard"
+              values={{
+                value: dateUtils.formatDistance(
+                  addSeconds(new Date(), payoutInSeconds)
+                ),
+              }}
+              components={{
+                v: <PayoutNumber />,
+              }}
+            />
           </PayoutText>
         ) : (
-          <PayoutText>
-            Your payout will be processed on the next payment round if the fees
-            match your preferences
-          </PayoutText>
+          <PayoutText>{t('header.stat_unpaid_balance_reach_ok')}</PayoutText>
         )}
       </TooltipContent>
     </Tooltip>
@@ -123,17 +143,18 @@ type EstimateInterval = 1 | 7 | 30;
 
 export const HeaderStats: React.FC<{
   coin?: ApiPoolCoin;
-}> = ({ coin }) => {
+}> = () => {
   const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const minerDetailsState = useReduxState('minerDetails');
   const data = minerHeaderStatsState.data;
-  const counterTicker = useCounterTicker();
   const activeTicker = useActiveCoinTicker();
   const activeCoin = useActiveCoin();
   const settings = minerDetailsState.data;
   const d = useDispatch();
   const poolStatsState = useReduxState('poolStats');
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
+  const { t } = useTranslation('dashboard');
+  const currencyFormatter = useLocalizedCurrencyFormatter();
 
   const [
     estimateInterval,
@@ -147,10 +168,7 @@ export const HeaderStats: React.FC<{
   const balance = activeCoinFormatter(data?.balance, {
     maximumFractionDigits: 6,
   });
-  const tickerBalance = getDisplayCounterTickerValue(
-    data?.balanceCountervalue,
-    counterTicker
-  );
+  const tickerBalance = currencyFormatter(data?.balanceCountervalue || 0);
 
   const dailyRewardPerGhState = useDailyRewardPerGhState();
 
@@ -169,11 +187,10 @@ export const HeaderStats: React.FC<{
       : null,
     counterTicker:
       estimatedDailyEarnings && data?.countervaluePrice
-        ? getDisplayCounterTickerValue(
+        ? currencyFormatter(
             ((estimatedDailyEarnings * estimateInterval) /
-              Math.pow(10, activeCoin?.decimalPlaces || 1000000000)) *
-              data.countervaluePrice,
-            counterTicker
+              Math.pow(10, activeCoin?.decimalPlaces || 9)) *
+              data.countervaluePrice
           )
         : null,
   };
@@ -224,7 +241,7 @@ export const HeaderStats: React.FC<{
   return (
     <CardGrid>
       <Card padding>
-        <CardTitle>Workers Online/Offline</CardTitle>
+        <CardTitle>{t('header.stat_workers')}</CardTitle>
         <StatItem
           value={
             data ? (
@@ -242,7 +259,7 @@ export const HeaderStats: React.FC<{
         />
       </Card>
       <Card padding>
-        <CardTitle>Unpaid Balance</CardTitle>
+        <CardTitle>{t('header.stat_unpaid_balance')}</CardTitle>
         <StatItem
           value={balance}
           subValue={tickerBalance ? `≈ ${tickerBalance}` : null}
@@ -255,12 +272,12 @@ export const HeaderStats: React.FC<{
       </Card>
       <Card padding>
         <CardTitle>
-          Estimated earnings{' '}
+          {t('header.stat_estimate')}{' '}
           <EstimatedIntervalSwitch onClick={handleToggleEstimateInterval}>
-            ({estimateText}){' '}
+            ({t(`header.stat_estimate_${estimateText}`)}){' '}
             <Tooltip icon={<CalendarIcon />}>
               <TooltipContent>
-                Click to change between daily, weekly and monthly estimate.
+                {t('header.stat_estimate_tooltip')}
               </TooltipContent>
             </Tooltip>
           </EstimatedIntervalSwitch>
@@ -270,15 +287,6 @@ export const HeaderStats: React.FC<{
           subValue={estimated.counterTicker && <>≈ {estimated.counterTicker}</>}
         />
       </Card>
-      {/* <Card padding>
-        <CardTitle>Next Block Share</CardTitle>
-        <StatItem
-          value={
-            data && `${Math.round(data.roundShare * 100 * 10000) / 10000}%`
-          }
-          subValue={<>Approximate Reward: {approximateBlockShare}</>}
-        />
-      </Card> */}
     </CardGrid>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
-import { useLocalizedNumberValueFormatter } from 'src/utils/si.utils';
+import { useLocalizedNumberFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components';
 
 const Tick = styled.span`
@@ -13,7 +13,7 @@ export const useLocalizedActiveCoinValueFormatter = (
 ) => {
   const activeCoin = useActiveCoin();
 
-  const numberFormatter = useLocalizedNumberValueFormatter();
+  const numberFormatter = useLocalizedNumberFormatter();
 
   const formatter = React.useCallback(
     (value?: number, options?: Intl.NumberFormatOptions | undefined) => {

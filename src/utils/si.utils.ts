@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useCallback } from 'react';
+import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 
 const siSymbols = ['', 'k', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];
 
@@ -16,7 +17,28 @@ type FormatSiOptions = {
   lang?: string;
 };
 
-export const useLocalizedNumberValueFormatter = (
+/**
+ *
+ * @param currency if not provided, will use user's set counter ticker
+ * @returns
+ */
+export const useLocalizedCurrencyFormatter = (currency?: string) => {
+  const counterTicker = useCounterTicker();
+  return useLocalizedNumberFormatter({
+    style: 'currency',
+    currency: currency || counterTicker,
+    maximumFractionDigits: 2,
+  });
+};
+
+export const useLocalizedPercentFormatter = () => {
+  return useLocalizedNumberFormatter({
+    style: 'percent',
+    maximumFractionDigits: 2,
+  });
+};
+
+export const useLocalizedNumberFormatter = (
   defaultOptions?: Intl.NumberFormatOptions | undefined
 ) => {
   const { i18n } = useTranslation();
@@ -25,7 +47,10 @@ export const useLocalizedNumberValueFormatter = (
       value: number,
       options: Intl.NumberFormatOptions | undefined = defaultOptions
     ) => {
-      return Intl.NumberFormat(i18n.language, options).format(value);
+      return Intl.NumberFormat(i18n.language, {
+        ...defaultOptions,
+        ...options,
+      }).format(value);
     },
     [i18n.language, defaultOptions]
   );
@@ -34,7 +59,7 @@ export const useLocalizedNumberValueFormatter = (
 };
 
 export const useLocalizedSiFormatter = () => {
-  const numberFormatter = useLocalizedNumberValueFormatter();
+  const numberFormatter = useLocalizedNumberFormatter();
 
   return useCallback(
     (value?: number, opts?: FormatSiOptions) => {
