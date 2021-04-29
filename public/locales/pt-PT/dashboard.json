@@ -1,9 +1,9 @@
 {
   "settings": {
-    "cta": "Settings",
-    "title": "Settings",
-    "ip": "IP address for verification",
-    "ip_hint": "Hint: You are visiting this webpage from",
+    "cta": "Configurações",
+    "title": "Configurações",
+    "ip": "Endereço IP para verificação",
+    "ip_hint": "Dica: Estas a visitar esta página desde",
     "payout": {
       "title": "Payout Settings",
       "limit": "Payout limit (min: {{min}})",

@@ -1,0 +1,195 @@
+{
+  "list": {
+    "head_title": "Začni s námi těžit",
+    "title": "Začni s těžbou na Flexpoolu ještě dnes!"
+  },
+  "detail": {
+    "title": "{{coin}} těžba",
+    "wallet": {
+      "title": "Získej adresu svojí peněženky",
+      "desc_one": "Nejjednodušší způsob, jak získat vlastní adresu peněženky, je zaregistrovat se na burze kryptoměn, jako je <binance>Binance (Ref)</binance> nebo <coinbase>Coinbase</coinbase>.",
+      "desc_two": "Přestože peněženky na burzách jsou pohodlné a snadno použitelné, nejsou příliš bezpečné. Můžete použít peněženku bez úschovy, ale nejbezpečnějším způsobem, jak uložit vaše prostředky, je použít <strong>hardwarovou peněženku</strong>. <ledger>Ledger</ledger> a <trezor>Trezor</trezor> jsou nejoblíbenější.",
+      "wallet_address": "Adresa peněženky",
+      "invalid_address": "Neplatná adresa peněženky"
+    },
+    "region": {
+      "title": "Zvol si svůj region",
+      "description": "Pro nejlepší výkon si vyber server s nejnižší latencí k tvému rigu. Tabulka zobrazuje latenci mezi tvým prohlížečem a našimi servery.",
+      "table_head": {
+        "location": "Umístění",
+        "domain": "Doména",
+        "average_lat": "Průměrná latence"
+      }
+    },
+    "ports": {
+      "title": "Porty",
+      "description": "Velmi doporučujeme každému, aby při připojení k serverům Flexpool použil zabezpečený port. <more>Přečtěte si více o tom, proč by jste neměli používat nezabezpečené porty</more>. <strong>DŮLEŽITÉ</strong>: Použití SSL nesnižuje počet validních sharů.",
+      "ssl_port": "Bezpečný port SSL",
+      "tcp_port": "TCP port",
+      "tcp_port_tooltip": "Jsme důrazně proti používání nešifrovaného (TCP) připojení při těžbě na našem poolu. Toto spojení je zranitelné vůči útokům MITM (Man-In-The-Middle) což znamená, že pokud někdo zlovolně stojí mezi vaším workerem a poolem, může být část vaší hashrate odcizeno. Přečtěte si více na naší <more>FAQ stránce</more>."
+    },
+    "worker": {
+      "title": "Pojmenuj svého workera",
+      "description": "Pojmenování workera je doporučeno, pokud máš více těžebních zařízení připojených k Flexpoolu. To ti poskytne více jasných informací o tom, jak se jak se tvům rigům daří.",
+      "worker_name": "Název workera",
+      "worker_name_placeholder": "př. MUJ_RIG_RX480x12"
+    },
+    "software": {
+      "title": "Vyber těžební software",
+      "fee": "Poplatek"
+    },
+    "view": {
+      "title": "Zobrazit své statistiky",
+      "description": "Jakmile začneš těžbu, informace se zobrazí na tvém detailu peněženky. Může to trvat až 10 minut od prvního připojení.",
+      "cta": "Otevřít nástěnku"
+    }
+  },
+  "detail_eth": {
+    "title": "Těžba Etherea",
+    "pool_details": [
+      {
+        "key": "Schéma odměn",
+        "value": "PPLNS (platba za posledních N podílů)"
+      },
+      {
+        "key": "Poplatek poolu",
+        "value": "0.5%"
+      },
+      {
+        "key": "Bonusy",
+        "value": "90% bonusu MEV"
+      },
+      {
+        "key": "Vyplácí se",
+        "value": "Každých 10 minut"
+      },
+      {
+        "key": "Výše vyplacení",
+        "value": "od 0.01 ETH až do 100 ETH"
+      },
+      {
+        "key": "Doba potvrzení bloku",
+        "value": "120 bloků"
+      },
+      {
+        "key": "Obtížnost",
+        "value": "4 GH"
+      },
+      {
+        "key": "Algoritmus těžby",
+        "value": "Ethash"
+      }
+    ],
+    "hardware": [
+      {
+        "title": "GPU Těžba",
+        "key": "GPU",
+        "miners": [
+          {
+            "os": [
+              "windows",
+              "linux",
+              "hiveos"
+            ],
+            "title": "TeamRedMiner",
+            "key": "teamreadminer",
+            "description": "Nejlepší software pro AMD GPU",
+            "fee": [
+              "0.75",
+              1
+            ],
+            "compatibleGpus": [
+              "AMD"
+            ],
+            "downloadLink": "https://github.com/todxx/teamredminer/releases",
+            "cmd": "teamredminer.exe -a ethash -o stratum+ssl://CLOSEST_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME -p x --eth_stratum ethproxy"
+          },
+          {
+            "os": [
+              "windows",
+              "linux",
+              "hiveos"
+            ],
+            "title": "T-Rex Miner",
+            "key": "trexminer",
+            "description": "Nejlepší software pro NVIDIA karty řady 20/30",
+            "fee": [
+              1
+            ],
+            "compatibleGpus": [
+              "NVIDIA"
+            ],
+            "downloadLink": "https://github.com/trexminer/T-Rex/releases",
+            "cmd": "t-rex.exe -a ethash -o stratum+ssl://CLOSEST_SERVER:5555 -u WALLET_ADDRESS -p x -w WORKER_NAME"
+          },
+          {
+            "os": [
+              "windows",
+              "linux",
+              "hiveos"
+            ],
+            "title": "lolminer",
+            "key": "lolminer",
+            "description": "Nejlepší software pro 4GB zombie mód.",
+            "fee": [
+              "0.75"
+            ],
+            "compatibleGpus": [
+              "AMD",
+              "NVIDIA"
+            ],
+            "downloadLink": "https://github.com/Lolliedieb/lolMiner-releases/releases",
+            "cmd": "lolMiner.exe --algo ETHASH --pool stratum+ssl://CLOSEST_SERVER:5555 --user WALLET_ADDRESS.WORKER_NAME"
+          },
+          {
+            "os": [
+              "windows",
+              "linux",
+              "hiveos"
+            ],
+            "title": "ethminer",
+            "key": "ethminer",
+            "description": "Open-source těžař ethash bez poplatků. Vytvořeno ethereum komunitou.",
+            "fee": [
+              0
+            ],
+            "compatibleGpus": [
+              "AMD",
+              "NVIDIA"
+            ],
+            "downloadLink": "https://github.com/ethereum-mining/ethminer/releases",
+            "cmd": "ethminer.exe -R -P stratum1+ssl://WALLET_ADDRESS.WORKER_NAME@CLOSEST_SERVER:5555"
+          },
+          {
+            "os": [
+              "windows",
+              "linux",
+              "hiveos"
+            ],
+            "title": "PhoenixMiner",
+            "key": "phoenixminer",
+            "description": "Proprietární software s nejnižším dev poplatkem.",
+            "fee": [
+              "0.65"
+            ],
+            "compatibleGpus": [
+              "AMD",
+              "NVIDIA"
+            ],
+            "downloadLink": "https://github.com/PhoenixMinerDevTeam/PhoenixMiner/releases",
+            "cmd": "PhoenixMiner.exe -pool ssl://CLOSEST_SERVER:5555 -wal WALLET_ADDRESS.WORKER_NAME"
+          }
+        ]
+      }
+    ]
+  },
+  "regions": {
+    "us-east": "Spojené státy (východ)",
+    "us-west": "Spojené státy (západ)",
+    "de": "Německo",
+    "se": "Švédsko",
+    "sg": "Singapur",
+    "au": "Austrálie",
+    "br": "Brazílie"
+  }
+}

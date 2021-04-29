@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Page, Document } from 'react-pdf/dist/esm/entry.webpack';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import { ListPagination } from 'src/components/layout/List/ListPagination';
@@ -40,6 +41,7 @@ export const LatestReport: React.FC<{ src: string; date: Date }> = ({
   const [totalPages, setTotalPages] = React.useState<number>(0);
   const [activePage, setActivePage] = React.useState<number>(0);
   const [isLoading, setIsLoading] = React.useState(true);
+  const { t } = useTranslation('reports');
 
   const onDocumentLoad = (pdf: any) => {
     setTotalPages(pdf.numPages);
@@ -48,7 +50,9 @@ export const LatestReport: React.FC<{ src: string; date: Date }> = ({
 
   return (
     <>
-      <h2>Latest report ({dateUtils.format(date, 'MMMM y')})</h2>
+      <h2>
+        {t('latest')} ({dateUtils.format(date, 'MMMM y')})
+      </h2>
       <Container ref={wrapperRef}>
         {isLoading && <LoaderOverlayWithin />}
         <PageContainer>

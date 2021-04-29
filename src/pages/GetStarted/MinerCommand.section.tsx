@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { FaDownload } from 'react-icons/fa';
 import { Button } from 'src/components/Button';
 import { Img } from 'src/components/Img';
@@ -7,7 +8,7 @@ import { LinkOut } from 'src/components/LinkOut';
 import { Highlight } from 'src/components/Typo/Typo';
 import { getOsLogoUrl } from 'src/utils/staticImage.utils';
 import styled from 'styled-components/macro';
-import { GpuHardwareDetails } from './mineableCoinList';
+import { GpuHardwareDetails, MineableCoinHardware } from './mineableCoinList';
 import { MinerCommand } from './MinerCommand';
 
 const MinerHeader = styled.div`
@@ -74,13 +75,15 @@ const OsContainer = styled.div`
   }
 `;
 
-export const MinerCommandSection: React.FC<{ data: GpuHardwareDetails[] }> = ({
-  data,
-}) => {
+export const MinerCommandSection: React.FC<{
+  data: GpuHardwareDetails[];
+}> = ({ data }) => {
+  const { t } = useTranslation('get-started');
+
   return (
     <>
       <h2>
-        <Highlight>#4</Highlight> Choose your mining software
+        <Highlight>#4</Highlight> {t('detail.software.title')}
       </h2>
       <SoftwareWrapper>
         {data.map((miner) => (
@@ -98,7 +101,8 @@ export const MinerCommandSection: React.FC<{ data: GpuHardwareDetails[] }> = ({
                   </h3>
                   <p>{miner.description}</p>
                   <p>
-                    <strong>Fee: </strong> <Fee fee={miner.fee} />
+                    <strong>{t('detail.software.fee')}: </strong>{' '}
+                    <Fee fee={miner.fee} />
                   </p>
                 </div>
                 <OsContainer>

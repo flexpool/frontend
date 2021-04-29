@@ -1,6 +1,7 @@
 import { isAfter, subMonths } from 'date-fns';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 
 import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
@@ -90,18 +91,16 @@ export const OpenDataReportsPage = () => {
   }, []);
 
   const latestDate: Date | undefined = (datesState.data || [])[0];
+  const { t } = useTranslation('reports');
 
   return (
     <Page>
       <Helmet>
-        <title>Open Data Reports</title>
+        <title>{t('head_title')}</title>
       </Helmet>
       <Content md paddingLg>
-        <h1>Open Data Reports</h1>
-        <p>
-          Our initiative to provide clear and transparent progress reports about
-          what we are doing at Flexpool.
-        </p>
+        <h1>{t('title')}</h1>
+        <p>{t('description')}</p>
         {latestDate && (
           <LatestReport
             date={latestDate}
@@ -109,14 +108,14 @@ export const OpenDataReportsPage = () => {
           />
         )}
         <Spacer />
-        <h2>Reports Archive</h2>
+        <h2>{t('archive')}</h2>
         {(datesState.data || []).map((item) => (
           <ReportArchiveItem
             key={dateUtils.format(item, 'MMMM yy')}
             href={getReportUrlByDate(item)}
           >
             <div>
-              <ReportTitle>Flexpool Progress Report - </ReportTitle>
+              <ReportTitle>{t('report_item')} - </ReportTitle>
               {dateUtils.format(item, 'MMMM y')}
             </div>
             <div>
