@@ -169,7 +169,7 @@ export const MinerPplnsStats: React.FC<{
           <CardTitle>
             {t('rewards.pplns.avp.title')}{' '}
             <Tooltip>
-              <TooltipContent message={t('rewards.avp.tooltip')} />
+              <TooltipContent message={t('rewards.pplns.avp.tooltip')} />
             </Tooltip>
           </CardTitle>
           <StatItem

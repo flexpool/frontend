@@ -92,8 +92,7 @@ export const MinerRewardStatsSection: React.FC<{
       coinValue: item ? activeCoinFormatter(item) : '-',
       counterValue: item
         ? currencyFormatter(
-            (item / Math.pow(10, activeCoin?.decimalPlaces || 1000)) *
-              counterPrice
+            (item / Math.pow(10, activeCoin?.decimalPlaces || 3)) * counterPrice
           )
         : '-',
     }));
@@ -113,14 +112,15 @@ export const MinerRewardStatsSection: React.FC<{
         ? (averagePoolHashrate *
             dailyRewardPerGhState.data *
             headerStatsState.data?.roundShare) /
-          Math.pow(10, activeCoin?.decimalPlaces || 9)
+          1000000000
         : 0;
 
     return [1, 7, 30.5].map((item) => ({
       coinValue: daily ? activeCoinFormatter(daily * item) : '-',
       counterValue: daily
         ? currencyFormatter(
-            ((item * daily) / Math.pow(10, activeCoin?.decimalPlaces || 9)) *
+            ((item * daily) /
+              Math.pow(10, activeCoin?.decimalPlaces || 1000000000)) *
               counterPrice
           )
         : '-',
