@@ -103,6 +103,11 @@ const SocialIcons = styled.div`
   }
 `;
 
+const HelpText = styled.p`
+  margin-top: 0.3rem;
+  font-size: 0.875rem;
+`;
+
 export const FooterSection = () => {
   const { t } = useTranslation(['common']);
   return (
@@ -164,12 +169,11 @@ export const FooterSection = () => {
             <SelectTheme />
             <Spacer />
             <SelectLanguage />
-            <Spacer />
-            <p>
+            <HelpText>
               <LinkOut href="https://crowdin.com/project/flexpoolio-website">
                 {t('footer.translation_help')}
               </LinkOut>
-            </p>
+            </HelpText>
           </Section>
         </SectionContainer>
         <FooterEnd>
