@@ -110,7 +110,7 @@ export const NotificationSettings: React.FC = () => {
               />
               <Spacer />
               <TextField
-                name="ip"
+                name="ipAddress"
                 label={t('dashboard:settings.ip')}
                 placeholder={minerSettings.data!.ipAddress}
                 desc={
