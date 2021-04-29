@@ -86,7 +86,8 @@
       },
       "crs": {
         "title": "Current Round Share",
-        "aprox": "Aproximate reward"
+        "aprox": "Aproximate reward",
+        "tooltip": "Derived from the share log"
       },
       "log": {
         "title": "Share Log Wipeout Duration",

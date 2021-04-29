@@ -38,7 +38,7 @@
       "price": "Price",
       "market_cap": "Market Cap",
       "algorithm": "Algorithm",
-      "hashrate": "矿池算力",
+      "hashrate": "Hashrate",
       "miners": "Miners"
     },
     "item_cta": "Mine"

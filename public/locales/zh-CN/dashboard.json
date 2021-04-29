@@ -1,7 +1,7 @@
 {
   "settings": {
-    "cta": "偏好设置",
-    "title": "偏好设置",
+    "cta": "Settings",
+    "title": "Settings",
     "ip": "IP address for verification",
     "ip_hint": "Hint: You are visiting this webpage from",
     "payout": {
@@ -9,26 +9,26 @@
       "limit": "Payout limit (min: {{min}})",
       "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}.",
       "limit_err_higher": "Must be higher than {{min}}",
-      "gas_limit": "燃料价格限制",
+      "gas_limit": "Gas price limit",
       "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} of payout limit). You will not receive any payouts if gas price is higher.",
       "gas_limit_zero": "Your transaction fee will not be limited.",
-      "submit": "保存首选项"
+      "submit": "Apply changes"
     },
     "notifications": {
-      "title": "电子邮件通知",
-      "email_enabled": "电子邮件通知已启用",
-      "email_disabled": "电子邮件通知已禁用",
+      "title": "Email notifications",
+      "email_enabled": "Email notifications enabled",
+      "email_disabled": "Email notifications disabled",
       "send_to": "Send notifications to",
       "send_to_placeholder": "your@email.com",
       "check_worker_down": "Warn me when one of my workers goes down",
       "check_payout_sent": "Notify me when a payout has been sent",
-      "submit": "保存首选项"
+      "submit": "Apply changes"
     }
   },
   "header": {
-    "greet_period_morning": "早上好",
-    "greet_period_afternoon": "下午好",
-    "greet_period_evening": "晚上好",
+    "greet_period_morning": "Good morning",
+    "greet_period_afternoon": "Good afternoon",
+    "greet_period_evening": "Good evening",
     "greet_desc": "{{count}} worker is mining {{coin}} and is hashing {{hashrate}} in total.",
     "greet_desc_1": "",
     "greet_desc_2": "",
@@ -86,7 +86,8 @@
       },
       "crs": {
         "title": "Current Round Share",
-        "aprox": "Aproximate reward"
+        "aprox": "Aproximate reward",
+        "tooltip": "Derived from the share log"
       },
       "log": {
         "title": "Share Log Wipeout Duration",

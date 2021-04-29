@@ -1,13 +1,13 @@
 {
   "head_title": "Mined Blocks",
-  "title": "出块",
+  "title": "Blocks",
   "description": "History of mined blocks by Flexpool",
-  "average_luck": "平均幸运值",
+  "average_luck": "Average luck",
   "average_luck_tooltip": "Last 30 days average block luck.",
-  "current_luck": "当前幸运的",
+  "current_luck": "Current luck",
   "current_luck_tooltip": "Current round's block luck. This value is updated in real-time.",
-  "network_hashrate": "全网算力",
-  "network_difficulty": "全网难度值",
+  "network_hashrate": "Network Hashrate",
+  "network_difficulty": "Network difficulty",
   "network_difficulty_tooltip": "Average amount of how many hashes pool should produce to mine a block.",
   "table": {
     "title_zero": "Unable to retrieve pool data",
@@ -27,15 +27,15 @@
     "title_miner_5": "You have mined {{count}} blocks",
     "title_miner_plural": "You have mined {{count}} blocks",
     "table_head": {
-      "number": "号码",
-      "type": "类型",
-      "date": "日期",
-      "region": "地区",
+      "number": "Number",
+      "type": "Type",
+      "date": "Date",
+      "region": "Region",
       "miner": "Miner",
-      "reward": "奖励",
+      "reward": "Reward",
       "round_time": "Round Time",
-      "hash": "哈希",
-      "luck": "幸运的"
+      "hash": "Hash",
+      "luck": "Luck"
     }
   },
   "type": {
@@ -43,7 +43,7 @@
     "orphan": "Orphan",
     "uncle": "Uncle"
   },
-  "waiting_confirmation_tooltip": "等待确认",
+  "waiting_confirmation_tooltip": "Waiting for confirmation",
   "orphan_tooltip": "Orphan blocks are the blocks that were not included to the canonical chain. Typically, it happens because of the internal infrastructure problem on the Mining Pool, or due to the chain reorganizations, 51% attacks.",
   "uncle_tooltip": "Uncle blocks are blocks that have the same parent hash and number. They are caused because of the high latency between mining pools. Typically, they appear when two mining pools mine two blocks at the same time, both having the same block number."
 }

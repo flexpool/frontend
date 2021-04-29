@@ -1,9 +1,9 @@
 {
   "settings": {
-    "cta": "Configurações",
-    "title": "Configurações",
-    "ip": "Endereço IP para verificação",
-    "ip_hint": "Dica: Estas a visitar esta página desde",
+    "cta": "Settings",
+    "title": "Settings",
+    "ip": "IP address for verification",
+    "ip_hint": "Hint: You are visiting this webpage from",
     "payout": {
       "title": "Payout Settings",
       "limit": "Payout limit (min: {{min}})",
@@ -86,7 +86,8 @@
       },
       "crs": {
         "title": "Current Round Share",
-        "aprox": "Aproximate reward"
+        "aprox": "Aproximate reward",
+        "tooltip": "Derived from the share log"
       },
       "log": {
         "title": "Share Log Wipeout Duration",

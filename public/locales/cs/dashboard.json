@@ -86,7 +86,8 @@
       },
       "crs": {
         "title": "Aktuální share kola",
-        "aprox": "Přibližná odměna"
+        "aprox": "Přibližná odměna",
+        "tooltip": "Odvozeno z share logu"
       },
       "log": {
         "title": "Vyprázdnění Share Logu",
