@@ -1,10 +1,6 @@
 import React from 'react';
 import { ApiMinerReward } from 'src/types/Miner.types';
-import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
-import {
-  useActiveCoin,
-  useCounterTicker,
-} from 'src/rdx/localSettings/localSettings.hooks';
+import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import {
   ChartContainer,
   responsiveRule,
@@ -22,6 +18,7 @@ import {
   ColumnSeries,
 } from 'src/plugins/amcharts';
 import { useTranslation } from 'react-i18next';
+import { useLocalizedCurrencyFormatter } from 'src/utils/si.utils';
 
 const RewardsChart: React.FC<{
   rewards: ApiMinerReward[];
@@ -31,9 +28,9 @@ const RewardsChart: React.FC<{
 }> = (props) => {
   const { rewards, counterPrice } = props;
   const coin = useActiveCoin();
-  const counterTicker = useCounterTicker();
 
   const { t } = useTranslation('dashboard');
+  const currencyFormatter = useLocalizedCurrencyFormatter();
 
   React.useEffect(() => {
     if (!rewards || !counterPrice || !coin) return;
@@ -50,9 +47,8 @@ const RewardsChart: React.FC<{
           item.timestamp * 1000 + new Date().getTimezoneOffset() * 60 * 1000
         ),
         totalRewards: item.totalRewards / Math.pow(10, coin.decimalPlaces),
-        countervaluedRewards: getDisplayCounterTickerValue(
-          (item.totalRewards / Math.pow(10, coin.decimalPlaces)) * counterPrice,
-          counterTicker
+        countervaluedRewards: currencyFormatter(
+          (item.totalRewards / Math.pow(10, coin.decimalPlaces)) * counterPrice
         ),
       };
     });
@@ -90,7 +86,7 @@ const RewardsChart: React.FC<{
       rewardsChart.dispose();
     };
     // eslint-disable-next-line
-  }, [coin, rewards, counterPrice, t]);
+  }, [coin, rewards, counterPrice, t, currencyFormatter]);
 
   return (
     <>

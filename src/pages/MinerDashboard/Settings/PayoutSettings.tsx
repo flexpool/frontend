@@ -10,30 +10,31 @@ import { Spacer } from 'src/components/layout/Spacer';
 import {
   useActiveCoin,
   useActiveCoinTicker,
-  useCounterTicker,
 } from 'src/rdx/localSettings/localSettings.hooks';
 import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
 import { minerDetailsUpdatePayoutSettings } from 'src/rdx/minerDetails/minerDetails.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
-import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
-import { useLocalizedNumberValueFormatter } from 'src/utils/si.utils';
+import {
+  useLocalizedCurrencyFormatter,
+  useLocalizedNumberFormatter,
+} from 'src/utils/si.utils';
 
 export const PayoutSettings: React.FC = () => {
   const activeCoinTicker = useActiveCoinTicker();
   const activeCoin = useActiveCoin();
   const minerSettings = useReduxState('minerDetails');
   const minerHeaderStats = useReduxState('minerHeaderStats');
-  const counterTicker = useCounterTicker();
   const { t } = useTranslation(['dashboard', 'common']);
-  const numberFormatter = useLocalizedNumberValueFormatter();
+  const numberFormatter = useLocalizedNumberFormatter();
   const d = useDispatch();
   const {
     params: { address },
   } = useRouteMatch<{ address: string; coin: string }>();
 
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
+  const currencyFormatter = useLocalizedCurrencyFormatter();
 
   if (
     !minerSettings.data ||
@@ -117,13 +118,12 @@ export const PayoutSettings: React.FC = () => {
                     ? t('dashboard:settings.payout.gas_limit_desc', {
                         value: values.maxFeePrice,
                         valueUnit: feeDetails?.unit,
-                        valueTicker: getDisplayCounterTickerValue(
+                        valueTicker: currencyFormatter(
                           ((values.maxFeePrice *
                             activeCoin.transactionSize *
                             feeDetails.multiplier) /
                             Math.pow(10, activeCoin.decimalPlaces)) *
-                            minerHeaderStats.data!.countervaluePrice,
-                          counterTicker
+                            minerHeaderStats.data!.countervaluePrice
                         ),
                         percent: numberFormatter(
                           ((values.maxFeePrice *

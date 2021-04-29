@@ -5,12 +5,10 @@ import { useReduxState } from 'src/rdx/useReduxState';
 import {
   useActiveCoin,
   useActiveCoinTicker,
-  useCounterTicker,
 } from 'src/rdx/localSettings/localSettings.hooks';
 import styled from 'styled-components/macro';
 import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
-import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import { StatItem } from 'src/components/StatItem';
 import { useDailyRewardPerGhState } from 'src/hooks/useDailyRewardPerGhState';
 import { poolStatsGet } from 'src/rdx/poolStats/poolStats.actions';
@@ -21,7 +19,10 @@ import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { dateUtils } from 'src/utils/date.utils';
 import { addSeconds } from 'date-fns';
 import { Trans, useTranslation } from 'react-i18next';
-import { useLocalizedNumberValueFormatter } from 'src/utils/si.utils';
+import {
+  useLocalizedCurrencyFormatter,
+  useLocalizedNumberFormatter,
+} from 'src/utils/si.utils';
 //
 
 const EstimatedIntervalSwitch = styled.span`
@@ -80,7 +81,8 @@ const BalanceProgressBar: React.FC<{
     }, 100);
   }, [value]);
   const { t } = useTranslation('dashboard');
-  const numberFormatter = useLocalizedNumberValueFormatter();
+  const numberFormatter = useLocalizedNumberFormatter();
+
   return (
     <Tooltip
       wrapIcon={false}
@@ -141,11 +143,10 @@ type EstimateInterval = 1 | 7 | 30;
 
 export const HeaderStats: React.FC<{
   coin?: ApiPoolCoin;
-}> = ({ coin }) => {
+}> = () => {
   const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const minerDetailsState = useReduxState('minerDetails');
   const data = minerHeaderStatsState.data;
-  const counterTicker = useCounterTicker();
   const activeTicker = useActiveCoinTicker();
   const activeCoin = useActiveCoin();
   const settings = minerDetailsState.data;
@@ -153,6 +154,7 @@ export const HeaderStats: React.FC<{
   const poolStatsState = useReduxState('poolStats');
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const { t } = useTranslation('dashboard');
+  const currencyFormatter = useLocalizedCurrencyFormatter();
 
   const [
     estimateInterval,
@@ -166,10 +168,7 @@ export const HeaderStats: React.FC<{
   const balance = activeCoinFormatter(data?.balance, {
     maximumFractionDigits: 6,
   });
-  const tickerBalance = getDisplayCounterTickerValue(
-    data?.balanceCountervalue,
-    counterTicker
-  );
+  const tickerBalance = currencyFormatter(data?.balanceCountervalue || 0);
 
   const dailyRewardPerGhState = useDailyRewardPerGhState();
 
@@ -188,11 +187,10 @@ export const HeaderStats: React.FC<{
       : null,
     counterTicker:
       estimatedDailyEarnings && data?.countervaluePrice
-        ? getDisplayCounterTickerValue(
+        ? currencyFormatter(
             ((estimatedDailyEarnings * estimateInterval) /
-              Math.pow(10, activeCoin?.decimalPlaces || 1000000000)) *
-              data.countervaluePrice,
-            counterTicker
+              Math.pow(10, activeCoin?.decimalPlaces || 9)) *
+              data.countervaluePrice
           )
         : null,
   };

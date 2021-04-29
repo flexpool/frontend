@@ -5,14 +5,11 @@ import { Skeleton } from 'src/components/layout/Skeleton';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
-import {
-  useActiveCoinTicker,
-  useCounterTicker,
-} from 'src/rdx/localSettings/localSettings.hooks';
+import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
-import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import { dateUtils } from 'src/utils/date.utils';
+import { useLocalizedCurrencyFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components';
 
 const NoFeeLimit = styled.div`
@@ -57,11 +54,10 @@ export const MinerDetails: React.FC<{
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
   const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const maxFeePrice = settings?.maxFeePrice;
-  const counterTicker = useCounterTicker();
+  const currencyFormatter = useLocalizedCurrencyFormatter();
 
-  const counterValuePrice = getDisplayCounterTickerValue(
-    minerHeaderStatsState.data?.countervaluePrice,
-    counterTicker
+  const counterValuePrice = currencyFormatter(
+    minerHeaderStatsState.data?.countervaluePrice || 0
   );
 
   const { t } = useTranslation('dashboard');

@@ -5,7 +5,6 @@ import { useAsyncState } from 'src/hooks/useAsyncState';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { fetchApi } from 'src/utils/fetchApi';
-import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { dateUtils } from 'src/utils/date.utils';
 import { formatDistance } from 'date-fns';
@@ -13,7 +12,10 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { MinerPaymentsList } from './MinerPayments.list';
 import { useTranslation } from 'react-i18next';
-import { useLocalizedNumberValueFormatter } from 'src/utils/si.utils';
+import {
+  useLocalizedCurrencyFormatter,
+  useLocalizedNumberFormatter,
+} from 'src/utils/si.utils';
 
 type ApiPaymentStats = {
   countervalue: number;
@@ -43,7 +45,8 @@ export const GeneralPaymentStatsSection: React.FC<{
   const couterTicker = useCounterTicker();
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const { t } = useTranslation('dashboard');
-  const numberFormatter = useLocalizedNumberValueFormatter();
+  const numberFormatter = useLocalizedNumberFormatter();
+  const currencyFormatter = useLocalizedCurrencyFormatter();
 
   React.useEffect(() => {
     if (coin?.ticker) {
@@ -78,10 +81,9 @@ export const GeneralPaymentStatsSection: React.FC<{
 
   const totalPaidCounter =
     data && data.stats && coin && data.countervalue
-      ? getDisplayCounterTickerValue(
+      ? currencyFormatter(
           (data.stats.totalPaid / Math.pow(10, coin.decimalPlaces)) *
-            data.countervalue,
-          couterTicker
+            data.countervalue
         )
       : undefined;
 
@@ -89,10 +91,9 @@ export const GeneralPaymentStatsSection: React.FC<{
 
   const averageTransactionFeeCounter =
     data && coin && data.stats && data.countervalue
-      ? getDisplayCounterTickerValue(
+      ? currencyFormatter(
           (data.stats.averageFee / Math.pow(10, coin.decimalPlaces)) *
-            data.countervalue,
-          couterTicker
+            data.countervalue
         )
       : undefined;
 
@@ -102,10 +103,9 @@ export const GeneralPaymentStatsSection: React.FC<{
 
   const lastPaymentCounter =
     data && data.lastPayment && coin && data.countervalue
-      ? getDisplayCounterTickerValue(
+      ? currencyFormatter(
           (data.lastPayment.value / Math.pow(10, coin.decimalPlaces)) *
-            data.countervalue,
-          couterTicker
+            data.countervalue
         )
       : undefined;
 

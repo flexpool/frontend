@@ -15,8 +15,8 @@ import {
 } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiMinerReward } from 'src/types/Miner.types';
-import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import { fetchApi } from 'src/utils/fetchApi';
+import { useLocalizedCurrencyFormatter } from 'src/utils/si.utils';
 
 const getIndexPastInterval = (index: number) => {
   switch (index) {
@@ -54,6 +54,7 @@ export const MinerRewardStatsSection: React.FC<{
   const activeCoin = useActiveCoin();
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const { t } = useTranslation('dashboard');
+  const currencyFormatter = useLocalizedCurrencyFormatter();
 
   const headerStatsState = useReduxState('minerHeaderStats');
 
@@ -90,14 +91,19 @@ export const MinerRewardStatsSection: React.FC<{
     return summary.map((item) => ({
       coinValue: item ? activeCoinFormatter(item) : '-',
       counterValue: item
-        ? getDisplayCounterTickerValue(
+        ? currencyFormatter(
             (item / Math.pow(10, activeCoin?.decimalPlaces || 1000)) *
-              counterPrice,
-            counterTicker
+              counterPrice
           )
         : '-',
     }));
-  }, [summary, activeCoin, counterPrice, counterTicker, activeCoinFormatter]);
+  }, [
+    summary,
+    activeCoin,
+    counterPrice,
+    activeCoinFormatter,
+    currencyFormatter,
+  ]);
 
   const futureData = React.useMemo(() => {
     const daily =
@@ -107,17 +113,15 @@ export const MinerRewardStatsSection: React.FC<{
         ? (averagePoolHashrate *
             dailyRewardPerGhState.data *
             headerStatsState.data?.roundShare) /
-          1000000000
+          Math.pow(10, activeCoin?.decimalPlaces || 9)
         : 0;
 
     return [1, 7, 30.5].map((item) => ({
       coinValue: daily ? activeCoinFormatter(daily * item) : '-',
       counterValue: daily
-        ? getDisplayCounterTickerValue(
-            ((item * daily) /
-              Math.pow(10, activeCoin?.decimalPlaces || 1000000000)) *
-              counterPrice,
-            counterTicker
+        ? currencyFormatter(
+            ((item * daily) / Math.pow(10, activeCoin?.decimalPlaces || 9)) *
+              counterPrice
           )
         : '-',
     }));
@@ -127,8 +131,8 @@ export const MinerRewardStatsSection: React.FC<{
     activeCoin,
     headerStatsState.data?.roundShare,
     counterPrice,
-    counterTicker,
     activeCoinFormatter,
+    currencyFormatter,
   ]);
 
   const earningsCols: DynamicListColumn<{

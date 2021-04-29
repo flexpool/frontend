@@ -11,7 +11,7 @@ import {
 import { useReduxState } from 'src/rdx/useReduxState';
 import { fetchApi } from 'src/utils/fetchApi';
 import {
-  useLocalizedNumberValueFormatter,
+  useLocalizedNumberFormatter,
   useLocalizedSiFormatter,
 } from 'src/utils/si.utils';
 
@@ -49,7 +49,7 @@ export const MinerPplnsStats: React.FC<{
   } = useRouteMatch<{ address: string }>();
   const activeCoinTicker = useActiveCoinTicker();
   const activeCoin = useActiveCoin();
-  const numberFormatter = useLocalizedNumberValueFormatter();
+  const numberFormatter = useLocalizedNumberFormatter();
 
   const shareLogState = useAsyncState<number[]>();
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();

@@ -12,9 +12,11 @@ import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { minerPaymentsGet } from 'src/rdx/minerPayments/minerPayments.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
-import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import { dateUtils } from 'src/utils/date.utils';
-import { useLocalizedNumberValueFormatter } from 'src/utils/si.utils';
+import {
+  useLocalizedCurrencyFormatter,
+  useLocalizedNumberFormatter,
+} from 'src/utils/si.utils';
 import styled from 'styled-components';
 
 const HeaderSplit = styled.div`
@@ -31,7 +33,7 @@ export const MinerPaymentsList: React.FC<{
   const minerPayments = useReduxState('minerPayments');
   const counterTicker = useCounterTicker();
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
-  const numberFormatter = useLocalizedNumberValueFormatter();
+  const numberFormatter = useLocalizedNumberFormatter();
 
   React.useEffect(() => {
     if (coin?.ticker) {
@@ -54,6 +56,7 @@ export const MinerPaymentsList: React.FC<{
   const counterValuePrice = minerPayments.data?.countervalue || 1;
 
   const { t } = useTranslation('dashboard');
+  const currencyFormatter = useLocalizedCurrencyFormatter();
 
   return (
     <>
@@ -108,12 +111,8 @@ export const MinerPaymentsList: React.FC<{
                   counterValuePrice
                 : null;
 
-              const tickerDisplayValue = getDisplayCounterTickerValue(
-                tickerValue,
-                counterTicker
-              );
+              const tickerDisplayValue = currencyFormatter(tickerValue || 0);
 
-              //  * (minerPayments.data?.countervalue || 1)
               return (
                 <Ws>
                   <Mono>
@@ -137,10 +136,9 @@ export const MinerPaymentsList: React.FC<{
                     })}{' '}
                     (
                     {coin &&
-                      getDisplayCounterTickerValue(
+                      currencyFormatter(
                         (data.fee / Math.pow(10, coin.decimalPlaces)) *
-                          counterValuePrice,
-                        counterTicker
+                          counterValuePrice
                       )}
                     )
                   </Mono>

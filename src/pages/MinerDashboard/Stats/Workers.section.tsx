@@ -10,7 +10,7 @@ import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiMinerWorker } from 'src/types/Miner.types';
 import { dateUtils } from 'src/utils/date.utils';
 import {
-  useLocalizedNumberValueFormatter,
+  useLocalizedNumberFormatter,
   useLocalizedSiFormatter,
 } from 'src/utils/si.utils';
 import styled from 'styled-components/macro';
@@ -99,7 +99,7 @@ const MinerWorkersTable: React.FC<{
   const history = useHistory();
   const siFormatter = useLocalizedSiFormatter();
   const { t } = useTranslation('dashboard');
-  const numberFormatter = useLocalizedNumberValueFormatter();
+  const numberFormatter = useLocalizedNumberFormatter();
 
   const data = React.useMemo(() => {
     let res = unfilteredData;
