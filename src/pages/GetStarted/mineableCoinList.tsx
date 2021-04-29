@@ -80,7 +80,6 @@ export const mineableCoins: MineableCoin[] = [
       },
       {
         domain: 'eth-kr.flexpool.io',
-        title: 'South Korea',
         code: 'kr',
         imageCode: 'kr',
       },
