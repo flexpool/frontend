@@ -8,6 +8,7 @@ import { LinkOut } from 'src/components/LinkOut';
 import { Spacer } from 'src/components/layout/Spacer';
 import { Helmet } from 'react-helmet-async';
 import { Img } from 'src/components/Img';
+import { Trans, useTranslation } from 'react-i18next';
 
 const ColorContainer = styled.div`
   display: flex;
@@ -82,16 +83,20 @@ const Color: React.FC<{ colorCode: string; colorName: string }> = ({
 };
 
 export const BrandAssetsPage = () => {
+  const { t } = useTranslation('brand-assets');
   return (
     <Page>
       <Helmet>
-        <title>Brand Assets</title>
+        <title>{t('head_title')}</title>
       </Helmet>
       <Content md paddingLg>
-        <h1>Our Brand Name</h1>
+        <h2>{t('brand_name.title')}</h2>
         <p>
-          Our brand name is <b>Flexpool.io</b>. Words "Flex" and "pool" combined
-          together with one capital F and the .io ending.
+          <Trans
+            i18nKey="brand_name.description"
+            components={{ b: <b /> }}
+            ns="brand-assets"
+          />
         </p>
         {/* <div style={{ marginTop: "30px" }}>
       <BrandNameExample correct={true} example={"Flexpool"} />
@@ -102,45 +107,37 @@ export const BrandAssetsPage = () => {
       <BrandNameExample correct={false} example={"Flex pool"} />
       <BrandNameExample correct={false} example={"flexpool"} />
     </div> */}
-        <h1>Colors</h1>
+        <h2>{t('colors.title')}</h2>
         <ColorContainer>
-          <Color colorCode="#0069ff" colorName="Accent Color" />
-          <Color colorCode="#1633ff" colorName="Blue Color" />
-          <Color colorCode="#15cd72" colorName="Green Color" />
-          <Color colorCode="#edb431" colorName="Yellow Color" />
-          <Color colorCode="#ed4f32" colorName="Red Color" />
+          <Color colorCode="#0069ff" colorName={t('colors.accent')} />
+          <Color colorCode="#1633ff" colorName={t('colors.blue')} />
+          <Color colorCode="#15cd72" colorName={t('colors.green')} />
+          <Color colorCode="#edb431" colorName={t('colors.yellow')} />
+          <Color colorCode="#ed4f32" colorName={t('colors.red')} />
         </ColorContainer>
-        <h1>Typography</h1>
+        <h2>{t('typo.title')}</h2>
         <p>
-          We use <a href="https://fonts.google.com/specimen/Inter">Inter</a>{' '}
-          font across our website.
+          <Trans
+            i18nKey="typo.description"
+            ns="brand-assets"
+            values={{
+              fontName: 'Inter',
+            }}
+            components={{
+              font: <LinkOut href="https://fonts.google.com/specimen/Inter" />,
+            }}
+          />
         </p>
-        <h1>Branding Guidelines</h1>
-        <p>
-          By using our Branding Assets, you must follow our branding guidelines:
-          <ul style={{ marginLeft: '30px', marginTop: '15px' }}>
-            <li>
-              You are not allowed to alter the logo. This includes shape and
-              color changes.
-            </li>
-            <li style={{ marginTop: '5px' }}>
-              You are not allowed to use Flexpool.io Brand to imply a
-              relationship and/or an affiliation with any other business unless
-              we have announced the partnership. Example: "... in partnership
-              with Flexpool.io."
-            </li>
-            <li style={{ marginTop: '5px' }}>
-              You are not allowed to use the Flexpool.io Branding in illegal and
-              promotional context.
-            </li>
-          </ul>
-        </p>
+        <h2>{t('guidelines.title')}</h2>
+        <p>{t('guidelines.description')}</p>
+        <ul>
+          <li>{t('guidelines.item_one')}</li>
+          <li>{t('guidelines.item_two')}</li>
+          <li>{t('guidelines.item_three')}</li>
+        </ul>
         <div className="splitter" />
-        <h1>Downloads</h1>
-        <p>
-          We have collected a package containing all types of Flexpool.io logos
-          for both Ligth and Dark themes.
-        </p>
+        <h2>{t('downloads.title')}</h2>
+        <p>{t('downloads.description')}</p>
         <Logos>
           <LogoContainer>
             <Img
@@ -175,17 +172,23 @@ export const BrandAssetsPage = () => {
             as={LinkOut}
             href="http://static.flexpool.io/dl/Flexpool_Brand.zip"
           >
-            Download the Branding Pack
+            {t('downloads.cta')}
           </Button>
         </div>
         <div className="splitter" />
-        <h1>Legal Notices</h1>
+        <h2>{t('legal.title')}</h2>
         <p>
-          By using our Branding Assets, you agree with the Branding Guidelines
-          and our <a href="https://flexpool.io/legal/FP-TO.pdf">Terms</a>. If
-          you need to get assistance about the usage of the Flexpool.io
-          branding, you can contact us at{' '}
-          <a href="mailto:hq@flexpool.io">hq@flexpool.io</a>.
+          <Trans
+            i18nKey="legal.description"
+            ns="brand-assets"
+            values={{
+              email: 'hq@flexpool.io',
+            }}
+            components={{
+              terms: <LinkOut href="https://flexpool.io/legal/FP-TO.pdf" />,
+              email: <LinkOut href="mailto:hq@flexpool.io" />,
+            }}
+          />
         </p>
       </Content>
     </Page>
