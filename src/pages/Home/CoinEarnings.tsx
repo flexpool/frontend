@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { FaDiscord, FaReddit, FaRocket, FaTelegram } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { Button } from 'src/components/Button';
@@ -12,7 +13,11 @@ import { DISCORD_LINK, REDDIT_LINK, TELEGRAM_LINK } from 'src/constants';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoinFull } from 'src/types/PoolCoin.types';
-import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
+import {
+  useLocalizedCurrencyFormatter,
+  useLocalizedNumberFormatter,
+  useLocalizedPercentFormatter,
+} from 'src/utils/si.utils';
 import { getCoinIconUrl } from 'src/utils/staticImage.utils';
 import styled from 'styled-components/macro';
 
@@ -40,13 +45,7 @@ const EarningBox = styled.div`
     color: white;
   }
   background: rgba(255, 255, 255, 0.1);
-  /* background: linear-gradient(
-    -1450deg,
-    rgba(2, 0, 36, 0.1) 0%,
-    rgba(255, 255, 255, 0.3) 100%
-  ); */
   border-radius: 5px;
-  /* border: 1px solid rgba(0, 0, 0, 0.1); */
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
   padding: 1.5rem;
   display: flex;
@@ -169,6 +168,11 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
   const monthlyCounterPrice = monthlyPer100 * counterPrice;
   const dailyCounterPrice = dailyPer100 * counterPrice;
 
+  const { t } = useTranslation('home');
+  const currencyFormatter = useLocalizedCurrencyFormatter();
+  const percentFormatter = useLocalizedPercentFormatter();
+  const numberFormatter = useLocalizedNumberFormatter();
+
   return (
     <EarningBox>
       <HeadSplit>
@@ -181,55 +185,61 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
         <HeadContent>
           <h2>{data ? data.name : <Skeleton />}</h2>
           <Desc>
-            Estimated earnings{' '}
+            {t('coin_earnings_cards.estimated')}{' '}
             <Tooltip>
               <TooltipContent>
-                Estimated earnings are based on performance of mining last 7
-                days on our pool.
+                {t('coin_earnings_cards.estimated_tooltip')}
               </TooltipContent>
             </Tooltip>
           </Desc>
         </HeadContent>
-        {data?.ticker === 'eth' && (
-          <PoolDetails>
-            <p>
-              0.5% Pool Fee
-              <br />
-              90% of MEV Bonus
-            </p>
-          </PoolDetails>
-        )}
+        <PoolDetails>
+          <p>
+            {t('coin_earnings_cards.pool_fee', {
+              value: percentFormatter(5 / 1000),
+            })}
+            <br />
+            {data?.ticker === 'eth' &&
+              t('coin_earnings_cards.mev', { value: percentFormatter(0.9) })}
+          </p>
+        </PoolDetails>
       </HeadSplit>
       <IntervalContainer>
         <IntervalItem>
-          <p>100 MH/s daily</p>
+          <p>100 MH/s {t('coin_earnings_cards.daily')}</p>
           <FiatValue>
             {dailyCounterPrice ? (
-              getDisplayCounterTickerValue(dailyCounterPrice, counterTicker)
+              currencyFormatter(dailyCounterPrice)
             ) : (
               <Skeleton style={{ height: 25 }} />
             )}
           </FiatValue>
           <p>
             {dailyPer100 ? (
-              <>{dailyPer100.toFixed(6)} ETH</>
+              <>
+                {numberFormatter(dailyPer100, { maximumFractionDigits: 6 })}{' '}
+                {data?.ticker.toUpperCase()}
+              </>
             ) : (
               <Skeleton style={{ height: 10 }} />
             )}
           </p>
         </IntervalItem>
         <IntervalItem>
-          <p>100 MH/s monthly</p>
+          <p>100 MH/s {t('coin_earnings_cards.monthly')}</p>
           <FiatValue>
             {monthlyCounterPrice ? (
-              getDisplayCounterTickerValue(monthlyCounterPrice, counterTicker)
+              currencyFormatter(monthlyCounterPrice)
             ) : (
               <Skeleton style={{ height: 25 }} />
             )}
           </FiatValue>
           <Desc>
             {monthlyPer100 ? (
-              <>{monthlyPer100.toFixed(6)} ETH</>
+              <>
+                {numberFormatter(monthlyPer100, { maximumFractionDigits: 6 })}{' '}
+                {data?.ticker.toUpperCase()}
+              </>
             ) : (
               <Skeleton style={{ height: 10 }} />
             )}
@@ -242,7 +252,7 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
               as={Link}
               to={`/get-started/${data?.ticker}`}
             >
-              Start mining
+              {t('coin_earnings_cards.cta_mine')}
             </Button>
           </StartMiningContainer>
         )}
@@ -255,6 +265,7 @@ export const CoinEarnings = () => {
   const coinsFull = useReduxState('poolCoinsFull');
 
   const data = coinsFull.data || [];
+  const { t } = useTranslation('home');
 
   return (
     <Content>
@@ -272,11 +283,8 @@ export const CoinEarnings = () => {
               <FaRocket />
             </UnknownCoin>
             <HeadContent>
-              <h2>More Coins Coming Soon!</h2>
-              <p>
-                We are working to launch multiple pools in the near future. Stay
-                connected by joining our discord or telegram.
-              </p>
+              <h2>{t('coin_earnings_cards.more_title')}</h2>
+              <p>{t('coin_earnings_cards.more_description')}</p>
             </HeadContent>
           </HeadSplit>
           <IntervalContainer>

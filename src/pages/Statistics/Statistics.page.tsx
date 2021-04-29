@@ -1,17 +1,18 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-
 import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 import { HeaderStat } from 'src/components/layout/StatHeader';
+import { Luck } from 'src/components/Luck';
 import { StatBox, StatBoxContainer } from 'src/components/StatBox';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { poolStatsGet } from 'src/rdx/poolStats/poolStats.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
-import { formatSi } from 'src/utils/si.utils';
+import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components/macro';
 import PoolHashrateChart from './PoolHashRate.chart';
 
@@ -35,42 +36,57 @@ export const StatisticsPage = () => {
   }, [activeTicker, d]);
 
   const poolStatsState = useReduxState('poolStats');
+  const { t, i18n } = useTranslation('statistics');
+  const siFormatter = useLocalizedSiFormatter();
 
   return (
     <Page>
       <Hero>
         <Helmet>
-          <title>Statistics</title>
+          <title>{t('head_title')}</title>
         </Helmet>
         <HeaderStat>
-          <h1>Statistics</h1>
+          <h1>{t('title')}</h1>
         </HeaderStat>
         <Content>
           <StatBoxContainer>
             <StatBox
-              title="Pool hashrate"
-              value={formatSi(poolStatsState.data?.hashrate.total, 'H/s')}
+              title={t('pool_hashrate')}
+              value={siFormatter(poolStatsState.data?.hashrate.total, {
+                unit: 'H/s',
+              })}
             />
             <StatBox
-              title="Average Luck"
+              title={t('average_luck')}
               tooltip={
                 <Tooltip>
-                  <TooltipContent>
-                    Last 30 days average block luck.
-                  </TooltipContent>
+                  <TooltipContent>{t('average_luck_tooltip')}</TooltipContent>
                 </Tooltip>
               }
               value={
-                poolStatsState.data?.averageLuck &&
-                `${
-                  Math.round(
-                    (poolStatsState.data?.averageLuck || 0) * 100 * 10
-                  ) / 10
-                }%`
+                poolStatsState.data?.averageLuck && (
+                  <Luck value={poolStatsState.data?.averageLuck} />
+                )
               }
             />
-            <StatBox title="Miners" value={poolStatsState.data?.minerCount} />
-            <StatBox title="Workers" value={poolStatsState.data?.workerCount} />
+            <StatBox
+              title={t('miners')}
+              value={
+                poolStatsState.data?.minerCount &&
+                Intl.NumberFormat(i18n.language).format(
+                  poolStatsState.data?.minerCount
+                )
+              }
+            />
+            <StatBox
+              title={t('workers')}
+              value={
+                poolStatsState.data?.workerCount &&
+                Intl.NumberFormat(i18n.language).format(
+                  poolStatsState.data?.workerCount
+                )
+              }
+            />
           </StatBoxContainer>
         </Content>
         <Content>

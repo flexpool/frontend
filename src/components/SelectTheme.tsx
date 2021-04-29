@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
 import { LocalSettingsState } from 'src/rdx/localSettings/localSettings.reducer';
@@ -34,6 +35,7 @@ const OptionWrapper = styled.div`
 export const SelectTheme = () => {
   const localSettings = useReduxState('localSettings');
   const d = useDispatch();
+  const { t } = useTranslation('common');
 
   const handleTickerChange = React.useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -55,7 +57,7 @@ export const SelectTheme = () => {
         {
           label: (
             <OptionWrapper>
-              <CircleSystem /> Default theme
+              <CircleSystem /> {t('theme.default')}
             </OptionWrapper>
           ),
           value: 'system',
@@ -63,7 +65,7 @@ export const SelectTheme = () => {
         {
           label: (
             <OptionWrapper>
-              <CircleDark /> Dark Theme
+              <CircleDark /> {t('theme.dark')}
             </OptionWrapper>
           ),
           value: 'dark',
@@ -71,7 +73,7 @@ export const SelectTheme = () => {
         {
           label: (
             <OptionWrapper>
-              <CircleLight /> Light Theme
+              <CircleLight /> {t('theme.light')}
             </OptionWrapper>
           ),
           value: 'light',

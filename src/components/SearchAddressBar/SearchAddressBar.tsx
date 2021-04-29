@@ -1,5 +1,6 @@
 import { Field, Form, Formik } from 'formik';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { FaSearch } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
 import { useAsyncState } from 'src/hooks/useAsyncState';
@@ -97,6 +98,7 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
   const searchState = useAsyncState<string | null>('addressSearch', null);
   const history = useHistory();
   const searchData = searchAddressStorage.get() || [];
+  const { t } = useTranslation(['common']);
 
   const handleSearch = React.useCallback(
     async (address: string) => {
@@ -148,7 +150,7 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
                 name="addrsearch"
                 spellCheck="false"
                 autoComplete="off"
-                placeholder="Search by your mining address"
+                placeholder={t('searchbar.placeholder')}
               />
               {showResult && searchData && searchData.length > 0 && (
                 <ResultWrapper>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { BsArrowRight, BsArrowLeft } from 'react-icons/bs';
 import { Button } from 'src/components/Button';
 import { clx } from 'src/utils/clx';
@@ -60,6 +61,7 @@ export const ListPagination: React.FC<{
   setCurrentPage: (page: number) => void;
 }> = (props) => {
   const { totalPages, currentPage, setCurrentPage } = props;
+  const { t } = useTranslation('common');
 
   var pagesShown = 3;
   if (totalPages <= pagesShown) {
@@ -108,7 +110,7 @@ export const ListPagination: React.FC<{
     lastSelectionShown = page;
   }
 
-  if (totalPages < 1) {
+  if (totalPages <= 1) {
     return null;
   }
 
@@ -120,7 +122,7 @@ export const ListPagination: React.FC<{
         onClick={setPage}
       >
         <BsArrowLeft style={{ marginRight: '10px' }} />
-        Previous
+        {t('list_navigation.previous')}
       </PageButton>
       <PageNumbers>
         {/* First page (enabled only if not available via regular selection) */}
@@ -150,7 +152,8 @@ export const ListPagination: React.FC<{
         value={currentPage + 1}
         onClick={setPage}
       >
-        Next <BsArrowRight style={{ marginLeft: '10px' }} />
+        {t('list_navigation.next')}{' '}
+        <BsArrowRight style={{ marginLeft: '10px' }} />
       </PageButton>
     </Wrapper>
   );

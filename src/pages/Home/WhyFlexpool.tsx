@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Img } from 'src/components/Img';
 import { Content } from 'src/components/layout/Content';
 import { Spacer } from 'src/components/layout/Spacer';
@@ -36,37 +37,32 @@ const Item = styled.div`
 `;
 
 export const WhyFlexpool = () => {
+  const { t } = useTranslation('home');
   return (
     <Wrapper>
       <Content padding>
         <Spacer size="xl" />
-        <Title>Why Flexpool</Title>
+        <Title>{t('why_section.title')}</Title>
         <ItemsContainer>
           <Item>
             <Image
               height="150"
               width="185"
               src="/illustrations/moon.svg"
-              alt="Lightining speed"
+              alt={t('why_section.item_1.title')}
             />
-            <h3>Lightning speed</h3>
-            <p>
-              We use specialized high-performance server clusters powered by
-              superfast software designed to handle over 100 TH/s.
-            </p>
+            <h3>{t('why_section.item_1.title')}</h3>
+            <p>{t('why_section.item_1.description')}</p>
           </Item>
           <Item>
             <Image
               height="150"
               width="242"
               src="/illustrations/horseride.svg"
-              alt="Great support"
+              alt={t('why_section.item_2.title')}
             />
-            <h3>Just Better</h3>
-            <p>
-              You can forget your poor mining experience. The Flexpool is backed
-              by high-quality support, and we are always happy to help!
-            </p>
+            <h3>{t('why_section.item_2.title')}</h3>
+            <p>{t('why_section.item_2.description')}</p>
           </Item>
         </ItemsContainer>
         <Spacer size="xl" />

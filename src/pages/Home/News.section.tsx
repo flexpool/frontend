@@ -2,6 +2,7 @@ import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import { Content } from 'src/components/layout/Content';
+import { useTranslation } from 'react-i18next';
 
 const ItemWrapper = styled.a`
   min-height: 120px;
@@ -117,26 +118,27 @@ const WrapperInner = styled.div`
   }
 `;
 export const NewsSection = () => {
+  const { t } = useTranslation('home');
   return (
     <Wrapper>
       <Content style={{ position: 'relative' }}>
         <WrapperInner>
           <HomeNewsItem
-            category="JOIN US"
-            title="Connect to Flexpool"
-            action="Get Started"
+            category={t('news_section.join_us.pre_title')}
+            title={t('news_section.join_us.title')}
+            action={t('news_section.join_us.cta')}
             to="/get-started"
           />
           <HomeNewsItem
-            category="LEARN"
-            title="Read our Blog"
-            action="Learn"
+            category={t('news_section.learn.pre_title')}
+            title={t('news_section.learn.title')}
+            action={t('news_section.learn.cta')}
             href="https://medium.com/flexpool/"
           />
           <HomeNewsItem
-            category="SUPPORT"
-            title="Get support"
-            action="Contact"
+            category={t('news_section.support.pre_title')}
+            title={t('news_section.support.title')}
+            action={t('news_section.support.cta')}
             to="/support"
           />
         </WrapperInner>

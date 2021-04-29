@@ -1,12 +1,13 @@
 import { isBefore, subDays } from 'date-fns';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { CardGrid } from 'src/components/layout/Card';
 import DynamicList, {
   DynamicListColumn,
 } from 'src/components/layout/List/List';
 import { Ws } from 'src/components/Typo/Typo';
 import { useAsyncState } from 'src/hooks/useAsyncState';
-import { getActiveCoinDisplayValue } from 'src/hooks/useDisplayReward';
+import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import {
   useActiveCoin,
   useActiveCoinTicker,
@@ -14,17 +15,29 @@ import {
 } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiMinerReward } from 'src/types/Miner.types';
-import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import { fetchApi } from 'src/utils/fetchApi';
+import { useLocalizedCurrencyFormatter } from 'src/utils/si.utils';
 
+const getIndexPastInterval = (index: number) => {
+  switch (index) {
+    case 0:
+      return 'rewards.past_earnings.yesterday';
+    case 1:
+      return 'rewards.past_earnings.last_week';
+    case 2:
+      return 'rewards.past_earnings.last_month';
+    default:
+      return 'Unknown';
+  }
+};
 const getIndexInterval = (index: number) => {
   switch (index) {
     case 0:
-      return 'Daily';
+      return 'rewards.forecasted_earnings.daily';
     case 1:
-      return 'Weekly';
+      return 'rewards.forecasted_earnings.weekly';
     case 2:
-      return 'Monthly';
+      return 'rewards.forecasted_earnings.monthly';
     default:
       return 'Unknown';
   }
@@ -39,6 +52,9 @@ export const MinerRewardStatsSection: React.FC<{
   const coinTicker = useActiveCoinTicker();
   const counterTicker = useCounterTicker();
   const activeCoin = useActiveCoin();
+  const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
+  const { t } = useTranslation('dashboard');
+  const currencyFormatter = useLocalizedCurrencyFormatter();
 
   const headerStatsState = useReduxState('minerHeaderStats');
 
@@ -73,16 +89,20 @@ export const MinerRewardStatsSection: React.FC<{
 
   const pastData = React.useMemo(() => {
     return summary.map((item) => ({
-      coinValue: item ? getActiveCoinDisplayValue(item, activeCoin) : '-',
+      coinValue: item ? activeCoinFormatter(item) : '-',
       counterValue: item
-        ? getDisplayCounterTickerValue(
-            (item / Math.pow(10, activeCoin?.decimalPlaces || 1000)) *
-              counterPrice,
-            counterTicker
+        ? currencyFormatter(
+            (item / Math.pow(10, activeCoin?.decimalPlaces || 3)) * counterPrice
           )
         : '-',
     }));
-  }, [summary, activeCoin, counterPrice, counterTicker]);
+  }, [
+    summary,
+    activeCoin,
+    counterPrice,
+    activeCoinFormatter,
+    currencyFormatter,
+  ]);
 
   const futureData = React.useMemo(() => {
     const daily =
@@ -96,15 +116,12 @@ export const MinerRewardStatsSection: React.FC<{
         : 0;
 
     return [1, 7, 30.5].map((item) => ({
-      coinValue: daily
-        ? getActiveCoinDisplayValue(daily * item, activeCoin)
-        : '-',
+      coinValue: daily ? activeCoinFormatter(daily * item) : '-',
       counterValue: daily
-        ? getDisplayCounterTickerValue(
+        ? currencyFormatter(
             ((item * daily) /
               Math.pow(10, activeCoin?.decimalPlaces || 1000000000)) *
-              counterPrice,
-            counterTicker
+              counterPrice
           )
         : '-',
     }));
@@ -114,19 +131,14 @@ export const MinerRewardStatsSection: React.FC<{
     activeCoin,
     headerStatsState.data?.roundShare,
     counterPrice,
-    counterTicker,
+    activeCoinFormatter,
+    currencyFormatter,
   ]);
 
   const earningsCols: DynamicListColumn<{
     coinValue: React.ReactNode;
     counterValue: React.ReactNode;
   }>[] = [
-    {
-      title: '',
-      Component: ({ index }) => {
-        return <strong>{getIndexInterval(index)}</strong>;
-      },
-    },
     {
       title: coinTicker,
       alignRight: true,
@@ -146,12 +158,34 @@ export const MinerRewardStatsSection: React.FC<{
   return (
     <CardGrid>
       <div>
-        <h2>Past Earnings</h2>
-        <DynamicList data={pastData} columns={earningsCols} />
+        <h2>{t('rewards.past_earnings.title')}</h2>
+        <DynamicList
+          data={pastData}
+          columns={[
+            {
+              title: '',
+              Component: ({ index }) => {
+                return <strong>{t(getIndexPastInterval(index))}</strong>;
+              },
+            },
+            ...earningsCols,
+          ]}
+        />
       </div>
       <div>
-        <h2>Forecasted Earnings</h2>
-        <DynamicList data={futureData} columns={earningsCols} />
+        <h2>{t('rewards.forecasted_earnings.title')}</h2>
+        <DynamicList
+          data={futureData}
+          columns={[
+            {
+              title: '',
+              Component: ({ index }) => {
+                return <strong>{t(getIndexInterval(index))}</strong>;
+              },
+            },
+            ...earningsCols,
+          ]}
+        />
       </div>
     </CardGrid>
   );

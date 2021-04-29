@@ -1,44 +1,97 @@
+import { useTranslation } from 'react-i18next';
+import { useCallback } from 'react';
+import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
+
 const siSymbols = ['', 'k', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y'];
 
-export const formatSi = (
-  value?: number,
-  unit: string = '',
-  opts?: {
-    decimals?: number;
-    /**
-     * default is 1000
-     * 1000: 23402 => 23.4 k, 1504 => 1.4 k
-     * 10000: 23402 => 23.4 k, 1504 => 1,504
-     * 100000: 23402 => 23,402, 1504 => 1,504
-     */
-    shortenAbove?: number;
-  }
+type FormatSiOptions = {
+  unit?: string;
+  decimals?: number;
+  /**
+   * default is 1000
+   * 1000: 23402 => 23.4 k, 1504 => 1.4 k
+   * 10000: 23402 => 23.4 k, 1504 => 1,504
+   * 100000: 23402 => 23,402, 1504 => 1,504
+   */
+  shortenAbove?: number;
+  lang?: string;
+};
+
+/**
+ *
+ * @param currency if not provided, will use user's set counter ticker
+ * @returns
+ */
+export const useLocalizedCurrencyFormatter = (currency?: string) => {
+  const counterTicker = useCounterTicker();
+  return useLocalizedNumberFormatter({
+    style: 'currency',
+    currency: currency || counterTicker,
+    maximumFractionDigits: 2,
+  });
+};
+
+export const useLocalizedPercentFormatter = () => {
+  return useLocalizedNumberFormatter({
+    style: 'percent',
+    maximumFractionDigits: 2,
+  });
+};
+
+export const useLocalizedNumberFormatter = (
+  defaultOptions?: Intl.NumberFormatOptions | undefined
 ) => {
-  const options = {
-    decimals: 1,
-    shortenAbove: 1000,
-    ...opts,
-  };
+  const { i18n } = useTranslation();
+  const formatter = useCallback(
+    (
+      value: number,
+      options: Intl.NumberFormatOptions | undefined = defaultOptions
+    ) => {
+      return Intl.NumberFormat(i18n.language, {
+        ...defaultOptions,
+        ...options,
+      }).format(value);
+    },
+    [i18n.language, defaultOptions]
+  );
 
-  let decimals = options.decimals;
+  return formatter;
+};
 
-  if (typeof value === 'undefined') {
-    return null;
-  }
+export const useLocalizedSiFormatter = () => {
+  const numberFormatter = useLocalizedNumberFormatter();
 
-  var siN = 0;
+  return useCallback(
+    (value?: number, opts?: FormatSiOptions) => {
+      const options = {
+        decimals: 1,
+        shortenAbove: 1000,
+        unit: '',
+        ...opts,
+      };
 
-  while (value >= options.shortenAbove) {
-    if (siN >= siSymbols.length) {
-      break;
-    }
-    siN++;
-    value /= 1000;
-  }
+      let decimals = options.decimals;
 
-  if (value < 10 && decimals === 1) decimals = 2;
+      if (typeof value === 'undefined') {
+        return null;
+      }
 
-  return `${Intl.NumberFormat().format(
-    Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals)
-  )} ${siSymbols[siN]}${unit}`;
+      var siN = 0;
+
+      while (value >= options.shortenAbove) {
+        if (siN >= siSymbols.length) {
+          break;
+        }
+        siN++;
+        value /= 1000;
+      }
+
+      if (value < 10 && decimals === 1) decimals = 2;
+
+      return `${numberFormatter(
+        Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals)
+      )} ${siSymbols[siN]}${options.unit}`;
+    },
+    [numberFormatter]
+  );
 };

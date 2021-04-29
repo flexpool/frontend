@@ -5,11 +5,13 @@ import { Spacer } from 'src/components/layout/Spacer';
 import React from 'react';
 import { Button } from 'src/components/Button';
 import { LinkOut } from 'src/components/LinkOut';
+import { useTranslation } from 'react-i18next';
 
 export const ViewDashboardSection: React.FC<{ ticker?: string }> = ({
   ticker,
 }) => {
   const { search } = useLocation();
+  const { t } = useTranslation('get-started');
 
   const walletAddress = React.useMemo(() => {
     const parsedSearch = qs.parse(search);
@@ -22,12 +24,9 @@ export const ViewDashboardSection: React.FC<{ ticker?: string }> = ({
   return (
     <>
       <h2>
-        <Highlight>#5</Highlight> View your stats
+        <Highlight>#5</Highlight> {t('detail.view.title')}
       </h2>
-      <p>
-        Once you start mining, your data should appear on your dashboard. Please
-        allow up to 10 minutes for the data to be processed.
-      </p>
+      <p>{t('detail.view.description')}</p>
       <Spacer />
       <p>
         <Button
@@ -35,7 +34,7 @@ export const ViewDashboardSection: React.FC<{ ticker?: string }> = ({
           as={LinkOut}
           href={`/miner/${ticker}/${walletAddress}`}
         >
-          Open dashboard
+          {t('detail.view.cta')}
         </Button>
       </p>
     </>

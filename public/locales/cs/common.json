@@ -1,0 +1,63 @@
+{
+  "searchbar": {
+    "placeholder": "Hledat podle Vaší adresy"
+  },
+  "nav": {
+    "statistics": "Statistika",
+    "blocks": "Bloky",
+    "miners": "Mineři",
+    "faq": "FAQ",
+    "support": "Podpora",
+    "get_started": "Začít s Těžbou",
+    "community_title": "Připoj se ke komunitě"
+  },
+  "footer": {
+    "company": {
+      "title": "O nás",
+      "contact_us": "Kontaktuj nás",
+      "brand_assets": "Značka a podklady",
+      "partners": "Partneři",
+      "business_dev": "Business Development",
+      "blog": "Blog",
+      "terms": "Pravidla a Podmínky",
+      "pp": "Zásady ochrany soukromí"
+    },
+    "resources": {
+      "title": "Zdroje",
+      "get_started": "Začít s Těžbou",
+      "faq": "Nejčastější otázky",
+      "reports": "Reporty",
+      "api_docs": "API Dokumentace"
+    },
+    "community": {
+      "title": "Komunita"
+    },
+    "contact": {
+      "title": "Kontaktuj nás",
+      "service_status": "Stav služby",
+      "support": "Podpora"
+    },
+    "preferences": {
+      "title": "Nastavení"
+    },
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io nebo jeho partnerů. Všechna práva vyhrazena.",
+    "open_source": "Open Source",
+    "translation_help": "Pomozte nám s překladem"
+  },
+  "theme": {
+    "default": "Výchozí motiv",
+    "dark": "Tmavý motiv",
+    "light": "Světlý motiv"
+  },
+  "list_navigation": {
+    "previous": "Předchozí",
+    "next": "Další"
+  },
+  "errors": {
+    "higher_than": "Musí být vyšší než {{value}}",
+    "required": "Povinné",
+    "Invalid IP Address": "Neplatná IP adresa",
+    "email_invalid": "Neplatná emailová adresa",
+    "email_required": "Zadejte prosím svou e-mailovou adresu"
+  }
+}

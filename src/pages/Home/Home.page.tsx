@@ -2,7 +2,7 @@ import { Content } from 'src/components/layout/Content';
 import { HeroBlue } from 'src/components/layout/Hero/HeroBlue';
 import { Page } from 'src/components/layout/Page';
 import { CoinsWeMineSection } from 'src/pages/Home/CoinsWeMine.section';
-import { GetStartedSection } from 'src/sections/GetStarted.section';
+import { GetStartedSection } from 'src/pages/Home/GetStarted.section';
 import { NewsSection } from './News.section';
 import styled from 'styled-components/macro';
 import { SearchAddressBar } from 'src/components/SearchAddressBar/SearchAddressBar';
@@ -13,6 +13,7 @@ import { WhyFlexpool } from './WhyFlexpool';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { poolCoinsFullGet } from 'src/rdx/poolCoinsFull/poolCoinsFull.actions';
+import { useTranslation } from 'react-i18next';
 
 const Hero = styled(HeroBlue)`
   min-height: 40vh;
@@ -42,18 +43,17 @@ export const HomePage = () => {
   React.useEffect(() => {
     d(poolCoinsFullGet());
   }, [d]);
+  const { t } = useTranslation('home');
 
   return (
     <PageContainer>
       <Helmet>
-        <title>The Most Advanced Mining Pool</title>
+        <title>{t('head_title')}</title>
       </Helmet>
       <Hero>
         <Content contentCenter style={{ position: 'relative', zIndex: 100 }}>
-          <h1>Building the Future of Mining Pools</h1>
-          <p>
-            Innovative mining pool created for modern cryptocurrency mining.
-          </p>
+          <h1>{t('title')}</h1>
+          <p>{t('description')}</p>
           <SearchWrapper>
             <SearchAddressBar />
           </SearchWrapper>
