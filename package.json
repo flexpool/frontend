@@ -57,6 +57,7 @@
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
     "lint": "eslint src",
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "prepare": "husky install"
   },
   "eslintConfig": {
@@ -96,6 +97,7 @@
     "prettier": "^2.2.1",
     "react-app-rewire-frontmatter-markdown": "^1.4.0",
     "react-app-rewired": "^2.1.8",
-    "sass": "^1.32.8"
+    "sass": "^1.32.8",
+    "source-map-explorer": "^2.5.2"
   }
 }
