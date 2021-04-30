@@ -49,7 +49,7 @@ const langs = [
   },
   {
     code: 'zh-CN',
-    title: '中国人',
+    title: '中文',
     flag: 'cn',
   },
   {

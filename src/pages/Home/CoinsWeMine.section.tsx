@@ -176,7 +176,7 @@ export const CoinsWeMineSection = () => {
         Component: ({ data }) => {
           const value = data.marketData.marketCaps[activeCounterTicker];
 
-          return <>{currencyFormatter(value, { maximumFractionDigits: 0 })}</>;
+          return <>{currencyFormatter(value)}</>;
         },
       },
       {
