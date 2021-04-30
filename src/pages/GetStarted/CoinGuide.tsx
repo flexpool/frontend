@@ -10,6 +10,7 @@ import { PingTestSection } from './PingTest.section';
 import { SetWalletSection } from './SetWallet.section';
 import { SetWorkerNameSection } from './SetWorkerName.section';
 import { ViewDashboardSection } from './ViewDashboard.section';
+import merge from 'lodash.merge';
 
 export const MineableCoinGuidePage: React.FC = () => {
   const {
@@ -25,13 +26,16 @@ export const MineableCoinGuidePage: React.FC = () => {
     return mineableCoins.find((item) => item.ticker === ticker);
   }, [ticker]);
 
-  const poolHw = t(`detail_${ticker}.hardware`, {
+  const jsonHw = t(`detail_${ticker}.hardware`, {
     returnObjects: true,
   }) as MineableCoinHardware[];
 
   const mineableCoinConfig = React.useMemo(() => {
-    return poolHw.find((item) => item.key === hw);
-  }, [poolHw, hw]);
+    const mergedHw = merge(mineableCoin?.hardware, jsonHw);
+    console.log(mergedHw);
+    console.log(mergedHw.find((item) => item.key === hw));
+    return mergedHw.find((item) => item.key === hw);
+  }, [jsonHw, mineableCoin?.hardware, hw]);
 
   if (!mineableCoin || !mineableCoinConfig) {
     return <Redirect to="/get-started" />;
