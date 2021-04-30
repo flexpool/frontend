@@ -2,7 +2,7 @@ import React from 'react';
 import { Img } from 'src/components/Img';
 import { LinkOut } from 'src/components/LinkOut';
 import { useAsyncState } from 'src/hooks/useAsyncState';
-import { dateUtils } from 'src/utils/date.utils';
+import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import { fetchApi } from 'src/utils/fetchApi';
 import { stringUtils } from 'src/utils/string.utils';
 import styled from 'styled-components';
@@ -83,6 +83,7 @@ const ArticleImageContainer = styled.div`
 `;
 
 const CoinNewsItem: React.FC<{ data: ApiCoinNewsArticle }> = ({ data }) => {
+  const dateFormatter = useLocalizedDateFormatter();
   return (
     <ArticleWrapper href={data.link}>
       <ArticleSplit>
@@ -103,7 +104,7 @@ const CoinNewsItem: React.FC<{ data: ApiCoinNewsArticle }> = ({ data }) => {
             />
             {data.source}
             {' — '}
-            {dateUtils.formatDistance(data.timestamp * 1000)}
+            {dateFormatter.distanceFromNow(data.timestamp * 1000)}
           </ArticleFooter>
         </div>
       </ArticleSplit>

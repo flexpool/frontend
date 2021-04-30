@@ -47,7 +47,7 @@ const PageWrapper = styled(ScrollArea)`
   padding: 1rem 1.25rem;
   flex-grow: 1;
   @media screen and (max-width: 768px) {
-    height: 1px;
+    min-height: 1px;
   }
   & > * {
     width: 100%;

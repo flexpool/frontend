@@ -4,6 +4,7 @@ import { Select } from './Form/Select/Select';
 import { Img } from './Img';
 import { useTranslation } from 'react-i18next';
 import { localStorage } from 'src/utils/localStorage';
+import { availableLangs } from 'src/i18n-select-lang';
 
 const TickerFlag = styled(Img)`
   height: 20px;
@@ -15,50 +16,6 @@ const TickerWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
-
-const langs = [
-  {
-    code: 'en-US',
-    title: 'English (US)',
-    flag: 'us',
-  },
-  {
-    code: 'en-GB',
-    title: 'English (UK)',
-    flag: 'gb',
-  },
-  {
-    code: 'ru',
-    title: 'Русский',
-    flag: 'ru',
-  },
-  {
-    code: 'pt-PT',
-    title: 'Português',
-    flag: 'pt',
-  },
-  {
-    code: 'de',
-    title: 'Deutsch',
-    flag: 'de',
-  },
-  {
-    code: 'es-ES',
-    title: 'Español',
-    flag: 'es',
-  },
-  {
-    code: 'zh-CN',
-    title: '中文',
-    flag: 'cn',
-  },
-  {
-    code: 'cs',
-    title: 'Česky',
-    flag: 'cz',
-  },
-];
-
 export const SelectLanguage = () => {
   const { i18n } = useTranslation(['common']);
   const handleLangChange = React.useCallback(
@@ -74,7 +31,7 @@ export const SelectLanguage = () => {
     <Select
       value={i18n.language}
       onChange={handleLangChange}
-      options={langs.map((item) => ({
+      options={availableLangs.map((item) => ({
         label: (
           <TickerWrapper>
             <TickerFlag

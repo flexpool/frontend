@@ -9,9 +9,10 @@ import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOut } from 'src/components/LinkOut';
 import { Sticker } from 'src/components/Sticker';
 import { useAsyncState } from 'src/hooks/useAsyncState';
-import { dateUtils } from 'src/utils/date.utils';
+import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import styled from 'styled-components/macro';
 import { LatestReport } from './LatestReport';
+import format from 'date-fns/format';
 
 const ReportArchiveItem = styled(LinkOut)`
   display: block;
@@ -34,7 +35,7 @@ const ReportTitle = styled.span`
 `;
 
 const getReportUrlByDate = (date: Date) =>
-  `https://static.flexpool.io/opendata/opendata_report_${dateUtils.format(
+  `https://static.flexpool.io/opendata/opendata_report_${format(
     date,
     'y_MM'
   )}.pdf`;
@@ -92,6 +93,7 @@ export const OpenDataReportsPage = () => {
 
   const latestDate: Date | undefined = (datesState.data || [])[0];
   const { t } = useTranslation('reports');
+  const dateFormatter = useLocalizedDateFormatter();
 
   return (
     <Page>
@@ -111,12 +113,12 @@ export const OpenDataReportsPage = () => {
         <h2>{t('archive')}</h2>
         {(datesState.data || []).map((item) => (
           <ReportArchiveItem
-            key={dateUtils.format(item, 'MMMM yy')}
+            key={dateFormatter.format(item, 'LLLL yy')}
             href={getReportUrlByDate(item)}
           >
             <div>
               <ReportTitle>{t('report_item')} - </ReportTitle>
-              {dateUtils.format(item, 'MMMM y')}
+              {dateFormatter.format(item, 'LLLL y')}
             </div>
             <div>
               <Sticker variant="primary">PDF</Sticker>
