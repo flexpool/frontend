@@ -23,7 +23,3 @@ someKey_2: "Máš {{count}} chickens // Máš (0,5-n) kuřat
 
 To check which indexes are used in your language, use this fiddle below:
 https://jsfiddle.net/sm9wgLze
-
-## Translating GET STARTED
-
-You will encounter single word keys like `AMD, windows, hiveos, 0.75` and os on. Please do not translate these as they are not meant to be translated.
