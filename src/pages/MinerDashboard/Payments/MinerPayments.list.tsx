@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 import { Button } from 'src/components/Button';
 import DynamicList from 'src/components/layout/List/List';
 import { Spacer } from 'src/components/layout/Spacer';
@@ -10,7 +11,9 @@ import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { minerPaymentsGet } from 'src/rdx/minerPayments/minerPayments.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
+import { ApiMinerPayment } from 'src/types/Miner.types';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
+import { getCoinLink } from 'src/utils/coinLinks.utils';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import {
   useLocalizedCurrencyFormatter,
@@ -33,6 +36,7 @@ export const MinerPaymentsList: React.FC<{
   const counterTicker = useCounterTicker();
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const numberFormatter = useLocalizedNumberFormatter();
+  const { push } = useHistory();
 
   React.useEffect(() => {
     if (coin?.ticker) {
@@ -57,6 +61,15 @@ export const MinerPaymentsList: React.FC<{
   const { t } = useTranslation('dashboard');
   const currencyFormatter = useLocalizedCurrencyFormatter();
   const dateFormatter = useLocalizedDateFormatter();
+  const handleRowClick = React.useCallback(
+    (data: ApiMinerPayment) => {
+      window.open(
+        getCoinLink('transaction', data.hash, coin?.ticker),
+        '_blank'
+      );
+    },
+    [coin?.ticker]
+  );
 
   return (
     <>
@@ -75,6 +88,7 @@ export const MinerPaymentsList: React.FC<{
         </Button>
       </HeaderSplit>
       <DynamicList
+        onRowClick={handleRowClick}
         pagination={{
           currentPage,
           setCurrentPage,
