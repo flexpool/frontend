@@ -32,8 +32,6 @@ export const MineableCoinGuidePage: React.FC = () => {
 
   const mineableCoinConfig = React.useMemo(() => {
     const mergedHw = merge(mineableCoin?.hardware, jsonHw);
-    console.log(mergedHw);
-    console.log(mergedHw.find((item) => item.key === hw));
     return mergedHw.find((item) => item.key === hw);
   }, [jsonHw, mineableCoin?.hardware, hw]);
 

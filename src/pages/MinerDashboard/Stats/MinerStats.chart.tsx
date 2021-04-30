@@ -238,9 +238,6 @@ export const StatsChart: React.FC<{
         }
       }
 
-      console.log(average(averageSixHours));
-      console.log(average(averageTwelveHours));
-
       setAverageEffectivePeriods({
         '6': average(averageSixHours),
         '12': average(averageTwelveHours),
