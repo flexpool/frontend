@@ -1,25 +1,24 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Redirect, useRouteMatch } from 'react-router';
-import { mineableCoins } from './mineableCoinList';
+import { MineableCoinHardware } from './mineableCoinList';
 
 export const MiningCoinSelectTypePage = () => {
   const {
     params: { ticker },
-    path,
     url,
   } = useRouteMatch<{
     ticker?: string;
     hw?: string;
   }>();
+  const { t } = useTranslation('get-started');
 
-  const mineableCoin = React.useMemo(() => {
-    return mineableCoins.find((item) => item.ticker === ticker);
-  }, [ticker]);
+  const poolHw = t(`detail_${ticker}.hardware`, {
+    returnObjects: true,
+  }) as MineableCoinHardware[];
 
-  if (mineableCoin && mineableCoin.hardware.length === 1) {
-    console.log(`${path}/${mineableCoin.hardware[0].key}`);
-    //
-    return <Redirect to={`${url}/${mineableCoin.hardware[0].key}`} />;
+  if (poolHw.length === 1) {
+    return <Redirect to={`${url}/${poolHw[0].key}`} />;
   }
 
   return <Redirect to="/get-started" />;

@@ -6,13 +6,14 @@ import { HeaderStat } from 'src/components/layout/StatHeader';
 import { StatBox, StatBoxContainer } from 'src/components/StatBox';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { fetchApi } from 'src/utils/fetchApi';
-import { formatSi } from 'src/utils/si.utils';
+import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import { BlocksSection } from 'src/sections/Blocks.section';
 import { Luck } from 'src/components/Luck';
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
+import { useTranslation } from 'react-i18next';
 
 export const BlocksPage = () => {
   const statsState = useAsyncState<{
@@ -22,6 +23,8 @@ export const BlocksPage = () => {
     networkDifficulty: number;
   } | null>('poolStats', null);
   const activeCoinTicker = useActiveCoinTicker();
+  const siFormatter = useLocalizedSiFormatter();
+  const { t } = useTranslation('blocks');
 
   React.useEffect(() => {
     const init = { query: { coin: activeCoinTicker } };
@@ -46,23 +49,21 @@ export const BlocksPage = () => {
   return (
     <Page>
       <Helmet>
-        <title>Blocks</title>
+        <title>{t('head_title')}</title>
       </Helmet>
       <HeaderStat>
-        <h1>Blocks</h1>
-        <p>History of mined blocks by Flexpool</p>
+        <h1>{t('title')}</h1>
+        <p>{t('description')}</p>
       </HeaderStat>
       <Content>
         <StatBoxContainer>
           <StatBox
             tooltip={
               <Tooltip>
-                <TooltipContent>
-                  Last 30 days average block luck.
-                </TooltipContent>
+                <TooltipContent>{t('average_luck_tooltip')}</TooltipContent>
               </Tooltip>
             }
-            title={<>Average Luck&nbsp;</>}
+            title={<>{t('average_luck')}&nbsp;</>}
             value={
               statsState.data && <Luck value={statsState.data.averageLuck} />
             }
@@ -70,37 +71,33 @@ export const BlocksPage = () => {
           <StatBox
             tooltip={
               <Tooltip>
-                <TooltipContent>
-                  Current round's block luck. This value is updated in
-                  real-time.
-                </TooltipContent>
+                <TooltipContent>{t('current_luck_tooltip')}</TooltipContent>
               </Tooltip>
             }
-            title="Current Luck"
+            title={t('current_luck')}
             value={
               statsState.data && <Luck value={statsState.data.currentLuck} />
             }
           />
           <StatBox
-            title="Network hashrate"
+            title={t('network_hashrate')}
             value={
               statsState.data &&
-              `${formatSi(statsState.data.networkHashrate, 'H/s')}`
+              `${siFormatter(statsState.data.networkHashrate, { unit: 'H/s' })}`
             }
           />
           <StatBox
             tooltip={
               <Tooltip>
                 <TooltipContent>
-                  Average amount of how many hashes pool should produce to mine
-                  a block.
+                  {t('network_difficulty_tooltip')}
                 </TooltipContent>
               </Tooltip>
             }
-            title="Network Difficulty"
+            title={t('network_difficulty')}
             value={
               statsState.data &&
-              `${formatSi(statsState.data.networkDifficulty, 'H')}`
+              `${siFormatter(statsState.data.networkDifficulty, { unit: 'H' })}`
             }
           />
         </StatBoxContainer>

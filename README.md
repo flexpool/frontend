@@ -39,6 +39,10 @@ That's it! You can access the website at `http://localhost:3000`. It automatical
 
 Contributions are welcome here! Make a fork, commit the changes, and submit the Pull Request to us. We will review it as soon as possible and merge it to the main repository if all is good to us.
 
+## Translating the Website
+
+You can help us translate Flexpool.io website to your language at [Crowdin](https://crowdin.com/project/flexpoolio-website).
+
 ### Join the Community
 
 * [Discord](https://discord.gg/SmRMHTV4np)

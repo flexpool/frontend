@@ -1,5 +1,6 @@
 import { Form, Formik } from 'formik';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useRouteMatch } from 'react-router';
 import { CheckboxField } from 'src/components/Form/Checkbox';
@@ -13,18 +14,6 @@ import { minerDetailsUpdateNotificationSettings } from 'src/rdx/minerDetails/min
 import { useReduxState } from 'src/rdx/useReduxState';
 import * as yup from 'yup';
 
-const validationSchema = yup.object().shape({
-  ipAddress: yup.string().required('Required'),
-  emailEnabled: yup.boolean(),
-  email: yup
-    .string()
-    .email('Invalid email address')
-    .when('emailEnabled', {
-      is: true,
-      then: yup.string().required('Please enter email address'),
-    }),
-});
-
 export const NotificationSettings: React.FC = () => {
   const activeCoin = useActiveCoin();
   const minerSettings = useReduxState('minerDetails');
@@ -32,6 +21,8 @@ export const NotificationSettings: React.FC = () => {
   const {
     params: { address },
   } = useRouteMatch<{ address: string; coin: string }>();
+
+  const { t } = useTranslation(['common', 'dashboard']);
 
   if (!minerSettings.data || !activeCoin) {
     return null;
@@ -70,7 +61,17 @@ export const NotificationSettings: React.FC = () => {
             ?.workersOfflineNotifications || true,
       }}
       validateOnChange={false}
-      validationSchema={validationSchema}
+      validationSchema={yup.object().shape({
+        ipAddress: yup.string().required('Required'),
+        emailEnabled: yup.boolean(),
+        email: yup
+          .string()
+          .email(t('common:errors.email_invalid'))
+          .when('emailEnabled', {
+            is: true,
+            then: yup.string().required(t('common:errors.email_required')),
+          }),
+      })}
     >
       {({ values }) => {
         return (
@@ -79,44 +80,49 @@ export const NotificationSettings: React.FC = () => {
               <h3>Email notifications</h3>
               <ErrorBox error={minerSettings.error} />
               <CheckboxField
-                label={`Email notifications ${
-                  values.emailEnabled ? 'enabled' : 'disabled'
-                }`}
+                label={
+                  values.emailEnabled
+                    ? t('dashboard:settings.notifications.email_enabled')
+                    : t('dashboard:settings.notifications.email_disabled')
+                }
                 name="emailEnabled"
               />
               <TextField
                 name="email"
-                label="Send notifications to"
+                label={t('dashboard:settings.notifications.send_to')}
                 type="email"
                 placeholder={
-                  minerSettings.data?.notifications?.email || 'your@email.co'
+                  minerSettings.data?.notifications?.email ||
+                  t('dashboard:settings.notifications.send_to_placeholder')
                 }
                 disabled={!values.emailEnabled}
               />
 
               <CheckboxField
-                label="Warn me when one of my workers goes down"
+                label={t('dashboard:settings.notifications.check_worker_down')}
                 name="workersOfflineNotifications"
                 disabled={!values.emailEnabled}
               />
               <CheckboxField
-                label="Notify me when a payout has been sent"
+                label={t('dashboard:settings.notifications.check_payout_sent')}
                 name="paymentNotifications"
                 disabled={!values.emailEnabled}
               />
               <Spacer />
               <TextField
                 name="ipAddress"
-                label="Ip Address for Verification"
+                label={t('dashboard:settings.ip')}
                 placeholder={minerSettings.data!.ipAddress}
                 desc={
                   <p>
-                    Hint: You are visiting this webpage from{' '}
+                    {t('dashboard:settings.ip_hint')}{' '}
                     <b>{minerSettings.data!.clientIPAddress}</b>.
                   </p>
                 }
               />
-              <Submit shape="block">Apply changes</Submit>
+              <Submit shape="block">
+                {t('dashboard:settings.notifications.submit')}
+              </Submit>
             </FieldGroup.V>
           </Form>
         );

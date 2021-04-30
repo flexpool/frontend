@@ -40,6 +40,8 @@ import { SnackViewControl } from 'src/components/Snacks/SnackViewControl';
 // import MinerOldUrlSupportPage from 'src/pages/MinerOldUrlSupport/MinerOldUrlSupport.page';
 // import { NotFoundPage } from 'src/pages/NotFound/NotFound.page';
 import { PageLoader } from 'src/components/layout/Page';
+import ServiceWorkerWrapper from './ServiceWorkerWrapper';
+import { usePwaInit } from './PwaInit';
 
 /**
  * Pages code splitting
@@ -93,6 +95,7 @@ const AppContent = () => {
   const location = useLocation<{ noscroll?: boolean } | null>();
   // initial load of /pool/coins
   usePoolCoins();
+  usePwaInit();
 
   // hash
   React.useLayoutEffect(() => {
@@ -123,9 +126,14 @@ const AppContent = () => {
 
   return (
     <>
+      <ServiceWorkerWrapper />
       <AppTheme />
-      <NavBar />
-      <SnackViewControl />
+      <React.Suspense fallback={<React.Fragment />}>
+        {' '}
+        {/** __TODO header loader */}
+        <NavBar />
+        <SnackViewControl />
+      </React.Suspense>
       <React.Suspense fallback={<PageLoader />}>
         <Switch>
           <Route exact component={ApiDocsPage} path="/docs/api" />
@@ -155,7 +163,10 @@ const AppContent = () => {
           <Redirect to="/" />
         </Switch>
       </React.Suspense>
-      <FooterSection />
+      <React.Suspense fallback={<React.Fragment />}>
+        {/** __TODO footer loader */}
+        <FooterSection />
+      </React.Suspense>
     </>
   );
 };

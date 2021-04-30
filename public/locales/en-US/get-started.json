@@ -1,0 +1,128 @@
+{
+  "list": {
+    "head_title": "Start mining with us",
+    "title": "Get started with mining on Flexpool today!"
+  },
+  "detail": {
+    "title": "{{coin}} mining",
+    "wallet": {
+      "title": "Get your wallet address",
+      "desc_one": "The easiest way to get a wallet is to register on a cryptocurrency exchange like <binance>Binance (Ref)</binance> or <coinbase>Coinbase</coinbase>.",
+      "desc_two": "Although exchanges are comfortable and easy to use, they are not very secure. You can use a non-custodial wallet, but the safest way to store your funds is to use a <strong>hardware wallet</strong>. <ledger>Ledger</ledger> and <trezor>Trezor</trezor> are the most popular ones.",
+      "wallet_address": "Wallet Address",
+      "invalid_address": "Invalid wallet address"
+    },
+    "region": {
+      "title": "Select your region",
+      "description": "For the best performance, you should choose server with lowest latency to your mining rig or computer. The chart is displaying latency between servers and this device.",
+      "table_head": {
+        "location": "Region Location",
+        "domain": "Domain",
+        "average_lat": "Average Latency"
+      }
+    },
+    "ports": {
+      "title": "Ports",
+      "description": "We highly encourage everyone to use secured port when connecting to Flexpool servers. <more>Read more on why you shouldn't use unsecured ports</more>. <strong>IMPORTANT</strong>: Using SSL does not increase the stale rate.",
+      "ssl_port": "Secure SSL Port",
+      "tcp_port": "TCP Port",
+      "tcp_port_tooltip": "We are strongly against using unencrypted (TCP) connection while mining on our pool. This connection is vulnerable to MITM (Man-In-The-Middle) attacks, which means that if someone will maliciously stand in between of your worker and pool, some % of your hashrate may be stolen. Read more on our <more>FAQ page</more>."
+    },
+    "worker": {
+      "title": "Name your worker",
+      "description": "Naming your worker is recommended if you have multiple mining rigs connected to Flexpool. This will give you more clarity about how your mining rigs perform on your dashboard page.",
+      "worker_name": "Worker Name",
+      "worker_name_placeholder": "e.g. MY_RIG_580x2"
+    },
+    "software": {
+      "title": "Choose your mining software",
+      "fee": "Fee"
+    },
+    "view": {
+      "title": "View your stats",
+      "description": "Once you start mining, your data should appear on your dashboard. Please allow up to 10 minutes for the data to be processed.",
+      "cta": "Open Dashboard"
+    }
+  },
+  "detail_eth": {
+    "title": "Ethereum mining",
+    "pool_details": [
+      { "key": "Reward Scheme", "value": "PPLNS (Pay Per Last N Shares)" },
+      { "key": "Pool Fee", "value": "0.5%" },
+      { "key": "Bonuses", "value": "90% of MEV bonus" },
+      { "key": "Payout Round", "value": "Every 10 minutes" },
+      { "key": "Payouts", "value": "from 0.01 ETH up to 100 ETH" },
+      { "key": "Block confirmation time", "value": "120 Blocks" },
+      { "key": "Share Difficulty", "value": "4 GH" },
+      { "key": "Mining Algorithm", "value": "Ethash" }
+    ],
+    "hardware": [
+      {
+        "title": "GPU Mining Rig",
+        "key": "GPU",
+        "miners": [
+          {
+            "os": ["windows", "linux", "hiveos"],
+            "title": "TeamRedMiner",
+            "key": "teamreadminer",
+            "description": "Best miner for AMD GPUs",
+            "fee": [0.75, 1],
+            "compatibleGpus": ["AMD"],
+            "downloadLink": "https://github.com/todxx/teamredminer/releases",
+            "cmd": "teamredminer.exe -a ethash -o stratum+ssl://CLOSEST_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME -p x --eth_stratum ethproxy"
+          },
+          {
+            "os": ["windows", "linux", "hiveos"],
+            "title": "T-Rex Miner",
+            "key": "trexminer",
+            "description": "Best miner for NVIDIA 20/30 Series GPUs",
+            "fee": [1],
+            "compatibleGpus": ["NVIDIA"],
+            "downloadLink": "https://github.com/trexminer/T-Rex/releases",
+            "cmd": "t-rex.exe -a ethash -o stratum+ssl://CLOSEST_SERVER:5555 -u WALLET_ADDRESS -p x -w WORKER_NAME"
+          },
+          {
+            "os": ["windows", "linux", "hiveos"],
+            "title": "lolminer",
+            "key": "lolminer",
+            "description": "Best miner for 4GB zombie mode.",
+            "fee": [0.75],
+            "compatibleGpus": ["AMD", "NVIDIA"],
+            "downloadLink": "https://github.com/Lolliedieb/lolMiner-releases/releases",
+            "cmd": "lolMiner.exe --algo ETHASH --pool stratum+ssl://CLOSEST_SERVER:5555 --user WALLET_ADDRESS.WORKER_NAME"
+          },
+          {
+            "os": ["windows", "linux", "hiveos"],
+            "title": "ethminer",
+            "key": "ethminer",
+            "description": "Open-source ethash miner with no fees. Brought by Ethereum community.",
+            "fee": [0],
+            "compatibleGpus": ["AMD", "NVIDIA"],
+            "downloadLink": "https://github.com/ethereum-mining/ethminer/releases",
+            "cmd": "ethminer.exe -R -P stratum1+ssl://WALLET_ADDRESS.WORKER_NAME@CLOSEST_SERVER:5555"
+          },
+          {
+            "os": ["windows", "linux", "hiveos"],
+            "title": "PhoenixMiner",
+            "key": "phoenixminer",
+            "description": "Proprietary Ethash miner with the lowest devfee.",
+            "fee": [0.65],
+            "compatibleGpus": ["AMD", "NVIDIA"],
+            "downloadLink": "https://github.com/PhoenixMinerDevTeam/PhoenixMiner/releases",
+            "cmd": "PhoenixMiner.exe -pool ssl://CLOSEST_SERVER:5555 -wal WALLET_ADDRESS.WORKER_NAME"
+          }
+        ]
+      }
+    ]
+  },
+  "regions": {
+    "us-east": "United States (East)",
+    "us-west": "United States (West)",
+    "de": "Germany",
+    "se": "Sweden",
+    "sg": "Singapore",
+    "au": "Australia",
+    "br": "Brazil",
+    "kr": "South Korea"
+  }
+}

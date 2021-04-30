@@ -5,6 +5,7 @@ import { LinkOut } from 'src/components/LinkOut';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { getCoinLink } from 'src/utils/coinLinks.utils';
 import { getCoinIconUrl } from 'src/utils/staticImage.utils';
+import { getChecksumByTicker } from 'src/utils/validators/checksum';
 import styled from 'styled-components/macro';
 import { MinerSettingsModal } from '../Settings/MinerSettings.modal';
 
@@ -57,7 +58,7 @@ export const AccountHeader: React.FC<{
           <Img src={getCoinIconUrl(coin.ticker)} alt={`${coin.name} logo`} />
         )}
         <Address href={getCoinLink('wallet', address, coin?.ticker)}>
-          {address}
+          {getChecksumByTicker(coin?.ticker)(address)}
         </Address>
         <CopyButton text={address} />
       </AddressContainer>

@@ -1,20 +1,20 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
-import { formatSi } from 'src/utils/si.utils';
+import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components';
 
 export function getGreeting() {
   const hours = new Date().getHours();
-  if (13 > hours && hours >= 5) {
-    return 'Good morning';
+  if (13 > hours && hours >= 4) {
+    return 'morning';
   } else if (18 > hours && hours >= 13) {
-    return 'Good afternoon';
-  } else if (24 > hours && hours >= 18) {
-    return 'Good evening';
+    return 'afternoon';
   }
 
-  return 'Good night';
+  return 'evening';
 }
 
 const Greeting = styled.span`
@@ -32,31 +32,37 @@ export const HeaderGreetings: React.FC<{
 }> = ({ coin }) => {
   const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const minerStatsState = useReduxState('minerStats');
+  const siFormatter = useLocalizedSiFormatter();
+  const activeCoin = useActiveCoin();
+  const { t } = useTranslation('dashboard');
 
   const data = minerHeaderStatsState.data;
 
-  const greeting = React.useMemo(() => {
+  const greetingId = React.useMemo(() => {
     return getGreeting();
   }, []);
 
+  const workersOnline = data?.workersOnline || 0;
+  const hashrate = minerStatsState.data
+    ? minerStatsState.data.reportedHashrate > 0
+      ? siFormatter(minerStatsState.data.reportedHashrate, {
+          unit: 'H/s',
+        })
+      : siFormatter(minerStatsState.data.currentEffectiveHashrate, {
+          unit: 'H/s',
+        })
+    : '- H/s';
+
   return (
     <Wrap>
-      <Greeting>{greeting}</Greeting>
+      <Greeting>{t(`header.greet_period_${greetingId}`)}</Greeting>
+      {', '}
       <span>
-        , {data ? data.workersOnline : '-'} workers are mining{' '}
-        {coin ? coin.name : '---'}
-        {data
-          ? data.workersOffline
-            ? ` (${data.workersOffline} offline)`
-            : null
-          : null}
-        , and are hashing{' '}
-        {minerStatsState.data
-          ? minerStatsState.data.reportedHashrate > 0
-            ? formatSi(minerStatsState.data.reportedHashrate, 'H/s')
-            : formatSi(minerStatsState.data.currentEffectiveHashrate, 'H/s')
-          : '- H/s'}{' '}
-        in total.
+        {t(`header.greet_desc`, {
+          count: workersOnline,
+          hashrate,
+          coin: activeCoin?.name,
+        })}
       </span>
     </Wrap>
   );

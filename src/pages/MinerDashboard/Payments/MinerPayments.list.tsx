@@ -1,16 +1,28 @@
 import { format } from 'date-fns';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
+import { Button } from 'src/components/Button';
 import DynamicList from 'src/components/layout/List/List';
+import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOutCoin } from 'src/components/LinkOut';
 import { Mono, Ws } from 'src/components/Typo/Typo';
-import { useActiveCoinTickerDisplayValue } from 'src/hooks/useDisplayReward';
+import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { minerPaymentsGet } from 'src/rdx/minerPayments/minerPayments.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
-import { getDisplayCounterTickerValue } from 'src/utils/currencyValue';
 import { dateUtils } from 'src/utils/date.utils';
+import {
+  useLocalizedCurrencyFormatter,
+  useLocalizedNumberFormatter,
+} from 'src/utils/si.utils';
+import styled from 'styled-components';
+
+const HeaderSplit = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 export const MinerPaymentsList: React.FC<{
   address: string;
@@ -20,6 +32,8 @@ export const MinerPaymentsList: React.FC<{
   const d = useDispatch();
   const minerPayments = useReduxState('minerPayments');
   const counterTicker = useCounterTicker();
+  const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
+  const numberFormatter = useLocalizedNumberFormatter();
 
   React.useEffect(() => {
     if (coin?.ticker) {
@@ -41,9 +55,25 @@ export const MinerPaymentsList: React.FC<{
 
   const counterValuePrice = minerPayments.data?.countervalue || 1;
 
+  const { t } = useTranslation('dashboard');
+  const currencyFormatter = useLocalizedCurrencyFormatter();
+
   return (
     <>
-      <h2>Payments</h2>
+      <Spacer size="lg" />
+      <HeaderSplit>
+        <div>
+          <h2>{t('payments.table.title')}</h2>
+        </div>
+        <Button
+          size="xs"
+          as="a"
+          className="export-button"
+          href={`${process.env.REACT_APP_API_URL}/miner/export/payments.csv?coin=${coin?.ticker}&address=${address}&countervalue=${counterTicker}`}
+        >
+          {t('payments.table.download')}
+        </Button>
+      </HeaderSplit>
       <DynamicList
         pagination={{
           currentPage,
@@ -66,27 +96,23 @@ export const MinerPaymentsList: React.FC<{
             },
           },
           {
-            title: 'Date',
+            title: t('payments.table.table_head.date'),
             Component: ({ data }) => {
               return <Ws>{format(data.timestamp * 1000, 'PPp')}</Ws>;
             },
           },
           {
-            title: 'Transaction Value',
+            title: t('payments.table.table_head.value'),
             alignRight: true,
             Component: ({ data }) => {
-              const value = useActiveCoinTickerDisplayValue(data.value);
+              const value = activeCoinFormatter(data.value);
               const tickerValue = coin
                 ? (data.value / Math.pow(10, coin.decimalPlaces)) *
                   counterValuePrice
                 : null;
 
-              const tickerDisplayValue = getDisplayCounterTickerValue(
-                tickerValue,
-                counterTicker
-              );
+              const tickerDisplayValue = currencyFormatter(tickerValue || 0);
 
-              //  * (minerPayments.data?.countervalue || 1)
               return (
                 <Ws>
                   <Mono>
@@ -98,18 +124,21 @@ export const MinerPaymentsList: React.FC<{
             },
           },
           {
-            title: 'Fee',
+            title: t('payments.table.table_head.fee'),
             alignRight: true,
             Component: ({ data }) => {
               return (
                 <Ws>
                   <Mono>
-                    {Math.round(data.feePercent * 100 * 100) / 100}% (
+                    {numberFormatter(data.feePercent, {
+                      style: 'percent',
+                      maximumFractionDigits: 3,
+                    })}{' '}
+                    (
                     {coin &&
-                      getDisplayCounterTickerValue(
+                      currencyFormatter(
                         (data.fee / Math.pow(10, coin.decimalPlaces)) *
-                          counterValuePrice,
-                        counterTicker
+                          counterValuePrice
                       )}
                     )
                   </Mono>
@@ -118,14 +147,14 @@ export const MinerPaymentsList: React.FC<{
             },
           },
           {
-            title: 'Duration',
+            title: t('payments.table.table_head.duration'),
             alignRight: true,
             Component: ({ data }) => {
               return <Ws>{dateUtils.durationWords(data.duration)}</Ws>;
             },
           },
           {
-            title: 'Hash',
+            title: t('payments.table.table_head.hash'),
             alignRight: true,
             Component: ({ data }) => {
               return (

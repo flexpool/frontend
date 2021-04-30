@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Button } from 'src/components/Button';
 import { CoinLogo } from 'src/components/CoinLogo';
@@ -8,7 +9,7 @@ import { Spacer } from 'src/components/layout/Spacer';
 import { Ws } from 'src/components/Typo/Typo';
 import styled from 'styled-components/macro';
 
-import { mineableCoins } from './mineableCoinList';
+import { MineableCoinHardware, mineableCoins } from './mineableCoinList';
 
 const MineableCoinWrapper = styled.div`
   border-radius: 5px;
@@ -49,47 +50,61 @@ const CoinContent = styled.div`
 `;
 
 export const MineableCoinList: React.FC = () => {
+  const { t } = useTranslation('get-started');
   return (
     <Page>
       <h1>Get started with mining on Flexpool today!</h1>
       <Spacer />
       <MineableCoinGrid>
-        {mineableCoins.map((item) => (
-          <MineableCoinWrapper key={item.name}>
-            <CoinContent>
-              <CoinLogo ticker={item.ticker} size="xl" />
-              <Title>{item.name}</Title>
-            </CoinContent>
+        {mineableCoins.map((item) => {
+          const poolDetails = t(
+            `detail_${item.ticker.toLowerCase()}.pool_details`,
+            {
+              returnObjects: true,
+            }
+          ) as { key: string; value: string }[];
 
-            {item.hardware.map((itemHw) => (
-              <Button
-                variant="primary"
-                key={itemHw.key}
-                as={Link}
-                to={`/get-started/${item.ticker}/${itemHw.key}`}
-              >
-                {itemHw.key} Mining Guide
-              </Button>
-            ))}
-            <DynamicList
-              wrapperProps={{
-                className: 'defWrap',
-              }}
-              hideHead
-              data={item.poolDetails}
-              columns={[
-                {
-                  title: '',
-                  Component: ({ data }) => <>{data.key}</>,
-                },
-                {
-                  title: '',
-                  Component: ({ data }) => <Ws>{data.value}</Ws>,
-                },
-              ]}
-            />
-          </MineableCoinWrapper>
-        ))}
+          const poolHw = t(`detail_${item.ticker.toLowerCase()}.hardware`, {
+            returnObjects: true,
+          }) as MineableCoinHardware[];
+
+          return (
+            <MineableCoinWrapper key={item.name}>
+              <CoinContent>
+                <CoinLogo ticker={item.ticker} size="xl" />
+                <Title>{item.name}</Title>
+              </CoinContent>
+
+              {poolHw.map((itemHw) => (
+                <Button
+                  variant="primary"
+                  key={itemHw.key}
+                  as={Link}
+                  to={`/get-started/${item.ticker}/${itemHw.key}`}
+                >
+                  {itemHw.key} Mining Guide
+                </Button>
+              ))}
+              <DynamicList
+                wrapperProps={{
+                  className: 'defWrap',
+                }}
+                hideHead
+                data={poolDetails}
+                columns={[
+                  {
+                    title: '',
+                    Component: ({ data }) => <>{data.key}</>,
+                  },
+                  {
+                    title: '',
+                    Component: ({ data }) => <Ws>{data.value}</Ws>,
+                  },
+                ]}
+              />
+            </MineableCoinWrapper>
+          );
+        })}
       </MineableCoinGrid>
     </Page>
   );

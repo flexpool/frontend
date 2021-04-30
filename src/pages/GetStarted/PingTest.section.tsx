@@ -17,6 +17,7 @@ import { Sticker } from 'src/components/Sticker';
 import { Link } from 'react-router-dom';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { Img } from 'src/components/Img';
+import { Trans, useTranslation } from 'react-i18next';
 
 const WarningIcon = styled(FaExclamationCircle)`
   color: var(--danger);
@@ -87,106 +88,11 @@ const SelectButton = styled.button<{ selected?: boolean }>`
   `}
 `;
 
-const cols: DynamicListColumn<
-  MineableCoinRegion,
-  {
-    setLowestLatency: (latency: number) => void;
-    lowestLatency: number;
-  }
->[] = [
-  {
-    title: 'Region location',
-    Component: ({ data }) => {
-      return (
-        <Ws>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <Img
-              src={`https://static.flexpool.io/assets/countries/${data.imageCode}.svg`}
-              style={{ width: '32px', marginRight: '10px' }}
-              alt={data.imageCode}
-            />
-            {data.title}
-          </div>
-        </Ws>
-      );
-    },
-  },
-  {
-    title: 'Domain',
-    Component: ({ data }) => (
-      <Mono>
-        <Ws>
-          {data.domain} <CopyButton text={data.domain} />
-        </Ws>
-      </Mono>
-    ),
-  },
-  {
-    title: 'Average Latency',
-    Component: ({ data, config: { setLowestLatency, lowestLatency } }) => {
-      const connectionState = useAsyncState<number>();
-      React.useEffect(() => {
-        connectionState.start(testConnection(data.domain));
-        // eslint-disable-next-line
-      }, [data.domain]);
-
-      const latency = connectionState.data;
-
-      React.useEffect(() => {
-        if (latency) {
-          setLowestLatency(latency);
-        }
-      }, [latency, setLowestLatency]);
-
-      if (connectionState.isLoading) {
-        return <LoaderSpinner size="xs" />;
-      }
-
-      return (
-        <Ws>
-          {latency ? `${latency} ms` : 'n/a'}{' '}
-          {latency === lowestLatency && (
-            <>
-              &nbsp;
-              <Sticker variant="success">Fastest</Sticker>
-            </>
-          )}
-        </Ws>
-      );
-    },
-  },
-  {
-    title: '',
-    alignRight: true,
-    Component: ({ data }) => {
-      const { search } = useLocation();
-      const history = useHistory();
-      const searchParams = qs.parse(search);
-      const isSelected = searchParams.selectedServer === data.domain;
-
-      const handleClick = React.useCallback(() => {
-        const searchP = qs.parse(search);
-        history.replace({
-          search: qs.stringify({
-            ...searchP,
-            selectedServer: data.domain,
-          }),
-        });
-      }, [search, history, data.domain]);
-
-      return (
-        <SelectButton onClick={handleClick} selected={isSelected}>
-          <FaCheck />
-        </SelectButton>
-      );
-    },
-  },
-];
-
 export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   data,
 }) => {
   const [lowestLatency, setLowestLatency] = React.useState<number>(10000);
+  const { t } = useTranslation('get-started');
 
   const handleSetLowestLatency = React.useCallback(
     (l: number) => {
@@ -197,54 +103,154 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
     [lowestLatency]
   );
 
+  const cols: DynamicListColumn<
+    MineableCoinRegion,
+    {
+      setLowestLatency: (latency: number) => void;
+      lowestLatency: number;
+    }
+  >[] = React.useMemo(
+    () => [
+      {
+        title: t('detail.region.table_head.location'),
+        Component: ({ data }) => {
+          return (
+            <Ws>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <Img
+                  src={`https://static.flexpool.io/assets/countries/${data.imageCode}.svg`}
+                  style={{ width: '32px', marginRight: '10px' }}
+                  alt={data.imageCode}
+                />
+                {t(`regions.${data.code}`)}
+              </div>
+            </Ws>
+          );
+        },
+      },
+      {
+        title: t('detail.region.table_head.domain'),
+        Component: ({ data }) => (
+          <Mono>
+            <Ws>
+              {data.domain} <CopyButton text={data.domain} />
+            </Ws>
+          </Mono>
+        ),
+      },
+      {
+        title: t('detail.region.table_head.average_lat'),
+        Component: ({ data, config: { setLowestLatency, lowestLatency } }) => {
+          const connectionState = useAsyncState<number>();
+          React.useEffect(() => {
+            connectionState.start(testConnection(data.domain));
+            // eslint-disable-next-line
+          }, [data.domain]);
+
+          const latency = connectionState.data;
+
+          React.useEffect(() => {
+            if (latency) {
+              setLowestLatency(latency);
+            }
+          }, [latency, setLowestLatency]);
+
+          if (connectionState.isLoading) {
+            return <LoaderSpinner size="xs" />;
+          }
+
+          return (
+            <Ws>
+              {latency ? `${latency} ms` : 'n/a'}{' '}
+              {latency === lowestLatency && (
+                <>
+                  &nbsp;
+                  <Sticker variant="success">Fastest</Sticker>
+                </>
+              )}
+            </Ws>
+          );
+        },
+      },
+      {
+        title: '',
+        alignRight: true,
+        Component: ({ data }) => {
+          const { search } = useLocation();
+          const history = useHistory();
+          const searchParams = qs.parse(search);
+          const isSelected = searchParams.selectedServer === data.domain;
+
+          const handleClick = React.useCallback(() => {
+            const searchP = qs.parse(search);
+            history.replace({
+              search: qs.stringify({
+                ...searchP,
+                selectedServer: data.domain,
+              }),
+            });
+          }, [search, history, data.domain]);
+
+          return (
+            <SelectButton onClick={handleClick} selected={isSelected}>
+              <FaCheck />
+            </SelectButton>
+          );
+        },
+      },
+    ],
+    [t]
+  );
+
   return (
     <>
       <h2>
-        <Highlight>#2</Highlight> Select your region
+        <Highlight>#2</Highlight> {t('detail.region.title')}
       </h2>
-      <p>
-        For the best performance, you should choose server with lowest latency
-        to your mining rig or computer. The chart is displaying latency between
-        servers and this device.
-      </p>
+      <p>{t('detail.region.description')}</p>
       <DynamicList
         config={{ setLowestLatency: handleSetLowestLatency, lowestLatency }}
         data={data}
         columns={cols}
       />
-      <h3>Ports</h3>
+      <h3>{t('detail.ports.title')}</h3>
       <p>
-        We highly encourage everyone to use secured port when connecting to
-        Flexpool servers. Read more on{' '}
-        <Link to="/faq#should-i-use-ssl">
-          why you shouldn't use unsecured ports
-        </Link>
-        . <strong>IMPORTANT</strong>: Using SSL does not increase the stale
-        rate.
+        <Trans
+          ns="get-started"
+          i18nKey="detail.ports.description"
+          components={{
+            more: <Link to="/faq#should-i-use-ssl" />,
+            strong: <strong />,
+          }}
+        />
       </p>
       <div>
         <table style={{ width: 'auto' }}>
           <tbody>
             <tr>
               <td>
-                <strong>Secure SSL Port</strong>
+                <strong>{t('detail.ports.ssl_port')}</strong>
               </td>
               <td>
                 <Sticker variant="success">5555</Sticker>
               </td>
             </tr>
             <tr>
-              <td>TCP Port</td>
+              <td>{t('detail.ports.tcp_port')}</td>
               <td>
                 <Sticker>4444</Sticker>
                 <Tooltip icon={<WarningIcon />}>
                   <TooltipContent>
-                    We are strongly against using unencrypted (TCP) connection
-                    while mining on our pool. This connection is vulnerable to
-                    MITM (Man-In-The-Middle) attacks, which means that if
-                    someone will maliciously stand in between of your worker and
-                    pool, some % of your hashrate may be stolen. Read more on
-                    our <Link to="/faq#should-i-use-ssl">FAQ page</Link>.
+                    <p>
+                      <Trans
+                        ns="get-started"
+                        i18nKey="detail.ports.tcp_port_tooltip"
+                        components={{
+                          more: <Link to="/faq#should-i-use-ssl" />,
+                          strong: <strong />,
+                        }}
+                      />
+                    </p>
                   </TooltipContent>
                 </Tooltip>
               </td>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { FaCog } from 'react-icons/fa';
 import { Button } from 'src/components/Button';
 import { ScrollArea } from 'src/components/layout/ScrollArea';
@@ -92,6 +93,7 @@ export const MinerSettingsModal = () => {
   const activeCoin = useActiveCoin();
   const minerSettings = useReduxState('minerDetails');
   const minerHeaderStats = useReduxState('minerHeaderStats');
+  const { t } = useTranslation('dashboard');
 
   // disable opening when data is not loaded
   const disabled = !activeCoin || !minerSettings.data || !minerHeaderStats.data;
@@ -113,11 +115,11 @@ export const MinerSettingsModal = () => {
         size="sm"
         variant="primary"
       >
-        <FaCog /> <span>Settings</span>
+        <FaCog /> <span>{t('settings.cta')}</span>
       </SettingsBtn>
       <Modal mobileFull {...openState.modalProps}>
         <Modal.Header>
-          <h2>Settings</h2>
+          <h2>{t('settings.title')}</h2>
         </Modal.Header>
         <Split>
           <Nav>
