@@ -16,7 +16,7 @@ import { useDispatch } from 'react-redux';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { FaCalendar, FaCalendarDay, FaCalendarWeek } from 'react-icons/fa';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
-import { dateUtils } from 'src/utils/date.utils';
+import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import { addSeconds } from 'date-fns';
 import { Trans, useTranslation } from 'react-i18next';
 import {
@@ -82,6 +82,7 @@ const BalanceProgressBar: React.FC<{
   }, [value]);
   const { t } = useTranslation('dashboard');
   const numberFormatter = useLocalizedNumberFormatter();
+  const dateFormatter = useLocalizedDateFormatter();
 
   return (
     <Tooltip
@@ -122,7 +123,7 @@ const BalanceProgressBar: React.FC<{
               i18nKey="header.stat_unpaid_balance_reach_est"
               ns="dashboard"
               values={{
-                value: dateUtils.formatDistance(
+                value: dateFormatter.distanceFromNow(
                   addSeconds(new Date(), payoutInSeconds)
                 ),
               }}

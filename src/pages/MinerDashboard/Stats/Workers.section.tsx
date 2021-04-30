@@ -8,7 +8,7 @@ import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { minerWorkersGet } from 'src/rdx/minerWorkers/minerWorkers.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiMinerWorker } from 'src/types/Miner.types';
-import { dateUtils } from 'src/utils/date.utils';
+import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import {
   useLocalizedNumberFormatter,
   useLocalizedSiFormatter,
@@ -100,6 +100,7 @@ const MinerWorkersTable: React.FC<{
   const siFormatter = useLocalizedSiFormatter();
   const { t } = useTranslation('dashboard');
   const numberFormatter = useLocalizedNumberFormatter();
+  const dateFormatter = useLocalizedDateFormatter();
 
   const data = React.useMemo(() => {
     let res = unfilteredData;
@@ -211,7 +212,7 @@ const MinerWorkersTable: React.FC<{
         title: t('stats.table.table_head.last_seen'),
         alignRight: true,
         Component: ({ data }) => (
-          <Ws>{dateUtils.formatDistance(data.lastSeen * 1000)}</Ws>
+          <Ws>{dateFormatter.distanceFromNow(data.lastSeen * 1000)}</Ws>
         ),
       },
     ];
@@ -232,7 +233,7 @@ const MinerWorkersTable: React.FC<{
         ),
       };
     });
-  }, [sortKey, sortOrder, siFormatter, numberFormatter, t]);
+  }, [sortKey, sortOrder, siFormatter, numberFormatter, t, dateFormatter]);
 
   const onSearchChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) =>
