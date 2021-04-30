@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
 import { Button } from 'src/components/Button';
 import DynamicList from 'src/components/layout/List/List';
 import { Spacer } from 'src/components/layout/Spacer';
