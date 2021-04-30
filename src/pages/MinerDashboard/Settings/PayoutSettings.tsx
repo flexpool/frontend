@@ -98,7 +98,6 @@ export const PayoutSettings: React.FC = () => {
                 label={t('dashboard:settings.payout.limit', {
                   min: minPayoutLimit,
                 })}
-                type="number"
                 unit={activeCoinTicker.toUpperCase()}
                 inputMode="decimal"
                 desc={t('dashboard:settings.payout.limit_desc', {
@@ -112,7 +111,6 @@ export const PayoutSettings: React.FC = () => {
                 name="maxFeePrice"
                 label={t('dashboard:settings.payout.gas_limit')}
                 unit={feeDetails?.unit.toUpperCase()}
-                type="number"
                 inputMode="decimal"
                 desc={
                   Number(values.maxFeePrice) > 0

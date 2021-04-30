@@ -121,7 +121,7 @@ export const CoinCalculator: React.FC<{ coin: ApiPoolCoinFull }> = ({
                   </Tooltip>
                 </h2>
                 <FieldContainer>
-                  <TextField name="val" type="number" inputMode="decimal" />
+                  <TextField name="val" inputMode="decimal" />
                   <SelectField
                     name="si"
                     options={coin.applicableHashrateSiPrefixes.map((si) => {
