@@ -36,7 +36,6 @@ export const MinerPaymentsList: React.FC<{
   const counterTicker = useCounterTicker();
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const numberFormatter = useLocalizedNumberFormatter();
-  const { push } = useHistory();
 
   React.useEffect(() => {
     if (coin?.ticker) {
