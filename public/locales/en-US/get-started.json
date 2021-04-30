@@ -19,7 +19,8 @@
         "location": "Region Location",
         "domain": "Domain",
         "average_lat": "Average Latency"
-      }
+      },
+      "fastest": "Fastest"
     },
     "ports": {
       "title": "Ports",
