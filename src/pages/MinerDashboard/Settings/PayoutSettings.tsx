@@ -55,19 +55,20 @@ export const PayoutSettings: React.FC = () => {
         await d(
           minerDetailsUpdatePayoutSettings(activeCoin.ticker, address, {
             payoutLimit:
-              data.payoutLimit * Math.pow(10, activeCoin.decimalPlaces),
-            maxFeePrice: data.maxFeePrice,
+              Number(data.payoutLimit) * Math.pow(10, activeCoin.decimalPlaces),
+            maxFeePrice: Number(data.maxFeePrice),
             ipAddress: data.ip,
           })
         );
         setSubmitting(false);
       }}
       initialValues={{
-        maxFeePrice: minerSettings.data.maxFeePrice,
+        maxFeePrice: `${minerSettings.data.maxFeePrice}`,
         ip: '',
-        payoutLimit:
+        payoutLimit: `${
           minerSettings.data.payoutLimit /
-          Math.pow(10, activeCoin.decimalPlaces),
+          Math.pow(10, activeCoin.decimalPlaces)
+        }`,
       }}
       validateOnChange={false}
       validationSchema={yup.object().shape({
@@ -98,7 +99,6 @@ export const PayoutSettings: React.FC = () => {
                   min: minPayoutLimit,
                 })}
                 unit={activeCoinTicker.toUpperCase()}
-                type="number"
                 inputMode="decimal"
                 desc={t('dashboard:settings.payout.limit_desc', {
                   value: `${
@@ -111,26 +111,25 @@ export const PayoutSettings: React.FC = () => {
                 name="maxFeePrice"
                 label={t('dashboard:settings.payout.gas_limit')}
                 unit={feeDetails?.unit.toUpperCase()}
-                type="number"
                 inputMode="decimal"
                 desc={
-                  values.maxFeePrice > 0
+                  Number(values.maxFeePrice) > 0
                     ? t('dashboard:settings.payout.gas_limit_desc', {
-                        value: values.maxFeePrice,
+                        value: Number(values.maxFeePrice),
                         valueUnit: feeDetails?.unit,
                         valueTicker: currencyFormatter(
-                          ((values.maxFeePrice *
+                          ((Number(values.maxFeePrice) *
                             activeCoin.transactionSize *
                             feeDetails.multiplier) /
                             Math.pow(10, activeCoin.decimalPlaces)) *
                             minerHeaderStats.data!.countervaluePrice
                         ),
                         percent: numberFormatter(
-                          ((values.maxFeePrice *
+                          ((Number(values.maxFeePrice) *
                             activeCoin.transactionSize *
                             feeDetails.multiplier) /
                             Math.pow(10, activeCoin.decimalPlaces) /
-                            values.payoutLimit) *
+                            Number(values.payoutLimit)) *
                             100,
                           { style: 'percent', maximumFractionDigits: 3 }
                         ),

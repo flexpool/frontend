@@ -81,11 +81,11 @@ export const CoinCalculator: React.FC<{ coin: ApiPoolCoinFull }> = ({
   const initValues: {
     si: keyof typeof siMap;
     period: Period;
-    val: number;
+    val: string;
   } = {
     si: 'M',
     period: 'm',
-    val: 100,
+    val: '100',
   };
 
   return (
@@ -93,7 +93,7 @@ export const CoinCalculator: React.FC<{ coin: ApiPoolCoinFull }> = ({
       <Formik initialValues={initValues} onSubmit={() => {}}>
         {({ values }) => {
           const revenueEth = `${numberFormatter(
-            values.val *
+            Number(values.val) *
               siMap[values.si] *
               incomePerHash *
               periodMap[values.period],
@@ -101,7 +101,7 @@ export const CoinCalculator: React.FC<{ coin: ApiPoolCoinFull }> = ({
           )} ${coin.ticker.toUpperCase()}`;
 
           const revenueCounter = currencyFormatter(
-            values.val *
+            Number(values.val) *
               siMap[values.si] *
               incomePerHash *
               periodMap[values.period] *
@@ -121,7 +121,7 @@ export const CoinCalculator: React.FC<{ coin: ApiPoolCoinFull }> = ({
                   </Tooltip>
                 </h2>
                 <FieldContainer>
-                  <TextField name="val" type="number" inputMode="decimal" />
+                  <TextField name="val" inputMode="decimal" />
                   <SelectField
                     name="si"
                     options={coin.applicableHashrateSiPrefixes.map((si) => {
