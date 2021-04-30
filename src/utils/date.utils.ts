@@ -87,7 +87,10 @@ const durationWordsShort = (text: string) => {
 
 export const useLocalizedDateFormatter = () => {
   const { i18n, t } = useTranslation('common');
-  const locale = getLocaleByKey(i18n.language);
+
+  const locale = React.useMemo(() => {
+    return getLocaleByKey(i18n.language);
+  }, [i18n.language]);
 
   const distanceFromNow = React.useCallback(
     (d: DateInput) => {
