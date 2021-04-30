@@ -5,7 +5,7 @@ import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import { ListPagination } from 'src/components/layout/List/ListPagination';
 import { LoaderOverlayWithin } from 'src/components/Loader/LoaderOverlayWithin';
 import { useRefBound } from 'src/hooks/useRefWidth';
-import { dateUtils } from 'src/utils/date.utils';
+import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import styled from 'styled-components/macro';
 
 const StyledDocument = styled(Document)`
@@ -42,6 +42,7 @@ export const LatestReport: React.FC<{ src: string; date: Date }> = ({
   const [activePage, setActivePage] = React.useState<number>(0);
   const [isLoading, setIsLoading] = React.useState(true);
   const { t } = useTranslation('reports');
+  const dateFormatter = useLocalizedDateFormatter();
 
   const onDocumentLoad = (pdf: any) => {
     setTotalPages(pdf.numPages);
@@ -51,7 +52,7 @@ export const LatestReport: React.FC<{ src: string; date: Date }> = ({
   return (
     <>
       <h2>
-        {t('latest')} ({dateUtils.format(date, 'MMMM y')})
+        {t('latest')} ({dateFormatter.format(date, 'LLLL y')})
       </h2>
       <Container ref={wrapperRef}>
         {isLoading && <LoaderOverlayWithin />}

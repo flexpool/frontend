@@ -1,4 +1,3 @@
-import { format } from 'date-fns';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
@@ -12,7 +11,7 @@ import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { minerPaymentsGet } from 'src/rdx/minerPayments/minerPayments.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
-import { dateUtils } from 'src/utils/date.utils';
+import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import {
   useLocalizedCurrencyFormatter,
   useLocalizedNumberFormatter,
@@ -57,6 +56,7 @@ export const MinerPaymentsList: React.FC<{
 
   const { t } = useTranslation('dashboard');
   const currencyFormatter = useLocalizedCurrencyFormatter();
+  const dateFormatter = useLocalizedDateFormatter();
 
   return (
     <>
@@ -98,7 +98,9 @@ export const MinerPaymentsList: React.FC<{
           {
             title: t('payments.table.table_head.date'),
             Component: ({ data }) => {
-              return <Ws>{format(data.timestamp * 1000, 'PPp')}</Ws>;
+              return (
+                <Ws>{dateFormatter.dateAndTime(data.timestamp * 1000)}</Ws>
+              );
             },
           },
           {
@@ -150,7 +152,7 @@ export const MinerPaymentsList: React.FC<{
             title: t('payments.table.table_head.duration'),
             alignRight: true,
             Component: ({ data }) => {
-              return <Ws>{dateUtils.durationWords(data.duration)}</Ws>;
+              return <Ws>{dateFormatter.durationWords(data.duration)}</Ws>;
             },
           },
           {

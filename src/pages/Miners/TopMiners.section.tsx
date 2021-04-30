@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 import { topMinersGet } from 'src/rdx/topMiners/topMiners.actions';
 import { Mono, Ws } from 'src/components/Typo/Typo';
 import { ApiTopMiner } from 'src/types/TopMiner.types';
-import { dateUtils } from 'src/utils/date.utils';
+import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import { useTranslation } from 'react-i18next';
 
 export const TopMinersSection = () => {
@@ -81,7 +81,10 @@ export const TopMinersSection = () => {
         title: t('top_miners.table_head.joined'),
         skeletonWidth: 120,
         Component: ({ data }) => {
-          return <Ws>{dateUtils.formatDistance(data.firstJoined * 1000)}</Ws>;
+          const dateFormatter = useLocalizedDateFormatter();
+          return (
+            <Ws>{dateFormatter.distanceFromNow(data.firstJoined * 1000)}</Ws>
+          );
         },
       },
     ],

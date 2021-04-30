@@ -1,11 +1,32 @@
 import {
-  format,
-  formatRelative,
+  format as dFormat,
   formatDistanceToNowStrict,
   intervalToDuration,
   formatDuration,
   differenceInSeconds,
+  Locale,
+  formatDistance as fD,
 } from 'date-fns';
+
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import * as locales from 'src/i18n-date-locales';
+
+const getLocaleByKey = (key: string = 'en-US'): Locale => {
+  // en-US => enUS
+  const keyWithoutDash = key.replace('-', '');
+  // en-US => en
+  const keyPreOnly = key.split('-')[0];
+
+  if (keyWithoutDash in locales) {
+    return locales[keyWithoutDash as keyof typeof locales];
+  }
+  if (keyPreOnly in locales) {
+    return locales[keyPreOnly as keyof typeof locales];
+  }
+  // default to enUS
+  return locales.enUS;
+};
 
 type DateInput = Date | string | number;
 
@@ -15,41 +36,6 @@ const dateIsValid = (date: Date) => !isNaN(new Date(date).getTime());
 
 export const isValidDate = (date: DateInput) => {
   return date && dateIsValid(new Date(date));
-};
-
-const dateFormat = (d: DateInput, formatString: string) => {
-  const date = dateInputToDate(d);
-
-  if (dateIsValid(date)) {
-    return format(date, formatString);
-  }
-  return '?';
-};
-
-const relativeNow = (d: DateInput) => {
-  const date = dateInputToDate(d);
-
-  if (dateIsValid(date)) {
-    return formatRelative(date, new Date());
-  }
-  return '?';
-};
-
-const formatDistance = (d: DateInput) => {
-  const date = dateInputToDate(d);
-
-  if (dateIsValid(date)) {
-    const diff = Math.abs(differenceInSeconds(date, new Date()));
-
-    if (diff < 1) {
-      return 'now';
-    }
-
-    return formatDistanceToNowStrict(date, {
-      addSuffix: true,
-    });
-  }
-  return '?';
 };
 
 const durationToParse = (duration: Duration) => {
@@ -99,48 +85,107 @@ const durationWordsShort = (text: string) => {
   return res.join(DELIMITER);
 };
 
-const durationWords = (
-  seconds: number,
-  options?: { includeSeconds: boolean; short?: boolean }
-) => {
-  const format = ['years', 'months', 'weeks', 'days', 'hours', 'minutes'];
+export const useLocalizedDateFormatter = () => {
+  const { i18n, t } = useTranslation('common');
 
-  if (options?.includeSeconds) {
-    format.push('seconds');
-  }
+  const locale = React.useMemo(() => {
+    return getLocaleByKey(i18n.language);
+  }, [i18n.language]);
 
-  const intervalDuration = intervalToDuration({
-    start: 0,
-    end: new Date(seconds * 1000),
-  });
+  const distanceFromNow = React.useCallback(
+    (d: DateInput) => {
+      const date = dateInputToDate(d);
 
-  const res =
-    seconds > 0
-      ? formatDuration(durationToParse(intervalDuration), {
-          delimiter: DELIMITER,
-          format,
-        })
-      : // will render 0 seconds, by default it returns empty string
-        formatDuration(durationToParse(intervalDuration), {
-          delimiter: DELIMITER,
-          format: ['seconds'],
-          zero: true,
+      if (dateIsValid(date)) {
+        const diff = Math.abs(differenceInSeconds(date, new Date()));
+
+        if (diff < 1) {
+          return t('date_time.now');
+        }
+
+        return formatDistanceToNowStrict(date, {
+          addSuffix: true,
+          locale,
         });
+      }
+      return '?';
+    },
+    [locale, t]
+  );
 
-  if (options?.short) {
-    return durationWordsShort(res);
-  }
+  const format = React.useCallback(
+    (d: DateInput, formatString: string) => {
+      const date = dateInputToDate(d);
 
-  return res;
-};
+      if (dateIsValid(date)) {
+        return dFormat(date, formatString, { locale });
+      }
+      return '?';
+    },
+    [locale]
+  );
 
-export const dateUtils = {
-  dateInputToDate,
-  isValidDate,
-  short: (d: DateInput) => dateFormat(d, 'PP'),
-  shortWithTime: (d: DateInput) => dateFormat(d, 'Pp'),
-  format: dateFormat,
-  relativeNow,
-  formatDistance,
-  durationWords,
+  const distance = React.useCallback(
+    (a: number | Date, b: number | Date) => {
+      return fD(a, b, { locale });
+    },
+    [locale]
+  );
+
+  const dateAndTime = React.useCallback(
+    (d: DateInput) => {
+      const date = dateInputToDate(d);
+      if (dateIsValid(date)) {
+        return dFormat(date, 'PPp', { locale });
+      }
+
+      return '?';
+    },
+    [locale]
+  );
+
+  const durationWords = React.useCallback(
+    (
+      seconds: number,
+      options?: { includeSeconds: boolean; short?: boolean }
+    ) => {
+      const format = ['years', 'months', 'weeks', 'days', 'hours', 'minutes'];
+
+      if (options?.includeSeconds) {
+        format.push('seconds');
+      }
+
+      const intervalDuration = intervalToDuration({
+        start: 0,
+        end: new Date(seconds * 1000),
+      });
+
+      const res =
+        seconds > 0
+          ? formatDuration(durationToParse(intervalDuration), {
+              delimiter: DELIMITER,
+              format,
+              locale,
+            })
+          : // will render 0 seconds, by default it returns empty string
+            formatDuration(durationToParse(intervalDuration), {
+              delimiter: DELIMITER,
+              format: ['seconds'],
+              zero: true,
+              locale,
+            });
+
+      if (options?.short) {
+        return durationWordsShort(res);
+      }
+
+      return res;
+    },
+    [locale]
+  );
+
+  return React.useMemo(
+    () => ({ distance, format, durationWords, distanceFromNow, dateAndTime }),
+    [distance, format, distanceFromNow, dateAndTime, durationWords]
+  );
 };
