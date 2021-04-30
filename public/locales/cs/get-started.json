@@ -192,5 +192,10 @@
     "au": "Austrálie",
     "br": "Brazílie",
     "kr": "Jižní Korea"
+  },
+  "cmd_keys": {
+    "CLOSEST_SERVER": "NEJBLIZSI_SERVER",
+    "WALLET_ADDRESS": "ADRESA_PENEZENKY",
+    "WORKER_NAME": "NAZEV_RIGU"
   }
 }

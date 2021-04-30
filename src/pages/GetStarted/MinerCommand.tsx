@@ -3,6 +3,7 @@ import { useLocation } from 'react-router';
 import styled from 'styled-components/macro';
 import qs from 'query-string';
 import { CopyButton } from 'src/components/CopyButton';
+import { useTranslation } from 'react-i18next';
 
 const HighlightItem = styled.span`
   background: var(--bg-primary);
@@ -69,10 +70,11 @@ export const MinerCommand: React.FC<{
   command: string;
 }> = ({ command }) => {
   const { search } = useLocation();
+  const { t } = useTranslation('get-started');
   const {
-    selectedServer = 'CLOSEST_SERVER',
-    walletAddress = 'WALLET_ADDRESS',
-    workerName = 'WORKER_NAME',
+    selectedServer = t('cmd_keys.CLOSEST_SERVER'),
+    walletAddress = t('cmd_keys.WALLET_ADDRESS'),
+    workerName = t('cmd_keys.WORKER_NAME'),
   } = qs.parse(search);
 
   const replacedText = replaceStringWithNodes(command, [
