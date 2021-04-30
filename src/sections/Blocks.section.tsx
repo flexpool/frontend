@@ -4,7 +4,6 @@ import DynamicList, {
 } from 'src/components/layout/List/List';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { fetchApi } from 'src/utils/fetchApi';
-import format from 'date-fns/format';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { LinkMiner } from 'src/components/LinkMiner';
 import { Luck } from 'src/components/Luck';
@@ -13,7 +12,7 @@ import { getCoinLink } from 'src/utils/coinLinks.utils';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { LinkOut, LinkOutCoin } from 'src/components/LinkOut';
 import { Mono, Ws } from 'src/components/Typo/Typo';
-import { dateUtils } from 'src/utils/date.utils';
+import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import { useTranslation } from 'react-i18next';
@@ -92,6 +91,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   const [currentPage, setCurrentPage] = React.useState(0);
 
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
+  const dateFormatter = useLocalizedDateFormatter();
 
   React.useEffect(() => {
     blockState.start(
@@ -186,9 +186,9 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
       date: {
         title: t('table.table_head.date'),
         skeletonWidth: 180,
-        Component: ({ data }) => (
-          <Ws>{format(data.timestamp * 1000, 'PPp')}</Ws>
-        ),
+        Component: ({ data }) => {
+          return <Ws>{dateFormatter.dateAndTime(data.timestamp * 1000)}</Ws>;
+        },
       },
       region: {
         title: t('table.table_head.region'),
@@ -224,7 +224,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         Component: ({ data }) => {
           return (
             <Ws>
-              {dateUtils.durationWords(data.roundTime, {
+              {dateFormatter.durationWords(data.roundTime, {
                 includeSeconds: true,
                 short: true,
               })}
@@ -255,7 +255,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         ),
       },
     }),
-    [activeCoinFormatter, t]
+    [activeCoinFormatter, t, dateFormatter]
   );
 
   const columns = React.useMemo(() => {

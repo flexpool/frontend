@@ -165,7 +165,9 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
               {latency === lowestLatency && (
                 <>
                   &nbsp;
-                  <Sticker variant="success">Fastest</Sticker>
+                  <Sticker variant="success">
+                    {t('detail.region.fastest')}
+                  </Sticker>
                 </>
               )}
             </Ws>

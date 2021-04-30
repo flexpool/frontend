@@ -8,7 +8,7 @@ import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
-import { dateUtils } from 'src/utils/date.utils';
+import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import { useLocalizedCurrencyFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components';
 
@@ -61,6 +61,7 @@ export const MinerDetails: React.FC<{
   );
 
   const { t } = useTranslation('dashboard');
+  const dateFormatter = useLocalizedDateFormatter();
 
   return (
     <Card paddingShort>
@@ -89,7 +90,9 @@ export const MinerDetails: React.FC<{
                   <div>
                     {settings ? (
                       <>
-                        {dateUtils.formatDistance(settings.firstJoined * 1000)}
+                        {dateFormatter.distanceFromNow(
+                          settings.firstJoined * 1000
+                        )}
                       </>
                     ) : (
                       <Skeleton width={50} />
@@ -102,7 +105,7 @@ export const MinerDetails: React.FC<{
                 <p>
                   <strong>
                     {t('header.info_joined_tooltip')}{' '}
-                    {dateUtils.format(settings.firstJoined * 1000, 'PPp')}
+                    {dateFormatter.dateAndTime(settings.firstJoined * 1000)}
                   </strong>
                 </p>
               </TooltipContent>

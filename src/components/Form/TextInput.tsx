@@ -56,6 +56,8 @@ export const TextInput: React.FC<
     spellCheck,
     type = 'text',
     inputMode,
+    min,
+    pattern,
     ...props
   } = getInputProps(p);
 
@@ -63,12 +65,14 @@ export const TextInput: React.FC<
     <FieldWrap {...props}>
       <Wrapper>
         <SText
+          min={min}
           type={type}
           inputMode={inputMode}
           value={props.value}
           onChange={props.onChange}
           onBlur={props.onBlur}
           name={props.name}
+          pattern={pattern}
           placeholder={props.placeholder}
           disabled={props.disabled}
           autoComplete={autoComplete}

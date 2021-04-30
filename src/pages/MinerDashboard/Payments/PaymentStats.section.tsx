@@ -6,8 +6,7 @@ import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { fetchApi } from 'src/utils/fetchApi';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
-import { dateUtils } from 'src/utils/date.utils';
-import { formatDistance } from 'date-fns';
+import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { MinerPaymentsList } from './MinerPayments.list';
@@ -47,6 +46,7 @@ export const GeneralPaymentStatsSection: React.FC<{
   const { t } = useTranslation('dashboard');
   const numberFormatter = useLocalizedNumberFormatter();
   const currencyFormatter = useLocalizedCurrencyFormatter();
+  const dateFormatter = useLocalizedDateFormatter();
 
   React.useEffect(() => {
     if (coin?.ticker) {
@@ -118,7 +118,7 @@ export const GeneralPaymentStatsSection: React.FC<{
   return (
     <>
       <Helmet>
-        <title>{t('payments.title')}</title>
+        <title>{t('payments.head_title')}</title>
       </Helmet>
       <h2>{t('payments.general.title')}</h2>
       <CardGrid>
@@ -150,7 +150,7 @@ export const GeneralPaymentStatsSection: React.FC<{
           <StatItem
             value={
               data && data.stats
-                ? formatDistance(0, data.stats.averageDuration * 1000)
+                ? dateFormatter.distance(0, data.stats.averageDuration * 1000)
                 : 'N/A'
             }
             subValue={t('payments.general.average_payout_duration_desc')}
@@ -167,7 +167,9 @@ export const GeneralPaymentStatsSection: React.FC<{
               data && data.lastPayment ? (
                 <>
                   {lastPayment} •{' '}
-                  {dateUtils.formatDistance(data.lastPayment.timestamp * 1000)}{' '}
+                  {dateFormatter.distanceFromNow(
+                    data.lastPayment.timestamp * 1000
+                  )}{' '}
                   •{' '}
                   {t('payments.transaction_fees.fee', {
                     value: numberFormatter(

@@ -26,7 +26,7 @@ import {
   ValueAxis,
   ColumnSeries,
 } from 'src/plugins/amcharts';
-import { dateUtils } from 'src/utils/date.utils';
+import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import {
   ChartContainer,
@@ -57,6 +57,8 @@ export const MinerPplnsStats: React.FC<{
     headerStatsData?.approximateBlockShare,
     { maximumFractionDigits: 8 }
   );
+
+  const dateFormatter = useLocalizedDateFormatter();
 
   React.useEffect(() => {
     if (address && activeCoinTicker) {
@@ -228,7 +230,7 @@ export const MinerPplnsStats: React.FC<{
               averagePoolHashrate &&
               shareLogLength &&
               activeCoin &&
-              `${dateUtils.durationWords(
+              `${dateFormatter.durationWords(
                 (shareLogLength * activeCoin.shareDifficulty) /
                   averagePoolHashrate,
                 { includeSeconds: true }

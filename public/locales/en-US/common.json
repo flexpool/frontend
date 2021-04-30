@@ -59,5 +59,8 @@
     "Invalid IP Address": "Invalid IP Address",
     "email_invalid": "Invalid email address",
     "email_required": "Please enter your email address"
+  },
+  "date_time": {
+    "now": "now"
   }
 }

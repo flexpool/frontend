@@ -23,3 +23,19 @@ someKey_2: "Máš {{count}} chickens // Máš (0,5-n) kuřat
 
 To check which indexes are used in your language, use this fiddle below:
 https://jsfiddle.net/sm9wgLze
+
+## Translating GET STARTED
+
+You will encounter single word keys like `AMD, windows, hiveos, 0.75` and os on. Please do not translate these as they are not meant to be translated.
+
+---
+
+## Adding new languages
+
+### Language selector in footer
+
+To add a new language to language selector, update `src/i18n-select-lang.ts`
+
+### Don't forget adding date localization
+
+Localization must be imported from `date-fns` library, update `src/i18n-date-locales.ts`
