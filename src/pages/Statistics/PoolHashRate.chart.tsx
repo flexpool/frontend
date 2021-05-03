@@ -53,6 +53,7 @@ const PoolHashrateChart = () => {
         color('#15cd72'),
         color('#ed4f32'),
         color('#0069ff'),
+        color('#ff00ff'),
       ];
       var data = [];
 
