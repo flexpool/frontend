@@ -41,12 +41,12 @@ const Td = styled.td<{ alignRight?: boolean }>`
 `;
 
 const Tr = styled.tr<{ clickable?: boolean }>`
-  transition: 0.2s all;
-
   &.highlighted {
     background: rgba(128, 128, 128, 0.06);
-    .row-highlight {
+    .row-highlight,
+    .item-hover-higjlight {
       color: var(--primary);
+      text-decoration: underline;
     }
   }
 

@@ -40,6 +40,7 @@ export const TopMinersSection = () => {
             <Mono>
               <Ws>
                 <LinkMiner
+                  className="item-hover-higjlight"
                   chars={16}
                   address={data.address}
                   coin={config.coinTicker}

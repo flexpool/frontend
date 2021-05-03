@@ -173,7 +173,7 @@ export const MinerPaymentsList: React.FC<{
             Component: ({ data }) => {
               return (
                 <Ws>
-                  <Mono>
+                  <Mono className="item-hover-higjlight">
                     <LinkOutCoin
                       type="transaction"
                       hash={data.hash}

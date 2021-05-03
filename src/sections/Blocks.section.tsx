@@ -207,7 +207,11 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         Component: ({ data, config }) => (
           <Mono>
             <Ws>
-              <LinkMiner coin={config.coinTicker} address={data.miner} />
+              <LinkMiner
+                className="item-hover-higjlight"
+                coin={config.coinTicker}
+                address={data.miner}
+              />
             </Ws>
           </Mono>
         ),
@@ -249,7 +253,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         alignRight: true,
         Component: ({ data, config }) => (
           <Mono>
-            <Ws>
+            <Ws className="item-hover-higjlight">
               <LinkOutCoin
                 type="block"
                 hash={data.hash}
