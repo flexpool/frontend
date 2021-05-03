@@ -81,21 +81,9 @@ const FieldWrapper = styled.div`
   height: 100%;
   position: relative;
   flex-grow: 1;
-  &:focus-within,
-  &:hover {
+  &:focus-within {
     ${ResultWrapper} {
       display: block;
-    }
-  }
-`;
-
-const F = styled(Form)`
-  &:hover {
-    ${SearchButton} {
-      box-shadow: inset 0 0 20px 0 rgba(0, 0, 0, 0.15);
-      svg {
-        transform: scale(1.1);
-      }
     }
   }
 `;
@@ -113,6 +101,19 @@ const Input = styled(Field)`
   font-weight: 400;
   display: block;
   color: var(--text-primary);
+`;
+const F = styled(Form)`
+  &:hover {
+    ${Input} {
+      background-color: var(--bg-primary);
+    }
+    ${SearchButton} {
+      box-shadow: inset 0 0 20px 0 rgba(0, 0, 0, 0.15);
+      svg {
+        transform: scale(1.1);
+      }
+    }
+  }
 `;
 
 export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({

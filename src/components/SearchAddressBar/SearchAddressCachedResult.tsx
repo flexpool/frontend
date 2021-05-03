@@ -66,7 +66,7 @@ const RemoveWrap = styled.button`
   background: transparent;
   outline: none !important;
   border: none !important;
-  color: white;
+  color: var(--text-primary);
   &:hover {
     opacity: 1;
   }
