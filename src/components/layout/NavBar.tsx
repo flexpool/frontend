@@ -67,7 +67,6 @@ const NLink = styled(NavLink)`
 
   @media screen and (min-width: 1101px) {
     border-bottom: 2px solid transparent;
-    margin: 0 2px;
     &:hover {
       background: rgba(128, 128, 128, 0.04);
       color: var(--primary);
@@ -83,10 +82,10 @@ const NavSection = styled.div`
   height: 100%;
   align-items: center;
   &:not(:first-child) {
-    margin-left: 1rem;
+    margin-left: 0.5rem;
   }
   &:not(:last-child) {
-    margin-right: 1rem;
+    margin-right: 0.5rem;
   }
 `;
 
@@ -263,16 +262,14 @@ export const NavBar: React.FC<NavBarType> = (props) => {
       <NavContainerOuter>
         <NavContainer>
           <NavSection>
-            <NavLink to="/">
+            <NLink to="/" style={{ marginLeft: '-0.5rem' }}>
               <Logo
                 height="29px"
                 width="165px"
                 src={logoSrc}
                 alt="Flexpool.io Logo"
               />
-            </NavLink>
-          </NavSection>
-          <NavSection>
+            </NLink>
             <NLink to="/statistics">{t('nav.statistics')}</NLink>
             <NLink to="/blocks">{t('nav.blocks')}</NLink>
             <NLink to="/miners">{t('nav.miners')}</NLink>
