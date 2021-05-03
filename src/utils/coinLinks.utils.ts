@@ -2,6 +2,10 @@ const blockUrlMap = {
   eth: 'https://etherscan.io/block/%v',
 };
 
+const uncleUrlMap = {
+  eth: 'https://etherscan.io/uncle/%v',
+};
+
 const transactionUrlMap = {
   eth: 'https://etherscan.io/tx/%v',
 };
@@ -13,9 +17,10 @@ const urlMaps = {
   wallet: walletAddressUrlMap,
   transaction: transactionUrlMap,
   block: blockUrlMap,
+  uncle: uncleUrlMap,
 };
 
-export type CoinLinkType = 'wallet' | 'transaction' | 'block';
+export type CoinLinkType = keyof typeof urlMaps;
 export const getCoinLink = (
   type: CoinLinkType,
   hash: string,

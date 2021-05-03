@@ -129,8 +129,6 @@ const AppContent = () => {
       <ServiceWorkerWrapper />
       <AppTheme />
       <React.Suspense fallback={<React.Fragment />}>
-        {' '}
-        {/** __TODO header loader */}
         <NavBar />
         <SnackViewControl />
       </React.Suspense>

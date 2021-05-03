@@ -19,7 +19,8 @@
         "location": "Umístění",
         "domain": "Doména",
         "average_lat": "Průměrná latence"
-      }
+      },
+      "fastest": "Nejrychlejší"
     },
     "ports": {
       "title": "Porty",
@@ -86,98 +87,19 @@
         "key": "GPU",
         "miners": [
           {
-            "os": [
-              "windows",
-              "linux",
-              "hiveos"
-            ],
-            "title": "TeamRedMiner",
-            "key": "teamreadminer",
-            "description": "Nejlepší software pro AMD GPU",
-            "fee": [
-              "0.75",
-              1
-            ],
-            "compatibleGpus": [
-              "AMD"
-            ],
-            "downloadLink": "https://github.com/todxx/teamredminer/releases",
-            "cmd": "teamredminer.exe -a ethash -o stratum+ssl://CLOSEST_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME -p x --eth_stratum ethproxy"
+            "description": "Nejlepší software pro AMD GPU"
           },
           {
-            "os": [
-              "windows",
-              "linux",
-              "hiveos"
-            ],
-            "title": "T-Rex Miner",
-            "key": "trexminer",
-            "description": "Nejlepší software pro NVIDIA karty řady 20/30",
-            "fee": [
-              1
-            ],
-            "compatibleGpus": [
-              "NVIDIA"
-            ],
-            "downloadLink": "https://github.com/trexminer/T-Rex/releases",
-            "cmd": "t-rex.exe -a ethash -o stratum+ssl://CLOSEST_SERVER:5555 -u WALLET_ADDRESS -p x -w WORKER_NAME"
+            "description": "Nejlepší software pro NVIDIA karty řady 20/30"
           },
           {
-            "os": [
-              "windows",
-              "linux",
-              "hiveos"
-            ],
-            "title": "lolminer",
-            "key": "lolminer",
-            "description": "Nejlepší software pro 4GB zombie mód.",
-            "fee": [
-              "0.75"
-            ],
-            "compatibleGpus": [
-              "AMD",
-              "NVIDIA"
-            ],
-            "downloadLink": "https://github.com/Lolliedieb/lolMiner-releases/releases",
-            "cmd": "lolMiner.exe --algo ETHASH --pool stratum+ssl://CLOSEST_SERVER:5555 --user WALLET_ADDRESS.WORKER_NAME"
+            "description": "Nejlepší software pro 4GB zombie mód."
           },
           {
-            "os": [
-              "windows",
-              "linux",
-              "hiveos"
-            ],
-            "title": "ethminer",
-            "key": "ethminer",
-            "description": "Open-source těžař ethash bez poplatků. Vytvořeno ethereum komunitou.",
-            "fee": [
-              0
-            ],
-            "compatibleGpus": [
-              "AMD",
-              "NVIDIA"
-            ],
-            "downloadLink": "https://github.com/ethereum-mining/ethminer/releases",
-            "cmd": "ethminer.exe -R -P stratum1+ssl://WALLET_ADDRESS.WORKER_NAME@CLOSEST_SERVER:5555"
+            "description": "Open-source těžař ethash bez poplatků. Vytvořeno ethereum komunitou."
           },
           {
-            "os": [
-              "windows",
-              "linux",
-              "hiveos"
-            ],
-            "title": "PhoenixMiner",
-            "key": "phoenixminer",
-            "description": "Proprietární software s nejnižším dev poplatkem.",
-            "fee": [
-              "0.65"
-            ],
-            "compatibleGpus": [
-              "AMD",
-              "NVIDIA"
-            ],
-            "downloadLink": "https://github.com/PhoenixMinerDevTeam/PhoenixMiner/releases",
-            "cmd": "PhoenixMiner.exe -pool ssl://CLOSEST_SERVER:5555 -wal WALLET_ADDRESS.WORKER_NAME"
+            "description": "Proprietární software s nejnižším dev poplatkem."
           }
         ]
       }

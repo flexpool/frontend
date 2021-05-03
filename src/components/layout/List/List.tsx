@@ -23,7 +23,7 @@ export type DynamicListProps<
 > = JSX.IntrinsicElements['table'] & {
   data?: D[];
   columns: DynamicListColumn<D, CP>[];
-  config?: CP;
+  config?: CP | null;
   large?: boolean;
   className?: string;
   activeColName?: string;
@@ -50,6 +50,49 @@ export type DynamicListProps<
   wrapperProps?: Omit<JSX.IntrinsicElements['div'], 'ref'>;
 };
 
+const ListRow = React.memo(
+  <D extends {}, CP extends {} = {}>({
+    item,
+    onRowClick,
+    index,
+    isHighlighted,
+    handleActiveHover,
+    columns,
+    config,
+  }: {
+    item: D;
+    onRowClick?: (d: D) => void;
+    index: number;
+    isHighlighted: boolean;
+    handleActiveHover: (n: number) => void;
+    columns: DynamicListColumn<D, CP>[];
+    config: CP | null;
+  }) => {
+    const onMouseOver = React.useCallback(() => {
+      handleActiveHover(index);
+    }, [handleActiveHover, index]);
+
+    return (
+      <Table.Tr
+        clickable={!!onRowClick}
+        onClick={onRowClick && (() => onRowClick(item))}
+        className={clx({
+          highlighted: isHighlighted,
+        })}
+        onMouseOver={onMouseOver}
+      >
+        {columns.map((col, cindex) => {
+          return (
+            <Table.Td key={cindex} alignRight={col.alignRight}>
+              <col.Component data={item} index={index} config={config as any} />
+            </Table.Td>
+          );
+        })}
+      </Table.Tr>
+    );
+  }
+);
+
 export const DynamicList = <D extends {}, CP extends {}>(
   props: DynamicListProps<D, CP>
 ) => {
@@ -64,44 +107,51 @@ export const DynamicList = <D extends {}, CP extends {}>(
     loadingRowsCount = 5,
     pagination,
     onColumnHeaderClick,
-    config = {},
+    config = null,
     onRowClick,
     wrapperProps,
   } = props;
+
+  const [lastMouseOver, setLastMouseOver] = React.useState<number | null>();
+
+  const headEl = React.useMemo(() => {
+    return (
+      !hideHead && (
+        <thead>
+          <tr>
+            {columns &&
+              columns.map((colProps, index) => {
+                const { title, onClickValue } = colProps;
+
+                const handleClick =
+                  onClickValue && onColumnHeaderClick
+                    ? () => {
+                        onColumnHeaderClick(onClickValue);
+                      }
+                    : undefined;
+
+                return (
+                  <Table.Th
+                    key={index}
+                    alignRight={colProps.alignRight}
+                    onClick={handleClick}
+                    hoverable={!!handleClick}
+                  >
+                    {title}
+                  </Table.Th>
+                );
+              })}
+          </tr>
+        </thead>
+      )
+    );
+  }, [hideHead, columns, onColumnHeaderClick]);
 
   return (
     <ListWrapper {...wrapperProps}>
       <HorizontalScrollWrapepr>
         <Table.Container>
-          {!hideHead && (
-            <thead>
-              <tr>
-                {columns &&
-                  columns.map((colProps, index) => {
-                    const { title, onClickValue } = colProps;
-
-                    const handleClick =
-                      onClickValue && onColumnHeaderClick
-                        ? () => {
-                            onColumnHeaderClick(onClickValue);
-                          }
-                        : undefined;
-
-                    return (
-                      <Table.Th
-                        key={index}
-                        className={clx(props && props.className)}
-                        alignRight={colProps.alignRight}
-                        onClick={handleClick}
-                        hoverable={!!handleClick}
-                      >
-                        {title}
-                      </Table.Th>
-                    );
-                  })}
-              </tr>
-            </thead>
-          )}
+          {headEl}
           {(isLoading && (!data || data.length < 1) && (
             <tbody>
               {Array.apply(null, Array(loadingRowsCount)).map((_, index) => (
@@ -123,23 +173,16 @@ export const DynamicList = <D extends {}, CP extends {}>(
                 data.length > 0 &&
                 data.map((item, index) => {
                   return (
-                    <Table.Tr
-                      key={index}
-                      clickable={!!onRowClick}
-                      onClick={onRowClick && (() => onRowClick(item))}
-                    >
-                      {columns.map((col, cindex) => {
-                        return (
-                          <Table.Td key={cindex} alignRight={col.alignRight}>
-                            <col.Component
-                              data={item}
-                              index={index}
-                              config={config as any}
-                            />
-                          </Table.Td>
-                        );
-                      })}
-                    </Table.Tr>
+                    <ListRow
+                      item={item}
+                      onRowClick={onRowClick as any}
+                      index={index}
+                      key={(item as any).name || index}
+                      isHighlighted={index === lastMouseOver}
+                      handleActiveHover={setLastMouseOver}
+                      columns={columns as any}
+                      config={config}
+                    />
                   );
                 })}
               {tBodyChildren}

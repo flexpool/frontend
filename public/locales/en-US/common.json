@@ -26,7 +26,6 @@
       "title": "Resources",
       "get_started": "Getting Started",
       "faq": "FAQ",
-      "reports": "Open Data Reports",
       "api_docs": "API Documentation"
     },
     "community": {
@@ -41,7 +40,6 @@
       "title": "Preferences"
     },
     "bottom_message": "© 2020-{{currentYear}} Flexpool.io or its affiliates. All rights reserved.",
-    "open_source": "Open Source",
     "translation_help": "Help us translate the website to your language"
   },
   "theme": {

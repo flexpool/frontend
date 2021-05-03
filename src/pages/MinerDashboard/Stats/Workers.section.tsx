@@ -96,7 +96,7 @@ const MinerWorkersTable: React.FC<{
   const [sortKey, setSortKey] = React.useState<keyof ApiMinerWorker>('name');
   const [sortOrder, setSortOrder] = React.useState<-1 | 1>(1);
   const [search, setSearch] = React.useState('');
-  const history = useHistory();
+  const { push } = useHistory();
   const siFormatter = useLocalizedSiFormatter();
   const { t } = useTranslation('dashboard');
   const numberFormatter = useLocalizedNumberFormatter();
@@ -135,9 +135,12 @@ const MinerWorkersTable: React.FC<{
     [sortKey, sortOrder]
   );
 
-  const onRowClick = (data: ApiMinerWorker) => {
-    history.push({ search: `?worker=${data.name}` });
-  };
+  const onRowClick = React.useCallback(
+    (data: ApiMinerWorker) => {
+      push({ search: `?worker=${data.name}` });
+    },
+    [push]
+  );
 
   const cols = React.useMemo(() => {
     const columns: DynamicListColumn<
@@ -146,74 +149,75 @@ const MinerWorkersTable: React.FC<{
       {
         title: t('stats.table.table_head.name'),
         onClickValue: 'name',
-        Component: ({ data }) =>
+        Component: React.memo(({ data }) =>
           data.isOnline ? (
-            <WorkerName>{data.name}</WorkerName>
+            <WorkerName className="row-highlight">{data.name}</WorkerName>
           ) : (
             <WorkerNameOffline>{data.name}</WorkerNameOffline>
-          ),
+          )
+        ),
       },
       {
         title: t('stats.table.table_head.reported_hashrate'),
         alignRight: true,
         onClickValue: 'reportedHashrate',
-        Component: ({ data }) => (
+        Component: React.memo(({ data }) => (
           <Mono>{siFormatter(data.reportedHashrate, { unit: 'H/s' })}</Mono>
-        ),
+        )),
       },
       {
         title: t('stats.table.table_head.current_e_hashrate'),
         alignRight: true,
         onClickValue: 'currentEffectiveHashrate',
-        Component: ({ data }) => (
+        Component: React.memo(({ data }) => (
           <Mono>
             {siFormatter(data.currentEffectiveHashrate, { unit: 'H/s' })}
           </Mono>
-        ),
+        )),
       },
       {
         title: t('stats.table.table_head.valid'),
         alignRight: true,
         onClickValue: 'validShares',
-        Component: ({ data }) => (
+        Component: React.memo(({ data }) => (
           <Ws>
             <Mono>
               {numberFormatter(data.validShares)}{' '}
               <Percentage total={data.totalShares} value={data.validShares} />
             </Mono>
           </Ws>
-        ),
+        )),
       },
       {
         title: t('stats.table.table_head.stale'),
         alignRight: true,
         onClickValue: 'staleShares',
-        Component: ({ data }) => (
+        Component: React.memo(({ data }) => (
           <Ws>
             <Mono>
               {numberFormatter(data.staleShares)}{' '}
               <Percentage total={data.totalShares} value={data.staleShares} />
             </Mono>
           </Ws>
-        ),
+        )),
       },
       {
         title: t('stats.table.table_head.invalid'),
         alignRight: true,
         onClickValue: 'invalidShares',
-        Component: ({ data }) => (
+        Component: React.memo(({ data }) => (
           <Mono>
             {numberFormatter(data.invalidShares)}{' '}
             <Percentage total={data.totalShares} value={data.invalidShares} />
           </Mono>
-        ),
+        )),
       },
       {
         title: t('stats.table.table_head.last_seen'),
         alignRight: true,
-        Component: ({ data }) => (
+        Component: React.memo(({ data }) => (
           <Ws>{dateFormatter.distanceFromNow(data.lastSeen * 1000)}</Ws>
-        ),
+        )),
       },
     ];
 

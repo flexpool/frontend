@@ -125,12 +125,11 @@ export const PayoutSettings: React.FC = () => {
                             minerHeaderStats.data!.countervaluePrice
                         ),
                         percent: numberFormatter(
-                          ((Number(values.maxFeePrice) *
+                          (Number(values.maxFeePrice) *
                             activeCoin.transactionSize *
                             feeDetails.multiplier) /
                             Math.pow(10, activeCoin.decimalPlaces) /
-                            Number(values.payoutLimit)) *
-                            100,
+                            Number(values.payoutLimit),
                           { style: 'percent', maximumFractionDigits: 3 }
                         ),
                       })

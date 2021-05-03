@@ -10,7 +10,9 @@ import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { minerPaymentsGet } from 'src/rdx/minerPayments/minerPayments.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
+import { ApiMinerPayment } from 'src/types/Miner.types';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
+import { getCoinLink } from 'src/utils/coinLinks.utils';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import {
   useLocalizedCurrencyFormatter,
@@ -57,6 +59,15 @@ export const MinerPaymentsList: React.FC<{
   const { t } = useTranslation('dashboard');
   const currencyFormatter = useLocalizedCurrencyFormatter();
   const dateFormatter = useLocalizedDateFormatter();
+  const handleRowClick = React.useCallback(
+    (data: ApiMinerPayment) => {
+      window.open(
+        getCoinLink('transaction', data.hash, coin?.ticker),
+        '_blank'
+      );
+    },
+    [coin?.ticker]
+  );
 
   return (
     <>
@@ -75,6 +86,7 @@ export const MinerPaymentsList: React.FC<{
         </Button>
       </HeaderSplit>
       <DynamicList
+        onRowClick={handleRowClick}
         pagination={{
           currentPage,
           setCurrentPage,
@@ -161,7 +173,7 @@ export const MinerPaymentsList: React.FC<{
             Component: ({ data }) => {
               return (
                 <Ws>
-                  <Mono>
+                  <Mono className="item-hover-higjlight">
                     <LinkOutCoin
                       type="transaction"
                       hash={data.hash}

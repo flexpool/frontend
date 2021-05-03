@@ -16,6 +16,9 @@ import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router';
+import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
+import { BiTransferAlt } from 'react-icons/bi';
 
 const UnconfirmedSpinner = styled(LoaderSpinner)`
   width: 14px;
@@ -80,6 +83,21 @@ const BlockType = styled.span<{ type: ApiBlock['type'] }>`
   }
 `;
 
+const ButtonDateSwitch = styled(Ws)`
+  padding: 0 0.35rem;
+  outline: none;
+  border: none;
+  color: var(--text-secondary);
+  svg {
+    opacity: 0.5;
+    margin-left: 0.3rem;
+  }
+  &:hover svg {
+    color: var(--primary);
+    opacity: 1;
+  }
+`;
+
 export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   const { t } = useTranslation('blocks');
   const blockState = useAsyncState<ApiBlocks>('blocks', {
@@ -89,6 +107,10 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   });
   const coinTicker = useActiveCoinTicker();
   const [currentPage, setCurrentPage] = React.useState(0);
+  const history = useHistory();
+  const [dateView, setDateView] = useLocalStorageState<
+    'full_date' | 'distance'
+  >('blockDateView', 'full_date');
 
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const dateFormatter = useLocalizedDateFormatter();
@@ -107,6 +129,8 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   const blocks = React.useMemo(() => {
     return blockState.data?.data || [];
   }, [blockState.data]);
+
+  console.log(dateView);
 
   const blockCols: {
     [key: string]: DynamicListColumn<
@@ -138,7 +162,9 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         title: t('table.table_head.number'),
         skeletonWidth: 80,
         Component: ({ data, config }) => {
-          const url = getCoinLink('block', data.hash, config.coinTicker);
+          const url =
+            data.type !== 'orphan' &&
+            getCoinLink(data.type, data.hash, config.coinTicker);
 
           const content = (
             <Ws>
@@ -152,7 +178,11 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
           );
 
           if (url) {
-            return <BlockLink href={url}>{content}</BlockLink>;
+            return (
+              <BlockLink onClick={(e) => e.stopPropagation()} href={url}>
+                {content}
+              </BlockLink>
+            );
           }
           return <>{content}</>;
         },
@@ -187,7 +217,21 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         title: t('table.table_head.date'),
         skeletonWidth: 180,
         Component: ({ data }) => {
-          return <Ws>{dateFormatter.dateAndTime(data.timestamp * 1000)}</Ws>;
+          return (
+            <ButtonDateSwitch
+              onClick={(e) => {
+                setDateView(
+                  dateView === 'full_date' ? 'distance' : 'full_date'
+                );
+                e.stopPropagation();
+              }}
+            >
+              {dateView === 'full_date'
+                ? dateFormatter.dateAndTime(data.timestamp * 1000)
+                : dateFormatter.distanceFromNow(data.timestamp * 1000)}
+              <BiTransferAlt />
+            </ButtonDateSwitch>
+          );
         },
       },
       region: {
@@ -201,7 +245,11 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         Component: ({ data, config }) => (
           <Mono>
             <Ws>
-              <LinkMiner coin={config.coinTicker} address={data.miner} />
+              <LinkMiner
+                className="item-hover-higjlight"
+                coin={config.coinTicker}
+                address={data.miner}
+              />
             </Ws>
           </Mono>
         ),
@@ -243,7 +291,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         alignRight: true,
         Component: ({ data, config }) => (
           <Mono>
-            <Ws>
+            <Ws className="item-hover-higjlight">
               <LinkOutCoin
                 type="block"
                 hash={data.hash}
@@ -255,7 +303,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         ),
       },
     }),
-    [activeCoinFormatter, t, dateFormatter]
+    [activeCoinFormatter, t, dateFormatter, dateView, setDateView]
   );
 
   const columns = React.useMemo(() => {
@@ -292,6 +340,9 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         <h2>{t('table.title', { count: blockState.data.totalItems })}</h2>
       )}
       <DynamicList
+        onRowClick={(data) => {
+          history.push(`/miner/${coinTicker}/${data.miner}`);
+        }}
         pagination={{
           currentPage,
           setCurrentPage,

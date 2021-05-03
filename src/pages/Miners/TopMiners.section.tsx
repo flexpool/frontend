@@ -13,6 +13,7 @@ import { Mono, Ws } from 'src/components/Typo/Typo';
 import { ApiTopMiner } from 'src/types/TopMiner.types';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router';
 
 export const TopMinersSection = () => {
   const activeCoinTicker = useActiveCoinTicker();
@@ -39,6 +40,7 @@ export const TopMinersSection = () => {
             <Mono>
               <Ws>
                 <LinkMiner
+                  className="item-hover-higjlight"
                   chars={16}
                   address={data.address}
                   coin={config.coinTicker}
@@ -90,6 +92,13 @@ export const TopMinersSection = () => {
     ],
     [siFormatter, activeCoinFormatter, t]
   );
+  const { push } = useHistory();
+  const handleMinerClick = React.useCallback(
+    (miner: ApiTopMiner) => {
+      push(`/miner/${activeCoinTicker}/${miner.address}`);
+    },
+    [push, activeCoinTicker]
+  );
 
   return (
     <>
@@ -98,6 +107,7 @@ export const TopMinersSection = () => {
         isLoading={minersState.isLoading}
         data={minersState.data}
         columns={topMinersCol}
+        onRowClick={handleMinerClick}
         config={{
           coinTicker: activeCoinTicker,
         }}
