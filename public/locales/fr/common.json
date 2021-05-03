@@ -26,7 +26,6 @@
       "title": "Ressources",
       "get_started": "Commencer",
       "faq": "FAQ",
-      "reports": "Open Data Reports",
       "api_docs": "Documentation de l'API"
     },
     "community": {
@@ -59,5 +58,8 @@
     "Invalid IP Address": "Adresse IP non valide",
     "email_invalid": "Adresse e-mail non valide",
     "email_required": "Veuillez entrer votre adresse e-mail"
+  },
+  "date_time": {
+    "now": "now"
   }
 }

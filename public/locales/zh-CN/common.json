@@ -26,7 +26,6 @@
       "title": "Resources",
       "get_started": "Getting Started",
       "faq": "常见问题",
-      "reports": "Open Data Reports",
       "api_docs": "API 文档"
     },
     "community": {
@@ -59,5 +58,8 @@
     "Invalid IP Address": "IP地址无效",
     "email_invalid": "电邮地址无效",
     "email_required": "Please enter your email address"
+  },
+  "date_time": {
+    "now": "now"
   }
 }

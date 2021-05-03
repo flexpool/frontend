@@ -26,7 +26,6 @@
       "title": "Zdroje",
       "get_started": "Začít s Těžbou",
       "faq": "Nejčastější otázky",
-      "reports": "Reporty",
       "api_docs": "API Dokumentace"
     },
     "community": {
@@ -59,5 +58,8 @@
     "Invalid IP Address": "Neplatná IP adresa",
     "email_invalid": "Neplatná emailová adresa",
     "email_required": "Zadejte prosím svou e-mailovou adresu"
+  },
+  "date_time": {
+    "now": "now"
   }
 }

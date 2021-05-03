@@ -26,7 +26,6 @@
       "title": "Ресурсы",
       "get_started": "Начать Майнить",
       "faq": "ЧаВо",
-      "reports": "Open Data Reports",
       "api_docs": "Документация по API"
     },
     "community": {
@@ -59,5 +58,8 @@
     "Invalid IP Address": "Некорректный IP адрес",
     "email_invalid": "Некорректный e-mail адрес",
     "email_required": "Пожалуйста, введите ваш e-mail адрес"
+  },
+  "date_time": {
+    "now": "now"
   }
 }
