@@ -43,6 +43,8 @@ const Td = styled.td<{ alignRight?: boolean }>`
 const Tr = styled.tr<{ clickable?: boolean }>`
   &.highlighted {
     background: rgba(128, 128, 128, 0.06);
+  }
+  &:hover {
     .row-highlight,
     .item-hover-higjlight {
       color: var(--primary);
