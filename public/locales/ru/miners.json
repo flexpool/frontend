@@ -1,17 +1,17 @@
 {
-  "head_title": "Miners",
-  "title": "Miners",
+  "head_title": "Майнеры",
+  "title": "Майнеры",
   "top_miners": {
-    "title": "Top Miners",
+    "title": "ТОП майнеров",
     "table_head": {
-      "miner": "Miner",
-      "hashrate": "Hashrate",
-      "balance": "Balance",
-      "workers": "Workers",
-      "joined": "Joined"
+      "miner": "Майнер",
+      "hashrate": "Хешрейт",
+      "balance": "Баланс",
+      "workers": "Воркеры",
+      "joined": "Присоединился"
     }
   },
   "distribution": {
-    "title": "Miners Distribution by Hashrate"
+    "title": "Разделение Майнеров по Хешрейту"
   }
 }

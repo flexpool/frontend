@@ -5,12 +5,12 @@
   "average_luck": "Average luck",
   "average_luck_tooltip": "Last 30 days average block luck.",
   "current_luck": "Current luck",
-  "current_luck_tooltip": "Current round's block luck. This value is updated in real-time.",
-  "network_hashrate": "Network Hashrate",
-  "network_difficulty": "Network difficulty",
+  "current_luck_tooltip": "下一个区块的幸运值，实时更新。",
+  "network_hashrate": "全网算力",
+  "network_difficulty": "全网难度",
   "network_difficulty_tooltip": "Average amount of how many hashes pool should produce to mine a block.",
   "table": {
-    "title_zero": "Unable to retrieve pool data",
+    "title_zero": "无法获取矿池数据",
     "title": "Flexpool has mined {{count}} block",
     "title_1": "Flexpool has mined {{count}} blocks",
     "title_2": "Flexpool has mined {{count}} blocks",
@@ -27,21 +27,21 @@
     "title_miner_5": "You have mined {{count}} blocks",
     "title_miner_plural": "You have mined {{count}} blocks",
     "table_head": {
-      "number": "Number",
+      "number": "区块高度",
       "type": "Type",
-      "date": "Date",
+      "date": "区块时间",
       "region": "Region",
-      "miner": "Miner",
-      "reward": "Reward",
-      "round_time": "Round Time",
-      "hash": "Hash",
-      "luck": "Luck"
+      "miner": "矿工",
+      "reward": "区块收益",
+      "round_time": "运行时间",
+      "hash": "矿工算力",
+      "luck": "幸运值"
     }
   },
   "type": {
-    "block": "Block",
-    "orphan": "Orphan",
-    "uncle": "Uncle"
+    "block": "区块",
+    "orphan": "孤块",
+    "uncle": "叔块"
   },
   "waiting_confirmation_tooltip": "Waiting for confirmation",
   "orphan_tooltip": "Orphan blocks are the blocks that were not included to the canonical chain. Typically, it happens because of the internal infrastructure problem on the Mining Pool, or due to the chain reorganizations, 51% attacks.",

@@ -5,13 +5,13 @@
     "title": "Top Miners",
     "table_head": {
       "miner": "Miner",
-      "hashrate": "Hashrate",
+      "hashrate": "算力",
       "balance": "Balance",
-      "workers": "Workers",
-      "joined": "Joined"
+      "workers": "矿机数量",
+      "joined": "开户时间"
     }
   },
   "distribution": {
-    "title": "Miners Distribution by Hashrate"
+    "title": "矿工算力分布"
   }
 }

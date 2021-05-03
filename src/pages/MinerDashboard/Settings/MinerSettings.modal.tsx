@@ -15,6 +15,7 @@ const Split = styled.div`
   display: flex;
   flex-grow: 1;
   flex-shrink: 1;
+  max-height: calc(100vh - 126px);
   @media screen and (max-width: 768px) {
     flex-direction: column;
   }
@@ -48,6 +49,7 @@ const PageWrapper = styled(ScrollArea)`
   flex-grow: 1;
   @media screen and (max-width: 768px) {
     min-height: 1px;
+    height: 1px;
   }
   & > * {
     width: 100%;
