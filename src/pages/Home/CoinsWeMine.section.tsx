@@ -123,6 +123,15 @@ export const CoinsWeMineSection = () => {
   const currencyFormatter = useLocalizedCurrencyFormatter();
   const numberFormatter = useLocalizedNumberFormatter();
   const activeCounterTicker = useCounterTicker();
+  const { push } = useHistory();
+  const handleRowClick = React.useCallback(
+    (data: ApiPoolCoinFull) => {
+      push({
+        search: `news=${data.ticker}`,
+      });
+    },
+    [push]
+  );
 
   const columns: DynamicListColumn<ApiPoolCoinFull>[] = React.useMemo(() => {
     return [
@@ -214,22 +223,10 @@ export const CoinsWeMineSection = () => {
         Component: ({ data }) => {
           return (
             <ActionIconContainer>
-              <ActionIcon
-                as={Link}
-                aria-label={`${data.ticker} news`}
-                to={{ search: `news=${data.ticker}` }}
-                size="xs"
-                variant="primary"
-              >
+              <ActionIcon size="xs" variant="primary">
                 <FaNewspaper />
               </ActionIcon>
-              <ActionIcon
-                as={Link}
-                aria-label={`${data.ticker} calculator`}
-                to={{ search: `news=${data.ticker}` }}
-                size="xs"
-                variant="primary"
-              >
+              <ActionIcon size="xs" variant="primary">
                 <FaCalculator />
               </ActionIcon>
               <Button
@@ -237,6 +234,9 @@ export const CoinsWeMineSection = () => {
                 variant="primary"
                 as={Link}
                 to={`/get-started/${data.ticker}`}
+                onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+                  e.stopPropagation()
+                }
               >
                 {t('mined_coins_section.item_cta')}
               </Button>
@@ -255,6 +255,7 @@ export const CoinsWeMineSection = () => {
         <p>{t('mined_coins_section.description')}</p>
         <br />
         <DynamicList
+          onRowClick={handleRowClick}
           isLoading={poolCoinsFullState.isLoading}
           loadingRowsCount={1}
           data={poolCoinsFullState.data || []}

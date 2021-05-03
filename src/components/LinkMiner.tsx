@@ -12,9 +12,10 @@ export const LinkMiner: React.FC<{
   address: string;
   coin: string;
   chars?: number;
-}> = ({ address, coin, chars }) => {
+  className?: string;
+}> = ({ address, coin, chars, className }) => {
   return (
-    <L to={{ pathname: `/miner/${coin}/${address}` }}>
+    <L className={className} to={{ pathname: `/miner/${coin}/${address}` }}>
       {stringUtils.shortenString(address, chars)}
     </L>
   );

@@ -41,12 +41,17 @@ const Td = styled.td<{ alignRight?: boolean }>`
 `;
 
 const Tr = styled.tr<{ clickable?: boolean }>`
-  transition: 0.2s all;
+  &.highlighted {
+    background: rgba(128, 128, 128, 0.06);
+  }
   &:hover {
-    td {
-      background: rgba(0, 0, 0, 0.02);
+    .row-highlight,
+    .item-hover-higjlight {
+      color: var(--primary);
+      text-decoration: underline;
     }
   }
+
   ${(p) =>
     p.clickable &&
     `
@@ -54,11 +59,16 @@ const Tr = styled.tr<{ clickable?: boolean }>`
   `};
 `;
 
+const TBody = styled.tbody`
+  line-height: attr(data-item-highlight);
+`;
+
 export const Table = {
   Container,
   Td,
   Th,
   Tr,
+  TBody,
 };
 
 export const HorizontalScrollWrapepr = styled.div`

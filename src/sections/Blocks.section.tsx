@@ -16,6 +16,7 @@ import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router';
 
 const UnconfirmedSpinner = styled(LoaderSpinner)`
   width: 14px;
@@ -89,6 +90,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   });
   const coinTicker = useActiveCoinTicker();
   const [currentPage, setCurrentPage] = React.useState(0);
+  const history = useHistory();
 
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const dateFormatter = useLocalizedDateFormatter();
@@ -152,7 +154,11 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
           );
 
           if (url) {
-            return <BlockLink href={url}>{content}</BlockLink>;
+            return (
+              <BlockLink onClick={(e) => e.stopPropagation()} href={url}>
+                {content}
+              </BlockLink>
+            );
           }
           return <>{content}</>;
         },
@@ -201,7 +207,11 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         Component: ({ data, config }) => (
           <Mono>
             <Ws>
-              <LinkMiner coin={config.coinTicker} address={data.miner} />
+              <LinkMiner
+                className="item-hover-higjlight"
+                coin={config.coinTicker}
+                address={data.miner}
+              />
             </Ws>
           </Mono>
         ),
@@ -243,7 +253,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         alignRight: true,
         Component: ({ data, config }) => (
           <Mono>
-            <Ws>
+            <Ws className="item-hover-higjlight">
               <LinkOutCoin
                 type="block"
                 hash={data.hash}
@@ -292,6 +302,9 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         <h2>{t('table.title', { count: blockState.data.totalItems })}</h2>
       )}
       <DynamicList
+        onRowClick={(data) => {
+          history.push(`/miner/${coinTicker}/${data.miner}`);
+        }}
         pagination={{
           currentPage,
           setCurrentPage,
