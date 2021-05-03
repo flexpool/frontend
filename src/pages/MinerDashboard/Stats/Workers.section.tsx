@@ -68,7 +68,6 @@ const SearchInput = styled.input`
   border-radius: 0px;
   outline: none;
   padding-left: 1.5rem;
-  padding-right: 1.5rem;
   display: block;
   background: var(--bg-primary);
   color: var(--text-primary);
@@ -94,19 +93,25 @@ const ClearButton = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  right: -14px;
+  left: 100%;
   outline: none;
   border: none;
   cursor: pointer;
   color: var(--text-primary);
-  height: 40px;
-  width: 40px;
+  height: 32px;
+  width: 32px;
   background: transparent;
   opacity: 0.5;
   transition: 0.1s all;
   &:hover,
   &:focus {
     opacity: 1;
+  }
+  &:hover {
+    background: rgba(128, 128, 128, 0.07);
+  }
+  &:focus {
+    background: rgba(128, 128, 128, 0.12);
   }
 `;
 
