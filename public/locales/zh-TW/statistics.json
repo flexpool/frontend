@@ -1,17 +1,17 @@
 {
   "head_title": "Statistics",
   "title": "Statistics",
-  "pool_hashrate": "Pool hashrate",
+  "pool_hashrate": "礦池算力",
   "average_luck": "Average Luck",
-  "average_luck_tooltip": "Last 30 days average block luck.",
-  "miners": "Miners",
-  "workers": "Workers",
+  "average_luck_tooltip": "過去三十日運氣平均值。",
+  "miners": "礦工數量",
+  "workers": "礦機數量",
   "chart": {
-    "title": "Pool Hashrate",
+    "title": "礦池算力",
     "total_hashrate": "Total Hashrate",
-    "as": "Asia Pacific (AS)",
-    "au": "Australia (AU)",
-    "eu": "Europe (EU)",
+    "as": "亞太地區 (AS)",
+    "au": "澳洲 (AU)",
+    "eu": "歐洲 (EU)",
     "sa": "South America (SA)",
     "us": "United States (US)"
   }

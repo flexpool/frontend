@@ -1,0 +1,63 @@
+{
+  "searchbar": {
+    "placeholder": "Rechercher par adresse de minage"
+  },
+  "nav": {
+    "statistics": "Statistiques",
+    "blocks": "Blocs",
+    "miners": "Mineurs",
+    "faq": "FAQ",
+    "support": "Support technique",
+    "get_started": "Démarrer",
+    "community_title": "Rejoignez la communauté"
+  },
+  "footer": {
+    "company": {
+      "title": "Entreprise",
+      "contact_us": "Contactez-nous",
+      "brand_assets": "Actifs de la marque",
+      "partners": "Partenaires",
+      "business_dev": "Développement des affaires",
+      "blog": "Blog",
+      "terms": "Termes",
+      "pp": "Politique de Confidentialité"
+    },
+    "resources": {
+      "title": "Ressources",
+      "get_started": "Commencer",
+      "faq": "FAQ",
+      "reports": "Open Data Reports",
+      "api_docs": "Documentation de l'API"
+    },
+    "community": {
+      "title": "Communauté"
+    },
+    "contact": {
+      "title": "Contact",
+      "service_status": "Statut du Service",
+      "support": "Support technique"
+    },
+    "preferences": {
+      "title": "Préférences"
+    },
+    "bottom_message": "© 202020-{{currentYear}} Flexpool.io ou ses sociétés affiliées. Tous droits réservés.",
+    "open_source": "Source ouverte",
+    "translation_help": "Aidez-nous à traduire le site web dans votre langue"
+  },
+  "theme": {
+    "default": "Thème par Défaut",
+    "dark": "Thème Sombre",
+    "light": "Thème Clair"
+  },
+  "list_navigation": {
+    "previous": "Précédent",
+    "next": "Suivant"
+  },
+  "errors": {
+    "higher_than": "Doit être supérieur à {{value}}",
+    "required": "Obligatoire",
+    "Invalid IP Address": "Adresse IP non valide",
+    "email_invalid": "Adresse e-mail non valide",
+    "email_required": "Veuillez entrer votre adresse e-mail"
+  }
+}

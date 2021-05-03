@@ -42,22 +42,22 @@
     },
     "bottom_message": "© 2020 -{{currentYear}} Flexpool.io или его филиалы. Все права защищены.",
     "open_source": "Open Source",
-    "translation_help": "Help us translate the website to your language"
+    "translation_help": "Помогите нам перевести наш сайт на ваш язык"
   },
   "theme": {
-    "default": "Default Theme",
-    "dark": "Dark Theme",
-    "light": "Light Theme"
+    "default": "Стандартная тема",
+    "dark": "Тёмная тема",
+    "light": "Светлая тема"
   },
   "list_navigation": {
-    "previous": "Previous",
-    "next": "Next"
+    "previous": "Пред.",
+    "next": "След."
   },
   "errors": {
-    "higher_than": "Must be higher than {{value}}",
-    "required": "Required",
-    "Invalid IP Address": "Invalid IP Address",
-    "email_invalid": "Invalid email address",
-    "email_required": "Please enter your email address"
+    "higher_than": "Должно быть выше чем {{value}}",
+    "required": "Необходимо",
+    "Invalid IP Address": "Некорректный IP адрес",
+    "email_invalid": "Некорректный e-mail адрес",
+    "email_required": "Пожалуйста, введите ваш e-mail адрес"
   }
 }

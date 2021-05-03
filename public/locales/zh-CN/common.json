@@ -6,34 +6,34 @@
     "statistics": "Statistics",
     "blocks": "Blocks",
     "miners": "Miners",
-    "faq": "FAQ",
+    "faq": "常见问题",
     "support": "Support",
     "get_started": "Get Started",
     "community_title": "Join the community"
   },
   "footer": {
     "company": {
-      "title": "Company",
-      "contact_us": "Contact Us",
-      "brand_assets": "Brand Assets",
-      "partners": "Partners",
+      "title": "关于我们",
+      "contact_us": "联系我们",
+      "brand_assets": "品牌",
+      "partners": "合作伙伴",
       "business_dev": "Business Development",
-      "blog": "Blog",
-      "terms": "Terms",
-      "pp": "Privacy Policy"
+      "blog": "博客文章",
+      "terms": "服务协议",
+      "pp": "隐私条款"
     },
     "resources": {
       "title": "Resources",
       "get_started": "Getting Started",
-      "faq": "FAQ",
+      "faq": "常见问题",
       "reports": "Open Data Reports",
-      "api_docs": "API Documentation"
+      "api_docs": "API 文档"
     },
     "community": {
       "title": "Community"
     },
     "contact": {
-      "title": "Contact",
+      "title": "联系我们",
       "service_status": "Service Status",
       "support": "Support"
     },
@@ -45,9 +45,9 @@
     "translation_help": "Help us translate the website to your language"
   },
   "theme": {
-    "default": "Default Theme",
-    "dark": "Dark Theme",
-    "light": "Light Theme"
+    "default": "默认主题",
+    "dark": "深色主题",
+    "light": "浅色主题"
   },
   "list_navigation": {
     "previous": "Previous",
@@ -55,9 +55,9 @@
   },
   "errors": {
     "higher_than": "Must be higher than {{value}}",
-    "required": "Required",
-    "Invalid IP Address": "Invalid IP Address",
-    "email_invalid": "Invalid email address",
+    "required": "必填项",
+    "Invalid IP Address": "IP地址无效",
+    "email_invalid": "电邮地址无效",
     "email_required": "Please enter your email address"
   }
 }
