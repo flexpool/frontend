@@ -19,7 +19,6 @@ import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { BiTransferAlt } from 'react-icons/bi';
-import { Button } from 'src/components/Button';
 
 const UnconfirmedSpinner = styled(LoaderSpinner)`
   width: 14px;
@@ -97,10 +96,6 @@ const ButtonDateSwitch = styled(Ws)`
     color: var(--primary);
     opacity: 1;
   }
-`;
-
-const DateDistance = styled(Ws)`
-  font-size: 0.75rem;
 `;
 
 export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
