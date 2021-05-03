@@ -60,9 +60,7 @@ const NLink = styled(NavLink)`
     height: 1.4rem;
     width: 1.4rem;
   }
-  &.active {
-    color: var(--primary);
-  }
+
   &:hover {
     text-decoration: none;
   }
@@ -70,9 +68,12 @@ const NLink = styled(NavLink)`
   @media screen and (min-width: 1101px) {
     border-bottom: 2px solid transparent;
     margin: 0 2px;
-    &:hover,
-    &.active {
-      border-color: var(--primary);
+    &:hover {
+      background: rgba(128, 128, 128, 0.04);
+      color: var(--primary);
+    }
+    &:active {
+      background: rgba(128, 128, 128, 0.07);
     }
   }
 `;
