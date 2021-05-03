@@ -192,7 +192,7 @@ export const FooterSection = () => {
                 href="https://github.com/flexpool/frontend"
                 style={{ marginLeft: '10px' }}
               >
-                {t('footer.open_source')}
+                Open Source
               </LinkOut>
             </div>
           </FooterCompany>
