@@ -81,6 +81,14 @@ const BlockType = styled.span<{ type: ApiBlock['type'] }>`
   }
 `;
 
+const DateFull = styled(Ws)`
+  font-size: 0.875rem;
+`;
+
+const DateDistance = styled(Ws)`
+  font-size: 0.75rem;
+`;
+
 export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   const { t } = useTranslation('blocks');
   const blockState = useAsyncState<ApiBlocks>('blocks', {
@@ -140,7 +148,9 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         title: t('table.table_head.number'),
         skeletonWidth: 80,
         Component: ({ data, config }) => {
-          const url = getCoinLink('block', data.hash, config.coinTicker);
+          const url =
+            data.type !== 'orphan' &&
+            getCoinLink(data.type, data.hash, config.coinTicker);
 
           const content = (
             <Ws>
@@ -193,7 +203,17 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         title: t('table.table_head.date'),
         skeletonWidth: 180,
         Component: ({ data }) => {
-          return <Ws>{dateFormatter.dateAndTime(data.timestamp * 1000)}</Ws>;
+          return (
+            <>
+              <DateFull>
+                {dateFormatter.dateAndTime(data.timestamp * 1000)}
+              </DateFull>
+              <br />
+              <DateDistance>
+                {dateFormatter.distanceFromNow(data.timestamp * 1000)}
+              </DateDistance>
+            </>
+          );
         },
       },
       region: {
