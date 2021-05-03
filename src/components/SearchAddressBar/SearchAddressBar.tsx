@@ -24,12 +24,6 @@ const SearchButton = styled.button`
   height: 100%;
   width: 50px;
   transition: 0.1s all;
-  &:hover {
-    box-shadow: inset 0 0 20px 0 rgba(0, 0, 0, 0.15);
-    svg {
-      transform: scale(1.1);
-    }
-  }
 
   svg {
     transition: 0.1s all;
@@ -37,6 +31,12 @@ const SearchButton = styled.button`
     fill: white;
     height: 40%;
     width: 40%;
+  }
+
+  &:focus {
+    svg {
+      transform: scale(0.9) !important;
+    }
   }
 `;
 const Container = styled.div`
@@ -81,9 +81,21 @@ const FieldWrapper = styled.div`
   height: 100%;
   position: relative;
   flex-grow: 1;
-  &:focus-within {
+  &:focus-within,
+  &:hover {
     ${ResultWrapper} {
       display: block;
+    }
+  }
+`;
+
+const F = styled(Form)`
+  &:hover {
+    ${SearchButton} {
+      box-shadow: inset 0 0 20px 0 rgba(0, 0, 0, 0.15);
+      svg {
+        transform: scale(1.1);
+      }
     }
   }
 `;
@@ -137,10 +149,10 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
                 address: searchAddress,
               })
             );
-            history.push(`/miner/${res}/${searchAddress}`);
             if (document.activeElement instanceof HTMLElement) {
               document.activeElement?.blur();
             }
+            history.push(`/miner/${res}/${searchAddress}`);
           } else {
             alert(
               'Specified address was not found in our system. Try waiting some time if you are already mining.'
@@ -163,7 +175,7 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
         }}
         initialValues={{ addrsearch: '' }}
       >
-        <Form autoComplete="off">
+        <F autoComplete="off">
           <Wrapper>
             <FieldWrapper>
               <Input
@@ -182,7 +194,7 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
               <FaSearch />
             </SearchButton>
           </Wrapper>
-        </Form>
+        </F>
       </Formik>
     </Container>
   );
