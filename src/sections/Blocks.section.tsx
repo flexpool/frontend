@@ -17,6 +17,9 @@ import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
+import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
+import { BiTransferAlt } from 'react-icons/bi';
+import { Button } from 'src/components/Button';
 
 const UnconfirmedSpinner = styled(LoaderSpinner)`
   width: 14px;
@@ -81,8 +84,19 @@ const BlockType = styled.span<{ type: ApiBlock['type'] }>`
   }
 `;
 
-const DateFull = styled(Ws)`
-  font-size: 0.875rem;
+const ButtonDateSwitch = styled(Ws)`
+  padding: 0 0.35rem;
+  outline: none;
+  border: none;
+  color: var(--text-secondary);
+  svg {
+    opacity: 0.5;
+    margin-left: 0.3rem;
+  }
+  &:hover svg {
+    color: var(--primary);
+    opacity: 1;
+  }
 `;
 
 const DateDistance = styled(Ws)`
@@ -99,6 +113,9 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   const coinTicker = useActiveCoinTicker();
   const [currentPage, setCurrentPage] = React.useState(0);
   const history = useHistory();
+  const [dateView, setDateView] = useLocalStorageState<
+    'full_date' | 'distance'
+  >('blockDateView', 'full_date');
 
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const dateFormatter = useLocalizedDateFormatter();
@@ -117,6 +134,8 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   const blocks = React.useMemo(() => {
     return blockState.data?.data || [];
   }, [blockState.data]);
+
+  console.log(dateView);
 
   const blockCols: {
     [key: string]: DynamicListColumn<
@@ -204,15 +223,19 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         skeletonWidth: 180,
         Component: ({ data }) => {
           return (
-            <>
-              <DateFull>
-                {dateFormatter.dateAndTime(data.timestamp * 1000)}
-              </DateFull>
-              <br />
-              <DateDistance>
-                {dateFormatter.distanceFromNow(data.timestamp * 1000)}
-              </DateDistance>
-            </>
+            <ButtonDateSwitch
+              onClick={(e) => {
+                setDateView(
+                  dateView === 'full_date' ? 'distance' : 'full_date'
+                );
+                e.stopPropagation();
+              }}
+            >
+              {dateView === 'full_date'
+                ? dateFormatter.dateAndTime(data.timestamp * 1000)
+                : dateFormatter.distanceFromNow(data.timestamp * 1000)}
+              <BiTransferAlt />
+            </ButtonDateSwitch>
           );
         },
       },
@@ -285,7 +308,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         ),
       },
     }),
-    [activeCoinFormatter, t, dateFormatter]
+    [activeCoinFormatter, t, dateFormatter, dateView, setDateView]
   );
 
   const columns = React.useMemo(() => {
