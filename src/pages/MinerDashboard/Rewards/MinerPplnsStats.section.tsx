@@ -35,6 +35,39 @@ import {
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { useTranslation } from 'react-i18next';
 
+const mapPplnsDataToChartData = (
+  data: number[],
+  siFormatter: ReturnType<typeof useLocalizedSiFormatter>
+) => {
+  const SIZE = 10000;
+  const res: { [k: string]: number } = {};
+  let totalShares = 0;
+
+  for (let k = 0; k < data.length; k += 1) {
+    totalShares += data[k];
+    const index = Math.floor(totalShares / SIZE);
+    if (k !== data.length - 1) {
+      totalShares += 1;
+      const total = res[index] || 0;
+      res[index] = total + 1;
+    }
+  }
+
+  const mapped = [];
+  for (let x = 0; x < totalShares / SIZE; x += 1) {
+    mapped.push({
+      number: siFormatter(x * SIZE),
+      roundShare: ((res[x] || 0) / SIZE) * 100,
+      your: res[x],
+    });
+  }
+
+  return {
+    totalShares,
+    data: mapped,
+  };
+};
+
 export const MinerPplnsStats: React.FC<{
   averagePoolHashrate: number | null | undefined;
   poolHashrate: number | null | undefined;
@@ -78,46 +111,10 @@ export const MinerPplnsStats: React.FC<{
     const data = shareLogState.data || [];
 
     if (data && data.length > 0) {
-      var sharesDataTmp: {
-        [key: string]: {
-          number: string;
-          other: number;
-          your: number;
-        };
-      } = {};
+      const mappedData = mapPplnsDataToChartData(data, siFormatter);
+      setShareLogLength(mappedData.totalShares);
 
-      let totalShares = 0;
-      let totalYour = 0;
-      for (var i = 0; i < data.length; i++) {
-        const item = data[i];
-        if (item === 0) {
-          continue;
-        }
-        for (var j = 0; j < item; j++) {
-          if (!sharesDataTmp[`${Math.floor(totalShares / 10000)}`]) {
-            sharesDataTmp[`${Math.floor(totalShares / 10000)}`] = {
-              number: `${totalShares / 1000}k`,
-              other: 0,
-              your: 0,
-            };
-          }
-
-          sharesDataTmp[`${Math.floor(totalShares / 10000)}`].other++;
-          totalShares++;
-        }
-
-        if (!sharesDataTmp[`${Math.floor(totalShares / 10000)}`]) {
-          continue;
-        }
-
-        sharesDataTmp[`${Math.floor(totalShares / 10000)}`].your++;
-        // eslint-disable-next-line
-        totalYour++;
-        totalShares++;
-      }
-      setShareLogLength(totalShares);
-
-      let sharesChart = create('shares-chart', XYChart);
+      let sharesChart = create('shares2-chart', XYChart);
 
       sharesChart.responsive.enabled = true;
       sharesChart.responsive.useDefault = false;
@@ -149,19 +146,12 @@ export const MinerPplnsStats: React.FC<{
       sharesChart.cursor = new XYCursor();
       sharesChart.legend = new Legend();
 
-      const sharesDataTmpUnwrapped = Object.values(sharesDataTmp).map(
-        (item) => ({
-          ...item,
-          roundShare: (item.your / (item.other + item.your)) * 100,
-        })
-      );
-
-      sharesChart.data = sharesDataTmpUnwrapped;
+      sharesChart.data = mappedData.data;
       return () => {
         sharesChart.dispose();
       };
     }
-  }, [shareLogState.data, t]);
+  }, [shareLogState.data, t, siFormatter]);
 
   return (
     <>
@@ -253,7 +243,10 @@ export const MinerPplnsStats: React.FC<{
         title={t('rewards.pplns_chart.title')}
         dataState={shareLogState}
       >
-        <div id="shares-chart" style={{ width: '100%', height: '250px' }}></div>
+        <div
+          id="shares2-chart"
+          style={{ width: '100%', height: '250px' }}
+        ></div>
       </ChartContainer>
     </>
   );
