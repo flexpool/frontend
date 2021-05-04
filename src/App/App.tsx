@@ -42,6 +42,7 @@ import { SnackViewControl } from 'src/components/Snacks/SnackViewControl';
 import { PageLoader } from 'src/components/layout/Page';
 import ServiceWorkerWrapper from './ServiceWorkerWrapper';
 import { usePwaInit } from './PwaInit';
+import { searchAddressStorage } from 'src/components/SearchAddressBar/searchCache';
 
 /**
  * Pages code splitting
@@ -89,7 +90,11 @@ const ApiDocsPage = React.lazy(() => import('../pages/Docs/ApiDocs.page'));
  */
 
 const cachedState = localStorage<AppState>('app_state').get() || {};
-const store = createReduxStore(cachedState);
+const addressSearchState = searchAddressStorage.get();
+const store = createReduxStore({
+  ...cachedState,
+  addressSearch: addressSearchState || [],
+});
 
 const AppContent = () => {
   const location = useLocation<{ noscroll?: boolean } | null>();
