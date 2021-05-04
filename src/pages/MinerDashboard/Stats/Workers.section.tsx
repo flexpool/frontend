@@ -103,12 +103,13 @@ const ClearButton = styled.button`
   background: transparent;
   opacity: 0.5;
   transition: 0.1s all;
+  border-radius: 6px;
   &:hover,
   &:focus {
     opacity: 1;
   }
   &:hover {
-    background: rgba(128, 128, 128, 0.07);
+    background: rgba(128, 128, 128, 0.08);
   }
   &:focus {
     background: rgba(128, 128, 128, 0.12);
