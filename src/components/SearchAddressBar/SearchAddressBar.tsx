@@ -3,12 +3,14 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaSearch } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useAsyncState } from 'src/hooks/useAsyncState';
+import { useOpenState } from 'src/hooks/useOpenState';
 import { addressSearchSet } from 'src/rdx/addressSearch/addressSearch.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { fetchApi } from 'src/utils/fetchApi';
 import styled from 'styled-components/macro';
+import { OuterEvent } from '../DivOuterEvents';
 import { SearchAddressCachedResult } from './SearchAddressCachedResult';
 
 const SearchButton = styled.button`
@@ -39,7 +41,7 @@ const SearchButton = styled.button`
     }
   }
 `;
-const Container = styled.div`
+const Container = styled(OuterEvent)`
   width: 100%;
   height: 50px;
   form {
@@ -61,31 +63,38 @@ const ResultWrapper = styled.div`
   left: 0;
   background: var(--bg-primary);
   border-radius: 0px 0px 5px 5px;
-  display: none;
   border: 1px solid var(--border-color);
   border-top: none;
+  transition: 0.2s all;
+  opacity: 0;
+  visibility: none;
 
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
   &:before {
     content: '';
-    height: 5px;
-    width: 100%;
+    height: 3px;
+    width: 3px;
     position: absolute;
     bottom: 100%;
     left: -1px;
     background: var(--bg-secondary);
     border-left: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
   }
 `;
-const FieldWrapper = styled.div`
+const FieldWrapper = styled.div<{ isOpen: boolean }>`
   height: 100%;
   position: relative;
   flex-grow: 1;
-  &:focus-within {
+
+  ${(p) =>
+    p.isOpen &&
+    `
     ${ResultWrapper} {
-      display: block;
+      visibility: visible;
+      opacity: 1;
     }
-  }
+  `}
 `;
 
 const Input = styled(Field)`
@@ -113,6 +122,11 @@ const F = styled(Form)`
         transform: scale(1.1);
       }
     }
+    ${ResultWrapper} {
+      &:before {
+        background-color: var(--bg-primary);
+      }
+    }
   }
 `;
 
@@ -121,9 +135,16 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
 }) => {
   const searchState = useAsyncState<string | null>('addressSearch', null);
   const history = useHistory();
+  const { pathname } = useLocation();
   const searchData = useReduxState('addressSearch');
   const { t } = useTranslation(['common']);
   const d = useDispatch();
+  const openState = useOpenState();
+
+  React.useEffect(() => {
+    openState.handleClose();
+    // eslint-disable-next-line
+  }, [pathname]);
 
   const handleSearch = React.useCallback(
     async (address: string) => {
@@ -153,6 +174,7 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
             if (document.activeElement instanceof HTMLElement) {
               document.activeElement?.blur();
             }
+            openState.handleClose();
             history.push(`/miner/${res}/${searchAddress}`);
           } else {
             alert(
@@ -167,7 +189,9 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
   );
 
   return (
-    <Container>
+    <Container
+      onOuterEvent={(openState.isOpen && openState.handleClose) || undefined}
+    >
       <Formik
         onSubmit={async (data, form) => {
           await handleSearch(data.addrsearch);
@@ -178,12 +202,13 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
       >
         <F autoComplete="off">
           <Wrapper>
-            <FieldWrapper>
+            <FieldWrapper isOpen={openState.isOpen}>
               <Input
                 name="addrsearch"
                 spellCheck="false"
                 autoComplete="off"
                 placeholder={t('searchbar.placeholder')}
+                onFocus={openState.handleOpen}
               />
               {showResult && searchData && searchData.length > 0 && (
                 <ResultWrapper>

@@ -89,9 +89,6 @@ export const SearchAddressCachedResult: React.FC<{ isOpen?: boolean }> = ({
             type="button"
             onClick={() => {
               d(addressSearchSet(item));
-              if (document.activeElement instanceof HTMLElement) {
-                document.activeElement?.blur();
-              }
             }}
             to={`/miner/${item.coin}/${item.address}`}
           >
@@ -103,6 +100,7 @@ export const SearchAddressCachedResult: React.FC<{ isOpen?: boolean }> = ({
           <RemoveWrap
             type="button"
             onClick={(e) => {
+              e.stopPropagation();
               d(addressSearchRemove(item.address));
             }}
           >
