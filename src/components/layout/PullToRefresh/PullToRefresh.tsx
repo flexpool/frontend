@@ -4,10 +4,10 @@ import styled from 'styled-components/macro';
 import LoaderDots from 'src/components/Loader/LoaderDots';
 
 const PullContainer = styled.div`
-  height: 100px;
-  padding-bottom: 60px;
+  height: 100vh;
+  padding-top: 1rem;
   display: flex;
-  align-items: center;
+  align-items: top;
   justify-content: center;
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -151,8 +151,8 @@ export class PullToRefresh extends React.Component<
     }
     console.log('is dragging');
     this.dragging = true;
-    this.container.style.transition = 'transform 0.2s cubic-bezier(0,0,0.31,1)';
-    this.pullDown.style.transition = 'transform 0.2s cubic-bezier(0,0,0.31,1)';
+    this.container.style.transition = 'transform 0.1s cubic-bezier(0,0,0.31,1)';
+    this.pullDown.style.transition = 'transform 0.1s cubic-bezier(0,0,0.31,1)';
   }
 
   private onTouchMove(e: any) {
@@ -179,7 +179,7 @@ export class PullToRefresh extends React.Component<
 
     this.container.style.overflow = 'visible';
     this.container.style.transform = `translate(0px, ${
-      this.currentY - this.startY
+      this.currentY - this.startY - (this.currentY - this.startY) * 0.65
     }px)`;
     this.pullDown.style.visibility = 'visible';
   }
@@ -188,6 +188,8 @@ export class PullToRefresh extends React.Component<
     this.dragging = false;
     this.startY = 0;
     this.currentY = 0;
+    this.container.style.transition = 'transform 0.5s cubic-bezier(0,0,0.31,1)';
+    this.pullDown.style.transition = 'transform 0.5s cubic-bezier(0,0,0.31,1)';
 
     if (!this.state.pullToRefreshThresholdBreached) {
       this.pullDown.style.visibility = this.props.startInvisible
@@ -221,14 +223,14 @@ export class PullToRefresh extends React.Component<
     requestAnimationFrame(() => {
       if (this.container) {
         this.container.style.overflow = 'auto';
-        this.container.style.transform = 'none';
+        this.container.style.transform = 'translate(0,0)';
       }
     });
   }
 
   private renderPullDownContent() {
     const {
-      releaseContent = releaseContentContentDefault,
+      releaseContent = refreshContentDefault,
       pullDownContent = pullDownContentDefault,
       refreshContent = refreshContentDefault,
       startInvisible,

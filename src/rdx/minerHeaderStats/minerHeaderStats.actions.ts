@@ -24,7 +24,6 @@ export const minerHeaderStatsGet = (
       fetchApi<number>('/miner/roundShare', { query }),
       fetchApi<number>('/pool/averageBlockReward', { query }),
     ]).then((res) => {
-      console.log(res[1], res[1].balanceCountervalue / res[1].balance);
       return {
         ...res[0],
         ...res[1],
