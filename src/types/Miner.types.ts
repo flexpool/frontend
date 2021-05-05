@@ -13,7 +13,7 @@ export type ApiMinerSettings = {
 };
 
 export type ApiMinerHeaderStats = {
-  approximateBlockShare: number;
+  averageBlockShare: number;
   balance: number;
   balanceCountervalue: number;
   countervaluePrice: number;

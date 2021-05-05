@@ -1,4 +1,3 @@
-import { ApiMinerHeaderStats } from 'src/types/Miner.types';
 import { fetchApi } from 'src/utils/fetchApi';
 
 export const minerHeaderStatsGet = (
@@ -14,13 +13,6 @@ export const minerHeaderStatsGet = (
   return {
     type: '@minerHeaderStats/GET',
     payload: Promise.all([
-      fetchApi<ApiMinerHeaderStats>('/miner/headerStats', {
-        query: {
-          coin,
-          address,
-          countervalue: counterTicker,
-        },
-      }),
       fetchApi<{ workersOnline: number; workersOffline: number }>(
         '/miner/workerCount',
         { query }
@@ -30,17 +22,13 @@ export const minerHeaderStatsGet = (
         { query }
       ),
       fetchApi<number>('/miner/roundShare', { query }),
-      // fetchApi<number>('/miner/averageBlockReward', { query }),
+      fetchApi<number>('/pool/averageBlockReward', { query }),
     ]).then((res) => {
       return {
         ...res[0],
         ...res[1],
-        ...res[2],
-        ...(typeof res[3] === 'number'
-          ? {
-              roundShare: res[3],
-            }
-          : res[3]),
+        roundShare: res[2],
+        averageBlockShare: res[3],
       };
     }),
   };
