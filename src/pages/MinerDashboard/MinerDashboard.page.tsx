@@ -37,7 +37,6 @@ import { fetchApi } from 'src/utils/fetchApi';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'src/components/Button';
-import { BiRefresh } from 'react-icons/bi';
 import { PullToRefresh } from 'src/components/layout/PullToRefresh/PullToRefresh';
 
 const TabContent = styled.div`
@@ -80,18 +79,6 @@ const TabLink = styled(NavLink)`
     background: rgba(128, 128, 128, 0.07);
   }
   text-decoration: none !important;
-`;
-
-const ManualRefreshButton = styled(Button)`
-  position: fixed;
-  bottom: 5.5rem;
-  right: 20px;
-  z-index: 100;
-  font-size: 1.5rem;
-  border-radius: 50%;
-  height: 60px !important;
-  width: 60px !important;
-  box-shadow: 0 0 15px 0 rgba(128, 128, 128, 0.16);
 `;
 
 export const MinerDashboardPageContent: React.FC<
@@ -158,9 +145,6 @@ export const MinerDashboardPageContent: React.FC<
         pullDownThreshold={50}
         onRefresh={loadAll}
       >
-        <ManualRefreshButton shape="circle">
-          <BiRefresh />
-        </ManualRefreshButton>
         <Page>
           <Helmet titleTemplate={`${address} | %s | Flexpool.io`}>
             <title>Dashboard</title>

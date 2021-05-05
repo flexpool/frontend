@@ -4,7 +4,8 @@ import styled from 'styled-components/macro';
 import LoaderDots from 'src/components/Loader/LoaderDots';
 
 const PullContainer = styled.div`
-  height: 40px;
+  height: 100px;
+  padding-bottom: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
