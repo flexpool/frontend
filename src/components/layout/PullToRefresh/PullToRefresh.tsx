@@ -16,9 +16,7 @@ const PullContainer = styled.div`
 `;
 
 const pullDownContentDefault = <PullContainer></PullContainer>;
-const releaseContentContentDefault = (
-  <PullContainer>Release to refresh</PullContainer>
-);
+
 const refreshContentDefault = (
   <PullContainer>
     <LoaderDots />
