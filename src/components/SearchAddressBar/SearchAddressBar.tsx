@@ -87,7 +87,7 @@ const FieldWrapper = styled.div<{ isOpen: boolean }>`
   position: relative;
   flex-grow: 1;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
+  border-radius: 5px;
   transition: 0.1s all;
   &:hover {
     box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
