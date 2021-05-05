@@ -30,6 +30,7 @@ export const minerHeaderStatsGet = (
         { query }
       ),
       fetchApi<number>('/miner/roundShare', { query }),
+      // fetchApi<number>('/miner/averageBlockReward', { query }),
     ]).then((res) => {
       return {
         ...res[0],

@@ -80,37 +80,42 @@ export const MinerDetails: React.FC<{
             </NoFeeLimit>
           )}
         </Item>
-        {settings &&
-          !!settings.firstJoined && ( // will be hidden if unix timestamp is zero
-            <Tooltip
-              wrapIcon={false}
-              icon={
-                <Item>
-                  <div>{t('header.info_joined')}:&nbsp;</div>
-                  <div>
-                    {settings ? (
-                      <>
-                        {dateFormatter.distanceFromNow(
-                          settings.firstJoined * 1000
-                        )}
-                      </>
-                    ) : (
-                      <Skeleton width={50} />
-                    )}
-                  </div>
-                </Item>
-              }
-            >
-              <TooltipContent>
-                <p>
-                  <strong>
-                    {t('header.info_joined_tooltip')}{' '}
-                    {dateFormatter.dateAndTime(settings.firstJoined * 1000)}
-                  </strong>
-                </p>
-              </TooltipContent>
-            </Tooltip>
-          )}
+        <Tooltip
+          wrapIcon={false}
+          icon={
+            <Item>
+              <div>{t('header.info_joined')}:&nbsp;</div>
+              <div>
+                {settings ? (
+                  settings.firstJoined === 0 ? (
+                    'Recently'
+                  ) : (
+                    <>
+                      {dateFormatter.distanceFromNow(
+                        settings.firstJoined * 1000
+                      )}
+                    </>
+                  )
+                ) : (
+                  <Skeleton width={50} />
+                )}
+              </div>
+            </Item>
+          }
+        >
+          <TooltipContent>
+            <p>
+              {!settings?.firstJoined ? (
+                'No hash recorded'
+              ) : (
+                <strong>
+                  {t('header.info_joined_tooltip')}{' '}
+                  {dateFormatter.dateAndTime(settings.firstJoined * 1000)}
+                </strong>
+              )}
+            </p>
+          </TooltipContent>
+        </Tooltip>
         <Item>
           <div>{t('header.info_coin_price', { coin: coin?.name })}:&nbsp;</div>
           <div>{counterValuePrice || <Skeleton width={40} />}</div>
