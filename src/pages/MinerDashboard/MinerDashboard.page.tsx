@@ -36,7 +36,6 @@ import { useAsyncState } from 'src/hooks/useAsyncState';
 import { fetchApi } from 'src/utils/fetchApi';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import { useTranslation } from 'react-i18next';
-import { Button } from 'src/components/Button';
 import { PullToRefresh } from 'src/components/layout/PullToRefresh/PullToRefresh';
 
 const TabContent = styled.div`

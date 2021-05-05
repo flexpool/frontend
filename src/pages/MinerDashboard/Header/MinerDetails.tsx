@@ -60,6 +60,8 @@ export const MinerDetails: React.FC<{
     minerHeaderStatsState.data?.countervaluePrice || 0
   );
 
+  console.log(minerHeaderStatsState.data?.countervaluePrice);
+
   const { t } = useTranslation('dashboard');
   const dateFormatter = useLocalizedDateFormatter();
 
