@@ -8,15 +8,8 @@ import { Helmet } from 'react-helmet-async';
 import { CopyButton } from 'src/components/CopyButton';
 import { FaLink } from 'react-icons/fa';
 import { useAsyncState } from 'src/hooks/useAsyncState';
-import { FaqDocs, faqLangs } from 'src/docs/docs.utils';
+import { FaqDocs } from 'src/docs/docs.utils';
 import { useTranslation } from 'react-i18next';
-
-// /**
-//  * import each doc to create bundle
-//  */
-// faqLangs.forEach((lang) => {
-//   import(`src/docs/${lang}/faq/index`);
-// });
 
 type FaqDataSection = {
   name: string;
