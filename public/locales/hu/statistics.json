@@ -1,17 +1,17 @@
 {
-  "head_title": "Statistics",
-  "title": "Statistics",
-  "pool_hashrate": "Pool hashrate",
-  "average_luck": "Average Luck",
-  "average_luck_tooltip": "Last 30 days average block luck.",
-  "miners": "Miners",
-  "workers": "Workers",
+  "head_title": "Statisztikák",
+  "title": "Statisztikák",
+  "pool_hashrate": "Pool hashráta",
+  "average_luck": "Átlagos szerencse",
+  "average_luck_tooltip": "Az elmúlt 30 nap átlagos blokkszerencséje.",
+  "miners": "Bányászok",
+  "workers": "Dolgozók",
   "chart": {
-    "title": "Pool Hashrate",
+    "title": "Pool hashráta",
     "total_hashrate": "Total Hashrate",
     "as": "Asia Pacific (AS)",
-    "au": "Australia (AU)",
-    "eu": "Europe (EU)",
+    "au": "Ausztrália (AU)",
+    "eu": "Európa (EU)",
     "sa": "South America (SA)",
     "us": "United States (US)"
   }

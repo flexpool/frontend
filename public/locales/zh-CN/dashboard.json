@@ -1,28 +1,28 @@
 {
   "settings": {
-    "cta": "Settings",
-    "title": "Settings",
-    "ip": "IP address for verification",
-    "ip_hint": "Hint: You are visiting this webpage from",
+    "cta": "设置",
+    "title": "设置",
+    "ip": "IP地址（用于验证）",
+    "ip_hint": "提示：您正在访问此网页，来自",
     "payout": {
-      "title": "Payout Settings",
-      "limit": "Payout limit (min: {{min}})",
-      "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}.",
-      "limit_err_higher": "Must be higher than {{min}}",
+      "title": "支付设置",
+      "limit": "支付限额（最小：{{min}}）",
+      "limit_desc": "您只有在未付余额达到 {{value}} 后才会收到支付款项。",
+      "limit_err_higher": "必须高于 {{min}}",
       "gas_limit": "Gas price limit",
       "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} of payout limit). You will not receive any payouts if gas price is higher.",
       "gas_limit_zero": "Your transaction fee will not be limited.",
-      "submit": "Apply changes"
+      "submit": "应用更改"
     },
     "notifications": {
-      "title": "Email notifications",
-      "email_enabled": "Email notifications enabled",
-      "email_disabled": "Email notifications disabled",
-      "send_to": "Send notifications to",
+      "title": "电子邮件通知",
+      "email_enabled": "电子邮件通知已启用",
+      "email_disabled": "电子邮件通知已禁用",
+      "send_to": "发送通知至",
       "send_to_placeholder": "your@email.com",
       "check_worker_down": "Warn me when one of my workers goes down",
       "check_payout_sent": "Notify me when a payout has been sent",
-      "submit": "Apply changes"
+      "submit": "应用更改"
     }
   },
   "header": {
@@ -172,7 +172,7 @@
         "name": "Name",
         "reported_hashrate": "Reported Hashrate",
         "current_e_hashrate": "Current E. Hashrate",
-        "average_hashrate": "Average Hashrate",
+        "average_e_hashrate": "Average Effective Hashrate",
         "valid": "Valid Shares",
         "stale": "Stale Shares",
         "invalid": "Invalid Shares",

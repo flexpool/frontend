@@ -1,24 +1,24 @@
 {
-  "head_title": "Support",
-  "title": "Support",
+  "head_title": "Ondersteuning",
+  "title": "Ondersteuning",
   "section_one": {
-    "title": "Contact Flexpool Support",
-    "description": "Hi! Before you reach out, we would like to warn you that we do not provide assistance on hardware-related topics. This includes overclocking GPUs and further advanced configuration of the mining software. We provide only pool-related support. If you want to get help on overclocking GPUs, optimizing mining software, etc., you can join our community and talk with people who want share their experience."
+    "title": "Contacteer Flexpool Ondersteuning",
+    "description": "Hallo! Vooraleer je ons contacteert, willen we je erop wijzen dat we geen hulp bieden voor hardware-gerelateerde onderwerpen. Daarmee bedoelen we de overclock instellingen van GPUs en andere geavanceerde instellingen van de mining software. Wij bieden enkel ondersteuning in verband met de pool. Voor hulp bij overclocken, mining software optimaliseren en dergelijke kan je je aansluiten bij onze gemeenschap. Daar kan je met anderen praten en leren uit hun ervaring."
   },
   "section_two": {
-    "title": "Reach us via the Website Messenger",
-    "description": "The best way to reach us to get assistance is to use the built-in website messenger. You can find it in the bottom-right corner."
+    "title": "Stuur ons een berichtje via de Messenger op deze website",
+    "description": "De beste manier om ons te bereiken voor ondersteuning is via de chat op deze website. Je kan hem vinden in de rechterbenedenhoek."
   },
   "section_three": {
-    "title": "Join our Community",
-    "description": "We also provide an official Discord Server and a Telegram Group, so you can talk with other Flexpool miners, and get assistance from our team there as well."
+    "title": "Word lid van onze gemeenschap",
+    "description": "We voorzien ook een officiële Discordserver en een groep op Telegram - zo kan je praten met andere Flexpool miners en ondersteuning krijgen van ons team."
   },
   "section_four": {
-    "title": "Reach us via Email",
-    "description": "We provide Email support, but we do not guarantee fast response time via this support channel. We are available at <email>{{email}}</email>."
+    "title": "Bereik ons via e-mail",
+    "description": "We voorzien ondersteuning via mail, maar garanderen via dat kanaal geen snelle responstijd. Je kan ons bereiken via <email>{{email}}</email>."
   },
   "section_five": {
-    "title": "Other questions",
-    "description": "For business-related questions, please, contact us at <email>hq@flexpool.io</email>. Please, note that we do not provide support via this Email."
+    "title": "Andere vragen",
+    "description": "Gelieve voor zakelijke vragen contact met ons op te nemen via <email>hq@flexpool.io</email>. Via dit mailadres bieden we geen ondersteuning."
   }
 }

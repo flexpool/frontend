@@ -1,17 +1,17 @@
 {
-  "head_title": "Miners",
-  "title": "Miners",
+  "head_title": "Laitteet",
+  "title": "Laitteita",
   "top_miners": {
-    "title": "Top Miners",
+    "title": "Parhaat mainaajat",
     "table_head": {
-      "miner": "Miner",
+      "miner": "Mainaajat",
       "hashrate": "Hashrate",
-      "balance": "Balance",
-      "workers": "Workers",
-      "joined": "Joined"
+      "balance": "Saldo",
+      "workers": "Laitteita",
+      "joined": "Liittynyt"
     }
   },
   "distribution": {
-    "title": "Miners Distribution by Hashrate"
+    "title": "Mainaamisen jakautuminen hashratelle"
   }
 }

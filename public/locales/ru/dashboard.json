@@ -1,34 +1,34 @@
 {
   "settings": {
-    "cta": "Settings",
-    "title": "Settings",
-    "ip": "IP address for verification",
-    "ip_hint": "Hint: You are visiting this webpage from",
+    "cta": "Настройки",
+    "title": "Настройки",
+    "ip": "IP Адрес для проверки",
+    "ip_hint": "Подсказка: Вы посетили эту страницу с",
     "payout": {
-      "title": "Payout Settings",
-      "limit": "Payout limit (min: {{min}})",
+      "title": "Настройки оплаты",
+      "limit": "Лимит выплат (минимум: {{min}})",
       "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}.",
       "limit_err_higher": "Must be higher than {{min}}",
-      "gas_limit": "Gas price limit",
+      "gas_limit": "Лимит цены на Gas",
       "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} of payout limit). You will not receive any payouts if gas price is higher.",
       "gas_limit_zero": "Your transaction fee will not be limited.",
-      "submit": "Apply changes"
+      "submit": "Применить изменения"
     },
     "notifications": {
-      "title": "Email notifications",
-      "email_enabled": "Email notifications enabled",
-      "email_disabled": "Email notifications disabled",
-      "send_to": "Send notifications to",
+      "title": "Уведомления на e-mail",
+      "email_enabled": "E-mail уведомления включены",
+      "email_disabled": "E-mail уведомления отключены",
+      "send_to": "Присылать уведомления на",
       "send_to_placeholder": "your@email.com",
-      "check_worker_down": "Warn me when one of my workers goes down",
-      "check_payout_sent": "Notify me when a payout has been sent",
-      "submit": "Apply changes"
+      "check_worker_down": "Сообщить мне, если один из воркеров ушёл в оффлайн",
+      "check_payout_sent": "Сообщить мне об отправленной выплате",
+      "submit": "Применить изменения"
     }
   },
   "header": {
-    "greet_period_morning": "Good morning",
-    "greet_period_afternoon": "Good afternoon",
-    "greet_period_evening": "Good evening",
+    "greet_period_morning": "Доброе утро",
+    "greet_period_afternoon": "Добрый день",
+    "greet_period_evening": "Добрый вечер",
     "greet_desc": "{{count}} worker is mining {{coin}} and is hashing {{hashrate}} in total.",
     "greet_desc_1": "",
     "greet_desc_2": "",
@@ -36,46 +36,46 @@
     "greet_desc_4": "",
     "greet_desc_5": "",
     "greet_desc_plural": "{{count}} workers are mining {{coin}} and are hashing {{hashrate}} in total.",
-    "info_payout_limit": "Payout Limit",
-    "info_gas_limit": "Gas Price Limit",
-    "info_joined": "Joined",
-    "info_joined_tooltip": "Your first share has been recorded on",
+    "info_payout_limit": "Лимит выплаты",
+    "info_gas_limit": "Лимит цены на Gas",
+    "info_joined": "Присоединился",
+    "info_joined_tooltip": "Ваша первая шара была",
     "info_coin_price": "{{coin}} Price",
     "stat_workers": "Workers Online/Offline",
-    "stat_unpaid_balance": "Unpaid Balance",
+    "stat_unpaid_balance": "Невыплаченный баланс",
     "stat_unpaid_balance_reach": "<v>{{value}}</v> of the payout limit reached.",
     "stat_unpaid_balance_reach_est": "The limit will be reached <v>{{value}}</v>.",
     "stat_unpaid_balance_reach_ok": "Your payout will be processed on the next payment round if the fees match your preferences.",
-    "stat_estimate": "Estimated Earnings",
-    "stat_estimate_daily": "daily",
-    "stat_estimate_weekly": "weekly",
-    "stat_estimate_monthly": "monthly",
+    "stat_estimate": "Приблизительная награда",
+    "stat_estimate_daily": "ежедневно",
+    "stat_estimate_weekly": "еженедельно",
+    "stat_estimate_monthly": "ежемесячно",
     "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimate."
   },
   "nav": {
-    "stats": "Stats",
-    "payments": "Payments",
-    "rewards": "Rewards",
-    "blocks": "Blocks"
+    "stats": "Статистика",
+    "payments": "Выплаты",
+    "rewards": "Награды",
+    "blocks": "Блоки"
   },
   "rewards": {
     "head_title": "Miner Rewards",
     "earnings_chart": {
-      "title": "Earnings this month",
-      "earnings": "Earnings",
-      "daily_income": "Daily income"
+      "title": "Выплаты в этом месяце",
+      "earnings": "Выплаты",
+      "daily_income": "Дневной доход"
     },
     "past_earnings": {
-      "title": "Past Earnings",
-      "yesterday": "Yesterday",
-      "last_week": "Last Week",
-      "last_month": "Last Month"
+      "title": "Предыдущий доход",
+      "yesterday": "Вчера",
+      "last_week": "В последнюю неделю",
+      "last_month": "В последний месяц"
     },
     "forecasted_earnings": {
-      "title": "Forecasted Earnings",
-      "daily": "Daily",
-      "weekly": "Weekly",
-      "monthly": "Monthly"
+      "title": "Прогнозируемая прибыль",
+      "daily": "Ежедневно",
+      "weekly": "Еженедельно",
+      "monthly": "Ежемесячно"
     },
     "pplns": {
       "title": "Advanced PPLNS Statistics",
@@ -97,20 +97,20 @@
     },
     "pplns_chart": {
       "title": "Shares in the PPLNS Log",
-      "valid_shares": "Valid Shares"
+      "valid_shares": "Принятые Шары"
     }
   },
   "payments": {
     "head_title": "Miner Payments",
     "chart": {
       "title": "Payments This Year",
-      "fee": "Fee",
+      "fee": "Комиссия",
       "value": "Value"
     },
     "general": {
       "title": "General Payment Statistics",
-      "total_paid": "Total Paid",
-      "total_transactions": "Total Transactions",
+      "total_paid": "Всего Выплачено",
+      "total_transactions": "Всего Транзакций",
       "paid_in_fees": "{{value}} paid in fees",
       "average_payout_duration": "Average Payout Duration",
       "average_payout_duration_desc": "Average Time Between Payouts"
@@ -127,27 +127,27 @@
       "title": "Payments",
       "download": "Download CSV",
       "table_head": {
-        "date": "Date",
+        "date": "Дата",
         "value": "Transaction Value",
-        "fee": "Fee",
+        "fee": "Комиссия",
         "duration": "Duration",
-        "hash": "Hash"
+        "hash": "Длительность"
       }
     }
   },
   "stats": {
     "active_worker": {
-      "title": "Worker",
-      "reset": "Reset"
+      "title": "Работники",
+      "reset": "Сбросить"
     },
     "hashrate": {
-      "title": "Hashrate",
-      "current": "Current Effective",
-      "average": "Average Effective",
-      "reported": "Reported"
+      "title": "Хешрейт",
+      "current": "Текущий эффективный",
+      "average": "Средний эффективный",
+      "reported": "Заявленный"
     },
     "shares": {
-      "title": "Shares",
+      "title": "Шары",
       "valid": "Valid",
       "stale": "Stale",
       "invalid": "Invalid"
@@ -161,22 +161,22 @@
     "shares_chart": {
       "title": "Shares",
       "valid": "Valid Shares",
-      "stale": "Stale Shares",
-      "invalid": "Invalid Shares"
+      "stale": "Устаревшие Шары",
+      "invalid": "Неверные Шары"
     },
     "table": {
-      "title_active": "Active workers",
-      "title_inactive": "Inactive workers",
-      "search_placeholder": "Filter by worker",
+      "title_active": "Активные майнеры",
+      "title_inactive": "Неактивные майнеры",
+      "search_placeholder": "Фильтр по воркерам",
       "table_head": {
-        "name": "Name",
-        "reported_hashrate": "Reported Hashrate",
-        "current_e_hashrate": "Current E. Hashrate",
-        "average_hashrate": "Average Hashrate",
-        "valid": "Valid Shares",
-        "stale": "Stale Shares",
-        "invalid": "Invalid Shares",
-        "last_seen": "Last Seen"
+        "name": "Имя",
+        "reported_hashrate": "Заявленный хешрейт",
+        "current_e_hashrate": "Текущий эффективный хешрейт",
+        "average_e_hashrate": "Average Effective Hashrate",
+        "valid": "Принятые Шары",
+        "stale": "Устаревшие Шары",
+        "invalid": "Неверные Шары",
+        "last_seen": "Был виден в последний раз"
       }
     }
   }

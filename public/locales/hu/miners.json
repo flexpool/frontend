@@ -1,17 +1,17 @@
 {
-  "head_title": "Miners",
-  "title": "Miners",
+  "head_title": "Bányászok",
+  "title": "Bányászok",
   "top_miners": {
-    "title": "Top Miners",
+    "title": "Legnagyobb bányászok",
     "table_head": {
-      "miner": "Miner",
-      "hashrate": "Hashrate",
-      "balance": "Balance",
-      "workers": "Workers",
-      "joined": "Joined"
+      "miner": "Bányász",
+      "hashrate": "Hashráta",
+      "balance": "Egyenleg",
+      "workers": "Dolgozók",
+      "joined": "Csatlakozott"
     }
   },
   "distribution": {
-    "title": "Miners Distribution by Hashrate"
+    "title": "Bányászok megoszlása hashráta alapján"
   }
 }

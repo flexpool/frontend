@@ -1,18 +1,18 @@
 {
-  "head_title": "Statistics",
-  "title": "Statistics",
+  "head_title": "Statistik",
+  "title": "Statistik",
   "pool_hashrate": "Pool hashrate",
-  "average_luck": "Average Luck",
-  "average_luck_tooltip": "Last 30 days average block luck.",
-  "miners": "Miners",
-  "workers": "Workers",
+  "average_luck": "Genomsnittlig tur",
+  "average_luck_tooltip": "De senaste 30 dagarnas genomsnittliga blocktur.",
+  "miners": "Gruvarbetare",
+  "workers": "Arbetare",
   "chart": {
-    "title": "Pool Hashrate",
+    "title": "Pool hashrate",
     "total_hashrate": "Total Hashrate",
-    "as": "Asia Pacific (AS)",
-    "au": "Australia (AU)",
-    "eu": "Europe (EU)",
-    "sa": "South America (SA)",
-    "us": "United States (US)"
+    "as": "Asien och Stillahavsområdet (AS)",
+    "au": "Australien (AU)",
+    "eu": "Europa (EU)",
+    "sa": "Sydamerika (SA)",
+    "us": "Förenta staterna (USA)"
   }
 }

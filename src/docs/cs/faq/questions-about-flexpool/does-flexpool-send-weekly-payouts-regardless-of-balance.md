@@ -1,5 +1,5 @@
 ---
-title: Does Flexpool make weekly payouts regardless of the balance?
+title: Provádí Flexpool týdenní výplaty bez ohledu na zůstatek?
 ---
 
-**No**. We don't do weekly payouts if your balance is below your payout limit. Doing this will require "wasting" some space in our blocks, and it is known to decrease miners' profits. We are not doing that, and will never do in the future because miners' earnings are in #1 priority for us.
+**Ne**. Neprovádíme týdenní výplaty, pokud je váš zůstatek pod nastaveným limitem. Týdenní výplaty bez ohledu na zůstatek, vyžaduje "plýtvání" prostorem v našich blocích, což má za následek nižší výdělečnost. To neděláme a v budoucnu ani nebudeme, protože příjmy těžařů jsou pro nás prioritou.

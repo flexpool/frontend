@@ -1,81 +1,81 @@
 {
-  "head_title": "The Most Advanced Mining Pool",
-  "title": "Building the Future of Mining Pools",
-  "description": "Innovative mining pool created for modern cryptocurrency mining.",
+  "head_title": "O Pool de Mineração mais avançado",
+  "title": "Construindo o Futuro dos Pools de Mineração",
+  "description": "Pool de mineração inovador criado para minerar criptomoedas modernas.",
   "coin_earnings_cards": {
-    "estimated": "Estimated earnings",
-    "estimated_tooltip": "Estimated earnings are based on performance of mining last 7 days on our pool.",
-    "daily": "daily",
-    "monthly": "monthly",
-    "cta_mine": "Start mining",
-    "pool_fee": "{{value}} Pool Fee",
-    "mev": "{{value}} of MEV Bonus",
-    "more_title": "More Coins Coming Soon!",
-    "more_description": "We are working to launch multiple pools in the near future. Stay connected by joining our discord or telegram."
+    "estimated": "Ganhos estimados",
+    "estimated_tooltip": "Ganhos estimados são baseados no desempenho da mineração nos últimos 7 dias na nossa pool.",
+    "daily": "diariamente",
+    "monthly": "mensalmente",
+    "cta_mine": "Comece a minerar",
+    "pool_fee": "{{value}} Taxa do Pool",
+    "mev": "{{value}} de Bônus MEV",
+    "more_title": "Mais Moedas Disponíveis em Breve!",
+    "more_description": "Estamos trabalhando para lançar vários pools em um futuro próximo. Junte-se ao nosso discord ou telegram."
   },
   "news_section": {
     "join_us": {
-      "pre_title": "Join us",
-      "title": "Connect to Flexpool",
-      "cta": "Get Started"
+      "pre_title": "Junte-se a nós",
+      "title": "Conectar ao Flexpool",
+      "cta": "Primeiros Passos"
     },
     "learn": {
-      "pre_title": "Learn",
-      "title": "Read our Blog",
-      "cta": "Learn"
+      "pre_title": "Aprender",
+      "title": "Leia nosso Blog",
+      "cta": "Aprender"
     },
     "support": {
-      "pre_title": "Support",
-      "title": "Get Support",
-      "cta": "Contact"
+      "pre_title": "Suporte",
+      "title": "Obter Suporte",
+      "cta": "Contato"
     }
   },
   "mined_coins_section": {
-    "title": "Coins we mine",
-    "description": "Flexpool is a Multi-Coin mining pool, which means that you can mine your favorite coins on Flexpool.",
+    "title": "Moedas que nós mineramos",
+    "description": "Flexpool é um pool de mineração Multi-Moeda, o que significa que você pode minerar suas moedas favoritas no Flexpool.",
     "table_head": {
-      "name": "Name",
-      "price": "Price",
-      "market_cap": "Market Cap",
-      "algorithm": "Algorithm",
+      "name": "Nome",
+      "price": "Preço",
+      "market_cap": "Valor de Mercado",
+      "algorithm": "Algoritmo",
       "hashrate": "Hashrate",
-      "miners": "Miners"
+      "miners": "Mineradores"
     },
-    "item_cta": "Mine"
+    "item_cta": "Minerar"
   },
   "coin_news_item": {
     "eth": {
-      "title": "About Ethereum",
-      "description": "Ethereum is a worldwide computer created to power Decentralized Applications known as Smart Contracts."
+      "title": "Sobre o Ethereum",
+      "description": "O Ethereum é um computador mundial criado para suportar Aplicativos Descentralizados conhecidos como Contratos Inteligentes."
     },
-    "resources": "Resources",
+    "resources": "Recursos",
     "website": "Website",
     "whitepaper": "Whitepaper",
     "calculator": {
-      "title": "Income Calculator",
-      "title_tooltip": "The Estimated Income is calculated based on the 24-hour average network difficulty and the 24-hour average block reward. This calculation does not include Stale and Invalid shares.",
-      "per_day": "per day",
-      "per_month": "per month",
-      "per_year": "per year",
-      "cta": "Start Mining"
+      "title": "Calculadora de Rendimento",
+      "title_tooltip": "O rendimento estimado é calculado com base na dificuldade média da rede nas últimas 24 horas e na média de recompensas de bloco nas últimas 24 horas. Este cálculo não inclui shares obsoletos e inválidos.",
+      "per_day": "por dia",
+      "per_month": "por mês",
+      "per_year": "por ano",
+      "cta": "Comece a Minerar"
     },
     "featured": {
-      "title": "Featured Stories"
+      "title": "Histórias em Destaque"
     }
   },
   "why_section": {
-    "title": "Why Flexpool",
+    "title": "Por que o Flexpool",
     "item_1": {
-      "title": "Lightning speed",
-      "description": "We use specialized high-performance server clusters powered by superfast software designed to handle over 100 TH/s."
+      "title": "Velocidade da luz",
+      "description": "Usamos clusters especializados de alto desempenho, suportados por um software super rápido projetado para lidar com mais de 100 TH/s."
     },
     "item_2": {
-      "title": "Just Better",
-      "description": "You can forget your poor mining experience. Flexpool is backed by high-quality support, and we are always happy to help!"
+      "title": "Simplesmente Melhor",
+      "description": "Você pode esquecer suas experiências ruins com pools de mineração. O Flexpool possui um suporte de alta qualidade e estamos sempre felizes em ajudar!"
     }
   },
   "get_started_section": {
-    "title": "Ready to get started?",
-    "cta": "Start Mining"
+    "title": "Pronto para começar?",
+    "cta": "Comece a Minerar"
   }
 }

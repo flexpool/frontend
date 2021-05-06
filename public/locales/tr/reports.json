@@ -1,8 +1,8 @@
 {
-  "head_title": "Open Data Reports",
-  "title": "Open Data Reports",
-  "description": "Our initiative to provide clear and transparent progress reports about what we are doing at Flexpool.",
-  "latest": "Latest report",
-  "archive": "Reports archive",
-  "report_item": "Flexpool Progress Report"
+  "head_title": "Açık Veri Raporları",
+  "title": "Açık Veri Raporları",
+  "description": "Flexpool'da yaptıklarımız hakkında net ve şeffaf ilerleme raporları sağlama girişimimiz.",
+  "latest": "Son rapor",
+  "archive": "Rapor arşivi",
+  "report_item": "Flexpool İlerleme Raporu"
 }

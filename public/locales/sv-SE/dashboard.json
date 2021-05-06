@@ -47,16 +47,16 @@
     "stat_unpaid_balance_reach_est": "The limit will be reached <v>{{value}}</v>.",
     "stat_unpaid_balance_reach_ok": "Your payout will be processed on the next payment round if the fees match your preferences.",
     "stat_estimate": "Estimated Earnings",
-    "stat_estimate_daily": "daily",
-    "stat_estimate_weekly": "weekly",
-    "stat_estimate_monthly": "monthly",
-    "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimate."
+    "stat_estimate_daily": "daglig",
+    "stat_estimate_weekly": "veckovis",
+    "stat_estimate_monthly": "månatlig",
+    "stat_estimate_tooltip": "Klicka för att ändra mellan dagliga, veckovisa och månatliga uppskattningar."
   },
   "nav": {
-    "stats": "Stats",
-    "payments": "Payments",
-    "rewards": "Rewards",
-    "blocks": "Blocks"
+    "stats": "Statistik",
+    "payments": "Utbetalningar",
+    "rewards": "Belöningar",
+    "blocks": "Block"
   },
   "rewards": {
     "head_title": "Miner Rewards",
@@ -67,7 +67,7 @@
     },
     "past_earnings": {
       "title": "Past Earnings",
-      "yesterday": "Yesterday",
+      "yesterday": "Gårdagen",
       "last_week": "Last Week",
       "last_month": "Last Month"
     },
@@ -82,7 +82,7 @@
       "avp": {
         "title": "Average Paying Hashrate",
         "tooltip": "Calculated based on current round share and the last 3 hours pool hashrate chart.",
-        "current": "Current"
+        "current": "Nuvarande"
       },
       "crs": {
         "title": "Current Round Share",
@@ -172,7 +172,7 @@
         "name": "Name",
         "reported_hashrate": "Reported Hashrate",
         "current_e_hashrate": "Current E. Hashrate",
-        "average_hashrate": "Average Hashrate",
+        "average_e_hashrate": "Average Effective Hashrate",
         "valid": "Valid Shares",
         "stale": "Stale Shares",
         "invalid": "Invalid Shares",

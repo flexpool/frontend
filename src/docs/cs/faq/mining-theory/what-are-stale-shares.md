@@ -1,22 +1,20 @@
 ---
-
-title: What are Stale Shares? How they affect my profitability?
-level: beginner
-
+title: Co jsou zastaralé (stale) shary? Jak ovlivňují můj zisk?
+level: začátečník
 ---
 
-Stale shares are shares that were sent to the pool after they were expired. This directly affects your profitability, and it is recommended to keep them as low as possible.
+Zastaralé shary jsou takové, které byly odeslány do poolu po skončení jejich platnosti. To přímo ovlivňuje vaši ziskovost a doporučuje se je udržet co nejnižší.
 
-Normal stale rate is the stale rate below 1%. Everything above in unacceptable unless you are located far away from the closest Flexpool region.
+Obvyklá míra výskytu je nižší než 1%. Všechno výše je nepřijatelné, pokud se nenacházíte daleko od nejbližšího serveru Flexpoolu.
 
-Tips for reducing the stale rate:
+Tipy pro snížení množství zastaralých sharů:
 
-* Use Ethernet instead of Wi-Fi.
-* Use Cable/Fiber connection (not mobile).
-* Make sure that you've disabled the Ethernet power save mode, if you have one enabled.
+* Používejte ethernet místo Wi-Fi.
+* Používejte kabelové/optické připojení (ne mobilní).
+* Ujistěte se, že jste zakázali režim úspory energie ethernetu, pokud ho máte zapnutý.
 
-Things that cause stale shares:
-* Latency between your worker and pool server
-* Poor miner software
-* Packet loss
-* Jitter
+Věci, které způsobují zastaralé shary:
+* Zpoždění (latence) mezi vaším rigem a serverem Flexpoolu
+* Špatný těžební software
+* Ztráta paketů
+* Jitter (chvění)

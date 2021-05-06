@@ -1,18 +1,18 @@
 {
   "head_title": "Statistics",
   "title": "Statistics",
-  "pool_hashrate": "Pool hashrate",
-  "average_luck": "Average Luck",
-  "average_luck_tooltip": "Last 30 days average block luck.",
-  "miners": "Miners",
-  "workers": "Workers",
+  "pool_hashrate": "プールのハッシュレート",
+  "average_luck": "平均運",
+  "average_luck_tooltip": "過去30日間の平均ブロック運",
+  "miners": "マイナー",
+  "workers": "ワーカー数",
   "chart": {
-    "title": "Pool Hashrate",
-    "total_hashrate": "Total Hashrate",
-    "as": "Asia Pacific (AS)",
-    "au": "Australia (AU)",
-    "eu": "Europe (EU)",
-    "sa": "South America (SA)",
-    "us": "United States (US)"
+    "title": "プールのハッシュレート",
+    "total_hashrate": "合計ハッシュレート",
+    "as": "アジア太平洋 (AS)",
+    "au": "オーストラリア (AU)",
+    "eu": "ヨーロッパ (EU)",
+    "sa": "南アフリカ (SA)",
+    "us": "アメリカ合衆国 (US)"
   }
 }

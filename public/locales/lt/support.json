@@ -1,24 +1,24 @@
 {
-  "head_title": "Support",
-  "title": "Support",
+  "head_title": "Pagalba",
+  "title": "Pagalba",
   "section_one": {
-    "title": "Contact Flexpool Support",
-    "description": "Hi! Before you reach out, we would like to warn you that we do not provide assistance on hardware-related topics. This includes overclocking GPUs and further advanced configuration of the mining software. We provide only pool-related support. If you want to get help on overclocking GPUs, optimizing mining software, etc., you can join our community and talk with people who want share their experience."
+    "title": "Sukontaktuoti su Flexpool pagalba",
+    "description": "Sveiki! Prieš jums susisiekiant, norėtume jus įspėti, kad neteikiame pagalbos su aparatūra susijusiomis temomis. Tai apima GPU overclockinimą ir tolesnę išplėstinę kasybos programinės įrangos konfigūraciją. Mes teikiame tik su poolu susijusią pagalbą. Jei norite gauti pagalbos dėl GPU spartinimo, kasybos programinės įrangos optimizavimo ir kt., Galite prisijungti prie mūsų bendruomenės ir pasikalbėti su žmonėmis, kurie nori pasidalinti savo patirtimi."
   },
   "section_two": {
-    "title": "Reach us via the Website Messenger",
-    "description": "The best way to reach us to get assistance is to use the built-in website messenger. You can find it in the bottom-right corner."
+    "title": "Susisiekite su mumis per puslapio Messenger",
+    "description": "Geriausias būdas susisiekti su mumis ir gauti pagalbos yra naudoti įmontuotą puslapio messenger programą. Ją rasite apatiniame dešiniajame kampe."
   },
   "section_three": {
-    "title": "Join our Community",
-    "description": "We also provide an official Discord Server and a Telegram Group, so you can talk with other Flexpool miners, and get assistance from our team there as well."
+    "title": "Prisijungti prie bendruomenės",
+    "description": "Mes taip pat teikiame oficialų „Discord Serverį“ ir „Telegram Grupę“, kad galėtumėte pasikalbėti su kitais „Flexpool“ kasėjais ir ten pat gauti pagalbos iš mūsų komandos."
   },
   "section_four": {
-    "title": "Reach us via Email",
-    "description": "We provide Email support, but we do not guarantee fast response time via this support channel. We are available at <email>{{email}}</email>."
+    "title": "Susisiekite su mumis per paštą",
+    "description": "Mes teikiame pagalbą el. Paštu, tačiau negarantuojame greito atsakymo per šį palaikymo kanalą laiko. Mes esame pasiekiami adresu <email>{{email}}</email>."
   },
   "section_five": {
-    "title": "Other questions",
-    "description": "For business-related questions, please, contact us at <email>hq@flexpool.io</email>. Please, note that we do not provide support via this Email."
+    "title": "Kiti klausymai",
+    "description": "Jei turite klausimų, susijusių su verslu, susisiekite su mumis adresu <email> hq@flexpool.io </email>. Atkreipkite dėmesį, kad mes neteikiame pagalbos per šį el. laišką."
   }
 }

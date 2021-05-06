@@ -1,17 +1,17 @@
 {
-  "head_title": "Miners",
-  "title": "Miners",
+  "head_title": "Madenciler",
+  "title": "Madenciler",
   "top_miners": {
-    "title": "Top Miners",
+    "title": "En iyi Madenciler",
     "table_head": {
-      "miner": "Miner",
-      "hashrate": "Hashrate",
-      "balance": "Balance",
-      "workers": "Workers",
-      "joined": "Joined"
+      "miner": "Madenci",
+      "hashrate": "Hash Hızı",
+      "balance": "Bakiye",
+      "workers": "İşçiler",
+      "joined": "Katıldı"
     }
   },
   "distribution": {
-    "title": "Miners Distribution by Hashrate"
+    "title": "Hashrate'e Göre Madenci Dağılımı"
   }
 }

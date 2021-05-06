@@ -3,61 +3,60 @@
     "placeholder": "Search by your mining address"
   },
   "nav": {
-    "statistics": "Statistics",
-    "blocks": "Blocks",
-    "miners": "Miners",
-    "faq": "FAQ",
-    "support": "Support",
-    "get_started": "Get Started",
-    "community_title": "Join the community"
+    "statistics": "very statistics",
+    "blocks": "much blocks",
+    "miners": "much miners",
+    "faq": "very FAQ",
+    "support": "much support",
+    "get_started": "get started",
+    "community_title": "join very community"
   },
   "footer": {
     "company": {
-      "title": "Company",
-      "contact_us": "Contact Us",
-      "brand_assets": "Brand Assets",
-      "partners": "Partners",
-      "business_dev": "Business Development",
-      "blog": "Blog",
-      "terms": "Terms",
-      "pp": "Privacy Policy"
+      "title": "much company",
+      "contact_us": "contact",
+      "brand_assets": "very brand assets",
+      "partners": "much partners",
+      "business_dev": "dogebusiness development",
+      "blog": "very blog",
+      "terms": "much terms",
+      "pp": "very privacy policy"
     },
     "resources": {
-      "title": "Resources",
-      "get_started": "Getting Started",
-      "faq": "FAQ",
-      "api_docs": "API Documentation"
+      "title": "many resources",
+      "get_started": "getting very started",
+      "faq": "very FAQ",
+      "api_docs": "API dogecumentation"
     },
     "community": {
-      "title": "Community"
+      "title": "very community"
     },
     "contact": {
-      "title": "Contact",
-      "service_status": "Service Status",
-      "support": "Support"
+      "title": "contact",
+      "service_status": "very status",
+      "support": "many support"
     },
     "preferences": {
-      "title": "Preferences"
+      "title": "very preferences"
     },
     "bottom_message": "© 2020-{{currentYear}} Flexpool.io or its affiliates. All rights reserved.",
-    "open_source": "Open Source",
     "translation_help": "Help us translate the website to your language"
   },
   "theme": {
-    "default": "Default Theme",
-    "dark": "Dark Theme",
-    "light": "Light Theme"
+    "default": "default theme",
+    "dark": "dark theme",
+    "light": "light theme"
   },
   "list_navigation": {
-    "previous": "Previous",
-    "next": "Next"
+    "previous": "prev",
+    "next": "next"
   },
   "errors": {
-    "higher_than": "Must be higher than {{value}}",
-    "required": "Required",
-    "Invalid IP Address": "Invalid IP Address",
-    "email_invalid": "Invalid email address",
-    "email_required": "Please enter your email address"
+    "higher_than": "must be very higher than {{value}}",
+    "required": "required",
+    "Invalid IP Address": "very invalid IP address",
+    "email_invalid": "very invalid email address",
+    "email_required": "doge says you must enter your email address"
   },
   "date_time": {
     "now": "now"

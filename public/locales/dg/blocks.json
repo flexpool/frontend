@@ -1,7 +1,7 @@
 {
-  "head_title": "Mined Blocks",
-  "title": "Blocks",
-  "description": "History of mined blocks by Flexpool",
+  "head_title": "many blocks",
+  "title": "doge ruff",
+  "description": "many blocks mined yes dogepool",
   "average_luck": "Average luck",
   "average_luck_tooltip": "Last 30 days average block luck.",
   "current_luck": "Current luck",
@@ -10,7 +10,7 @@
   "network_difficulty": "Network difficulty",
   "network_difficulty_tooltip": "Average amount of how many hashes pool should produce to mine a block.",
   "table": {
-    "title_zero": "Unable to retrieve pool data",
+    "title_zero": "doge take break now come back later",
     "title": "Flexpool has mined {{count}} block",
     "title_1": "Flexpool has mined {{count}} blocks",
     "title_2": "Flexpool has mined {{count}} blocks",

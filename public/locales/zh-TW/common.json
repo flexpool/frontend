@@ -1,63 +1,62 @@
 {
   "searchbar": {
-    "placeholder": "Search by your mining address"
+    "placeholder": "輸入錢包地址查看"
   },
   "nav": {
-    "statistics": "Statistics",
-    "blocks": "Blocks",
-    "miners": "Miners",
-    "faq": "FAQ",
-    "support": "Support",
-    "get_started": "Get Started",
-    "community_title": "Join the community"
+    "statistics": "礦池統計",
+    "blocks": "出塊記錄",
+    "miners": "礦工數據",
+    "faq": "常見問題",
+    "support": "聯繫客服",
+    "get_started": "開始挖礦",
+    "community_title": "加入社區"
   },
   "footer": {
     "company": {
-      "title": "Company",
-      "contact_us": "Contact Us",
-      "brand_assets": "Brand Assets",
-      "partners": "Partners",
-      "business_dev": "Business Development",
-      "blog": "Blog",
-      "terms": "Terms",
-      "pp": "Privacy Policy"
+      "title": "關於我們",
+      "contact_us": "聯繫我們",
+      "brand_assets": "品牌",
+      "partners": "合作夥伴",
+      "business_dev": "商務合作",
+      "blog": "部落格",
+      "terms": "服務協議",
+      "pp": "隱私條款"
     },
     "resources": {
-      "title": "Resources",
-      "get_started": "Getting Started",
-      "faq": "FAQ",
-      "api_docs": "API Documentation"
+      "title": "幫助中心",
+      "get_started": "開始挖礦",
+      "faq": "常見問題",
+      "api_docs": "API 文檔"
     },
     "community": {
-      "title": "Community"
+      "title": "Flexpool 社群"
     },
     "contact": {
-      "title": "Contact",
-      "service_status": "Service Status",
-      "support": "Support"
+      "title": "聯繫我們",
+      "service_status": "服務狀態",
+      "support": "聯繫客服"
     },
     "preferences": {
-      "title": "Preferences"
+      "title": "偏好設置"
     },
-    "bottom_message": "© 2020-{{currentYear}} Flexpool.io or its affiliates. All rights reserved.",
-    "open_source": "Open Source",
-    "translation_help": "Help us translate the website to your language"
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io 或附屬機構。保留所有權利。",
+    "translation_help": "幫助我們將網站翻譯成您的語言"
   },
   "theme": {
-    "default": "Default Theme",
-    "dark": "Dark Theme",
-    "light": "Light Theme"
+    "default": "默認主題",
+    "dark": "深色主題",
+    "light": "淺色主題"
   },
   "list_navigation": {
-    "previous": "Previous",
-    "next": "Next"
+    "previous": "上一頁",
+    "next": "下一頁"
   },
   "errors": {
-    "higher_than": "Must be higher than {{value}}",
-    "required": "Required",
-    "Invalid IP Address": "Invalid IP Address",
-    "email_invalid": "Invalid email address",
-    "email_required": "Please enter your email address"
+    "higher_than": "數目必須大於 {{value}}",
+    "required": "必填項",
+    "Invalid IP Address": "IP地址無效",
+    "email_invalid": "電郵地址無效",
+    "email_required": "請輸入您的電子郵件地址"
   },
   "date_time": {
     "now": "now"

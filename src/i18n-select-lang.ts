@@ -20,6 +20,11 @@ export const availableLangs = [
     flag: 'pt',
   },
   {
+    code: 'pt-BR',
+    title: 'Português (BR)',
+    flag: 'br',
+  },
+  {
     code: 'de',
     title: 'Deutsch',
     flag: 'de',
@@ -38,5 +43,25 @@ export const availableLangs = [
     code: 'cs',
     title: 'Česky',
     flag: 'cz',
+  },
+  {
+    code: 'fr',
+    title: 'Française',
+    flag: 'fr',
+  },
+  {
+    code: 'lt',
+    title: 'Lietuviu',
+    flag: 'lt',
+  },
+  {
+    code: 'nl',
+    title: 'Nederlandse',
+    flag: 'nl',
+  },
+  {
+    code: 'es-ES',
+    title: 'Española',
+    flag: 'es-ES',
   },
 ];

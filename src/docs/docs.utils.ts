@@ -1,9 +1,9 @@
-import FAQIndex from './index.json';
+import { faqStructure } from './';
 
 export const faqLangs = ['en-US', 'cs'];
 
 export const loadFaq = (lang: string) => {
-  return FAQIndex.map((section) => ({
+  return faqStructure.map((section) => ({
     name: section.sectionName,
     contents: section.contents.map((item) => ({
       name: item,

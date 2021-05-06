@@ -5,13 +5,13 @@
     "title": "Top Miners",
     "table_head": {
       "miner": "Miner",
-      "hashrate": "Hashrate",
-      "balance": "Balance",
+      "hashrate": "ハッシュレート",
+      "balance": "残高",
       "workers": "Workers",
       "joined": "Joined"
     }
   },
   "distribution": {
-    "title": "Miners Distribution by Hashrate"
+    "title": "マイナーのハッシュレートによる分布"
   }
 }

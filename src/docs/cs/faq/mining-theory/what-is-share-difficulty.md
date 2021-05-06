@@ -1,8 +1,6 @@
 ---
-
-title: What is Share Difficulty?
-level: intermediate
-
+title: Co je to obtížnost sharů?
+level: středně pokročilí
 ---
 
-Technically, shares are the same blocks, but just with modified (reduced in this case) difficulty. Your workers are mining those shares, and it is important for them to be easy to find. Otherwise, it would be impossible for pool to track worker statistics and verify that it is actually mining, not just sending unproven hashrate reports.
+Z technického hlediska jsou shary tytéž bloky, ale pouze s upravenou (v tomto případě omezenou) obtížností. Vaše rigy tyto shary těží, a je důležité, aby je mohli snadno najít. V opačném případě by nebylo možné, aby pool sledoval statistiky rigů a ověřoval, zda ve skutečnosti těží, nejen aby posílalo neověřené zprávy o hashratu.

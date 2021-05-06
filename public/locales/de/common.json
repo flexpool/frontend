@@ -1,65 +1,64 @@
 {
   "searchbar": {
-    "placeholder": "Search by your mining address"
+    "placeholder": "Suche nach deiner Mining-Adresse"
   },
   "nav": {
-    "statistics": "Statistics",
-    "blocks": "Blocks",
-    "miners": "Miners",
+    "statistics": "Statistiken",
+    "blocks": "Blöcke",
+    "miners": "Miner",
     "faq": "FAQ",
     "support": "Support",
-    "get_started": "Get Started",
-    "community_title": "Join the community"
+    "get_started": "Loslegen",
+    "community_title": "Tritt der Community bei"
   },
   "footer": {
     "company": {
-      "title": "Company",
-      "contact_us": "Contact Us",
-      "brand_assets": "Brand Assets",
-      "partners": "Partners",
-      "business_dev": "Business Development",
+      "title": "Firma",
+      "contact_us": "Kontaktiere uns",
+      "brand_assets": "Markenwerte",
+      "partners": "Partner",
+      "business_dev": "Geschäftsentwicklung",
       "blog": "Blog",
-      "terms": "Terms",
-      "pp": "Privacy Policy"
+      "terms": "Glossar",
+      "pp": "Datenschutzerklärung"
     },
     "resources": {
-      "title": "Resources",
-      "get_started": "Getting Started",
+      "title": "Ressourcen",
+      "get_started": "Erste Schritte",
       "faq": "FAQ",
-      "api_docs": "API Documentation"
+      "api_docs": "API-Dokumentation"
     },
     "community": {
       "title": "Community"
     },
     "contact": {
-      "title": "Contact",
-      "service_status": "Service Status",
+      "title": "Kontakt",
+      "service_status": "Service-Status",
       "support": "Support"
     },
     "preferences": {
-      "title": "Preferences"
+      "title": "Einstellungen"
     },
-    "bottom_message": "© 2020-{{currentYear}} Flexpool.io or its affiliates. All rights reserved.",
-    "open_source": "Open Source",
-    "translation_help": "Help us translate the website to your language"
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io oder seine Partner. Alle Rechte vorbehalten.",
+    "translation_help": "Helfen Sie uns, die Webseite in Ihre Sprache zu übersetzen"
   },
   "theme": {
-    "default": "Default Theme",
-    "dark": "Dark Theme",
-    "light": "Light Theme"
+    "default": "Standard-Design",
+    "dark": "Dunkles Design",
+    "light": "Helles Design"
   },
   "list_navigation": {
-    "previous": "Previous",
-    "next": "Next"
+    "previous": "Vorherige",
+    "next": "Nächste"
   },
   "errors": {
-    "higher_than": "Must be higher than {{value}}",
-    "required": "Required",
-    "Invalid IP Address": "Invalid IP Address",
-    "email_invalid": "Invalid email address",
-    "email_required": "Please enter your email address"
+    "higher_than": "Muss höher sein als {{value}}",
+    "required": "Benötigt",
+    "Invalid IP Address": "Ungültige IP-Adresse",
+    "email_invalid": "Ungültige E-Mail-Adresse",
+    "email_required": "Bitte geben Sie Ihre E-Mail-Adresse ein"
   },
   "date_time": {
-    "now": "now"
+    "now": "jetzt"
   }
 }

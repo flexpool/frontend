@@ -5,10 +5,10 @@
   "coin_earnings_cards": {
     "estimated": "Расчетная прибыль",
     "estimated_tooltip": "Расчетные доходы основаны на результатах добычи за последние 7 дней на нашем пуле.",
-    "daily": "daily",
-    "monthly": "monthly",
+    "daily": "день",
+    "monthly": "месяц",
     "cta_mine": "Начать майнить",
-    "pool_fee": "{{value}} Pool Fee",
+    "pool_fee": "Комиссия пула {{value}}",
     "mev": "{{value}} бонуса MEV",
     "more_title": "Скоро Будет Больше Монет!",
     "more_description": "В ближайшем будущем мы запустим несколько пулов. Следите за новостями в нашем discord или telegram."
@@ -20,12 +20,12 @@
       "cta": "Начать"
     },
     "learn": {
-      "pre_title": "Learn",
+      "pre_title": "Изучить",
       "title": "Читать наш Блог",
-      "cta": "Learn"
+      "cta": "Обучение"
     },
     "support": {
-      "pre_title": "Support",
+      "pre_title": "Поддержка",
       "title": "Получить Поддержку",
       "cta": "Связаться с Нами"
     }
@@ -38,7 +38,7 @@
       "price": "Цена",
       "market_cap": "Рыночная капитализация",
       "algorithm": "Алгоритм",
-      "hashrate": "Hashrate",
+      "hashrate": "Хэшрейт",
       "miners": "Майнеры"
     },
     "item_cta": "Майнить"
@@ -53,29 +53,29 @@
     "whitepaper": "Whitepaper",
     "calculator": {
       "title": "Калькулятор дохода",
-      "title_tooltip": "The Estimated Income is calculated based on the 24-hour average network difficulty and the 24-hour average block reward. This calculation does not include Stale and Invalid shares.",
-      "per_day": "per day",
-      "per_month": "per month",
-      "per_year": "per year",
-      "cta": "Start Mining"
+      "title_tooltip": "Предполагаемый доход рассчитывается на основе средней сложности сети в течение 24-часовой средней суммы вознаграждения за блок. Этот расчет не включает в себя устаревшие и недопустимые шары.",
+      "per_day": "в день",
+      "per_month": "в месяц",
+      "per_year": "в год",
+      "cta": "Начало Майнинга"
     },
     "featured": {
       "title": "Featured Stories"
     }
   },
   "why_section": {
-    "title": "Why Flexpool",
+    "title": "Почему Flexpool",
     "item_1": {
       "title": "Lightning speed",
-      "description": "We use specialized high-performance server clusters powered by superfast software designed to handle over 100 TH/s."
+      "description": "Мы используем специализированные высокопроизводительные кластеры серверов, разработанные для обработки более 100 TH/s."
     },
     "item_2": {
-      "title": "Just Better",
-      "description": "You can forget your poor mining experience. Flexpool is backed by high-quality support, and we are always happy to help!"
+      "title": "Только Лучше",
+      "description": "Вы можете забыть о неприятном опыте с другими пулами. Flexpool обеспечен качественной поддержкой, которые всегда рады помочь!"
     }
   },
   "get_started_section": {
-    "title": "Ready to get started?",
-    "cta": "Start Mining"
+    "title": "Готовы начать?",
+    "cta": "Начало Майнинга"
   }
 }

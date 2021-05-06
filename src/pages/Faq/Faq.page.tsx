@@ -157,14 +157,12 @@ export const FaqPage = () => {
 
   React.useEffect(() => {
     asyncState.start(
-      import(`src/docs/${i18n.language}/faq/index`)
+      import(`src/docs/@faq/${i18n.language}`)
         .then((r) => r.default)
-        .catch(() => import(`src/docs/en-US/faq/index`).then((r) => r.default))
+        .catch(() => import(`src/docs/@faq/en-US`).then((r) => r.default))
     );
     // eslint-disable-next-line
   }, [i18n.language]);
-
-  console.log(asyncState);
 
   return (
     <Page>

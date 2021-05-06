@@ -1,15 +1,15 @@
 {
   "settings": {
-    "cta": "Settings",
-    "title": "Settings",
-    "ip": "IP address for verification",
-    "ip_hint": "Hint: You are visiting this webpage from",
+    "cta": "Ustawienia",
+    "title": "Ustawienia",
+    "ip": "Adres IP dla weryfikacji",
+    "ip_hint": "Wskazówka: Odwiedzasz tę stronę z IP: ",
     "payout": {
-      "title": "Payout Settings",
-      "limit": "Payout limit (min: {{min}})",
-      "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}.",
-      "limit_err_higher": "Must be higher than {{min}}",
-      "gas_limit": "Gas price limit",
+      "title": "Ustawienia wypłat",
+      "limit": "Limit wypłat (min: {{min}})",
+      "limit_desc": "Wypłata nastąpi gdy saldo niewypłaconych środków osiągnie {{value}}.",
+      "limit_err_higher": "Limit musi być wyższy niż {{min}}",
+      "gas_limit": "Limit ceny gazu",
       "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} of payout limit). You will not receive any payouts if gas price is higher.",
       "gas_limit_zero": "Your transaction fee will not be limited.",
       "submit": "Apply changes"
@@ -20,7 +20,7 @@
       "email_disabled": "Email notifications disabled",
       "send_to": "Send notifications to",
       "send_to_placeholder": "your@email.com",
-      "check_worker_down": "Warn me when one of my workers goes down",
+      "check_worker_down": "Ostrzegaj mnie, gdy jeden z moich pracowników przestanie pracować",
       "check_payout_sent": "Notify me when a payout has been sent",
       "submit": "Apply changes"
     }
@@ -42,7 +42,7 @@
     "info_joined_tooltip": "Your first share has been recorded on",
     "info_coin_price": "{{coin}} Price",
     "stat_workers": "Workers Online/Offline",
-    "stat_unpaid_balance": "Unpaid Balance",
+    "stat_unpaid_balance": "Saldo niewypłacone",
     "stat_unpaid_balance_reach": "<v>{{value}}</v> of the payout limit reached.",
     "stat_unpaid_balance_reach_est": "The limit will be reached <v>{{value}}</v>.",
     "stat_unpaid_balance_reach_ok": "Your payout will be processed on the next payment round if the fees match your preferences.",
@@ -61,7 +61,7 @@
   "rewards": {
     "head_title": "Miner Rewards",
     "earnings_chart": {
-      "title": "Earnings this month",
+      "title": "Przychody w tym miesiącu",
       "earnings": "Earnings",
       "daily_income": "Przychód dzienny"
     },
@@ -172,7 +172,7 @@
         "name": "Name",
         "reported_hashrate": "Reported Hashrate",
         "current_e_hashrate": "Current E. Hashrate",
-        "average_hashrate": "Average Hashrate",
+        "average_e_hashrate": "Average Effective Hashrate",
         "valid": "Valid Shares",
         "stale": "Stale Shares",
         "invalid": "Invalid Shares",

@@ -1,7 +1,5 @@
 ---
-
-title: How can I cash out mined cryptocurrency?
-
+title: Jak mohu vybrat vytěženou kryptoměnu?
 ---
 
-In your dashboard, you can see section with your unpaid balance. As mining happens in real-time, it would be silly to make transactions every time you receive any reward. That being said, the pool batches the transactions. You can see the payout limit on your dashboard, which essentially tells what balance you need to reach before the pool will send a transaction to you
+Na stránce své peněženky můžete vidět sekci s nevyplaceným zůstatkem. Vzhledem k tomu, že těžba probíhá v reálném čase, bylo by pošetilé provádět transakce pokaždé co dostanete odměnu. S ohledem na to náš pool seskupuje transakce. Limit výplaty můžete vidět na vaší nástěnce, která v podstatě říká, jaký zůstatek potřebujete k dosažení před tím, než vám pošleme transakci.

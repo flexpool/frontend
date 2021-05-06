@@ -1,17 +1,17 @@
 {
-  "head_title": "Miners",
-  "title": "Miners",
+  "head_title": "Rudarji",
+  "title": "Rudarji",
   "top_miners": {
-    "title": "Top Miners",
+    "title": "Top rudarji",
     "table_head": {
-      "miner": "Miner",
+      "miner": "Rudar",
       "hashrate": "Hashrate",
-      "balance": "Balance",
-      "workers": "Workers",
-      "joined": "Joined"
+      "balance": "Denarnica",
+      "workers": "Delavci",
+      "joined": "Pridružil"
     }
   },
   "distribution": {
-    "title": "Miners Distribution by Hashrate"
+    "title": "Razdeljevanje rudarjev po Hashrate"
   }
 }

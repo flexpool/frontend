@@ -1,8 +1,8 @@
 {
-  "head_title": "Open Data Reports",
-  "title": "Open Data Reports",
-  "description": "Our initiative to provide clear and transparent progress reports about what we are doing at Flexpool.",
-  "latest": "Latest report",
-  "archive": "Reports archive",
-  "report_item": "Flexpool Progress Report"
+  "head_title": "Atidaryti duomenų ataskaitas",
+  "title": "Atvirų duomenų ataskaitos",
+  "description": "Mūsų iniciatyva teikti aiškias ir skaidrias pažangos ataskaitas apie tai, ką darome „Flexpool“.",
+  "latest": "Naujausios pažangos",
+  "archive": "Pažangų archyvas",
+  "report_item": "„Flexpool“ pažangos ataskaita"
 }

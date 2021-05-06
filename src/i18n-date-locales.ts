@@ -1,4 +1,18 @@
 /**
  * To support locale, please import it here
  */
-export { enUS, cs, zhCN, enGB, ru, pt, ptBR, de, es } from 'date-fns/locale';
+export {
+  enUS,
+  enGB,
+  ru,
+  pt,
+  ptBR,
+  de,
+  zhCN,
+  zhTW,
+  cs,
+  fr,
+  lt,
+  nl,
+  es,
+} from 'date-fns/locale';

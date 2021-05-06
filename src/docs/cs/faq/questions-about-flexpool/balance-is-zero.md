@@ -1,9 +1,7 @@
 ---
-
-title: My balance has frozen for a long time. Have I configured my mining software properly?
-
+title: Můj zůstatek je dlouho zmrazen. Nakonfiguroval jsem svůj těžební software správně?
 ---
 
-Yes, everything is good unless you cannot see your workers on the dashboard page. As we are not the largest mining pool, we don't find blocks every minute. During unlucky periods, your balance may stall for some time.
+Ano, všechno je v pořádku, pokud na stránce svého profilu (peněženky) vidíte své mining rigy. Jelikož nejsme největší těžební pool, nenacházíme bloky každou minutu. Během období bez štěstí na bloky se váš zůstatek může na nějakou dobu zastavit.
 
-No need to worry in this case. The right explanation for this would be "The balance updates each time we mine a block," rather than "The rewards are given when we mine a block" since our reward system still holds your "pending" block share even though balance is not moving.
+Nemusíte se v tomto případě obávat. Správné vysvětlení by bylo „Zůstatek se aktualizuje pokaždé, když vytěžíme blok“, spíše než „Odměny se dají, když vytěžíme blok," protože náš systém odměn stále drží váš „čekající“ podíl bloku, i když se zůstatek nepohybuje.

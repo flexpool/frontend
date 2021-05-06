@@ -1,11 +1,11 @@
 {
-  "head_title": "Statistics",
-  "title": "Statistics",
+  "head_title": "Estadísticas",
+  "title": "Estadísticas",
   "pool_hashrate": "Pool hashrate",
   "average_luck": "Average Luck",
   "average_luck_tooltip": "Last 30 days average block luck.",
-  "miners": "Miners",
-  "workers": "Workers",
+  "miners": "Mineros",
+  "workers": "Trabajadores",
   "chart": {
     "title": "Pool Hashrate",
     "total_hashrate": "Total Hashrate",

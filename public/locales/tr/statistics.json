@@ -1,18 +1,18 @@
 {
-  "head_title": "Statistics",
-  "title": "Statistics",
-  "pool_hashrate": "Pool hashrate",
-  "average_luck": "Average Luck",
-  "average_luck_tooltip": "Last 30 days average block luck.",
-  "miners": "Miners",
-  "workers": "Workers",
+  "head_title": "İstatistikler",
+  "title": "İstatistikler",
+  "pool_hashrate": "Havuz hash hızı",
+  "average_luck": "Ortalama Şans",
+  "average_luck_tooltip": "Son 30 günde ortalama blok şansı.",
+  "miners": "Madenciler",
+  "workers": "İşçiler",
   "chart": {
-    "title": "Pool Hashrate",
-    "total_hashrate": "Total Hashrate",
-    "as": "Asia Pacific (AS)",
-    "au": "Australia (AU)",
-    "eu": "Europe (EU)",
-    "sa": "South America (SA)",
-    "us": "United States (US)"
+    "title": "Havuz hash hızı",
+    "total_hashrate": "Toplam hash hızı",
+    "as": "Asya Pasifik (AS)",
+    "au": "Avustralya (AU)",
+    "eu": "Avrupa (AB)",
+    "sa": "Güney Amerika (SA)",
+    "us": "Amerika Birleşik Devletleri (ABD)"
   }
 }

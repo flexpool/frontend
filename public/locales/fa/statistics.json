@@ -1,18 +1,18 @@
 {
-  "head_title": "Statistics",
-  "title": "Statistics",
-  "pool_hashrate": "Pool hashrate",
-  "average_luck": "Average Luck",
-  "average_luck_tooltip": "Last 30 days average block luck.",
-  "miners": "Miners",
-  "workers": "Workers",
+  "head_title": "آمار",
+  "title": "آمار",
+  "pool_hashrate": "هش ریت استخر",
+  "average_luck": "میانگین شانس",
+  "average_luck_tooltip": "میانگین شانس بلاک در 30 روز آخر.",
+  "miners": "ماینر ها",
+  "workers": "کارگر ها",
   "chart": {
-    "title": "Pool Hashrate",
-    "total_hashrate": "Total Hashrate",
-    "as": "Asia Pacific (AS)",
-    "au": "Australia (AU)",
-    "eu": "Europe (EU)",
-    "sa": "South America (SA)",
-    "us": "United States (US)"
+    "title": "هش ریت استخر",
+    "total_hashrate": "هش ریت کلی",
+    "as": "آسیا ",
+    "au": "استرالیا (AU)",
+    "eu": "اروپا (EU)",
+    "sa": "آمریکای جنوبی (SA)",
+    "us": "ایالت متحده آمریکا (US)"
   }
 }

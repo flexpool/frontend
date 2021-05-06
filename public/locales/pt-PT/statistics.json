@@ -1,18 +1,18 @@
 {
-  "head_title": "Statistics",
-  "title": "Statistics",
-  "pool_hashrate": "Pool hashrate",
-  "average_luck": "Average Luck",
-  "average_luck_tooltip": "Last 30 days average block luck.",
-  "miners": "Miners",
+  "head_title": "Estatísticas",
+  "title": "Estatísticas",
+  "pool_hashrate": "Hashrate da Pool",
+  "average_luck": "Sorte média",
+  "average_luck_tooltip": "Sorte média nos ultimos 30 blocos.",
+  "miners": "Mineradores",
   "workers": "Workers",
   "chart": {
-    "title": "Pool Hashrate",
-    "total_hashrate": "Total Hashrate",
-    "as": "Asia Pacific (AS)",
-    "au": "Australia (AU)",
-    "eu": "Europe (EU)",
-    "sa": "South America (SA)",
-    "us": "United States (US)"
+    "title": "Hashrate da Pool",
+    "total_hashrate": "Hashrate total",
+    "as": "Ásia Pacífico (ASA)",
+    "au": "Austrália (AU)",
+    "eu": "Europa (UE)",
+    "sa": "América do Sul (SA)",
+    "us": "Estados Unidos (EUA)"
   }
 }

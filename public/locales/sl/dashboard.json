@@ -1,182 +1,182 @@
 {
   "settings": {
-    "cta": "Settings",
-    "title": "Settings",
-    "ip": "IP address for verification",
-    "ip_hint": "Hint: You are visiting this webpage from",
+    "cta": "Nastavitve",
+    "title": "Nastavitve",
+    "ip": "Naslov IP za preverjanje",
+    "ip_hint": "Namig: To spletno stran obiskujete od",
     "payout": {
-      "title": "Payout Settings",
-      "limit": "Payout limit (min: {{min}})",
-      "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}.",
-      "limit_err_higher": "Must be higher than {{min}}",
-      "gas_limit": "Gas price limit",
-      "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} of payout limit). You will not receive any payouts if gas price is higher.",
-      "gas_limit_zero": "Your transaction fee will not be limited.",
-      "submit": "Apply changes"
+      "title": "Nastavitve izplačil",
+      "limit": "Omejitev izplačil (najmanj: {{min}})",
+      "limit_desc": "Plačilo boste izvedli šele, ko bo vaše neplačano stanje doseglo {{value}}.",
+      "limit_err_higher": "Mora biti višje od {{min}}",
+      "gas_limit": "Omejitev cene plina",
+      "gas_limit_desc": "Cena vašega provizije za plin bi bila omejena na {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} omejitve izplačil). Če je cena plina višja, ne boste prejeli nobenih izplačil.",
+      "gas_limit_zero": "Provizija za transakcijo ne bo omejena.",
+      "submit": "Uporabi spremembe"
     },
     "notifications": {
-      "title": "Email notifications",
-      "email_enabled": "Email notifications enabled",
-      "email_disabled": "Email notifications disabled",
-      "send_to": "Send notifications to",
-      "send_to_placeholder": "your@email.com",
-      "check_worker_down": "Warn me when one of my workers goes down",
-      "check_payout_sent": "Notify me when a payout has been sent",
-      "submit": "Apply changes"
+      "title": "Obvestila po e-pošti",
+      "email_enabled": "E-poštna obvestila so omogočena",
+      "email_disabled": "E-poštna obvestila so onemogočena",
+      "send_to": "Pošlji obvestila na",
+      "send_to_placeholder": "tvoj@email.com",
+      "check_worker_down": "Opozori me, ko gre eden od mojih delavcev",
+      "check_payout_sent": "Obvestite me, ko bo poslano izplačilo",
+      "submit": "Uporabi spremembe"
     }
   },
   "header": {
-    "greet_period_morning": "Good morning",
-    "greet_period_afternoon": "Good afternoon",
-    "greet_period_evening": "Good evening",
-    "greet_desc": "{{count}} worker is mining {{coin}} and is hashing {{hashrate}} in total.",
+    "greet_period_morning": "Dobro jutro",
+    "greet_period_afternoon": "Dober večer",
+    "greet_period_evening": "Dober večer",
+    "greet_desc": "Delavec {{count}} rudari {{coin}} in v celoti razprši {{hashrate}}.",
     "greet_desc_1": "",
     "greet_desc_2": "",
     "greet_desc_3": "",
     "greet_desc_4": "",
     "greet_desc_5": "",
-    "greet_desc_plural": "{{count}} workers are mining {{coin}} and are hashing {{hashrate}} in total.",
-    "info_payout_limit": "Payout Limit",
-    "info_gas_limit": "Gas Price Limit",
-    "info_joined": "Joined",
-    "info_joined_tooltip": "Your first share has been recorded on",
-    "info_coin_price": "{{coin}} Price",
-    "stat_workers": "Workers Online/Offline",
-    "stat_unpaid_balance": "Unpaid Balance",
-    "stat_unpaid_balance_reach": "<v>{{value}}</v> of the payout limit reached.",
-    "stat_unpaid_balance_reach_est": "The limit will be reached <v>{{value}}</v>.",
-    "stat_unpaid_balance_reach_ok": "Your payout will be processed on the next payment round if the fees match your preferences.",
-    "stat_estimate": "Estimated Earnings",
-    "stat_estimate_daily": "daily",
-    "stat_estimate_weekly": "weekly",
-    "stat_estimate_monthly": "monthly",
-    "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimate."
+    "greet_desc_plural": "Št. delavcev, ki {{count}} kopajo {{coin}} in v celoti razpršijo {{hashrate}}.",
+    "info_payout_limit": "Omejitev izplačil",
+    "info_gas_limit": "Omejitev cene plina",
+    "info_joined": "Pridružil ste se",
+    "info_joined_tooltip": "Vaša prva skupna raba je bila zabeležena dne",
+    "info_coin_price": "{{coin}} Cena",
+    "stat_workers": "Delavci z povezavo / brez povezave",
+    "stat_unpaid_balance": "Neplačano stanje",
+    "stat_unpaid_balance_reach": "<v> {{value}} </v> dosežene omejitve izplačil.",
+    "stat_unpaid_balance_reach_est": "Omejitev bo dosežena <v> {{value}} </v>.",
+    "stat_unpaid_balance_reach_ok": "Vaše izplačilo bo obdelano v naslednjem krogu plačil, če se provizije ujemajo z vašimi željami.",
+    "stat_estimate": "Ocenjeni zaslužek",
+    "stat_estimate_daily": "dnevno",
+    "stat_estimate_weekly": "tedensko",
+    "stat_estimate_monthly": "mesečno",
+    "stat_estimate_tooltip": "Kliknite, če želite preklopiti med dnevno, tedensko in mesečno oceno."
   },
   "nav": {
-    "stats": "Stats",
-    "payments": "Payments",
-    "rewards": "Rewards",
-    "blocks": "Blocks"
+    "stats": "Statistika",
+    "payments": "Plačila",
+    "rewards": "Nagrada",
+    "blocks": "Bloki"
   },
   "rewards": {
-    "head_title": "Miner Rewards",
+    "head_title": "Rudarjeva nagrada",
     "earnings_chart": {
-      "title": "Earnings this month",
-      "earnings": "Earnings",
-      "daily_income": "Daily income"
+      "title": "Zaslužek v tem mesecu",
+      "earnings": "Zaslužek",
+      "daily_income": "Dnevni zaslužek"
     },
     "past_earnings": {
-      "title": "Past Earnings",
-      "yesterday": "Yesterday",
-      "last_week": "Last Week",
-      "last_month": "Last Month"
+      "title": "Pretekli zaslužek",
+      "yesterday": "Včeraj",
+      "last_week": "Prejšnji teden",
+      "last_month": "Prejšnji mesec"
     },
     "forecasted_earnings": {
-      "title": "Forecasted Earnings",
-      "daily": "Daily",
-      "weekly": "Weekly",
-      "monthly": "Monthly"
+      "title": "Napovedan zaslužek",
+      "daily": "Dnevno",
+      "weekly": "Tedensko",
+      "monthly": "Mesečno"
     },
     "pplns": {
-      "title": "Advanced PPLNS Statistics",
+      "title": "Napredna statistika PPLNS",
       "avp": {
-        "title": "Average Paying Hashrate",
-        "tooltip": "Calculated based on current round share and the last 3 hours pool hashrate chart.",
-        "current": "Current"
+        "title": "Povprečni plačilni hashrate",
+        "tooltip": "Izračunano na podlagi trenutnega deleža kroga in zadnjega 3-urnega grafikona razpršitve bazena.",
+        "current": "Trenutno"
       },
       "crs": {
-        "title": "Current Round Share",
-        "aprox": "Aproximate reward",
-        "tooltip": "Derived from the share log"
+        "title": "Trenutni delež v krogu",
+        "aprox": "Približna nagrada",
+        "tooltip": "Izhaja iz dnevnika skupne rabe"
       },
       "log": {
-        "title": "Share Log Wipeout Duration",
-        "tooltip": "Time for the round share to drop to zero.",
-        "size": "{{value}} shares in log"
+        "title": "Trajanje brisanja dnevnika skupne rabe",
+        "tooltip": "Čas, da se okrogla delnica spusti na nič.",
+        "size": "{{value}} deli v dnevniku"
       }
     },
     "pplns_chart": {
-      "title": "Shares in the PPLNS Log",
-      "valid_shares": "Valid Shares"
+      "title": "Delnice v dnevniku PPLNS",
+      "valid_shares": "Veljavne delnice"
     }
   },
   "payments": {
-    "head_title": "Miner Payments",
+    "head_title": "Plačila rudarjev",
     "chart": {
-      "title": "Payments This Year",
-      "fee": "Fee",
-      "value": "Value"
+      "title": "Plačila letos",
+      "fee": "Provizija",
+      "value": "Vrednost"
     },
     "general": {
-      "title": "General Payment Statistics",
-      "total_paid": "Total Paid",
-      "total_transactions": "Total Transactions",
-      "paid_in_fees": "{{value}} paid in fees",
-      "average_payout_duration": "Average Payout Duration",
-      "average_payout_duration_desc": "Average Time Between Payouts"
+      "title": "Splošna statistika plačil",
+      "total_paid": "Skupaj plačano",
+      "total_transactions": "Skupaj transakcij",
+      "paid_in_fees": "{{value}} plačano v proviziji",
+      "average_payout_duration": "Povprečno trajanje izplačila",
+      "average_payout_duration_desc": "Povprečni čas med izplačili"
     },
     "transaction_fees": {
-      "title": "Transaction Fees",
-      "last": "Last Transaction",
-      "fee": "{{value}} fee",
-      "average": "Average Transaction Fee",
-      "average_percent": "Average Transaction Fee %",
-      "average_cta": "Tips on reducing fees"
+      "title": "Provizije za transakcije",
+      "last": "Zadnja transakcija",
+      "fee": "{{value}} provizija",
+      "average": "Povprečna provizija za transakcijo",
+      "average_percent": "Povprečni % provizije za transakcijo",
+      "average_cta": "Nasveti za znižanje pristojbin"
     },
     "table": {
-      "title": "Payments",
-      "download": "Download CSV",
+      "title": "Plačilo",
+      "download": "Prenesite CSV",
       "table_head": {
-        "date": "Date",
-        "value": "Transaction Value",
-        "fee": "Fee",
-        "duration": "Duration",
+        "date": "Datum",
+        "value": "Vrednost transakcije",
+        "fee": "Provizija",
+        "duration": "Trajanje",
         "hash": "Hash"
       }
     }
   },
   "stats": {
     "active_worker": {
-      "title": "Worker",
+      "title": "Delavec",
       "reset": "Reset"
     },
     "hashrate": {
       "title": "Hashrate",
-      "current": "Current Effective",
-      "average": "Average Effective",
-      "reported": "Reported"
+      "current": "Trenutno veljavno",
+      "average": "Povprečno učinkovito",
+      "reported": "Prijavljeno"
     },
     "shares": {
-      "title": "Shares",
-      "valid": "Valid",
-      "stale": "Stale",
-      "invalid": "Invalid"
+      "title": "Delnice",
+      "valid": "Velja",
+      "stale": "Zastarelo",
+      "invalid": "Neveljavno"
     },
     "hashrate_chart": {
       "title": "Hashrate",
-      "effective": "Effective Hashrate",
-      "average": "Average Effective Hashrate",
-      "reported": "Reported Hashrate"
+      "effective": "Učinkovit hashrate",
+      "average": "Povprečno učinkovit hashrate",
+      "reported": "Prijavljeni Hashrate"
     },
     "shares_chart": {
-      "title": "Shares",
-      "valid": "Valid Shares",
-      "stale": "Stale Shares",
-      "invalid": "Invalid Shares"
+      "title": "Delnice",
+      "valid": "Veljavne delnice",
+      "stale": "Zastarele delnice",
+      "invalid": "Neveljavne delnice"
     },
     "table": {
-      "title_active": "Active workers",
-      "title_inactive": "Inactive workers",
-      "search_placeholder": "Filter by worker",
+      "title_active": "Aktivni delavci",
+      "title_inactive": "Neaktivni delavci",
+      "search_placeholder": "Filtriraj po delavcu",
       "table_head": {
-        "name": "Name",
-        "reported_hashrate": "Reported Hashrate",
-        "current_e_hashrate": "Current E. Hashrate",
-        "average_hashrate": "Average Hashrate",
-        "valid": "Valid Shares",
-        "stale": "Stale Shares",
-        "invalid": "Invalid Shares",
-        "last_seen": "Last Seen"
+        "name": "Ime",
+        "reported_hashrate": "Prijavljeni Hashrate",
+        "current_e_hashrate": "Trenutni E. Hashrate",
+        "average_e_hashrate": "Average Effective Hashrate",
+        "valid": "Veljavne delnice",
+        "stale": "Zastarele delnice",
+        "invalid": "Neveljavne delnice",
+        "last_seen": "Zadnjič videno"
       }
     }
   }

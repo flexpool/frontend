@@ -1,34 +1,34 @@
 {
   "settings": {
-    "cta": "Settings",
-    "title": "Settings",
-    "ip": "IP address for verification",
-    "ip_hint": "Hint: You are visiting this webpage from",
+    "cta": "Beállítások",
+    "title": "Beállítások",
+    "ip": "IP cím a hitelesítéshez",
+    "ip_hint": "Tipp: Innen látogatod ezt a weboldalt",
     "payout": {
-      "title": "Payout Settings",
-      "limit": "Payout limit (min: {{min}})",
-      "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}.",
-      "limit_err_higher": "Must be higher than {{min}}",
-      "gas_limit": "Gas price limit",
-      "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} of payout limit). You will not receive any payouts if gas price is higher.",
-      "gas_limit_zero": "Your transaction fee will not be limited.",
-      "submit": "Apply changes"
+      "title": "Kifizetési beállítások",
+      "limit": "Kifizetési limit (min: {{min}})",
+      "limit_desc": "Csak azután leszel kifizetve, ha a ki nem fizetett egyenleged eléri a {{value}}.",
+      "limit_err_higher": "Többnek kell lennie, mint {{min}}",
+      "gas_limit": "Üzemanyag ár limit",
+      "gas_limit_desc": "A tranzakciód díjának az üzemanyag ára limitálva lenne a következőkre: {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} -a kifizetési limitnek). Ha az üzemanyag ár magasabb, nem fogsz fizetést kapni.",
+      "gas_limit_zero": "A tranzakciós díj nem lesz korlátozva.",
+      "submit": "Változtatások mentése"
     },
     "notifications": {
-      "title": "Email notifications",
-      "email_enabled": "Email notifications enabled",
-      "email_disabled": "Email notifications disabled",
-      "send_to": "Send notifications to",
-      "send_to_placeholder": "your@email.com",
-      "check_worker_down": "Warn me when one of my workers goes down",
-      "check_payout_sent": "Notify me when a payout has been sent",
-      "submit": "Apply changes"
+      "title": "Email értesítések",
+      "email_enabled": "Email értesítések bekapcsolva",
+      "email_disabled": "Email értesítések kikapcsolva",
+      "send_to": "Küldjön értesítéseket ide",
+      "send_to_placeholder": "te@emailed.com",
+      "check_worker_down": "Figyelmeztessen amikor az egyik munkásom leáll",
+      "check_payout_sent": "Értesítsen amikor egy kifizetés el lett küldve",
+      "submit": "Változtatások mentése"
     }
   },
   "header": {
-    "greet_period_morning": "Good morning",
-    "greet_period_afternoon": "Good afternoon",
-    "greet_period_evening": "Good evening",
+    "greet_period_morning": "Jó reggelt",
+    "greet_period_afternoon": "Jó napot",
+    "greet_period_evening": "Jó estét",
     "greet_desc": "{{count}} worker is mining {{coin}} and is hashing {{hashrate}} in total.",
     "greet_desc_1": "",
     "greet_desc_2": "",
@@ -36,57 +36,57 @@
     "greet_desc_4": "",
     "greet_desc_5": "",
     "greet_desc_plural": "{{count}} workers are mining {{coin}} and are hashing {{hashrate}} in total.",
-    "info_payout_limit": "Payout Limit",
-    "info_gas_limit": "Gas Price Limit",
-    "info_joined": "Joined",
+    "info_payout_limit": "Kifizetési limit",
+    "info_gas_limit": "Üzemanyag ár limit",
+    "info_joined": "Csatlakozott",
     "info_joined_tooltip": "Your first share has been recorded on",
-    "info_coin_price": "{{coin}} Price",
-    "stat_workers": "Workers Online/Offline",
-    "stat_unpaid_balance": "Unpaid Balance",
-    "stat_unpaid_balance_reach": "<v>{{value}}</v> of the payout limit reached.",
-    "stat_unpaid_balance_reach_est": "The limit will be reached <v>{{value}}</v>.",
-    "stat_unpaid_balance_reach_ok": "Your payout will be processed on the next payment round if the fees match your preferences.",
-    "stat_estimate": "Estimated Earnings",
-    "stat_estimate_daily": "daily",
-    "stat_estimate_weekly": "weekly",
-    "stat_estimate_monthly": "monthly",
-    "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimate."
+    "info_coin_price": "{{coin}} ára",
+    "stat_workers": "Dolgozók Elérhető/Nem elérhető",
+    "stat_unpaid_balance": "Kifizetetlen egyenleg",
+    "stat_unpaid_balance_reach": "<v>{{value}}</v> elérve a kifizetési limitből.",
+    "stat_unpaid_balance_reach_est": "A kifizetést eléred: <v>{{value}}</v>.",
+    "stat_unpaid_balance_reach_ok": "A kifizetésed fel lesz dolgozva a következő fizetési körben, ha a díjak egyeznek az általad preferáltakkal.",
+    "stat_estimate": "Becsült jövedelem",
+    "stat_estimate_daily": "napi",
+    "stat_estimate_weekly": "heti",
+    "stat_estimate_monthly": "havi",
+    "stat_estimate_tooltip": "Kattintsd ide a napi, heti, és havi becslések közti váltáshoz."
   },
   "nav": {
-    "stats": "Stats",
-    "payments": "Payments",
-    "rewards": "Rewards",
-    "blocks": "Blocks"
+    "stats": "Statisztikák",
+    "payments": "Kifizetések",
+    "rewards": "Jutalmak",
+    "blocks": "Blokkok"
   },
   "rewards": {
-    "head_title": "Miner Rewards",
+    "head_title": "Bányász jutalmai",
     "earnings_chart": {
-      "title": "Earnings this month",
-      "earnings": "Earnings",
-      "daily_income": "Daily income"
+      "title": "E havi jövedelem",
+      "earnings": "Jövedelem",
+      "daily_income": "Napi jövedelem"
     },
     "past_earnings": {
-      "title": "Past Earnings",
-      "yesterday": "Yesterday",
-      "last_week": "Last Week",
-      "last_month": "Last Month"
+      "title": "Múltbéli jövedelem",
+      "yesterday": "Tegnap",
+      "last_week": "Múlt hét",
+      "last_month": "Előző hónap"
     },
     "forecasted_earnings": {
-      "title": "Forecasted Earnings",
-      "daily": "Daily",
-      "weekly": "Weekly",
-      "monthly": "Monthly"
+      "title": "Jövedelem előrejelzés",
+      "daily": "Napi",
+      "weekly": "Heti",
+      "monthly": "Havi"
     },
     "pplns": {
-      "title": "Advanced PPLNS Statistics",
+      "title": "Részletes PPLNS statisztikák",
       "avp": {
-        "title": "Average Paying Hashrate",
+        "title": "Átlagos fizető hashráta",
         "tooltip": "Calculated based on current round share and the last 3 hours pool hashrate chart.",
-        "current": "Current"
+        "current": "Jelenlegi"
       },
       "crs": {
         "title": "Current Round Share",
-        "aprox": "Aproximate reward",
+        "aprox": "Hozzávetőleges jutalom",
         "tooltip": "Derived from the share log"
       },
       "log": {
@@ -101,62 +101,62 @@
     }
   },
   "payments": {
-    "head_title": "Miner Payments",
+    "head_title": "Bányász fizetések",
     "chart": {
-      "title": "Payments This Year",
-      "fee": "Fee",
-      "value": "Value"
+      "title": "Fizetések ebben az évben",
+      "fee": "Díj",
+      "value": "Érték"
     },
     "general": {
-      "title": "General Payment Statistics",
-      "total_paid": "Total Paid",
-      "total_transactions": "Total Transactions",
-      "paid_in_fees": "{{value}} paid in fees",
-      "average_payout_duration": "Average Payout Duration",
-      "average_payout_duration_desc": "Average Time Between Payouts"
+      "title": "Általános fizetési statisztikák",
+      "total_paid": "Összesen fizetett",
+      "total_transactions": "Összes tranzakciók",
+      "paid_in_fees": "{{value}} fizetve díjakban",
+      "average_payout_duration": "Átlagos kifizetési időtartam",
+      "average_payout_duration_desc": "Átlagos idő kifizetések között"
     },
     "transaction_fees": {
-      "title": "Transaction Fees",
-      "last": "Last Transaction",
-      "fee": "{{value}} fee",
-      "average": "Average Transaction Fee",
-      "average_percent": "Average Transaction Fee %",
-      "average_cta": "Tips on reducing fees"
+      "title": "Tranzakció díjak",
+      "last": "Utolsó tranzakció",
+      "fee": "{{value}} díj",
+      "average": "Átlagos tranzakció díj",
+      "average_percent": "Átlagos tranzakció díj %-ban",
+      "average_cta": "Tippek a díjak csökkentéséhez"
     },
     "table": {
-      "title": "Payments",
-      "download": "Download CSV",
+      "title": "Fizetések",
+      "download": "CSV letöltése",
       "table_head": {
-        "date": "Date",
-        "value": "Transaction Value",
-        "fee": "Fee",
-        "duration": "Duration",
+        "date": "Dátum",
+        "value": "Tranzakció értéke",
+        "fee": "Díj",
+        "duration": "Időtartam",
         "hash": "Hash"
       }
     }
   },
   "stats": {
     "active_worker": {
-      "title": "Worker",
-      "reset": "Reset"
+      "title": "Dolgozó",
+      "reset": "Visszaállítás"
     },
     "hashrate": {
-      "title": "Hashrate",
-      "current": "Current Effective",
-      "average": "Average Effective",
-      "reported": "Reported"
+      "title": "Hashráta",
+      "current": "Jelenlegi hatékony",
+      "average": "Átlagos hatékony",
+      "reported": "Reportolt"
     },
     "shares": {
       "title": "Shares",
-      "valid": "Valid",
+      "valid": "Érvényes",
       "stale": "Stale",
-      "invalid": "Invalid"
+      "invalid": "Érvénytelen"
     },
     "hashrate_chart": {
-      "title": "Hashrate",
-      "effective": "Effective Hashrate",
-      "average": "Average Effective Hashrate",
-      "reported": "Reported Hashrate"
+      "title": "Hashráta",
+      "effective": "Hatékony hashráta",
+      "average": "Átlagos hatékony hashráta",
+      "reported": "Reportolt hashráta"
     },
     "shares_chart": {
       "title": "Shares",
@@ -165,14 +165,14 @@
       "invalid": "Invalid Shares"
     },
     "table": {
-      "title_active": "Active workers",
-      "title_inactive": "Inactive workers",
+      "title_active": "Aktív dolgozók",
+      "title_inactive": "Inaktív dolgozók",
       "search_placeholder": "Filter by worker",
       "table_head": {
         "name": "Name",
         "reported_hashrate": "Reported Hashrate",
         "current_e_hashrate": "Current E. Hashrate",
-        "average_hashrate": "Average Hashrate",
+        "average_e_hashrate": "Average Effective Hashrate",
         "valid": "Valid Shares",
         "stale": "Stale Shares",
         "invalid": "Invalid Shares",

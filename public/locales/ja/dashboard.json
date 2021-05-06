@@ -1,182 +1,182 @@
 {
   "settings": {
-    "cta": "Settings",
-    "title": "Settings",
-    "ip": "IP address for verification",
-    "ip_hint": "Hint: You are visiting this webpage from",
+    "cta": "設定",
+    "title": "設定",
+    "ip": "認証用のIPアドレス",
+    "ip_hint": "ヒント：あなたはこのウェブページにアクセスしているIPかもしれません",
     "payout": {
-      "title": "Payout Settings",
-      "limit": "Payout limit (min: {{min}})",
-      "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}.",
-      "limit_err_higher": "Must be higher than {{min}}",
-      "gas_limit": "Gas price limit",
+      "title": "支払い設定",
+      "limit": "支払い制限額(最小: {{min}})",
+      "limit_desc": "未払い残高が {{value}} に達した後にのみ支払われます。",
+      "limit_err_higher": "{{min}} より大きくなければなりません",
+      "gas_limit": "ガス代の上限",
       "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} of payout limit). You will not receive any payouts if gas price is higher.",
-      "gas_limit_zero": "Your transaction fee will not be limited.",
-      "submit": "Apply changes"
+      "gas_limit_zero": "取引手数料は制限されません。",
+      "submit": "変更を適用"
     },
     "notifications": {
-      "title": "Email notifications",
-      "email_enabled": "Email notifications enabled",
-      "email_disabled": "Email notifications disabled",
-      "send_to": "Send notifications to",
+      "title": "メール通知",
+      "email_enabled": "メール通知は有効になりました",
+      "email_disabled": "メール通知が無効になりました",
+      "send_to": "通知を送信先",
       "send_to_placeholder": "your@email.com",
-      "check_worker_down": "Warn me when one of my workers goes down",
-      "check_payout_sent": "Notify me when a payout has been sent",
-      "submit": "Apply changes"
+      "check_worker_down": "ワーカーが止まった時にに警告してください",
+      "check_payout_sent": "支払いが送信されたときに通知してください",
+      "submit": "変更を適用"
     }
   },
   "header": {
-    "greet_period_morning": "Good morning",
-    "greet_period_afternoon": "Good afternoon",
-    "greet_period_evening": "Good evening",
-    "greet_desc": "{{count}} worker is mining {{coin}} and is hashing {{hashrate}} in total.",
+    "greet_period_morning": "おはようございます",
+    "greet_period_afternoon": "こんにちは",
+    "greet_period_evening": "こんばんは",
+    "greet_desc": "{{count}} 個のワーカーが {{coin}} を採掘しており、合計で {{hashrate}} をハッシュ化しています。",
     "greet_desc_1": "",
     "greet_desc_2": "",
     "greet_desc_3": "",
     "greet_desc_4": "",
     "greet_desc_5": "",
-    "greet_desc_plural": "{{count}} workers are mining {{coin}} and are hashing {{hashrate}} in total.",
-    "info_payout_limit": "Payout Limit",
-    "info_gas_limit": "Gas Price Limit",
-    "info_joined": "Joined",
-    "info_joined_tooltip": "Your first share has been recorded on",
-    "info_coin_price": "{{coin}} Price",
-    "stat_workers": "Workers Online/Offline",
-    "stat_unpaid_balance": "Unpaid Balance",
-    "stat_unpaid_balance_reach": "<v>{{value}}</v> of the payout limit reached.",
-    "stat_unpaid_balance_reach_est": "The limit will be reached <v>{{value}}</v>.",
-    "stat_unpaid_balance_reach_ok": "Your payout will be processed on the next payment round if the fees match your preferences.",
-    "stat_estimate": "Estimated Earnings",
-    "stat_estimate_daily": "daily",
-    "stat_estimate_weekly": "weekly",
-    "stat_estimate_monthly": "monthly",
-    "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimate."
+    "greet_desc_plural": "{{count}} 個のワーカーが {{coin}} を採掘しており、合計で {{hashrate}} をハッシュ化しています。",
+    "info_payout_limit": "支払い制限額",
+    "info_gas_limit": "ガス代の上限",
+    "info_joined": "参加",
+    "info_joined_tooltip": "最初のシェアが記録されました",
+    "info_coin_price": "{{coin}} 価格",
+    "stat_workers": "オンライン/オフラインのワーカー",
+    "stat_unpaid_balance": "未払い残高",
+    "stat_unpaid_balance_reach": "<v>支払い制限額の{{value}}</v> に達しました。",
+    "stat_unpaid_balance_reach_est": "制限は <v>{{value}}</v>に達します。",
+    "stat_unpaid_balance_reach_ok": "手数料が設定と合う場合、あなたの支払いは次の支払いラウンドで処理されます。",
+    "stat_estimate": "推定収益額",
+    "stat_estimate_daily": "毎日",
+    "stat_estimate_weekly": "毎週",
+    "stat_estimate_monthly": "毎月",
+    "stat_estimate_tooltip": "クリックして毎日、毎週、毎月の見積もりを変更します。"
   },
   "nav": {
-    "stats": "Stats",
-    "payments": "Payments",
-    "rewards": "Rewards",
-    "blocks": "Blocks"
+    "stats": "統計",
+    "payments": "払い出し",
+    "rewards": "報酬",
+    "blocks": "ブロック"
   },
   "rewards": {
-    "head_title": "Miner Rewards",
+    "head_title": "マイナー報酬",
     "earnings_chart": {
-      "title": "Earnings this month",
-      "earnings": "Earnings",
-      "daily_income": "Daily income"
+      "title": "今月の収益",
+      "earnings": "収益",
+      "daily_income": "一日の収入"
     },
     "past_earnings": {
-      "title": "Past Earnings",
-      "yesterday": "Yesterday",
-      "last_week": "Last Week",
-      "last_month": "Last Month"
+      "title": "過去の収益",
+      "yesterday": "昨日",
+      "last_week": "一週間前",
+      "last_month": "先月"
     },
     "forecasted_earnings": {
-      "title": "Forecasted Earnings",
-      "daily": "Daily",
-      "weekly": "Weekly",
-      "monthly": "Monthly"
+      "title": "予想収益",
+      "daily": "日",
+      "weekly": "週",
+      "monthly": "月"
     },
     "pplns": {
-      "title": "Advanced PPLNS Statistics",
+      "title": "高度な PPLNS 統計",
       "avp": {
-        "title": "Average Paying Hashrate",
+        "title": "平均支払いハッシュレート",
         "tooltip": "Calculated based on current round share and the last 3 hours pool hashrate chart.",
-        "current": "Current"
+        "current": "現在"
       },
       "crs": {
-        "title": "Current Round Share",
-        "aprox": "Aproximate reward",
-        "tooltip": "Derived from the share log"
+        "title": "現ラウンドのシェア",
+        "aprox": "予想報酬",
+        "tooltip": "シェアログから派生しました"
       },
       "log": {
         "title": "Share Log Wipeout Duration",
         "tooltip": "Time for the round share to drop to zero.",
-        "size": "{{value}} shares in log"
+        "size": "ログされた {{value}} 個のシェア"
       }
     },
     "pplns_chart": {
-      "title": "Shares in the PPLNS Log",
-      "valid_shares": "Valid Shares"
+      "title": "PPLNS ログ内のシェア",
+      "valid_shares": "有効シェア"
     }
   },
   "payments": {
-    "head_title": "Miner Payments",
+    "head_title": "マイナーへの支払い",
     "chart": {
-      "title": "Payments This Year",
-      "fee": "Fee",
-      "value": "Value"
+      "title": "今年の支払い状況",
+      "fee": "手数料",
+      "value": "価値"
     },
     "general": {
-      "title": "General Payment Statistics",
-      "total_paid": "Total Paid",
-      "total_transactions": "Total Transactions",
-      "paid_in_fees": "{{value}} paid in fees",
-      "average_payout_duration": "Average Payout Duration",
-      "average_payout_duration_desc": "Average Time Between Payouts"
+      "title": "一般支払いの統計",
+      "total_paid": "合計支払額",
+      "total_transactions": "総取引数",
+      "paid_in_fees": "{{value}} の手数料を支払った",
+      "average_payout_duration": "平均支払い期間",
+      "average_payout_duration_desc": "平均支払い間隔"
     },
     "transaction_fees": {
-      "title": "Transaction Fees",
-      "last": "Last Transaction",
-      "fee": "{{value}} fee",
-      "average": "Average Transaction Fee",
-      "average_percent": "Average Transaction Fee %",
-      "average_cta": "Tips on reducing fees"
+      "title": "取引手数料",
+      "last": "前回の取引",
+      "fee": "{{value}} の手数料",
+      "average": "平均取引手数料",
+      "average_percent": "平均取引手数料%",
+      "average_cta": "手数料を減らすためのヒント"
     },
     "table": {
-      "title": "Payments",
-      "download": "Download CSV",
+      "title": "支払い",
+      "download": "CSVをダウンロード",
       "table_head": {
-        "date": "Date",
-        "value": "Transaction Value",
-        "fee": "Fee",
-        "duration": "Duration",
-        "hash": "Hash"
+        "date": "日付",
+        "value": "取引値",
+        "fee": "手数料",
+        "duration": "期間",
+        "hash": "ハッシュ"
       }
     }
   },
   "stats": {
     "active_worker": {
-      "title": "Worker",
-      "reset": "Reset"
+      "title": "ワーカー",
+      "reset": "リセット"
     },
     "hashrate": {
-      "title": "Hashrate",
-      "current": "Current Effective",
-      "average": "Average Effective",
-      "reported": "Reported"
+      "title": "ハッシュレート",
+      "current": "現在有効",
+      "average": "平均有効",
+      "reported": "報告された"
     },
     "shares": {
-      "title": "Shares",
-      "valid": "Valid",
-      "stale": "Stale",
-      "invalid": "Invalid"
+      "title": "シェア",
+      "valid": "有効",
+      "stale": "失効",
+      "invalid": "無効"
     },
     "hashrate_chart": {
-      "title": "Hashrate",
-      "effective": "Effective Hashrate",
-      "average": "Average Effective Hashrate",
-      "reported": "Reported Hashrate"
+      "title": "ハッシュレート",
+      "effective": "有効ハッシュレート",
+      "average": "平均有効ハッシュレート",
+      "reported": "報告されたハッシュレート"
     },
     "shares_chart": {
-      "title": "Shares",
-      "valid": "Valid Shares",
-      "stale": "Stale Shares",
-      "invalid": "Invalid Shares"
+      "title": "シェア",
+      "valid": "有効シェア",
+      "stale": "失効シェア",
+      "invalid": "無効シェア"
     },
     "table": {
-      "title_active": "Active workers",
-      "title_inactive": "Inactive workers",
-      "search_placeholder": "Filter by worker",
+      "title_active": "アクティブワーカー",
+      "title_inactive": "非アクティブワーカー",
+      "search_placeholder": "ワーカーでフィルタ",
       "table_head": {
-        "name": "Name",
-        "reported_hashrate": "Reported Hashrate",
-        "current_e_hashrate": "Current E. Hashrate",
-        "average_hashrate": "Average Hashrate",
-        "valid": "Valid Shares",
-        "stale": "Stale Shares",
-        "invalid": "Invalid Shares",
-        "last_seen": "Last Seen"
+        "name": "名前",
+        "reported_hashrate": "報告されたハッシュレート",
+        "current_e_hashrate": "現在の有効ハッシュレート",
+        "average_e_hashrate": "Average Effective Hashrate",
+        "valid": "有効シェア",
+        "stale": "失効シェア",
+        "invalid": "無効シェア",
+        "last_seen": "最後に接続が確認できた時"
       }
     }
   }

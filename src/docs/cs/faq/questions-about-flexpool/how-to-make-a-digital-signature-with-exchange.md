@@ -1,7 +1,5 @@
 ---
-
-title: How can I make a Digital Signature with the Exchange wallet?
-
+title: Jak mohu vytvořit digitální podpis s burzovní peněženkou?
 ---
 
-Unfortunately, there is no way to make a digital signature with the exchange since you are not the actual wallet owner.
+Bohužel neexistuje způsob, jak vytvořit digitální podpis přes burzu, jelikož nejste skutečným majitelem peněženky.

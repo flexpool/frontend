@@ -1,119 +1,119 @@
 {
   "list": {
-    "head_title": "Start mining with us",
-    "title": "Get started with mining on Flexpool today!"
+    "head_title": "私たちとマイニングを開始しましょう",
+    "title": "すぐにFlexpoolでマイニングを始めましょう！"
   },
   "detail": {
-    "title": "{{coin}} mining",
+    "title": "{{coin}} 採掘中",
     "wallet": {
-      "title": "Get your wallet address",
-      "desc_one": "The easiest way to get a wallet is to register on a cryptocurrency exchange like <binance>Binance (Ref)</binance> or <coinbase>Coinbase</coinbase>.",
+      "title": "ウォレットアドレスの取得",
+      "desc_one": "ウォレットを入手する最も簡単な方法は、 <binance>Binance (Ref)</binance> または <coinbase>Coinbase</coinbase> のような暗号通貨交換に登録することです。",
       "desc_two": "Although exchanges are comfortable and easy to use, they are not very secure. You can use a non-custodial wallet, but the safest way to store your funds is to use a <strong>hardware wallet</strong>. <ledger>Ledger</ledger> and <trezor>Trezor</trezor> are the most popular ones.",
-      "wallet_address": "Wallet Address",
-      "invalid_address": "Invalid wallet address"
+      "wallet_address": "ウォレットアドレス",
+      "invalid_address": "無効なウォレットアドレス"
     },
     "region": {
-      "title": "Select your region",
-      "description": "For the best performance, you should choose server with lowest latency to your mining rig or computer. The chart is displaying latency between servers and this device.",
+      "title": "地域を選択してください",
+      "description": "最高のパフォーマンスを得るためには、最も遅延の少ないサーバーでマイニングリグする必要があります。 チャートはサーバーとこのデバイスの間にレイテンシーを表示しています。",
       "table_head": {
-        "location": "Region Location",
-        "domain": "Domain",
-        "average_lat": "Average Latency"
+        "location": "地域の場所",
+        "domain": "ドメイン",
+        "average_lat": "平均レイテンシー"
       },
       "fastest": "Fastest"
     },
     "ports": {
-      "title": "Ports",
+      "title": "ポート番号",
       "description": "We highly encourage everyone to use secured port when connecting to Flexpool servers. <more>Read more on why you shouldn't use unsecured ports</more>. <strong>IMPORTANT</strong>: Using SSL does not increase the stale rate.",
-      "ssl_port": "Secure SSL Port",
-      "tcp_port": "TCP Port",
+      "ssl_port": "セキュアSSLポート",
+      "tcp_port": "TCPポート",
       "tcp_port_tooltip": "We are strongly against using unencrypted (TCP) connection while mining on our pool. This connection is vulnerable to MITM (Man-In-The-Middle) attacks, which means that if someone will maliciously stand in between of your worker and pool, some % of your hashrate may be stolen. Read more on our <more>FAQ page</more>."
     },
     "worker": {
-      "title": "Name your worker",
-      "description": "Naming your worker is recommended if you have multiple mining rigs connected to Flexpool. This will give you more clarity about how your mining rigs perform on your dashboard page.",
-      "worker_name": "Worker Name",
-      "worker_name_placeholder": "e.g. MY_RIG_580x2"
+      "title": "ワーカーに名前をつけましょう",
+      "description": "Flexpoolに複数のマイニングリグが接続されている場合は、ワーカーに名前を付けることをお勧めします。 これにより、マイニングリグがダッシュボードページでどのように動作するかがより明確になります。",
+      "worker_name": "ワーカー名",
+      "worker_name_placeholder": "例: MY_RIG_580x2"
     },
     "software": {
-      "title": "Choose your mining software",
-      "fee": "Fee"
+      "title": "マイニングソフトウェアの選択",
+      "fee": "手数料"
     },
     "view": {
-      "title": "View your stats",
-      "description": "Once you start mining, your data should appear on your dashboard. Please allow up to 10 minutes for the data to be processed.",
-      "cta": "Open Dashboard"
+      "title": "統計を表示",
+      "description": "マイニングを開始すると、ダッシュボードにデータが表示されます。データが処理されるまでに最大10分かかります。",
+      "cta": "ダッシュボードを開く"
     }
   },
   "detail_eth": {
-    "title": "Ethereum mining",
+    "title": "イーサリアムマイニング",
     "pool_details": [
       {
-        "key": "Reward Scheme",
-        "value": "PPLNS (Pay Per Last N Shares)"
+        "key": "報酬制度",
+        "value": "PPLNS (最後のN個のシェア毎によって支払い金額が算出される)"
       },
       {
-        "key": "Pool Fee",
+        "key": "プール手数料",
         "value": "0.5%"
       },
       {
-        "key": "Bonuses",
-        "value": "90% of MEV bonus"
+        "key": "ボーナス",
+        "value": "MEVボーナスの90%"
       },
       {
-        "key": "Payout Round",
-        "value": "Every 10 minutes"
+        "key": "支払いラウンド",
+        "value": "10分ごと"
       },
       {
-        "key": "Payouts",
-        "value": "from 0.01 ETH up to 100 ETH"
+        "key": "支払い",
+        "value": "0.01ETHから100ETHまで"
       },
       {
-        "key": "Block confirmation time",
-        "value": "120 Blocks"
+        "key": "ブロック確認時間",
+        "value": "120 個のブロック"
       },
       {
-        "key": "Share Difficulty",
+        "key": "シェアの難易度",
         "value": "4 GH"
       },
       {
-        "key": "Mining Algorithm",
+        "key": "マイニングアルゴリズム",
         "value": "Ethash"
       }
     ],
     "hardware": [
       {
-        "title": "GPU Mining Rig",
+        "title": "GPUマイニングマシン",
         "key": "GPU",
         "miners": [
           {
-            "description": "Best miner for AMD GPUs"
+            "description": "AMD GPUの推奨マイナー"
           },
           {
-            "description": "Best miner for NVIDIA 20/30 Series GPUs"
+            "description": "NVIDIA 20/30 シリーズの推奨マイナー"
           },
           {
-            "description": "Best miner for 4GB zombie mode."
+            "description": "4GBゾンビモード用の推奨マイナー"
           },
           {
-            "description": "Open-source ethash miner with no fees. Brought by Ethereum community."
+            "description": "Ethereumコミュニティーが作成した、手数料がないオープンソースのethashマイナー。"
           },
           {
-            "description": "Proprietary Ethash miner with the lowest devfee."
+            "description": "最低の開発手数料のプロプライエタリのEthashマイナー。"
           }
         ]
       }
     ]
   },
   "regions": {
-    "us-east": "United States (East)",
-    "us-west": "United States (West)",
-    "de": "Germany",
-    "se": "Sweden",
-    "sg": "Singapore",
-    "au": "Australia",
-    "br": "Brazil",
-    "kr": "South Korea"
+    "us-east": "アメリカ (東)",
+    "us-west": "アメリカ (西)",
+    "de": "ドイツ",
+    "se": "スウェーデン",
+    "sg": "シンガポール",
+    "au": "オーストラリア",
+    "br": "ブラジル",
+    "kr": "韓国"
   },
   "cmd_keys": {
     "CLOSEST_SERVER": "CLOSEST_SERVER",

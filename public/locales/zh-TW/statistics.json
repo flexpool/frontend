@@ -2,17 +2,17 @@
   "head_title": "Statistics",
   "title": "Statistics",
   "pool_hashrate": "礦池算力",
-  "average_luck": "Average Luck",
+  "average_luck": "平均運氣",
   "average_luck_tooltip": "過去三十日運氣平均值。",
   "miners": "礦工數量",
   "workers": "礦機數量",
   "chart": {
     "title": "礦池算力",
-    "total_hashrate": "Total Hashrate",
+    "total_hashrate": "全區算力",
     "as": "亞太地區 (AS)",
     "au": "澳洲 (AU)",
     "eu": "歐洲 (EU)",
-    "sa": "South America (SA)",
-    "us": "United States (US)"
+    "sa": "南美 (SA)",
+    "us": "北美 (US)"
   }
 }

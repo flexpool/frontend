@@ -1,9 +1,7 @@
 ---
-
-title: What is unpaid balance? How payouts are processed?
-
+title: Co je nevyplacený zůstatek? Jak se vyřizují výplaty?
 ---
 
-Flexpool does not pay to the Ethereum wallet continuously. Since every transaction has a static fee no matter the transaction value, it is better to batch funds in bigger values; hence, paying less transaction fees.
+Flexpool neplatí do Ethereum peněženky nepřetržitě. Jelikož každá transakce má statický poplatek bez ohledu na hodnotu transakce, je lepší používat finanční prostředky ve větších hodnotách; tedy v poměru platit méně transakčních poplatků.
 
-To save the most on fees, we recommend you have the highest payout limit possible. 
+Chcete-li ušetřit co nejvíce z poplatků, doporučujeme Vám mít nejvyšší možný limit vyplacení. 

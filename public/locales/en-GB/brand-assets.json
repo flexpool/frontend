@@ -5,12 +5,12 @@
     "description": "Our brand name is <b>Flexpool.io</b>. Words \"Flex\" and \"pool\" combined together with one capital F and the .io ending."
   },
   "colors": {
-    "title": "Colors",
-    "accent": "Accent Color",
-    "blue": "Blue Color",
-    "green": "Green Color",
-    "yellow": "Yellow Color",
-    "red": "Red Color"
+    "title": "Colours",
+    "accent": "Accent Colour",
+    "blue": "Blue Colour",
+    "green": "Green Colour",
+    "yellow": "Yellow Colour",
+    "red": "Red Colour"
   },
   "typo": {
     "title": "Typography",
@@ -19,7 +19,7 @@
   "guidelines": {
     "title": "Branding Guidelines",
     "description": "By using our Branding Assets, you must follow our branding guidelines:",
-    "item_one": "You are not allowed to alter the logo. This includes shape and color changes.",
+    "item_one": "You are not allowed to alter the logo. This includes shape and colour changes.",
     "item_two": "You are not allowed to use Flexpool.io Brand to imply a relationship and/or an affiliation with any other business unless we have announced the partnership. Example: \"... in partnership with Flexpool.io.\"",
     "item_three": "You are not allowed to use the Flexpool.io Branding in illegal and promotional context."
   },

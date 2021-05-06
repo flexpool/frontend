@@ -1,9 +1,9 @@
 {
-  "head_title": "The Most Advanced Mining Pool",
+  "head_title": "最先进的矿池",
   "title": "Building the Future of Mining Pools",
   "description": "Innovative mining pool created for modern cryptocurrency mining.",
   "coin_earnings_cards": {
-    "estimated": "Estimated earnings",
+    "estimated": "预计收益",
     "estimated_tooltip": "Estimated earnings are based on performance of mining last 7 days on our pool.",
     "daily": "daily",
     "monthly": "monthly",
@@ -46,7 +46,7 @@
   "coin_news_item": {
     "eth": {
       "title": "About Ethereum",
-      "description": "Ethereum is a worldwide computer created to power Decentralized Applications known as Smart Contracts."
+      "description": "以太坊是一台世界范围内的分布式计算机，其创立是用于驱动去中心化应用程序（又称智能合约）。"
     },
     "resources": "Resources",
     "website": "Website",

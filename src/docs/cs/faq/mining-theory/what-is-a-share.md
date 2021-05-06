@@ -1,6 +1,6 @@
 ---
-title: What is a Share?
-level: beginner
+title: Co je to share?
+level: začátečník
 ---
 
-Share is a part of the block the pool is working on. By hashing on the pool, your rig solves/mines these puzzles, and submits them to the pool. You are getting paid for those.
+Share je součástí bloku, na kterém pool aktuálně pracuje. Tím, že hashujete na poolu, váš rig řeší/těží tyto hádanky a posílá je do poolu. Dostáváte za ně zaplaceno poměrem.

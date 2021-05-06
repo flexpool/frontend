@@ -1,65 +1,64 @@
 {
   "searchbar": {
-    "placeholder": "Search by your mining address"
+    "placeholder": "Poiščite po svojem rudarskem naslovu"
   },
   "nav": {
-    "statistics": "Statistics",
-    "blocks": "Blocks",
-    "miners": "Miners",
+    "statistics": "Statistika",
+    "blocks": "Bloki",
+    "miners": "Rudarji",
     "faq": "FAQ",
-    "support": "Support",
-    "get_started": "Get Started",
-    "community_title": "Join the community"
+    "support": "Podpora",
+    "get_started": "Začnite",
+    "community_title": "Pridružite se skupnosti"
   },
   "footer": {
     "company": {
-      "title": "Company",
-      "contact_us": "Contact Us",
-      "brand_assets": "Brand Assets",
-      "partners": "Partners",
-      "business_dev": "Business Development",
+      "title": "Podjetje",
+      "contact_us": "Kontaktirajte nas",
+      "brand_assets": "Sredstva za blagovne znamke",
+      "partners": "Partnerji",
+      "business_dev": "Poslovni razvoj",
       "blog": "Blog",
-      "terms": "Terms",
-      "pp": "Privacy Policy"
+      "terms": "Pogoji",
+      "pp": "Politika zasebnosti"
     },
     "resources": {
-      "title": "Resources",
-      "get_started": "Getting Started",
+      "title": "Viri",
+      "get_started": "Kako začeti",
       "faq": "FAQ",
-      "api_docs": "API Documentation"
+      "api_docs": "API dokumentacija"
     },
     "community": {
-      "title": "Community"
+      "title": "Skupnost"
     },
     "contact": {
-      "title": "Contact",
-      "service_status": "Service Status",
-      "support": "Support"
+      "title": "Kontakt",
+      "service_status": "Status storitve",
+      "support": "Podpora"
     },
     "preferences": {
-      "title": "Preferences"
+      "title": "Preference"
     },
-    "bottom_message": "© 2020-{{currentYear}} Flexpool.io or its affiliates. All rights reserved.",
-    "open_source": "Open Source",
-    "translation_help": "Help us translate the website to your language"
+    "bottom_message": "© 2020 - {{trenutno leto}} Flexpool.io ali njegove podružnice. Vse pravice pridržane.",
+    "translation_help": "Pomagajte nam prevesti spletno stran v vaš jezik"
   },
   "theme": {
-    "default": "Default Theme",
-    "dark": "Dark Theme",
-    "light": "Light Theme"
+    "default": "Prvzeto ozadje",
+    "dark": "Temno ozadje",
+    "light": "Svetlo ozadje"
   },
   "list_navigation": {
-    "previous": "Previous",
-    "next": "Next"
+    "previous": "Prejšnje",
+    "next": "Naprej"
   },
   "errors": {
-    "higher_than": "Must be higher than {{value}}",
-    "required": "Required",
-    "Invalid IP Address": "Invalid IP Address",
-    "email_invalid": "Invalid email address",
-    "email_required": "Please enter your email address"
+    "higher_than": "More bit višje kot {{value}}",
+    "required": "Potrebno",
+    "Invalid IP Address": "Ne pravilen IP naslov",
+    "email_invalid": "Ne pravilen email naslov",
+    "email_required": "Prosim vnesite vaš email naslov"
   },
   "date_time": {
-    "now": "now"
+    "now": "sedaj"
   }
 }

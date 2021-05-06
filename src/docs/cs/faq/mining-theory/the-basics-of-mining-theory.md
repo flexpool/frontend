@@ -1,47 +1,47 @@
 ---
-title: The "Basics" of the Mining Theory
-level: intermediate
+title: Základy teorie těžby
+level: středně pokročilí
 ---
 
-#### Hashes/Hashing
+#### Hashe/Hashování
 
-In mining, a Hash is the result of running a Block Template and a prospective Nonce through a cryptographic hashing function (also known as a "message digest" or "hash digest"). A cryptographic hashing function provides a completely different output for any given input and this can vary wildly by changing the Nonce.
+Při těžbě Hash je výsledkem spuštění blokové šablony a potenciálního Nonce prostřednictvím kryptografické hashovací funkce (známé také jako "message digest" nebo "hash digest"). Kryptografická hashovací funkce poskytuje zcela jiný výstup pro libovolný zadaný vstup a to se může volně měnit změnou Nonce.
 
-There are various different cryptographic hashing functions used in cryptocurrencies, examples include:
+V kryptoměnách jsou různé funkce kryptografického hashingu, jako jsou například:
 
-| Hash Function Name                           | Cryptocurrencies that use it           |
-| -------------------------------------------- | -------------------------------------- |
-| SHA256                                       | Bitcoin, Litecoin, Bitcoin Cash...     |
-| Ethash (DaggerHashimoto) and its derivatives | Ethereum, Ethereum Classic, Expanse... |
-| RandomX                                      | Monero                                 |
-| CuckooCycle/Cuckaroo/Cuckatoo                | Grin                                   |
-| Equihash                                     | ZCash                                  |
+| Název algoritmu                          | Kryptoměny, které jej používají        |
+| ---------------------------------------- | -------------------------------------- |
+| SHA256                                   | Bitcoin, Litecoin, Bitcoin Cash...     |
+| Ethash (DaggerHashimoto) a jeho deriváty | Ethereum, Ethereum Classic, Expanse... |
+| RandomX                                  | Monero                                 |
+| CuckooCycle/Cuckaroo/Cuckatoo            | Grin                                   |
+| Equihash                                 | ZCash                                  |
 
-#### Difficulty
+#### Obtížnost
 
-The amount of guesses which are needed to get a given number of zeroes at the start of the Hash is referred to as the Difficulty - it is harder to get more zeroes and therefore to have a lot of zeroes it is likely that the miner would have to have tried a lot of Nonces to achieve this.
+Množství odhadů, které jsou zapotřebí k získání určitého počtu nul, na začátku hash je označováno jako obtížnost - je těžší získat více nul, a při spoustě nul je pravděpodobné, že by horník musel zkusit spoustu Noncí, aby toho dosáhl.
 
-It is not possible to identify the inputs to a hash function from its output, therefore the only way to get a Hash of a particular Difficulty is by trial and error.
+Není možné identifikovat vstupy do hash funkce z výstupu, Proto jediným způsobem, jak získat hash konkrétních obtíží, je pokus a omyl.
 
-For Example:
-| Message | SHA256 Hash of the message |
-| -------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| <code>Welcome to Flexpool! (nonce=0)</code> | 58ecf42082e136722a706bd2b8d028b90c94f6e4ddfa60720fd470ff11cd875a |
-| <code>Welcome to Flexpool! (nonce=1)</code> | 9a605788b6d2f16b6f5c418a394965197d7e88a912afb275fde8735fa308971e |
-| <code>Welcome to Flexpool! (nonce=2)</code> | 37916e8263c7266b8ecfc878ab87d585a546c87a5d32d18658d066122bcc9037 |
-| ... | ... |
-| <code>Welcome to Flexpool! (nonce=16105490)</code> | <span className="red">000000</span>4298495e8f9096c674f1197be8c6fb25f2012228374b7307cc66ae6200 |
+Například:
+| Zpráva                    | SHA256 Hash zprávy                                                                            |
+| ------------------------- | --------------------------------------------------------------------------------------------- |
+| <code>Vítejte na Flexpoolu! (nonce=0)</code> | 58ecf42082e136722a706bd2b8d028b90c94f6e4ddfa60720fd470ff11cd875a                              |
+| <code>Vítejte na Flexpoolu! (nonce=1)</code> | 9a605788b6d2f16b6f5c418a394965197d7e88a912afb275fde8735fa308971e                              |
+| <code>Vítejte na Flexpoolu! (nonce=2)</code> | 37916e8263c7266b8ecfc878ab87d585a546c87a5d32d18658d066122bcc9037                              |
+| ...                       | ...                                                                                           |
+| <code>Vítejte na Flexpoolu! (nonce=16105490)</code> | <span className="red">000000</span>4298495e8f9096c674f1197be8c6fb25f2012228374b7307cc66ae6200 |
 
-As you can see it took over 12 million tries to get only 6 zeroes, however it is easy to confirm that someone has made a lot of guesses by just hashing the block yourself! The Nonce which provides a hash like this is proof that you have likely carried out a significant amount of work, hence the phrase "Proof of Work" being used for mining coins. Note that it is not neccessarily to start with 0. The only requirement is that the nonce is not beyond the limit.
+Jak vidíte, trvalo více než 12 milionů pokusů získat pouze 6 nul, je však snadné potvrdit, že někdo provedl spoustu pokusů pouhým hašováním bloku! Nonce, která poskytuje takový hash, je důkazem, že jste pravděpodobně provedli značné množství práce, proto se pro těžbu coinů používá výraz „Proof of Work“. Všimněte si, že nemusí nutně začínat nulou. Jediným požadavkem je, že nonce není nad limit.
 
-Coins adjust their Difficulty requirement such that blocks are spaced evenly over time, Bitcoin tries to get a block every 10 minutes, Ethereum targets 12.5 seconds, other coins have other targets. As more Hashrate is added/removed to a coins network its required Difficulty increases/decreases to compensate and keep the "block time" close to the target for that coin.
+Coiny upravují svůj požadavek na obtížnost tak, že bloky jsou v průběhu času rozmístěny rovnoměrně. Bitcoin se snaží získat blok každých 10 minut, Ethereum cílí na 12,5 sekundy, ostatní coiny mají jinak nastavené intervaly. Čím více je hashů do sítě přidáváno / odebíráno, požadavek na obtížnost sítě se zvyšuje / snižuje tak, aby kompenzovala a udržovala „čas blokování“ blízko cíle dané mince.
 
-Hashes which don't meet the Difficulty required for a Block may still meet a lower Difficulty level set by the pool and are sent to the pool to prove that you are trying to find a Block, these Shares are used to determine how much of the next Block you will recieve when someone on the pool finds a Block.
+Hashe, které nesplňují obtížnost požadovanou pro blok, mohou stále splňovány s nižší úrovení obtížností nastavenou poolem a jsou odeslány do poolu, aby prokázaly, že se snažíte najít blok, tyto shary se používají k určení, kolik z dalších bloků obdržíte, když někdo v poolu najde blok.
 
-With that said, obviously you can also just stumble upon a good Nonce in less guesses than expected by having good Luck (or significantly more guesses if your Luck is bad!)
+S tím souvisí, že můžete samozřejmě také narazit na dobrou Nonci při méně odhadech, než jste čekali, tím, že budete mít dobré štěstí (nebo podstatně více odhadů, pokud je vaše štěstí špatné!)
 
-#### Effort/Luck
+#### Úsilí / štěstí
 
-The ratio of how many Hashes were carried out vs how many were expected to meet a given Difficulty is called Effort, a low Effort of 50% for example meaning a good Nonce was found in half the amount of guesses expected.
+Poměr počtu provedených hashů a počtu očekávaných splnění dané obtížnosti se nazývá Úsilí, například nízké úsilí 50% znamená, že dobrá Nonce byla nalezena při polovině pokusů očekávaného odhadu.
 
-The inverse of Effort is referred to as Luck, a Luck of 200% means you found a good Nonce in half the amount of guesses expected.
+Inverze úsilí se označuje jako štěstí, štěstí 200% znamená, že jste našli dobrou Nonci za polovinu očekávaného odhadu.

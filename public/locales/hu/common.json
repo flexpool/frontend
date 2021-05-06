@@ -3,61 +3,60 @@
     "placeholder": "Search by your mining address"
   },
   "nav": {
-    "statistics": "Statistics",
-    "blocks": "Blocks",
-    "miners": "Miners",
-    "faq": "FAQ",
-    "support": "Support",
+    "statistics": "Statisztikák",
+    "blocks": "Blokkok",
+    "miners": "Bányászok",
+    "faq": "GYIK",
+    "support": "Támogatás",
     "get_started": "Get Started",
-    "community_title": "Join the community"
+    "community_title": "Csatlakozz a közösséghez"
   },
   "footer": {
     "company": {
-      "title": "Company",
-      "contact_us": "Contact Us",
+      "title": "Cég",
+      "contact_us": "Lépj kapcsolatba velünk",
       "brand_assets": "Brand Assets",
-      "partners": "Partners",
-      "business_dev": "Business Development",
+      "partners": "Partnerek",
+      "business_dev": "Üzlet fejlesztés",
       "blog": "Blog",
-      "terms": "Terms",
-      "pp": "Privacy Policy"
+      "terms": "Feltételek",
+      "pp": "Adatvédelmi irányelvek"
     },
     "resources": {
-      "title": "Resources",
+      "title": "Erőforrások",
       "get_started": "Getting Started",
-      "faq": "FAQ",
-      "api_docs": "API Documentation"
+      "faq": "GYIK",
+      "api_docs": "API Dokumentáció"
     },
     "community": {
-      "title": "Community"
+      "title": "Közösség"
     },
     "contact": {
-      "title": "Contact",
-      "service_status": "Service Status",
-      "support": "Support"
+      "title": "Kapcsolat",
+      "service_status": "Szolgáltatás státusza",
+      "support": "Támogatás"
     },
     "preferences": {
-      "title": "Preferences"
+      "title": "Preferenciák"
     },
-    "bottom_message": "© 2020-{{currentYear}} Flexpool.io or its affiliates. All rights reserved.",
-    "open_source": "Open Source",
-    "translation_help": "Help us translate the website to your language"
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io vagy a leányvállalatai. Minden jog fenntartva.",
+    "translation_help": "Segíts nekünk lefordítani a weboldalt a te nyelvedre"
   },
   "theme": {
-    "default": "Default Theme",
-    "dark": "Dark Theme",
-    "light": "Light Theme"
+    "default": "Alapértelmezett téma",
+    "dark": "Sötét téma",
+    "light": "Világos téma"
   },
   "list_navigation": {
-    "previous": "Previous",
-    "next": "Next"
+    "previous": "Előző",
+    "next": "Következő"
   },
   "errors": {
-    "higher_than": "Must be higher than {{value}}",
-    "required": "Required",
-    "Invalid IP Address": "Invalid IP Address",
-    "email_invalid": "Invalid email address",
-    "email_required": "Please enter your email address"
+    "higher_than": "Többnek kell lennie, mint {{value}}",
+    "required": "Kötelező",
+    "Invalid IP Address": "Érvénytelen IP cím",
+    "email_invalid": "Érvénytelen email cím",
+    "email_required": "Kérjük adja meg az email címét"
   },
   "date_time": {
     "now": "now"

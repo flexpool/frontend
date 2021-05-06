@@ -1,123 +1,123 @@
 {
   "list": {
-    "head_title": "Start mining with us",
-    "title": "Get started with mining on Flexpool today!"
+    "head_title": "Starten sie mit uns zu Minen",
+    "title": "Beginnen Sie noch heute mit dem Mining auf Flexpool!"
   },
   "detail": {
-    "title": "{{coin}} mining",
+    "title": "{{coin}} Mining",
     "wallet": {
-      "title": "Get your wallet address",
-      "desc_one": "The easiest way to get a wallet is to register on a cryptocurrency exchange like <binance>Binance (Ref)</binance> or <coinbase>Coinbase</coinbase>.",
-      "desc_two": "Although exchanges are comfortable and easy to use, they are not very secure. You can use a non-custodial wallet, but the safest way to store your funds is to use a <strong>hardware wallet</strong>. <ledger>Ledger</ledger> and <trezor>Trezor</trezor> are the most popular ones.",
-      "wallet_address": "Wallet Address",
-      "invalid_address": "Invalid wallet address"
+      "title": "Ermitteln Sie Ihre Wallet-Adresse",
+      "desc_one": "Der einfachste Weg, eine Wallet zu bekommen, ist es, sich bei einer Kryptobörse wie <binance>Binance (Ref)</binance> oder <coinbase>Coinbase</coinbase> zu registrieren.",
+      "desc_two": "Zwar sind Börsen bequem und einfach zu bedienen, allerdings sind sie nicht sehr sicher. Sie können eine nicht-börsliche Wallet verwenden, doch der sicherste Weg, Ihre Gelder zu speichern, ist die Verwendung eines <strong>Hardware-Wallets</strong>. <ledger>Ledger</ledger> und <trezor>Trezor</trezor> sind die beliebtesten.",
+      "wallet_address": "Wallet-Adresse",
+      "invalid_address": "Ungültige Wallet-Adresse"
     },
     "region": {
-      "title": "Select your region",
-      "description": "For the best performance, you should choose server with lowest latency to your mining rig or computer. The chart is displaying latency between servers and this device.",
+      "title": "Wählen Sie Ihre Region",
+      "description": "Um die beste Leistung zu erzielen, sollten Sie Server mit geringster Latenz auf Ihrem Mining-Rig oder Computer auswählen. Das Diagramm zeigt die Latenz zwischen Servern und diesem Gerät.",
       "table_head": {
-        "location": "Region Location",
+        "location": "Region Standort",
         "domain": "Domain",
-        "average_lat": "Average Latency"
+        "average_lat": "Durchschnittliche Latenz"
       },
-      "fastest": "Fastest"
+      "fastest": "Schnellste"
     },
     "ports": {
       "title": "Ports",
-      "description": "We highly encourage everyone to use secured port when connecting to Flexpool servers. <more>Read more on why you shouldn't use unsecured ports</more>. <strong>IMPORTANT</strong>: Using SSL does not increase the stale rate.",
-      "ssl_port": "Secure SSL Port",
-      "tcp_port": "TCP Port",
-      "tcp_port_tooltip": "We are strongly against using unencrypted (TCP) connection while mining on our pool. This connection is vulnerable to MITM (Man-In-The-Middle) attacks, which means that if someone will maliciously stand in between of your worker and pool, some % of your hashrate may be stolen. Read more on our <more>FAQ page</more>."
+      "description": "Wir raten jedem sehr dazu, gesicherte Ports zu verwenden um sich mit Flexpool-Servern zu verbinden. <more>Lesen Sie mehr darüber, warum Sie keine ungesicherten Ports verwenden sollten.</more> <strong>WICHTIG</strong>: Die Verwendung von SSL erhöht nicht die Stale-Rate.",
+      "ssl_port": "Sicherer SSL-Port",
+      "tcp_port": "TCP-Port",
+      "tcp_port_tooltip": "Wir raten dringend davon ab, beim Mining in unserem Pool eine unverschlüsselte (TCP) Verbindung zu verwenden. Diese Verbindung ist anfällig für MITM (Man-In-The-Middle) Angriffe, was bedeutet, dass wenn sich jemand böswillig zwischen Ihren Worker und den Pool stellt, möglicherweise einige % von Ihrer Hashrate gestohlen werden. Lesen Sie mehr auf unserer <more>FAQ-Seite</more>."
     },
     "worker": {
-      "title": "Name your worker",
-      "description": "Naming your worker is recommended if you have multiple mining rigs connected to Flexpool. This will give you more clarity about how your mining rigs perform on your dashboard page.",
-      "worker_name": "Worker Name",
-      "worker_name_placeholder": "e.g. MY_RIG_580x2"
+      "title": "Benennen Sie Ihren Worker",
+      "description": "Es wird empfohlen, Ihren Worker einen Namen zu geben, wenn Sie mehrere Mining-Rigs mit Flexpool verbunden haben. Dadurch erhalten Sie mehr Überblick über die Leistung Ihrer Mining-Rigs auf Ihrer Dashboard-Seite.",
+      "worker_name": "Name des Workers",
+      "worker_name_placeholder": "z.B. MY_RIG_580x2"
     },
     "software": {
-      "title": "Choose your mining software",
-      "fee": "Fee"
+      "title": "Wählen Sie Ihre Mining-Software",
+      "fee": "Gebühr"
     },
     "view": {
-      "title": "View your stats",
-      "description": "Once you start mining, your data should appear on your dashboard. Please allow up to 10 minutes for the data to be processed.",
-      "cta": "Open Dashboard"
+      "title": "Statistiken anzeigen",
+      "description": "Sobald Sie mit dem Mining beginnen, sollten die Daten in Ihrem Dashboard erscheinen. Bitte warten Sie bis zu 10 Minuten, bis die Daten verarbeitet sind.",
+      "cta": "Dashboard öffnen"
     }
   },
   "detail_eth": {
-    "title": "Ethereum mining",
+    "title": "Ethereum Mining",
     "pool_details": [
       {
-        "key": "Reward Scheme",
-        "value": "PPLNS (Pay Per Last N Shares)"
+        "key": "Belohnungsschema",
+        "value": "PPLNS (Auszahlung je letzte N Anteile)"
       },
       {
-        "key": "Pool Fee",
-        "value": "0.5%"
+        "key": "Pool-Gebühr",
+        "value": "0,5%"
       },
       {
-        "key": "Bonuses",
-        "value": "90% of MEV bonus"
+        "key": "Zuschläge",
+        "value": "90% des MEV-Bonus"
       },
       {
-        "key": "Payout Round",
-        "value": "Every 10 minutes"
+        "key": "Auszahlungsrunde",
+        "value": "Alle 10 Minuten"
       },
       {
-        "key": "Payouts",
-        "value": "from 0.01 ETH up to 100 ETH"
+        "key": "Auszahlungen",
+        "value": "von 0,01 ETH bis 100 ETH"
       },
       {
-        "key": "Block confirmation time",
-        "value": "120 Blocks"
+        "key": "Block-Bestätigungszeit",
+        "value": "120 Blöcke"
       },
       {
-        "key": "Share Difficulty",
+        "key": "Share-Schwierigkeit",
         "value": "4 GH"
       },
       {
-        "key": "Mining Algorithm",
+        "key": "Mining-Algorithmus",
         "value": "Ethash"
       }
     ],
     "hardware": [
       {
-        "title": "GPU Mining Rig",
+        "title": "GPU Mining-Rig",
         "key": "GPU",
         "miners": [
           {
-            "description": "Best miner for AMD GPUs"
+            "description": "Bester Miner für AMD GPUs"
           },
           {
-            "description": "Best miner for NVIDIA 20/30 Series GPUs"
+            "description": "Bester Miner für NVIDIA 20/30 Serie GPUs"
           },
           {
-            "description": "Best miner for 4GB zombie mode."
+            "description": "Bester Miner für den 4GB Zombie-Modus."
           },
           {
-            "description": "Open-source ethash miner with no fees. Brought by Ethereum community."
+            "description": "Open-Source-Ethash-Miner ohne Gebühren. Von der Ethereum-Community bereitgestellt."
           },
           {
-            "description": "Proprietary Ethash miner with the lowest devfee."
+            "description": "Proprietärer Ethash Miner mit dem niedrigsten Dev-Gebühren."
           }
         ]
       }
     ]
   },
   "regions": {
-    "us-east": "United States (East)",
-    "us-west": "United States (West)",
-    "de": "Germany",
-    "se": "Sweden",
-    "sg": "Singapore",
-    "au": "Australia",
-    "br": "Brazil",
-    "kr": "South Korea"
+    "us-east": "Vereinigte Staaten (Osten)",
+    "us-west": "Vereinigte Staaten (Westen)",
+    "de": "Deutschland",
+    "se": "Schweden",
+    "sg": "Singapur",
+    "au": "Australien",
+    "br": "Brasilien",
+    "kr": "Südkorea"
   },
   "cmd_keys": {
-    "CLOSEST_SERVER": "CLOSEST_SERVER",
-    "WALLET_ADDRESS": "WALLET_ADDRESS",
+    "CLOSEST_SERVER": "NÄHESTER_SERVER",
+    "WALLET_ADDRESS": "WALLET_ADRESSE",
     "WORKER_NAME": "WORKER_NAME"
   }
 }

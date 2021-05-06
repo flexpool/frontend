@@ -2,7 +2,7 @@
   "head_title": "Support",
   "title": "Support",
   "section_one": {
-    "title": "Contact Flexpool Support",
+    "title": "Kontakta Flexpool Support",
     "description": "Hi! Before you reach out, we would like to warn you that we do not provide assistance on hardware-related topics. This includes overclocking GPUs and further advanced configuration of the mining software. We provide only pool-related support. If you want to get help on overclocking GPUs, optimizing mining software, etc., you can join our community and talk with people who want share their experience."
   },
   "section_two": {
@@ -14,11 +14,11 @@
     "description": "We also provide an official Discord Server and a Telegram Group, so you can talk with other Flexpool miners, and get assistance from our team there as well."
   },
   "section_four": {
-    "title": "Reach us via Email",
-    "description": "We provide Email support, but we do not guarantee fast response time via this support channel. We are available at <email>{{email}}</email>."
+    "title": "Nå oss via e-post",
+    "description": "Vi tillhandahåller e-postsupport, men vi garanterar inte snabb svarstid via denna supportkanal. Vi finns tillgängliga på <email>{{email}}</email>."
   },
   "section_five": {
-    "title": "Other questions",
-    "description": "For business-related questions, please, contact us at <email>hq@flexpool.io</email>. Please, note that we do not provide support via this Email."
+    "title": "Övriga frågor",
+    "description": "För affärsrelaterade frågor, vänligen kontakta oss på <email>hq@flexpool.io</email>. Vänligen observera att vi inte tillhandahåller support via denna e-post."
   }
 }

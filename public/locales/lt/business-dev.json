@@ -1,8 +1,8 @@
 {
-  "head_title": "Business Development",
-  "title": "Business Development",
+  "head_title": "Verslo plėtra",
+  "title": "Verslo plėtra",
   "touch": {
-    "title": "Get in touch!",
-    "description": "We are open for discussions about your cooperation with our business. If you have a business proposition, or want to partner with us, please, reach us at <email>{{email}}</email>."
+    "title": "Susisiekti!",
+    "description": "Esame atviri diskusijoms apie jūsų bendradarbiavimą su mūsų verslu. Jei turite verslo pasiūlymą arba norite su mumis bendradarbiauti, susisiekite su mumis adresu <email> {{email}} </email>."
   }
 }

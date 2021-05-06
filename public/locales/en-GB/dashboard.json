@@ -63,7 +63,7 @@
     "earnings_chart": {
       "title": "Earnings this month",
       "earnings": "Earnings",
-      "daily_income": "Daily income"
+      "daily_income": "Dosh a day"
     },
     "past_earnings": {
       "title": "Past Earnings",
@@ -172,7 +172,7 @@
         "name": "Name",
         "reported_hashrate": "Reported Hashrate",
         "current_e_hashrate": "Current E. Hashrate",
-        "average_hashrate": "Average Hashrate",
+        "average_e_hashrate": "Average Effective Hashrate",
         "valid": "Valid Shares",
         "stale": "Stale Shares",
         "invalid": "Invalid Shares",

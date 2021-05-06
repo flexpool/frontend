@@ -1,13 +1,13 @@
 ---
-title: Should I use SSL?
+title: Měl bych používat SSL?
 ---
 
-**Yes**, use SSL where possible.
+**Ano**, pokud je to možné, použijte SSL.
 
-We are strongly against using unencrypted (TCP) connection while mining on our pool. This connection is vulnerable to MITM (Man-In-The-Middle) attacks, which means that if someone will maliciously stand in between of your worker and pool, some % of your hashrate may be stolen.
+Jsme důrazně proti používání nešifrovaného (TCP) připojení při těžbě na našem poolu. Toto spojení je zranitelné vůči útokům MITM (Man-In-The-Middle), což znamená, že pokud někdo zlovolně stojí mezi vaším rigem a poolem, může % vaší hashrate odcizeno.
 
-#### DO NOT USE UNENCRYPTED CONNECTION
+#### NEPOUŽÍVEJTE NEŠIFROVANÉ PŘIPOJENÍ
 
-Keep in mind that before your worker's message reaches the pool, it passes through a dozen of routers (you can use `traceroute` command to see all of them).
+Mějte na paměti, že před tím, než se vaše zpráva dostane do poolu, prochází desítkami routerů (můžete použít příkaz `traceroute`, abyste je viděli všechny).
 
-Using SSL is recommened by Flexpool. This connection type ensures that your worker talks to the actual pool servers.
+Použití protokolu SSL je doporučené Flexpoolem. Tento typ připojení zajišťuje, že váš klient bude komunikovat s aktuálními servery poolu.

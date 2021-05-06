@@ -63,24 +63,24 @@
     "earnings_chart": {
       "title": "Earnings this month",
       "earnings": "Earnings",
-      "daily_income": "Daily income"
+      "daily_income": "Günlük Gelir"
     },
     "past_earnings": {
-      "title": "Past Earnings",
-      "yesterday": "Yesterday",
+      "title": "Geçmiş Gelirler",
+      "yesterday": "Dün",
       "last_week": "Last Week",
       "last_month": "Last Month"
     },
     "forecasted_earnings": {
       "title": "Forecasted Earnings",
-      "daily": "Daily",
-      "weekly": "Weekly",
-      "monthly": "Monthly"
+      "daily": "Günlük",
+      "weekly": "Haftalık",
+      "monthly": "Aylık"
     },
     "pplns": {
-      "title": "Advanced PPLNS Statistics",
+      "title": "Detaylı PPLNS İstatistikleri",
       "avp": {
-        "title": "Average Paying Hashrate",
+        "title": "Ortalama Ödeme Hashrate",
         "tooltip": "Calculated based on current round share and the last 3 hours pool hashrate chart.",
         "current": "Current"
       },
@@ -172,7 +172,7 @@
         "name": "Name",
         "reported_hashrate": "Reported Hashrate",
         "current_e_hashrate": "Current E. Hashrate",
-        "average_hashrate": "Average Hashrate",
+        "average_e_hashrate": "Average Effective Hashrate",
         "valid": "Valid Shares",
         "stale": "Stale Shares",
         "invalid": "Invalid Shares",

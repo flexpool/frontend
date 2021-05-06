@@ -1,26 +1,26 @@
 ---
-title: 'What is Hashrate?'
-level: beginner
+title: 'Co je to Hashrate?'
+level: začátečník
 ---
 
-Hashrate is a measure of the amount of Hashes your worker is processing per second - the higher your hashrate the more likely you are to find more Shares in a given amount of time.
+Hashrate je míra nebo množství hashů, které váš rig zpracovává za sekundu - čím vyšší je váš hashrate, je pak pravděpodobnější, že najdete více sharů v daném čase.
 
-Hashrates are measured using SI (Metric International System of Units) prefixes:
+Hashraty se měří pomocí předpon SI (Metric International System of Units):
 
-| Unit | Description                                                                    |
-| ---- | ------------------------------------------------------------------------------ |
-| H/s  | Hashes per Second - Number of individual hashes each second                    |
-| KH/s | KiloHashes per Second - Thousands of hashes each second, equal to 1000 H/s     |
-| MH/s | MegaHashes per Second - Millions of hashes each second, equal to 1000 KH/s     |
-| GH/s | GigaHashes per Second - Billions of hashes each second, equal to 1000 MH/s     |
-| TH/s | TeraHashes per Second - Trillions of hashes each second, equal to 1000 GH/s    |
-| PH/s | PetaHashes per Second - Quadrillions of hashes each second, equal to 1000 TH/s |
-| ...  | And more                                                                       |
+| Jednotka | Popis                                                                    |
+| -------- | ------------------------------------------------------------------------ |
+| H/s      | Hashe za sekundu - počet jednotlivých hashů za sekundu                   |
+| KH/s     | KiloHashe za sekundu - Tisíce hashů za sekundu, rovno 1000 H/s           |
+| MH/s     | MegaHashe za sekundu - Miliony hashů za sekundu, rovnající se 1000 KH/s  |
+| GH/s     | GigaHashe za sekundu - Miliardy hashů za sekundu, rovnající se 1000 MH/s |
+| TH/s     | TeraHashe za sekundu - Biliony hashů za sekundu, rovnající se 1000 GH/s  |
+| PH/s     | PetaHashe za sekundu - Biliarda hashů za sekundu, rovnající se 1000 TH/s |
+| ...      | A tak dále                                                               |
 
-In your dashboard, you have three hashrates shown:
+Ve vaší stránce peněženky máte zobrazené tři typy hashratů:
 
-| Hashrate Type         | Description                                                                                                                                                               |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Effective             | The hashrate the pool thinks you have based on the amount of shares the pool is recieving from you, this can vary a lot over time due to Luck.                            |
-| Average \[Effective\] | The rolling 24 hour average of your Effective hashrate, this should be close to your Reported Hashrate                                                                    |
-| Reported              | The hashrate your mining software is reporting to the pool (this is not taken into account for calculating rewards but is shown for comparison to the Effective hashrate) |
+| Typ Hashratu             | Popis                                                                                                                                                 |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Efektivní                | Hashrate, který si pool myslí, že máte na základě množství sharů, které od vás obdrží. To se může v průběhu času kvůli štěstí značně lišit.           |
+| Průměrný \[Efektivní\] | Vlečný průměr za 24 hodin efektivního hashratu, to by mělo být blízko nahlášenému Hashratu                                                            |
+| Nahlášený                | Hashrate, který váš těžební software hlásí do poolu (toto není bráno v úvahu pro výpočet odměn, ale je zobrazeno pro srovnání s efektivním hashratem) |

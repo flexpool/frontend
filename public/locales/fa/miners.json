@@ -1,17 +1,17 @@
 {
-  "head_title": "Miners",
-  "title": "Miners",
+  "head_title": "ماینر ها",
+  "title": "ماینر ها",
   "top_miners": {
-    "title": "Top Miners",
+    "title": "ماینر های تاپ",
     "table_head": {
-      "miner": "Miner",
-      "hashrate": "Hashrate",
-      "balance": "Balance",
-      "workers": "Workers",
-      "joined": "Joined"
+      "miner": "ماینر",
+      "hashrate": "هش ریت",
+      "balance": "بالانس",
+      "workers": "کارگر ها",
+      "joined": "عضو شده"
     }
   },
   "distribution": {
-    "title": "Miners Distribution by Hashrate"
+    "title": "توزیع معدنچیان توسط هش ریت"
   }
 }

@@ -1,63 +1,62 @@
 {
   "searchbar": {
-    "placeholder": "Search by your mining address"
+    "placeholder": "Zoek op uw mining address"
   },
   "nav": {
-    "statistics": "Statistics",
-    "blocks": "Blocks",
-    "miners": "Miners",
+    "statistics": "Statistieken",
+    "blocks": "Blokken",
+    "miners": "Mijnwerkers",
     "faq": "FAQ",
-    "support": "Support",
-    "get_started": "Get Started",
-    "community_title": "Join the community"
+    "support": "Ondersteuning",
+    "get_started": "Aan de slag!",
+    "community_title": "Word lid van de community"
   },
   "footer": {
     "company": {
-      "title": "Company",
-      "contact_us": "Contact Us",
-      "brand_assets": "Brand Assets",
+      "title": "Bedrijf",
+      "contact_us": "Neem contact op",
+      "brand_assets": "Merk / Middelen",
       "partners": "Partners",
-      "business_dev": "Business Development",
+      "business_dev": "Zakelijke ontwikkeling",
       "blog": "Blog",
-      "terms": "Terms",
-      "pp": "Privacy Policy"
+      "terms": "Voorwaarden",
+      "pp": "Privacy Beleid"
     },
     "resources": {
-      "title": "Resources",
-      "get_started": "Getting Started",
+      "title": "Bronnen",
+      "get_started": "Aan de slag",
       "faq": "FAQ",
-      "api_docs": "API Documentation"
+      "api_docs": "API documentatie"
     },
     "community": {
       "title": "Community"
     },
     "contact": {
-      "title": "Contact",
+      "title": "Neem contact op",
       "service_status": "Service Status",
-      "support": "Support"
+      "support": "Ondersteuning"
     },
     "preferences": {
-      "title": "Preferences"
+      "title": "Voorkeuren"
     },
-    "bottom_message": "© 2020-{{currentYear}} Flexpool.io or its affiliates. All rights reserved.",
-    "open_source": "Open Source",
-    "translation_help": "Help us translate the website to your language"
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io of zijn affiliates. Alle rechten voorbehouden.",
+    "translation_help": "Help ons de website te vertalen naar uw taal"
   },
   "theme": {
-    "default": "Default Theme",
-    "dark": "Dark Theme",
-    "light": "Light Theme"
+    "default": "Standaard thema",
+    "dark": "Donker thema",
+    "light": "Licht Thema"
   },
   "list_navigation": {
-    "previous": "Previous",
-    "next": "Next"
+    "previous": "Vorige",
+    "next": "Volgende"
   },
   "errors": {
-    "higher_than": "Must be higher than {{value}}",
-    "required": "Required",
-    "Invalid IP Address": "Invalid IP Address",
-    "email_invalid": "Invalid email address",
-    "email_required": "Please enter your email address"
+    "higher_than": "Moet hoger zijn dan {{value}}",
+    "required": "Verplicht",
+    "Invalid IP Address": "Ongeldig IP-adres",
+    "email_invalid": "Ongeldig e-mailadres",
+    "email_required": "Voer uw e-mailadres in"
   },
   "date_time": {
     "now": "now"

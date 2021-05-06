@@ -1,63 +1,62 @@
 {
   "searchbar": {
-    "placeholder": "Search by your mining address"
+    "placeholder": "Sök via din gruvadress"
   },
   "nav": {
-    "statistics": "Statistics",
-    "blocks": "Blocks",
-    "miners": "Miners",
-    "faq": "FAQ",
+    "statistics": "Statistik",
+    "blocks": "Block",
+    "miners": "Gruvarbetare",
+    "faq": "Vanliga frågor",
     "support": "Support",
-    "get_started": "Get Started",
-    "community_title": "Join the community"
+    "get_started": "Kom igång",
+    "community_title": "Gå med i communityn"
   },
   "footer": {
     "company": {
-      "title": "Company",
-      "contact_us": "Contact Us",
-      "brand_assets": "Brand Assets",
-      "partners": "Partners",
-      "business_dev": "Business Development",
-      "blog": "Blog",
-      "terms": "Terms",
-      "pp": "Privacy Policy"
+      "title": "Företag",
+      "contact_us": "Kontakt",
+      "brand_assets": "Varumärkets tillgångar",
+      "partners": "Partnerskap",
+      "business_dev": "Affärsutveckling",
+      "blog": "Blogg",
+      "terms": "Villkor",
+      "pp": "Integritetspolicy"
     },
     "resources": {
-      "title": "Resources",
-      "get_started": "Getting Started",
-      "faq": "FAQ",
-      "api_docs": "API Documentation"
+      "title": "Resurser",
+      "get_started": "Kom igång",
+      "faq": "Vanliga frågor",
+      "api_docs": "API-dokumentation"
     },
     "community": {
-      "title": "Community"
+      "title": "Gemenskap"
     },
     "contact": {
-      "title": "Contact",
-      "service_status": "Service Status",
+      "title": "Kontakt",
+      "service_status": "Tjänstens status",
       "support": "Support"
     },
     "preferences": {
-      "title": "Preferences"
+      "title": "Inställningar"
     },
-    "bottom_message": "© 2020-{{currentYear}} Flexpool.io or its affiliates. All rights reserved.",
-    "open_source": "Open Source",
-    "translation_help": "Help us translate the website to your language"
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io eller dess dotterbolag. Alla rättigheter förbehållna.",
+    "translation_help": "Hjälp oss att översätta webbplatsen till ditt språk"
   },
   "theme": {
-    "default": "Default Theme",
-    "dark": "Dark Theme",
-    "light": "Light Theme"
+    "default": "Standardtema",
+    "dark": "Mörkt tema",
+    "light": "Ljust tema"
   },
   "list_navigation": {
-    "previous": "Previous",
-    "next": "Next"
+    "previous": "Föregående",
+    "next": "Nästa"
   },
   "errors": {
-    "higher_than": "Must be higher than {{value}}",
-    "required": "Required",
-    "Invalid IP Address": "Invalid IP Address",
-    "email_invalid": "Invalid email address",
-    "email_required": "Please enter your email address"
+    "higher_than": "Måste vara högre än {{value}}",
+    "required": "Obligatorisk",
+    "Invalid IP Address": "Ogiltig IP-adress",
+    "email_invalid": "Ogiltig e-postadress",
+    "email_required": "Vänligen ange din e-postadress"
   },
   "date_time": {
     "now": "now"

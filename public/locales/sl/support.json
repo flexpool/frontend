@@ -1,24 +1,24 @@
 {
-  "head_title": "Support",
-  "title": "Support",
+  "head_title": "Podpora",
+  "title": "Podpora",
   "section_one": {
-    "title": "Contact Flexpool Support",
-    "description": "Hi! Before you reach out, we would like to warn you that we do not provide assistance on hardware-related topics. This includes overclocking GPUs and further advanced configuration of the mining software. We provide only pool-related support. If you want to get help on overclocking GPUs, optimizing mining software, etc., you can join our community and talk with people who want share their experience."
+    "title": "Kontaktirajte Flexpool za podporo",
+    "description": "Živjo! Preden se obrnete na nas, vas želimo opozoriti, da ne zagotavljamo pomoči glede tem, povezanih s strojno opremo. To vključuje overclocking GPU-je in nadaljnjo napredno konfiguracijo rudarske programske opreme. Ponujamo samo podporo, povezano z bazenom. Če želite pomoč pri overclockingu grafičnih procesorjev, optimizaciji rudarske programske opreme itd., Se lahko pridružite naši skupnosti in se pogovorite z ljudmi, ki želijo deliti svoje izkušnje."
   },
   "section_two": {
-    "title": "Reach us via the Website Messenger",
-    "description": "The best way to reach us to get assistance is to use the built-in website messenger. You can find it in the bottom-right corner."
+    "title": "Kontaktirajte nas preko spletnega klepetalnika",
+    "description": "Najboljši način za pomoč pri nas je uporaba vgrajenega spletnega klepetalnika. Najdete ga v spodnjem desnem kotu."
   },
   "section_three": {
-    "title": "Join our Community",
-    "description": "We also provide an official Discord Server and a Telegram Group, so you can talk with other Flexpool miners, and get assistance from our team there as well."
+    "title": "Včlanite se v našo skupnost",
+    "description": "Ponujamo tudi uradni strežnik Discord Server in Telegram Group, tako da se lahko pogovorite z drugimi rudarji Flexpoola in tudi tam poiščite pomoč naše ekipe."
   },
   "section_four": {
-    "title": "Reach us via Email",
-    "description": "We provide Email support, but we do not guarantee fast response time via this support channel. We are available at <email>{{email}}</email>."
+    "title": "Kontaktirajte nas preko E-pošte",
+    "description": "Ponujamo e-poštno podporo, vendar ne zagotavljamo hitrega odzivnega časa prek tega kanala za podporo. Na voljo smo na <email>{{email}}</email>."
   },
   "section_five": {
-    "title": "Other questions",
-    "description": "For business-related questions, please, contact us at <email>hq@flexpool.io</email>. Please, note that we do not provide support via this Email."
+    "title": "Druga vprašanja",
+    "description": "Za poslovna vprašanja nas kontaktirajte na <email> hq@flexpool.io </email>. Upoštevajte, da prek tega e-poštnega sporočila ne zagotavljamo podpore."
   }
 }

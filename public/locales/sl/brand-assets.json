@@ -1,35 +1,35 @@
 {
-  "head_title": "Brand assets",
+  "head_title": "Premoženje blagovne znamke",
   "brand_name": {
-    "title": "Our brand name",
-    "description": "Our brand name is <b>Flexpool.io</b>. Words \"Flex\" and \"pool\" combined together with one capital F and the .io ending."
+    "title": "Naša blagovna znamka",
+    "description": "Naša blagovna znamka je <b> Flexpool.io </b>. Besedi \"Flex\" in \"pool\" skupaj z eno veliko črko F in koncem .io."
   },
   "colors": {
-    "title": "Colors",
-    "accent": "Accent Color",
-    "blue": "Blue Color",
-    "green": "Green Color",
-    "yellow": "Yellow Color",
-    "red": "Red Color"
+    "title": "Barve",
+    "accent": "Barva poudarka",
+    "blue": "Modra barva",
+    "green": "Zelena barva",
+    "yellow": "Rumena barva",
+    "red": "Rdeča barva"
   },
   "typo": {
-    "title": "Typography",
-    "description": "We use <font>{{fontName}}</font> across our website."
+    "title": "Tipografija",
+    "description": "Na našem spletnem mestu uporabljamo <font> {{fontName}} </font>."
   },
   "guidelines": {
-    "title": "Branding Guidelines",
-    "description": "By using our Branding Assets, you must follow our branding guidelines:",
-    "item_one": "You are not allowed to alter the logo. This includes shape and color changes.",
-    "item_two": "You are not allowed to use Flexpool.io Brand to imply a relationship and/or an affiliation with any other business unless we have announced the partnership. Example: \"... in partnership with Flexpool.io.\"",
-    "item_three": "You are not allowed to use the Flexpool.io Branding in illegal and promotional context."
+    "title": "Smernice za blagovno znamko",
+    "description": "Z uporabo naših sredstev blagovne znamke morate upoštevati naše smernice za blagovno znamko:",
+    "item_one": "Logotipa ne smete spreminjati. To vključuje spremembe oblike in barve.",
+    "item_two": "Blagovne znamke Flexpool.io ne smete uporabljati za nakazovanje razmerja in / ali povezanosti s katerim koli drugim podjetjem, razen če partnerstva nismo napovedali. Primer: \"... v partnerstvu z Flexpool.io.\"",
+    "item_three": "Blagovne znamke Flexpool.io ne smete uporabljati v nezakonitem in promocijskem kontekstu."
   },
   "downloads": {
-    "title": "Downloads",
-    "description": "We have collected a package containing all types of Flexpool.io logos for both Light and Dark themes.",
-    "cta": "Download the Branding Pack"
+    "title": "Prenosi",
+    "description": "Zbrali smo paket, ki vsebuje vse vrste logotipov Flexpool.io za teme Svetlo in Temno.",
+    "cta": "Prenesite paket blagovne znamke"
   },
   "legal": {
-    "title": "Legal Notices",
-    "description": "By using our Branding Assets, you agree with the Branding Guidelines and our <terms>Terms</terms>. If you need to get assistance about the usage of the Flexpool.io branding, you can contact us at <email>{{email}}</email>"
+    "title": "Pravna obvestila",
+    "description": "Z uporabo naših sredstev blagovne znamke se strinjate s smernicami za blagovno znamko in našimi <terms> pogoji </terms>. Če potrebujete pomoč pri uporabi blagovne znamke Flexpool.io, nas lahko kontaktirajte na <email> {{email}} </email>"
   }
 }
