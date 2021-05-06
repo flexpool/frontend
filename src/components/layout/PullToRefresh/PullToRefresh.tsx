@@ -137,7 +137,6 @@ export class PullToRefresh extends React.Component<
         return;
       }
     }
-    console.log('is dragging');
     this.dragging = true;
     this.container.style.transition = 'transform 0.1s cubic-bezier(0,0,0.31,1)';
     this.pullDown.style.transition = 'transform 0.1s cubic-bezier(0,0,0.31,1)';
@@ -167,7 +166,7 @@ export class PullToRefresh extends React.Component<
 
     this.container.style.overflow = 'visible';
     this.container.style.transform = `translate(0px, ${
-      this.currentY - this.startY - (this.currentY - this.startY) * 0.5
+      this.currentY - this.startY - (this.currentY - this.startY) * 0.6
     }px)`;
     this.pullDown.style.visibility = 'visible';
   }
