@@ -113,37 +113,27 @@ export class PullToRefresh extends React.Component<
     this.startY = e['pageY'] || e.touches[0].pageY;
     this.currentY = this.startY;
 
-    console.log('on touch');
-
     if (triggerHeight === 'auto') {
       const target = e.target;
 
       const container = this.container;
       if (!container) {
-        console.log('no container');
         return;
       }
 
-      console.log('FFFF', isTreeScrollable(document.body, DIRECTION.up));
-
       // an element we're touching can be scrolled up, so gesture is going to be a scroll gesture
       if (e.type === 'touchstart' && isTreeScrollable(target, DIRECTION.up)) {
-        console.log('tree scrollable');
         return;
       }
 
       // even though we're not scrolling, the pull-to-refresh isn't visible to the user so cancel
       if (container.getBoundingClientRect().top < 0) {
-        console.log('ancel');
         return;
       }
     } else {
       const { top } = this.container.getBoundingClientRect();
-      console.log(this.container.scrollTop);
 
       if (this.startY - top > triggerHeight) {
-        console.log(this.startY, top, triggerHeight);
-        console.log('is asdasd');
         return;
       }
     }
@@ -177,7 +167,7 @@ export class PullToRefresh extends React.Component<
 
     this.container.style.overflow = 'visible';
     this.container.style.transform = `translate(0px, ${
-      this.currentY - this.startY - (this.currentY - this.startY) * 0.65
+      this.currentY - this.startY - (this.currentY - this.startY) * 0.5
     }px)`;
     this.pullDown.style.visibility = 'visible';
   }

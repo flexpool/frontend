@@ -17,7 +17,7 @@ export const minerHeaderStatsGet = (
         '/miner/workerCount',
         { query }
       ),
-      fetchApi<{ balance: number; balanceCountervalue: number }>(
+      fetchApi<{ balance: number; balanceCountervalue: number; price: number }>(
         '/miner/balance',
         { query }
       ),
@@ -27,6 +27,7 @@ export const minerHeaderStatsGet = (
       return {
         ...res[0],
         ...res[1],
+        countervaluePrice: res[1].price,
         roundShare: res[2],
         averageBlockShare: res[3],
       };

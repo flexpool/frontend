@@ -141,7 +141,7 @@ export const MinerDashboardPageContent: React.FC<
     <>
       <PullToRefresh
         triggerHeight="auto"
-        pullDownThreshold={100}
+        pullDownThreshold={150}
         onRefresh={loadAll}
       >
         <Page>
