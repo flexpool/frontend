@@ -11,6 +11,7 @@ import { ApiMinerWorker } from 'src/types/Miner.types';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import {
   useLocalizedNumberFormatter,
+  useLocalizedPercentFormatter,
   useLocalizedSiFormatter,
 } from 'src/utils/si.utils';
 import styled from 'styled-components/macro';
@@ -23,6 +24,7 @@ import {
 } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 
 const PercentageItem = styled.span`
   color: var(--text-tertiary);
@@ -30,11 +32,13 @@ const PercentageItem = styled.span`
 const Percentage: React.FC<{ total: number; value: number }> = ({
   total,
   value,
-}) => (
-  <PercentageItem>
-    ({(Math.round((value / total) * 100 * 10) / 10).toFixed(1)}%)
-  </PercentageItem>
-);
+}) => {
+  const percentFormatter = useLocalizedPercentFormatter();
+  if (total === 0) {
+    return null;
+  }
+  return <PercentageItem>({percentFormatter(value / total)})</PercentageItem>;
+};
 
 const WorkerName = styled.span`
   color: var(--text-primary);
@@ -200,7 +204,23 @@ const MinerWorkersTable: React.FC<{
         alignRight: true,
         onClickValue: 'reportedHashrate',
         Component: React.memo(({ data }) => (
-          <Mono>{siFormatter(data.reportedHashrate, { unit: 'H/s' })}</Mono>
+          <Ws>
+            <Mono>
+              {siFormatter(data.reportedHashrate, { unit: 'H/s' })}{' '}
+              <Percentage
+                total={data.reportedHashrate}
+                value={data.averageEffectiveHashrate}
+              />{' '}
+              <Tooltip>
+                <TooltipContent>
+                  {t('stats.table.table_head.average_e_hashrate')}: <br />
+                  {siFormatter(data.averageEffectiveHashrate, {
+                    unit: 'H/s',
+                  })}{' '}
+                </TooltipContent>
+              </Tooltip>
+            </Mono>
+          </Ws>
         )),
       },
       {
@@ -244,10 +264,12 @@ const MinerWorkersTable: React.FC<{
         alignRight: true,
         onClickValue: 'invalidShares',
         Component: React.memo(({ data }) => (
-          <Mono>
-            {numberFormatter(data.invalidShares)}{' '}
-            <Percentage total={data.totalShares} value={data.invalidShares} />
-          </Mono>
+          <Ws>
+            <Mono>
+              {numberFormatter(data.invalidShares)}{' '}
+              <Percentage total={data.totalShares} value={data.invalidShares} />
+            </Mono>
+          </Ws>
         )),
       },
       {
