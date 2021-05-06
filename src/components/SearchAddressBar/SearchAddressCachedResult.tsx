@@ -1,4 +1,4 @@
-import { FaTimes, FaTimesCircle } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
