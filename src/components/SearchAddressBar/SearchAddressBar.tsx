@@ -69,7 +69,7 @@ const ResultWrapper = styled.div`
   opacity: 0;
   visibility: hidden;
 
-  box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.1);
   &:before {
     content: '';
     height: 3px;
@@ -86,17 +86,17 @@ const FieldWrapper = styled.div<{ isOpen: boolean }>`
   height: 100%;
   position: relative;
   flex-grow: 1;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.07);
   border-radius: 5px;
   transition: 0.1s all;
   &:hover {
-    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.12);
   }
 
   ${(p) =>
     p.isOpen &&
     `
-    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.3) !important;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2) !important;
     ${ResultWrapper} {
       visibility: visible;
       opacity: 1;
@@ -125,7 +125,7 @@ const F = styled(Form)`
       background-color: var(--bg-primary);
     }
     ${SearchButton} {
-      box-shadow: inset 0 0 20px 0 rgba(0, 0, 0, 0.15);
+      box-shadow: inset 0 0 20px 0 rgba(0, 0, 0, 0.05);
       svg {
         transform: scale(1.1);
       }
