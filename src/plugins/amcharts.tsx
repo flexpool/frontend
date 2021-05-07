@@ -15,6 +15,7 @@ export {
   Legend,
   XYChart,
   XYCursor,
+  XYChartScrollbar,
   ValueAxis,
   DateAxis,
   ColumnSeries,

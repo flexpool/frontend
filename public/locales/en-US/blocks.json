@@ -43,6 +43,11 @@
     "orphan": "Orphan",
     "uncle": "Uncle"
   },
+  "chart": {
+    "title": "Monthly Blocks Visualization",
+    "blocks_per_day": "Blocks per day",
+    "difficulty": "Difficulty"
+  },
   "waiting_confirmation_tooltip": "Waiting for confirmation",
   "orphan_tooltip": "Orphan blocks are the blocks that were not included to the canonical chain. Typically, it happens because of the internal infrastructure problem on the Mining Pool, or due to the chain reorganizations, 51% attacks.",
   "uncle_tooltip": "Uncle blocks are blocks that have the same parent hash and number. They are caused because of the high latency between mining pools. Typically, they appear when two mining pools mine two blocks at the same time, both having the same block number."
