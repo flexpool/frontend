@@ -1,4 +1,4 @@
-import { FaTimesCircle } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
@@ -56,19 +56,30 @@ const ItemRight = styled.div`
   align-items: center;
 `;
 const RemoveWrap = styled.button`
-  padding: 0 0.75rem;
   height: 30px;
+  width: 30px;
+  flex-shrink: 0;
+  margin: 5px;
+  margin-right: 8px;
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   cursor: pointer;
   opacity: 0.3;
-  height: 100%;
   background: transparent;
   outline: none !important;
   border: none !important;
   color: var(--text-primary);
   &:hover {
     opacity: 1;
+    background: rgba(128, 128, 128, 0.07);
+  }
+  &:focus {
+    background: rgba(128, 128, 128, 0.14);
   }
 `;
 
@@ -104,7 +115,7 @@ export const SearchAddressCachedResult: React.FC<{ isOpen?: boolean }> = ({
               d(addressSearchRemove(item.address));
             }}
           >
-            <FaTimesCircle />
+            <FaTimes />
           </RemoveWrap>
         </ItemWrap>
       ))}

@@ -25,7 +25,7 @@ export const CoinAbout: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
   return (
     <Card padding>
       <h2>{t(`coin_news_item.${data.ticker}.title`)}</h2>
-      <p>{t(`coin_news_item.${data.ticker}.title`)}</p>
+      <p>{t(`coin_news_item.${data.ticker}.description`)}</p>
       <h4>{t(`coin_news_item.resources`)}</h4>
       <Resource>
         <FaGlobeAmericas />
