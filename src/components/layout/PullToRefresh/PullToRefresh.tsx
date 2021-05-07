@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DIRECTION, isTreeScrollable } from './isScrollable';
-import styled, { keyframes } from 'styled-components/macro';
+import styled from 'styled-components/macro';
 import LoaderDots from 'src/components/Loader/LoaderDots';
 import { BiRefresh } from 'react-icons/bi';
 
