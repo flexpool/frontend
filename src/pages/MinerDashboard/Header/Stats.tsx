@@ -182,19 +182,28 @@ export const HeaderStats: React.FC<{
           minerHeaderStatsState.data?.roundShare) /
         1000000000
       : 0;
-  const estimated = {
-    ticker: estimatedDailyEarnings
-      ? activeCoinFormatter(estimatedDailyEarnings * estimateInterval)
-      : null,
-    counterTicker:
-      estimatedDailyEarnings && data?.countervaluePrice
-        ? currencyFormatter(
-            ((estimatedDailyEarnings * estimateInterval) /
-              Math.pow(10, activeCoin?.decimalPlaces || 9)) *
-              data.countervaluePrice
-          )
+  const estimated = React.useMemo(() => {
+    return {
+      ticker: estimatedDailyEarnings
+        ? activeCoinFormatter(estimatedDailyEarnings * estimateInterval)
         : null,
-  };
+      counterTicker:
+        estimatedDailyEarnings && data?.countervaluePrice
+          ? currencyFormatter(
+              ((estimatedDailyEarnings * estimateInterval) /
+                Math.pow(10, activeCoin?.decimalPlaces || 9)) *
+                data.countervaluePrice
+            )
+          : null,
+    };
+  }, [
+    activeCoinFormatter,
+    activeCoin?.decimalPlaces,
+    currencyFormatter,
+    estimateInterval,
+    data?.countervaluePrice,
+    estimatedDailyEarnings,
+  ]);
 
   const CalendarIcon =
     estimateInterval === 1
@@ -209,7 +218,7 @@ export const HeaderStats: React.FC<{
       ? 'weekly'
       : 'monthly';
 
-  const handleToggleEstimateInterval = () => {
+  const handleToggleEstimateInterval = React.useCallback(() => {
     switch (estimateInterval) {
       case 1: {
         setEstimateInterval(7);
@@ -224,7 +233,7 @@ export const HeaderStats: React.FC<{
         return;
       }
     }
-  };
+  }, [estimateInterval, setEstimateInterval]);
 
   const balanceProgress =
     settings && data

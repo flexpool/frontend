@@ -37,6 +37,7 @@ import { fetchApi } from 'src/utils/fetchApi';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import { useTranslation } from 'react-i18next';
 import { PullToRefresh } from 'src/components/layout/PullToRefresh/PullToRefresh';
+import { ScrollArea } from 'src/components/layout/ScrollArea';
 
 const TabContent = styled.div`
   box-shadow: inset -1px 18px 19px -13px var(--bg-secondary);

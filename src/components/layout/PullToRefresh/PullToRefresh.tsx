@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { DIRECTION, isTreeScrollable } from './isScrollable';
-import styled from 'styled-components/macro';
+import styled, { keyframes } from 'styled-components/macro';
 import LoaderDots from 'src/components/Loader/LoaderDots';
+import { BiRefresh } from 'react-icons/bi';
 
 const PullContainer = styled.div`
+  opacity: 0.5;
   height: 100vh;
-  padding-top: 1rem;
+  padding-top: 0.75rem;
   display: flex;
   align-items: top;
   justify-content: center;
@@ -13,13 +15,22 @@ const PullContainer = styled.div`
   text-transform: uppercase;
   font-weight: 600;
   border-bottom: 10px solid var(--bg-primary);
+  svg {
+    font-size: 1.5rem;
+  }
 `;
 
 const pullDownContentDefault = <PullContainer></PullContainer>;
+const releaseContentDefault = (
+  <PullContainer>
+    <BiRefresh />
+  </PullContainer>
+);
 
 const refreshContentDefault = (
   <PullContainer>
     <LoaderDots />
+    {/* <LoaderDots /> */}
   </PullContainer>
 );
 
@@ -138,8 +149,10 @@ export class PullToRefresh extends React.Component<
       }
     }
     this.dragging = true;
-    this.container.style.transition = 'transform 0.1s cubic-bezier(0,0,0.31,1)';
-    this.pullDown.style.transition = 'transform 0.1s cubic-bezier(0,0,0.31,1)';
+    this.container.style.transition = 'none';
+    this.pullDown.style.transition = 'none';
+    this.container.style.transition = 'transform 0.05s';
+    this.pullDown.style.transition = 'transform 0.05s';
   }
 
   private onTouchMove(e: any) {
@@ -166,17 +179,20 @@ export class PullToRefresh extends React.Component<
 
     this.container.style.overflow = 'visible';
     this.container.style.transform = `translate(0px, ${
-      this.currentY - this.startY - (this.currentY - this.startY) * 0.6
+      this.currentY - this.startY - (this.currentY - this.startY) * 0.55
     }px)`;
     this.pullDown.style.visibility = 'visible';
   }
 
   private onEnd() {
+    //cubic-bezier(.76,1.14,.96,.59)
+    const tr = 'cubic-bezier(.3,.79,.39,.78)';
+    const duration = (this.currentY - this.startY) / 1000 / 2.2;
+    this.container.style.transition = `transform ${duration}s ${tr}`;
+    this.pullDown.style.transition = `transform ${duration}s ${tr}`;
     this.dragging = false;
     this.startY = 0;
     this.currentY = 0;
-    this.container.style.transition = 'transform 0.5s cubic-bezier(0,0,0.31,1)';
-    this.pullDown.style.transition = 'transform 0.5s cubic-bezier(0,0,0.31,1)';
 
     if (!this.state.pullToRefreshThresholdBreached) {
       this.pullDown.style.visibility = this.props.startInvisible
@@ -187,12 +203,9 @@ export class PullToRefresh extends React.Component<
     }
 
     this.container.style.overflow = 'visible';
-    this.container.style.transform = `translate(0px, ${this.props.pullDownThreshold}px)`;
-    this.setState(
-      {
-        onRefreshing: true,
-      },
-      () => {
+    this.container.style.transform = `translate(0px, 0px)`;
+    setTimeout(() => {
+      this.setState(() => {
         this.props.onRefresh().then(() => {
           this.initContainer();
           setTimeout(() => {
@@ -202,8 +215,11 @@ export class PullToRefresh extends React.Component<
             });
           }, 200);
         });
-      }
-    );
+      });
+    }, 100);
+    this.setState({
+      onRefreshing: true,
+    });
   }
 
   private initContainer() {
@@ -217,7 +233,7 @@ export class PullToRefresh extends React.Component<
 
   private renderPullDownContent() {
     const {
-      releaseContent = refreshContentDefault,
+      releaseContent = releaseContentDefault,
       pullDownContent = pullDownContentDefault,
       refreshContent = refreshContentDefault,
       startInvisible,

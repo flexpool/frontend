@@ -25,13 +25,14 @@ function isOverflowScrollable(element: Element) {
  * @returns {!boolean} Whether the element is scrollable
  */
 function isScrollable(element: Element, direction: number) {
+  console.log(element.scrollTop);
   if (!isOverflowScrollable(element)) {
     return false;
   }
 
   if (direction === DIRECTION.down) {
     const bottomScroll = element.scrollTop + element.clientHeight;
-
+    console.log(element.scrollTop);
     return bottomScroll < element.scrollHeight;
   }
 
