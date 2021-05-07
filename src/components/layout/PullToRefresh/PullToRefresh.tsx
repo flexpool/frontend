@@ -187,7 +187,7 @@ export class PullToRefresh extends React.Component<
   private onEnd() {
     //cubic-bezier(.76,1.14,.96,.59)
     const tr = 'cubic-bezier(.3,.79,.39,.78)';
-    const duration = (this.currentY - this.startY) / 1000 / 2.2;
+    const duration = (this.currentY - this.startY) / 1000 / 1.4;
     this.container.style.transition = `transform ${duration}s ${tr}`;
     this.pullDown.style.transition = `transform ${duration}s ${tr}`;
     this.dragging = false;
@@ -216,7 +216,7 @@ export class PullToRefresh extends React.Component<
           }, 200);
         });
       });
-    }, 100);
+    }, 150);
     this.setState({
       onRefreshing: true,
     });
