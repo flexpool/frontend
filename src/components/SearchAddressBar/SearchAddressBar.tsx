@@ -2,12 +2,16 @@ import { Field, Form, Formik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaSearch } from 'react-icons/fa';
-import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useAsyncState } from 'src/hooks/useAsyncState';
+import { useOpenState } from 'src/hooks/useOpenState';
+import { addressSearchSet } from 'src/rdx/addressSearch/addressSearch.actions';
+import { useReduxState } from 'src/rdx/useReduxState';
 import { fetchApi } from 'src/utils/fetchApi';
 import styled from 'styled-components/macro';
+import { OuterEvent } from '../DivOuterEvents';
 import { SearchAddressCachedResult } from './SearchAddressCachedResult';
-import { saveAddressToCache, searchAddressStorage } from './searchCache';
 
 const SearchButton = styled.button`
   cursor: pointer;
@@ -21,15 +25,23 @@ const SearchButton = styled.button`
   transition: 50ms;
   height: 100%;
   width: 50px;
+  transition: 0.1s all;
 
   svg {
+    transition: 0.1s all;
     display: block;
     fill: white;
     height: 40%;
     width: 40%;
   }
+
+  &:focus {
+    svg {
+      transform: scale(0.9) !important;
+    }
+  }
 `;
-const Container = styled.div`
+const Container = styled(OuterEvent)`
   width: 100%;
   height: 50px;
   form {
@@ -51,35 +63,50 @@ const ResultWrapper = styled.div`
   left: 0;
   background: var(--bg-primary);
   border-radius: 0px 0px 5px 5px;
-  display: none;
   border: 1px solid var(--border-color);
   border-top: none;
+  transition: 0.2s all;
+  opacity: 0;
+  visibility: hidden;
 
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.1);
   &:before {
     content: '';
-    height: 5px;
-    width: 100%;
+    height: 3px;
+    width: 3px;
     position: absolute;
     bottom: 100%;
     left: -1px;
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
+    border-left: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
   }
 `;
-const FieldWrapper = styled.div`
+const FieldWrapper = styled.div<{ isOpen: boolean }>`
   height: 100%;
   position: relative;
   flex-grow: 1;
-  &:focus-within {
-    ${ResultWrapper} {
-      display: block;
-    }
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.07);
+  border-radius: 5px;
+  transition: 0.1s all;
+  &:hover {
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.12);
   }
+
+  ${(p) =>
+    p.isOpen &&
+    `
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2) !important;
+    ${ResultWrapper} {
+      visibility: visible;
+      opacity: 1;
+    }
+  `}
 `;
 
 const Input = styled(Field)`
   height: 100%;
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-primary);
   border: 1px solid var(--border-color) !important;
   border-radius: 5px 0px 0px 5px;
   padding: 0 1rem;
@@ -90,6 +117,25 @@ const Input = styled(Field)`
   font-weight: 400;
   display: block;
   color: var(--text-primary);
+  transition: 0.1s all;
+`;
+const F = styled(Form)`
+  &:hover {
+    ${Input} {
+      background-color: var(--bg-primary);
+    }
+    ${SearchButton} {
+      box-shadow: inset 0 0 20px 0 rgba(0, 0, 0, 0.05);
+      svg {
+        transform: scale(1.1);
+      }
+    }
+    ${ResultWrapper} {
+      &:before {
+        background-color: var(--bg-primary);
+      }
+    }
+  }
 `;
 
 export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
@@ -97,13 +143,20 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
 }) => {
   const searchState = useAsyncState<string | null>('addressSearch', null);
   const history = useHistory();
-  const searchData = searchAddressStorage.get() || [];
+  const { pathname } = useLocation();
+  const searchData = useReduxState('addressSearch');
   const { t } = useTranslation(['common']);
+  const d = useDispatch();
+  const openState = useOpenState();
+
+  React.useEffect(() => {
+    openState.handleClose();
+    // eslint-disable-next-line
+  }, [pathname]);
 
   const handleSearch = React.useCallback(
     async (address: string) => {
       let searchAddress: string = address;
-
       if (!searchAddress) {
         if (searchData.length > 0) {
           searchAddress = searchData[0].address; // Fetch latest address from cache.
@@ -120,7 +173,16 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
         )
         .then((res) => {
           if (res) {
-            saveAddressToCache(res, searchAddress);
+            d(
+              addressSearchSet({
+                coin: res,
+                address: searchAddress,
+              })
+            );
+            if (document.activeElement instanceof HTMLElement) {
+              document.activeElement?.blur();
+            }
+            openState.handleClose();
             history.push(`/miner/${res}/${searchAddress}`);
           } else {
             alert(
@@ -135,22 +197,26 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
   );
 
   return (
-    <Container>
+    <Container
+      onOuterEvent={(openState.isOpen && openState.handleClose) || undefined}
+    >
       <Formik
-        onSubmit={async (data, { setSubmitting }) => {
+        onSubmit={async (data, form) => {
           await handleSearch(data.addrsearch);
-          setSubmitting(false);
+          form.setSubmitting(false);
+          form.resetForm();
         }}
         initialValues={{ addrsearch: '' }}
       >
-        <Form autoComplete="off">
+        <F autoComplete="off">
           <Wrapper>
-            <FieldWrapper>
+            <FieldWrapper isOpen={openState.isOpen}>
               <Input
                 name="addrsearch"
                 spellCheck="false"
                 autoComplete="off"
                 placeholder={t('searchbar.placeholder')}
+                onFocus={openState.handleOpen}
               />
               {showResult && searchData && searchData.length > 0 && (
                 <ResultWrapper>
@@ -162,7 +228,7 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
               <FaSearch />
             </SearchButton>
           </Wrapper>
-        </Form>
+        </F>
       </Formik>
     </Container>
   );

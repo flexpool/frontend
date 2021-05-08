@@ -118,17 +118,23 @@
 
 button.modal-btn-close {
   position: absolute;
-  top: 0rem;
-  right: 0rem;
+  top: 0.75rem;
+  right: 0.75rem;
   opacity: 0.7;
   z-index: 100;
   border: none !important;
-  background: none !important;
+  background: transparent;
+  font-size: 1.25rem;
+  border-radius: 6px;
   &:hover {
     opacity: 1;
+    background: rgba(128, 128, 128, 0.07);
     &:after {
       display: none;
     }
+  }
+  &:focus {
+    background: rgba(128, 128, 128, 0.12);
   }
 
   & + * .modal-actions {

@@ -14,7 +14,13 @@ import {
   useLocalizedSiFormatter,
 } from 'src/utils/si.utils';
 import styled from 'styled-components/macro';
-import { FaSearch, FaSort, FaSortDown, FaSortUp } from 'react-icons/fa';
+import {
+  FaSearch,
+  FaSort,
+  FaSortDown,
+  FaSortUp,
+  FaTimes,
+} from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -43,9 +49,17 @@ const WorkerNameOffline = styled(WorkerName)`
   color: var(--danger) !important;
 `;
 
+const SearchIcon = styled(FaSearch)`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: 0.2s all;
+  color: var(--text-secondary);
+`;
 const SearchInput = styled.input`
   height: 30px;
-  width: 200px;
+  width: 230px;
   border: none;
   border-bottom: 1.8px solid black;
   font-size: 15px;
@@ -57,12 +71,15 @@ const SearchInput = styled.input`
   display: block;
   background: var(--bg-primary);
   color: var(--text-primary);
-  border-color: var(--text-primary);
+  border-color: var(--border-color);
+  transition: 0.2s all;
 
+  &:hover,
   &:focus {
-    padding-bottom: 0px;
-    border-width: 2px;
     border-color: var(--primary);
+    & + ${SearchIcon} {
+      color: var(--text-primary);
+    }
   }
 `;
 
@@ -72,10 +89,31 @@ const SearchBox = styled.div`
   margin-left: 1rem;
 `;
 
-const SearchIcon = styled(FaSearch)`
+const ClearButton = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  left: 100%;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  height: 32px;
+  width: 32px;
+  background: transparent;
+  opacity: 0.5;
+  transition: 0.1s all;
+  border-radius: 6px;
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+  &:hover {
+    background: rgba(128, 128, 128, 0.08);
+  }
+  &:focus {
+    background: rgba(128, 128, 128, 0.12);
+  }
 `;
 
 const ListHeader = styled.div`
@@ -256,13 +294,18 @@ const MinerWorkersTable: React.FC<{
           {title} ({unfilteredData.length})
         </h2>
         <SearchBox>
-          <SearchIcon />
           <SearchInput
             type="text"
             placeholder="Filter by worker name"
             value={search}
             onChange={onSearchChange}
           />
+          <SearchIcon />
+          {search && (
+            <ClearButton onClick={() => setSearch('')}>
+              <FaTimes />
+            </ClearButton>
+          )}
         </SearchBox>
       </ListHeader>
 

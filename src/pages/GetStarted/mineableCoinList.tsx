@@ -108,7 +108,7 @@ export const mineableCoins: MineableCoin[] = [
             description: 'Best miner for NVIDIA 20/30 Series GPUs',
             fee: [1],
             compatibleGpus: ['NVIDIA'],
-            downloadLink: 'https://github.com/trexminer/T-Rex/releases',
+            downloadLink: 'https://trex-miner.com/',
             cmd:
               't-rex.exe -a ethash -o stratum+ssl://CLOSEST_SERVER:5555 -u WALLET_ADDRESS -p x -w WORKER_NAME',
           },
