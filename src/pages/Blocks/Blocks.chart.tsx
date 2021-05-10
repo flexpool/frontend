@@ -115,7 +115,7 @@ export const BlocksChart = () => {
 
   return (
     <ChartContainer dataState={blocksChartState} title={t('chart.title')}>
-      <div id="blocksChart" style={{ width: '100%', height: '500px' }}></div>
+      <div id="blocksChart" style={{ width: '100%', height: '400px' }}></div>
     </ChartContainer>
   );
 };

@@ -102,9 +102,9 @@ export const BlocksPage = () => {
             }
           />
         </StatBoxContainer>
-        <BlocksSection />
-        <Spacer size="lg" />
+        <Spacer />
         <BlocksChart />
+        <BlocksSection />
       </Content>
       <Spacer size="xl" />
     </Page>
