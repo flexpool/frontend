@@ -36,6 +36,7 @@ import { useAsyncState } from 'src/hooks/useAsyncState';
 import { fetchApi } from 'src/utils/fetchApi';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import { useTranslation } from 'react-i18next';
+import { PullToRefresh } from 'src/components/layout/PullToRefresh/PullToRefresh';
 
 const TabContent = styled.div`
   box-shadow: inset -1px 18px 19px -13px var(--bg-secondary);
@@ -106,79 +107,117 @@ export const MinerDashboardPageContent: React.FC<
 
   const worker = useActiveSearchParamWorker();
 
-  React.useEffect(() => {
-    d(minerHeaderStatsGet(coinTicker, address, counterTicker));
-    d(minerDetailsGet(coinTicker, address));
+  const loadHeader = React.useCallback(() => {
+    return Promise.all([
+      d(minerHeaderStatsGet(coinTicker, address, counterTicker)),
+      d(minerDetailsGet(coinTicker, address)),
+    ]);
   }, [coinTicker, address, d, counterTicker]);
 
-  React.useEffect(() => {
-    d(
+  const loadMinerStats = React.useCallback(() => {
+    return d(
       minerStatsGet(
         coinTicker,
         address,
         typeof worker === 'string' ? worker : undefined
       )
     );
-  }, [coinTicker, address, d, counterTicker, worker]);
+  }, [coinTicker, address, d, worker]);
+
+  const loadAll = React.useCallback(() => {
+    return Promise.all([loadMinerStats(), loadHeader()]);
+  }, [loadMinerStats, loadHeader]);
+
+  React.useEffect(() => {
+    loadHeader();
+    // eslint-disable-next-line
+  }, [loadHeader]);
+
+  React.useEffect(() => {
+    loadMinerStats();
+  }, [loadMinerStats]);
 
   return (
-    <Page>
-      <Helmet titleTemplate={`${address} | %s | Flexpool.io`}>
-        <title>Dashboard</title>
-      </Helmet>
-      <Content>
-        <HeaderGreetings coin={activeCoin} />
-        <AccountHeader coin={activeCoin} address={address} />
-        <Spacer />
-        <MinerDetails coin={activeCoin} />
-        <HeaderStats coin={activeCoin} />
-      </Content>
-      <TabLinkContainer>
-        <TabLink
-          to={{
-            pathname: `${match.url}/stats`,
-            state: {
-              noscroll: true,
-            },
-          }}
-        >
-          <FaChartBar /> {t('nav.stats')}
-        </TabLink>
-        <TabLink
-          to={{ pathname: `${match.url}/payments`, state: { noscroll: true } }}
-        >
-          <FaWallet /> {t('nav.payments')}
-        </TabLink>
-        <TabLink
-          to={{ pathname: `${match.url}/rewards`, state: { noscroll: true } }}
-        >
-          <FaChartBar /> {t('nav.rewards')}
-        </TabLink>
-        <TabLink
-          to={{ pathname: `${match.url}/blocks`, state: { noscroll: true } }}
-        >
-          <FaCube /> {t('nav.blocks')}
-        </TabLink>
-      </TabLinkContainer>
-      <TabContent id="workertabs">
-        <Content>
-          <Switch>
-            <Route path={`${match.path}/stats`} component={MinerStatsPage} />
-            <Route path={`${match.path}/blocks`} component={MinerBlocksPage} />
-            <Route
-              path={`${match.path}/rewards`}
-              component={MinerRewardsPage}
-            />
-            <Route
-              path={`${match.path}/payments`}
-              component={MinerPaymentsPage}
-            />
-            <Redirect to={`${match.path}/stats`} />
-          </Switch>
-        </Content>
-      </TabContent>
-      <Spacer size="xl" />
-    </Page>
+    <>
+      <PullToRefresh
+        triggerHeight="auto"
+        pullDownThreshold={300}
+        onRefresh={loadAll}
+      >
+        <Page>
+          <Helmet titleTemplate={`${address} | %s | Flexpool.io`}>
+            <title>Dashboard</title>
+          </Helmet>
+          <Content>
+            <HeaderGreetings onRefresh={loadAll} />
+            <AccountHeader coin={activeCoin} address={address} />
+            <Spacer />
+            <MinerDetails coin={activeCoin} />
+            <HeaderStats coin={activeCoin} />
+          </Content>
+          <TabLinkContainer>
+            <TabLink
+              to={{
+                pathname: `${match.url}/stats`,
+                state: {
+                  noscroll: true,
+                },
+              }}
+            >
+              <FaChartBar /> {t('nav.stats')}
+            </TabLink>
+            <TabLink
+              to={{
+                pathname: `${match.url}/payments`,
+                state: { noscroll: true },
+              }}
+            >
+              <FaWallet /> {t('nav.payments')}
+            </TabLink>
+            <TabLink
+              to={{
+                pathname: `${match.url}/rewards`,
+                state: { noscroll: true },
+              }}
+            >
+              <FaChartBar /> {t('nav.rewards')}
+            </TabLink>
+            <TabLink
+              to={{
+                pathname: `${match.url}/blocks`,
+                state: { noscroll: true },
+              }}
+            >
+              <FaCube /> {t('nav.blocks')}
+            </TabLink>
+          </TabLinkContainer>
+          <TabContent id="workertabs">
+            <Content>
+              <Switch>
+                <Route
+                  path={`${match.path}/stats`}
+                  component={MinerStatsPage}
+                />
+                <Route
+                  path={`${match.path}/blocks`}
+                  component={MinerBlocksPage}
+                />
+                <Route
+                  path={`${match.path}/rewards`}
+                  component={MinerRewardsPage}
+                />
+                <Route
+                  path={`${match.path}/payments`}
+                  component={MinerPaymentsPage}
+                />
+                <Redirect to={`${match.path}/stats`} />
+              </Switch>
+            </Content>
+          </TabContent>
+          <Spacer size="xl" />
+        </Page>
+      </PullToRefresh>
+    </>
   );
 };
 

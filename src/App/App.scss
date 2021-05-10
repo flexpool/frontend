@@ -1,6 +1,7 @@
 html,
 body {
   width: 100%;
+  overscroll-behavior-y: contain;
 }
 
 body {

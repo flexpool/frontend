@@ -86,8 +86,8 @@ export const MinerPplnsStats: React.FC<{
 
   const shareLogState = useAsyncState<number[]>();
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
-  const approximateBlockShare = activeCoinFormatter(
-    headerStatsData?.approximateBlockShare,
+  const averageBlockShare = activeCoinFormatter(
+    headerStatsData?.averageBlockShare,
     { maximumFractionDigits: 8 }
   );
 
@@ -198,9 +198,9 @@ export const MinerPplnsStats: React.FC<{
               })
             }
             subValue={
-              approximateBlockShare && (
+              averageBlockShare && (
                 <>
-                  {t('rewards.pplns.crs.aprox')}: {approximateBlockShare}
+                  {t('rewards.pplns.crs.aprox')}: {averageBlockShare}
                 </>
               )
             }
