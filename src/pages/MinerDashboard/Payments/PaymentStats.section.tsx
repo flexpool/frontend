@@ -210,17 +210,11 @@ export const GeneralPaymentStatsSection: React.FC<{
                 icon={<span>{t('payments.transaction_fees.average_cta')}</span>}
               >
                 <TooltipContent>
-                  <p>
-                    1. Setting higher payout limit will reduce the number of
-                    transactions you will have to pay for in terms of network
-                    transaction fees.
-                  </p>
-                  <p>
-                    2. Set your transaction fee limit to avoid high fees in the
-                    settings. When you reach your payout threshold, we will make
-                    sure that your payout transaction will be executed as soon
-                    as it fulfills your fee limit conditions.
-                  </p>
+                  {(t('payments.transaction_fees.average_cta_tooltip', {
+                    returnObjects: true,
+                  }) as string[]).map((item) => (
+                    <p key={item}>{item}</p>
+                  ))}
                 </TooltipContent>
               </Tooltip>
             }
