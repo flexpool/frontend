@@ -14,6 +14,7 @@ import { Spacer } from 'src/components/layout/Spacer';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useTranslation } from 'react-i18next';
+import { BlocksChart } from './Blocks.chart';
 
 export const BlocksPage = () => {
   const statsState = useAsyncState<{
@@ -101,6 +102,8 @@ export const BlocksPage = () => {
             }
           />
         </StatBoxContainer>
+        <Spacer />
+        <BlocksChart />
         <BlocksSection />
       </Content>
       <Spacer size="xl" />

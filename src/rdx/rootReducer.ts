@@ -13,6 +13,7 @@ import * as snacks from 'src/rdx/snacks/snacks.reducer';
 import * as poolStats from 'src/rdx/poolStats/poolStats.reducer';
 import * as poolCoinsFull from 'src/rdx/poolCoinsFull/poolCoinsFull.reducer';
 import * as addressSearch from 'src/rdx/addressSearch/addressSearch.reducer';
+import * as blocksChart from 'src/rdx/blocksChart/blocksChart.reducer';
 import { localStorage } from 'src/utils/localStorage';
 
 export const defaultReduxState = {
@@ -29,6 +30,7 @@ export const defaultReduxState = {
   poolStats: poolStats.defaultState,
   poolCoinsFull: poolCoinsFull.defaultState,
   addressSearch: addressSearch.initialState,
+  blocksChart: blocksChart.defaultState,
 };
 
 const combinedReducer = combineReducers({
@@ -45,6 +47,7 @@ const combinedReducer = combineReducers({
   poolStats: poolStats.reducer,
   poolCoinsFull: poolCoinsFull.reducer,
   addressSearch: addressSearch.reducer,
+  blocksChart: blocksChart.reducer,
 });
 
 export type AppState = ReturnType<typeof combinedReducer>;
