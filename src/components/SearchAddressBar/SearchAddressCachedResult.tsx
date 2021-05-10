@@ -16,6 +16,7 @@ const ItemWrap = styled.div`
 `;
 const HistoryItem = styled(Link)`
   color: var(--text-primary);
+  background: transparent;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -24,8 +25,6 @@ const HistoryItem = styled(Link)`
   padding: 0 0 0 1rem;
   overflow: hidden;
   cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
   font-family: 'Roboto Mono', monospace;
   font-weight: 500;
   flex-grow: 1;
@@ -97,7 +96,6 @@ export const SearchAddressCachedResult: React.FC<{ isOpen?: boolean }> = ({
       {data.slice(0, 6).map((item) => (
         <ItemWrap key={item.address}>
           <HistoryItem
-            type="button"
             onClick={() => {
               d(addressSearchSet(item));
             }}
