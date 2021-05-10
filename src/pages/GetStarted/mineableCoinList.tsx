@@ -141,13 +141,26 @@ export const mineableCoins: MineableCoin[] = [
             os: ['windows', 'linux', 'hiveos'],
             title: 'PhoenixMiner',
             key: 'phoenixminer',
-            description: 'Proprietary Ethash miner with the lowest devfee.',
+            description: 'Proprietary Ethash miner with low devfee.',
             fee: [0.65],
             compatibleGpus: ['AMD', 'NVIDIA'],
             downloadLink:
               'https://github.com/PhoenixMinerDevTeam/PhoenixMiner/releases',
             cmd:
               'PhoenixMiner.exe -pool ssl://CLOSEST_SERVER:5555 -wal WALLET_ADDRESS.WORKER_NAME',
+          },
+          {
+            os: ['windows', 'linux', 'hiveos'],
+            title: 'GMiner',
+            key: 'gminer',
+            description:
+              'Actively developed and stable miner with low dev fee.',
+            compatibleGpus: ['AMD', 'NVIDIA'],
+            fee: [0.65],
+            downloadLink:
+              'https://github.com/develsoftware/GMinerRelease/releases',
+            cmd:
+              'miner.exe --algo ethash --server CLOSEST_SERVER:5555 --user WALLET_ADDRESS.WORKER_NAME',
           },
         ],
       },
