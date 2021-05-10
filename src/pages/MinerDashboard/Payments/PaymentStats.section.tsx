@@ -7,7 +7,6 @@ import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { fetchApi } from 'src/utils/fetchApi';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
-import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { MinerPaymentsList } from './MinerPayments.list';
 import { useTranslation } from 'react-i18next';
