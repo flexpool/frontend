@@ -160,7 +160,7 @@ export const mineableCoins: MineableCoin[] = [
             downloadLink:
               'https://github.com/develsoftware/GMinerRelease/releases',
             cmd:
-              'miner.exe --algo ethash --server CLOSEST_SERVER:5555 --user WALLET_ADDRESS.WORKER_NAME',
+              'miner.exe --algo ethash --server CLOSEST_SERVER:5555 --ssl 1 --user WALLET_ADDRESS.WORKER_NAME',
           },
         ],
       },
