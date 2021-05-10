@@ -34,6 +34,7 @@ export type ApiMinerStats = {
 export type ApiMinerWorker = {
   count: number;
   currentEffectiveHashrate: number;
+  averageEffectiveHashrate: number;
   invalidShares: number;
   isOnline: boolean;
   lastSeen: number;
