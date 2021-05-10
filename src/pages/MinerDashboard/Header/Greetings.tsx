@@ -4,7 +4,6 @@ import { BiRefresh } from 'react-icons/bi';
 import { Button } from 'src/components/Button';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
-import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components';
 
