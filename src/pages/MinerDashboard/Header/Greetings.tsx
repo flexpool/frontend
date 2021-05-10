@@ -1,5 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { BiRefresh } from 'react-icons/bi';
+import { Button } from 'src/components/Button';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
@@ -25,11 +27,21 @@ const Greeting = styled.span`
 const Wrap = styled.div`
   margin-top: 2rem;
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
-export const HeaderGreetings: React.FC<{
-  coin?: ApiPoolCoin;
-}> = ({ coin }) => {
+const RefreshButton = styled(Button)`
+  font-size: 1.5rem;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`;
+
+export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
+  onRefresh,
+}) => {
   const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const minerStatsState = useReduxState('minerStats');
   const siFormatter = useLocalizedSiFormatter();
@@ -55,15 +67,22 @@ export const HeaderGreetings: React.FC<{
 
   return (
     <Wrap>
-      <Greeting>{t(`header.greet_period_${greetingId}`)}</Greeting>
-      {', '}
-      <span>
-        {t(`header.greet_desc`, {
-          count: workersOnline,
-          hashrate,
-          coin: activeCoin?.name,
-        })}
-      </span>
+      <div>
+        <Greeting>{t(`header.greet_period_${greetingId}`)}</Greeting>
+        {', '}
+        <span>
+          {t(`header.greet_desc`, {
+            count: workersOnline,
+            hashrate,
+            coin: activeCoin?.name,
+          })}
+        </span>
+      </div>
+      <div>
+        <RefreshButton size="sm" shape="square" onClick={onRefresh}>
+          <BiRefresh />
+        </RefreshButton>
+      </div>
     </Wrap>
   );
 };
