@@ -107,7 +107,6 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   });
   const coinTicker = useActiveCoinTicker();
   const [currentPage, setCurrentPage] = React.useState(0);
-  const history = useHistory();
   const [dateView, setDateView] = useLocalStorageState<
     'full_date' | 'distance'
   >('blockDateView', 'full_date');
@@ -129,8 +128,6 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   const blocks = React.useMemo(() => {
     return blockState.data?.data || [];
   }, [blockState.data]);
-
-  console.log(dateView);
 
   const blockCols: {
     [key: string]: DynamicListColumn<
@@ -167,7 +164,9 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
             getCoinLink(data.type, data.hash, config.coinTicker);
 
           const content = (
-            <Ws>
+            <Ws
+              className={data.type !== 'orphan' ? 'item-hover-higjlight' : ''}
+            >
               {data.number}
               {!data.confirmed && (
                 <Tooltip icon={<UnconfirmedSpinner />}>
@@ -246,7 +245,9 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
           <Mono>
             <Ws>
               <LinkMiner
-                className="item-hover-higjlight"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
                 coin={config.coinTicker}
                 address={data.miner}
               />
@@ -291,9 +292,11 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         alignRight: true,
         Component: ({ data, config }) => (
           <Mono>
-            <Ws className="item-hover-higjlight">
+            <Ws
+              className={data.type !== 'orphan' ? 'item-hover-higjlight' : ''}
+            >
               <LinkOutCoin
-                type="block"
+                type={data.type}
                 hash={data.hash}
                 hashLength={10}
                 coin={config.coinTicker}
@@ -331,6 +334,24 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
     ];
   }, [address, blockCols]);
 
+  const onRowClick = React.useCallback(
+    (data: ApiBlock) => {
+      const url =
+        data.type !== 'orphan' && getCoinLink(data.type, data.hash, coinTicker);
+      if (url) {
+        window.open(url, '_blank');
+      }
+    },
+    [coinTicker]
+  );
+
+  const onRowClickAllowed = React.useCallback((data: ApiBlock) => {
+    if (data.type !== 'orphan') {
+      return true;
+    }
+    return false;
+  }, []);
+
   return (
     <>
       {address && blockState.data && blockState.data.totalItems > 0 && (
@@ -340,9 +361,8 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         <h2>{t('table.title', { count: blockState.data.totalItems })}</h2>
       )}
       <DynamicList
-        onRowClick={(data) => {
-          history.push(`/miner/${coinTicker}/${data.miner}`);
-        }}
+        onRowClick={onRowClick}
+        onRowClickAllowed={onRowClickAllowed}
         pagination={{
           currentPage,
           setCurrentPage,

@@ -23,10 +23,14 @@ export const LinkOutCoin: React.FC<{
   coin?: string;
   children?: React.ReactNode;
   hashLength?: number;
-  type: CoinLinkType;
+  type: CoinLinkType | 'orphan';
 }> = ({ hash, coin, type, children, hashLength = 8 }) => {
   if (!coin) {
     return <>{children}</>;
+  }
+
+  if (type === 'orphan') {
+    return <>{stringUtils.shortenString(hash, hashLength)}</>;
   }
 
   const href = getCoinLink(type, hash, coin);
