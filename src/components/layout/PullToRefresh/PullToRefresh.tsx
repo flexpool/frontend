@@ -101,9 +101,6 @@ export class PullToRefresh extends React.Component<
     this.container.addEventListener('touchstart', this.onTouchStart);
     this.container.addEventListener('touchmove', this.onTouchMove);
     this.container.addEventListener('touchend', this.onEnd);
-    this.container.addEventListener('mousedown', this.onTouchStart);
-    this.container.addEventListener('mousemove', this.onTouchMove);
-    this.container.addEventListener('mouseup', this.onEnd);
   }
 
   public componentWillUnmount(): void {
@@ -114,9 +111,6 @@ export class PullToRefresh extends React.Component<
     this.container.removeEventListener('touchstart', this.onTouchStart);
     this.container.removeEventListener('touchmove', this.onTouchMove);
     this.container.removeEventListener('touchend', this.onEnd);
-    this.container.removeEventListener('mousedown', this.onTouchStart);
-    this.container.removeEventListener('mousemove', this.onTouchMove);
-    this.container.removeEventListener('mouseup', this.onEnd);
   }
 
   private onTouchStart(e: any) {
