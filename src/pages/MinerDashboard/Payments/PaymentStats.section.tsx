@@ -15,6 +15,7 @@ import {
   useLocalizedCurrencyFormatter,
   useLocalizedNumberFormatter,
 } from 'src/utils/si.utils';
+import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 
 type ApiPaymentStats = {
   countervalue: number;
@@ -206,7 +207,23 @@ export const GeneralPaymentStatsSection: React.FC<{
                 : 'N/A'
             }
             subValue={
-              <Link to="/">{t('payments.transaction_fees.average_cta')}</Link>
+              <Tooltip
+                icon={<span>{t('payments.transaction_fees.average_cta')}</span>}
+              >
+                <TooltipContent>
+                  <p>
+                    1. Setting higher payout limit will reduce the number of
+                    transactions you will have to pay for in terms of network
+                    transaction fees.
+                  </p>
+                  <p>
+                    2. Set your transaction fee limit to avoid high fees in the
+                    settings. When you reach your payout threshold, we will make
+                    sure that your payout transaction will be executed as soon
+                    as it fulfills your fee limit conditions.
+                  </p>
+                </TooltipContent>
+              </Tooltip>
             }
           />
         </Card>
