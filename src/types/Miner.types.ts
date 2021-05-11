@@ -13,7 +13,7 @@ export type ApiMinerSettings = {
 };
 
 export type ApiMinerHeaderStats = {
-  approximateBlockShare: number;
+  averageBlockShare: number;
   balance: number;
   balanceCountervalue: number;
   countervaluePrice: number;
@@ -34,6 +34,7 @@ export type ApiMinerStats = {
 export type ApiMinerWorker = {
   count: number;
   currentEffectiveHashrate: number;
+  averageEffectiveHashrate: number;
   invalidShares: number;
   isOnline: boolean;
   lastSeen: number;

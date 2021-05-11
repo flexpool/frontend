@@ -13,9 +13,14 @@ export const LinkMiner: React.FC<{
   coin: string;
   chars?: number;
   className?: string;
-}> = ({ address, coin, chars, className }) => {
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+}> = ({ address, coin, chars, className, onClick }) => {
   return (
-    <L className={className} to={{ pathname: `/miner/${coin}/${address}` }}>
+    <L
+      className={className}
+      onClick={onClick}
+      to={{ pathname: `/miner/${coin}/${address}` }}
+    >
       {stringUtils.shortenString(address, chars)}
     </L>
   );

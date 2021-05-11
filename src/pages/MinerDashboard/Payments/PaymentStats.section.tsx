@@ -7,7 +7,6 @@ import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { fetchApi } from 'src/utils/fetchApi';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
-import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { MinerPaymentsList } from './MinerPayments.list';
 import { useTranslation } from 'react-i18next';
@@ -15,6 +14,7 @@ import {
   useLocalizedCurrencyFormatter,
   useLocalizedNumberFormatter,
 } from 'src/utils/si.utils';
+import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 
 type ApiPaymentStats = {
   countervalue: number;
@@ -206,7 +206,17 @@ export const GeneralPaymentStatsSection: React.FC<{
                 : 'N/A'
             }
             subValue={
-              <Link to="/">{t('payments.transaction_fees.average_cta')}</Link>
+              <Tooltip
+                icon={<span>{t('payments.transaction_fees.average_cta')}</span>}
+              >
+                <TooltipContent>
+                  {(t('payments.transaction_fees.average_cta_tooltip', {
+                    returnObjects: true,
+                  }) as string[]).map((item) => (
+                    <p key={item}>{item}</p>
+                  ))}
+                </TooltipContent>
+              </Tooltip>
             }
           />
         </Card>

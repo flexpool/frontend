@@ -46,6 +46,7 @@ export type DynamicListProps<
     totalPages: number;
   };
   onRowClick?: (data: D) => void;
+  onRowClickAllowed?: (data: D) => boolean;
   contentEmpty?: React.ReactNode;
   wrapperProps?: Omit<JSX.IntrinsicElements['div'], 'ref'>;
 };
@@ -54,6 +55,7 @@ const ListRow = React.memo(
   <D extends {}, CP extends {} = {}>({
     item,
     onRowClick,
+    onRowClickAllowed,
     index,
     isHighlighted,
     handleActiveHover,
@@ -64,6 +66,7 @@ const ListRow = React.memo(
     onRowClick?: (d: D) => void;
     index: number;
     isHighlighted: boolean;
+    onRowClickAllowed?: (data: D) => boolean;
     handleActiveHover: (n: number) => void;
     columns: DynamicListColumn<D, CP>[];
     config: CP | null;
@@ -71,11 +74,17 @@ const ListRow = React.memo(
     const onMouseOver = React.useCallback(() => {
       handleActiveHover(index);
     }, [handleActiveHover, index]);
+    const handleClick = React.useMemo(() => {
+      if (onRowClick && (onRowClickAllowed ? onRowClickAllowed(item) : true)) {
+        return () => onRowClick(item);
+      }
+      return undefined;
+    }, [item, onRowClick, onRowClickAllowed]);
 
     return (
       <Table.Tr
-        clickable={!!onRowClick}
-        onClick={onRowClick && (() => onRowClick(item))}
+        clickable={!!handleClick}
+        onClick={handleClick}
         className={clx({
           highlighted: isHighlighted,
         })}
@@ -109,6 +118,7 @@ export const DynamicList = <D extends {}, CP extends {}>(
     onColumnHeaderClick,
     config = null,
     onRowClick,
+    onRowClickAllowed,
     wrapperProps,
   } = props;
 
@@ -176,6 +186,7 @@ export const DynamicList = <D extends {}, CP extends {}>(
                     <ListRow
                       item={item}
                       onRowClick={onRowClick as any}
+                      onRowClickAllowed={onRowClickAllowed as any}
                       index={index}
                       key={(item as any).name || index}
                       isHighlighted={index === lastMouseOver}

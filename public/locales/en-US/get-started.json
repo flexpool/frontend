@@ -75,7 +75,10 @@
             "description": "Open-source ethash miner with no fees. Brought by Ethereum community."
           },
           {
-            "description": "Proprietary Ethash miner with the lowest devfee."
+            "description": "Proprietary Ethash miner with low dev fee."
+          },
+          {
+            "description": "Actively developed and stable miner with low dev fee."
           }
         ]
       }
