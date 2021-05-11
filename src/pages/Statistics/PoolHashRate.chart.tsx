@@ -107,6 +107,7 @@ const PoolHashrateChart = () => {
       }
 
       x.cursor = new XYCursor();
+        x.cursor.maxTooltipDistance = 20;
 
       x.legend = new Legend();
       // @ts-ignore
