@@ -26,6 +26,7 @@ export type MineableCoin = {
   name: string;
   ticker: string;
   algorithm: string;
+  nicehash_algorithm: string;
   regions: MineableCoinRegion[];
   description: string;
   walletAddressExample: string;
@@ -39,6 +40,7 @@ export const mineableCoins: MineableCoin[] = [
     name: 'Ethereum',
     ticker: 'eth',
     algorithm: 'Ethash',
+    nicehash_algorithm: 'DaggerHashimoto',
     description: '',
     regex: /^0x[a-fA-F0-9]{40}$/g,
     validator: checksumEth,

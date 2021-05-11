@@ -4,7 +4,7 @@ import { Redirect, useRouteMatch } from 'react-router-dom';
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 
-import { MineableCoinHardware, mineableCoins } from './mineableCoinList';
+import { MineableCoinHardware, mineableCoins } from '../mineableCoinList';
 import { MinerCommandSection } from './MinerCommand.section';
 import { PingTestSection } from './PingTest.section';
 import { SetWalletSection } from './SetWallet.section';

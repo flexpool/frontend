@@ -2,13 +2,13 @@ import React from 'react';
 import DynamicList, {
   DynamicListColumn,
 } from 'src/components/layout/List/List';
-import { MineableCoinRegion } from './mineableCoinList';
+import { MineableCoinRegion } from '../mineableCoinList';
 import { w3cwebsocket } from 'websocket';
 import { differenceInMilliseconds } from 'date-fns';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import qs from 'query-string';
-import { useHistory, useLocation } from 'react-router';
+import { useHistory, useLocation, useRouteMatch } from 'react-router';
 import { FaCheck, FaExclamationCircle } from 'react-icons/fa';
 import { Highlight, Mono, Ws } from 'src/components/Typo/Typo';
 import { CopyButton } from 'src/components/CopyButton';
@@ -88,11 +88,58 @@ const SelectButton = styled.button<{ selected?: boolean }>`
   `}
 `;
 
+export const ServerList: React.FC<{
+  data: MineableCoinRegion[];
+}> = ({ data }) => {
+  const { t } = useTranslation('get-started');
+
+  const cols: DynamicListColumn<MineableCoinRegion>[] = React.useMemo(
+    () => [
+      {
+        title: t('detail.region.table_head.location'),
+        Component: ({ data }) => {
+          return (
+            <Ws>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <Img
+                  src={`https://static.flexpool.io/assets/countries/${data.imageCode}.svg`}
+                  style={{ width: '32px', marginRight: '10px' }}
+                  alt={data.imageCode}
+                />
+                {t(`regions.${data.code}`)}
+              </div>
+            </Ws>
+          );
+        },
+      },
+      {
+        title: t('detail.region.table_head.domain'),
+        Component: ({ data }) => (
+          <Mono>
+            <Ws>
+              {data.domain} <CopyButton text={data.domain} />
+            </Ws>
+          </Mono>
+        ),
+      },
+    ],
+    [t]
+  );
+
+  return <DynamicList data={data} columns={cols} />;
+};
+
 export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   data,
 }) => {
   const [lowestLatency, setLowestLatency] = React.useState<number>(10000);
   const { t } = useTranslation('get-started');
+  const {
+    params: { ticker, hw },
+  } = useRouteMatch<{
+    ticker?: string;
+    hw?: string;
+  }>();
 
   const handleSetLowestLatency = React.useCallback(
     (l: number) => {
@@ -250,6 +297,33 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
                         components={{
                           more: <Link to="/faq#should-i-use-ssl" />,
                           strong: <strong />,
+                        }}
+                      />
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </td>
+            </tr>
+            <tr>
+              <td>{t('detail.ports.high_diff_port')}</td>
+              <td>
+                <Sticker>14444</Sticker>
+                <Tooltip>
+                  <TooltipContent>
+                    <p>
+                      <Trans
+                        ns="get-started"
+                        i18nKey="detail.ports.high_diff_port_tooltip"
+                        components={{
+                          NiceHash: (
+                            <Link
+                              to={
+                                ticker
+                                  ? `/get-started/${ticker}/nicehash`
+                                  : 'nicehash'
+                              }
+                            />
+                          ),
                         }}
                       />
                     </p>
