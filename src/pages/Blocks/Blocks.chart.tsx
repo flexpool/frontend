@@ -66,6 +66,7 @@ export const BlocksChart = () => {
       const blockCountAxis = x.yAxes.push(new ValueAxis());
       blockCountAxis.numberFormatter = new NumberFormatter();
       blockCountAxis.renderer.grid.template.disabled = true;
+      blockCountAxis.min = 0;
 
       x.data = data.reverse();
 
