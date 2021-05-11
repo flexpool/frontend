@@ -121,7 +121,11 @@
       "fee": "{{value}} fee",
       "average": "Average Transaction Fee",
       "average_percent": "Average Transaction Fee %",
-      "average_cta": "Tips on reducing fees"
+      "average_cta": "Tips on reducing fees",
+      "average_cta_tooltip": [
+        "1. Setting higher payout limit will reduce the number of transactions you will have to pay for in terms of network transaction fees.",
+        "2. Set your transaction fee limit to avoid high fees in the settings. When you reach your payout threshold, we will make sure that your payout transaction will be executed as soon as it fulfills your fee limit settings."
+      ]
     },
     "table": {
       "title": "Payments",
