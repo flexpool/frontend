@@ -135,7 +135,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   const [lowestLatency, setLowestLatency] = React.useState<number>(10000);
   const { t } = useTranslation('get-started');
   const {
-    params: { ticker, hw },
+    params: { ticker },
   } = useRouteMatch<{
     ticker?: string;
     hw?: string;
