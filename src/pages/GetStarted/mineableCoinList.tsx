@@ -14,6 +14,7 @@ export type MineableCoinRegion = {
   domain: string;
   code: string;
   imageCode: string;
+  high_diff_avail?: boolean;
 };
 
 export type MineableCoinHardware = {
@@ -50,21 +51,25 @@ export const mineableCoins: MineableCoin[] = [
         domain: 'eth-us-east.flexpool.io',
         code: 'us-east',
         imageCode: 'us',
+        high_diff_avail: true,
       },
       {
         domain: 'eth-us-west.flexpool.io',
         code: 'us-west',
         imageCode: 'us',
+        high_diff_avail: true,
       },
       {
         domain: 'eth-de.flexpool.io',
         code: 'de',
         imageCode: 'de',
+        high_diff_avail: true,
       },
       {
         domain: 'eth-se.flexpool.io',
         code: 'se',
         imageCode: 'se',
+        high_diff_avail: true,
       },
       {
         domain: 'eth-sg.flexpool.io',
@@ -146,8 +151,7 @@ export const mineableCoins: MineableCoin[] = [
             description: 'Proprietary Ethash miner with low devfee.',
             fee: [0.65],
             compatibleGpus: ['AMD', 'NVIDIA'],
-            downloadLink:
-              'https://phoenixminer.info/downloads/',
+            downloadLink: 'https://phoenixminer.info/downloads/',
             cmd:
               'PhoenixMiner.exe -pool ssl://CLOSEST_SERVER:5555 -wal WALLET_ADDRESS.WORKER_NAME',
           },

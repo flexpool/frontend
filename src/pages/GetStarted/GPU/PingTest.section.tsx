@@ -122,6 +122,14 @@ export const ServerList: React.FC<{
           </Mono>
         ),
       },
+      {
+        title: t('detail.region.table_head.port'),
+        Component: ({ data }) => (
+          <Mono>
+            <Ws>{data.high_diff_avail ? '14444' : '5555'}</Ws>
+          </Mono>
+        ),
+      },
     ],
     [t]
   );
@@ -251,6 +259,12 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
     [t]
   );
 
+  const highDiffServers = React.useMemo(() => {
+    return data
+      .filter((item) => item.high_diff_avail)
+      .map((item) => item.domain);
+  }, [data]);
+
   return (
     <>
       <h2>
@@ -310,23 +324,31 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
                 <Sticker>14444</Sticker>
                 <Tooltip>
                   <TooltipContent>
-                    <p>
-                      <Trans
-                        ns="get-started"
-                        i18nKey="detail.ports.high_diff_port_tooltip"
-                        components={{
-                          NiceHash: (
-                            <Link
-                              to={
-                                ticker
-                                  ? `/get-started/${ticker}/nicehash`
-                                  : 'nicehash'
-                              }
-                            />
-                          ),
-                        }}
-                      />
-                    </p>
+                    <Trans
+                      ns="get-started"
+                      components={{
+                        NiceHash: (
+                          <Link
+                            to={
+                              ticker
+                                ? `/get-started/${ticker}/nicehash`
+                                : 'nicehash'
+                            }
+                          />
+                        ),
+                      }}
+                    >
+                      {(t('detail.ports.high_diff_port_tooltip', {
+                        returnObjects: true,
+                      }) as string[]).map((item) => (
+                        <p key={item}>{item}</p>
+                      ))}
+                    </Trans>
+                    <ul>
+                      {highDiffServers.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
                   </TooltipContent>
                 </Tooltip>
               </td>

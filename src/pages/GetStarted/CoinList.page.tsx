@@ -102,7 +102,7 @@ export const MineableCoinList: React.FC = () => {
                   as={Link}
                   to={`/get-started/${item.ticker}/nicehash`}
                 >
-                  NiceHash
+                  {t('list.nicehash_rental_button')}
                 </Button>
               </GuidesList>
               <DynamicList
