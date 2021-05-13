@@ -9,7 +9,7 @@ import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
-import { useLocalizedCurrencyFormatter } from 'src/utils/si.utils';
+import { useLocalizedCurrencyFormatter, useLocalizedNumberFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components';
 
 const NoFeeLimit = styled.div`
@@ -55,9 +55,20 @@ export const MinerDetails: React.FC<{
   const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const maxFeePrice = settings?.maxFeePrice;
   const currencyFormatter = useLocalizedCurrencyFormatter();
+  const numberFormatter = useLocalizedNumberFormatter();
 
-  const counterValuePrice = currencyFormatter(
-    minerHeaderStatsState.data?.countervaluePrice || 0
+  const counterValuePrice = currencyFormatter(minerHeaderStatsState.data?.countervaluePrice || 0);
+
+  const feeTicker = currencyFormatter(
+    ((Number(maxFeePrice) * Number(coin?.transactionSize) * Number(feeDetails?.multiplier)) /
+      Math.pow(10, Number(coin?.decimalPlaces))) *
+      Number(minerHeaderStatsState.data?.countervaluePrice)
+  );
+  const feeTickerPercentage = numberFormatter(
+    (Number(maxFeePrice) * Number(coin?.transactionSize) * Number(feeDetails?.multiplier)) /
+      Math.pow(10, Number(coin?.decimalPlaces)) /
+      (Number(settings?.payoutLimit) / Math.pow(10, Number(coin?.decimalPlaces))),
+    { style: 'percent', maximumFractionDigits: 3 }
   );
 
   const { t } = useTranslation('dashboard');
@@ -70,16 +81,33 @@ export const MinerDetails: React.FC<{
           <div>{t('header.info_payout_limit')}:&nbsp;</div>
           <div>{settings && coin ? payoutLimit : <Skeleton width={40} />}</div>
         </Item>
-        <Item>
-          <div>{t('header.info_gas_limit')}:&nbsp;</div>
-          {maxFeePrice && feeDetails ? (
-            <div>{maxFeePrice + ' ' + feeDetails?.unit}</div>
-          ) : (
-            <NoFeeLimit>
-              {maxFeePrice === 0 ? 'None' : <Skeleton width={40} />}
-            </NoFeeLimit>
-          )}
-        </Item>
+        <Tooltip
+          wrapIcon={false}
+          icon={
+            <Item>
+              <div>{t('header.info_gas_limit')}:&nbsp;</div>
+              {maxFeePrice && feeDetails ? (
+                <div>{maxFeePrice + ' ' + feeDetails?.unit}</div>
+              ) : (
+                <NoFeeLimit>{maxFeePrice === 0 ? 'None' : <Skeleton width={40} />}</NoFeeLimit>
+              )}
+            </Item>
+          }
+        >
+          <TooltipContent>
+            <p>
+              {maxFeePrice && maxFeePrice > 0 ? (
+                <strong>
+                  {feeTicker}, {feeTickerPercentage} of payout limit.
+                </strong>
+              ) : feeTicker && feeTickerPercentage ? (
+                <strong>Gas price is not limited.</strong>
+              ) : (
+                <strong>Price not available</strong>
+              )}
+            </p>
+          </TooltipContent>
+        </Tooltip>
         <Tooltip
           wrapIcon={false}
           icon={
@@ -90,11 +118,7 @@ export const MinerDetails: React.FC<{
                   settings.firstJoined === 0 ? (
                     'Recently'
                   ) : (
-                    <>
-                      {dateFormatter.distanceFromNow(
-                        settings.firstJoined * 1000
-                      )}
-                    </>
+                    <>{dateFormatter.distanceFromNow(settings.firstJoined * 1000)}</>
                   )
                 ) : (
                   <Skeleton width={50} />
