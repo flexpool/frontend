@@ -154,8 +154,6 @@ const reducer = (state: { [key: string]: number }, action: AnyAction) => {
 export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   data,
 }) => {
-  const [lowestLatency, setLowestLatency] = React.useState<number>(10000);
-
   const [latencies, dispatch] = React.useReducer(reducer, {});
 
   const { t } = useTranslation('get-started');
