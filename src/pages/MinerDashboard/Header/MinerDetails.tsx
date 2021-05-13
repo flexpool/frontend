@@ -96,12 +96,14 @@ export const MinerDetails: React.FC<{
         >
           <TooltipContent>
             <p>
-              {!feeTicker || !feeTickerPercentage ? (
-                <strong>Price Not Available</strong>
-              ) : (
+              {maxFeePrice && maxFeePrice > 0 ? (
                 <strong>
                   {feeTicker}, {feeTickerPercentage} of payout limit.
                 </strong>
+              ) : feeTicker && feeTickerPercentage ? (
+                <strong>Gas price is not limited.</strong>
+              ) : (
+                <strong>Price not available</strong>
               )}
             </p>
           </TooltipContent>
