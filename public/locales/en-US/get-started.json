@@ -29,7 +29,10 @@
       "tcp_port": "TCP Port",
       "tcp_port_tooltip": "We are strongly against using unencrypted (TCP) connection while mining on our pool. This connection is vulnerable to MITM (Man-In-The-Middle) attacks, which means that if someone will maliciously stand in between of your worker and pool, some % of your hashrate may be stolen. Read more on our <more>FAQ page</more>.",
       "high_diff_port": "High Difficulty Port",
-      "high_diff_port_tooltip": "This is the special port for advanced users who run proxies that require insanely high difficulty. This includes users who use <NiceHash>NiceHash</NiceHash> and related hashrate rental marketplaces."
+      "high_diff_port_tooltip": [
+        "This is the special port for advanced users who run proxies that require insanely high difficulty. This includes users who use <NiceHash>NiceHash</NiceHash> and related hashrate rental marketplaces.",
+        "Available for: "
+      ]
     },
     "worker": {
       "title": "Name your worker",
@@ -53,7 +56,7 @@
       { "key": "Reward Scheme", "value": "PPLNS (Pay Per Last N Shares)" },
       { "key": "Pool Fee", "value": "0.5%" },
       { "key": "Bonuses", "value": "90% of MEV bonus" },
-      { "key": "Payout Round", "value": "Every 10 minutes" },
+      { "key": "Payout Round", "value": "Once per hour" },
       { "key": "Payouts", "value": "from 0.01 ETH up to 100 ETH" },
       { "key": "Block confirmation time", "value": "120 Blocks" },
       { "key": "Share Difficulty", "value": "4 GH" },
@@ -133,3 +136,7 @@
     }
   }
 }
+
+
+673mhs / 788w = 0,854
+624mhs / 704w = 0,886
