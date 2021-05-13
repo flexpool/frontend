@@ -145,7 +145,7 @@ export const mineableCoins: MineableCoin[] = [
             fee: [0.65],
             compatibleGpus: ['AMD', 'NVIDIA'],
             downloadLink:
-              'https://github.com/PhoenixMinerDevTeam/PhoenixMiner/releases',
+              'https://phoenixminer.info/downloads/',
             cmd:
               'PhoenixMiner.exe -pool ssl://CLOSEST_SERVER:5555 -wal WALLET_ADDRESS.WORKER_NAME',
           },
