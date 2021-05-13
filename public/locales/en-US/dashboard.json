@@ -4,7 +4,7 @@
     "title": "Settings",
     "ip": "IP address for verification",
     "ip_hint": "Hint: You are visiting this webpage from",
-    "ip_description": "If your worker is using proxy address, e.g. your worker is dual mining through a zil pool, please use the proxy address instead.",
+    "ip_description": "If your worker is using proxy address, e.g. your worker is dual mining through a ZIL pool, please use the proxy address instead.",
     "payout": {
       "title": "Payout Settings",
       "limit": "Payout limit (min: {{min}})",
