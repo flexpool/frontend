@@ -9,7 +9,10 @@ import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
-import { useLocalizedCurrencyFormatter, useLocalizedNumberFormatter } from 'src/utils/si.utils';
+import {
+  useLocalizedCurrencyFormatter,
+  useLocalizedNumberFormatter,
+} from 'src/utils/si.utils';
 import styled from 'styled-components';
 
 const NoFeeLimit = styled.div`
@@ -57,17 +60,24 @@ export const MinerDetails: React.FC<{
   const currencyFormatter = useLocalizedCurrencyFormatter();
   const numberFormatter = useLocalizedNumberFormatter();
 
-  const counterValuePrice = currencyFormatter(minerHeaderStatsState.data?.countervaluePrice || 0);
+  const counterValuePrice = currencyFormatter(
+    minerHeaderStatsState.data?.countervaluePrice || 0
+  );
 
   const feeTicker = currencyFormatter(
-    ((Number(maxFeePrice) * Number(coin?.transactionSize) * Number(feeDetails?.multiplier)) /
+    ((Number(maxFeePrice) *
+      Number(coin?.transactionSize) *
+      Number(feeDetails?.multiplier)) /
       Math.pow(10, Number(coin?.decimalPlaces))) *
       Number(minerHeaderStatsState.data?.countervaluePrice)
   );
   const feeTickerPercentage = numberFormatter(
-    (Number(maxFeePrice) * Number(coin?.transactionSize) * Number(feeDetails?.multiplier)) /
+    (Number(maxFeePrice) *
+      Number(coin?.transactionSize) *
+      Number(feeDetails?.multiplier)) /
       Math.pow(10, Number(coin?.decimalPlaces)) /
-      (Number(settings?.payoutLimit) / Math.pow(10, Number(coin?.decimalPlaces))),
+      (Number(settings?.payoutLimit) /
+        Math.pow(10, Number(coin?.decimalPlaces))),
     { style: 'percent', maximumFractionDigits: 3 }
   );
 
@@ -89,7 +99,13 @@ export const MinerDetails: React.FC<{
               {maxFeePrice && feeDetails ? (
                 <div>{maxFeePrice + ' ' + feeDetails?.unit}</div>
               ) : (
-                <NoFeeLimit>{maxFeePrice === 0 ? 'None' : <Skeleton width={40} />}</NoFeeLimit>
+                <NoFeeLimit>
+                  {maxFeePrice === 0 ? (
+                    t('header.info_gas_limit_none')
+                  ) : (
+                    <Skeleton width={40} />
+                  )}
+                </NoFeeLimit>
               )}
             </Item>
           }
@@ -98,12 +114,15 @@ export const MinerDetails: React.FC<{
             <p>
               {maxFeePrice && maxFeePrice > 0 ? (
                 <strong>
-                  {feeTicker}, {feeTickerPercentage} of payout limit.
+                  {feeTicker},{' '}
+                  {t('header.info_gas_limit_detail', {
+                    percent: feeTickerPercentage,
+                  })}
                 </strong>
               ) : feeTicker && feeTickerPercentage ? (
-                <strong>Gas price is not limited.</strong>
+                <strong>{t('header.info_gas_limit_detail_none')}</strong>
               ) : (
-                <strong>Price not available</strong>
+                <strong>{t('header.info_gas_limit_detail_na')}</strong>
               )}
             </p>
           </TooltipContent>
@@ -118,7 +137,11 @@ export const MinerDetails: React.FC<{
                   settings.firstJoined === 0 ? (
                     'Recently'
                   ) : (
-                    <>{dateFormatter.distanceFromNow(settings.firstJoined * 1000)}</>
+                    <>
+                      {dateFormatter.distanceFromNow(
+                        settings.firstJoined * 1000
+                      )}
+                    </>
                   )
                 ) : (
                   <Skeleton width={50} />
@@ -130,7 +153,7 @@ export const MinerDetails: React.FC<{
           <TooltipContent>
             <p>
               {!settings?.firstJoined ? (
-                'No hash recorded'
+                t('header.info_joined_tooltip_empty')
               ) : (
                 <strong>
                   {t('header.info_joined_tooltip')}{' '}
