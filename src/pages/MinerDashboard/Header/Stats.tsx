@@ -173,15 +173,21 @@ export const HeaderStats: React.FC<{
 
   const dailyRewardPerGhState = useDailyRewardPerGhState();
 
-  const estimatedDailyEarnings =
-    poolStatsState.data?.averageHashrate &&
-    dailyRewardPerGhState.data &&
-    minerHeaderStatsState.data?.roundShare
+  const estimatedDailyEarnings = React.useMemo(() => {
+    return poolStatsState.data?.averageHashrate &&
+      dailyRewardPerGhState.data &&
+      minerHeaderStatsState.data?.roundShare
       ? (poolStatsState.data?.averageHashrate *
           dailyRewardPerGhState.data *
           minerHeaderStatsState.data?.roundShare) /
-        1000000000
+          1000000000
       : 0;
+  }, [
+    poolStatsState.data,
+    dailyRewardPerGhState.data,
+    minerHeaderStatsState.data,
+  ]);
+
   const estimated = React.useMemo(() => {
     return {
       ticker: estimatedDailyEarnings
@@ -205,12 +211,14 @@ export const HeaderStats: React.FC<{
     estimatedDailyEarnings,
   ]);
 
-  const CalendarIcon =
-    estimateInterval === 1
+  const CalendarIcon = React.useMemo(() => {
+    return estimateInterval === 1
       ? FaCalendarDay
       : estimateInterval === 7
       ? FaCalendarWeek
       : FaCalendar;
+  }, [estimateInterval]);
+
   const estimateText =
     estimateInterval === 1
       ? 'daily'
