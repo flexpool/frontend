@@ -86,7 +86,7 @@
       },
       "crs": {
         "title": "Current Round Share",
-        "aprox": "Aproximate reward",
+        "aprox": "Approximate reward",
         "tooltip": "Derived from the share log"
       },
       "log": {

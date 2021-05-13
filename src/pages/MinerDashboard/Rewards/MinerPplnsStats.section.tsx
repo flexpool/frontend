@@ -86,10 +86,16 @@ export const MinerPplnsStats: React.FC<{
 
   const shareLogState = useAsyncState<number[]>();
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
-  const averageBlockShare = activeCoinFormatter(
-    headerStatsData?.averageBlockShare,
-    { maximumFractionDigits: 8 }
-  );
+
+  const averageBlockShare = React.useMemo(() => {
+    if (headerStatsData) {
+      return activeCoinFormatter(
+        headerStatsData.averageBlockShare * headerStatsData.roundShare,
+        { maximumFractionDigits: 8 }
+      );
+    }
+    return null;
+  }, [headerStatsData, activeCoinFormatter]);
 
   const dateFormatter = useLocalizedDateFormatter();
 
