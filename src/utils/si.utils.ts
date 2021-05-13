@@ -47,7 +47,7 @@ export const useLocalizedNumberFormatter = (
       value: number,
       options: Intl.NumberFormatOptions | undefined = defaultOptions
     ) => {
-      return Intl.NumberFormat(i18n.language, {
+      return new Intl.NumberFormat(i18n.language, {
         ...defaultOptions,
         ...options,
       }).format(value);
