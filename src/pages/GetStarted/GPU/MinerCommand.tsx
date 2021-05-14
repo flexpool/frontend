@@ -93,8 +93,10 @@ export const MinerCommand: React.FC<{
         replaceWith: <HighlightItem>{`${walletAddress}`}</HighlightItem>,
       },
       {
-        replace: 'WORKER_NAME',
-        replaceWith: <HighlightItem>{`${workerName}`}</HighlightItem>,
+        replace: '.WORKER_NAME',
+        replaceWith: workerName ? (
+          <HighlightItem>{`.${workerName}`}</HighlightItem>
+        ) : null,
       },
     ]);
   }, [command, primaryServer, secondaryServer, workerName, walletAddress]);
@@ -113,8 +115,8 @@ export const MinerCommand: React.FC<{
         replaceWith: `${walletAddress}`,
       },
       {
-        replace: 'WORKER_NAME',
-        replaceWith: `${workerName}`,
+        replace: '.WORKER_NAME',
+        replaceWith: workerName ? `.${workerName}` : '',
       },
     ]).join('');
   }, [command, primaryServer, secondaryServer, workerName, walletAddress]);

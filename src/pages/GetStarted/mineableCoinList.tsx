@@ -133,19 +133,6 @@ export const mineableCoins: MineableCoin[] = [
           },
           {
             os: ['windows', 'linux', 'hiveos'],
-            title: 'ethminer',
-            key: 'ethminer',
-            description:
-              'Open-source ethash miner with no fees. Brought by Ethereum community.',
-            fee: [0],
-            compatibleGpus: ['AMD', 'NVIDIA'],
-            downloadLink:
-              'https://github.com/ethereum-mining/ethminer/releases',
-            cmd:
-              'ethminer.exe -R -P stratum1+ssl://WALLET_ADDRESS.WORKER_NAME@CLOSEST_SERVER:5555 -P stratum1+ssl://WALLET_ADDRESS.WORKER_NAME@BACKUP_SERVER:5555',
-          },
-          {
-            os: ['windows', 'linux', 'hiveos'],
             title: 'PhoenixMiner',
             key: 'phoenixminer',
             description: 'Proprietary Ethash miner with low devfee.',
