@@ -121,7 +121,7 @@ export const mineableCoins: MineableCoin[] = [
           },
           {
             os: ['windows', 'linux', 'hiveos'],
-            title: 'lolminer',
+            title: 'lolMiner',
             key: 'lolminer',
             description: 'Best miner for 4GB zombie mode.',
             fee: [0.75],

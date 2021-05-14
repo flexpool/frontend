@@ -17,10 +17,10 @@
       "title": "Select your region",
       "description": "For the best performance, you should choose server with lowest latency to your mining rig or computer. The chart is displaying latency between servers and this device.",
       "table_head": {
-        "location": "Region Location",
-        "domain": "Domain",
+        "location": "Region Name",
+        "domain": "Endpoint",
         "port": "Port",
-        "average_lat": "Average Latency"
+        "average_lat": "Latency"
       },
       "fastest": "Fastest",
       "backup": "Backup"
