@@ -53,7 +53,6 @@ const GuidesList = styled.div`
   width: 100%;
   padding: 0 1rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-gap: 1rem;
 `;
 

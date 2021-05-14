@@ -153,7 +153,7 @@ export const mineableCoins: MineableCoin[] = [
             downloadLink:
               'https://github.com/develsoftware/GMinerRelease/releases',
             cmd:
-              'miner.exe -a eth --ssl 1 -s CLOSEST_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME -s BACKUP_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME',
+              'miner.exe -a eth --ssl 1 -s CLOSEST_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME --ssl 1 -s BACKUP_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME',
           },
         ],
       },
