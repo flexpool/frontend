@@ -106,6 +106,9 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   data,
 }) => {
   const [latencies, dispatch] = React.useReducer(reducer, {});
+  const { replace: historyReplace } = useHistory();
+  const { search } = useLocation();
+  const searchParams = qs.parse(search);
 
   const { t } = useTranslation('get-started');
   const {
@@ -263,8 +266,18 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
       second: (sorted[1] && sorted[1][0]) || null,
     };
 
+    const searchP = qs.parse(search);
+
+    historyReplace({
+      search: qs.stringify({
+        ...searchP,
+        primaryServer: result.first,
+        secondaryServer: result.second,
+      }),
+    });
+
     return result;
-  }, [latencies, data]);
+  }, [latencies, data, search, historyReplace]);
 
   const colConfig = React.useMemo(() => {
     return {
