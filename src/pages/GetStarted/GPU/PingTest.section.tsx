@@ -128,9 +128,9 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   const [latencies, dispatch] = React.useReducer(reducer, {});
   const { replace: historyReplace } = useHistory();
   const { search } = useLocation();
-  const [selection, setSelection] = React.useState<'primary' | 'secondary'>(
-    'primary'
-  );
+  // const [selection, setSelection] = React.useState<'primary' | 'secondary'>(
+  //   'primary'
+  // );
   const isAutoSetOnce = useBoolState();
 
   const { t } = useTranslation('get-started');
@@ -376,25 +376,36 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
     };
   }, [handleSetLowestLatency, fastest, searchParams, setServer]);
 
+  // uncomment to turn on toggle
+  // const selectItem = React.useCallback(
+  //   (d: MineableCoinRegion) => {
+  //     // const isPrimarySelection = selection === 'primary';
+  //     historyReplace({
+  //       search: qs.stringify({
+  //         ...searchParams,
+  //         ...(isPrimarySelection
+  //           ? {
+  //               primaryServer: d.domain,
+  //             }
+  //           : {
+  //               secondaryServer: d.domain,
+  //             }),
+  //       }),
+  //     });
+  //     // setSelection(isPrimarySelection ? 'secondary' : 'primary');
+  //   },
+  //   [selectionhistoryReplace, searchParams]
+  // );
   const selectItem = React.useCallback(
     (d: MineableCoinRegion) => {
-      const isPrimarySelection = selection === 'primary';
       historyReplace({
         search: qs.stringify({
           ...searchParams,
-          ...(isPrimarySelection
-            ? {
-                primaryServer: d.domain,
-              }
-            : {
-                secondaryServer: d.domain,
-              }),
+          primaryServer: d.domain,
         }),
       });
-      // uncomment to turn on toggle
-      // setSelection(isPrimarySelection ? 'secondary' : 'primary');
     },
-    [selection, historyReplace, searchParams]
+    [historyReplace, searchParams]
   );
 
   // const renderTooltipContent = React.useCallback(() => {
