@@ -1,123 +1,159 @@
 {
   "list": {
-    "head_title": "Start mining with us",
-    "title": "Get started with mining on Flexpool today!"
+    "head_title": "Comece a minerar conosco",
+    "title": "Comece a minerar na Flexpool hoje!",
+    "nicehash_rental_button": "NiceHash Rental"
   },
   "detail": {
-    "title": "{{coin}} mining",
+    "title": "{{coin}} minerados",
     "wallet": {
-      "title": "Get your wallet address",
-      "desc_one": "The easiest way to get a wallet is to register on a cryptocurrency exchange like <binance>Binance (Ref)</binance> or <coinbase>Coinbase</coinbase>.",
-      "desc_two": "Although exchanges are comfortable and easy to use, they are not very secure. You can use a non-custodial wallet, but the safest way to store your funds is to use a <strong>hardware wallet</strong>. <ledger>Ledger</ledger> and <trezor>Trezor</trezor> are the most popular ones.",
-      "wallet_address": "Wallet Address",
-      "invalid_address": "Invalid wallet address"
+      "title": "Obtenha seu endereço da carteira",
+      "desc_one": "A maneira mais fácil de obter uma carteira é registrar-se em uma exchange de criptomoedas, como a <binance>Binance (Ref)</binance> ou <coinbase>Coinbase</coinbase>.",
+      "desc_two": "Embora exchanges sejam convenientes e fáceis de usar, eles não são muito seguros. Você pode usar uma carteira não custodial, mas a maneira mais segura de armazenar seus fundos é usar uma <strong>carteira física</strong>. <ledger>Ledger</ledger> e <trezor>Trezor</trezor> são as mais populares.",
+      "wallet_address": "Endereço da Carteira",
+      "invalid_address": "Endereço da carteira inválido"
     },
     "region": {
-      "title": "Select your region",
-      "description": "For the best performance, you should choose server with lowest latency to your mining rig or computer. The chart is displaying latency between servers and this device.",
+      "title": "Selecione sua região",
+      "description": "Para o melhor desempenho, você deve escolher um servidor com menor latência para o sua rig de mineração ou computador. O gráfico está exibindo a latência entre os servidores e este dispositivo.",
       "table_head": {
-        "location": "Region Location",
-        "domain": "Domain",
-        "average_lat": "Average Latency"
+        "location": "Region Name",
+        "domain": "Endpoint",
+        "port": "Port",
+        "average_lat": "Latency"
       },
-      "fastest": "Fastest"
+      "fastest": "Mais Rápido",
+      "backup": "Backup"
     },
     "ports": {
-      "title": "Ports",
-      "description": "We highly encourage everyone to use secured port when connecting to Flexpool servers. <more>Read more on why you shouldn't use unsecured ports</more>. <strong>IMPORTANT</strong>: Using SSL does not increase the stale rate.",
-      "ssl_port": "Secure SSL Port",
-      "tcp_port": "TCP Port",
-      "tcp_port_tooltip": "We are strongly against using unencrypted (TCP) connection while mining on our pool. This connection is vulnerable to MITM (Man-In-The-Middle) attacks, which means that if someone will maliciously stand in between of your worker and pool, some % of your hashrate may be stolen. Read more on our <more>FAQ page</more>."
+      "title": "Portas",
+      "description": "Incentivamos todos a usar uma porta segura ao se conectar aos servidores da Flexpool. <more>Leia mais sobre por que você não deve usar portas não seguras</more>. <strong>IMPORTANTE</strong>: Usar o SSL não aumenta a taxa obsoleta.",
+      "ssl_port": "Porta segura SSL",
+      "tcp_port": "Porta TCP",
+      "tcp_port_tooltip": "Somos fortemente contra o uso de conexão não criptografada (TCP) enquanto mineramos na nossa pool. Esta conexão é vulnerável a ataques MITM (Man-In-The-Middle), o que significa que, se alguém com intenções maliciosas entre o seu worker e a sua pool, cerca de % do seu hashrate pode ser roubado. Leia mais em nossa <more>página de Perguntas Frequentes</more>.",
+      "high_diff_port": "High Difficulty Port",
+      "high_diff_port_tooltip": "This is the special port for advanced users who run proxies that require insanely high difficulty. This includes users who use <NiceHash>NiceHash</NiceHash> and related hashrate rental marketplaces. Available for: "
     },
     "worker": {
-      "title": "Name your worker",
-      "description": "Naming your worker is recommended if you have multiple mining rigs connected to Flexpool. This will give you more clarity about how your mining rigs perform on your dashboard page.",
-      "worker_name": "Worker Name",
-      "worker_name_placeholder": "e.g. MY_RIG_580x2"
+      "title": "Nomeie seu worker",
+      "description": "Nomear seu worker é recomendado se você tiver múltiplos equipamentos de mineração conectados ao Flexpool. Isto lhe dará mais clareza sobre a forma como seus equipamentos de mineração funcionam na página do painel de controle.",
+      "worker_name": "Nome do Worker",
+      "worker_name_placeholder": "exemplo: MY_RIG_580x2"
     },
     "software": {
-      "title": "Choose your mining software",
-      "fee": "Fee"
+      "title": "Escolha seu software de mineração",
+      "fee": "Taxa"
     },
     "view": {
-      "title": "View your stats",
-      "description": "Once you start mining, your data should appear on your dashboard. Please allow up to 10 minutes for the data to be processed.",
-      "cta": "Open Dashboard"
+      "title": "Veja suas estatísticas",
+      "description": "Depois que você começar a minerar, seus dados devem aparecer no seu painel. Por favor, aguarde até 10 minutos para que os dados sejam processados.",
+      "cta": "Abrir Painel"
     }
   },
   "detail_eth": {
-    "title": "Ethereum mining",
+    "title": "Mineração de Ethereum",
     "pool_details": [
       {
-        "key": "Reward Scheme",
-        "value": "PPLNS (Pay Per Last N Shares)"
+        "key": "Esquema de Recompensa",
+        "value": "PPLNS (Pay-Per-Last-N-Shares)"
       },
       {
-        "key": "Pool Fee",
+        "key": "Taxa da pool",
         "value": "0.5%"
       },
       {
-        "key": "Bonuses",
-        "value": "90% of MEV bonus"
+        "key": "Bônus",
+        "value": "90% do bônus MEV"
       },
       {
-        "key": "Payout Round",
-        "value": "Every 10 minutes"
+        "key": "Rodada de Pagamento",
+        "value": "Once an hour"
       },
       {
-        "key": "Payouts",
-        "value": "from 0.01 ETH up to 100 ETH"
+        "key": "Pagamentos",
+        "value": "de 0.01 ETH até 100 ETH"
       },
       {
-        "key": "Block confirmation time",
-        "value": "120 Blocks"
+        "key": "Tempo de confirmação do bloco",
+        "value": "120 Blocos"
       },
       {
-        "key": "Share Difficulty",
+        "key": "Dificuldade do compartilhamento",
         "value": "4 GH"
       },
       {
-        "key": "Mining Algorithm",
+        "key": "Algoritmo de Mineração",
         "value": "Ethash"
       }
     ],
     "hardware": [
       {
-        "title": "GPU Mining Rig",
+        "title": "Rig de Mineração de GPU",
         "key": "GPU",
         "miners": [
           {
-            "description": "Best miner for AMD GPUs"
+            "description": "Melhor minerador para GPUs AMD"
           },
           {
-            "description": "Best miner for NVIDIA 20/30 Series GPUs"
+            "description": "Melhor minerador para GPUs de NVIDIA 20/30"
           },
           {
-            "description": "Best miner for 4GB zombie mode."
+            "description": "Melhor minerador para modo zumbi de 4GB."
           },
           {
-            "description": "Open-source ethash miner with no fees. Brought by Ethereum community."
+            "description": "Proprietary Ethash miner with low dev fee."
           },
           {
-            "description": "Proprietary Ethash miner with the lowest devfee."
+            "description": "Actively developed and stable miner with low dev fee."
           }
         ]
       }
     ]
   },
   "regions": {
-    "us-east": "United States (East)",
-    "us-west": "United States (West)",
-    "de": "Germany",
-    "se": "Sweden",
-    "sg": "Singapore",
-    "au": "Australia",
-    "br": "Brazil",
-    "kr": "South Korea"
+    "us-east": "Estados Unidos (Leste)",
+    "us-west": "Estados Unidos (Oeste)",
+    "de": "Alemanha",
+    "se": "Suécia",
+    "sg": "Cingapura",
+    "au": "Austrália",
+    "br": "Brasil",
+    "kr": "Coreia do Sul"
   },
   "cmd_keys": {
-    "CLOSEST_SERVER": "CLOSEST_SERVER",
-    "WALLET_ADDRESS": "WALLET_ADDRESS",
-    "WORKER_NAME": "WORKER_NAME"
+    "CLOSEST_SERVER": "SERVIDOR_MAIS_PERTO",
+    "WALLET_ADDRESS": "ENDEREÇO_CARTEIRA",
+    "WORKER_NAME": "NOME_TRABALHADOR"
+  },
+  "nicehash": {
+    "head_title": "NiceHash guide for mining on Flexpool",
+    "title": "NiceHash guide for mining on Flexpool",
+    "description": "NiceHash is the world's largest hashrate marketplace where anyone can rent as much hashrate as needed. This guide is about how you can start renting hashpower on Flexpool using NiceHash.",
+    "step_one": {
+      "title": "Open your hashrate marketplace dashboard",
+      "description": [
+        "Once you've registered on NiceHash and activated the Hashrate Marketplace account, you can head to your rental dashboard and choose the {algorithm} mining algorithm.",
+        "After that, you would be able to see this window, where you should click \"Add new pool...\""
+      ]
+    },
+    "step_two": {
+      "title": "Fill in Flexpool's pool settings and your wallet address",
+      "description": [
+        "Good, now you need to fill the pool settings. In the Stratum hostname or IP, you should select server based on your market choice (e.g. German server for European market). Check the list below. As a port,  high-difficulty port <strong>14444</strong> is available for NiceHash rental.",
+        "Specify your wallet address as the username. Use \"x\" as a password."
+      ]
+    },
+    "step_three": {
+      "title": "Test the pool configuration",
+      "description": [
+        "Now you can click on Test Pool and check if everything is working properly."
+      ]
+    },
+    "step_four": {
+      "title": "Enjoy the benefits of Flexpool while using NiceHash!",
+      "description": [
+        "Hooray! You've got the NiceHash working with Flexpool, which means now you can use the best mining pool with the best hashpower marketplace! "
+      ]
+    }
   }
 }

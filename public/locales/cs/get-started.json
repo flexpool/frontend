@@ -1,7 +1,8 @@
 {
   "list": {
     "head_title": "Začni s námi těžit",
-    "title": "Začni s těžbou na Flexpoolu ještě dnes!"
+    "title": "Začni s těžbou na Flexpoolu ještě dnes!",
+    "nicehash_rental_button": "NiceHash pronájem"
   },
   "detail": {
     "title": "{{coin}} těžba",
@@ -16,18 +17,22 @@
       "title": "Zvol si svůj region",
       "description": "Pro nejlepší výkon si vyber server s nejnižší latencí k tvému rigu. Tabulka zobrazuje latenci mezi tvým prohlížečem a našimi servery.",
       "table_head": {
-        "location": "Umístění",
-        "domain": "Doména",
-        "average_lat": "Průměrná latence"
+        "location": "Název regionu",
+        "domain": "Adresa",
+        "port": "Port",
+        "average_lat": "Latence"
       },
-      "fastest": "Nejrychlejší"
+      "fastest": "Nejrychlejší",
+      "backup": "Záloha"
     },
     "ports": {
       "title": "Porty",
       "description": "Velmi doporučujeme každému, aby při připojení k serverům Flexpool použil zabezpečený port. <more>Přečtěte si více o tom, proč by jste neměli používat nezabezpečené porty</more>. <strong>DŮLEŽITÉ</strong>: Použití SSL nesnižuje počet validních sharů.",
       "ssl_port": "Bezpečný port SSL",
       "tcp_port": "TCP port",
-      "tcp_port_tooltip": "Jsme důrazně proti používání nešifrovaného (TCP) připojení při těžbě na našem poolu. Toto spojení je zranitelné vůči útokům MITM (Man-In-The-Middle) což znamená, že pokud někdo zlovolně stojí mezi vaším workerem a poolem, může být část vaší hashrate odcizeno. Přečtěte si více na naší <more>FAQ stránce</more>."
+      "tcp_port_tooltip": "Jsme důrazně proti používání nešifrovaného (TCP) připojení při těžbě na našem poolu. Toto spojení je zranitelné vůči útokům MITM (Man-In-The-Middle) což znamená, že pokud někdo zlovolně stojí mezi vaším workerem a poolem, může být část vaší hashrate odcizeno. Přečtěte si více na naší <more>FAQ stránce</more>.",
+      "high_diff_port": "Port s vysokou obtížností",
+      "high_diff_port_tooltip": "Toto je speciální port pro ty, kteří vyžadují výrazně vyšší obtížnost. Toto zahrnuje i uživatele, kteří vyžívají rigy k pronájmu, jako je <NiceHash>NiceHash</NiceHash> a podobné. Dostupné pro: "
     },
     "worker": {
       "title": "Pojmenuj svého workera",
@@ -62,7 +67,7 @@
       },
       {
         "key": "Vyplácí se",
-        "value": "Každých 10 minut"
+        "value": "Jednou za hodinu"
       },
       {
         "key": "Výše vyplacení",
@@ -96,10 +101,10 @@
             "description": "Nejlepší software pro 4GB zombie mód."
           },
           {
-            "description": "Open-source těžař ethash bez poplatků. Vytvořeno ethereum komunitou."
+            "description": "Proprietární software s nízkým dev poplatkem."
           },
           {
-            "description": "Proprietární software s nejnižším dev poplatkem."
+            "description": "Aktivně vyvíjený miner s nízkým poplatkem."
           }
         ]
       }
@@ -119,5 +124,36 @@
     "CLOSEST_SERVER": "NEJBLIZSI_SERVER",
     "WALLET_ADDRESS": "ADRESA_PENEZENKY",
     "WORKER_NAME": "NAZEV_RIGU"
+  },
+  "nicehash": {
+    "head_title": "Průvodce těžení s NiceHash na Flexpoolu",
+    "title": "Průvodce těžení s NiceHash na Flexpoolu",
+    "description": "NiceHash je největší trh s hashratem na světě kde si může kdokoliv pronajmout těžební sílu.",
+    "step_one": {
+      "title": "Otevři hashrate marketplace",
+      "description": [
+        "Jakmile se zaregistruješ a aktivuješ účet, můžeš si vybrat {algorithm} algoritmus pro těžbu.",
+        "Poté klikni na \"Add new pool...\""
+      ]
+    },
+    "step_two": {
+      "title": "Vyplň údaje o Flexpoolu a svou adresu",
+      "description": [
+        "Vyplň údaje o flexpoolu. Server si vyber podle tvého výběru místa (např. německý server pro evropský marketplace). Podívej se na tabulku níže. Jako port použij <strong>14444</strong>.",
+        "Specifikuj svou adresu pěněženky jako jméno uživatele. Použij \"x\" jako heslo."
+      ]
+    },
+    "step_three": {
+      "title": "Otestuj konfiguraci",
+      "description": [
+        "Nyní můžeš kliknout na \"Test Pool\" a zjistit, zda je všechno v pořádku."
+      ]
+    },
+    "step_four": {
+      "title": "Užij si výhody používání NiceHash!",
+      "description": [
+        "Hurá! Úspěšně jsi zprovoznil NiceHash s Flexpoolem! "
+      ]
+    }
   }
 }

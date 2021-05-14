@@ -1,8 +1,8 @@
 {
-  "head_title": "Business Development",
-  "title": "Business Development",
+  "head_title": "Desenvolvimento de Negócio",
+  "title": "Desenvolvimento de Negócio",
   "touch": {
-    "title": "Get in touch!",
-    "description": "We are open for discussions about your cooperation with our business. If you have a business proposition, or want to partner with us, please, reach us at <email>{{email}}</email>."
+    "title": "Entre em contato!",
+    "description": "Estamos abertos para discussões sobre a sua cooperação com os nossos trabalhos. Se você tem uma proposta ou quer fazer uma parceria, por favor, entre em contato conosco no <email>{{email}}</email>."
   }
 }
