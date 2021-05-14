@@ -49,11 +49,19 @@ const CoinContent = styled.div`
   align-items: center;
 `;
 
+const GuidesList = styled.div`
+  width: 100%;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 1rem;
+`;
+
 export const MineableCoinList: React.FC = () => {
   const { t } = useTranslation('get-started');
   return (
     <Page>
-      <h1>Get started with mining on Flexpool today!</h1>
+      <h1>{t('list.title')}</h1>
       <Spacer />
       <MineableCoinGrid>
         {mineableCoins.map((item) => {
@@ -74,17 +82,29 @@ export const MineableCoinList: React.FC = () => {
                 <CoinLogo ticker={item.ticker} size="xl" />
                 <Title>{item.name}</Title>
               </CoinContent>
-
-              {poolHw.map((itemHw) => (
+              <GuidesList>
+                {poolHw.map((itemHw) => (
+                  <Button
+                    shape="block"
+                    size="sm"
+                    variant="primary"
+                    key={itemHw.key}
+                    as={Link}
+                    to={`/get-started/${item.ticker}/${itemHw.key}`}
+                  >
+                    {itemHw.title}
+                  </Button>
+                ))}
                 <Button
-                  variant="primary"
-                  key={itemHw.key}
+                  shape="block"
+                  size="sm"
+                  variant="warning"
                   as={Link}
-                  to={`/get-started/${item.ticker}/${itemHw.key}`}
+                  to={`/get-started/${item.ticker}/nicehash`}
                 >
-                  {itemHw.key} Mining Guide
+                  {t('list.nicehash_rental_button')}
                 </Button>
-              ))}
+              </GuidesList>
               <DynamicList
                 wrapperProps={{
                   className: 'defWrap',

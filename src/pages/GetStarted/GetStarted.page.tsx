@@ -2,9 +2,10 @@ import { Helmet } from 'react-helmet-async';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
-import { MineableCoinGuidePage } from './CoinGuide';
-import { MineableCoinList } from './CoinList';
-import { MiningCoinSelectTypePage } from './CoinSelectMiningType';
+import { MineableCoinGuidePage } from './GPU/CoinGuide.page';
+import { MineableCoinList } from './CoinList.page';
+import { MiningCoinSelectTypePage } from './CoinSelectMiningType.page';
+import { NicehashGuidePage } from './Nicehash/NicehashGuide.page';
 
 export const GetStartedPage = () => {
   return (
@@ -21,6 +22,10 @@ export const GetStartedPage = () => {
             path="/get-started"
           />
 
+          <Route
+            component={NicehashGuidePage}
+            path="/get-started/:ticker/nicehash"
+          />
           <Route
             component={MineableCoinGuidePage}
             path="/get-started/:ticker/:hw"
