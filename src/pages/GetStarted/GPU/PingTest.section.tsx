@@ -9,7 +9,12 @@ import { useAsyncState } from 'src/hooks/useAsyncState';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import qs from 'query-string';
 import { useHistory, useLocation, useRouteMatch } from 'react-router';
-import { FaCheck, FaExclamationCircle } from 'react-icons/fa';
+import {
+  FaCheck,
+  FaEthernet,
+  FaExclamationCircle,
+  FaNetworkWired,
+} from 'react-icons/fa';
 import { Highlight, Mono, Ws } from 'src/components/Typo/Typo';
 import { CopyButton } from 'src/components/CopyButton';
 import styled from 'styled-components';
@@ -78,6 +83,11 @@ const SelectButton = styled.button<{ selected?: boolean }>`
   outline: none;
   transition: 0.2s all;
   border: 1px solid transparent;
+  margin-left: 0.5rem;
+  &:hover {
+    color: var(--success);
+    border-color: var(--success);
+  }
   ${(p) =>
     p.selected &&
     `
@@ -87,6 +97,10 @@ const SelectButton = styled.button<{ selected?: boolean }>`
 `;
 
 const SelectButtonSecondary = styled(SelectButton)`
+  &:hover {
+    color: var(--warning);
+    border-color: var(--warning);
+  }
   ${(p) =>
     p.selected &&
     `
@@ -146,6 +160,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
       setLatency: (name: string, latency: number) => void;
       fastestServer: string | null;
       secondFastestServer: string | null;
+      setServer: (type: 'secondary' | 'primary', domain: string) => void;
       searchParams: {
         primaryServer?: string;
         secondaryServer?: string;
@@ -232,31 +247,47 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
       {
         title: '',
         alignRight: true,
-        Component: ({ data, config: { searchParams } }) => {
+        Component: ({ data, config: { searchParams, setServer } }) => {
           const isPrimarySelected = searchParams.primaryServer === data.domain;
           const isSecondarySelected =
             searchParams.secondaryServer === data.domain;
 
-          if (isPrimarySelected) {
-            return (
-              <SelectButton selected>
-                <FaCheck />
-              </SelectButton>
-            );
-          }
-
-          if (isSecondarySelected) {
-            return (
-              <SelectButtonSecondary selected>
-                <FaCheck />
-              </SelectButtonSecondary>
-            );
-          }
-
           return (
-            <SelectButton>
-              <FaCheck />
-            </SelectButton>
+            <>
+              <Tooltip
+                wrapIcon={false}
+                icon={
+                  <SelectButton
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setServer('primary', data.domain);
+                    }}
+                    selected={isPrimarySelected}
+                  >
+                    {isPrimarySelected ? <FaCheck /> : <FaEthernet />}
+                  </SelectButton>
+                }
+              >
+                Set as primary connection
+              </Tooltip>
+              &nbsp;
+              <Tooltip
+                wrapIcon={false}
+                icon={
+                  <SelectButtonSecondary
+                    selected={isSecondarySelected}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setServer('secondary', data.domain);
+                    }}
+                  >
+                    {isSecondarySelected ? <FaCheck /> : <FaNetworkWired />}
+                  </SelectButtonSecondary>
+                }
+              >
+                Set as backup connection
+              </Tooltip>
+            </>
           );
         },
       },
@@ -316,14 +347,34 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
     }
   }, [fastest, historyReplace, searchParams, isAutoSetOnce]);
 
+  const setServer = React.useCallback(
+    (type: 'secondary' | 'primary', domain: string) => {
+      const isPrimarySelection = type === 'primary';
+      historyReplace({
+        search: qs.stringify({
+          ...searchParams,
+          ...(isPrimarySelection
+            ? {
+                primaryServer: domain,
+              }
+            : {
+                secondaryServer: domain,
+              }),
+        }),
+      });
+    },
+    [historyReplace, searchParams]
+  );
+
   const colConfig = React.useMemo(() => {
     return {
       setLatency: handleSetLowestLatency,
       fastestServer: fastest.first,
       secondFastestServer: fastest.second,
       searchParams,
+      setServer,
     };
-  }, [handleSetLowestLatency, fastest, searchParams]);
+  }, [handleSetLowestLatency, fastest, searchParams, setServer]);
 
   const selectItem = React.useCallback(
     (d: MineableCoinRegion) => {
@@ -340,19 +391,19 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
               }),
         }),
       });
-
-      setSelection(isPrimarySelection ? 'secondary' : 'primary');
+      // uncomment to turn on toggle
+      // setSelection(isPrimarySelection ? 'secondary' : 'primary');
     },
     [selection, historyReplace, searchParams]
   );
 
-  const renderTooltipContent = React.useCallback(() => {
-    return selection === 'primary' ? (
-      <p>Select primary server</p>
-    ) : (
-      <p>Select backup server</p>
-    );
-  }, [selection]);
+  // const renderTooltipContent = React.useCallback(() => {
+  //   return selection === 'primary' ? (
+  //     <p>Select primary server</p>
+  //   ) : (
+  //     <p>Select backup server</p>
+  //   );
+  // }, [selection]);
 
   return (
     <>
@@ -362,7 +413,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
       <p>{t('detail.region.description')}</p>
       <DynamicList
         onRowClick={selectItem}
-        renderRowTooltipContent={renderTooltipContent}
+        // renderRowTooltipContent={renderTooltipContent}
         config={colConfig}
         data={data}
         columns={cols}
