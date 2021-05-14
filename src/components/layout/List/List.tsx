@@ -1,5 +1,6 @@
 import React from 'react';
 import { Img } from 'src/components/Img';
+import { Tooltip } from 'src/components/Tooltip';
 import { clx } from 'src/utils/clx';
 import styled from 'styled-components';
 import { Skeleton } from '../Skeleton';
@@ -49,6 +50,7 @@ export type DynamicListProps<
   onRowClickAllowed?: (data: D) => boolean;
   contentEmpty?: React.ReactNode;
   wrapperProps?: Omit<JSX.IntrinsicElements['div'], 'ref'>;
+  renderRowTooltipContent?: (d: D) => React.ReactNode;
 };
 
 const ListRow = React.memo(
@@ -61,6 +63,7 @@ const ListRow = React.memo(
     handleActiveHover,
     columns,
     config,
+    renderRowTooltipContent,
   }: {
     item: D;
     onRowClick?: (d: D) => void;
@@ -70,6 +73,7 @@ const ListRow = React.memo(
     handleActiveHover: (n: number) => void;
     columns: DynamicListColumn<D, CP>[];
     config: CP | null;
+    renderRowTooltipContent?: (d: D) => React.ReactNode;
   }) => {
     const onMouseOver = React.useCallback(() => {
       handleActiveHover(index);
@@ -81,7 +85,7 @@ const ListRow = React.memo(
       return undefined;
     }, [item, onRowClick, onRowClickAllowed]);
 
-    return (
+    const content = (
       <Table.Tr
         clickable={!!handleClick}
         onClick={handleClick}
@@ -99,6 +103,18 @@ const ListRow = React.memo(
         })}
       </Table.Tr>
     );
+
+    if (renderRowTooltipContent) {
+      return (
+        <>
+          <Tooltip wrapIcon={false} placement="right" icon={content}>
+            {renderRowTooltipContent(item)}
+          </Tooltip>
+        </>
+      );
+    }
+
+    return content;
   }
 );
 
@@ -120,6 +136,7 @@ export const DynamicList = <D extends {}, CP extends {}>(
     onRowClick,
     onRowClickAllowed,
     wrapperProps,
+    renderRowTooltipContent,
   } = props;
 
   const [lastMouseOver, setLastMouseOver] = React.useState<number | null>();
@@ -193,6 +210,7 @@ export const DynamicList = <D extends {}, CP extends {}>(
                       handleActiveHover={setLastMouseOver}
                       columns={columns as any}
                       config={config}
+                      renderRowTooltipContent={renderRowTooltipContent as any}
                     />
                   );
                 })}
@@ -236,3 +254,4 @@ export const DynamicListEmpty: React.FC<{ children: React.ReactNode }> = ({
     </EmptyContainer>
   );
 };
+//

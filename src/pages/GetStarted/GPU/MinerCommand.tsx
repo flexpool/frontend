@@ -72,39 +72,52 @@ export const MinerCommand: React.FC<{
   const { search } = useLocation();
   const { t } = useTranslation('get-started');
   const {
-    selectedServer = t('cmd_keys.CLOSEST_SERVER'),
+    primaryServer = t('cmd_keys.CLOSEST_SERVER'),
+    secondaryServer = t('cmd_keys.CLOSEST_SERVER'),
     walletAddress = t('cmd_keys.WALLET_ADDRESS'),
     workerName = t('cmd_keys.WORKER_NAME'),
   } = qs.parse(search);
 
-  const replacedText = replaceStringWithNodes(command, [
-    {
-      replace: 'CLOSEST_SERVER',
-      replaceWith: <HighlightItem>{`${selectedServer}`}</HighlightItem>,
-    },
-    {
-      replace: 'WALLET_ADDRESS',
-      replaceWith: <HighlightItem>{`${walletAddress}`}</HighlightItem>,
-    },
-    {
-      replace: 'WORKER_NAME',
-      replaceWith: <HighlightItem>{`${workerName}`}</HighlightItem>,
-    },
-  ]);
-  const copyText = replaceStringWithNodes(command, [
-    {
-      replace: 'CLOSEST_SERVER',
-      replaceWith: `${selectedServer}`,
-    },
-    {
-      replace: 'WALLET_ADDRESS',
-      replaceWith: `${walletAddress}`,
-    },
-    {
-      replace: 'WORKER_NAME',
-      replaceWith: `${workerName}`,
-    },
-  ]).join('');
+  const replacedText = React.useMemo(() => {
+    return replaceStringWithNodes(command, [
+      {
+        replace: 'CLOSEST_SERVER',
+        replaceWith: <HighlightItem>{`${primaryServer}`}</HighlightItem>,
+      },
+      {
+        replace: 'BACKUP_SERVER',
+        replaceWith: <HighlightItem>{`${secondaryServer}`}</HighlightItem>,
+      },
+      {
+        replace: 'WALLET_ADDRESS',
+        replaceWith: <HighlightItem>{`${walletAddress}`}</HighlightItem>,
+      },
+      {
+        replace: 'WORKER_NAME',
+        replaceWith: <HighlightItem>{`${workerName}`}</HighlightItem>,
+      },
+    ]);
+  }, [command, primaryServer, secondaryServer, workerName, walletAddress]);
+  const copyText = React.useMemo(() => {
+    return replaceStringWithNodes(command, [
+      {
+        replace: 'CLOSEST_SERVER',
+        replaceWith: `${primaryServer}`,
+      },
+      {
+        replace: 'BACKUP_SERVER',
+        replaceWith: `${secondaryServer}`,
+      },
+      {
+        replace: 'WALLET_ADDRESS',
+        replaceWith: `${walletAddress}`,
+      },
+      {
+        replace: 'WORKER_NAME',
+        replaceWith: `${workerName}`,
+      },
+    ]).join('');
+  }, [command, primaryServer, secondaryServer, workerName, walletAddress]);
 
   return (
     <CommandCodeContainer>

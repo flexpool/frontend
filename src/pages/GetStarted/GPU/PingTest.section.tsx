@@ -19,6 +19,7 @@ import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { Img } from 'src/components/Img';
 import { Trans, useTranslation } from 'react-i18next';
 import { AnyAction } from 'redux';
+import { useBoolState } from 'src/hooks/useBoolState';
 
 const WarningIcon = styled(FaExclamationCircle)`
   color: var(--danger);
@@ -77,14 +78,19 @@ const SelectButton = styled.button<{ selected?: boolean }>`
   outline: none;
   transition: 0.2s all;
   border: 1px solid transparent;
-  &:hover {
-    color: var(--primary);
-    border-color: var(--primary);
-  }
   ${(p) =>
     p.selected &&
     `
-    background: var(--primary);
+    background: var(--success);
+    color: var(--text-on-bg) !important;
+  `}
+`;
+
+const SelectButtonSecondary = styled(SelectButton)`
+  ${(p) =>
+    p.selected &&
+    `
+    background: var(--warning);
     color: var(--text-on-bg) !important;
   `}
 `;
@@ -108,7 +114,10 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   const [latencies, dispatch] = React.useReducer(reducer, {});
   const { replace: historyReplace } = useHistory();
   const { search } = useLocation();
-  const searchParams = qs.parse(search);
+  const [selection, setSelection] = React.useState<'primary' | 'secondary'>(
+    'primary'
+  );
+  const isAutoSetOnce = useBoolState();
 
   const { t } = useTranslation('get-started');
   const {
@@ -137,6 +146,10 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
       setLatency: (name: string, latency: number) => void;
       fastestServer: string | null;
       secondFastestServer: string | null;
+      searchParams: {
+        primaryServer?: string;
+        secondaryServer?: string;
+      };
     }
   >[] = React.useMemo(
     () => [
@@ -219,24 +232,29 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
       {
         title: '',
         alignRight: true,
-        Component: ({ data }) => {
-          const { search } = useLocation();
-          const history = useHistory();
-          const searchParams = qs.parse(search);
-          const isSelected = searchParams.selectedServer === data.domain;
+        Component: ({ data, config: { searchParams } }) => {
+          const isPrimarySelected = searchParams.primaryServer === data.domain;
+          const isSecondarySelected =
+            searchParams.secondaryServer === data.domain;
 
-          const handleClick = React.useCallback(() => {
-            const searchP = qs.parse(search);
-            history.replace({
-              search: qs.stringify({
-                ...searchP,
-                selectedServer: data.domain,
-              }),
-            });
-          }, [search, history, data.domain]);
+          if (isPrimarySelected) {
+            return (
+              <SelectButton selected>
+                <FaCheck />
+              </SelectButton>
+            );
+          }
+
+          if (isSecondarySelected) {
+            return (
+              <SelectButtonSecondary selected>
+                <FaCheck />
+              </SelectButtonSecondary>
+            );
+          }
 
           return (
-            <SelectButton onClick={handleClick} selected={isSelected}>
+            <SelectButton>
               <FaCheck />
             </SelectButton>
           );
@@ -246,12 +264,25 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
     [t]
   );
 
+  /**
+   * list of servers with 14444
+   */
   const highDiffServers = React.useMemo(() => {
     return data
       .filter((item) => item.high_diff_avail)
       .map((item) => item.domain);
   }, [data]);
 
+  const searchParams = React.useMemo(() => {
+    return qs.parse(search) as {
+      primaryServer?: string;
+      secondaryServer?: string;
+    };
+  }, [search]);
+
+  /**
+   * returns two fastest servers
+   */
   const fastest = React.useMemo(() => {
     if (data.length > Object.keys(latencies).length) {
       return {
@@ -266,26 +297,62 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
       second: (sorted[1] && sorted[1][0]) || null,
     };
 
-    const searchP = qs.parse(search);
-
-    historyReplace({
-      search: qs.stringify({
-        ...searchP,
-        primaryServer: result.first,
-        secondaryServer: result.second,
-      }),
-    });
-
     return result;
-  }, [latencies, data, search, historyReplace]);
+  }, [latencies, data]);
+
+  /**
+   * Automatically set primary and secondary
+   */
+  React.useEffect(() => {
+    if (fastest.first && fastest.second && !isAutoSetOnce.value) {
+      isAutoSetOnce.handleTrue();
+      historyReplace({
+        search: qs.stringify({
+          ...searchParams,
+          primaryServer: fastest.first,
+          secondaryServer: fastest.second,
+        }),
+      });
+    }
+  }, [fastest, historyReplace, searchParams, isAutoSetOnce]);
 
   const colConfig = React.useMemo(() => {
     return {
       setLatency: handleSetLowestLatency,
       fastestServer: fastest.first,
       secondFastestServer: fastest.second,
+      searchParams,
     };
-  }, [handleSetLowestLatency, fastest]);
+  }, [handleSetLowestLatency, fastest, searchParams]);
+
+  const selectItem = React.useCallback(
+    (d: MineableCoinRegion) => {
+      const isPrimarySelection = selection === 'primary';
+      historyReplace({
+        search: qs.stringify({
+          ...searchParams,
+          ...(isPrimarySelection
+            ? {
+                primaryServer: d.domain,
+              }
+            : {
+                secondaryServer: d.domain,
+              }),
+        }),
+      });
+
+      setSelection(isPrimarySelection ? 'secondary' : 'primary');
+    },
+    [selection, historyReplace, searchParams]
+  );
+
+  const renderTooltipContent = React.useCallback(() => {
+    return selection === 'primary' ? (
+      <p>Select primary server</p>
+    ) : (
+      <p>Select backup server</p>
+    );
+  }, [selection]);
 
   return (
     <>
@@ -293,7 +360,13 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
         <Highlight>#2</Highlight> {t('detail.region.title')}
       </h2>
       <p>{t('detail.region.description')}</p>
-      <DynamicList config={colConfig} data={data} columns={cols} />
+      <DynamicList
+        onRowClick={selectItem}
+        renderRowTooltipContent={renderTooltipContent}
+        config={colConfig}
+        data={data}
+        columns={cols}
+      />
       <h3>{t('detail.ports.title')}</h3>
       <p>
         <Trans
