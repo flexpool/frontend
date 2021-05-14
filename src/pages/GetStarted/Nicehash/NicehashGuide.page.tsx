@@ -2,19 +2,75 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Trans, useTranslation } from 'react-i18next';
 import { Redirect, useRouteMatch } from 'react-router';
+import { CopyButton } from 'src/components/CopyButton';
 import { Img } from 'src/components/Img';
 import { Content } from 'src/components/layout/Content';
+import DynamicList, {
+  DynamicListColumn,
+} from 'src/components/layout/List/List';
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOut } from 'src/components/LinkOut';
-import { Highlight } from 'src/components/Typo/Typo';
+import { Highlight, Mono, Ws } from 'src/components/Typo/Typo';
 import styled from 'styled-components/macro';
-import { ServerList } from '../GPU/PingTest.section';
-import { mineableCoins } from '../mineableCoinList';
+import { MineableCoinRegion, mineableCoins } from '../mineableCoinList';
 
 import nh1 from './assets/nh_1.jpg';
 import nh2 from './assets/nh_2.jpg';
 import nh3 from './assets/nh_3.jpg';
+
+export const ServerList: React.FC<{
+  data: MineableCoinRegion[];
+}> = ({ data }) => {
+  const { t } = useTranslation('get-started');
+
+  const cols: DynamicListColumn<MineableCoinRegion>[] = React.useMemo(
+    () => [
+      {
+        title: t('detail.region.table_head.location'),
+        Component: ({ data }) => {
+          return (
+            <Ws>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <Img
+                  src={`https://static.flexpool.io/assets/countries/${data.imageCode}.svg`}
+                  style={{ width: '32px', marginRight: '10px' }}
+                  alt={data.imageCode}
+                />
+                {t(`regions.${data.code}`)}
+              </div>
+            </Ws>
+          );
+        },
+      },
+      {
+        title: t('detail.region.table_head.domain'),
+        Component: ({ data }) => (
+          <Mono>
+            <Ws>
+              {data.domain} <CopyButton text={data.domain} />
+            </Ws>
+          </Mono>
+        ),
+      },
+      {
+        title: t('detail.region.table_head.port'),
+        Component: ({ data }) => (
+          <Mono>
+            <Ws>{data.high_diff_avail ? '14444' : '5555'}</Ws>
+          </Mono>
+        ),
+      },
+    ],
+    [t]
+  );
+
+  const serverList = React.useMemo(() => {
+    return data.filter((item) => item.high_diff_avail);
+  }, [data]);
+
+  return <DynamicList data={serverList} columns={cols} />;
+};
 
 const GuideImg = styled(Img)`
   max-width: 462px;

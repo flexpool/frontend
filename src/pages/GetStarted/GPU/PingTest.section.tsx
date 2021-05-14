@@ -89,55 +89,6 @@ const SelectButton = styled.button<{ selected?: boolean }>`
   `}
 `;
 
-export const ServerList: React.FC<{
-  data: MineableCoinRegion[];
-}> = ({ data }) => {
-  const { t } = useTranslation('get-started');
-
-  const cols: DynamicListColumn<MineableCoinRegion>[] = React.useMemo(
-    () => [
-      {
-        title: t('detail.region.table_head.location'),
-        Component: ({ data }) => {
-          return (
-            <Ws>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <Img
-                  src={`https://static.flexpool.io/assets/countries/${data.imageCode}.svg`}
-                  style={{ width: '32px', marginRight: '10px' }}
-                  alt={data.imageCode}
-                />
-                {t(`regions.${data.code}`)}
-              </div>
-            </Ws>
-          );
-        },
-      },
-      {
-        title: t('detail.region.table_head.domain'),
-        Component: ({ data }) => (
-          <Mono>
-            <Ws>
-              {data.domain} <CopyButton text={data.domain} />
-            </Ws>
-          </Mono>
-        ),
-      },
-      {
-        title: t('detail.region.table_head.port'),
-        Component: ({ data }) => (
-          <Mono>
-            <Ws>{data.high_diff_avail ? '14444' : '5555'}</Ws>
-          </Mono>
-        ),
-      },
-    ],
-    [t]
-  );
-
-  return <DynamicList data={data} columns={cols} />;
-};
-
 const reducer = (state: { [key: string]: number }, action: AnyAction) => {
   switch (action.type) {
     case 'SET': {

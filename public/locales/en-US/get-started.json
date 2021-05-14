@@ -118,7 +118,7 @@
     "step_two": {
       "title": "Fill in Flexpool's pool settings and your wallet address",
       "description": [
-        "Good, now you need to fill the pool settings. In the Stratum hostname or IP, you should select server based on your market choice (e.g. German server for European market). Check the list below. As a port, you should use high-difficulty port <strong>14444</strong> if available, otherwise use <strong>5555</strong>.",
+        "Good, now you need to fill the pool settings. In the Stratum hostname or IP, you should select server based on your market choice (e.g. German server for European market). Check the list below. As a port,  high-difficulty port <strong>14444</strong> is available for NiceHash rental.",
         "Specify your Ethereum wallet address as the username. Use \"x\" as a password."
       ]
     },
