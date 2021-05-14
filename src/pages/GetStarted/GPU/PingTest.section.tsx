@@ -2,13 +2,13 @@ import React from 'react';
 import DynamicList, {
   DynamicListColumn,
 } from 'src/components/layout/List/List';
-import { MineableCoinRegion } from './mineableCoinList';
+import { MineableCoinRegion } from '../mineableCoinList';
 import { w3cwebsocket } from 'websocket';
 import { differenceInMilliseconds } from 'date-fns';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import qs from 'query-string';
-import { useHistory, useLocation } from 'react-router';
+import { useHistory, useLocation, useRouteMatch } from 'react-router';
 import { FaCheck, FaExclamationCircle } from 'react-icons/fa';
 import { Highlight, Mono, Ws } from 'src/components/Typo/Typo';
 import { CopyButton } from 'src/components/CopyButton';
@@ -18,6 +18,7 @@ import { Link } from 'react-router-dom';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { Img } from 'src/components/Img';
 import { Trans, useTranslation } from 'react-i18next';
+import { AnyAction } from 'redux';
 
 const WarningIcon = styled(FaExclamationCircle)`
   color: var(--danger);
@@ -88,26 +89,51 @@ const SelectButton = styled.button<{ selected?: boolean }>`
   `}
 `;
 
+const reducer = (state: { [key: string]: number }, action: AnyAction) => {
+  switch (action.type) {
+    case 'SET': {
+      return {
+        ...state,
+        [action.payload.name]: action.payload.value,
+      };
+    }
+    default:
+      return state;
+  }
+};
+
 export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   data,
 }) => {
-  const [lowestLatency, setLowestLatency] = React.useState<number>(10000);
+  const [latencies, dispatch] = React.useReducer(reducer, {});
+
   const { t } = useTranslation('get-started');
+  const {
+    params: { ticker },
+  } = useRouteMatch<{
+    ticker?: string;
+    hw?: string;
+  }>();
 
   const handleSetLowestLatency = React.useCallback(
-    (l: number) => {
-      if (lowestLatency > l) {
-        setLowestLatency(l);
-      }
+    (name: string, value: number) => {
+      dispatch({
+        type: 'SET',
+        payload: {
+          name,
+          value,
+        },
+      });
     },
-    [lowestLatency]
+    []
   );
 
   const cols: DynamicListColumn<
     MineableCoinRegion,
     {
-      setLowestLatency: (latency: number) => void;
-      lowestLatency: number;
+      setLatency: (name: string, latency: number) => void;
+      fastestServer: string | null;
+      secondFastestServer: string | null;
     }
   >[] = React.useMemo(
     () => [
@@ -140,8 +166,12 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
       },
       {
         title: t('detail.region.table_head.average_lat'),
-        Component: ({ data, config: { setLowestLatency, lowestLatency } }) => {
+        Component: ({
+          data,
+          config: { setLatency, fastestServer, secondFastestServer },
+        }) => {
           const connectionState = useAsyncState<number>();
+          const [isSet, setIsSet] = React.useState(false);
           React.useEffect(() => {
             connectionState.start(testConnection(data.domain));
             // eslint-disable-next-line
@@ -150,10 +180,11 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
           const latency = connectionState.data;
 
           React.useEffect(() => {
-            if (latency) {
-              setLowestLatency(latency);
+            if (latency && !isSet) {
+              setLatency(data.domain, latency);
+              setIsSet(false);
             }
-          }, [latency, setLowestLatency]);
+          }, [latency, setLatency, data.domain, isSet]);
 
           if (connectionState.isLoading) {
             return <LoaderSpinner size="xs" />;
@@ -162,11 +193,19 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
           return (
             <Ws>
               {latency ? `${latency} ms` : 'n/a'}{' '}
-              {latency === lowestLatency && (
+              {fastestServer === data.domain && (
                 <>
                   &nbsp;
                   <Sticker variant="success">
                     {t('detail.region.fastest')}
+                  </Sticker>
+                </>
+              )}
+              {secondFastestServer === data.domain && (
+                <>
+                  &nbsp;
+                  <Sticker variant="warning">
+                    {t('detail.region.backup')}
                   </Sticker>
                 </>
               )}
@@ -204,17 +243,44 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
     [t]
   );
 
+  const highDiffServers = React.useMemo(() => {
+    return data
+      .filter((item) => item.high_diff_avail)
+      .map((item) => item.domain);
+  }, [data]);
+
+  const fastest = React.useMemo(() => {
+    if (data.length > Object.keys(latencies).length) {
+      return {
+        first: null,
+        second: null,
+      };
+    }
+
+    const sorted = Object.entries(latencies).sort((a, b) => a[1] - b[1]);
+    const result = {
+      first: (sorted[0] && sorted[0][0]) || null,
+      second: (sorted[1] && sorted[1][0]) || null,
+    };
+
+    return result;
+  }, [latencies, data]);
+
+  const colConfig = React.useMemo(() => {
+    return {
+      setLatency: handleSetLowestLatency,
+      fastestServer: fastest.first,
+      secondFastestServer: fastest.second,
+    };
+  }, [handleSetLowestLatency, fastest]);
+
   return (
     <>
       <h2>
         <Highlight>#2</Highlight> {t('detail.region.title')}
       </h2>
       <p>{t('detail.region.description')}</p>
-      <DynamicList
-        config={{ setLowestLatency: handleSetLowestLatency, lowestLatency }}
-        data={data}
-        columns={cols}
-      />
+      <DynamicList config={colConfig} data={data} columns={cols} />
       <h3>{t('detail.ports.title')}</h3>
       <p>
         <Trans
@@ -253,6 +319,38 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
                         }}
                       />
                     </p>
+                  </TooltipContent>
+                </Tooltip>
+              </td>
+            </tr>
+            <tr>
+              <td>{t('detail.ports.high_diff_port')}</td>
+              <td>
+                <Sticker>14444</Sticker>{' '}
+                <Tooltip>
+                  <TooltipContent>
+                    <p>
+                      <Trans
+                        ns="get-started"
+                        i18nKey="detail.ports.high_diff_port_tooltip"
+                        components={{
+                          NiceHash: (
+                            <Link
+                              to={
+                                ticker
+                                  ? `/get-started/${ticker}/nicehash`
+                                  : 'nicehash'
+                              }
+                            />
+                          ),
+                        }}
+                      />
+                    </p>
+                    <ul>
+                      {highDiffServers.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
                   </TooltipContent>
                 </Tooltip>
               </td>

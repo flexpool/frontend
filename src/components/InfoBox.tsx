@@ -6,6 +6,9 @@ const InfoBoxWrapper = styled.div<{ variant?: 'error' | UIVariant }>`
   border-radius: 5px;
   background: var(--primary);
   color: var(--text-on-bg);
+  * {
+    color: var(--text-on-bg);
+  }
 
   ${(p) => {
     if (p.variant) {
