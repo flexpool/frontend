@@ -185,7 +185,7 @@ export const BrandAssetsPage = () => {
               email: 'hq@flexpool.io',
             }}
             components={{
-              terms: <LinkOut href="https://flexpool.io/legal/FP-TO.pdf" />,
+              terms: <LinkOut href="https://static.flexpool.io/legal/terms.pdf" />,
               email: <LinkOut href="mailto:hq@flexpool.io" />,
             }}
           />
