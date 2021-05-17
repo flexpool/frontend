@@ -134,11 +134,11 @@ export const FooterSection = () => {
               {' '}
               {t('footer.company.blog')}
             </LinkOut>
-            <LinkOut href="https://flexpool.io/legal/FP-TO.pdf">
+            <LinkOut href="https://static.flexpool.io/legal/terms.pdf">
               {' '}
               {t('footer.company.terms')}
             </LinkOut>
-            <LinkOut href="https://flexpool.io/legal/FP-PP.pdf">
+            <LinkOut href="https://static.flexpool.io/legal/privacy-policy.pdf">
               {t('footer.company.pp')}
             </LinkOut>
           </Section>
