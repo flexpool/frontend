@@ -34,30 +34,30 @@
     "title": "Coins we mine",
     "description": "Flexpool is a Multi-Coin mining pool, which means that you can mine your favorite coins on Flexpool.",
     "table_head": {
-      "name": "Name",
-      "price": "Price",
-      "market_cap": "Market Cap",
-      "algorithm": "Algorithm",
+      "name": "币种",
+      "price": "币价",
+      "market_cap": "总市值",
+      "algorithm": "算法",
       "hashrate": "矿池算力",
-      "miners": "Miners"
+      "miners": "矿工数"
     },
     "item_cta": "Mine"
   },
   "coin_news_item": {
     "eth": {
-      "title": "About Ethereum",
+      "title": "关于以太币",
       "description": "Ethereum is a worldwide computer created to power Decentralized Applications known as Smart Contracts."
     },
-    "resources": "Resources",
-    "website": "Website",
-    "whitepaper": "Whitepaper",
+    "resources": "资源",
+    "website": "官方网站",
+    "whitepaper": "白皮书",
     "calculator": {
-      "title": "Income Calculator",
+      "title": "收益计算器",
       "title_tooltip": "The Estimated Income is calculated based on the 24-hour average network difficulty and the 24-hour average block reward. This calculation does not include Stale and Invalid shares.",
-      "per_day": "per day",
-      "per_month": "per month",
-      "per_year": "per year",
-      "cta": "Start Mining"
+      "per_day": "每天",
+      "per_month": "每月",
+      "per_year": "每年",
+      "cta": "开始挖矿"
     },
     "featured": {
       "title": "Featured Stories"

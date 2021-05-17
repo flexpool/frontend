@@ -17,6 +17,7 @@ const Btn = styled(Button)`
   justify-content: center;
   display: inline-flex;
   transition: 0.05s;
+  flex-shrink: 0;
   &:hover {
     background: var(--primary);
     color: white;
