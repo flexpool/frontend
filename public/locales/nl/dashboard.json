@@ -46,7 +46,7 @@
     "info_gas_limit_none": "None",
     "info_gas_limit_detail": "{{percent}} of payout limit.",
     "info_gas_limit_detail_none": "Gas price is not limited.",
-    "info_gas_limit_detail_na": "Price not available.",
+    "info_gas_limit_detail_na": "Prijs niet beschikbaar.",
     "info_joined": "Joined",
     "info_joined_tooltip": "Your first share has been recorded on",
     "info_joined_tooltip_empty": "No share has been recorded yet",
@@ -57,15 +57,15 @@
     "stat_unpaid_balance_reach_est": "The limit will be reached <v>{{value}}</v>.",
     "stat_unpaid_balance_reach_ok": "Your payout will be processed on the next payment round if the fees match your preferences.",
     "stat_estimate": "Estimated Earnings",
-    "stat_estimate_daily": "daily",
+    "stat_estimate_daily": "dagelijks",
     "stat_estimate_weekly": "weekly",
     "stat_estimate_monthly": "monthly",
     "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimate."
   },
   "nav": {
-    "stats": "Stats",
-    "payments": "Payments",
-    "rewards": "Rewards",
+    "stats": "Statistieken",
+    "payments": "Betalingen",
+    "rewards": "Beloningen",
     "blocks": "Blocks"
   },
   "rewards": {

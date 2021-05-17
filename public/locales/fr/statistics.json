@@ -1,18 +1,18 @@
 {
-  "head_title": "Statistics",
-  "title": "Statistics",
-  "pool_hashrate": "Pool hashrate",
-  "average_luck": "Average Luck",
-  "average_luck_tooltip": "Last 30 days average block luck.",
-  "miners": "Miners",
-  "workers": "Workers",
+  "head_title": "Statistiques",
+  "title": "Statistiques",
+  "pool_hashrate": "Taux de hachage de l'infrastructure",
+  "average_luck": "Chance moyenne",
+  "average_luck_tooltip": "La chance moyenne de bloc des 30 derniers jours.",
+  "miners": "Mineurs",
+  "workers": "Rigs",
   "chart": {
-    "title": "Pool Hashrate",
-    "total_hashrate": "Total Hashrate",
-    "as": "Asia Pacific (AS)",
-    "au": "Australia (AU)",
-    "eu": "Europe (EU)",
-    "sa": "South America (SA)",
-    "us": "United States (US)"
+    "title": "Taux de hachage de l'infrastructure",
+    "total_hashrate": "Taux total de hachage de l'infrastructure",
+    "as": "Asie-Pacifique (APAC)",
+    "au": "Australie (AU)",
+    "eu": "Europe (UE)",
+    "sa": "Amérique du Sud (AS)",
+    "us": "États-Unis (US)"
   }
 }

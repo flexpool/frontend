@@ -39,7 +39,7 @@
     "preferences": {
       "title": "Préférences"
     },
-    "bottom_message": "© 202020-{{currentYear}} Flexpool.io ou ses sociétés affiliées. Tous droits réservés.",
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io ou ses sociétés affiliées. Tous droits réservés.",
     "translation_help": "Aidez-nous à traduire le site web dans votre langue"
   },
   "theme": {
@@ -59,6 +59,6 @@
     "email_required": "Veuillez entrer votre adresse e-mail"
   },
   "date_time": {
-    "now": "now"
+    "now": "maintenant"
   }
 }
