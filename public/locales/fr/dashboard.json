@@ -185,7 +185,7 @@
       "table_head": {
         "name": "Nom",
         "reported_hashrate": "Hashrate rapporté",
-        "current_e_hashrate": "Taux de hachage E. actuel",
+        "current_e_hashrate": "Taux De Hashrate E. Actuel",
         "average_e_hashrate": "Hashrate effectif moyen",
         "valid": "Actions valides",
         "stale": "Actions périmées",

@@ -23,7 +23,7 @@
         "average_lat": "Latence"
       },
       "fastest": "Le plus rapide",
-      "backup": "Sauvegarde"
+      "backup": "Serveur de secours"
     },
     "ports": {
       "title": "Ports",
