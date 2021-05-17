@@ -8,7 +8,7 @@
   "current_luck_tooltip": "La chance du bloc du tour actuel. Cette valeur est mise à jour en temps réel.",
   "network_hashrate": "Puissance du Réseau",
   "network_difficulty": "Difficulté du réseau",
-  "network_difficulty_tooltip": "Montant moyen du nombre de hachages à produire pour miner un bloc.",
+  "network_difficulty_tooltip": "Montant moyen du nombre de hashrate à produire pour miner un bloc.",
   "table": {
     "title_zero": "Impossible de récupérer les données du pool",
     "title": "Flexpool a miné {{count}} bloc",
