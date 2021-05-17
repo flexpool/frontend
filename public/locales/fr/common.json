@@ -1,6 +1,6 @@
 {
   "searchbar": {
-    "placeholder": "Rechercher par adresse de minage"
+    "placeholder": "Rechercher par wallet"
   },
   "nav": {
     "statistics": "Statistiques",
@@ -33,7 +33,7 @@
     },
     "contact": {
       "title": "Contact",
-      "service_status": "Statut du Service",
+      "service_status": "État des services",
       "support": "Support technique"
     },
     "preferences": {
