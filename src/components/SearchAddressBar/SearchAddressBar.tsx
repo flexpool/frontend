@@ -185,15 +185,13 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
             openState.handleClose();
             history.push(`/miner/${res}/${searchAddress}`);
           } else {
-            alert(
-              'Specified address was not found in our system. Try waiting some time if you are already mining.'
-            );
+            alert(t('errors.address_not_found'));
           }
           return res;
         });
     },
     // eslint-disable-next-line
-    [history, searchData[0]?.address]
+    [history, searchData[0]?.address, t]
   );
 
   return (

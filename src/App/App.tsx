@@ -43,6 +43,7 @@ import { PageLoader } from 'src/components/layout/Page';
 import ServiceWorkerWrapper from './ServiceWorkerWrapper';
 import { usePwaInit } from './PwaInit';
 import { searchAddressStorage } from 'src/components/SearchAddressBar/searchCache';
+import { I18n } from './I18n';
 
 /**
  * Pages code splitting
@@ -136,6 +137,7 @@ const AppContent = () => {
       <React.Suspense fallback={<React.Fragment />}>
         <NavBar />
         <SnackViewControl />
+        <I18n />
       </React.Suspense>
       <React.Suspense fallback={<PageLoader />}>
         <Switch>
