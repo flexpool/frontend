@@ -397,8 +397,6 @@ export const CoinEarnings = () => {
   const coinsFull = useReduxState('poolCoinsFull');
 
   const data = coinsFull.data || [];
-  const { t } = useTranslation('home');
-
   return (
     <Content>
       <Spacer size="xl" />
