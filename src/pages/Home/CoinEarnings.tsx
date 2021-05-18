@@ -25,13 +25,13 @@ import {
 import { getCoinIconUrl } from 'src/utils/staticImage.utils';
 import styled from 'styled-components/macro';
 
-import chiaImage from './assets/chia.png';
+import chiaImage from './assets/chia_text.png';
 
 const UnknownCoin = styled.div`
   border-radius: 50%;
   width: 60px;
   height: 60px;
-  background: var(--warning);
+  background: var(--bg-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,9 +41,8 @@ const UnknownCoin = styled.div`
     width: 45%;
   }
   img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+    max-height: 80%;
+    max-width: 80%;
   }
 `;
 
@@ -320,21 +319,35 @@ const FormContainer = styled.div`
   }
 `;
 
+const ChiaBox = styled(EarningBox)`
+  background: #36ad58; // original chia, doesn't look good on blue
+  background: var(--success);
+`;
+
+const ChiaCoin = styled(UnknownCoin)`
+  height: 60px;
+  width: 60px;
+  background: var(--bg-secondary);
+`;
+
+const SocialButtonChia = styled(Button)`
+  color: var(--text-on-bg);
+`;
+
 const ComingSoonChia = () => {
   const { t } = useTranslation(['home', 'common']);
   return (
-    <EarningBox>
+    <ChiaBox>
       <HeadSplit>
         {/* <CoinIcon src={getCoinIconSrc('zec')} /> */}
-        <UnknownCoin>
+        <ChiaCoin>
           <Img alt="xch chia coin" src={chiaImage} />
-        </UnknownCoin>
+        </ChiaCoin>
         <HeadContent>
-          <h2>XCH Chia Coming Soon!</h2>
+          <h2>Chia Coming Soon!</h2>
           <p>
-            We are ready to launch our Chia pool. Stay tuned for more details or
-            check news on social platforms or subscribe to be one of the first
-            Chia miners on Flexpool!
+            We are about to launch a Chia pool once Chia adds pool capability.
+            Please signup here for updates or join us at the below
           </p>
           <Formik
             initialValues={{ email: '' }}
@@ -342,6 +355,8 @@ const ComingSoonChia = () => {
               console.log(email);
               setSubmitting(false);
             }}
+            validateOnChange={false}
+            validateOnBlur={false}
             validationSchema={yup.object().shape({
               email: yup
                 .string()
@@ -361,20 +376,20 @@ const ComingSoonChia = () => {
       <IntervalContainer>
         <StartMiningContainer>
           <ButtonGroup>
-            <Button variant="danger" as={LinkOut} href={REDDIT_LINK}>
+            <SocialButtonChia fill="outline" as={LinkOut} href={REDDIT_LINK}>
               <FaReddit /> &nbsp; Reddit
-            </Button>{' '}
-            <Button variant="primary" as={LinkOut} href={TELEGRAM_LINK}>
+            </SocialButtonChia>{' '}
+            <SocialButtonChia fill="outline" as={LinkOut} href={TELEGRAM_LINK}>
               <FaTelegram /> &nbsp; Telegram
-            </Button>{' '}
-            <Button variant="warning" as={LinkOut} href={DISCORD_LINK}>
+            </SocialButtonChia>{' '}
+            <SocialButtonChia fill="outline" as={LinkOut} href={DISCORD_LINK}>
               <FaDiscord />
               &nbsp;Discord
-            </Button>
+            </SocialButtonChia>
           </ButtonGroup>
         </StartMiningContainer>
       </IntervalContainer>
-    </EarningBox>
+    </ChiaBox>
   );
 };
 
