@@ -1,8 +1,11 @@
+import { Form, Formik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaDiscord, FaReddit, FaRocket, FaTelegram } from 'react-icons/fa';
+import { FaDiscord, FaReddit, FaTelegram } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { Button } from 'src/components/Button';
+import { Submit } from 'src/components/Form/Submit';
+import { TextField } from 'src/components/Form/TextInput';
 import { Img } from 'src/components/Img';
 import { Content } from 'src/components/layout/Content';
 import { Skeleton } from 'src/components/layout/Skeleton';
@@ -13,6 +16,7 @@ import { DISCORD_LINK, REDDIT_LINK, TELEGRAM_LINK } from 'src/constants';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoinFull } from 'src/types/PoolCoin.types';
+import * as yup from 'yup';
 import {
   useLocalizedCurrencyFormatter,
   useLocalizedNumberFormatter,
@@ -20,6 +24,8 @@ import {
 } from 'src/utils/si.utils';
 import { getCoinIconUrl } from 'src/utils/staticImage.utils';
 import styled from 'styled-components/macro';
+
+import chiaImage from './assets/chia.png';
 
 const UnknownCoin = styled.div`
   border-radius: 50%;
@@ -29,9 +35,15 @@ const UnknownCoin = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   svg {
     height: 45%;
     width: 45%;
+  }
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
 `;
 
@@ -41,8 +53,11 @@ const CoinIcon = styled(Img)`
 `;
 
 const EarningBox = styled.div`
-  * {
-    color: white;
+  color: white;
+  p,
+  h2,
+  span {
+    color: var(--text-on-bg);
   }
   background: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
@@ -117,6 +132,7 @@ const IntervalItem = styled.div`
 `;
 
 const StartMiningContainer = styled.div`
+  margin-top: 1rem;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
@@ -245,17 +261,118 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
             )}
           </Desc>
         </IntervalItem>
-        {data?.ticker && (
-          <StartMiningContainer>
-            <Button
-              variant="success"
-              as={Link}
-              to={`/get-started/${data?.ticker}`}
-            >
-              {t('coin_earnings_cards.cta_mine')}
+      </IntervalContainer>
+      {data?.ticker && (
+        <StartMiningContainer>
+          <Button
+            variant="success"
+            as={Link}
+            to={`/get-started/${data?.ticker}`}
+          >
+            {t('coin_earnings_cards.cta_mine')}
+          </Button>
+        </StartMiningContainer>
+      )}
+    </EarningBox>
+  );
+};
+
+// const ComingSoonCoin = () => {
+//   const { t } = useTranslation('home');
+//   return (
+//     <EarningBox>
+//       <HeadSplit>
+//         {/* <CoinIcon src={getCoinIconSrc('zec')} /> */}
+//         <UnknownCoin>
+//           <FaRocket />
+//         </UnknownCoin>
+//         <HeadContent>
+//           <h2>{t('coin_earnings_cards.more_title')}</h2>
+//           <p>{t('coin_earnings_cards.more_description')}</p>
+//         </HeadContent>
+//       </HeadSplit>
+//       <IntervalContainer>
+//         <StartMiningContainer>
+//           <ButtonGroup>
+//             <Button variant="danger" as={LinkOut} href={REDDIT_LINK}>
+//               <FaReddit /> &nbsp; Reddit
+//             </Button>{' '}
+//             <Button variant="primary" as={LinkOut} href={TELEGRAM_LINK}>
+//               <FaTelegram /> &nbsp; Telegram
+//             </Button>{' '}
+//             <Button variant="warning" as={LinkOut} href={DISCORD_LINK}>
+//               <FaDiscord />
+//               &nbsp;Discord
+//             </Button>
+//           </ButtonGroup>
+//         </StartMiningContainer>
+//       </IntervalContainer>
+//     </EarningBox>
+//   );
+// };
+
+const FormContainer = styled.div`
+  display: flex;
+  margin-top: 1rem;
+  & > *:first-child {
+    margin-right: 1rem;
+    flex-grow: 1;
+  }
+`;
+
+const ComingSoonChia = () => {
+  const { t } = useTranslation(['home', 'common']);
+  return (
+    <EarningBox>
+      <HeadSplit>
+        {/* <CoinIcon src={getCoinIconSrc('zec')} /> */}
+        <UnknownCoin>
+          <Img alt="xch chia coin" src={chiaImage} />
+        </UnknownCoin>
+        <HeadContent>
+          <h2>XCH Chia Coming Soon!</h2>
+          <p>
+            We are ready to launch our Chia pool. Stay tuned for more details or
+            check news on social platforms or subscribe to be one of the first
+            Chia miners on Flexpool!
+          </p>
+          <Formik
+            initialValues={{ email: '' }}
+            onSubmit={({ email }, { setSubmitting }) => {
+              console.log(email);
+              setSubmitting(false);
+            }}
+            validationSchema={yup.object().shape({
+              email: yup
+                .string()
+                .email(t('common:errors.email_invalid'))
+                .required(t('common:errors.email_required')),
+            })}
+          >
+            <Form>
+              <FormContainer>
+                <TextField name="email" placeholder="your@email.fpl" />
+                <Submit variant={undefined}>Subscribe!</Submit>
+              </FormContainer>
+            </Form>
+          </Formik>
+        </HeadContent>
+      </HeadSplit>
+      <IntervalContainer>
+        <StartMiningContainer>
+          <ButtonGroup>
+            <Button variant="danger" as={LinkOut} href={REDDIT_LINK}>
+              <FaReddit /> &nbsp; Reddit
+            </Button>{' '}
+            <Button variant="primary" as={LinkOut} href={TELEGRAM_LINK}>
+              <FaTelegram /> &nbsp; Telegram
+            </Button>{' '}
+            <Button variant="warning" as={LinkOut} href={DISCORD_LINK}>
+              <FaDiscord />
+              &nbsp;Discord
             </Button>
-          </StartMiningContainer>
-        )}
+          </ButtonGroup>
+        </StartMiningContainer>
       </IntervalContainer>
     </EarningBox>
   );
@@ -276,34 +393,7 @@ export const CoinEarnings = () => {
         ) : (
           <CoinEarningsItem />
         )}
-        <EarningBox>
-          <HeadSplit>
-            {/* <CoinIcon src={getCoinIconSrc('zec')} /> */}
-            <UnknownCoin>
-              <FaRocket />
-            </UnknownCoin>
-            <HeadContent>
-              <h2>{t('coin_earnings_cards.more_title')}</h2>
-              <p>{t('coin_earnings_cards.more_description')}</p>
-            </HeadContent>
-          </HeadSplit>
-          <IntervalContainer>
-            <StartMiningContainer>
-              <ButtonGroup>
-                <Button variant="danger" as={LinkOut} href={REDDIT_LINK}>
-                  <FaReddit /> &nbsp; Reddit
-                </Button>{' '}
-                <Button variant="primary" as={LinkOut} href={TELEGRAM_LINK}>
-                  <FaTelegram /> &nbsp; Telegram
-                </Button>{' '}
-                <Button variant="warning" as={LinkOut} href={DISCORD_LINK}>
-                  <FaDiscord />
-                  &nbsp;Discord
-                </Button>
-              </ButtonGroup>
-            </StartMiningContainer>
-          </IntervalContainer>
-        </EarningBox>
+        <ComingSoonChia />
       </Container>
     </Content>
   );
