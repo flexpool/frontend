@@ -20,7 +20,7 @@ export const availableLangs = [
     flag: 'ru',
   },
   {
-    code: 'pt-PT',
+    code: 'pt-BR',
     title: 'Português (Brasil)',
     flag: 'br',
   },
