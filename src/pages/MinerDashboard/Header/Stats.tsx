@@ -77,7 +77,7 @@ const BalanceProgressBar: React.FC<{
   const [progress, setProgress] = useState(0);
   React.useLayoutEffect(() => {
     setTimeout(() => {
-      setProgress(Math.round(value));
+      setProgress(value);
     }, 100);
   }, [value]);
   const { t } = useTranslation('dashboard');
