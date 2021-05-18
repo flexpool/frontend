@@ -10,29 +10,19 @@ export const availableLangs = [
     flag: 'gb',
   },
   {
+    code: 'fr',
+    title: 'Français',
+    flag: 'fr',
+  },
+  {
     code: 'ru',
     title: 'Русский',
     flag: 'ru',
   },
   {
     code: 'pt-PT',
-    title: 'Português',
-    flag: 'pt',
-  },
-  {
-    code: 'de',
-    title: 'Deutsch',
-    flag: 'de',
-  },
-  {
-    code: 'es-ES',
-    title: 'Español',
-    flag: 'es',
-  },
-  {
-    code: 'zh-CN',
-    title: '中文',
-    flag: 'cn',
+    title: 'Português (Brasil)',
+    flag: 'br',
   },
   {
     code: 'cs',
