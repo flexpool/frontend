@@ -1,26 +1,26 @@
 ---
-title: 'What is Hashrate?'
+title: 'Wat is Hashrate?'
 level: beginner
 ---
 
-Hashrate is a measure of the amount of Hashes your worker is processing per second - the higher your hashrate the more likely you are to find more Shares in a given amount of time.
+Hashrate is een meting van het aantal hashes dat je worker per seconde verwerkt - hoe hoger je hashrate, hoe groter de kans dat je meer shares vindt binnen een bepaalde tijdsspanne.
 
-Hashrates are measured using SI (Metric International System of Units) prefixes:
+Hashrates worden gemeten met eenheden uit het SI-stelsel (Internationale Stelsel van Eenheden):
 
-| Unit | Description                                                                    |
-| ---- | ------------------------------------------------------------------------------ |
-| H/s  | Hashes per Second - Number of individual hashes each second                    |
-| KH/s | KiloHashes per Second - Thousands of hashes each second, equal to 1000 H/s     |
-| MH/s | MegaHashes per Second - Millions of hashes each second, equal to 1000 KH/s     |
-| GH/s | GigaHashes per Second - Billions of hashes each second, equal to 1000 MH/s     |
-| TH/s | TeraHashes per Second - Trillions of hashes each second, equal to 1000 GH/s    |
-| PH/s | PetaHashes per Second - Quadrillions of hashes each second, equal to 1000 TH/s |
-| ...  | And more                                                                       |
+| Eenheid | Beschrijving                                                                    |
+| ------- | ------------------------------------------------------------------------------- |
+| H/s     | Hashes per seconde - Aantal individuele hashes per seconde                      |
+| KH/s    | KiloHashes per Seconde - Duizenden hashes per seconde, gelijk aan 1000 H/s      |
+| MH/s    | MegaHashes per seconde - Miljoenen hashes per seconde, gelijk aan 1000 KH/s     |
+| GH/s    | GigaHashes per seconde - miljarden hashes per seconde, gelijk aan 1000 MH/s     |
+| TH/s    | TeraHashes per Seconde - Triljoenen hashes per seconde, gelijk aan 1000 GH/s    |
+| PH/s    | PetaHashes per seconde - Quadriljoenen hashes per seconde, gelijk aan 1000 TH/s |
+| ...     | En meer                                                                         |
 
-In your dashboard, you have three hashrates shown:
+In je overzicht staan drie hashrates:
 
-| Hashrate Type           | Description                                                                                                                                                               |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Effective               | The hashrate the pool thinks you have based on the amount of shares the pool is recieving from you, this can vary a lot over time due to Luck.                            |
-| Average \[Effective\] | The rolling 24 hour average of your Effective hashrate, this should be close to your Reported Hashrate                                                                    |
-| Reported                | The hashrate your mining software is reporting to the pool (this is not taken into account for calculating rewards but is shown for comparison to the Effective hashrate) |
+| Type Hashrate             | Beschrijving                                                                                                                                                                           |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Effectief                 | De hashrate die de pool denkt dat je hebt gebaseerd op het aantal shares dat de pool van je ontvangt. Dit kan sterk schommelen omwille van geluk.                                      |
+| Gemiddeld \[Effectief\] | Het voortschrijdend gemiddelde op 24 uur van je effectieve hashrate. Dit zou dicht bij je gerapporteerde hashrate moeten liggen                                                        |
+| Gerapporteerd             | De hashrate die je mining software naar de pool rapporteert (hier wordt geen rekening mee gehouden om beloningen te berekenen, maar dient als vergelijking met de effectieve hashrate) |

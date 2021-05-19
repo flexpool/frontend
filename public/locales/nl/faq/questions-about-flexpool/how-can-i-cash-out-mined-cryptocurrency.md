@@ -1,5 +1,5 @@
 ---
-title: How can I cash out mined cryptocurrency?
+title: Hoe kan ik geminede cryptocurrency innen?
 ---
 
-In your dashboard, you can see section with your unpaid balance. As mining happens in real-time, it would be silly to make transactions every time you receive any reward. That being said, the pool batches the transactions. You can see the payout limit on your dashboard, which essentially tells what balance you need to reach before the pool will send a transaction to you
+Op het overzicht zie je een deel met je onbetaald saldo. Aangezien je in real-time minet, zou het gek zijn om transacties te maken telkens je een beloning kreeg. Dat gezegd zijnde bundelt de pool de transacties. Je ziet de uitbetalingslimiet op je overzicht. Daar staat welk saldo je moet halen vooraleer de pool je een transactie toestuurt

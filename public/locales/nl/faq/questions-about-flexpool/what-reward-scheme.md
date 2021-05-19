@@ -1,5 +1,5 @@
 ---
-title: 'What reward scheme Flexpool uses?'
+title: 'Welk beloningsschema gebruikt Flexpool?'
 ---
 
-We use PPLNS (Pay-Per-Last-N-Shares) Reward Scheme, where _N_ is 1M shares.
+We gebruiken PPLNS (Pay-Per-Last-N-Shares) beloningsschema, waarbij _N_ gelijk is aan 1M shares.

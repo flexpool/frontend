@@ -15,6 +15,11 @@ export const availableLangs = [
     flag: 'fr',
   },
   {
+    code: 'nl',
+    title: 'Nederlands',
+    flag: 'nl',
+  },
+  {
     code: 'ru',
     title: 'Русский',
     flag: 'ru',

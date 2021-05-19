@@ -1,7 +1,7 @@
 ---
-title: What is unpaid balance? How payouts are processed?
+title: Wat is het onbetaald saldo? Hoe worden uitbetalingen verwerkt?
 ---
 
-Flexpool does not pay to the Ethereum wallet continuously. Since every transaction has a static fee no matter the transaction value, it is better to batch funds in bigger values; hence, paying less transaction fees.
+Flexpool betaalt niet voortdurend aan de Ethereum portemonnee. Elke transactie heeft ongeacht de waarde ervan een vaste kost. Daarom is het beter om fondsen in grotere waarden te groeperen en zo minder transactiekosten te betalen.
 
-To save the most on fees, we recommend you have the highest payout limit possible. 
+Om transactiekosten uit te sparen, raden we aan dat je je uitbetalingslimiet zo hoog mogelijk zet. 
