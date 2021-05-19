@@ -84,9 +84,9 @@ export const useDisplaySnackOnSearchParams = () => {
     /**
      * remove snack info from the URL
      */
-    // replace({
-    //   search: qs.stringify(rest),
-    // });
+    replace({
+      search: qs.stringify(rest),
+    });
   }, [search, d, replace, t]);
 
   return null;
