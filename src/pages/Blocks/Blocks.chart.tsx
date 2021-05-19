@@ -16,7 +16,6 @@ import {
   color,
   NumberFormatter,
   create,
-  Legend,
   XYChart,
   XYCursor,
   DateAxis,
@@ -176,20 +175,6 @@ export const BlocksChart = () => {
           );
         });
       }
-
-      x.legend = new Legend();
-      x.legend.data = [
-        {
-          name: t('chart.difficulty'),
-          fill: '#a6b0c1',
-        },
-        {
-          name: t('chart.blocks_per_day'),
-          fill: getComputedStyle(document.body)
-            .getPropertyValue('--success')
-            .trim(),
-        },
-      ];
 
       return () => {
         x.dispose();
