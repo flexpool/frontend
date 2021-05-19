@@ -116,7 +116,11 @@ export const BlocksChart = () => {
             );
           }
 
-          return color('#bbb');
+          return color(
+            getComputedStyle(document.body)
+              .getPropertyValue('--bad-luck-color')
+              .trim()
+          );
         }
       );
 
@@ -131,7 +135,11 @@ export const BlocksChart = () => {
             );
           }
 
-          return color('#bbb');
+          return color(
+            getComputedStyle(document.body)
+              .getPropertyValue('--bad-luck-color')
+              .trim()
+          );
         }
       );
 
