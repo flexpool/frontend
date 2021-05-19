@@ -107,7 +107,7 @@ export const BlocksChart = () => {
 
       blockCountSeries.columns.template.adapter.add(
         'fill',
-        function (fill, target) {
+        function (_, target) {
           if ((target.dataItem?.dataContext as DataContext).luck <= 1) {
             return color(
               getComputedStyle(document.body)
@@ -126,7 +126,7 @@ export const BlocksChart = () => {
 
       blockCountSeries.columns.template.adapter.add(
         'stroke',
-        function (fill, target) {
+        function (_, target) {
           if ((target.dataItem?.dataContext as DataContext).luck <= 1) {
             return color(
               getComputedStyle(document.body)
