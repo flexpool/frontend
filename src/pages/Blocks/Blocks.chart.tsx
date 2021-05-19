@@ -61,6 +61,7 @@ export const BlocksChart = () => {
         difficulty: item.difficulty,
         blockCount: item.blockCount,
         rewards: item.rewards / Math.pow(10, activeCoin.decimalPlaces),
+        luck: item.luck,
       }));
 
       const difficultyAxis = x.yAxes.push(new ValueAxis());
@@ -70,6 +71,7 @@ export const BlocksChart = () => {
       difficultyAxis.renderer.opposite = true;
       const blockCountAxis = x.yAxes.push(new ValueAxis());
       blockCountAxis.numberFormatter = new NumberFormatter();
+      difficultyAxis.numberFormatter.numberFormat = '#.0 aH';
       blockCountAxis.renderer.grid.template.disabled = true;
       blockCountAxis.min = 0;
 
@@ -148,6 +150,24 @@ export const BlocksChart = () => {
       }
       scrollbarX.thumb.background.fill = color('#67dcab');
       x.scrollbarX = scrollbarX;
+
+      x.zoomOutButton.disabled = true;
+
+      // Make prezooming to the last month active
+      // if the API returns more than 30 days.
+      // At the moment of developing this feature,
+      // the new API is not yet in production.
+      // Can be removed after the new API version it out.
+      if (data.length > 30) {
+        x.events.on('ready', function () {
+          dateAxis.zoomToDates(
+            data[60 - 1].date,
+            data[90 - 1].date,
+            true,
+            true
+          );
+        });
+      }
 
       x.legend = new Legend();
       x.legend.data = [
