@@ -45,7 +45,12 @@ export const BlocksChart = () => {
     if (blocksChartState.data.length > 1 && activeCoin) {
       let x = create('blocksChart', XYChart);
 
-      x.colors.list = [color('#a6b0c1'), color('#0069ff')];
+      x.colors.list = [
+        color('#a6b0c1'),
+        color(
+          getComputedStyle(document.body).getPropertyValue('--success').trim()
+        ),
+      ];
 
       x.responsive.enabled = true;
       x.responsive.useDefault = false;
@@ -78,7 +83,8 @@ export const BlocksChart = () => {
       difficultySeries.name = t('chart.difficulty');
       difficultySeries.yAxis = difficultyAxis;
       difficultySeries.dataFields.valueY = 'difficulty';
-      difficultySeries.tooltipText = `{valueY.value.formatNumber("#.00 aH")}`;
+      difficultySeries.tooltipText =
+        t('Difficulty') + `: {valueY.value.formatNumber("#.00 aH")}`;
       difficultySeries.strokeWidth = 2;
       difficultySeries.tensionX = 0.9;
       difficultySeries.tensionY = 0.9;
@@ -88,7 +94,44 @@ export const BlocksChart = () => {
       blockCountSeries.name = t('chart.blocks_per_day');
       blockCountSeries.yAxis = blockCountAxis;
       blockCountSeries.dataFields.valueY = 'blockCount';
-      blockCountSeries.tooltipText = `{valueY.value}`;
+      blockCountSeries.tooltipText =
+        `{valueY.value.formatNumber("#")} ` +
+        t('Blocks') +
+        ` @ {dataItem.dataContext.luck.formatNumber("#.0%")}`;
+
+      interface DataContext {
+        luck: number;
+      }
+
+      blockCountSeries.columns.template.adapter.add(
+        'fill',
+        function (fill, target) {
+          if ((target.dataItem?.dataContext as DataContext).luck <= 1) {
+            return color(
+              getComputedStyle(document.body)
+                .getPropertyValue('--success')
+                .trim()
+            );
+          }
+
+          return color('#bbb');
+        }
+      );
+
+      blockCountSeries.columns.template.adapter.add(
+        'stroke',
+        function (fill, target) {
+          if ((target.dataItem?.dataContext as DataContext).luck <= 1) {
+            return color(
+              getComputedStyle(document.body)
+                .getPropertyValue('--success')
+                .trim()
+            );
+          }
+
+          return color('#bbb');
+        }
+      );
 
       x.cursor = new XYCursor();
 
@@ -107,6 +150,18 @@ export const BlocksChart = () => {
       x.scrollbarX = scrollbarX;
 
       x.legend = new Legend();
+      x.legend.data = [
+        {
+          name: t('chart.difficulty'),
+          fill: '#a6b0c1',
+        },
+        {
+          name: t('chart.blocks_per_day'),
+          fill: getComputedStyle(document.body)
+            .getPropertyValue('--success')
+            .trim(),
+        },
+      ];
 
       return () => {
         x.dispose();
