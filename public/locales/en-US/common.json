@@ -66,8 +66,8 @@
     "emailConfirmed": {
       "title": "Your email has been confirmed"
     },
-    "emailUnsibscribed": {
-      "title": "You've been removed from the email news subscription"
+    "emailUnsubscribed": {
+      "title": "You've successfully unsubscribed from email notifications"
     }
   }
 }
