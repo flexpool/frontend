@@ -61,5 +61,13 @@
   },
   "date_time": {
     "now": "now"
+  },
+  "snacks": {
+    "emailConfirmed": {
+      "title": "Your email has been confirmed"
+    },
+    "emailUnsubscribed": {
+      "title": "You've successfully unsubscribed from email notifications"
+    }
   }
 }
