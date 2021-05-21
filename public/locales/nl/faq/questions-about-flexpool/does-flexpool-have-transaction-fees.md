@@ -1,5 +1,5 @@
 ---
-title: Does Flexpool charge a fee for every transaction?
+title: Rekent Flexpool een kost aan voor elke transactie?
 ---
 
-**No**. We don't charge any additional transaction fees from our side. The only fee you will pay is the network transaction fee, that is static regardless of the transaction value.
+**Nee**. Wij rekenen geen extra transactiekosten aan. De transactiekost van het netwerk is de enige kost die je betaalt, die is vast ongeacht de transactiewaarde.

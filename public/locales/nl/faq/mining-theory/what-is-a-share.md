@@ -1,6 +1,6 @@
 ---
-title: What is a Share?
+title: Wat is een share?
 level: beginner
 ---
 
-Share is a part of the block the pool is working on. By hashing on the pool, your rig solves/mines these puzzles, and submits them to the pool. You are getting paid for those.
+Een share is een deel van de block waaraan de pool bezig is. Door te hashen, lost je rig puzzels op en stuurt het die oplossingen naar de pool. Daar word je voor betaald.

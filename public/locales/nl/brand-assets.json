@@ -1,35 +1,35 @@
 {
-  "head_title": "Brand assets",
+  "head_title": "Merkactiva",
   "brand_name": {
-    "title": "Our brand name",
-    "description": "Our brand name is <b>Flexpool.io</b>. Words \"Flex\" and \"pool\" combined together with one capital F and the .io ending."
+    "title": "Onze merknaam",
+    "description": "Onze merknaam is <b>Flexpool.io</b>. De woorden \"Flex\" en \"pool\" samen met een hoofdletter F en .io op het einde."
   },
   "colors": {
-    "title": "Colors",
-    "accent": "Accent Color",
-    "blue": "Blue Color",
-    "green": "Green Color",
-    "yellow": "Yellow Color",
-    "red": "Red Color"
+    "title": "Kleuren",
+    "accent": "Accentkleur",
+    "blue": "Blauw",
+    "green": "Groen",
+    "yellow": "Geel",
+    "red": "Rood"
   },
   "typo": {
-    "title": "Typography",
-    "description": "We use <font>{{fontName}}</font> across our website."
+    "title": "Typografie",
+    "description": "We gebruiken <font>{{fontName}}</font> op onze website."
   },
   "guidelines": {
-    "title": "Branding Guidelines",
-    "description": "By using our Branding Assets, you must follow our branding guidelines:",
-    "item_one": "You are not allowed to alter the logo. This includes shape and color changes.",
-    "item_two": "You are not allowed to use Flexpool.io Brand to imply a relationship and/or an affiliation with any other business unless we have announced the partnership. Example: \"... in partnership with Flexpool.io.\"",
-    "item_three": "You are not allowed to use the Flexpool.io Branding in illegal and promotional context."
+    "title": "Richtlijnen voor merken",
+    "description": "Wanneer je gebruik maakt van onze Branding activa, moet je volgende branding richtlijnen volgen:",
+    "item_one": "Je mag het logo niet wijzigen. Noch vorm noch kleur mag je aanpassen.",
+    "item_two": "Je mag het merk Flexpool.io niet gebruiken bij samenwerkingen of aansluitingen met andere bedrijven tenzij we die samenwerking hebben aangekondigd. Voorbeeld: \"... in samenwerking met Flexpool.io.\"",
+    "item_three": "Je mag het merk Flexpool.io niet gebruiken in een illegale of promotionele context."
   },
   "downloads": {
     "title": "Downloads",
-    "description": "We have collected a package containing all types of Flexpool.io logos for both Light and Dark themes.",
-    "cta": "Download the Branding Pack"
+    "description": "We hebben een pakket gemaakt met alle soorten Flexpool.io logo's, zowel voor lichte als donkere thema's.",
+    "cta": "Download het branding pakket"
   },
   "legal": {
-    "title": "Legal Notices",
-    "description": "By using our Branding Assets, you agree with the Branding Guidelines and our <terms>Terms</terms>. If you need to get assistance about the usage of the Flexpool.io branding, you can contact us at <email>{{email}}</email>"
+    "title": "Juridische mededelingen",
+    "description": "Door gebruik te maken van onze branding activa ga je akkoord met onze branding richtlijnen en onze <terms>voorwaarden</terms>. Als je ondersteuning nodig hebt bij het gebruik van Flexpool.io branding, kan je contact met ons opnemen via <email>{{email}}</email>"
   }
 }

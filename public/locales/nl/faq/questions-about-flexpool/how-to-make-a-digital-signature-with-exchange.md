@@ -1,5 +1,5 @@
 ---
-title: How can I make a Digital Signature with the Exchange wallet?
+title: Hoe kan ik een digitale handtekening maken met de exchange wallet?
 ---
 
-Unfortunately, there is no way to make a digital signature with the exchange since you are not the actual wallet owner.
+Jammer genoeg is het onmogelijk om een digitale handtekening te maken met de exchange omdat je niet de echte eigenaar bent van de wallet.
