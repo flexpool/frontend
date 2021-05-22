@@ -43,7 +43,12 @@
     "orphan": "Orphan",
     "uncle": "Uncle"
   },
+  "chart": {
+    "title": "Bloky tento měsíc",
+    "blocks_per_day": "Bloků za den",
+    "difficulty": "Obtížnost"
+  },
   "waiting_confirmation_tooltip": "Čekání na potvrzení",
-  "orphan_tooltip": "Orphan bloky jsou bloky, které nebyly zahrnuty do kanonického řetězce. Obvykle k tomu dochází kvůli interním problémům s infrastrukturou těžebního poolu nebo kvůli reorganizacím.",
+  "orphan_tooltip": "Orphan bloky jsou bloky, které nebyly zahrnuty do blockchainu. Takové bloky se většinou objevují velmi zřídka, například při reorganizaci blockchainu.",
   "uncle_tooltip": "Uncly bloky jsou bloky, které mají stejný nadřazený hash a číslo. Jsou způsobeny kvůli latenci mezi těžebními pooly. Obvykle se objevují, když dva těžící pooly vytěží dva bloky současně, oba potom mají stejné číslo bloku."
 }

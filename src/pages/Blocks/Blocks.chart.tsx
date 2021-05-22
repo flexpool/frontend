@@ -16,7 +16,6 @@ import {
   color,
   NumberFormatter,
   create,
-  Legend,
   XYChart,
   XYCursor,
   DateAxis,
@@ -45,7 +44,12 @@ export const BlocksChart = () => {
     if (blocksChartState.data.length > 1 && activeCoin) {
       let x = create('blocksChart', XYChart);
 
-      x.colors.list = [color('#a6b0c1'), color('#0069ff')];
+      x.colors.list = [
+        color('#a6b0c1'),
+        color(
+          getComputedStyle(document.body).getPropertyValue('--success').trim()
+        ),
+      ];
 
       x.responsive.enabled = true;
       x.responsive.useDefault = false;
@@ -56,6 +60,7 @@ export const BlocksChart = () => {
         difficulty: item.difficulty,
         blockCount: item.blockCount,
         rewards: item.rewards / Math.pow(10, activeCoin.decimalPlaces),
+        luck: item.luck,
       }));
 
       const difficultyAxis = x.yAxes.push(new ValueAxis());
@@ -65,6 +70,7 @@ export const BlocksChart = () => {
       difficultyAxis.renderer.opposite = true;
       const blockCountAxis = x.yAxes.push(new ValueAxis());
       blockCountAxis.numberFormatter = new NumberFormatter();
+      difficultyAxis.numberFormatter.numberFormat = '#.0 aH';
       blockCountAxis.renderer.grid.template.disabled = true;
       blockCountAxis.min = 0;
 
@@ -78,7 +84,8 @@ export const BlocksChart = () => {
       difficultySeries.name = t('chart.difficulty');
       difficultySeries.yAxis = difficultyAxis;
       difficultySeries.dataFields.valueY = 'difficulty';
-      difficultySeries.tooltipText = `{valueY.value.formatNumber("#.00 aH")}`;
+      difficultySeries.tooltipText =
+        t('Difficulty') + `: {valueY.value.formatNumber("#.00 aH")}`;
       difficultySeries.strokeWidth = 2;
       difficultySeries.tensionX = 0.9;
       difficultySeries.tensionY = 0.9;
@@ -88,7 +95,52 @@ export const BlocksChart = () => {
       blockCountSeries.name = t('chart.blocks_per_day');
       blockCountSeries.yAxis = blockCountAxis;
       blockCountSeries.dataFields.valueY = 'blockCount';
-      blockCountSeries.tooltipText = `{valueY.value}`;
+      blockCountSeries.tooltipText =
+        `{valueY.value.formatNumber("#")} ` +
+        t('Blocks') +
+        ` @ {dataItem.dataContext.luck.formatNumber("#.0%")}`;
+
+      interface DataContext {
+        luck: number;
+      }
+
+      blockCountSeries.columns.template.adapter.add(
+        'fill',
+        function (_, target) {
+          if ((target.dataItem?.dataContext as DataContext).luck <= 1) {
+            return color(
+              getComputedStyle(document.body)
+                .getPropertyValue('--success')
+                .trim()
+            );
+          }
+
+          return color(
+            getComputedStyle(document.body)
+              .getPropertyValue('--bad-luck-color')
+              .trim()
+          );
+        }
+      );
+
+      blockCountSeries.columns.template.adapter.add(
+        'stroke',
+        function (_, target) {
+          if ((target.dataItem?.dataContext as DataContext).luck <= 1) {
+            return color(
+              getComputedStyle(document.body)
+                .getPropertyValue('--success')
+                .trim()
+            );
+          }
+
+          return color(
+            getComputedStyle(document.body)
+              .getPropertyValue('--bad-luck-color')
+              .trim()
+          );
+        }
+      );
 
       x.cursor = new XYCursor();
 
@@ -106,7 +158,23 @@ export const BlocksChart = () => {
       scrollbarX.thumb.background.fill = color('#67dcab');
       x.scrollbarX = scrollbarX;
 
-      x.legend = new Legend();
+      x.zoomOutButton.disabled = true;
+
+      // Make prezooming to the last month active
+      // if the API returns more than 30 days.
+      // At the moment of developing this feature,
+      // the new API is not yet in production.
+      // Can be removed after the new API version it out.
+      if (data.length > 30) {
+        x.events.on('ready', function () {
+          dateAxis.zoomToDates(
+            data[60 - 1].date,
+            data[90 - 1].date,
+            true,
+            true
+          );
+        });
+      }
 
       return () => {
         x.dispose();

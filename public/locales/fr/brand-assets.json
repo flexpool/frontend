@@ -1,35 +1,35 @@
 {
-  "head_title": "Brand assets",
+  "head_title": "Actifs de la marque",
   "brand_name": {
-    "title": "Our brand name",
-    "description": "Our brand name is <b>Flexpool.io</b>. Words \"Flex\" and \"pool\" combined together with one capital F and the .io ending."
+    "title": "Notre nom de marque",
+    "description": "Notre nom de marque est <b>Flexpool.io</b>. Les mots \"Flex\" et \"pool\" combinés ensemble avec un F majuscule et la terminaison .io."
   },
   "colors": {
-    "title": "Colors",
-    "accent": "Accent Color",
-    "blue": "Blue Color",
-    "green": "Green Color",
-    "yellow": "Yellow Color",
-    "red": "Red Color"
+    "title": "Couleurs",
+    "accent": "Couleur d'accentuation",
+    "blue": "Couleur Bleue",
+    "green": "Couleur Verte",
+    "yellow": "Couleur jaune",
+    "red": "Couleur Rouge"
   },
   "typo": {
-    "title": "Typography",
-    "description": "We use <font>{{fontName}}</font> across our website."
+    "title": "Typographie",
+    "description": "Nous utilisons <font>{{fontName}}</font> sur notre site Web."
   },
   "guidelines": {
-    "title": "Branding Guidelines",
-    "description": "By using our Branding Assets, you must follow our branding guidelines:",
-    "item_one": "You are not allowed to alter the logo. This includes shape and color changes.",
-    "item_two": "You are not allowed to use Flexpool.io Brand to imply a relationship and/or an affiliation with any other business unless we have announced the partnership. Example: \"... in partnership with Flexpool.io.\"",
-    "item_three": "You are not allowed to use the Flexpool.io Branding in illegal and promotional context."
+    "title": "Lignes directrices de la marque",
+    "description": "En utilisant nos actifs de marque, vous devez suivre nos directives de marque:",
+    "item_one": "Vous n'êtes pas autorisé à modifier le logo. Cela inclut les changements de forme et de couleur.",
+    "item_two": "Vous n'êtes pas autorisé à utiliser la marque Flexpool.io pour impliquer une relation et/ou une affiliation avec toute autre entreprise à moins que nous ayons annoncé le partenariat. Exemple : \"... en partenariat avec Flexpool.io\"",
+    "item_three": "Vous n'êtes pas autorisé à utiliser la marque Flexpool.io dans le contexte illégal et promotionnel."
   },
   "downloads": {
-    "title": "Downloads",
-    "description": "We have collected a package containing all types of Flexpool.io logos for both Light and Dark themes.",
-    "cta": "Download the Branding Pack"
+    "title": "Téléchargements",
+    "description": "Nous avons rassemblé un paquet contenant tous les types de logos Flexpool.io pour les thèmes Lumineux et Sombre.",
+    "cta": "Télécharger le Pack de Marque"
   },
   "legal": {
-    "title": "Legal Notices",
-    "description": "By using our Branding Assets, you agree with the Branding Guidelines and our <terms>Terms</terms>. If you need to get assistance about the usage of the Flexpool.io branding, you can contact us at <email>{{email}}</email>"
+    "title": "Mentions légales",
+    "description": "En utilisant nos actifs de marque, vous acceptez les directives de marque et nos <terms>Terms</terms>. Si vous avez besoin d'obtenir une assistance sur l'utilisation de la marque Flexpool.io, vous pouvez nous contacter à <email>{{email}}</email>"
   }
 }

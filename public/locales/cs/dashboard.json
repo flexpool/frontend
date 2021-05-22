@@ -4,16 +4,21 @@
     "title": "Nastavení",
     "ip": "IP adresa pro ověření",
     "ip_hint": "Tip: Prohlížíte tuto stránku z",
+    "ip_description": "Pokud tvůj rig používá proxy adresu, například při duálním těžení ZILu, prosím použij tu adresu namísto IP tvého rigu.",
     "payout": {
       "title": "Nastavení vyplácení",
       "limit": "Limit vyplacení (min: {{min}})",
       "limit_desc": "Vyplacení proběhne v okamžik, kdy zůstatek překročí {{value}}.",
       "limit_err_higher": "Musí být vyšší než {{min}}",
-      "gas_limit": "Limit transakčního poplatku",
+      "gas_limit": "Limit trans. poplatku",
       "gas_limit_desc": "Váš poplatek za transakci bude omezen na {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} limit výplaty). Vyplácení zůstatku neproběhne, pokud bude poplatek za transakci vyšší.",
       "gas_limit_zero": "Transakční poplatek nebude omezen.",
       "submit": "Aplikovat změny"
     },
+    "payout_warning": [
+      "Silně doporučujeme nastavit si vyšší limit vyplácení pro snížení celkového počtu transakcí. Méně transakcí znamená méně plateb za poplatky sítě.",
+      "Jen ty jsi zodpovědný za transakční poplatky. Jsme za to nastavit si nižší limit výše transakčního poplatku. Zabrání to především náhlým růstům poplatků za transakci."
+    ],
     "notifications": {
       "title": "E-mailová upozornění",
       "email_enabled": "E-mailová upozornění zapnuta",
@@ -30,16 +35,21 @@
     "greet_period_afternoon": "Dobré odpoledne",
     "greet_period_evening": "Dobrý večer",
     "greet_desc": "{{count}} rig těží {{coin}} a celkově hashuje {{hashrate}}.",
-    "greet_desc_1": "\"{{count}} workeři těží {{coin}} a hashují {{hashrate}}\"",
-    "greet_desc_2": "\"{{count}} workerů těží {{coin}} a hashují {{hashrate}}\"",
+    "greet_desc_1": "{{count}} workeři těží {{coin}} a hashují {{hashrate}}",
+    "greet_desc_2": "{{count}} workerů těží {{coin}} a hashují {{hashrate}}",
     "greet_desc_3": "",
     "greet_desc_4": "",
     "greet_desc_5": "",
     "greet_desc_plural": ".",
     "info_payout_limit": "Limit vyplacení",
     "info_gas_limit": "Limit transakčního poplatku",
+    "info_gas_limit_none": "Žádný",
+    "info_gas_limit_detail": "{{percent}} z hodnoty transakce.",
+    "info_gas_limit_detail_none": "Limit poplatků nenastaven.",
+    "info_gas_limit_detail_na": "Nedostupné.",
     "info_joined": "Připojil se",
     "info_joined_tooltip": "Tvůj první share byl zaznamenán",
+    "info_joined_tooltip_empty": "Nebyl nalezen žádný záznam.",
     "info_coin_price": "{{coin}} hodnota",
     "stat_workers": "Workeři online/offline",
     "stat_unpaid_balance": "Nevyplacený zůstatek",
@@ -121,7 +131,11 @@
       "fee": "{{value}} poplatek",
       "average": "Průměrná cena transakčního poplatku",
       "average_percent": "Průměrná cena transakčního poplatku %",
-      "average_cta": "Tipy jak snížit poplatky"
+      "average_cta": "Tipy jak snížit poplatky",
+      "average_cta_tooltip": [
+        "1. Nastavení vyššího limitu vyplacení sníží celkový počet transakcí. Zaplatíš tedy dohromady méně na poplatcích.",
+        "2. Nastav si limit poplatku v nastavení. Pokud dosáhneš limitu vyplacení, transakce proběhne jen tehdy, pokud limit transakčního poplatku je vyšší než aktuální poplatek sítě."
+      ]
     },
     "table": {
       "title": "Vyplácení",
@@ -172,7 +186,7 @@
         "name": "Název",
         "reported_hashrate": "Nahlášený hashrate",
         "current_e_hashrate": "Aktuální e. hashrate",
-        "average_hashrate": "Průměrný hashrate",
+        "average_e_hashrate": "Průměrný efektivní hashrate",
         "valid": "Platné shary",
         "stale": "Stale shary",
         "invalid": "Neplatné shary",

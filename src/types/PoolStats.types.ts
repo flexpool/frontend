@@ -13,4 +13,5 @@ export type ApiBlocksChartItem = {
   difficulty: number;
   rewards: number;
   timestamp: number;
+  luck: number;
 };

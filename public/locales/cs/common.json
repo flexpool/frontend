@@ -40,7 +40,6 @@
       "title": "Nastavení"
     },
     "bottom_message": "© 2020-{{currentYear}} Flexpool.io nebo jeho partnerů. Všechna práva vyhrazena.",
-    "open_source": "Open Source",
     "translation_help": "Pomozte nám s překladem"
   },
   "theme": {
@@ -60,6 +59,6 @@
     "email_required": "Zadejte prosím svou e-mailovou adresu"
   },
   "date_time": {
-    "now": "now"
+    "now": "nyní"
   }
 }

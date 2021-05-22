@@ -28,6 +28,7 @@ export const useLocalizedCurrencyFormatter = (currency?: string) => {
     style: 'currency',
     currency: currency || counterTicker,
     maximumFractionDigits: 2,
+    currencyDisplay: 'narrowSymbol',
   });
 };
 

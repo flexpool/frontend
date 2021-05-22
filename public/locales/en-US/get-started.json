@@ -17,10 +17,10 @@
       "title": "Select your region",
       "description": "For the best performance, you should choose server with lowest latency to your mining rig or computer. The chart is displaying latency between servers and this device.",
       "table_head": {
-        "location": "Region Location",
-        "domain": "Domain",
+        "location": "Region Name",
+        "domain": "Endpoint",
         "port": "Port",
-        "average_lat": "Average Latency"
+        "average_lat": "Latency"
       },
       "fastest": "Fastest",
       "backup": "Backup"
@@ -77,9 +77,6 @@
             "description": "Best miner for 4GB zombie mode."
           },
           {
-            "description": "Open-source ethash miner with no fees. Brought by Ethereum community."
-          },
-          {
             "description": "Proprietary Ethash miner with low dev fee."
           },
           {
@@ -119,7 +116,7 @@
       "title": "Fill in Flexpool's pool settings and your wallet address",
       "description": [
         "Good, now you need to fill the pool settings. In the Stratum hostname or IP, you should select server based on your market choice (e.g. German server for European market). Check the list below. As a port,  high-difficulty port <strong>14444</strong> is available for NiceHash rental.",
-        "Specify your Ethereum wallet address as the username. Use \"x\" as a password."
+        "Specify your wallet address as the username. Use \"x\" as a password."
       ]
     },
     "step_three": {

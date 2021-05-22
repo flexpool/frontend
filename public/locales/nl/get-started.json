@@ -1,123 +1,159 @@
 {
   "list": {
-    "head_title": "Start mining with us",
-    "title": "Get started with mining on Flexpool today!"
+    "head_title": "Mine met ons mee",
+    "title": "Begin vandaag met minen op Flexpool!",
+    "nicehash_rental_button": "NiceHash Rental"
   },
   "detail": {
     "title": "{{coin}} mining",
     "wallet": {
-      "title": "Get your wallet address",
-      "desc_one": "The easiest way to get a wallet is to register on a cryptocurrency exchange like <binance>Binance (Ref)</binance> or <coinbase>Coinbase</coinbase>.",
-      "desc_two": "Although exchanges are comfortable and easy to use, they are not very secure. You can use a non-custodial wallet, but the safest way to store your funds is to use a <strong>hardware wallet</strong>. <ledger>Ledger</ledger> and <trezor>Trezor</trezor> are the most popular ones.",
-      "wallet_address": "Wallet Address",
-      "invalid_address": "Invalid wallet address"
+      "title": "Neem je wallet address",
+      "desc_one": "De makkelijkste manier om een wallet te bekomen is door je te registreren op een cryptocurrency exchange zoals <binance>Binance (Ref)</binance> of <coinbase>Coinbase</coinbase>.",
+      "desc_two": "Ook al zijn exchanges comfortabel en makkelijk in gebruik, zijn ze niet zo veilig. Je kan een wallet zonder bewaarder gebruiken, maar de veiligste manier om je fondsen op te slaan is op een <strong>hardware wallet</strong>. <ledger>Ledger</ledger> en <trezor>Trezor</trezor> zijn de populairsten.",
+      "wallet_address": "Wallet address",
+      "invalid_address": "Ongeldig wallet address"
     },
     "region": {
-      "title": "Select your region",
-      "description": "For the best performance, you should choose server with lowest latency to your mining rig or computer. The chart is displaying latency between servers and this device.",
+      "title": "Kies uw regio",
+      "description": "Voor de beste prestaties kies je best de server met de minste vertraging naar uw mining rig of computer. De kaart geeft de vertraging weer tussen servers en dit toestel.",
       "table_head": {
-        "location": "Region Location",
-        "domain": "Domain",
-        "average_lat": "Average Latency"
+        "location": "Naam regio",
+        "domain": "Eindpunt",
+        "port": "Port",
+        "average_lat": "Vertraging"
       },
-      "fastest": "Fastest"
+      "fastest": "Snelste",
+      "backup": "Backup"
     },
     "ports": {
-      "title": "Ports",
-      "description": "We highly encourage everyone to use secured port when connecting to Flexpool servers. <more>Read more on why you shouldn't use unsecured ports</more>. <strong>IMPORTANT</strong>: Using SSL does not increase the stale rate.",
-      "ssl_port": "Secure SSL Port",
-      "tcp_port": "TCP Port",
-      "tcp_port_tooltip": "We are strongly against using unencrypted (TCP) connection while mining on our pool. This connection is vulnerable to MITM (Man-In-The-Middle) attacks, which means that if someone will maliciously stand in between of your worker and pool, some % of your hashrate may be stolen. Read more on our <more>FAQ page</more>."
+      "title": "Poorten",
+      "description": "We raden iedereen aan om een veilige netwerkpoort te gebruiken bij het verbinden met Flexpool servers. <more>Lees meer over waarom u best geen onbeveiligde netwerkpoorten gebruikt</more>. <strong>BELANGRIJK</strong>: SSL gebruiken verhoogt de stale rate niet.",
+      "ssl_port": "Veilige SSL netwerkpoort",
+      "tcp_port": "TCP netwerkpoort",
+      "tcp_port_tooltip": "We zijn fel tegen het gebruik van een onbeveiligde (TCP) verbinding bij mining op onze pool. Die verbinding is vatbaar voor MITM (Man-In-The-Middle) aanvallen, wat betekent dat iemand met slechte bedoelingen tussen u en de pool staat. Bij zo'n aanval kan een percentage van uw hashrate worden gestolen. Lees hierover meer op onze <more>FAQ pagina</more>.",
+      "high_diff_port": "Poort met hoge moeilijkheidsgraad",
+      "high_diff_port_tooltip": "Dit is de speciale poort voor gevorderde gebruikers die proxies gebruiken die een extreem hoge moeilijkheidsgraad nodig hebben. Dit dient voor gebruikers van <NiceHash>Nicehash</NiceHash> en andere partijen die hashrate verhuren. Beschikbaar voor: "
     },
     "worker": {
-      "title": "Name your worker",
-      "description": "Naming your worker is recommended if you have multiple mining rigs connected to Flexpool. This will give you more clarity about how your mining rigs perform on your dashboard page.",
-      "worker_name": "Worker Name",
-      "worker_name_placeholder": "e.g. MY_RIG_580x2"
+      "title": "Geef je worker een naam",
+      "description": "Je worker een naam geven is aangeraden als je meerdere mining rigs met Flexpool verbindt. Zo worden de prestaties van je mining rigs duidelijker op je overzichtpagina.",
+      "worker_name": "Naam worker",
+      "worker_name_placeholder": "bv. MIJN_RIG_580x2"
     },
     "software": {
-      "title": "Choose your mining software",
-      "fee": "Fee"
+      "title": "Kies je mining software",
+      "fee": "Kost"
     },
     "view": {
-      "title": "View your stats",
-      "description": "Once you start mining, your data should appear on your dashboard. Please allow up to 10 minutes for the data to be processed.",
-      "cta": "Open Dashboard"
+      "title": "Bekijk je statistieken",
+      "description": "Wanneer je begint te minen, zouden je gegevens op het overzicht moeten verschijnen. De verwerking van de gegevens kan tot 10 minuten duren.",
+      "cta": "Overzicht openen"
     }
   },
   "detail_eth": {
     "title": "Ethereum mining",
     "pool_details": [
       {
-        "key": "Reward Scheme",
+        "key": "Beloningsschema",
         "value": "PPLNS (Pay Per Last N Shares)"
       },
       {
-        "key": "Pool Fee",
+        "key": "Pool kost",
         "value": "0.5%"
       },
       {
-        "key": "Bonuses",
-        "value": "90% of MEV bonus"
+        "key": "Bonussen",
+        "value": "90% van de MEV bonus"
       },
       {
-        "key": "Payout Round",
-        "value": "Every 10 minutes"
+        "key": "Uitbetalingsronde",
+        "value": "Om het uur"
       },
       {
-        "key": "Payouts",
-        "value": "from 0.01 ETH up to 100 ETH"
+        "key": "Uitbetalingen",
+        "value": "van 0.01 ETH tot 100 ETH"
       },
       {
-        "key": "Block confirmation time",
-        "value": "120 Blocks"
+        "key": "Bevestigingstijd van block",
+        "value": "120 blocks"
       },
       {
-        "key": "Share Difficulty",
+        "key": "Moeilijkheidsgraad share",
         "value": "4 GH"
       },
       {
-        "key": "Mining Algorithm",
+        "key": "Mining algoritme",
         "value": "Ethash"
       }
     ],
     "hardware": [
       {
-        "title": "GPU Mining Rig",
+        "title": "GPU Mining",
         "key": "GPU",
         "miners": [
           {
-            "description": "Best miner for AMD GPUs"
+            "description": "Beste miner voor AMD GPUs"
           },
           {
-            "description": "Best miner for NVIDIA 20/30 Series GPUs"
+            "description": "Beste miner voor NVIDIA 20/30 reeks GPUs"
           },
           {
-            "description": "Best miner for 4GB zombie mode."
+            "description": "Beste miner voor 4GB zombie mode."
           },
           {
-            "description": "Open-source ethash miner with no fees. Brought by Ethereum community."
+            "description": "Proprietaire Ethash miner met lage ontwikkelingskost."
           },
           {
-            "description": "Proprietary Ethash miner with the lowest devfee."
+            "description": "Actief ontwikkelde en stabiele miner met lage ontwikkelingskost."
           }
         ]
       }
     ]
   },
   "regions": {
-    "us-east": "United States (East)",
-    "us-west": "United States (West)",
-    "de": "Germany",
-    "se": "Sweden",
+    "us-east": "Verenigde Staten (Oosten)",
+    "us-west": "Verenigde Staten (Westen)",
+    "de": "Duitsland",
+    "se": "Zweden",
     "sg": "Singapore",
-    "au": "Australia",
-    "br": "Brazil",
-    "kr": "South Korea"
+    "au": "Australië",
+    "br": "Brazilië",
+    "kr": "Zuid-Korea"
   },
   "cmd_keys": {
-    "CLOSEST_SERVER": "CLOSEST_SERVER",
+    "CLOSEST_SERVER": "DICHTSBIJZIJNDE_SERVER",
     "WALLET_ADDRESS": "WALLET_ADDRESS",
-    "WORKER_NAME": "WORKER_NAME"
+    "WORKER_NAME": "WORKER_NAAM"
+  },
+  "nicehash": {
+    "head_title": "NiceHash gids om op Flexpool te minen",
+    "title": "NiceHash gids om op Flexpool te minen",
+    "description": "NiceHash is 's werelds grootste hashrate marktplaats waar mensen zo veel hashrate als nodig kunnen huren.",
+    "step_one": {
+      "title": "Open je hashrate marktplaats overzicht",
+      "description": [
+        "Eens je geregistreerd bent bij NiceHash en je Hashrate Marketplace account geactiveerd is, kan je via je huuroverzicht het {algorithm} mining algoritme kiezen.",
+        "Daarna zie je een scherm waar je op \"Add new pool...\" moet drukken"
+      ]
+    },
+    "step_two": {
+      "title": "Vul de pool instellingen van Flexpool en je wallet address in",
+      "description": [
+        "Super, nu moet je de pool instellingen invullen. Bij Stratum hostname of IP kies je een server op basis van je marktkeuze (bv. Duitse server voor Europese markt). Bekijk de lijst hieronder. Bij port is de poort met hoge moeilijkheid, <strong>14444</strong> beschikbaar voor NiceHash huur.",
+        "Geef je wallet address in als gebruikersnaam. Gebruik \"x\" als wachtwoord."
+      ]
+    },
+    "step_three": {
+      "title": "Test de pool configuratie",
+      "description": [
+        "Nu kan je op Test Pool klikken en zien of alles goed werkt."
+      ]
+    },
+    "step_four": {
+      "title": "Geniet van de voordelen van Flexpool terwijl je NiceHash gebruikt!",
+      "description": [
+        "Hoera! Nu werkt NiceHash met Flexpool, wat betekent dat je de beste mining pool met de beste hashpower marktplaats combineert! "
+      ]
+    }
   }
 }

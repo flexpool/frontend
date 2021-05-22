@@ -1,123 +1,159 @@
 {
   "list": {
-    "head_title": "Start mining with us",
-    "title": "Get started with mining on Flexpool today!"
+    "head_title": "Commencez à miner avec nous",
+    "title": "Commencez dès aujourd'hui à miner sur Flexpool!",
+    "nicehash_rental_button": "Location de NiceHash"
   },
   "detail": {
-    "title": "{{coin}} mining",
+    "title": "Minage de {{coin}}",
     "wallet": {
-      "title": "Get your wallet address",
-      "desc_one": "The easiest way to get a wallet is to register on a cryptocurrency exchange like <binance>Binance (Ref)</binance> or <coinbase>Coinbase</coinbase>.",
-      "desc_two": "Although exchanges are comfortable and easy to use, they are not very secure. You can use a non-custodial wallet, but the safest way to store your funds is to use a <strong>hardware wallet</strong>. <ledger>Ledger</ledger> and <trezor>Trezor</trezor> are the most popular ones.",
-      "wallet_address": "Wallet Address",
-      "invalid_address": "Invalid wallet address"
+      "title": "Obtenir l'adresse de votre portefeuille",
+      "desc_one": "Le moyen le plus simple d'obtenir un portefeuille est de s'inscrire sur une bourse de crypto-monnaies comme <binance>Binance (Ref)</binance> ou <coinbase>Coinbase</coinbase>.",
+      "desc_two": "Bien que les échanges soient confortables et faciles à utiliser, ils ne sont pas très sûrs. Vous pouvez utiliser un portefeuille sans garde, mais le moyen le plus sûr de stocker vos fonds est d'utiliser un <strong>portefeuille matériel</strong>. <ledger>Ledger</ledger> et <trezor>Trezor</trezor> sont les plus populaires.",
+      "wallet_address": "Adresse du portefeuille",
+      "invalid_address": "Adresse du portefeuille invalide"
     },
     "region": {
-      "title": "Select your region",
-      "description": "For the best performance, you should choose server with lowest latency to your mining rig or computer. The chart is displaying latency between servers and this device.",
+      "title": "Sélectionnez votre région",
+      "description": "Pour obtenir les meilleures performances, vous devez choisir le serveur avec la latence la plus faible par rapport à votre plateforme minière ou votre ordinateur. Le graphique affiche la latence entre les serveurs et ce dispositif.",
       "table_head": {
-        "location": "Region Location",
-        "domain": "Domain",
-        "average_lat": "Average Latency"
+        "location": "Nom de la région",
+        "domain": "Point d'accès",
+        "port": "Port",
+        "average_lat": "Latence"
       },
-      "fastest": "Fastest"
+      "fastest": "Le plus rapide",
+      "backup": "Serveur de secours"
     },
     "ports": {
       "title": "Ports",
-      "description": "We highly encourage everyone to use secured port when connecting to Flexpool servers. <more>Read more on why you shouldn't use unsecured ports</more>. <strong>IMPORTANT</strong>: Using SSL does not increase the stale rate.",
-      "ssl_port": "Secure SSL Port",
-      "tcp_port": "TCP Port",
-      "tcp_port_tooltip": "We are strongly against using unencrypted (TCP) connection while mining on our pool. This connection is vulnerable to MITM (Man-In-The-Middle) attacks, which means that if someone will maliciously stand in between of your worker and pool, some % of your hashrate may be stolen. Read more on our <more>FAQ page</more>."
+      "description": "Nous encourageons vivement tout le monde à utiliser un port sécurisé lors de la connexion aux serveurs Flexpool. <more>Lire plus sur les raisons pour lesquelles vous ne devriez pas utiliser des ports non sécurisés</more>. <strong>IMPORTANT</strong> : L'utilisation de SSL n'augmente pas le taux de rassissement.",
+      "ssl_port": "Port SSL sécurisé",
+      "tcp_port": "Port TCP",
+      "tcp_port_tooltip": "Nous déconseillons fortement l'utilisation d'une connexion non cryptée (TCP) lors du minage sur notre pool. Cette connexion est vulnérable aux attaques MITM (Man-In-The-Middle), ce qui signifie que si quelqu'un se place malicieusement entre votre travailleur et le pool, un certain % de votre hashrate peut être volé. Pour en savoir plus, consultez notre page <more>FAQ</more>.",
+      "high_diff_port": "Port de haute difficulté",
+      "high_diff_port_tooltip": "C'est le portage spécial pour les utilisateurs avancés qui exécutent des proxys nécessitant une difficulté insensée. Cela inclut les utilisateurs qui utilisent <NiceHash>NiceHash</NiceHash> et les marchés de location de hashrate connexes. Disponible pour : "
     },
     "worker": {
-      "title": "Name your worker",
-      "description": "Naming your worker is recommended if you have multiple mining rigs connected to Flexpool. This will give you more clarity about how your mining rigs perform on your dashboard page.",
-      "worker_name": "Worker Name",
-      "worker_name_placeholder": "e.g. MY_RIG_580x2"
+      "title": "Nommez votre plateforme de minage",
+      "description": "Il est recommandé de nommer votre plateforme de minage si vous avez plusieurs connectées à Flexpool. Cela vous donnera plus de clarté sur les performances de vos plateformes minières sur votre page de tableau de bord.",
+      "worker_name": "Nom de votre plateforme de minage",
+      "worker_name_placeholder": "par exemple MON_RIG_580x2"
     },
     "software": {
-      "title": "Choose your mining software",
-      "fee": "Fee"
+      "title": "Choisissez votre logiciel de minage",
+      "fee": "Frais"
     },
     "view": {
-      "title": "View your stats",
-      "description": "Once you start mining, your data should appear on your dashboard. Please allow up to 10 minutes for the data to be processed.",
-      "cta": "Open Dashboard"
+      "title": "Voir vos statistiques",
+      "description": "Une fois que vous commencez à miner, vos données devraient apparaître sur votre tableau de bord. Veuillez prévoir jusqu'à 10 minutes pour que les données soient traitées.",
+      "cta": "Ouvrir le tableau de bord"
     }
   },
   "detail_eth": {
-    "title": "Ethereum mining",
+    "title": "Minage d'Ethereum",
     "pool_details": [
       {
-        "key": "Reward Scheme",
-        "value": "PPLNS (Pay Per Last N Shares)"
+        "key": "Schéma de récompense",
+        "value": "PPLNS (Paiement par N Derniers Partages)"
       },
       {
-        "key": "Pool Fee",
+        "key": "Frais du pool de minage",
         "value": "0.5%"
       },
       {
-        "key": "Bonuses",
-        "value": "90% of MEV bonus"
+        "key": "Bonus",
+        "value": "90% du bonus MEV"
       },
       {
-        "key": "Payout Round",
-        "value": "Every 10 minutes"
+        "key": "Cycle de paiement",
+        "value": "Une fois par heure"
       },
       {
-        "key": "Payouts",
-        "value": "from 0.01 ETH up to 100 ETH"
+        "key": "Paiements",
+        "value": "à partir de 0.01 ETH jusqu'à 100 ETH"
       },
       {
-        "key": "Block confirmation time",
-        "value": "120 Blocks"
+        "key": "Blocs confirmations requis",
+        "value": "120 Blocs"
       },
       {
-        "key": "Share Difficulty",
+        "key": "Difficulté du minage",
         "value": "4 GH"
       },
       {
-        "key": "Mining Algorithm",
+        "key": "Algorithme de minage",
         "value": "Ethash"
       }
     ],
     "hardware": [
       {
-        "title": "GPU Mining Rig",
+        "title": "Réserve minière GPU",
         "key": "GPU",
         "miners": [
           {
-            "description": "Best miner for AMD GPUs"
+            "description": "Meilleur mineur pour les GPU AMD"
           },
           {
-            "description": "Best miner for NVIDIA 20/30 Series GPUs"
+            "description": "Meilleur mineur pour GPU de la Série NVIDIA 20/30"
           },
           {
-            "description": "Best miner for 4GB zombie mode."
+            "description": "Meilleur mineur pour le mode zombie de 4Go."
           },
           {
-            "description": "Open-source ethash miner with no fees. Brought by Ethereum community."
+            "description": "Mineur Ethash propriétaire à faible coût de développement."
           },
           {
-            "description": "Proprietary Ethash miner with the lowest devfee."
+            "description": "Mineur stable et activement développé, avec des frais de développement peu élevés."
           }
         ]
       }
     ]
   },
   "regions": {
-    "us-east": "United States (East)",
-    "us-west": "United States (West)",
-    "de": "Germany",
-    "se": "Sweden",
-    "sg": "Singapore",
-    "au": "Australia",
-    "br": "Brazil",
-    "kr": "South Korea"
+    "us-east": "États-Unis (Us)",
+    "us-west": "États-Unis (Us)",
+    "de": "Allemagne",
+    "se": "Suède",
+    "sg": "Singapour",
+    "au": "Australie",
+    "br": "Brésil",
+    "kr": "Corée du Sud"
   },
   "cmd_keys": {
-    "CLOSEST_SERVER": "CLOSEST_SERVER",
-    "WALLET_ADDRESS": "WALLET_ADDRESS",
-    "WORKER_NAME": "WORKER_NAME"
+    "CLOSEST_SERVER": "Serveur le plus proche",
+    "WALLET_ADDRESS": "Adresse du portefeuille",
+    "WORKER_NAME": "Nom du Rig"
+  },
+  "nicehash": {
+    "head_title": "Guide de NiceHash pour le minage sur Flexpool",
+    "title": "Guide de NiceHash pour le minage sur Flexpool",
+    "description": "NiceHash est le plus grand marché de hashrate au monde où chacun peut louer autant de fréquence de minage que nécessaire. Ce guide est sur la façon dont vous pouvez commencer à louer de la puissance de hachage sur Flexpool en utilisant NiceHash.",
+    "step_one": {
+      "title": "Ouvrez le tableau de bord de votre place de marché hashrate",
+      "description": [
+        "Une fois que vous vous êtes inscrit sur NiceHash et que vous avez activé le compte Hashrate Marketplace, vous pouvez vous rendre sur votre tableau de bord de location et choisir l'algorithme de minage {algorithm}.",
+        "Après cela, vous verrez cette fenêtre, où vous devez cliquer sur \"Ajouter un nouveau pool...\""
+      ]
+    },
+    "step_two": {
+      "title": "Remplissez les paramètres du pool Flexpool et l'adresse de votre portefeuille",
+      "description": [
+        "Bien, maintenant vous devez remplir les paramètres du pool. Dans le nom d'hôte ou l'IP de la strate, vous devez sélectionner le serveur en fonction de votre choix de marché (par exemple, un serveur allemand pour le marché européen). Vérifiez la liste ci-dessous. Comme port, le port à haute difficulté <strong>14444</strong> est disponible pour la location de NiceHash.",
+        "Spécifiez l'adresse de votre portefeuille comme nom d'utilisateur. Utilisez \"x\" comme mot de passe."
+      ]
+    },
+    "step_three": {
+      "title": "Tester la configuration du pool",
+      "description": [
+        "Vous pouvez maintenant cliquer sur Test Pool et vérifier si tout fonctionne correctement."
+      ]
+    },
+    "step_four": {
+      "title": "Profitez des avantages du Flexpool en utilisant NiceHash !",
+      "description": [
+        "Hourra ! Tu as fait fonctionner le NiceHash avec Flexpool, ce qui signifie que tu peux maintenant utiliser le meilleur pool minier avec la meilleure place de marché hashpower ! "
+      ]
+    }
   }
 }
