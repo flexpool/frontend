@@ -95,19 +95,6 @@ export const MinerPaymentsList: React.FC<{
         data={paymentsData}
         columns={[
           {
-            title: '#',
-            Component: ({ data, index }) => {
-              return (
-                <Mono>
-                  #
-                  {(totalItems % 10) -
-                    index +
-                    (totalPages - (currentPage + 1)) * 10}
-                </Mono>
-              );
-            },
-          },
-          {
             title: t('payments.table.table_head.date'),
             Component: ({ data }) => {
               return (
@@ -129,10 +116,8 @@ export const MinerPaymentsList: React.FC<{
 
               return (
                 <Ws>
-                  <Mono>
                     {value} ({tickerDisplayValue})
                     <span className="reward"></span>
-                  </Mono>
                 </Ws>
               );
             },
@@ -143,7 +128,6 @@ export const MinerPaymentsList: React.FC<{
             Component: ({ data }) => {
               return (
                 <Ws>
-                  <Mono>
                     {numberFormatter(data.feePercent, {
                       style: 'percent',
                       maximumFractionDigits: 3,
@@ -155,7 +139,6 @@ export const MinerPaymentsList: React.FC<{
                           counterValuePrice
                       )}
                     )
-                  </Mono>
                 </Ws>
               );
             },
@@ -164,25 +147,38 @@ export const MinerPaymentsList: React.FC<{
             title: t('payments.table.table_head.duration'),
             alignRight: true,
             Component: ({ data }) => {
-              return <Ws>{dateFormatter.durationWords(data.duration)}</Ws>;
+              return <Ws>{dateFormatter.durationWords(data.duration, {includeSeconds: false, short: true})}</Ws>;
             },
           },
           {
-            title: t('payments.table.table_head.hash'),
+            title: t('payments.table.table_head.confirmation'),
             alignRight: true,
             Component: ({ data }) => {
               return (
                 <Ws>
-                  <Mono className="item-hover-higjlight">
-                    <LinkOutCoin
-                      type="transaction"
-                      hash={data.hash}
-                      coin={coin?.ticker}
-                    />
-                  </Mono>
+                      {
+                        data.confirmed ? dateFormatter.dateAndTime(data.confirmedTimestamp * 1000) : t('payments.table.table_contents.pending')
+                      }
                 </Ws>
               );
-            },
+            }
+          },
+            {
+              title: t('payments.table.table_head.hash'),
+              alignRight: true,
+              Component: ({ data }) => {
+                return (
+                  <Ws>
+                    <Mono className="item-hover-higjlight">
+                      <LinkOutCoin
+                        type="transaction"
+                        hash={data.hash}
+                        coin={coin?.ticker}
+                      />
+                    </Mono>
+                  </Ws>
+                );
+              },
           },
         ]}
       />
