@@ -141,7 +141,8 @@
       "title": "Payments",
       "download": "Download CSV",
       "table_contents": {
-        "pending": "Pending"
+        "pending": "Pending",
+        "confirmed": "Confirmed"
       },
       "table_head": {
         "date": "Date",
@@ -149,7 +150,7 @@
         "fee": "Fee",
         "duration": "Duration",
         "hash": "Hash",
-        "confirmation":"Confirmation"
+        "status":"Status"
       }
     }
   },
@@ -197,5 +198,6 @@
         "last_seen": "Last Seen"
       }
     }
-  }
+  },
+  "status_pending_tooltip": "Awating transaction confirmation"
 }

@@ -14,21 +14,10 @@ import { LinkOut, LinkOutCoin } from 'src/components/LinkOut';
 import { Mono, Ws } from 'src/components/Typo/Typo';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
-import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
+import { TableCellSpinner } from 'src/components/Loader/TableCellSpinner';
 import { useTranslation } from 'react-i18next';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { BiTransferAlt } from 'react-icons/bi';
-
-const UnconfirmedSpinner = styled(LoaderSpinner)`
-  width: 14px;
-  height: 14px;
-  overflow: hidden;
-  display: inline-block;
-  margin-left: 0.5rem;
-  svg circle {
-    stroke: var(--text-tertiary);
-  }
-`;
 
 type ApiBlock = {
   confirmed: boolean;
@@ -168,7 +157,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
             >
               {data.number}
               {!data.confirmed && (
-                <Tooltip icon={<UnconfirmedSpinner />}>
+                <Tooltip icon={<TableCellSpinner />}>
                   <TooltipContent message={t('waiting_confirmation_tooltip')} />
                 </Tooltip>
               )}

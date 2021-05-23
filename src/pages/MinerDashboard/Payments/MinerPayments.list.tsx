@@ -14,6 +14,8 @@ import { ApiMinerPayment } from 'src/types/Miner.types';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { getCoinLink } from 'src/utils/coinLinks.utils';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
+import { Tooltip, TooltipContent } from 'src/components/Tooltip';
+import { TableCellSpinner } from 'src/components/Loader/TableCellSpinner';
 import {
   useLocalizedCurrencyFormatter,
   useLocalizedNumberFormatter,
@@ -23,6 +25,28 @@ import styled from 'styled-components';
 const HeaderSplit = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+const StatusContainer = styled.span<{ confirmed: ApiMinerPayment['confirmed']}>`
+  display: inline-block;
+  text-transform: capitalize;
+  white-space: nowrap;
+  & + * {
+    margin-left: 0.5rem;
+  }
+  ${(p) =>
+    p.confirmed === true &&
+    `
+      color: var(--success);
+  `}
+  ${(p) =>
+    !p.confirmed &&
+    `
+      color: var(--warning);
+  `}
+  + * svg {
+    fill: var(--text-tertiary);
+  }
 `;
 
 export const MinerPaymentsList: React.FC<{
@@ -46,8 +70,9 @@ export const MinerPaymentsList: React.FC<{
     return minerPayments.data?.data || [];
   }, [minerPayments.data]);
 
-  const { totalPages } = React.useMemo(() => {
+  const { totalItems, totalPages } = React.useMemo(() => {
     return {
+      totalItems: 0,
       totalPages: 0,
       ...minerPayments.data,
     };
@@ -93,6 +118,19 @@ export const MinerPaymentsList: React.FC<{
         }}
         data={paymentsData}
         columns={[
+          {
+            title: '#',
+            Component: ({ data, index }) => {
+              return (
+                <Mono>
+                  #
+                  {(totalItems % 10) -
+                    index +
+                    (totalPages - (currentPage + 1)) * 10}
+                </Mono>
+              );
+            },
+          },
           {
             title: t('payments.table.table_head.date'),
             Component: ({ data }) => {
@@ -150,13 +188,27 @@ export const MinerPaymentsList: React.FC<{
             },
           },
           {
-            title: t('payments.table.table_head.confirmation'),
+            title: t('payments.table.table_head.status'),
             alignRight: true,
             Component: ({ data }) => {
               return (
                 <Ws>
                       {
-                        data.confirmed ? dateFormatter.dateAndTime(data.confirmedTimestamp * 1000) : t('payments.table.table_contents.pending')
+                        data.confirmed ? 
+                        <StatusContainer confirmed={data.confirmed}>
+                          {t('payments.table.table_contents.confirmed')}
+                        </StatusContainer> : 
+                        (
+                        <>
+                          <StatusContainer confirmed={data.confirmed}>
+                            {t('payments.table.table_contents.pending')}
+                          </StatusContainer>
+                          <Tooltip icon={<TableCellSpinner />}>
+                            <TooltipContent message={t('status_pending_tooltip')} />
+                          </Tooltip>
+                          </>
+                        )
+
                       }
                 </Ws>
               );
