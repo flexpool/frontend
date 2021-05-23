@@ -196,7 +196,7 @@ export const MinerPaymentsList: React.FC<{
                   {
                         data.confirmed ? 
                         <StatusContainer confirmed={data.confirmed}>
-                          {t('payments.table.table_contents.confirmed')}{' '}
+                          {t('payments.table.table_contents.success')}{' '}
                           <Tooltip>
                             <TooltipContent>
                               {
@@ -205,7 +205,7 @@ export const MinerPaymentsList: React.FC<{
                                   {
                                     includeSeconds: ((data?.confirmedTimestamp - data?.timestamp < 3600) ? true : false), 
                                     short: false})}`
-                                : `${t('confirmed_at_tooltip')} ${dateFormatter.dateAndTime(data.confirmedTimestamp)}`
+                                : `${t('confirmed_at_tooltip')} ${dateFormatter.dateAndTime(data.confirmedTimestamp * 1000)}`
                               }
                             </TooltipContent>
                           </Tooltip>

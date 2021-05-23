@@ -142,7 +142,7 @@
       "download": "Download CSV",
       "table_contents": {
         "pending": "Pending",
-        "confirmed": "Confirmed"
+        "success": "Success"
       },
       "table_head": {
         "date": "Date",
@@ -201,5 +201,5 @@
   },
   "status_pending_tooltip": "Awating transaction confirmation",
   "confirmation_duration_tooltip": "Confirmed in",
-  "confirmed_at_tooltip": "Conmfirmed at"
+  "confirmed_at_tooltip": "Confirmed at"
 }
