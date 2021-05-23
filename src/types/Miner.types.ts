@@ -51,6 +51,8 @@ export type ApiMinerPayment = {
   hash: string;
   timestamp: number;
   value: number;
+  confirmed: boolean;
+  confirmedTimestamp: number;
 };
 export type ApiMinerPayments = {
   countervalue: number;
