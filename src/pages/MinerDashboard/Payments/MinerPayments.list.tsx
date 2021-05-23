@@ -42,7 +42,7 @@ const StatusContainer = styled.span<{ confirmed: ApiMinerPayment['confirmed']}>`
   ${(p) =>
     !p.confirmed &&
     `
-      color: var(--warning);
+      color: var(--text-secondary);
   `}
   + * svg {
     fill: var(--text-tertiary);
@@ -193,10 +193,15 @@ export const MinerPaymentsList: React.FC<{
             Component: ({ data }) => {
               return (
                 <Ws>
-                      {
+                  {
                         data.confirmed ? 
                         <StatusContainer confirmed={data.confirmed}>
-                          {t('payments.table.table_contents.confirmed')}
+                          {t('payments.table.table_contents.confirmed')}{' '}
+                          <Tooltip>
+                            <TooltipContent>
+                              {dateFormatter.dateAndTime(data.confirmedTimestamp * 1000)}: <br />
+                            </TooltipContent>
+                          </Tooltip>
                         </StatusContainer> : 
                         (
                         <>
@@ -208,7 +213,6 @@ export const MinerPaymentsList: React.FC<{
                           </Tooltip>
                           </>
                         )
-
                       }
                 </Ws>
               );
