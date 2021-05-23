@@ -200,8 +200,11 @@ export const MinerPaymentsList: React.FC<{
                           <Tooltip>
                             <TooltipContent>
                               {
-                                data?.confirmedTimestamp - data?.timestamp < 36000 ? 
-                                `${t('confirmation_duration_tooltip')} ${dateFormatter.durationWords((data.confirmedTimestamp - data.timestamp), {includeSeconds: true, short: false})}`
+                                data?.confirmedTimestamp - data?.timestamp < 10800 ? 
+                                `${t('confirmation_duration_tooltip')} ${dateFormatter.durationWords((data.confirmedTimestamp - data.timestamp), 
+                                  {
+                                    includeSeconds: ((data?.confirmedTimestamp - data?.timestamp < 3600) ? true : false), 
+                                    short: false})}`
                                 : `${t('confirmed_at_tooltip')} ${dateFormatter.dateAndTime(data.confirmedTimestamp)}`
                               }
                             </TooltipContent>
