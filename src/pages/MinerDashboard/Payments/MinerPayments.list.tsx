@@ -46,9 +46,8 @@ export const MinerPaymentsList: React.FC<{
     return minerPayments.data?.data || [];
   }, [minerPayments.data]);
 
-  const { totalItems, totalPages } = React.useMemo(() => {
+  const { totalPages } = React.useMemo(() => {
     return {
-      totalItems: 0,
       totalPages: 0,
       ...minerPayments.data,
     };
