@@ -12,7 +12,7 @@ import './i18n';
 if (isProd()) {
   Sentry.init({
     dsn:
-      'https://221f5e7217f649bf80dde0f9d47946be@o574572.ingest.sentry.io/5725753',
+      'https://2a9294c2decc4d1c806fd0720f50204c@o719233.ingest.sentry.io/5780995',
     integrations: [new Integrations.BrowserTracing()],
 
     // Set tracesSampleRate to 1.0 to capture 100%
