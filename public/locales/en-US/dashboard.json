@@ -203,6 +203,5 @@
   },
   "status_pending_tooltip": "Awating transaction confirmation",
   "confirmation_duration_tooltip": "Confirmed in",
-  "confirmed_at_tooltip": "Confirmed at",
-  "toggle_auto_refresh": "Toggle Automatic Refresh"
+  "confirmed_at_tooltip": "Confirmed at"
 }
