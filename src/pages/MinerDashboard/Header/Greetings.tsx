@@ -92,7 +92,7 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
     counter > 0 && autoRefresh === 'auto'
       ? setTimeout(() => setCounter(counter - 1), 1000)
       : autoRefreshMethod();
-  }, [counter, autoRefresh]);
+  });
 
   const greetingId = React.useMemo(() => {
     return getGreeting();
