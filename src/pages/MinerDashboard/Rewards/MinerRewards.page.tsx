@@ -55,7 +55,6 @@ export const MinerRewardsPage = () => {
       <MinerRewardStatsSection
         counterPrice={minerRewardsState.data?.price || 0}
         rewards={minerRewardsState.data?.data || []}
-        averagePoolHashrate={poolStatsState.data?.averageHashrate}
       />
       <MinerPplnsStats
         averagePoolHashrate={poolStatsState.data?.averageHashrate}
