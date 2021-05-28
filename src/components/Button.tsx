@@ -117,12 +117,14 @@ export const Button = styled.button<ButtonProps>`
     opacity: 0;
     z-index: 1;
   }
-  &:hover {
+  ${(p) =>
+    p?.variant !== 'transparent' &&
+    `&:hover {
     &:after {
       transform: translateX(0%);
       opacity: 1;
-    }
-  }
+    }`} }
+  
 `;
 
 Button.defaultProps = {

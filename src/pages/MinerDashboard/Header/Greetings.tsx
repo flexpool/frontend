@@ -19,49 +19,59 @@ export function getGreeting() {
   return 'evening';
 }
 
-const Greeting = styled.span`
-  font-size: 1.1rem;
-  font-weight: 600;
-`;
-
 const Wrap = styled.div`
   margin-top: 2rem;
   margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+`;
+
+const ToggleWrapper = styled.div`
+  align-self: center;
 `;
 const AutoUpdateWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   align-self: flex-start;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const AutoUpdateText = styled.div`
+  align-self: center;
 `;
 
 const ActiveToggle = styled(FaToggleOn)`
   color: var(--primary);
   margin-left: 0.5rem;
-  height: 22px;
-  width: 80px;
+  height: 20px;
+  width: 40px;
+  margin-bottom: 1px;
 `;
 
 const InactiveToggle = styled(FaToggleOff)`
-  color: var(--text-secondary);
+  color: var(--text-primary);
   margin-left: 0.5rem;
-  height: 22px;
-  width: 80px;
+  height: 20px;
+  width: 40px;
+  margin-bottom: 1px;
 `;
 
 const ToggleWrapperButton = styled(Button)`
   padding: 0 0 0 0;
   border: none;
+  height: 42px;
+  width: 42px;
   cursor: pointer;
   overflow: hidden;
   outline: none;
-  height: 20px;
-  width: 40px;
 `;
 
 export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
@@ -112,7 +122,7 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
   return (
     <Wrap>
       <div>
-        <Greeting>{t(`header.greet_period_${greetingId}`)}</Greeting>
+        <span>{t(`header.greet_period_${greetingId}`)}</span>
         {', '}
         <span>
           {t(`header.greet_desc`, {
@@ -123,7 +133,7 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
         </span>
       </div>
       <AutoUpdateWrapper>
-        <div>
+        <AutoUpdateText>
           {autoRefresh === 'auto' ? (
             <span>
               {t('header.update_in')} {counter}
@@ -131,8 +141,8 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
           ) : (
             <span>{t('header.auto_update')}</span>
           )}
-        </div>
-        <div>
+        </AutoUpdateText>
+        <ToggleWrapper>
           <ToggleWrapperButton
             variant="transparent"
             onClick={() => {
@@ -142,7 +152,7 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
           >
             {autoRefresh === 'auto' ? <ActiveToggle /> : <InactiveToggle />}
           </ToggleWrapperButton>
-        </div>
+        </ToggleWrapper>
       </AutoUpdateWrapper>
     </Wrap>
   );

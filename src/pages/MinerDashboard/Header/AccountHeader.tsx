@@ -8,6 +8,8 @@ import { getCoinIconUrl } from 'src/utils/staticImage.utils';
 import { getChecksumByTicker } from 'src/utils/validators/checksum';
 import styled from 'styled-components/macro';
 import { MinerSettingsModal } from '../Settings/MinerSettings.modal';
+import { Button } from 'src/components/Button';
+import { BiRefresh } from 'react-icons/bi';
 
 const Wrap = styled(Card)`
   display: flex;
@@ -47,10 +49,18 @@ const Address = styled(LinkOut)`
   }
 `;
 
+const RefreshButton = styled(Button)`
+  font-size: 1.5rem;
+  margin-right: 10px;
+  height: 42px;
+  width: 42px;
+`;
+
 export const AccountHeader: React.FC<{
   coin?: ApiPoolCoin;
   address: string;
-}> = ({ coin, address }) => {
+  onRefresh: () => void;
+}> = ({ coin, address, onRefresh }) => {
   return (
     <Wrap paddingShort>
       <AddressContainer>
@@ -62,6 +72,14 @@ export const AccountHeader: React.FC<{
         </Address>
         <CopyButton text={address} />
       </AddressContainer>
+      <RefreshButton
+        size="sm"
+        shape="square"
+        variant="primary"
+        onClick={onRefresh}
+      >
+        <BiRefresh />
+      </RefreshButton>
       <MinerSettingsModal />
     </Wrap>
   );
