@@ -32,11 +32,10 @@ const Wrap = styled.div`
 const ToggleWrapper = styled.div`
   align-self: center;
 `;
+
 const AutoUpdateWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  font-size: 1.1rem;
-  font-weight: 600;
   color: var(--text-primary);
   align-self: flex-start;
   @media screen and (max-width: 768px) {
@@ -44,31 +43,31 @@ const AutoUpdateWrapper = styled.div`
   }
 `;
 
-const AutoUpdateText = styled.div`
+const AutoUpdateText = styled.span`
   align-self: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  &.inactive {
+    color: var(--text-secondary);
+  }
 `;
 
 const ActiveToggle = styled(FaToggleOn)`
   color: var(--primary);
-  margin-left: 0.5rem;
   height: 20px;
   width: 40px;
-  margin-bottom: 1px;
 `;
 
 const InactiveToggle = styled(FaToggleOff)`
-  color: var(--text-primary);
-  margin-left: 0.5rem;
+  color: var(--text-secondary);
   height: 20px;
   width: 40px;
-  margin-bottom: 1px;
 `;
 
 const ToggleWrapperButton = styled(Button)`
   padding: 0 0 0 0;
   border: none;
   height: 42px;
-  width: 42px;
   cursor: pointer;
   overflow: hidden;
   outline: none;
@@ -133,15 +132,6 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
         </span>
       </div>
       <AutoUpdateWrapper>
-        <AutoUpdateText>
-          {autoRefresh === 'auto' ? (
-            <span>
-              {t('header.update_in')} {counter}
-            </span>
-          ) : (
-            <span>{t('header.auto_update')}</span>
-          )}
-        </AutoUpdateText>
         <ToggleWrapper>
           <ToggleWrapperButton
             variant="transparent"
@@ -150,6 +140,17 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
               setCounter(59);
             }}
           >
+            <AutoUpdateText
+              className={autoRefresh === 'manual' ? 'inactive' : ''}
+            >
+              {autoRefresh === 'auto' ? (
+                <span>
+                  {t('header.update_in')} {counter}
+                </span>
+              ) : (
+                <span>{t('header.auto_update')}</span>
+              )}
+            </AutoUpdateText>
             {autoRefresh === 'auto' ? <ActiveToggle /> : <InactiveToggle />}
           </ToggleWrapperButton>
         </ToggleWrapper>
