@@ -67,15 +67,19 @@ const CookieConsent: React.FC<{}> = () => {
   const { t } = useTranslation('home');
 
   React.useEffect(() => {
-    window?.Intercom('update', {
-      hide_default_launcher: true,
-    });
+    window &&
+      typeof window.Intercom === 'function' &&
+      window.Intercom('update', {
+        hide_default_launcher: true,
+      });
   }, []);
 
   const applyConsent = () => {
-    window?.Intercom('update', {
-      hide_default_launcher: false,
-    });
+    window &&
+      typeof window.Intercom === 'function' &&
+      window.Intercom('update', {
+        hide_default_launcher: false,
+      });
     setCookieConsent('consented');
   };
   return (
