@@ -1,6 +1,6 @@
-declare module "styled-components/macro" {
-  import { ThemedStyledComponentsModule } from "styled-components";
-  import { MainTheme, UIVariant as TUIV } from "src/App/styledTheme";
+declare module 'styled-components/macro' {
+  import { ThemedStyledComponentsModule } from 'styled-components';
+  import { MainTheme, UIVariant as TUIV } from 'src/App/styledTheme';
 
   const ModuleInterface: ThemedStyledComponentsModule<MainTheme>;
 
