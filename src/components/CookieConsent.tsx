@@ -25,19 +25,11 @@ const CookieConsentBaseContainer = styled.div<CookieConsentProps>`
   background-color: #fff;
   color: #111432;
   width: 100%;
-  border-radius: 5px;
-`;
-
-const CookieConsentContentsContainer = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  height: 100%;
 `;
 
 const CookieConsentContents = styled.div`
+  width: 100%;
   max-width: 1200px;
-  padding-left: 15%;
   padding-top: 10px;
   padding-bottom: 10px;
 `;
@@ -55,23 +47,21 @@ const CookieConsent: React.FC<{}> = () => {
 
   return (
     <CookieConsentBaseContainer consented={cookieConsent}>
-      <CookieConsentContentsContainer>
-        <CookieConsentContents>
-          <CookieConsentText>
-            This website uses cookies to enhance the user experience.
-          </CookieConsentText>
-          <Button
-            variant="primary"
-            size="sm"
-            shadowless
-            onClick={() => {
-              setCookieConsent('consented');
-            }}
-          >
-            I Agree
-          </Button>
-        </CookieConsentContents>
-      </CookieConsentContentsContainer>
+      <CookieConsentContents>
+        <CookieConsentText>
+          This website uses cookies to enhance the user experience.
+        </CookieConsentText>
+        <Button
+          variant="primary"
+          size="sm"
+          shadowless
+          onClick={() => {
+            setCookieConsent('consented');
+          }}
+        >
+          I Agree
+        </Button>
+      </CookieConsentContents>
     </CookieConsentBaseContainer>
   );
 };
