@@ -15,6 +15,7 @@ export type ButtonProps = {
   size?: keyof typeof btnHeights | undefined;
   variant?: UIVariant;
   shape?: 'square' | 'circle' | 'block';
+  shadowless?: boolean;
 };
 
 export const Button = styled.button<ButtonProps>`
@@ -79,7 +80,10 @@ export const Button = styled.button<ButtonProps>`
       background-color: var(--${p.variant});
       color: ${p.theme.color.onBg};
       border-color: rgba(0,0,0,0.05);
-        box-shadow: 0 2px 10px 0 var(--${p.variant}-shadow);
+        ${
+          !p.shadowless &&
+          `box-shadow: 0 2px 10px 0 var(--${p.variant}-shadow);`
+        }
       &:hover, &:active, &:focus {
         border-color: rgba(0,0,0,0.05);
       background-color: var(--${p.variant});
