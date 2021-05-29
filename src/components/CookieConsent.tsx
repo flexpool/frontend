@@ -36,8 +36,8 @@ const CookieConsentContents = styled.div`
   border-radius: 5px;
   display: flex;
   align-items: center;
-  padding-left: 1rem;
-  padding-top: 10px;
+  padding-left: 15%;
+  padding-top: 15%;
   padding-bottom: 10px;
 `;
 
