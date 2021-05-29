@@ -41,6 +41,7 @@ const CookieConsentContents = styled.div`
 `;
 
 const CookieConsentText = styled.span`
+  padding-left: 10px;
   font-size: 1.1rem;
   font-weight: 600;
   margin-right: 2rem;
