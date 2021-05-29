@@ -73,7 +73,7 @@ const CookieConsent: React.FC<{}> = () => {
       window.Intercom('update', {
         hide_default_launcher: true,
       });
-  }, []);
+  });
 
   const applyConsent = () => {
     window &&
