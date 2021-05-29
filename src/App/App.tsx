@@ -81,8 +81,32 @@ const OpenDataReportsPage = React.lazy(
 const PartnersPage = React.lazy(
   () => import('../pages/Partners/Partners.page')
 );
-const MinerOldUrlSupportPage = React.lazy(
-  () => import('../pages/MinerOldUrlSupport/MinerOldUrlSupport.page')
+const BaseOldUrlSupportPage = React.lazy(
+  () => import('../pages/V1Urlsupport/BaseOldUrlSupport.page')
+);
+const StatsOldUrlSupportPage = React.lazy(
+  () => import('../pages/V1Urlsupport/StatsOldUrlSupport.page')
+);
+const BlocksOldUrlSupportPage = React.lazy(
+  () => import('../pages/V1Urlsupport/BlocksOldUrlSupport.page')
+);
+const MinersOldUrlSupportPage = React.lazy(
+  () => import('../pages/V1Urlsupport/MinersOldUrlSupport.page')
+);
+const GetStartedOldUrlSupportPage = React.lazy(
+  () => import('../pages/V1Urlsupport/GetStartedOldUrlSupport.page')
+);
+const NicehashOldUrlSupportPage = React.lazy(
+  () => import('../pages/V1Urlsupport/NicehashOldUrlSupport.page')
+);
+const SupportOldUrlSupportPage = React.lazy(
+  () => import('../pages/V1Urlsupport/SupportOldUrlSupport.page')
+);
+const OpenDataOldUrlSupportPage = React.lazy(
+  () => import('../pages/V1Urlsupport/OpenDataOldUrlSupport.page')
+);
+const ApiDocsOldUrlSupportPage = React.lazy(
+  () => import('../pages/V1Urlsupport/ApiDocsOldUrlSupport.page')
 );
 const ApiDocsPage = React.lazy(() => import('../pages/Docs/ApiDocs.page'));
 
@@ -164,7 +188,57 @@ const AppContent = () => {
           <Route exact component={ContactUsPage} path="/contact" />
           <Route exact component={HomePage} path="/" />
           <Route path="/not-found" component={NotFoundPage} />
-          <Route path="/:address" component={MinerOldUrlSupportPage} />
+          <Route
+            exact
+            path="/:langOrAddress/"
+            component={BaseOldUrlSupportPage}
+          />
+          <Route exact path="/:lang/stats" component={StatsOldUrlSupportPage} />
+          <Route
+            exact
+            path="/:lang/blocks"
+            component={BlocksOldUrlSupportPage}
+          />
+          <Route
+            exact
+            path="/:lang/miners"
+            component={MinersOldUrlSupportPage}
+          />
+          <Route
+            exact
+            path="/:lang/docs/help"
+            component={GetStartedOldUrlSupportPage}
+          />
+          <Route
+            exact
+            path="/:lang/docs/getting-started"
+            component={GetStartedOldUrlSupportPage}
+          />
+          <Route
+            exact
+            path="/:lang/docs/nicehash-guide"
+            component={NicehashOldUrlSupportPage}
+          />
+          <Route
+            exact
+            path="/:lang/efficiency-and-shares"
+            component={NicehashOldUrlSupportPage}
+          />
+          <Route
+            exact
+            path="/:lang/contact"
+            component={SupportOldUrlSupportPage}
+          />
+          <Route
+            exact
+            path="/:lang/opendata"
+            component={OpenDataOldUrlSupportPage}
+          />
+          <Route
+            exact
+            path="/:lang/docs/API"
+            component={ApiDocsOldUrlSupportPage}
+          />
           <Redirect to="/" />
         </Switch>
       </React.Suspense>
