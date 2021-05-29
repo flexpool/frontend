@@ -27,8 +27,6 @@ const CookieConsentContentsContainer = styled.div`
   margin-right: auto;
   width: 100%;
   height: 100%;
-  padding-left: 1rem;
-  padding-right: 1rem;
 `;
 
 const CookieConsentContents = styled.div`
