@@ -241,6 +241,17 @@ const NewVersionNotification = styled.div<NotificationProps>`
   ${(p) => p.notificationDismissed === 'dismissed' && `display: none;`}
 `;
 
+const NewVersionNotificationContents = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  padding-left: 25px;
+  padding-right: 25px;
+  @media screen and (min-width: 1024px) {
+    display: flex;
+    justify-content: space-between;
+  }
+`;
+
 const NewVersionNotificationText = styled.div`
   font-size: 1.1rem;
   font-weight: 500;
@@ -253,14 +264,6 @@ const NewVersionNotificationText = styled.div`
   }
 `;
 
-const NewVersionNotificationContents = styled.div`
-  width: 100%;
-  max-width: 1200px;
-  padding-left: 25px;
-  padding-right: 25px;
-  display: flex;
-  justify-content: space-between;
-`;
 const CloseText = styled.div`
   color: var(--primary);
   display: inline;
@@ -273,9 +276,7 @@ const CloseText = styled.div`
     opacity: 0.8;
   }
 `;
-// const HideNewVersionNotificationButton = styled(Button)`
 
-// `;
 export const NavBar: React.FC<NavBarType> = (props) => {
   const openState = useBoolState();
   const modalSearchOpenState = useOpenState();
