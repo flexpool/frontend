@@ -32,6 +32,8 @@ import { useAppTheme } from 'src/rdx/localSettings/localSettings.hooks';
 import { Img } from '../Img';
 import { useTranslation } from 'react-i18next';
 import { SelectLanguage } from '../SelectLanguage';
+import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
+
 const Logo = styled(Img)`
   height: 29px;
   fill: var(--text-primary);
@@ -146,10 +148,11 @@ const NavContainerOuter = styled.div`
   top: 0;
   left: 0;
   width: 100vw;
-  height: 70px;
+  height: auto;
   z-index: 1000;
   background: var(--bg-primary);
   display: flex;
+  flex-wrap: wrap;
   @media screen and (max-width: 1100px) {
     display: none;
   }
@@ -221,12 +224,72 @@ const MobileNavLink = styled(Link)`
   }
 `;
 
+type NotificationProps = {
+  notificationDismissed?: string;
+};
+
+const NewVersionNotification = styled.div<NotificationProps>`
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: var(--bg-secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ${(p) => p.notificationDismissed === 'dismissed' && `display: none;`}
+`;
+
+const NewVersionNotificationText = styled.div`
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-right: 3rem;
+  display: inline;
+  @media screen and (max-width: 1024px) {
+    display: block;
+    text-align: center;
+  }
+`;
+
+const NewVersionNotificationContents = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  padding-left: 25px;
+  padding-right: 25px;
+  display: flex;
+  justify-content: space-between;
+`;
+const CloseText = styled.div`
+  color: var(--primary);
+  display: inline;
+  cursor: pointer;
+  @media screen and (max-width: 1024px) {
+    display: block;
+    text-align: center;
+  }
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+// const HideNewVersionNotificationButton = styled(Button)`
+
+// `;
 export const NavBar: React.FC<NavBarType> = (props) => {
   const openState = useBoolState();
   const modalSearchOpenState = useOpenState();
-  const { t } = useTranslation(['common']);
+  const { t } = useTranslation(['home', 'common']);
 
   const location = useLocation();
+
+  const [
+    notificationDismissed,
+    setNotificationDismissed,
+  ] = useLocalStorageState<'dismissed' | 'false'>(
+    'notification_dismissed',
+    'false'
+  );
 
   React.useEffect(() => {
     openState.handleFalse();
@@ -260,6 +323,21 @@ export const NavBar: React.FC<NavBarType> = (props) => {
       </Modal>
       <FixedMargin />
       <NavContainerOuter>
+        <NewVersionNotification notificationDismissed={notificationDismissed}>
+          <NewVersionNotificationContents>
+            <NewVersionNotificationText>
+              {t('home:top_notification.welcome')}{' '}
+              <a href="https://old.flexpool.io">old.flexpool.io</a>
+            </NewVersionNotificationText>
+            <CloseText
+              onClick={() => {
+                setNotificationDismissed('dismissed');
+              }}
+            >
+              Close
+            </CloseText>
+          </NewVersionNotificationContents>
+        </NewVersionNotification>
         <NavContainer>
           <NavSection>
             <NLink to="/" style={{ marginLeft: '-0.5rem' }}>
@@ -270,9 +348,9 @@ export const NavBar: React.FC<NavBarType> = (props) => {
                 alt="Flexpool.io Logo"
               />
             </NLink>
-            <NLink to="/statistics">{t('nav.statistics')}</NLink>
-            <NLink to="/blocks">{t('nav.blocks')}</NLink>
-            <NLink to="/miners">{t('nav.miners')}</NLink>
+            <NLink to="/statistics">{t('common:nav.statistics')}</NLink>
+            <NLink to="/blocks">{t('common:nav.blocks')}</NLink>
+            <NLink to="/miners">{t('common:nav.miners')}</NLink>
           </NavSection>
           <NavSectionSearch>
             <SearchContainer>
@@ -280,21 +358,34 @@ export const NavBar: React.FC<NavBarType> = (props) => {
             </SearchContainer>
           </NavSectionSearch>
           <NavSection>
-            <NLink to="/faq">{t('nav.faq')}</NLink>
-            <NLink to="/support">{t('nav.support')}</NLink>
+            <NLink to="/faq">{t('common:nav.faq')}</NLink>
+            <NLink to="/support">{t('common:nav.support')}</NLink>
             <Button
               style={{ marginLeft: 10 }}
               variant="primary"
               as={Link}
               to="/get-started"
             >
-              <Ws>{t('nav.get_started')}</Ws>
+              <Ws>{t('common:nav.get_started')}</Ws>
             </Button>
           </NavSection>
         </NavContainer>
       </NavContainerOuter>
 
       <ContainerMobile>
+        <NewVersionNotification>
+          <NewVersionNotificationText>
+            {t('home:top_notification.welcome')}{' '}
+            <a href="https://old.flexpool.io">old.flexpool.io</a>
+          </NewVersionNotificationText>
+          <CloseText
+            onClick={() => {
+              setNotificationDismissed('dismissed');
+            }}
+          >
+            Close
+          </CloseText>
+        </NewVersionNotification>
         <NavContainer>
           <NavLink to="/" aria-label="Home page">
             <LogoMobile
@@ -338,13 +429,15 @@ export const NavBar: React.FC<NavBarType> = (props) => {
           />
           <ScrollArea>
             <MobileNavLink to="/statistics">
-              {t('nav.statistics')}
+              {t('common:nav.statistics')}
             </MobileNavLink>
-            <MobileNavLink to="/blocks">{t('nav.blocks')}</MobileNavLink>
-            <MobileNavLink to="/miners">{t('nav.miners')}</MobileNavLink>
-            <MobileNavLink to="/faq">{t('nav.faq')}</MobileNavLink>
-            <MobileNavLink to="/support">{t('nav.support')}</MobileNavLink>
-            <MobileNavTitle>{t('nav.community_title')}</MobileNavTitle>
+            <MobileNavLink to="/blocks">{t('common:nav.blocks')}</MobileNavLink>
+            <MobileNavLink to="/miners">{t('common:nav.miners')}</MobileNavLink>
+            <MobileNavLink to="/faq">{t('common:nav.faq')}</MobileNavLink>
+            <MobileNavLink to="/support">
+              {t('common:nav.support')}
+            </MobileNavLink>
+            <MobileNavTitle>{t('common:nav.community_title')}</MobileNavTitle>
             <MobileNavLink as={LinkOut} href={DISCORD_LINK}>
               <FaDiscord /> Discord
             </MobileNavLink>
@@ -357,7 +450,7 @@ export const NavBar: React.FC<NavBarType> = (props) => {
           </ScrollArea>
           <div>
             <Button shape="block" as={Link} to="/get-started" variant="primary">
-              <Ws>{t('nav.get_started')}</Ws>
+              <Ws>{t('common:nav.get_started')}</Ws>
             </Button>
             <Spacer />
             <SelectCounterTicker />
