@@ -19,7 +19,6 @@ const CookieConsentBaseContainer = styled.div<CookieConsentProps>`
   }`}
   align-items: baseline;
   color: rgb(17, 20, 50);
-  flex-wrap: wrap;
   left: 0px;
   position: fixed;
   width: 100%;
@@ -38,10 +37,10 @@ const CookieConsentContents = styled.div`
   max-width: 1200px;
   padding-top: 10px;
   padding-bottom: 10px;
+  padding-left: 10px;
 `;
 
 const CookieConsentText = styled.span`
-  padding-left: 10px;
   font-size: 1.1rem;
   font-weight: 600;
   margin-right: 2rem;
