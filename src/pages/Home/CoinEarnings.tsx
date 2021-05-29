@@ -25,7 +25,9 @@ import {
 import { getCoinIconUrl } from 'src/utils/staticImage.utils';
 import styled from 'styled-components/macro';
 
-import chiaImage from './assets/chia_text.png';
+import chiaImage from './assets/chia_logo.svg';
+import { fetchApi } from 'src/utils/fetchApi';
+import { useAsyncState } from 'src/hooks/useAsyncState';
 
 const UnknownCoin = styled.div`
   border-radius: 50%;
@@ -320,40 +322,57 @@ const FormContainer = styled.div`
 `;
 
 const ChiaBox = styled(EarningBox)`
-  background: #36ad58; // original chia, doesn't look good on blue
-  background: var(--success);
+  background: rgb(54, 173, 88);
+  background: linear-gradient(
+    135deg,
+    rgba(54, 173, 88, 1) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
 `;
 
 const ChiaCoin = styled(UnknownCoin)`
   height: 60px;
   width: 60px;
-  background: var(--bg-secondary);
+  background: white;
 `;
 
-const SocialButtonChia = styled(Button)`
-  color: var(--text-on-bg);
-`;
-
-const ComingSoonChia = () => {
+const ComingSoonChia: React.FC = () => {
   const { t } = useTranslation(['home', 'common']);
+  const chiaSignupState = useAsyncState<string | null>('email', null);
   return (
     <ChiaBox>
       <HeadSplit>
-        {/* <CoinIcon src={getCoinIconSrc('zec')} /> */}
         <ChiaCoin>
           <Img alt="xch chia coin" src={chiaImage} />
         </ChiaCoin>
         <HeadContent>
-          <h2>Chia Coming Soon!</h2>
-          <p>
-            We are about to launch a Chia pool once Chia adds pool capability.
-            Please signup here for updates or join us at the below
-          </p>
+          <h2>{t('home:chia.chia_coming_soon')}</h2>
+          <p>{t('home:chia.chia_comming_soon_text')}</p>
           <Formik
             initialValues={{ email: '' }}
             onSubmit={({ email }, { setSubmitting }) => {
-              console.log(email);
-              setSubmitting(false);
+              chiaSignupState
+                .start(
+                  fetchApi(
+                    '/chia-mail-signup.services.flexpool.io/submitMail',
+                    {
+                      method: 'POST',
+                      body: { email: email },
+                    }
+                  )
+                )
+                .then((response) => {
+                  if (response) {
+                    // TODO: handle with growl etc for success
+                  } else {
+                    alert(t('home:chia.email_submission_failure'));
+                  }
+                  setSubmitting(false);
+                })
+                .catch(() => {
+                  alert(t('home:chia.email_submission_failure'));
+                  setSubmitting(false);
+                });
             }}
             validateOnChange={false}
             validateOnBlur={false}
@@ -367,7 +386,7 @@ const ComingSoonChia = () => {
             <Form>
               <FormContainer>
                 <TextField name="email" placeholder="your@email.fpl" />
-                <Submit variant={undefined}>Subscribe!</Submit>
+                <Submit variant="success">Subscribe!</Submit>
               </FormContainer>
             </Form>
           </Formik>
@@ -376,16 +395,16 @@ const ComingSoonChia = () => {
       <IntervalContainer>
         <StartMiningContainer>
           <ButtonGroup>
-            <SocialButtonChia fill="outline" as={LinkOut} href={REDDIT_LINK}>
-              <FaReddit /> &nbsp; Reddit
-            </SocialButtonChia>{' '}
-            <SocialButtonChia fill="outline" as={LinkOut} href={TELEGRAM_LINK}>
+            <Button variant="primary" as={LinkOut} href={TELEGRAM_LINK}>
               <FaTelegram /> &nbsp; Telegram
-            </SocialButtonChia>{' '}
-            <SocialButtonChia fill="outline" as={LinkOut} href={DISCORD_LINK}>
+            </Button>{' '}
+            <Button variant="danger" as={LinkOut} href={REDDIT_LINK}>
+              <FaReddit /> &nbsp; Reddit
+            </Button>{' '}
+            <Button variant="warning" as={LinkOut} href={DISCORD_LINK}>
               <FaDiscord />
               &nbsp;Discord
-            </SocialButtonChia>
+            </Button>
           </ButtonGroup>
         </StartMiningContainer>
       </IntervalContainer>

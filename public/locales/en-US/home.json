@@ -77,5 +77,10 @@
   "get_started_section": {
     "title": "Ready to get started?",
     "cta": "Start Mining"
+  },
+  "chia": {
+    "email_submission_failure": "Failed to submit email",
+    "chia_comming_soon_text": "We are getting ready to launch our Chia pool. Stay tuned for more details. Sign up for email updates or join us below to become one of the first Chia miners on Flexpool!",
+    "chia_coming_soon": "Chia Coming Soon!"
   }
 }
