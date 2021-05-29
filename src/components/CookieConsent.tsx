@@ -11,7 +11,6 @@ const CookieConsentBaseContainer = styled.div<CookieConsentProps>`
     ${p.consented === 'consented' && `display: none;`}
   }`}
   align-items: baseline;
-  background: rgba(0, 0, 0, 0);
   color: rgb(17, 20, 50);
   flex-wrap: wrap;
   left: 0px;
@@ -22,8 +21,8 @@ const CookieConsentBaseContainer = styled.div<CookieConsentProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
-  color: #111432;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   width: 100%;
 `;
 
