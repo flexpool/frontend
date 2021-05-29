@@ -47,6 +47,7 @@ const AutoUpdateText = styled.span`
   align-self: center;
   font-size: 1.1rem;
   font-weight: 600;
+  color: var(--text-primary);
   &.inactive {
     color: var(--text-secondary);
   }
