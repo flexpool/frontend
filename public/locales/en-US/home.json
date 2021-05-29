@@ -78,7 +78,8 @@
     "title": "Ready to get started?",
     "cta": "Start Mining"
   },
-  "top_notification": {
-    "welcome": "Welcome to the new revamped Flexpool.io v2 Website If you wish to visit old website, please use"
+  "cookie_consent": {
+    "cookie_consent_text": "This website uses cookies to improve the user experience.",
+    "i_agree": "Okay"
   }
 }
