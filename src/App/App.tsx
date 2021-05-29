@@ -152,12 +152,12 @@ const AppContent = () => {
           <Route path="/:address" component={MinerOldUrlSupportPage} />
           <Redirect to="/" />
         </Switch>
+        <CookieConsent></CookieConsent>
       </React.Suspense>
       <React.Suspense fallback={<React.Fragment />}>
         {/** __TODO footer loader */}
         <FooterSection />
       </React.Suspense>
-      <CookieConsent></CookieConsent>
     </>
   );
 };

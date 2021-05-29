@@ -2,6 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button } from 'src/components/Button';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
+import { useTranslation } from 'react-i18next';
+
+declare global {
+  interface Window {
+    Intercom: any;
+  }
+}
 
 type CookieConsentProps = {
   consented?: String;
@@ -44,21 +51,28 @@ const CookieConsent: React.FC<{}> = () => {
     'consented' | 'false'
   >('cookie_consent', 'false');
 
+  const { t } = useTranslation('home');
+
+  React.useEffect(() => {
+    window.Intercom('update', {
+      hide_default_launcher: true,
+    });
+  }, []);
+
+  const applyConsent = () => {
+    window.Intercom('update', {
+      hide_default_launcher: false,
+    });
+    setCookieConsent('consented');
+  };
   return (
     <CookieConsentBaseContainer consented={cookieConsent}>
       <CookieConsentContents>
         <CookieConsentText>
-          This website uses cookies to enhance the user experience.
+          {t('home:cookie_consent.cookie_consent_text')}
         </CookieConsentText>
-        <Button
-          variant="primary"
-          size="sm"
-          shadowless
-          onClick={() => {
-            setCookieConsent('consented');
-          }}
-        >
-          I Agree
+        <Button variant="primary" size="sm" shadowless onClick={applyConsent}>
+          {t('home:cookie_consent.i_agree')}
         </Button>
       </CookieConsentContents>
     </CookieConsentBaseContainer>
