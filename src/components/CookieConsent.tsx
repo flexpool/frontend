@@ -68,6 +68,7 @@ const CookieConsent: React.FC<{}> = () => {
 
   React.useEffect(() => {
     window &&
+      cookieConsent === 'false' &&
       typeof window.Intercom === 'function' &&
       window.Intercom('update', {
         hide_default_launcher: true,
