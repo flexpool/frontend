@@ -77,7 +77,7 @@ const BalanceProgressBar: React.FC<{
   const [progress, setProgress] = useState(0);
   React.useLayoutEffect(() => {
     setTimeout(() => {
-      setProgress(Math.round(value));
+      setProgress(value);
     }, 100);
   }, [value]);
   const { t } = useTranslation('dashboard');
@@ -147,6 +147,7 @@ export const HeaderStats: React.FC<{
 }> = () => {
   const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const minerDetailsState = useReduxState('minerDetails');
+  const minerStatsState = useReduxState('minerStats');
   const data = minerHeaderStatsState.data;
   const activeTicker = useActiveCoinTicker();
   const activeCoin = useActiveCoin();
@@ -176,17 +177,11 @@ export const HeaderStats: React.FC<{
   const estimatedDailyEarnings = React.useMemo(() => {
     return poolStatsState.data?.averageHashrate &&
       dailyRewardPerGhState.data &&
-      minerHeaderStatsState.data?.roundShare
-      ? (poolStatsState.data?.averageHashrate *
-          dailyRewardPerGhState.data *
-          minerHeaderStatsState.data?.roundShare) /
-          1000000000
+      minerStatsState.data?.averageEffectiveHashrate
+      ? dailyRewardPerGhState.data *
+          (minerStatsState.data?.averageEffectiveHashrate / 1000000000)
       : 0;
-  }, [
-    poolStatsState.data,
-    dailyRewardPerGhState.data,
-    minerHeaderStatsState.data,
-  ]);
+  }, [poolStatsState.data, dailyRewardPerGhState.data, minerStatsState.data]);
 
   const estimated = React.useMemo(() => {
     return {

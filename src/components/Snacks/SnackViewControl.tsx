@@ -3,6 +3,7 @@ import { useReduxState } from 'src/rdx/useReduxState';
 
 import { Snack } from './Snack';
 import styled from 'styled-components/macro';
+import { useDisplaySnackOnSearchParams } from './useDisplaySnackOnSearchParams';
 
 const Container = styled.div`
   display: block;
@@ -15,6 +16,8 @@ const Container = styled.div`
 export const SnackViewControl = () => {
   const snackData = useReduxState('snacks');
   const snacks = Object.values(snackData);
+
+  useDisplaySnackOnSearchParams();
 
   return snacks?.length ? (
     <Container>

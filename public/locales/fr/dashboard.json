@@ -1,196 +1,196 @@
 {
   "settings": {
-    "cta": "Settings",
-    "title": "Settings",
-    "ip": "IP address for verification",
-    "ip_hint": "Hint: You are visiting this webpage from",
-    "ip_description": "If your worker is using proxy address, e.g. your worker is dual mining through a ZIL pool, please use the proxy address instead.",
+    "cta": "Paramètres",
+    "title": "Paramètres",
+    "ip": "Adresse IP pour vérification",
+    "ip_hint": "Astuce : Vous visitez cette page Web depuis",
+    "ip_description": "Si votre infrastructure de minage utilise une adresse proxy, par exemple si votre rigs fait du double minage via un pool ZIL, veuillez utiliser l'adresse proxy à la place.",
     "payout": {
-      "title": "Payout Settings",
-      "limit": "Payout limit (min: {{min}})",
-      "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}.",
-      "limit_err_higher": "Must be higher than {{min}}",
-      "gas_limit": "Gas price limit",
-      "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} of payout limit). You will not receive any payouts if gas price is higher.",
-      "gas_limit_zero": "Your transaction fee will not be limited.",
-      "submit": "Apply changes"
+      "title": "Paramètres de paiement",
+      "limit": "Limite de paiement (min: {{min}})",
+      "limit_desc": "Vous ne serez payé qu'après que votre solde impayé atteindra {{value}}.",
+      "limit_err_higher": "Doit être supérieur à {{min}}",
+      "gas_limit": "Frais du paiement",
+      "gas_limit_desc": "Vos frais de transaction seraient limité à {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} de la limite de paiement). Vous ne recevrez aucun paiement si le prix de la transaction est plus élevé.",
+      "gas_limit_zero": "Vos frais de transaction ne seront pas limités.",
+      "submit": "Appliquer les modifications"
     },
     "payout_warning": [
-      "We highly recommend setting a higher payout limit to reduce total number of payout transactions. Less transactions means less paid in network fees.",
-      "You are the only one responsible for paying the transaction fees. We are strongly in favour of setting a transaction fee limit lower to avoid total loss on network fees. This will also help you partially mitigate losses when sudden fee spikes happen."
+      "Nous recommandons vivement de fixer une limite de paiement plus élevée afin de réduire le nombre total de transactions de paiement. Moins de transactions signifie moins de frais de réseau payés.",
+      "Vous êtes le seul responsable du paiement des frais de transaction. Nous sommes fortement en faveur de la fixation d'une limite de frais de transaction plus basse pour éviter une perte totale sur les frais de réseau. Cela vous aidera également à atténuer partiellement les pertes lorsque des pics de frais soudains se produisent."
     ],
     "notifications": {
-      "title": "Email notifications",
-      "email_enabled": "Email notifications enabled",
-      "email_disabled": "Email notifications disabled",
-      "send_to": "Send notifications to",
-      "send_to_placeholder": "your@email.com",
-      "check_worker_down": "Warn me when one of my workers goes down",
-      "check_payout_sent": "Notify me when a payout has been sent",
-      "submit": "Apply changes"
+      "title": "Notifications par e-mail",
+      "email_enabled": "Notifications par e-mail activées",
+      "email_disabled": "Notifications par e-mail désactivées",
+      "send_to": "Envoyer les notifications à",
+      "send_to_placeholder": "votre@email.com",
+      "check_worker_down": "M'avertir quand un de mes rigs de minage est hors ligne",
+      "check_payout_sent": "Me notifier lorsqu'un paiement a été envoyé",
+      "submit": "Appliquer les modifications"
     }
   },
   "header": {
-    "greet_period_morning": "Good morning",
-    "greet_period_afternoon": "Good afternoon",
-    "greet_period_evening": "Good evening",
-    "greet_desc": "{{count}} worker is mining {{coin}} and is hashing {{hashrate}} in total.",
+    "greet_period_morning": "Bonjour",
+    "greet_period_afternoon": "Bon après-midi",
+    "greet_period_evening": "Bonsoir",
+    "greet_desc": "{{count}} worker minent {{coin}} et produisent {{hashrate}} au total.",
     "greet_desc_1": "",
     "greet_desc_2": "",
     "greet_desc_3": "",
     "greet_desc_4": "",
     "greet_desc_5": "",
-    "greet_desc_plural": "{{count}} workers are mining {{coin}} and are hashing {{hashrate}} in total.",
-    "info_payout_limit": "Payout Limit",
-    "info_gas_limit": "Gas Price Limit",
-    "info_gas_limit_none": "None",
-    "info_gas_limit_detail": "{{percent}} of payout limit.",
-    "info_gas_limit_detail_none": "Gas price is not limited.",
-    "info_gas_limit_detail_na": "Price not available.",
-    "info_joined": "Joined",
-    "info_joined_tooltip": "Your first share has been recorded on",
-    "info_joined_tooltip_empty": "No share has been recorded yet",
-    "info_coin_price": "{{coin}} Price",
-    "stat_workers": "Workers Online/Offline",
-    "stat_unpaid_balance": "Unpaid Balance",
-    "stat_unpaid_balance_reach": "<v>{{value}}</v> of the payout limit reached.",
-    "stat_unpaid_balance_reach_est": "The limit will be reached <v>{{value}}</v>.",
-    "stat_unpaid_balance_reach_ok": "Your payout will be processed on the next payment round if the fees match your preferences.",
-    "stat_estimate": "Estimated Earnings",
-    "stat_estimate_daily": "daily",
-    "stat_estimate_weekly": "weekly",
-    "stat_estimate_monthly": "monthly",
-    "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimate."
+    "greet_desc_plural": "{{count}} worker minent {{coin}} et produisent {{hashrate}} au total.",
+    "info_payout_limit": "Limite de paiement",
+    "info_gas_limit": "Frais du paiement",
+    "info_gas_limit_none": "Aucun",
+    "info_gas_limit_detail": "{{percent}} de la limite de paiement.",
+    "info_gas_limit_detail_none": "Le prix des frais du réseau n'est pas limité.",
+    "info_gas_limit_detail_na": "Prix non disponible.",
+    "info_joined": "Inscrit",
+    "info_joined_tooltip": "Votre premier Share a été enregistré le",
+    "info_joined_tooltip_empty": "Aucune action n'a encore été enregistrée",
+    "info_coin_price": "{{coin}} Prix",
+    "stat_workers": "Rigs en ligne/hors ligne",
+    "stat_unpaid_balance": "Solde impayé",
+    "stat_unpaid_balance_reach": "<v>{{value}}</v> de la limite de paiement atteinte.",
+    "stat_unpaid_balance_reach_est": "La limite sera atteinte <v>{{value}}</v>.",
+    "stat_unpaid_balance_reach_ok": "Votre paiement sera traité lors du prochain cycle de paiement si les frais correspondent à vos préférences.",
+    "stat_estimate": "Gains estimés",
+    "stat_estimate_daily": "journalier",
+    "stat_estimate_weekly": "hebdomadaire",
+    "stat_estimate_monthly": "mensuellement",
+    "stat_estimate_tooltip": "Cliquez pour passer d'une estimation quotidienne, hebdomadaire ou mensuelle à une autre."
   },
   "nav": {
-    "stats": "Stats",
-    "payments": "Payments",
-    "rewards": "Rewards",
-    "blocks": "Blocks"
+    "stats": "Statistiques",
+    "payments": "Paiements",
+    "rewards": "Récompenses",
+    "blocks": "Blocs"
   },
   "rewards": {
-    "head_title": "Miner Rewards",
+    "head_title": "Récompenses des Mineurs",
     "earnings_chart": {
-      "title": "Earnings this month",
-      "earnings": "Earnings",
-      "daily_income": "Daily income"
+      "title": "Gains ce mois-ci",
+      "earnings": "Revenus",
+      "daily_income": "Revenu quotidien"
     },
     "past_earnings": {
-      "title": "Past Earnings",
-      "yesterday": "Yesterday",
-      "last_week": "Last Week",
-      "last_month": "Last Month"
+      "title": "Gains précédents",
+      "yesterday": "Hier",
+      "last_week": "Semaine dernière",
+      "last_month": "Le mois dernier"
     },
     "forecasted_earnings": {
-      "title": "Forecasted Earnings",
-      "daily": "Daily",
-      "weekly": "Weekly",
-      "monthly": "Monthly"
+      "title": "Gains prévisionnés",
+      "daily": "Quotidien",
+      "weekly": "Hebdomadaire",
+      "monthly": "Mensuellement"
     },
     "pplns": {
-      "title": "Advanced PPLNS Statistics",
+      "title": "Statistiques PPLNS avancées",
       "avp": {
-        "title": "Average Paying Hashrate",
-        "tooltip": "Calculated based on current round share and the last 3 hours pool hashrate chart.",
-        "current": "Current"
+        "title": "Hashrate moyen de paiement",
+        "tooltip": "Calculé en fonction de la part actuelle et du tableau de taux de hachage de la réserve des 3 dernières heures.",
+        "current": "En cours"
       },
       "crs": {
-        "title": "Current Round Share",
-        "aprox": "Approximate reward",
-        "tooltip": "Derived from the share log"
+        "title": "Partage actuel",
+        "aprox": "Récompense approximative",
+        "tooltip": "Dérivé du journal des actions"
       },
       "log": {
-        "title": "Share Log Wipeout Duration",
-        "tooltip": "Time for the round share to drop to zero.",
-        "size": "{{value}} shares in log"
+        "title": "Partager la durée de l'effacement des logs",
+        "tooltip": "Il est temps que la part du tour descende à zéro.",
+        "size": "{{value}} partages dans le log"
       }
     },
     "pplns_chart": {
-      "title": "Shares in the PPLNS Log",
-      "valid_shares": "Valid Shares"
+      "title": "Actions dans le journal PPLNS",
+      "valid_shares": "Actions valides"
     }
   },
   "payments": {
-    "head_title": "Miner Payments",
+    "head_title": "Paiements du mineurs",
     "chart": {
-      "title": "Payments This Year",
-      "fee": "Fee",
-      "value": "Value"
+      "title": "Paiements cette année",
+      "fee": "Frais",
+      "value": "Valeur"
     },
     "general": {
-      "title": "General Payment Statistics",
-      "total_paid": "Total Paid",
-      "total_transactions": "Total Transactions",
-      "paid_in_fees": "{{value}} paid in fees",
-      "average_payout_duration": "Average Payout Duration",
-      "average_payout_duration_desc": "Average Time Between Payouts"
+      "title": "Statistiques générales de paiement",
+      "total_paid": "Total payé",
+      "total_transactions": "Total des transactions",
+      "paid_in_fees": "{{value}} payé en frais",
+      "average_payout_duration": "Durée moyenne du paiement",
+      "average_payout_duration_desc": "Temps moyen entre les paiements"
     },
     "transaction_fees": {
-      "title": "Transaction Fees",
-      "last": "Last Transaction",
-      "fee": "{{value}} fee",
-      "average": "Average Transaction Fee",
-      "average_percent": "Average Transaction Fee %",
-      "average_cta": "Tips on reducing fees",
+      "title": "Frais de transaction",
+      "last": "Dernière transaction",
+      "fee": "Frais de {{value}}",
+      "average": "Frais moyens de transaction",
+      "average_percent": "Frais moyens de transaction %",
+      "average_cta": "Conseils pour réduire les frais",
       "average_cta_tooltip": [
-        "1. Setting higher payout limit will reduce the number of transactions you will have to pay for in terms of network transaction fees.",
-        "2. Set your transaction fee limit to avoid high fees in the settings. When you reach your payout threshold, we will make sure that your payout transaction will be executed as soon as it fulfills your fee limit settings."
+        "1. En fixant une limite de paiement plus élevée, vous réduirez le nombre de transactions que vous devrez payer en termes de frais de transaction réseau.",
+        "2. Définissez votre limite de frais de transaction pour éviter des frais élevés dans les paramètres. Lorsque vous atteindrez votre seuil de paiement, nous ferons en sorte que votre transaction de paiement soit exécutée dès qu'elle répondra à vos paramètres de limite de frais."
       ]
     },
     "table": {
-      "title": "Payments",
-      "download": "Download CSV",
+      "title": "Paiements",
+      "download": "Télécharger le CSV",
       "table_head": {
         "date": "Date",
-        "value": "Transaction Value",
-        "fee": "Fee",
-        "duration": "Duration",
+        "value": "Valeur de la transaction",
+        "fee": "Frais",
+        "duration": "Durée",
         "hash": "Hash"
       }
     }
   },
   "stats": {
     "active_worker": {
-      "title": "Worker",
+      "title": "Personnes qui minent",
       "reset": "Reset"
     },
     "hashrate": {
-      "title": "Hashrate",
-      "current": "Current Effective",
-      "average": "Average Effective",
-      "reported": "Reported"
+      "title": "Puissance de minage",
+      "current": "Efficacité actuelle",
+      "average": "Moyenne Effective",
+      "reported": "Rapporté"
     },
     "shares": {
-      "title": "Shares",
+      "title": "Partages",
       "valid": "Valid",
-      "stale": "Stale",
-      "invalid": "Invalid"
+      "stale": "Éventé",
+      "invalid": "Invalide"
     },
     "hashrate_chart": {
-      "title": "Hashrate",
-      "effective": "Effective Hashrate",
-      "average": "Average Effective Hashrate",
-      "reported": "Reported Hashrate"
+      "title": "Puissance de minage",
+      "effective": "Hashrate effectif",
+      "average": "Hashrate effectif moyen",
+      "reported": "Hashrate rapporté"
     },
     "shares_chart": {
-      "title": "Shares",
-      "valid": "Valid Shares",
-      "stale": "Stale Shares",
-      "invalid": "Invalid Shares"
+      "title": "Partages",
+      "valid": "Actions valides",
+      "stale": "Actions périmées",
+      "invalid": "Actions non valides"
     },
     "table": {
-      "title_active": "Active workers",
-      "title_inactive": "Inactive workers",
-      "search_placeholder": "Filter by worker",
+      "title_active": "Vos infrastructures de minages actives",
+      "title_inactive": "Vos infrastructures de minages hors ligne",
+      "search_placeholder": "Filtrer pas infrastructure de minage",
       "table_head": {
-        "name": "Name",
-        "reported_hashrate": "Reported Hashrate",
-        "current_e_hashrate": "Current E. Hashrate",
-        "average_e_hashrate": "Average Effective Hashrate",
-        "valid": "Valid Shares",
-        "stale": "Stale Shares",
-        "invalid": "Invalid Shares",
-        "last_seen": "Last Seen"
+        "name": "Nom",
+        "reported_hashrate": "Hashrate rapporté",
+        "current_e_hashrate": "Taux De Hashrate E. Actuel",
+        "average_e_hashrate": "Hashrate effectif moyen",
+        "valid": "Actions valides",
+        "stale": "Actions périmées",
+        "invalid": "Actions non valides",
+        "last_seen": "Dernière visite"
       }
     }
   }

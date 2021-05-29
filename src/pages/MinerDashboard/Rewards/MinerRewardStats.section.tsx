@@ -46,8 +46,7 @@ const getIndexInterval = (index: number) => {
 export const MinerRewardStatsSection: React.FC<{
   rewards: ApiMinerReward[];
   counterPrice: number;
-  averagePoolHashrate?: number | null;
-}> = ({ rewards, counterPrice = 0, averagePoolHashrate }) => {
+}> = ({ rewards, counterPrice = 0 }) => {
   const dailyRewardPerGhState = useAsyncState('dailyRewGh', 0);
   const coinTicker = useActiveCoinTicker();
   const counterTicker = useCounterTicker();
@@ -56,7 +55,7 @@ export const MinerRewardStatsSection: React.FC<{
   const { t } = useTranslation('dashboard');
   const currencyFormatter = useLocalizedCurrencyFormatter();
 
-  const headerStatsState = useReduxState('minerHeaderStats');
+  const minerStatsState = useReduxState('minerStats');
 
   React.useEffect(() => {
     dailyRewardPerGhState.start(
@@ -106,13 +105,10 @@ export const MinerRewardStatsSection: React.FC<{
 
   const futureData = React.useMemo(() => {
     const daily =
-      averagePoolHashrate &&
       dailyRewardPerGhState.data &&
-      headerStatsState.data?.roundShare
-        ? (averagePoolHashrate *
-            dailyRewardPerGhState.data *
-            headerStatsState.data?.roundShare) /
-          1000000000
+      minerStatsState.data?.averageEffectiveHashrate
+        ? (minerStatsState.data?.averageEffectiveHashrate / 1000000000) *
+          dailyRewardPerGhState.data
         : 0;
 
     return [1, 7, 30.5].map((item) => ({
@@ -126,10 +122,9 @@ export const MinerRewardStatsSection: React.FC<{
         : '-',
     }));
   }, [
-    averagePoolHashrate,
     dailyRewardPerGhState.data,
     activeCoin,
-    headerStatsState.data?.roundShare,
+    minerStatsState.data?.averageEffectiveHashrate,
     counterPrice,
     activeCoinFormatter,
     currencyFormatter,

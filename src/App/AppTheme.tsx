@@ -42,7 +42,8 @@ export const AppTheme = () => {
     --border-color: #333;
     --text-secondary: #ccc;
     --text-primary: #eee;
-    --overlay: rgba(0, 0, 0, 0.5)
+    --overlay: rgba(0, 0, 0, 0.5);
+    --bad-luck-color: #bbb;
     }
     
     svg tspan {

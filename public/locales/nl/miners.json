@@ -6,12 +6,12 @@
     "table_head": {
       "miner": "Miner",
       "hashrate": "Hashrate",
-      "balance": "Balance",
+      "balance": "Saldo",
       "workers": "Workers",
-      "joined": "Joined"
+      "joined": "Aangesloten"
     }
   },
   "distribution": {
-    "title": "Miners Distribution by Hashrate"
+    "title": "Miners verdeling volgens Hashrate"
   }
 }
