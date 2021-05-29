@@ -253,8 +253,6 @@ const NewVersionNotificationContents = styled.div`
 `;
 
 const NewVersionNotificationText = styled.div`
-  font-size: 1.1rem;
-  font-weight: 500;
   color: var(--text-secondary);
   margin-right: 3rem;
   display: inline;
