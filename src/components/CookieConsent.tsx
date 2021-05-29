@@ -35,15 +35,28 @@ const CookieConsentBaseContainer = styled.div<CookieConsentProps>`
 const CookieConsentContents = styled.div`
   width: 100%;
   max-width: 1200px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
 `;
 
-const CookieConsentText = styled.span`
+const CookieConsentText = styled.div`
+  display: inline;
   font-size: 1.1rem;
   font-weight: 600;
   margin-right: 2rem;
+  @media screen and (max-width: 768px) {
+    display: block;
+    text-align: center;
+  }
+`;
+
+const AcceptConsentButton = styled(Button)`
+  @media screen and (max-width: 768px) {
+    margin-left: calc(50% - 37px);
+    margin-top: 15px;
+  }
 `;
 
 const CookieConsent: React.FC<{}> = () => {
@@ -71,9 +84,14 @@ const CookieConsent: React.FC<{}> = () => {
         <CookieConsentText>
           {t('home:cookie_consent.cookie_consent_text')}
         </CookieConsentText>
-        <Button variant="primary" size="sm" shadowless onClick={applyConsent}>
+        <AcceptConsentButton
+          variant="primary"
+          size="sm"
+          shadowless
+          onClick={applyConsent}
+        >
           {t('home:cookie_consent.i_agree')}
-        </Button>
+        </AcceptConsentButton>
       </CookieConsentContents>
     </CookieConsentBaseContainer>
   );
