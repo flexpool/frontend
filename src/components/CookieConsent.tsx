@@ -19,10 +19,16 @@ const CookieConsentBaseContainer = styled.div<CookieConsentProps>`
   width: 100%;
   z-index: 999;
   bottom: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  color: #111432;
+  width: 100%;
+  border-radius: 5px;
 `;
 
 const CookieConsentContentsContainer = styled.div`
-  background: rgba(0, 0, 0, 0);
   margin-left: auto;
   margin-right: auto;
   width: 100%;
@@ -30,12 +36,7 @@ const CookieConsentContentsContainer = styled.div`
 `;
 
 const CookieConsentContents = styled.div`
-  background-color: #fff;
-  color: #111432;
-  width: 100%;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
+  max-width: 1200px;
   padding-left: 15%;
   padding-top: 10px;
   padding-bottom: 10px;
