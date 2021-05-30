@@ -354,11 +354,12 @@ const ComingSoonChia: React.FC = () => {
               chiaSignupState
                 .start(
                   fetchApi(
-                    '/chia-mail-signup.services.flexpool.io/submitMail',
+                    '/subscribe',
                     {
                       method: 'POST',
                       body: { email: email },
-                    }
+                    },
+                    'chia'
                   )
                 )
                 .then((response) => {
