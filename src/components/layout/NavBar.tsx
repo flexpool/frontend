@@ -372,7 +372,7 @@ export const NavBar: React.FC<NavBarType> = (props) => {
       </NavContainerOuter>
 
       <ContainerMobile>
-        <NewVersionNotification>
+        <NewVersionNotification notificationDismissed={notificationDismissed}>
           <NewVersionNotificationText>
             {t('home:top_notification.welcome')}{' '}
             <a href="https://old.flexpool.io">old.flexpool.io</a>
