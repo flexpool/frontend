@@ -25,7 +25,6 @@ function isOverflowScrollable(element: Element) {
  * @returns {!boolean} Whether the element is scrollable
  */
 function isScrollable(element: Element, direction: number) {
-  console.log(element.scrollTop);
   if (!isOverflowScrollable(element)) {
     return false;
   }
