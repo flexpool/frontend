@@ -25,7 +25,12 @@ const ButtonField: React.FunctionComponent<
       variant="primary"
       {...rest}
       type="submit"
-      disabled={!form.dirty || form.isSubmitting || captchaDisableOverride}
+      disabled={
+        !form.dirty ||
+        form.isSubmitting ||
+        captchaDisableOverride ||
+        disableWhenFormNotDirty
+      }
     >
       {form.isSubmitting || captchaDisableOverride ? <LoaderDots /> : children}
     </Button>

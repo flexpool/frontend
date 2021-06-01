@@ -29,6 +29,7 @@ import chiaImage from './assets/chia_logo.svg';
 import { fetchApi } from 'src/utils/fetchApi';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { AnyMxRecord } from 'dns';
 
 export const recaptchaKey = process.env.REACT_APP_RECAPTCHA_KEY;
 
@@ -352,6 +353,32 @@ const ComingSoonChia: React.FC = () => {
   const chiaSignupState = useAsyncState<string | null>('email', null);
   const [captchaToken, setCaptchaToken] = React.useState(false);
   const [showCaptcha, setShowCaptcha] = React.useState(false);
+  const [email, setEmail] = React.useState('');
+  const [submissionSuccessful, setSubmissionSuccessful] = React.useState(false);
+
+  const submitEmail = (capchaToken: any) => {
+    chiaSignupState
+      .start(
+        fetchApi(
+          '/subscribe',
+          {
+            method: 'POST',
+            body: { email: email, captcha: capchaToken },
+          },
+          'chia'
+        )
+      )
+      .then((response) => {
+        if (response) {
+          setSubmissionSuccessful(true);
+        } else {
+          alert(t('home:chia.email_submission_failure'));
+        }
+      })
+      .catch(() => {
+        alert(t('home:chia.email_submission_failure'));
+      });
+  };
   return (
     <ChiaBox>
       <HeadSplit>
@@ -367,31 +394,9 @@ const ComingSoonChia: React.FC = () => {
               if (!captchaToken) {
                 setShowCaptcha(true);
                 setSubmitting(false);
-              } else {
-                chiaSignupState
-                  .start(
-                    fetchApi(
-                      '/subscribe',
-                      {
-                        method: 'POST',
-                        body: { email: email, captcha: captchaToken },
-                      },
-                      'chia'
-                    )
-                  )
-                  .then((response) => {
-                    if (response) {
-                      // TODO: handle with growl etc for success
-                    } else {
-                      alert(t('home:chia.email_submission_failure'));
-                    }
-                    setSubmitting(false);
-                  })
-                  .catch(() => {
-                    alert(t('home:chia.email_submission_failure'));
-                    setSubmitting(false);
-                  });
               }
+              setEmail(email);
+              setSubmitting(false);
             }}
             validateOnChange={false}
             validateOnBlur={false}
@@ -409,14 +414,27 @@ const ComingSoonChia: React.FC = () => {
                     theme="dark"
                     sitekey={recaptchaKey || ''}
                     onChange={(value: any) => {
-                      setCaptchaToken(value);
-                      setShowCaptcha(false);
+                      if (value !== false && value !== null) {
+                        setCaptchaToken(value);
+                        setShowCaptcha(false);
+                        submitEmail(value);
+                      }
                     }}
                   />
                 </CapchaContainer>
-                <TextField name="email" placeholder="your@email.fpl" />
-                <Submit variant="success" captchaDisableOverride={showCaptcha}>
-                  Subscribe!
+                <TextField
+                  name="email"
+                  placeholder="your@email.fpl"
+                  disabled={submissionSuccessful}
+                />
+                <Submit
+                  variant="success"
+                  captchaDisableOverride={showCaptcha}
+                  disableWhenFormNotDirty={submissionSuccessful}
+                >
+                  {submissionSuccessful
+                    ? t('home:chia.subscribed')
+                    : t('home:chia.subscribe')}
                 </Submit>
               </FormContainer>
             </Form>
