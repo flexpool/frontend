@@ -6,15 +6,33 @@ import { LoaderDots } from 'src/components/Loader/LoaderDots';
 
 type ButtonSubmitFieldProps = PropsOf<typeof Button> & {
   disableWhenFormNotDirty?: boolean;
+  captchaDisableOverride?: boolean;
 };
 
 const ButtonField: React.FunctionComponent<
   FieldProps & ButtonSubmitFieldProps
 > = (props) => {
-  const { children, form, field, disableWhenFormNotDirty, ...rest } = props;
+  const {
+    children,
+    form,
+    field,
+    disableWhenFormNotDirty,
+    captchaDisableOverride,
+    ...rest
+  } = props;
   return (
-    <Button {...rest} type="submit" variant="primary" disabled={!form.dirty}>
-      {form.isSubmitting ? <LoaderDots /> : children}
+    <Button
+      variant="primary"
+      {...rest}
+      type="submit"
+      disabled={
+        !form.dirty ||
+        form.isSubmitting ||
+        captchaDisableOverride ||
+        disableWhenFormNotDirty
+      }
+    >
+      {form.isSubmitting || captchaDisableOverride ? <LoaderDots /> : children}
     </Button>
   );
 };
