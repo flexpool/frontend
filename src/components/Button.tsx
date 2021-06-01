@@ -16,6 +16,7 @@ export type ButtonProps = {
   variant?: UIVariant;
   shape?: 'square' | 'circle' | 'block';
   fill?: 'outline';
+  shadowless?: boolean;
 };
 
 export const Button = styled.button<ButtonProps>`
@@ -35,7 +36,10 @@ export const Button = styled.button<ButtonProps>`
   &:hover,
   &:active,
   &:focus {
-    background: var(--bg-secondary);
+    ${(p) => `
+    !p.shadowless &&
+      box-shadow: 0 2px 10px 0 var(--${p.variant}-shadow);
+  `};
     text-decoration: none;
   }
   color: var(--text-secondary);
@@ -99,10 +103,13 @@ export const Button = styled.button<ButtonProps>`
       background-color: var(--${p.variant});
       color: ${p.theme.color.onBg};
       border-color: rgba(0,0,0,0.05);
-        box-shadow: 0 2px 10px 0 var(--${p.variant}-shadow);
+        ${
+          !p.shadowless &&
+          `box-shadow: 0 2px 10px 0 var(--${p.variant}-shadow);`
+        }
       &:hover, &:active, &:focus {
         border-color: rgba(0,0,0,0.05);
-      background-color: var(--${p.variant});
+        background-color: var(--${p.variant});
         box-shadow: 0 5px 15px 0 var(--${p.variant}-shadow);
       }
       `;

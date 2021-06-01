@@ -23,27 +23,12 @@ import { AppState } from 'src/rdx/rootReducer';
 
 import { AppTheme } from './AppTheme';
 import { SnackViewControl } from 'src/components/Snacks/SnackViewControl';
-
-// import StatisticsPage from '../pages/Statistics/Statistics.page';
-// import MinerDashboardPage from '../pages/MinerDashboard/MinerDashboard.page';
-// import MinersPage from '../pages/Miners/Miners.page';
-// import BlocksPage from '../pages/Blocks/Blocks.page';
-// import GetStartedPage from '../pages/GetStarted/GetStarted.page';
-// import ContactUsPage from '../pages/ContactUs/ContactUs.page';
-// import BrandAssetsPage from '../pages/BrandAssets/BrandAssets.page';
-// import HomePage from '../pages/Home/Home.page';
-// import SupportPage from '../pages/Support/Support.page';
-// import FaqPage from '../pages/Faq/Faq.page';
-// import OpenDataReportsPage from 'src/pages/Reports/OpenDataReports.page';
-// import PartnersPage from 'src/pages/Partners/Partners.page';
-// import BusinessDevelopmentPage from 'src/pages/BusinessDevelopment/BusinessDevelopment.page';
-// import MinerOldUrlSupportPage from 'src/pages/MinerOldUrlSupport/MinerOldUrlSupport.page';
-// import { NotFoundPage } from 'src/pages/NotFound/NotFound.page';
 import { PageLoader } from 'src/components/layout/Page';
 import ServiceWorkerWrapper from './ServiceWorkerWrapper';
 import { usePwaInit } from './PwaInit';
 import { searchAddressStorage } from 'src/components/SearchAddressBar/searchCache';
 import { I18n } from './I18n';
+import CookieConsent from 'src/components/CookieConsent';
 
 /**
  * Pages code splitting
@@ -241,6 +226,7 @@ const AppContent = () => {
           />
           <Redirect to="/" />
         </Switch>
+        <CookieConsent></CookieConsent>
       </React.Suspense>
       <React.Suspense fallback={<React.Fragment />}>
         {/** __TODO footer loader */}
