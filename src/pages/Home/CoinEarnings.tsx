@@ -417,14 +417,14 @@ const ComingSoonChia: React.FC = () => {
                         submitEmail(value);
                         setTimeout(() => {
                           setShowCaptcha(false);
-                        }, 2000);
+                        }, 1000);
                       }
                     }}
                   />
                 </CapchaContainer>
                 <TextField
                   name="email"
-                  placeholder="your@email.fpl"
+                  placeholder="mail@example.com"
                   disabled={submissionSuccessful}
                 />
                 <Submit
