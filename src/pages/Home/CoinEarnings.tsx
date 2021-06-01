@@ -416,8 +416,10 @@ const ComingSoonChia: React.FC = () => {
                     onChange={(value: any) => {
                       if (value !== false && value !== null) {
                         setCaptchaToken(value);
-                        setShowCaptcha(false);
                         submitEmail(value);
+                        setTimeout(() => {
+                          setShowCaptcha(false);
+                        }, 2000);
                       }
                     }}
                   />
