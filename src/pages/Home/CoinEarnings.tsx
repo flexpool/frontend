@@ -29,8 +29,6 @@ import chiaImage from './assets/chia_logo.svg';
 import { fetchApi } from 'src/utils/fetchApi';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { AnyMxRecord } from 'dns';
-
 export const recaptchaKey = process.env.REACT_APP_RECAPTCHA_KEY;
 
 const UnknownCoin = styled.div`
