@@ -318,6 +318,7 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
 const FormContainer = styled.div`
   display: flex;
   margin-top: 1rem;
+  justify-content: space-between;
   & > *:first-child {
     margin-right: 1rem;
     flex-grow: 1;
@@ -414,9 +415,6 @@ const ComingSoonChia: React.FC = () => {
                   />
                 </CapchaContainer>
                 <TextField name="email" placeholder="your@email.fpl" />
-                {/* {
-                  showCaptcha && 
-                } */}
                 <Submit variant="success" captchaDisableOverride={showCaptcha}>
                   Subscribe!
                 </Submit>
