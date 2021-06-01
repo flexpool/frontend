@@ -15,7 +15,7 @@ const Split = styled.div`
   display: flex;
   flex-grow: 1;
   flex-shrink: 1;
-  max-height: calc(100vh - 126px);
+  max-height: calc(100vh - 166px);
   @media screen and (max-width: 768px) {
     flex-direction: column;
   }
