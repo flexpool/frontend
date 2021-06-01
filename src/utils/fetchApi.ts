@@ -65,6 +65,7 @@ export const fetchApi = async <T>(
       ...(init.method
         ? {
             'Content-type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
           }
         : {}),
     },
