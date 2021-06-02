@@ -51,6 +51,7 @@ export const AccountHeader: React.FC<{
   coin?: ApiPoolCoin;
   address: string;
 }> = ({ coin, address }) => {
+  const addressText = getChecksumByTicker(coin?.ticker)(address);
   return (
     <Wrap paddingShort>
       <AddressContainer>
@@ -58,9 +59,9 @@ export const AccountHeader: React.FC<{
           <Img src={getCoinIconUrl(coin.ticker)} alt={`${coin.name} logo`} />
         )}
         <Address href={getCoinLink('wallet', address, coin?.ticker)}>
-          {getChecksumByTicker(coin?.ticker)(address)}
+          {addressText}
         </Address>
-        <CopyButton text={address} />
+        <CopyButton text={addressText || ''} />
       </AddressContainer>
       <MinerSettingsModal />
     </Wrap>
