@@ -95,7 +95,7 @@
         "current": "当前"
       },
       "crs": {
-        "title": "目前PPLNS滑动窗口份额比例",
+        "title": "当前PPLNS滑动窗口份额比例",
         "aprox": "每区块预计分配奖励",
         "tooltip": "以PPLNS份额记录计算"
       },
@@ -190,7 +190,7 @@
       "table_head": {
         "name": "矿机",
         "reported_hashrate": "名义算力",
-        "current_e_hashrate": "目前有效算力",
+        "current_e_hashrate": "当前有效算力",
         "average_e_hashrate": "平均有效算力",
         "valid": "有效份额",
         "stale": "过期份额",

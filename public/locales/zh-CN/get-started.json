@@ -36,7 +36,7 @@
     },
     "worker": {
       "title": "矿机定名",
-      "description": "建议自定义矿机名，容易分析矿机情况",
+      "description": "建议自定义矿机名字，容易分析矿机情况",
       "worker_name": "矿机名字",
       "worker_name_placeholder": "例如：矿机RX580x2"
     },
