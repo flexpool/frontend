@@ -1,15 +1,15 @@
 {
   "searchbar": {
-    "placeholder": "Search by your mining address"
+    "placeholder": "输入钱包地址查看"
   },
   "nav": {
-    "statistics": "Statistics",
-    "blocks": "Blocks",
-    "miners": "Miners",
+    "statistics": "矿池统计",
+    "blocks": "出块记录",
+    "miners": "矿工数据",
     "faq": "常见问题",
-    "support": "Support",
-    "get_started": "Get Started",
-    "community_title": "Join the community"
+    "support": "联系客服",
+    "get_started": "开始挖矿",
+    "community_title": "加入社区"
   },
   "footer": {
     "company": {
@@ -17,30 +17,30 @@
       "contact_us": "联系我们",
       "brand_assets": "品牌",
       "partners": "合作伙伴",
-      "business_dev": "Business Development",
+      "business_dev": "商务合作",
       "blog": "博客文章",
       "terms": "服务协议",
       "pp": "隐私条款"
     },
     "resources": {
-      "title": "Resources",
-      "get_started": "Getting Started",
+      "title": "帮助中心",
+      "get_started": "开始挖矿",
       "faq": "常见问题",
       "api_docs": "API 文档"
     },
     "community": {
-      "title": "Community"
+      "title": "Flexpool 社群"
     },
     "contact": {
       "title": "联系我们",
-      "service_status": "Service Status",
-      "support": "Support"
+      "service_status": "服务状态",
+      "support": "联系客服"
     },
     "preferences": {
-      "title": "Preferences"
+      "title": "设置"
     },
-    "bottom_message": "© 2020-{{currentYear}} Flexpool.io or its affiliates. All rights reserved.",
-    "translation_help": "Help us translate the website to your language"
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io 或附属机构。保留所有权利。",
+    "translation_help": "帮我们翻译网页"
   },
   "theme": {
     "default": "默认主题",
@@ -48,17 +48,26 @@
     "light": "浅色主题"
   },
   "list_navigation": {
-    "previous": "Previous",
-    "next": "Next"
+    "previous": "上一页",
+    "next": "下一页"
   },
   "errors": {
-    "higher_than": "Must be higher than {{value}}",
+    "higher_than": "数目必须大于 {{value}}",
     "required": "必填项",
     "Invalid IP Address": "IP地址无效",
     "email_invalid": "电邮地址无效",
-    "email_required": "Please enter your email address"
+    "email_required": "请输入您的电子邮件地址",
+    "address_not_found": "当前地址找不到数据。如果刚开始挖矿，请稍等一下。"
   },
   "date_time": {
-    "now": "now"
+    "now": "现在"
+  },
+  "snacks": {
+    "emailConfirmed": {
+      "title": "电子邮件地址已更改。"
+    },
+    "emailUnsubscribed": {
+      "title": "电子邮件通知已停用"
+    }
   }
 }

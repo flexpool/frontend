@@ -9,10 +9,10 @@
   "chart": {
     "title": "Taux de hashrate du pool",
     "total_hashrate": "Taux total de hashrate du pool",
-    "as": "Asie-Pacifique (APAC)",
+    "as": "Asie-Pacifique (AS)",
     "au": "Australie (AU)",
     "eu": "Europe (UE)",
-    "sa": "Amérique du Sud (AS)",
+    "sa": "Amérique du Sud (SA)",
     "us": "États-Unis (US)"
   }
 }

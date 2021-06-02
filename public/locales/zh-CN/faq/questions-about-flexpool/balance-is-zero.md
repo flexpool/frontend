@@ -1,7 +1,7 @@
 ---
-title: My balance has frozen for a long time. Have I configured my mining software properly?
+title: 为什么未支付余额没有变？ 我的挖矿软件设置没有发现问题。
 ---
 
-Yes, everything is good unless you cannot see your workers on the dashboard page. As we are not the largest mining pool, we don't find blocks every minute. During unlucky periods, your balance may stall for some time.
+如果监控页面看到有在线矿机就不需担心。 我们矿池规模较小，不是每分钟都会获得区块。 我们矿池使用PPLNS结算模式，矿池挖到区块时，没支付余额才会上升。矿池幸运较低的时候，余额有可能一段时间不变。
 
-No need to worry in this case. The right explanation for this would be "The balance updates each time we mine a block," rather than "The rewards are given when we mine a block" since our reward system still holds your "pending" block share even though balance is not moving.
+矿池幸运较低的时候，余额有可能一段时间不变。 矿池挖到区块，不会立刻更新余额，等到区块确认时间过后就按挖到区块时的份额比例分配。

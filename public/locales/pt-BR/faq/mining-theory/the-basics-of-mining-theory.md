@@ -1,6 +1,6 @@
 ---
-title: The "Basics" of the Mining Theory
-level: intermediate
+title: O "básico" da Teoria da Mineração
+level: intermediário
 ---
 
 #### Hashes/Hashing

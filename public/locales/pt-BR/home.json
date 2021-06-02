@@ -16,7 +16,7 @@
   "news_section": {
     "join_us": {
       "pre_title": "Junte-se a nós",
-      "title": "Conectar ao Flexpool",
+      "title": "Conectar à Flexpool",
       "cta": "Primeiros Passos"
     },
     "learn": {
@@ -32,7 +32,7 @@
   },
   "mined_coins_section": {
     "title": "Moedas que nós mineramos",
-    "description": "Flexpool é um pool de mineração Multi-Moeda, o que significa que você pode minerar suas moedas favoritas no Flexpool.",
+    "description": "Flexpool é uma pool de mineração multi-moeda, o que significa que você pode minerar suas moedas favoritas na Flexpool.",
     "table_head": {
       "name": "Nome",
       "price": "Preço",
@@ -64,18 +64,32 @@
     }
   },
   "why_section": {
-    "title": "Por que o Flexpool",
+    "title": "Por que a Flexpool",
     "item_1": {
       "title": "Velocidade da luz",
-      "description": "Usamos clusters especializados de alto desempenho, suportados por um software super rápido projetado para lidar com mais de 100 TH/s."
+      "description": "Usamos clusters especializados de alto desempenho, suportados por um software super rápido projetado para suportar mais de 100 TH/s."
     },
     "item_2": {
       "title": "Simplesmente Melhor",
-      "description": "Você pode esquecer suas experiências ruins com pools de mineração. O Flexpool possui um suporte de alta qualidade e estamos sempre felizes em ajudar!"
+      "description": "Você pode esquecer suas experiências ruins com pools de mineração. A Flexpool possui um suporte de alta qualidade e estamos sempre felizes em ajudar!"
     }
   },
   "get_started_section": {
     "title": "Pronto para começar?",
     "cta": "Comece a Minerar"
+  },
+  "chia": {
+    "email_submission_failure": "Failed to submit email",
+    "chia_comming_soon_text": "We are getting ready to launch our Chia pool. Stay tuned for more details. Sign up for email updates or join us below to become one of the first Chia miners on Flexpool!",
+    "chia_coming_soon": "Chia Coming Soon!",
+    "subscribe": "Subscribe!",
+    "subscribed": "Subscribed!"
+  },
+  "cookie_consent": {
+    "cookie_consent_text": "This website uses cookies to improve the user experience.",
+    "i_agree": "Okay"
+  },
+  "top_notification": {
+    "welcome": "Welcome to the new revamped Flexpool.io v2 Website! If you wish to visit old website, please use"
   }
 }
