@@ -4,7 +4,6 @@ import DynamicList, {
 } from 'src/components/layout/List/List';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { fetchApi } from 'src/utils/fetchApi';
-import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { LinkMiner } from 'src/components/LinkMiner';
 import { Luck } from 'src/components/Luck';
 import styled from 'styled-components';
@@ -99,7 +98,6 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
     'full_date' | 'distance'
   >('blockDateView', 'full_date');
 
-  const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const dateFormatter = useLocalizedDateFormatter();
 
   React.useEffect(() => {
@@ -243,18 +241,6 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
           </Mono>
         ),
       },
-      reward: {
-        title: t('table.table_head.reward'),
-        alignRight: true,
-        skeletonWidth: 80,
-        Component: ({ data }) => {
-          return (
-            <Mono>
-              <Ws>{activeCoinFormatter(data.reward)}</Ws>
-            </Mono>
-          );
-        },
-      },
       roundTime: {
         title: t('table.table_head.round_time'),
         skeletonWidth: 75,
@@ -294,7 +280,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         ),
       },
     }),
-    [activeCoinFormatter, t, dateFormatter, dateView, setDateView]
+    [t, dateFormatter, dateView, setDateView]
   );
 
   const columns = React.useMemo(() => {
@@ -306,7 +292,6 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         blockCols.date,
         blockCols.region,
         blockCols.miner,
-        blockCols.reward,
         blockCols.roundTime,
         blockCols.luck,
       ];
@@ -317,7 +302,6 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
       blockCols.type,
       blockCols.date,
       blockCols.region,
-      blockCols.reward,
       blockCols.blockHash,
     ];
   }, [address, blockCols]);
