@@ -150,6 +150,7 @@ export const MinerDashboardPageContent: React.FC<
           </Helmet>
           <Content>
             <HeaderGreetings onRefresh={loadAll} />
+            {address}
             <AccountHeader coin={activeCoin} address={address} />
             <Spacer />
             <MinerDetails coin={activeCoin} />
