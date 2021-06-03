@@ -4,7 +4,6 @@ import DynamicList, {
 } from 'src/components/layout/List/List';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { fetchApi } from 'src/utils/fetchApi';
-import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { LinkMiner } from 'src/components/LinkMiner';
 import { Luck } from 'src/components/Luck';
 import styled from 'styled-components';
@@ -101,7 +100,6 @@ export const BlocksSection: React.FC<{
     'full_date' | 'distance'
   >('blockDateView', 'full_date');
 
-  const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const dateFormatter = useLocalizedDateFormatter();
 
   React.useEffect(() => {
@@ -284,7 +282,7 @@ export const BlocksSection: React.FC<{
         ),
       },
     }),
-    [activeCoinFormatter, t, dateFormatter, dateView, setDateView]
+    [t, dateFormatter, dateView, setDateView]
   );
 
   const columns = React.useMemo(() => {
