@@ -1,15 +1,19 @@
 import qs from 'query-string';
 
 export const apiURL = process.env.REACT_APP_API_URL;
+export const chiaURL = process.env.REACT_APP_CHIA_API_URL;
 
 const transformQuery = (query?: object) => {
   return (query && qs.stringify(query)) || '';
 };
 
-const buildUri = (url = '', query?: object) => {
-  const resUrl = url.startsWith('http')
-    ? new URL(url)
-    : new URL(`${apiURL}${url}`);
+const buildUri = (url = '', query?: object, api?: string) => {
+  let resUrl: URL;
+  if (url.startsWith('http')) {
+    resUrl = new URL(url);
+  } else {
+    resUrl = new URL(`${api === 'chia' ? chiaURL : apiURL}${url}`);
+  }
   resUrl.search = (query && transformQuery(query)) || '';
 
   return resUrl.toString();
@@ -46,7 +50,8 @@ type ApiFetchOptions = Omit<RequestInit, 'body'> & {
  */
 export const fetchApi = async <T>(
   url: string,
-  initParam: ApiFetchOptions = {}
+  initParam: ApiFetchOptions = {},
+  api?: string
 ): Promise<T> => {
   const { query, ...init } = initParam;
 
@@ -65,7 +70,7 @@ export const fetchApi = async <T>(
     },
   };
 
-  return fetch(buildUri(url, query), options).then(async (res) => {
+  return fetch(buildUri(url, query, api), options).then(async (res) => {
     // SUCCESS
     if (res.status >= 200 && res.status < 300) {
       return res

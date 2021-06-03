@@ -1,158 +1,158 @@
 {
   "list": {
-    "head_title": "Start mining with us",
-    "title": "Get started with mining on Flexpool today!",
-    "nicehash_rental_button": "NiceHash Rental"
+    "head_title": "开始挖矿",
+    "title": "开始挖矿",
+    "nicehash_rental_button": "Nicehash 设置"
   },
   "detail": {
     "title": "{{coin}} 挖矿教程",
     "wallet": {
-      "title": "Get your wallet address",
-      "desc_one": "The easiest way to get a wallet is to register on a cryptocurrency exchange like <binance>Binance (Ref)</binance> or <coinbase>Coinbase</coinbase>.",
-      "desc_two": "Although exchanges are comfortable and easy to use, they are not very secure. You can use a non-custodial wallet, but the safest way to store your funds is to use a <strong>hardware wallet</strong>. <ledger>Ledger</ledger> and <trezor>Trezor</trezor> are the most popular ones.",
-      "wallet_address": "Wallet Address",
-      "invalid_address": "Invalid wallet address"
+      "title": "创建钱包地址",
+      "desc_one": "支持以太币的交易所一般会提供钱包充值，例如 <binance>币安 （推荐链接）</binance>、火币网、<coinbase>Coinbase</coinbase> 等。",
+      "desc_two": "中心化交易所的钱包是托管钱包，相关风险由矿工自行承担。非托管的App及Web钱包、自创匿名钱包地址也可以用。最安全是使用 <strong>硬件钱包</strong>，例如 <ledger>Ledger</ledger> 和 <trezor>Trezor</trezor> 。",
+      "wallet_address": "您的钱包地址",
+      "invalid_address": "钱包地址无效"
     },
     "region": {
-      "title": "Select your region",
-      "description": "For the best performance, you should choose server with lowest latency to your mining rig or computer. The chart is displaying latency between servers and this device.",
+      "title": "选择服务器",
+      "description": "选择最低延迟的服务器，确保最佳挖矿性能。下面显示你当前与各服务器之间的网络延迟。",
       "table_head": {
-        "location": "Region Name",
-        "domain": "Endpoint",
-        "port": "Port",
-        "average_lat": "Latency"
+        "location": "地区",
+        "domain": "服务器",
+        "port": "端口",
+        "average_lat": "延迟"
       },
-      "fastest": "Fastest",
-      "backup": "Backup"
+      "fastest": "最佳",
+      "backup": "备用"
     },
     "ports": {
-      "title": "Ports",
-      "description": "We highly encourage everyone to use secured port when connecting to Flexpool servers. <more>Read more on why you shouldn't use unsecured ports</more>. <strong>IMPORTANT</strong>: Using SSL does not increase the stale rate.",
-      "ssl_port": "Secure SSL Port",
-      "tcp_port": "TCP Port",
-      "tcp_port_tooltip": "We are strongly against using unencrypted (TCP) connection while mining on our pool. This connection is vulnerable to MITM (Man-In-The-Middle) attacks, which means that if someone will maliciously stand in between of your worker and pool, some % of your hashrate may be stolen. Read more on our <more>FAQ page</more>.",
-      "high_diff_port": "High Difficulty Port",
-      "high_diff_port_tooltip": "This is the special port for advanced users who run proxies that require insanely high difficulty. This includes users who use <NiceHash>NiceHash</NiceHash> and related hashrate rental marketplaces. Available for: "
+      "title": "端口",
+      "description": "我们建议使用SSL安全端口连接服务器。 <more>了解非安全端口的风险</more>。 <strong>注意</strong>: 使用 SSL端口不会增加过期份额率。",
+      "ssl_port": "SSL安全端口",
+      "tcp_port": "TCP端口",
+      "tcp_port_tooltip": "我们并不建议使用非加密的TCP端口，预防中间人攻击，侵吞你的算力。可以在我们的<more>常见问题</more>了解更多。",
+      "high_diff_port": "高难度端口",
+      "high_diff_port_tooltip": "这个端口适用与ASIC矿机或代理服务器下的多台矿机，还有<NiceHash>Nicehash</NiceHash>和其他算力市场上购买的算力。只能在以下的服务器用： "
     },
     "worker": {
-      "title": "Name your worker",
-      "description": "Naming your worker is recommended if you have multiple mining rigs connected to Flexpool. This will give you more clarity about how your mining rigs perform on your dashboard page.",
-      "worker_name": "Worker Name",
-      "worker_name_placeholder": "e.g. MY_RIG_580x2"
+      "title": "矿机定名",
+      "description": "建议自定义矿机名字，容易分析矿机情况",
+      "worker_name": "矿机名字",
+      "worker_name_placeholder": "例如：矿机RX580x2"
     },
     "software": {
-      "title": "Choose your mining software",
-      "fee": "Fee"
+      "title": "选择挖矿软件",
+      "fee": "费用"
     },
     "view": {
-      "title": "View your stats",
-      "description": "Once you start mining, your data should appear on your dashboard. Please allow up to 10 minutes for the data to be processed.",
-      "cta": "Open Dashboard"
+      "title": "矿机监控及收益查看",
+      "description": "开始挖矿十分钟后，数据提交给矿池，在监控页面即可查看矿机运行状态和收益情况。",
+      "cta": "矿工管理"
     }
   },
   "detail_eth": {
-    "title": "Ethereum mining",
+    "title": "以太坊挖矿教程",
     "pool_details": [
       {
-        "key": "Reward Scheme",
-        "value": "PPLNS (Pay Per Last N Shares)"
+        "key": "结算模式",
+        "value": "PPLNS （按最后N份额比例分配）"
       },
       {
-        "key": "Pool Fee",
+        "key": "费率",
         "value": "0.5%"
       },
       {
-        "key": "Bonuses",
-        "value": "90% of MEV bonus"
+        "key": "額外奖励",
+        "value": "90% 矿工可提取价值（MEV）的收入"
       },
       {
-        "key": "Payout Round",
-        "value": "Once an hour"
+        "key": "支付周期",
+        "value": "每小时一轮"
       },
       {
-        "key": "Payouts",
-        "value": "from 0.01 ETH up to 100 ETH"
+        "key": "起付额度",
+        "value": "自定义额度，0.01 ETH 到最大 100 ETH"
       },
       {
-        "key": "Block confirmation time",
-        "value": "120 Blocks"
+        "key": "区块确认时间",
+        "value": "120 个区块"
       },
       {
-        "key": "Share Difficulty",
+        "key": "份额难度",
         "value": "4 GH"
       },
       {
-        "key": "Mining Algorithm",
+        "key": "算法",
         "value": "Ethash"
       }
     ],
     "hardware": [
       {
-        "title": "GPU Mining",
-        "key": "GPU",
+        "title": "显卡矿机",
+        "key": "显示卡",
         "miners": [
           {
-            "description": "Best miner for AMD GPUs"
+            "description": "AMD显卡推荐挖矿软件"
           },
           {
-            "description": "Best miner for NVIDIA 20/30 Series GPUs"
+            "description": "NVIDIA 20/30系列显卡推荐挖矿软件"
           },
           {
-            "description": "Best miner for 4GB zombie mode."
+            "description": "能用4G显卡继续挖以太币的软件"
           },
           {
-            "description": "Proprietary Ethash miner with low dev fee."
+            "description": "独创专利挖矿软件"
           },
           {
-            "description": "Actively developed and stable miner with low dev fee."
+            "description": "算力稳定，持续研创的挖矿软件"
           }
         ]
       }
     ]
   },
   "regions": {
-    "us-east": "United States (East)",
-    "us-west": "United States (West)",
-    "de": "Germany",
-    "se": "Sweden",
-    "sg": "Singapore",
-    "au": "Australia",
-    "br": "Brazil",
-    "kr": "South Korea"
+    "us-east": "美国（东岸）",
+    "us-west": "美国（西岸）",
+    "de": "德国",
+    "se": "瑞典",
+    "sg": "新加坡",
+    "au": "澳洲",
+    "br": "巴西",
+    "kr": "南韩"
   },
   "cmd_keys": {
-    "CLOSEST_SERVER": "CLOSEST_SERVER",
-    "WALLET_ADDRESS": "WALLET_ADDRESS",
-    "WORKER_NAME": "WORKER_NAME"
+    "CLOSEST_SERVER": "最近服务器地址",
+    "WALLET_ADDRESS": "钱包地址",
+    "WORKER_NAME": "矿机名字"
   },
   "nicehash": {
-    "head_title": "NiceHash guide for mining on Flexpool",
-    "title": "NiceHash guide for mining on Flexpool",
-    "description": "NiceHash is the world's largest hashrate marketplace where anyone can rent as much hashrate as needed. This guide is about how you can start renting hashpower on Flexpool using NiceHash.",
+    "head_title": "Nicehash 设置",
+    "title": "Nicehash 设置",
+    "description": "Nicehash 是全球规模最大的算力市场，购买的算力怎么在Flexpool使用？",
     "step_one": {
-      "title": "Open your hashrate marketplace dashboard",
+      "title": "打开算力市场页面",
       "description": [
-        "Once you've registered on NiceHash and activated the Hashrate Marketplace account, you can head to your rental dashboard and choose the {algorithm} mining algorithm.",
-        "After that, you would be able to see this window, where you should click \"Add new pool...\""
+        "登记 Nicehash 账户，算力市场账户后，可以到算力购买页面选择 {algorithm} 算法。",
+        "下面选择矿池列表，按 \"添加新矿池\""
       ]
     },
     "step_two": {
-      "title": "Fill in Flexpool's pool settings and your wallet address",
+      "title": "填写 Flexpool 矿池地址和钱包地址",
       "description": [
-        "Good, now you need to fill the pool settings. In the Stratum hostname or IP, you should select server based on your market choice (e.g. German server for European market). Check the list below. As a port,  high-difficulty port <strong>14444</strong> is available for NiceHash rental.",
-        "Specify your wallet address as the username. Use \"x\" as a password."
+        "Stratum hostname or IP 选择适用的市场地区，例如 EU-West 就用 Flexpool 德国服务器。端口需用 <strong>14444</strong> 高难度端口。只有下列服务器支持 Nicehash。",
+        "用户名用钱包地址，密码只需一个 ”x“。"
       ]
     },
     "step_three": {
-      "title": "Test the pool configuration",
+      "title": "测试矿池",
       "description": [
-        "Now you can click on Test Pool and check if everything is working properly."
+        "按 “测试矿池”，测试一下填写的矿池信息是否正确。提示 “Tested pool is compatible”，测说明设置的矿池信息无误。"
       ]
     },
     "step_four": {
-      "title": "Enjoy the benefits of Flexpool while using NiceHash!",
+      "title": "Nicehash 与 Flexpool 成功配合使用！",
       "description": [
-        "Hooray! You've got the NiceHash working with Flexpool, which means now you can use the best mining pool with the best hashpower marketplace! "
+        "保存矿池设置，可以去 Nicehash 实时算力市场创建新订单（标准或长效订单），购买的算力可以在 Flexpool上挖矿！"
       ]
     }
   }

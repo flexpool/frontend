@@ -140,12 +140,17 @@
     "table": {
       "title": "Paiements",
       "download": "Télécharger le CSV",
+      "table_contents": {
+        "pending": "Pending",
+        "success": "Success"
+      },
       "table_head": {
         "date": "Date",
         "value": "Valeur de la transaction",
         "fee": "Frais",
         "duration": "Durée",
-        "hash": "Hash"
+        "hash": "Hash",
+        "status": "Status"
       }
     }
   },
@@ -193,5 +198,8 @@
         "last_seen": "Dernière visite"
       }
     }
-  }
+  },
+  "status_pending_tooltip": "Awating transaction confirmation",
+  "confirmation_duration_tooltip": "Confirmed in",
+  "confirmed_at_tooltip": "Confirmed at"
 }

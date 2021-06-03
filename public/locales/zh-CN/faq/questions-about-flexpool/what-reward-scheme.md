@@ -1,5 +1,5 @@
 ---
-title: 'What reward scheme Flexpool uses?'
+title: 'Flexpool 使用哪一种结算模式？'
 ---
 
-We use PPLNS (Pay-Per-Last-N-Shares) Reward Scheme, where _N_ is 1M shares.
+Flexpool 使用 PPLNS （按最后N份额比例分配），_N_等于一百万份额，组合为PPLNS的滑动窗口。每个区块收益，根据出块时在滑动窗口内的份额比例而计算。

@@ -23,27 +23,12 @@ import { AppState } from 'src/rdx/rootReducer';
 
 import { AppTheme } from './AppTheme';
 import { SnackViewControl } from 'src/components/Snacks/SnackViewControl';
-
-// import StatisticsPage from '../pages/Statistics/Statistics.page';
-// import MinerDashboardPage from '../pages/MinerDashboard/MinerDashboard.page';
-// import MinersPage from '../pages/Miners/Miners.page';
-// import BlocksPage from '../pages/Blocks/Blocks.page';
-// import GetStartedPage from '../pages/GetStarted/GetStarted.page';
-// import ContactUsPage from '../pages/ContactUs/ContactUs.page';
-// import BrandAssetsPage from '../pages/BrandAssets/BrandAssets.page';
-// import HomePage from '../pages/Home/Home.page';
-// import SupportPage from '../pages/Support/Support.page';
-// import FaqPage from '../pages/Faq/Faq.page';
-// import OpenDataReportsPage from 'src/pages/Reports/OpenDataReports.page';
-// import PartnersPage from 'src/pages/Partners/Partners.page';
-// import BusinessDevelopmentPage from 'src/pages/BusinessDevelopment/BusinessDevelopment.page';
-// import MinerOldUrlSupportPage from 'src/pages/MinerOldUrlSupport/MinerOldUrlSupport.page';
-// import { NotFoundPage } from 'src/pages/NotFound/NotFound.page';
 import { PageLoader } from 'src/components/layout/Page';
 import ServiceWorkerWrapper from './ServiceWorkerWrapper';
 import { usePwaInit } from './PwaInit';
 import { searchAddressStorage } from 'src/components/SearchAddressBar/searchCache';
 import { I18n } from './I18n';
+import CookieConsent from 'src/components/CookieConsent';
 
 /**
  * Pages code splitting
@@ -81,8 +66,32 @@ const OpenDataReportsPage = React.lazy(
 const PartnersPage = React.lazy(
   () => import('../pages/Partners/Partners.page')
 );
-const MinerOldUrlSupportPage = React.lazy(
-  () => import('../pages/MinerOldUrlSupport/MinerOldUrlSupport.page')
+const BaseOldUrlSupportPage = React.lazy(
+  () => import('../pages/V1Urlsupport/BaseOldUrlSupport.page')
+);
+const StatsOldUrlSupportPage = React.lazy(
+  () => import('../pages/V1Urlsupport/StatsOldUrlSupport.page')
+);
+const BlocksOldUrlSupportPage = React.lazy(
+  () => import('../pages/V1Urlsupport/BlocksOldUrlSupport.page')
+);
+const MinersOldUrlSupportPage = React.lazy(
+  () => import('../pages/V1Urlsupport/MinersOldUrlSupport.page')
+);
+const GetStartedOldUrlSupportPage = React.lazy(
+  () => import('../pages/V1Urlsupport/GetStartedOldUrlSupport.page')
+);
+const NicehashOldUrlSupportPage = React.lazy(
+  () => import('../pages/V1Urlsupport/NicehashOldUrlSupport.page')
+);
+const SupportOldUrlSupportPage = React.lazy(
+  () => import('../pages/V1Urlsupport/SupportOldUrlSupport.page')
+);
+const OpenDataOldUrlSupportPage = React.lazy(
+  () => import('../pages/V1Urlsupport/OpenDataOldUrlSupport.page')
+);
+const ApiDocsOldUrlSupportPage = React.lazy(
+  () => import('../pages/V1Urlsupport/ApiDocsOldUrlSupport.page')
 );
 const ApiDocsPage = React.lazy(() => import('../pages/Docs/ApiDocs.page'));
 
@@ -164,9 +173,60 @@ const AppContent = () => {
           <Route exact component={ContactUsPage} path="/contact" />
           <Route exact component={HomePage} path="/" />
           <Route path="/not-found" component={NotFoundPage} />
-          <Route path="/:address" component={MinerOldUrlSupportPage} />
+          <Route
+            exact
+            path="/:langOrAddress/"
+            component={BaseOldUrlSupportPage}
+          />
+          <Route exact path="/:lang/stats" component={StatsOldUrlSupportPage} />
+          <Route
+            exact
+            path="/:lang/blocks"
+            component={BlocksOldUrlSupportPage}
+          />
+          <Route
+            exact
+            path="/:lang/miners"
+            component={MinersOldUrlSupportPage}
+          />
+          <Route
+            exact
+            path="/:lang/docs/help"
+            component={GetStartedOldUrlSupportPage}
+          />
+          <Route
+            exact
+            path="/:lang/docs/getting-started"
+            component={GetStartedOldUrlSupportPage}
+          />
+          <Route
+            exact
+            path="/:lang/docs/nicehash-guide"
+            component={NicehashOldUrlSupportPage}
+          />
+          <Route
+            exact
+            path="/:lang/efficiency-and-shares"
+            component={NicehashOldUrlSupportPage}
+          />
+          <Route
+            exact
+            path="/:lang/contact"
+            component={SupportOldUrlSupportPage}
+          />
+          <Route
+            exact
+            path="/:lang/opendata"
+            component={OpenDataOldUrlSupportPage}
+          />
+          <Route
+            exact
+            path="/:lang/docs/API"
+            component={ApiDocsOldUrlSupportPage}
+          />
           <Redirect to="/" />
         </Switch>
+        <CookieConsent></CookieConsent>
       </React.Suspense>
       <React.Suspense fallback={<React.Fragment />}>
         {/** __TODO footer loader */}

@@ -10,6 +10,11 @@ export const availableLangs = [
     flag: 'gb',
   },
   {
+    code: 'zh-CN',
+    title: '中文',
+    flag: 'cn',
+  },
+  {
     code: 'fr',
     title: 'Français',
     flag: 'fr',

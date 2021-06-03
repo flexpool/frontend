@@ -86,7 +86,10 @@ const ButtonDateSwitch = styled(Ws)`
   }
 `;
 
-export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
+export const BlocksSection: React.FC<{
+  address?: string;
+  displayReward?: Boolean;
+}> = ({ address }) => {
   const { t } = useTranslation('blocks');
   const blockState = useAsyncState<ApiBlocks>('blocks', {
     totalItems: 0,
@@ -97,7 +100,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   const [currentPage, setCurrentPage] = React.useState(0);
   const [dateView, setDateView] = useLocalStorageState<
     'full_date' | 'distance'
-  >('blockDateView', 'full_date');
+  >('blockDateView', 'distance');
 
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const dateFormatter = useLocalizedDateFormatter();
