@@ -56,9 +56,18 @@
     "required": "Povinné",
     "Invalid IP Address": "Neplatná IP adresa",
     "email_invalid": "Neplatná emailová adresa",
-    "email_required": "Zadejte prosím svou e-mailovou adresu"
+    "email_required": "Zadejte prosím svou e-mailovou adresu",
+    "address_not_found": "Specified address was not found in our system. Try waiting some time if you are already mining."
   },
   "date_time": {
     "now": "nyní"
+  },
+  "snacks": {
+    "emailConfirmed": {
+      "title": "Your email has been confirmed"
+    },
+    "emailUnsubscribed": {
+      "title": "You've successfully unsubscribed from email notifications"
+    }
   }
 }

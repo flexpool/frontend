@@ -1,5 +1,5 @@
 ---
-title: Does Flexpool charge a fee for every transaction?
+title: Flexpool 每次支付有费用吗？
 ---
 
-**No**. We don't charge any additional transaction fees from our side. The only fee you will pay is the network transaction fee, that is static regardless of the transaction value.
+**没有**。 Flexpool 矿池支付不会有格外收费。 只需交付网络转账费用（Gas price)，无论支付金额多少，您设置的上限是一笔有上限的定额以太币收费。
