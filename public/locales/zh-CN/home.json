@@ -1,38 +1,38 @@
 {
-  "head_title": "The Most Advanced Mining Pool",
-  "title": "Building the Future of Mining Pools",
-  "description": "Innovative mining pool created for modern cryptocurrency mining.",
+  "head_title": "最先进的矿池",
+  "title": "构筑研发矿池的未来",
+  "description": "持续创新研发的加密货币采矿池。",
   "coin_earnings_cards": {
-    "estimated": "Estimated earnings",
-    "estimated_tooltip": "Estimated earnings are based on performance of mining last 7 days on our pool.",
-    "daily": "daily",
-    "monthly": "monthly",
-    "cta_mine": "Start mining",
-    "pool_fee": "{{value}} Pool Fee",
-    "mev": "{{value}} of MEV Bonus",
-    "more_title": "More Coins Coming Soon!",
-    "more_description": "We are working to launch multiple pools in the near future. Stay connected by joining our discord or telegram."
+    "estimated": "预计收益",
+    "estimated_tooltip": "预计收益按过往七天矿池收入计算。",
+    "daily": "每日收益",
+    "monthly": "每月收益",
+    "cta_mine": "开始挖矿",
+    "pool_fee": "费率 {{value}} (PPLNS)",
+    "mev": "额外加成 MEV（矿工可提取价值）{{value}} 收入",
+    "more_title": "其他币种即將上線，敬請期待！",
+    "more_description": "将来还会推出其他币种，加入社群留意最新公报。"
   },
   "news_section": {
     "join_us": {
-      "pre_title": "Join us",
-      "title": "Connect to Flexpool",
-      "cta": "Get Started"
+      "pre_title": "加入矿池",
+      "title": "挖矿配置",
+      "cta": "开始挖矿"
     },
     "learn": {
-      "pre_title": "Learn",
-      "title": "Read our Blog",
-      "cta": "Learn"
+      "pre_title": "学习",
+      "title": "博客文章加深了解",
+      "cta": "学习"
     },
     "support": {
-      "pre_title": "Support",
-      "title": "Get Support",
-      "cta": "Contact"
+      "pre_title": "帮助",
+      "title": "联系客服",
+      "cta": "联系我们"
     }
   },
   "mined_coins_section": {
-    "title": "Coins we mine",
-    "description": "Flexpool is a Multi-Coin mining pool, which means that you can mine your favorite coins on Flexpool.",
+    "title": "我们的币种",
+    "description": "Flexpool 矿池支持多种货币。",
     "table_head": {
       "name": "币种",
       "price": "币价",
@@ -41,41 +41,55 @@
       "hashrate": "矿池算力",
       "miners": "矿工数"
     },
-    "item_cta": "Mine"
+    "item_cta": "开挖"
   },
   "coin_news_item": {
     "eth": {
       "title": "关于以太币",
-      "description": "Ethereum is a worldwide computer created to power Decentralized Applications known as Smart Contracts."
+      "description": "以太坊是一个以区块链为基础的公共平台，专用加密货币以太币。分布式的以太网络，支持多种去中心化应用，智能合约。"
     },
     "resources": "资源",
     "website": "官方网站",
     "whitepaper": "白皮书",
     "calculator": {
       "title": "收益计算器",
-      "title_tooltip": "The Estimated Income is calculated based on the 24-hour average network difficulty and the 24-hour average block reward. This calculation does not include Stale and Invalid shares.",
+      "title_tooltip": "预计收益采用24小时内平均网络难度和区块奖励估算理论收益。 此计算并不包括矿机可能算出的过期和无效份额。预计和实际收益会有差异，预算仅供参考。",
       "per_day": "每天",
       "per_month": "每月",
       "per_year": "每年",
       "cta": "开始挖矿"
     },
     "featured": {
-      "title": "Featured Stories"
+      "title": "焦点新聞"
     }
   },
   "why_section": {
-    "title": "Why Flexpool",
+    "title": "Flexpool 矿池特色",
     "item_1": {
-      "title": "Lightning speed",
-      "description": "We use specialized high-performance server clusters powered by superfast software designed to handle over 100 TH/s."
+      "title": "更快更稳定",
+      "description": "我们矿池专用高性能服务器集群和软件，能处理超过100 TH/s算力。"
     },
     "item_2": {
-      "title": "Just Better",
-      "description": "You can forget your poor mining experience. Flexpool is backed by high-quality support, and we are always happy to help!"
+      "title": "热心服务",
+      "description": "我们团队为你提供专业服务，挖矿经历不需再担心。"
     }
   },
   "get_started_section": {
-    "title": "Ready to get started?",
-    "cta": "Start Mining"
+    "title": "准备好了吗？",
+    "cta": "开始挖矿"
+  },
+  "chia": {
+    "email_submission_failure": "电子邮箱地址无法储存",
+    "chia_comming_soon_text": "我们正在准备启动奇亚币矿池，留下电子邮箱地址，接收最新资讯通知。",
+    "chia_coming_soon": "奇亚币即将来临！",
+    "subscribe": "订阅！",
+    "subscribed": "成功订阅！"
+  },
+  "cookie_consent": {
+    "cookie_consent_text": "这个网站正在使用 cookies 优化用户体验。",
+    "i_agree": "明白"
+  },
+  "top_notification": {
+    "welcome": "欢迎使用新推出的 Flexpool.io v2版网站！前往旧版网站请使用"
   }
 }

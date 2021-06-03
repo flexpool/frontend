@@ -140,12 +140,17 @@
     "table": {
       "title": "Vyplácení",
       "download": "Stáhnout CSV",
+      "table_contents": {
+        "pending": "Pending",
+        "success": "Success"
+      },
       "table_head": {
         "date": "Datum a čas",
         "value": "Hodnota",
         "fee": "Poplatek",
         "duration": "Doba trvání",
-        "hash": "Hash"
+        "hash": "Hash",
+        "status": "Status"
       }
     }
   },
@@ -193,5 +198,8 @@
         "last_seen": "Naposledy spatřen"
       }
     }
-  }
+  },
+  "status_pending_tooltip": "Awating transaction confirmation",
+  "confirmation_duration_tooltip": "Confirmed in",
+  "confirmed_at_tooltip": "Confirmed at"
 }

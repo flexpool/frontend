@@ -1,12 +1,12 @@
 {
-  "head_title": "Miners",
-  "title": "Miners",
+  "head_title": "矿工数据",
+  "title": "矿工数据",
   "top_miners": {
-    "title": "Top Miners",
+    "title": "最大矿工",
     "table_head": {
-      "miner": "Miner",
+      "miner": "钱包",
       "hashrate": "算力",
-      "balance": "Balance",
+      "balance": "当前余额",
       "workers": "矿机数量",
       "joined": "开户时间"
     }

@@ -140,12 +140,17 @@
     "table": {
       "title": "Uitbetalingen",
       "download": "CSV-bestand downloaden",
+      "table_contents": {
+        "pending": "Pending",
+        "success": "Success"
+      },
       "table_head": {
         "date": "Datum",
         "value": "Transactiewaarde",
         "fee": "Kost",
         "duration": "Duur",
-        "hash": "Hash"
+        "hash": "Hash",
+        "status": "Status"
       }
     }
   },
@@ -193,5 +198,8 @@
         "last_seen": "Laatst gezien"
       }
     }
-  }
+  },
+  "status_pending_tooltip": "Awating transaction confirmation",
+  "confirmation_duration_tooltip": "Confirmed in",
+  "confirmed_at_tooltip": "Confirmed at"
 }

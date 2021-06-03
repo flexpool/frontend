@@ -1,8 +1,8 @@
 {
-  "head_title": "Open Data Reports",
-  "title": "Open Data Reports",
-  "description": "Our initiative to provide clear and transparent progress reports about what we are doing at Flexpool.",
+  "head_title": "透明度报告",
+  "title": "透明度报告",
+  "description": "Flexpool 坚决保持透明度，每月发表矿池数据和未来发展动向报告。",
   "latest": "最新报告",
-  "archive": "Reports archive",
-  "report_item": "Flexpool Progress Report"
+  "archive": "报告存档",
+  "report_item": "Flexpool 每月报告"
 }
