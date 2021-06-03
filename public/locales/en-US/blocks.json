@@ -26,7 +26,7 @@
     "title_miner_4": "Personal Mined Blocks: {{count}}",
     "title_miner_5": "Personal Mined Blocks: {{count}}",
     "title_miner_plural": "Personal Mined Blocks: {{count}}",
-    "rewards_block_list_title": "Pool-wide Block Rewards",
+    "rewards_block_list_title": "Rewards Per Block",
     "table_head": {
       "number": "Number",
       "type": "Type",
