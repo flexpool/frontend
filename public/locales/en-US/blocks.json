@@ -26,6 +26,7 @@
     "title_miner_4": "You have mined {{count}} blocks",
     "title_miner_5": "You have mined {{count}} blocks",
     "title_miner_plural": "You have mined {{count}} blocks",
+    "rewards_block_list_title": "Rewards per Block",
     "table_head": {
       "number": "Number",
       "type": "Type",
@@ -35,7 +36,8 @@
       "reward": "Reward",
       "round_time": "Round Time",
       "hash": "Hash",
-      "luck": "Luck"
+      "luck": "Luck",
+      "share": "Share"
     }
   },
   "type": {

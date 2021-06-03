@@ -4,50 +4,31 @@ import DynamicList, {
 } from 'src/components/layout/List/List';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { fetchApi } from 'src/utils/fetchApi';
-import { LinkMiner } from 'src/components/LinkMiner';
-import { Luck } from 'src/components/Luck';
+import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import styled from 'styled-components';
-import { getCoinLink } from 'src/utils/coinLinks.utils';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
-import { LinkOut, LinkOutCoin } from 'src/components/LinkOut';
 import { Mono, Ws } from 'src/components/Typo/Typo';
-import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { TableCellSpinner } from 'src/components/Loader/TableCellSpinner';
 import { useTranslation } from 'react-i18next';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { BiTransferAlt } from 'react-icons/bi';
+import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import ListDateSwitchButton from 'src/components/ButtonVariants/ListDateSwitchButton';
+import { getCoinLink } from 'src/utils/coinLinks.utils';
+import { LinkOutCoin } from 'src/components/LinkOut';
 
-type ApiBlock = {
-  confirmed: boolean;
-  difficulty: number;
-  hash: string;
-  luck: number;
-  miner: string;
-  number: number;
-  region: string;
+export type ApiBlock = {
+  share: number;
   reward: number;
-  roundTime: number;
+  confirmed: boolean;
+  blockNumber: number;
   timestamp: number;
-  type: 'block' | 'uncle' | 'orphan';
+  hash: string;
+  blockType: 'block' | 'uncle' | 'orphan';
 };
 
-type ApiBlocks = {
-  totalItems: number;
-  totalPages: number;
-  data: ApiBlock[];
-};
-
-const Region = styled.span`
-  text-transform: uppercase;
-`;
-
-const BlockLink = styled(LinkOut)`
-  color: var(--text-primary);
-`;
-
-const BlockType = styled.span<{ type: ApiBlock['type'] }>`
+const BlockType = styled.span<{ type: ApiBlock['blockType'] }>`
   display: inline-block;
   text-transform: capitalize;
   white-space: nowrap;
@@ -71,34 +52,53 @@ const BlockType = styled.span<{ type: ApiBlock['type'] }>`
   }
 `;
 
-export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
+export const MinerRewardsBlocksSection: React.FC<{
+  address?: string;
+}> = ({ address }) => {
   const { t } = useTranslation('blocks');
-  const blockState = useAsyncState<ApiBlocks>('blocks', {
-    totalItems: 0,
-    totalPages: 0,
-    data: [],
-  });
+  const blockState = useAsyncState<ApiBlock[]>('minerRewardBlocks', []);
   const coinTicker = useActiveCoinTicker();
   const [currentPage, setCurrentPage] = React.useState(0);
+  const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const [dateView, setDateView] = useLocalStorageState<
     'full_date' | 'distance'
   >('blockDateView', 'full_date');
 
   const dateFormatter = useLocalizedDateFormatter();
-
   React.useEffect(() => {
     blockState.start(
-      fetchApi(address ? '/miner/blocks' : '/pool/blocks', {
-        query: { coin: coinTicker, page: currentPage, address },
+      fetchApi('/miner/blockRewards', {
+        query: {
+          address,
+          coin: coinTicker,
+        },
       })
     );
     // eslint-disable-next-line
   }, [currentPage, coinTicker, address]);
 
-  const totalPages = blockState.data?.totalPages || 0;
+  const totalPages = 0;
+  const onRowClick = React.useCallback(
+    (data: ApiBlock) => {
+      const url =
+        data.blockType !== 'orphan' &&
+        getCoinLink(data.blockType, data.hash, coinTicker);
+      if (url) {
+        window.open(url, '_blank');
+      }
+    },
+    [coinTicker]
+  );
+
+  const onRowClickAllowed = React.useCallback((data: ApiBlock) => {
+    if (data.blockType !== 'orphan') {
+      return true;
+    }
+    return false;
+  }, []);
 
   const blocks = React.useMemo(() => {
-    return blockState.data?.data || [];
+    return blockState.data || [];
   }, [blockState.data]);
 
   const blockCols: {
@@ -113,33 +113,17 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
     >;
   } = React.useMemo(
     () => ({
-      countNumber: {
-        title: '#',
-        skeletonWidth: 40,
-        Component: ({ config, index }) => {
-          return (
-            <Mono>
-              #
-              {(config.totalItems % 10) -
-                index +
-                (config.totalPages - (config.currentPage + 1)) * 10}
-            </Mono>
-          );
-        },
-      },
       number: {
         title: t('table.table_head.number'),
         skeletonWidth: 80,
         Component: ({ data, config }) => {
-          const url =
-            data.type !== 'orphan' &&
-            getCoinLink(data.type, data.hash, config.coinTicker);
-
           const content = (
             <Ws
-              className={data.type !== 'orphan' ? 'item-hover-higjlight' : ''}
+              className={
+                data.blockType !== 'orphan' ? 'item-hover-higjlight' : ''
+              }
             >
-              {data.number}
+              {data.blockNumber}
               {!data.confirmed && (
                 <Tooltip icon={<TableCellSpinner />}>
                   <TooltipContent message={t('waiting_confirmation_tooltip')} />
@@ -147,14 +131,6 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
               )}
             </Ws>
           );
-
-          if (url) {
-            return (
-              <BlockLink onClick={(e) => e.stopPropagation()} href={url}>
-                {content}
-              </BlockLink>
-            );
-          }
           return <>{content}</>;
         },
       },
@@ -163,15 +139,17 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         skeletonWidth: 50,
         Component: ({ data }) => {
           const msg =
-            data.type === 'orphan'
+            data.blockType === 'orphan'
               ? t('orphan_tooltip')
-              : data.type === 'uncle'
+              : data.blockType === 'uncle'
               ? t('uncle_tooltip')
               : null;
 
           return (
             <Ws>
-              <BlockType type={data.type}>{t(`type.${data.type}`)}</BlockType>
+              <BlockType type={data.blockType}>
+                {t(`type.${data.blockType}`)}
+              </BlockType>
               {msg && (
                 <Tooltip>
                   <TooltipContent
@@ -205,46 +183,29 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
           );
         },
       },
-      region: {
-        title: t('table.table_head.region'),
-        skeletonWidth: 40,
-        Component: ({ data }) => <Region>{data.region}</Region>,
-      },
-      miner: {
-        title: t('table.table_head.miner'),
-        skeletonWidth: 210,
-        Component: ({ data, config }) => (
-          <Mono>
-            <Ws>
-              <LinkMiner
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-                coin={config.coinTicker}
-                address={data.miner}
-              />
-            </Ws>
-          </Mono>
-        ),
-      },
-      roundTime: {
-        title: t('table.table_head.round_time'),
-        skeletonWidth: 75,
+      share: {
+        title: t('table.table_head.share'),
+        alignRight: true,
+        skeletonWidth: 80,
         Component: ({ data }) => {
           return (
-            <Ws>
-              {dateFormatter.durationWords(data.roundTime, {
-                includeSeconds: true,
-                short: true,
-              })}
-            </Ws>
+            <Mono>
+              <Ws>{data.share.toFixed(4)}%</Ws>
+            </Mono>
           );
         },
       },
-      luck: {
-        title: t('table.table_head.luck'),
-        skeletonWidth: 70,
-        Component: ({ data }) => <Luck value={data.luck} />,
+      reward: {
+        title: t('table.table_head.reward'),
+        alignRight: true,
+        skeletonWidth: 80,
+        Component: ({ data }) => {
+          return (
+            <Mono>
+              <Ws>{activeCoinFormatter(data.reward)}</Ws>
+            </Mono>
+          );
+        },
       },
       blockHash: {
         title: t('table.table_head.hash'),
@@ -253,10 +214,12 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         Component: ({ data, config }) => (
           <Mono>
             <Ws
-              className={data.type !== 'orphan' ? 'item-hover-higjlight' : ''}
+              className={
+                data.blockType !== 'orphan' ? 'item-hover-higjlight' : ''
+              }
             >
               <LinkOutCoin
-                type={data.type}
+                type={data.blockType}
                 hash={data.hash}
                 hashLength={10}
                 coin={config.coinTicker}
@@ -266,7 +229,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         ),
       },
     }),
-    [t, dateFormatter, dateView, setDateView]
+    [activeCoinFormatter, t, dateFormatter, dateView, setDateView]
   );
 
   const columns = React.useMemo(() => {
@@ -276,48 +239,24 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         blockCols.number,
         blockCols.type,
         blockCols.date,
-        blockCols.region,
-        blockCols.miner,
-        blockCols.roundTime,
-        blockCols.luck,
+        blockCols.share,
+        blockCols.reward,
+        blockCols.blockHash,
       ];
     }
     return [
-      blockCols.countNumber,
       blockCols.number,
       blockCols.type,
       blockCols.date,
-      blockCols.region,
+      blockCols.share,
+      blockCols.reward,
       blockCols.blockHash,
     ];
   }, [address, blockCols]);
 
-  const onRowClick = React.useCallback(
-    (data: ApiBlock) => {
-      const url =
-        data.type !== 'orphan' && getCoinLink(data.type, data.hash, coinTicker);
-      if (url) {
-        window.open(url, '_blank');
-      }
-    },
-    [coinTicker]
-  );
-
-  const onRowClickAllowed = React.useCallback((data: ApiBlock) => {
-    if (data.type !== 'orphan') {
-      return true;
-    }
-    return false;
-  }, []);
-
   return (
     <>
-      {address && blockState.data && blockState.data.totalItems > 0 && (
-        <h2>{t('table.title_miner', { count: blockState.data.totalItems })}</h2>
-      )}
-      {!address && blockState.data && blockState.data.totalItems > 0 && (
-        <h2>{t('table.title', { count: blockState.data.totalItems })}</h2>
-      )}
+      <h2>{t('table.rewards_block_list_title')}</h2>
       <DynamicList
         onRowClick={onRowClick}
         onRowClickAllowed={onRowClickAllowed}
@@ -327,12 +266,12 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
           totalPages,
         }}
         isLoading={blockState.isLoading}
-        loadingRowsCount={10}
+        loadingRowsCount={20}
         data={blocks}
         config={{
           coinTicker,
           totalPages,
-          totalItems: blockState.data?.totalItems || 0,
+          totalItems: 0,
           currentPage,
         }}
         columns={columns}
