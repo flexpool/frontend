@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useRouteMatch } from 'react-router';
 import { BlocksSection } from './MinerBlocks.section';
-
+import { MinerRewardsBlocksSection } from './MinerReportBlocks.section';
 export const MinerBlocksPage = () => {
   const {
     params: { address },
@@ -11,6 +11,7 @@ export const MinerBlocksPage = () => {
       <Helmet>
         <title>Miner blocks</title>
       </Helmet>
+      <MinerRewardsBlocksSection address={address}></MinerRewardsBlocksSection>
       <BlocksSection address={address} />
     </>
   );
