@@ -88,7 +88,6 @@ const ButtonDateSwitch = styled(Ws)`
 
 export const BlocksSection: React.FC<{
   address?: string;
-  displayReward?: Boolean;
 }> = ({ address }) => {
   const { t } = useTranslation('blocks');
   const blockState = useAsyncState<ApiBlocks>('blocks', {
@@ -100,7 +99,7 @@ export const BlocksSection: React.FC<{
   const [currentPage, setCurrentPage] = React.useState(0);
   const [dateView, setDateView] = useLocalStorageState<
     'full_date' | 'distance'
-  >('blockDateView', 'distance');
+  >('blockDateView', 'full_date');
 
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const dateFormatter = useLocalizedDateFormatter();
@@ -246,18 +245,6 @@ export const BlocksSection: React.FC<{
           </Mono>
         ),
       },
-      reward: {
-        title: t('table.table_head.reward'),
-        alignRight: true,
-        skeletonWidth: 80,
-        Component: ({ data }) => {
-          return (
-            <Mono>
-              <Ws>{activeCoinFormatter(data.reward)}</Ws>
-            </Mono>
-          );
-        },
-      },
       roundTime: {
         title: t('table.table_head.round_time'),
         skeletonWidth: 75,
@@ -309,7 +296,6 @@ export const BlocksSection: React.FC<{
         blockCols.date,
         blockCols.region,
         blockCols.miner,
-        blockCols.reward,
         blockCols.roundTime,
         blockCols.luck,
       ];
@@ -320,7 +306,6 @@ export const BlocksSection: React.FC<{
       blockCols.type,
       blockCols.date,
       blockCols.region,
-      blockCols.reward,
       blockCols.blockHash,
     ];
   }, [address, blockCols]);
