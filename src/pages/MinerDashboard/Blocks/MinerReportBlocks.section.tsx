@@ -1,22 +1,22 @@
-import React from "react";
+import React from 'react';
 import DynamicList, {
   DynamicListColumn,
-} from "src/components/layout/List/List";
-import { useAsyncState } from "src/hooks/useAsyncState";
-import { fetchApi } from "src/utils/fetchApi";
-import { useLocalizedActiveCoinValueFormatter } from "src/hooks/useDisplayReward";
-import styled from "styled-components";
-import { useActiveCoinTicker } from "src/rdx/localSettings/localSettings.hooks";
-import { Mono, Ws } from "src/components/Typo/Typo";
-import { Tooltip, TooltipContent } from "src/components/Tooltip";
-import { TableCellSpinner } from "src/components/Loader/TableCellSpinner";
-import { useTranslation } from "react-i18next";
-import { useLocalStorageState } from "src/hooks/useLocalStorageState";
-import { BiTransferAlt } from "react-icons/bi";
-import { useLocalizedDateFormatter } from "src/utils/date.utils";
-import ListDateSwitchButton from "src/components/ButtonVariants/ListDateSwitchButton";
-import { getCoinLink } from "src/utils/coinLinks.utils";
-import { LinkOutCoin } from "src/components/LinkOut";
+} from 'src/components/layout/List/List';
+import { useAsyncState } from 'src/hooks/useAsyncState';
+import { fetchApi } from 'src/utils/fetchApi';
+import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
+import styled from 'styled-components';
+import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
+import { Mono, Ws } from 'src/components/Typo/Typo';
+import { Tooltip, TooltipContent } from 'src/components/Tooltip';
+import { TableCellSpinner } from 'src/components/Loader/TableCellSpinner';
+import { useTranslation } from 'react-i18next';
+import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
+import { BiTransferAlt } from 'react-icons/bi';
+import { useLocalizedDateFormatter } from 'src/utils/date.utils';
+import ListDateSwitchButton from 'src/components/ButtonVariants/ListDateSwitchButton';
+import { getCoinLink } from 'src/utils/coinLinks.utils';
+import { LinkOutCoin } from 'src/components/LinkOut';
 
 export type ApiBlock = {
   share: number;
@@ -25,10 +25,10 @@ export type ApiBlock = {
   blockNumber: number;
   timestamp: number;
   hash: string;
-  blockType: "block" | "uncle" | "orphan";
+  blockType: 'block' | 'uncle' | 'orphan';
 };
 
-const BlockType = styled.span<{ type: ApiBlock["blockType"] }>`
+const BlockType = styled.span<{ type: ApiBlock['blockType'] }>`
   display: inline-block;
   text-transform: capitalize;
   white-space: nowrap;
@@ -37,12 +37,12 @@ const BlockType = styled.span<{ type: ApiBlock["blockType"] }>`
   }
 
   ${(p) =>
-    p.type === "uncle" &&
+    p.type === 'uncle' &&
     `
       color: var(--warning);
   `}
   ${(p) =>
-    p.type === "orphan" &&
+    p.type === 'orphan' &&
     `
       color: var(--text-tertiary);
   `}
@@ -55,15 +55,15 @@ const BlockType = styled.span<{ type: ApiBlock["blockType"] }>`
 export const MinerRewardsBlocksSection: React.FC<{
   address?: string;
 }> = ({ address }) => {
-  const { t } = useTranslation("blocks");
-  const blockState = useAsyncState<ApiBlock[]>("minerRewardBlocks", []);
+  const { t } = useTranslation('blocks');
+  const blockState = useAsyncState<ApiBlock[]>('minerRewardBlocks', []);
   const coinTicker = useActiveCoinTicker();
   const [currentPage, setCurrentPage] = React.useState(0);
   const [displayedBlocks, setDisplayedBlocks] = React.useState<ApiBlock[]>();
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const [dateView, setDateView] = useLocalStorageState<
-    "full_date" | "distance"
-  >("blockDateView", "distance");
+    'full_date' | 'distance'
+  >('blockDateView', 'distance');
 
   const blocks = React.useMemo(() => {
     setDisplayedBlocks(blockState.data?.slice(0, 5));
@@ -80,7 +80,7 @@ export const MinerRewardsBlocksSection: React.FC<{
   const dateFormatter = useLocalizedDateFormatter();
   React.useEffect(() => {
     blockState.start(
-      fetchApi("/miner/blockRewards", {
+      fetchApi('/miner/blockRewards', {
         query: {
           address,
           coin: coinTicker,
@@ -93,23 +93,21 @@ export const MinerRewardsBlocksSection: React.FC<{
   const onRowClick = React.useCallback(
     (data: ApiBlock) => {
       const url =
-        data.blockType !== "orphan" &&
+        data.blockType !== 'orphan' &&
         getCoinLink(data.blockType, data.hash, coinTicker);
       if (url) {
-        window.open(url, "_blank");
+        window.open(url, '_blank');
       }
     },
     [coinTicker]
   );
 
   const onRowClickAllowed = React.useCallback((data: ApiBlock) => {
-    if (data.blockType !== "orphan") {
+    if (data.blockType !== 'orphan') {
       return true;
     }
     return false;
   }, []);
-
-
 
   const blockCols: {
     [key: string]: DynamicListColumn<
@@ -124,19 +122,19 @@ export const MinerRewardsBlocksSection: React.FC<{
   } = React.useMemo(
     () => ({
       number: {
-        title: t("table.table_head.number"),
+        title: t('table.table_head.number'),
         skeletonWidth: 80,
         Component: ({ data, config }) => {
           const content = (
             <Ws
               className={
-                data.blockType !== "orphan" ? "item-hover-higjlight" : ""
+                data.blockType !== 'orphan' ? 'item-hover-higjlight' : ''
               }
             >
               {data.blockNumber}
               {!data.confirmed && (
                 <Tooltip icon={<TableCellSpinner />}>
-                  <TooltipContent message={t("waiting_confirmation_tooltip")} />
+                  <TooltipContent message={t('waiting_confirmation_tooltip')} />
                 </Tooltip>
               )}
             </Ws>
@@ -145,14 +143,14 @@ export const MinerRewardsBlocksSection: React.FC<{
         },
       },
       type: {
-        title: t("table.table_head.type"),
+        title: t('table.table_head.type'),
         skeletonWidth: 50,
         Component: ({ data }) => {
           const msg =
-            data.blockType === "orphan"
-              ? t("orphan_tooltip")
-              : data.blockType === "uncle"
-              ? t("uncle_tooltip")
+            data.blockType === 'orphan'
+              ? t('orphan_tooltip')
+              : data.blockType === 'uncle'
+              ? t('uncle_tooltip')
               : null;
 
           return (
@@ -173,19 +171,19 @@ export const MinerRewardsBlocksSection: React.FC<{
         },
       },
       date: {
-        title: t("table.table_head.date"),
+        title: t('table.table_head.date'),
         skeletonWidth: 180,
         Component: ({ data }) => {
           return (
             <ListDateSwitchButton
               onClick={(e) => {
                 setDateView(
-                  dateView === "full_date" ? "distance" : "full_date"
+                  dateView === 'full_date' ? 'distance' : 'full_date'
                 );
                 e.stopPropagation();
               }}
             >
-              {dateView === "full_date"
+              {dateView === 'full_date'
                 ? dateFormatter.dateAndTime(data.timestamp * 1000)
                 : dateFormatter.distanceFromNow(data.timestamp * 1000)}
               <BiTransferAlt />
@@ -194,19 +192,19 @@ export const MinerRewardsBlocksSection: React.FC<{
         },
       },
       share: {
-        title: t("table.table_head.share"),
+        title: t('table.table_head.share'),
         alignRight: true,
         skeletonWidth: 80,
         Component: ({ data }) => {
           return (
             <Mono>
-              <Ws>{data.share.toFixed(4)}%</Ws>
+              <Ws>{(data.share * 100).toFixed(4)}%</Ws>
             </Mono>
           );
         },
       },
       reward: {
-        title: t("table.table_head.reward"),
+        title: t('table.table_head.reward'),
         alignRight: true,
         skeletonWidth: 80,
         Component: ({ data }) => {
@@ -218,14 +216,14 @@ export const MinerRewardsBlocksSection: React.FC<{
         },
       },
       blockHash: {
-        title: t("table.table_head.hash"),
+        title: t('table.table_head.hash'),
         skeletonWidth: 200,
         alignRight: true,
         Component: ({ data, config }) => (
           <Mono>
             <Ws
               className={
-                data.blockType !== "orphan" ? "item-hover-higjlight" : ""
+                data.blockType !== 'orphan' ? 'item-hover-higjlight' : ''
               }
             >
               <LinkOutCoin
@@ -266,7 +264,7 @@ export const MinerRewardsBlocksSection: React.FC<{
 
   return (
     <>
-      <h2>{t("table.rewards_block_list_title")}</h2>
+      <h2>{t('table.rewards_block_list_title')}</h2>
       <DynamicList
         onRowClick={onRowClick}
         onRowClickAllowed={onRowClickAllowed}
@@ -287,7 +285,7 @@ export const MinerRewardsBlocksSection: React.FC<{
         columns={columns}
         contentEmpty={
           <h3>
-            {!!address ? t("table.title_miner_zero") : t("table.title_zero")}
+            {!!address ? t('table.title_miner_zero') : t('table.title_zero')}
           </h3>
         }
       />
