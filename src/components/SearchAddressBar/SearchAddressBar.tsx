@@ -148,7 +148,6 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
   const { t } = useTranslation(['common']);
   const d = useDispatch();
   const openState = useOpenState();
-
   React.useEffect(() => {
     openState.handleClose();
     // eslint-disable-next-line
@@ -157,6 +156,10 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
   const handleSearch = React.useCallback(
     async (address: string) => {
       let searchAddress: string = address;
+      if (/^[a-fA-F0-9]{40}$/.test(address)) {
+        searchAddress = '0x' + searchAddress;
+      }
+
       if (!searchAddress) {
         if (searchData.length > 0) {
           searchAddress = searchData[0].address; // Fetch latest address from cache.

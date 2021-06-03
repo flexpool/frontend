@@ -4,7 +4,7 @@
     "title": "Configurações",
     "ip": "Endereço de IP para verificação",
     "ip_hint": "Dica: Você está visitando esta página da web de",
-    "ip_description": "If your worker is using proxy address, e.g. your worker is dual mining through a ZIL pool, please use the proxy address instead.",
+    "ip_description": "Se o seu worker está usando um endereço de proxy, exemplo: seu worker minera também em uma pool de ZIL, por favor use o endereço do proxy.",
     "payout": {
       "title": "Configurações de Pagamento",
       "limit": "Limite de pagamento (min: {{min}})",
@@ -16,8 +16,8 @@
       "submit": "Aplicar alterações"
     },
     "payout_warning": [
-      "We highly recommend setting a higher payout limit to reduce total number of payout transactions. Less transactions means less paid in network fees.",
-      "You are the only one responsible for paying the transaction fees. We are strongly in favour of setting a transaction fee limit lower to avoid total loss on network fees. This will also help you partially mitigate losses when sudden fee spikes happen."
+      "É altamente recomendável definir um limite de pagamento mais alto para reduzir o número total de transações de pagamento. Menos transações significa menos taxas de rede pagas.",
+      "Você é o único responsável pelo pagamento das taxas de transação. Somos fortemente a favor de definir um limite de taxa de transação mais baixo para evitar a perda total nas taxas de rede. Isso também o ajudará a mitigar parcialmente as perdas quando ocorrerem picos repentinos de taxas."
     ],
     "notifications": {
       "title": "Notificações por e-mail",
@@ -40,22 +40,22 @@
     "greet_desc_3": "",
     "greet_desc_4": "",
     "greet_desc_5": "",
-    "greet_desc_plural": "{{count}} worker está minerando {{coin}} e seu hash é de {{hashrate}} no total.",
+    "greet_desc_plural": "{{count}} workers estão minerando {{coin}} e seu hash é de {{hashrate}} no total.",
     "info_payout_limit": "Limite de saque",
-    "info_gas_limit": "Limite do Preço Gás",
-    "info_gas_limit_none": "None",
-    "info_gas_limit_detail": "{{percent}} of payout limit.",
-    "info_gas_limit_detail_none": "Gas price is not limited.",
-    "info_gas_limit_detail_na": "Price not available.",
+    "info_gas_limit": "Limite do valor do Gás",
+    "info_gas_limit_none": "Nenhum",
+    "info_gas_limit_detail": "{{percent}} do limite de pagamento.",
+    "info_gas_limit_detail_none": "O preço do gás não é limitado.",
+    "info_gas_limit_detail_na": "Preço não disponível.",
     "info_joined": "Entrou",
     "info_joined_tooltip": "Seu primeiro compartilhamento foi registrado em",
-    "info_joined_tooltip_empty": "No share has been recorded yet",
-    "info_coin_price": "{{coin}} Preço",
+    "info_joined_tooltip_empty": "Nenhum compartilhamento foi registrado ainda",
+    "info_coin_price": "Preço do {{coin}}",
     "stat_workers": "Mineradores Ligados/Desligados",
     "stat_unpaid_balance": "Saldo não pago",
     "stat_unpaid_balance_reach": "<v>{{value}}</v> do limite de pagamento atingido.",
     "stat_unpaid_balance_reach_est": "O limite será atingido <v>{{value}}</v>.",
-    "stat_unpaid_balance_reach_ok": "Seu saque será processado na próxima rodada de pagamentos se as taxas de gas corresponderem às suas preferências.",
+    "stat_unpaid_balance_reach_ok": "Your payout will be processed on the next payment round if the fees match your preferences.",
     "stat_estimate": "Ganhos estimados",
     "stat_estimate_daily": "diário",
     "stat_estimate_weekly": "semanal",
@@ -91,16 +91,16 @@
       "title": "Estatísticas Avançadas de PPLNS",
       "avp": {
         "title": "Hashrate médio de Pagamento",
-        "tooltip": "Calculado com base na quota da rodada atual de compartilhamento e nas últimas 3 horas do gráfico de hashrate da pool.",
-        "current": "Atual"
+        "tooltip": "Calculated based on current round share and the last 3 hours pool hashrate chart.",
+        "current": "Current"
       },
       "crs": {
-        "title": "Compartilhamento da Rodada Atual",
+        "title": "Current Round Share",
         "aprox": "Recompensa aproximada",
         "tooltip": "Derivado do registro de shares"
       },
       "log": {
-        "title": "Duração para limpeza automática do log de Shares",
+        "title": "Share Log Wipeout Duration",
         "tooltip": "Hora para o compartilhamento da rodada cair para zero.",
         "size": "{{value}} shares no log"
       }
@@ -133,19 +133,24 @@
       "average_percent": "Taxa Média de Transação %",
       "average_cta": "Dicas sobre redução de taxas",
       "average_cta_tooltip": [
-        "1. Setting higher payout limit will reduce the number of transactions you will have to pay for in terms of network transaction fees.",
-        "2. Set your transaction fee limit to avoid high fees in the settings. When you reach your payout threshold, we will make sure that your payout transaction will be executed as soon as it fulfills your fee limit settings."
+        "1. Definir um limite de pagamento mais alto reduzirá o número de transações que você terá que pagar em termos de taxas de transação de rede.",
+        "2. Define o limite da taxa de transação para evitar altas taxas nas configurações. Quando você atingir seu limite de pagamento, nos certificaremos de que sua transação de pagamento será executada assim que cumprir suas configurações de limite de taxa."
       ]
     },
     "table": {
       "title": "Pagamentos",
       "download": "Baixar arquivo CSV",
+      "table_contents": {
+        "pending": "Pending",
+        "success": "Success"
+      },
       "table_head": {
         "date": "Data",
         "value": "Taxa de Transação",
         "fee": "Taxa",
         "duration": "Duração",
-        "hash": "Hash"
+        "hash": "Hash",
+        "status": "Status"
       }
     }
   },
@@ -193,5 +198,8 @@
         "last_seen": "Visto por Último"
       }
     }
-  }
+  },
+  "status_pending_tooltip": "Awating transaction confirmation",
+  "confirmation_duration_tooltip": "Confirmed in",
+  "confirmed_at_tooltip": "Confirmed at"
 }

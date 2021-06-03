@@ -56,9 +56,18 @@
     "required": "Obligatoire",
     "Invalid IP Address": "Adresse IP non valide",
     "email_invalid": "Adresse e-mail non valide",
-    "email_required": "Veuillez entrer votre adresse e-mail"
+    "email_required": "Veuillez entrer votre adresse e-mail",
+    "address_not_found": "Specified address was not found in our system. Try waiting some time if you are already mining."
   },
   "date_time": {
     "now": "maintenant"
+  },
+  "snacks": {
+    "emailConfirmed": {
+      "title": "Your email has been confirmed"
+    },
+    "emailUnsubscribed": {
+      "title": "You've successfully unsubscribed from email notifications"
+    }
   }
 }
