@@ -62,7 +62,7 @@ export const MinerRewardsBlocksSection: React.FC<{
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const [dateView, setDateView] = useLocalStorageState<
     'full_date' | 'distance'
-  >('blockDateView', 'full_date');
+  >('blockDateView', 'distance');
 
   const dateFormatter = useLocalizedDateFormatter();
   React.useEffect(() => {
