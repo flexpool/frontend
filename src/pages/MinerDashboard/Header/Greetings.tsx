@@ -7,6 +7,7 @@ import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { FaToggleOff, FaToggleOn } from 'react-icons/fa';
+import { LoaderDots } from 'src/components/Loader/LoaderDots';
 
 export function getGreeting() {
   const hours = new Date().getHours();
@@ -35,9 +36,8 @@ const ToggleWrapper = styled.div`
 
 const AutoUpdateWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   color: var(--text-primary);
-  align-self: flex-start;
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -67,12 +67,15 @@ const InactiveToggle = styled(FaToggleOff)`
 `;
 
 const ToggleWrapperButton = styled(Button)`
+  min-width: 156px;
   padding: 0 0 0 0;
   border: none;
   height: 42px;
   cursor: pointer;
   overflow: hidden;
   outline: none;
+  color: var(--text-secondary);
+  justify-content: center;
 `;
 
 export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
@@ -91,6 +94,16 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
     'auto_refresh_status',
     'auto'
   );
+  const [autoRefreshDelay, setAutoRefreshDelay] =
+    React.useState<boolean>(false);
+  const autoRefreshToggle = () => {
+    setAutoRefresh(autoRefresh === 'auto' ? 'manual' : 'auto');
+    setCounter(59);
+    setAutoRefreshDelay(true);
+    setTimeout(() => {
+      setAutoRefreshDelay(false);
+    }, 1000);
+  };
 
   const autoRefreshMethod = () => {
     if (autoRefresh === 'auto') {
@@ -137,23 +150,27 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
         <ToggleWrapper>
           <ToggleWrapperButton
             variant="transparent"
-            onClick={() => {
-              setAutoRefresh(autoRefresh === 'auto' ? 'manual' : 'auto');
-              setCounter(59);
-            }}
+            onClick={autoRefreshToggle}
+            disabled={autoRefreshDelay}
           >
-            <AutoUpdateText
-              className={autoRefresh === 'manual' ? 'inactive' : ''}
-            >
-              {autoRefresh === 'auto' ? (
-                <span>
-                  {t('header.update_in')} {counter}
-                </span>
-              ) : (
-                <span>{t('header.auto_update')}</span>
-              )}
-            </AutoUpdateText>
-            {autoRefresh === 'auto' ? <ActiveToggle /> : <InactiveToggle />}
+            {autoRefreshDelay ? (
+              <LoaderDots />
+            ) : (
+              <>
+                <AutoUpdateText
+                  className={autoRefresh === 'manual' ? 'inactive' : ''}
+                >
+                  {autoRefresh === 'auto' ? (
+                    <span>
+                      {t('header.update_in')} {counter}
+                    </span>
+                  ) : (
+                    <span>{t('header.auto_update')}</span>
+                  )}
+                </AutoUpdateText>
+                {autoRefresh === 'auto' ? <ActiveToggle /> : <InactiveToggle />}
+              </>
+            )}
           </ToggleWrapperButton>
         </ToggleWrapper>
       </AutoUpdateWrapper>
