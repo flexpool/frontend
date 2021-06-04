@@ -116,7 +116,7 @@ export const CoinCalculator: React.FC<{ coin: ApiPoolCoinFull }> = ({
                   {'  '}
                   <Tooltip>
                     <TooltipContent>
-                      {t('coin_news_item.calculator.description')}
+                      {t('coin_news_item.calculator.title_tooltip')}
                     </TooltipContent>
                   </Tooltip>
                 </h2>
