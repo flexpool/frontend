@@ -93,9 +93,9 @@ export const MinerCommand: React.FC<{
         replaceWith: <HighlightItem>{`${walletAddress}`}</HighlightItem>,
       },
       {
-        replace: '.WORKER_NAME',
+        replace: 'WORKER_NAME',
         replaceWith: workerName ? (
-          <HighlightItem>{`.${workerName}`}</HighlightItem>
+          <HighlightItem>{`${workerName}`}</HighlightItem>
         ) : null,
       },
     ]);
