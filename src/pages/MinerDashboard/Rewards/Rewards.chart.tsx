@@ -19,14 +19,34 @@ import {
 } from 'src/plugins/amcharts';
 import { useTranslation } from 'react-i18next';
 import { useLocalizedCurrencyFormatter } from 'src/utils/si.utils';
+import { Button } from 'src/components/Button';
+import styled from 'styled-components';
+import { IoMdDownload } from 'react-icons/io';
+
+const DownloadButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+`;
+
+const DownloadCsvButton = styled(Button)`
+  align-self: flex-end;
+  font-size: 1rem;
+  font-weight: 600;
+`;
+
+const FaDownloadIcon = styled(IoMdDownload)`
+  font-weight: 700;
+`;
 
 const RewardsChart: React.FC<{
   rewards: ApiMinerReward[];
   counterPrice: number;
   error?: any;
   isLoading: boolean;
+  address?: string;
 }> = (props) => {
-  const { rewards, counterPrice } = props;
+  const { rewards, counterPrice, address } = props;
   const coin = useActiveCoin();
 
   const { t } = useTranslation('dashboard');
@@ -88,6 +108,15 @@ const RewardsChart: React.FC<{
     // eslint-disable-next-line
   }, [coin, rewards, counterPrice, t, currencyFormatter]);
 
+  const DownloadCsv = () => {
+    const csvDownloadLink =
+      'https://api.flexpool.io/v2/miner/export/rewards.csv?coin=' +
+      coin?.ticker +
+      '&address=' +
+      address;
+    window.open(csvDownloadLink);
+  };
+
   return (
     <>
       <ChartContainer
@@ -100,6 +129,11 @@ const RewardsChart: React.FC<{
       >
         <div id="rewards-chart" style={{ width: '100%', height: '250px' }} />
       </ChartContainer>
+      <DownloadButtonContainer>
+        <DownloadCsvButton variant="primary" size="sm" onClick={DownloadCsv}>
+          <span>Download CSV</span> &nbsp;<FaDownloadIcon></FaDownloadIcon>
+        </DownloadCsvButton>
+      </DownloadButtonContainer>
     </>
   );
 };
