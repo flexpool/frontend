@@ -73,12 +73,7 @@ export const AccountHeader: React.FC<{
         </Address>
         <CopyButton text={addressText || ''} />
       </AddressContainer>
-      <RefreshButton
-        size="sm"
-        shape="square"
-        variant="primary"
-        onClick={onRefresh}
-      >
+      <RefreshButton size="sm" shape="square" onClick={onRefresh}>
         <BiRefresh />
       </RefreshButton>
       <MinerSettingsModal />
