@@ -195,7 +195,7 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
                 >
                   {autoRefresh === 'auto' ? (
                     <span>
-                      {t('header.update_in')} {counter}
+                      {t('header.update_in')} {queuedCounterValue || counter}
                     </span>
                   ) : (
                     <span>{t('header.auto_update')}</span>
