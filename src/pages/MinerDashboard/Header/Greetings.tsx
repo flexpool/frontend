@@ -111,10 +111,19 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
     }
   };
   React.useEffect(() => {
-    return () => {
+    const resetDataOnManualPageRefresh = () => {
       window.localStorage.removeItem('queued_down_tick');
       window.localStorage.removeItem('queued_counter_value');
       window.localStorage.setItem('auto_refresh_ticker', '60');
+    };
+    window.addEventListener('beforeunload', resetDataOnManualPageRefresh);
+    return () => {
+      setTimeout(() => {
+        window.localStorage.removeItem('queued_down_tick');
+        window.localStorage.removeItem('queued_counter_value');
+        window.localStorage.setItem('auto_refresh_ticker', '60');
+      }, 1000);
+      window.removeEventListener('beforeunload', resetDataOnManualPageRefresh);
     };
   }, []);
   React.useEffect(() => {
