@@ -7,6 +7,7 @@ import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { FaToggleOff, FaToggleOn } from 'react-icons/fa';
+import LoaderDots from 'src/components/Loader/LoaderDots';
 
 export function getGreeting() {
   const hours = new Date().getHours();
@@ -87,10 +88,17 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
   const { t } = useTranslation('dashboard');
 
   const data = minerHeaderStatsState.data;
-  const [counter, setCounter] = React.useState(60);
-  const [queuedDownTick, setQueuedDownTick] = React.useState(false);
-  const [queuedCounterValue, setQueuedCounterValue] =
-    React.useState<number | undefined>(undefined);
+  const [counter, setCounter] = useLocalStorageState<number>(
+    'auto_refresh_ticker',
+    60
+  );
+  const [queuedDownTick, setQueuedDownTick] = useLocalStorageState<boolean>(
+    'queued_down_tick',
+    false
+  );
+  const [queuedCounterValue, setQueuedCounterValue] = useLocalStorageState<
+    number | undefined
+  >('queued_counter_value', undefined);
 
   const [autoRefresh, setAutoRefresh] = useLocalStorageState<'auto' | 'manual'>(
     'auto_refresh_status',
@@ -102,12 +110,20 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
       setQueuedCounterValue(59);
     }
   };
-
+  React.useEffect(() => {
+    return () => {
+      window.localStorage.removeItem('queued_down_tick');
+      window.localStorage.removeItem('queued_counter_value');
+      window.localStorage.setItem('auto_refresh_ticker', '60');
+    };
+  }, []);
   React.useEffect(() => {
     const autoRefreshMethod = () => {
       if (autoRefresh === 'auto' && counter === 0) {
         onRefresh();
-        setCounter(60);
+        setTimeout(() => {
+          setCounter(60);
+        }, 1000);
       } else if (counter === 0) {
         setCounter(60);
       }
@@ -168,20 +184,26 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
           <ToggleWrapperButton
             variant="transparent"
             onClick={autoRefreshToggle}
+            disabled={counter === 0}
           >
-            <AutoUpdateText
-              className={autoRefresh === 'manual' ? 'inactive' : ''}
-            >
-              {autoRefresh === 'auto' ? (
-                <span>
-                  {t('header.update_in')}{' '}
-                  {queuedCounterValue ? queuedCounterValue : counter}
-                </span>
-              ) : (
-                <span>{t('header.auto_update')}</span>
-              )}
-            </AutoUpdateText>
-            {autoRefresh === 'auto' ? <ActiveToggle /> : <InactiveToggle />}
+            {counter === 0 ? (
+              <LoaderDots />
+            ) : (
+              <>
+                <AutoUpdateText
+                  className={autoRefresh === 'manual' ? 'inactive' : ''}
+                >
+                  {autoRefresh === 'auto' ? (
+                    <span>
+                      {t('header.update_in')} {counter}
+                    </span>
+                  ) : (
+                    <span>{t('header.auto_update')}</span>
+                  )}
+                </AutoUpdateText>
+                {autoRefresh === 'auto' ? <ActiveToggle /> : <InactiveToggle />}
+              </>
+            )}
           </ToggleWrapperButton>
         </ToggleWrapper>
       </AutoUpdateWrapper>
