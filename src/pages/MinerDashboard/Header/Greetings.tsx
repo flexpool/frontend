@@ -96,6 +96,8 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
     'queued_down_tick',
     false
   );
+  const [refreshInProgress, setRefreshInProgress] =
+    useLocalStorageState<boolean>('stats_refresh_in_progress', false);
   const [queuedCounterValue, setQueuedCounterValue] = useLocalStorageState<
     number | undefined
   >('queued_counter_value', undefined);
@@ -114,6 +116,7 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
     const resetDataOnManualPageRefresh = () => {
       window.localStorage.removeItem('queued_down_tick');
       window.localStorage.removeItem('queued_counter_value');
+      window.localStorage.removeItem('stats_refresh_in_progress');
       window.localStorage.setItem('auto_refresh_ticker', '60');
     };
     window.addEventListener('beforeunload', resetDataOnManualPageRefresh);
@@ -121,6 +124,7 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
       setTimeout(() => {
         window.localStorage.removeItem('queued_down_tick');
         window.localStorage.removeItem('queued_counter_value');
+        window.localStorage.removeItem('stats_refresh_in_progress');
         window.localStorage.setItem('auto_refresh_ticker', '60');
       }, 1000);
       window.removeEventListener('beforeunload', resetDataOnManualPageRefresh);
@@ -128,10 +132,12 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
   }, []);
   React.useEffect(() => {
     const autoRefreshMethod = () => {
-      if (autoRefresh === 'auto' && counter === 0) {
+      if (autoRefresh === 'auto' && counter === 0 && !refreshInProgress) {
         onRefresh();
+        setRefreshInProgress(true);
         setTimeout(() => {
           setCounter(60);
+          setRefreshInProgress(false);
         }, 1000);
       } else if (counter === 0) {
         setCounter(60);
