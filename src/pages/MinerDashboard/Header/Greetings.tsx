@@ -139,7 +139,12 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
           setCounter(60);
           setRefreshInProgress(false);
         }, 1000);
-      } else if (counter === 0) {
+      } else if (
+        counter === 0 &&
+        !refreshInProgress &&
+        !queuedDownTick &&
+        !queuedCounterValue
+      ) {
         setCounter(60);
       }
     };
@@ -160,10 +165,12 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
     autoRefresh,
     queuedDownTick,
     queuedCounterValue,
+    refreshInProgress,
     setCounter,
     setQueuedDownTick,
     onRefresh,
     setQueuedCounterValue,
+    setRefreshInProgress,
   ]);
 
   const greetingId = React.useMemo(() => {
