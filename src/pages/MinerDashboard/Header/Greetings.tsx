@@ -88,6 +88,9 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
 
   const data = minerHeaderStatsState.data;
   const [counter, setCounter] = React.useState(60);
+  const [queuedDownTick, setQueuedDownTick] = React.useState(false);
+  const [queuedCounterValue, setQueuedCounterValue] =
+    React.useState<number | undefined>(undefined);
 
   const [autoRefresh, setAutoRefresh] = useLocalStorageState<'auto' | 'manual'>(
     'auto_refresh_status',
@@ -95,20 +98,42 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
   );
   const autoRefreshToggle = () => {
     setAutoRefresh(autoRefresh === 'auto' ? 'manual' : 'auto');
-  };
-
-  const autoRefreshMethod = () => {
-    if (autoRefresh === 'auto') {
-      onRefresh();
+    if (queuedDownTick && queuedCounterValue === undefined) {
+      setQueuedCounterValue(59);
     }
-    setCounter(60);
   };
 
   React.useEffect(() => {
-    counter > 0
-      ? setTimeout(() => setCounter(counter - 1), 1000)
-      : autoRefreshMethod();
-  });
+    const autoRefreshMethod = () => {
+      if (autoRefresh === 'auto' && counter === 0) {
+        onRefresh();
+        setCounter(60);
+      } else if (counter === 0) {
+        setCounter(60);
+      }
+    };
+    if (counter > 0 && autoRefresh === 'auto' && queuedDownTick === false) {
+      setQueuedDownTick(true);
+      setTimeout(() => {
+        setCounter(queuedCounterValue || counter - 1);
+        if (queuedCounterValue) {
+          setQueuedCounterValue(undefined);
+        }
+        setQueuedDownTick(false);
+      }, 1000);
+    } else if (counter === 0) {
+      autoRefreshMethod();
+    }
+  }, [
+    counter,
+    autoRefresh,
+    queuedDownTick,
+    queuedCounterValue,
+    setCounter,
+    setQueuedDownTick,
+    onRefresh,
+    setQueuedCounterValue,
+  ]);
 
   const greetingId = React.useMemo(() => {
     return getGreeting();
@@ -149,7 +174,8 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
             >
               {autoRefresh === 'auto' ? (
                 <span>
-                  {t('header.update_in')} {counter}
+                  {t('header.update_in')}{' '}
+                  {queuedCounterValue ? queuedCounterValue : counter}
                 </span>
               ) : (
                 <span>{t('header.auto_update')}</span>
