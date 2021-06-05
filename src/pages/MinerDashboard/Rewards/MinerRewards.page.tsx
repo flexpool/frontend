@@ -11,6 +11,7 @@ import { ApiMinerReward } from 'src/types/Miner.types';
 import { fetchApi } from 'src/utils/fetchApi';
 import { MinerPplnsStats } from './MinerPplnsStats.section';
 import { MinerRewardStatsSection } from './MinerRewardStats.section';
+import { MinerRewardsBlocksSection } from './MinerReportBlocks.section';
 import RewardsChart from './Rewards.chart';
 
 export const MinerRewardsPage = () => {
@@ -24,7 +25,6 @@ export const MinerRewardsPage = () => {
     price: number;
     data: ApiMinerReward[];
   }>('minerRewards', { price: 0, data: [] });
-
   const coinTicker = useActiveCoinTicker();
   const counterTicker = useCounterTicker();
 
@@ -60,6 +60,7 @@ export const MinerRewardsPage = () => {
         averagePoolHashrate={poolStatsState.data?.averageHashrate}
         poolHashrate={poolStatsState.data?.hashrate.total}
       />
+      <MinerRewardsBlocksSection address={address}></MinerRewardsBlocksSection>
     </>
   );
 };
