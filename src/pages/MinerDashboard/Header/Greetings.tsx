@@ -7,7 +7,6 @@ import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { FaToggleOff, FaToggleOn } from 'react-icons/fa';
-import { LoaderDots } from 'src/components/Loader/LoaderDots';
 
 export function getGreeting() {
   const hours = new Date().getHours();
