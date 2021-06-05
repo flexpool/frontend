@@ -94,26 +94,19 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
     'auto_refresh_status',
     'auto'
   );
-  const [autoRefreshDelay, setAutoRefreshDelay] =
-    React.useState<boolean>(false);
   const autoRefreshToggle = () => {
     setAutoRefresh(autoRefresh === 'auto' ? 'manual' : 'auto');
-    setCounter(59);
-    setAutoRefreshDelay(true);
-    setTimeout(() => {
-      setAutoRefreshDelay(false);
-    }, 1000);
   };
 
   const autoRefreshMethod = () => {
     if (autoRefresh === 'auto') {
       onRefresh();
-      setCounter(60);
     }
+    setCounter(60);
   };
 
   React.useEffect(() => {
-    counter > 0 && autoRefresh === 'auto'
+    counter > 0
       ? setTimeout(() => setCounter(counter - 1), 1000)
       : autoRefreshMethod();
   });
@@ -151,26 +144,19 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
           <ToggleWrapperButton
             variant="transparent"
             onClick={autoRefreshToggle}
-            disabled={autoRefreshDelay}
           >
-            {autoRefreshDelay ? (
-              <LoaderDots />
-            ) : (
-              <>
-                <AutoUpdateText
-                  className={autoRefresh === 'manual' ? 'inactive' : ''}
-                >
-                  {autoRefresh === 'auto' ? (
-                    <span>
-                      {t('header.update_in')} {counter}
-                    </span>
-                  ) : (
-                    <span>{t('header.auto_update')}</span>
-                  )}
-                </AutoUpdateText>
-                {autoRefresh === 'auto' ? <ActiveToggle /> : <InactiveToggle />}
-              </>
-            )}
+            <AutoUpdateText
+              className={autoRefresh === 'manual' ? 'inactive' : ''}
+            >
+              {autoRefresh === 'auto' ? (
+                <span>
+                  {t('header.update_in')} {counter}
+                </span>
+              ) : (
+                <span>{t('header.auto_update')}</span>
+              )}
+            </AutoUpdateText>
+            {autoRefresh === 'auto' ? <ActiveToggle /> : <InactiveToggle />}
           </ToggleWrapperButton>
         </ToggleWrapper>
       </AutoUpdateWrapper>
