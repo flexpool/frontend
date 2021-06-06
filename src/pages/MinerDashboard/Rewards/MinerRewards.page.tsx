@@ -51,6 +51,7 @@ export const MinerRewardsPage = () => {
         rewards={minerRewardsState.data?.data || []}
         error={minerRewardsState.error}
         isLoading={minerRewardsState.isLoading}
+        address={address}
       />
       <MinerRewardStatsSection
         counterPrice={minerRewardsState.data?.price || 0}
