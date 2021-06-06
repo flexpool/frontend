@@ -92,6 +92,9 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
     'auto_refresh_ticker',
     60
   );
+  const [timeoutValue, setTimeoutValue] = useLocalStorageState<
+    number | undefined
+  >('auto_refresh_timeout_value', undefined);
   const [queuedDownTick, setQueuedDownTick] = useLocalStorageState<boolean>(
     'queued_down_tick',
     false
@@ -108,8 +111,13 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
   );
   const autoRefreshToggle = () => {
     setAutoRefresh(autoRefresh === 'auto' ? 'manual' : 'auto');
-    if (queuedDownTick && queuedCounterValue === undefined) {
-      setQueuedCounterValue(59);
+    if (timeoutValue) {
+      clearTimeout(timeoutValue);
+      setTimeoutValue(undefined);
+      setQueuedDownTick(false);
+      setCounter(59);
+    } else {
+      setCounter(59);
     }
   };
   React.useEffect(() => {
@@ -117,6 +125,7 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
       window.localStorage.removeItem('queued_down_tick');
       window.localStorage.removeItem('queued_counter_value');
       window.localStorage.removeItem('stats_refresh_in_progress');
+      window.localStorage.removeItem('auto_refresh_timeout_value');
       window.localStorage.setItem('auto_refresh_ticker', '60');
     };
     window.addEventListener('beforeunload', resetDataOnManualPageRefresh);
@@ -125,6 +134,7 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
         window.localStorage.removeItem('queued_down_tick');
         window.localStorage.removeItem('queued_counter_value');
         window.localStorage.removeItem('stats_refresh_in_progress');
+        window.localStorage.removeItem('auto_refresh_timeout_value');
         window.localStorage.setItem('auto_refresh_ticker', '60');
       }, 1000);
       window.removeEventListener('beforeunload', resetDataOnManualPageRefresh);
@@ -148,15 +158,20 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
         setCounter(60);
       }
     };
+    const runDownTick = () => {
+      setCounter(queuedCounterValue || counter - 1);
+      if (queuedCounterValue) {
+        setQueuedCounterValue(undefined);
+      }
+      setQueuedDownTick(false);
+    };
     if (counter > 0 && autoRefresh === 'auto' && queuedDownTick === false) {
       setQueuedDownTick(true);
-      setTimeout(() => {
-        setCounter(queuedCounterValue || counter - 1);
-        if (queuedCounterValue) {
-          setQueuedCounterValue(undefined);
-        }
-        setQueuedDownTick(false);
-      }, 1000);
+      setTimeoutValue(
+        window.setTimeout(() => {
+          runDownTick();
+        }, 1000)
+      );
     } else if (counter === 0) {
       autoRefreshMethod();
     }
@@ -171,6 +186,7 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
     onRefresh,
     setQueuedCounterValue,
     setRefreshInProgress,
+    setTimeoutValue,
   ]);
 
   const greetingId = React.useMemo(() => {
