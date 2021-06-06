@@ -73,7 +73,8 @@
     "earnings_chart": {
       "title": "Earnings this month",
       "earnings": "Earnings",
-      "daily_income": "Daily income"
+      "daily_income": "Daily income",
+      "download_csv": "Download CSV"
     },
     "past_earnings": {
       "title": "Past Earnings",
@@ -150,7 +151,7 @@
         "fee": "Fee",
         "duration": "Duration",
         "hash": "Hash",
-        "status":"Status"
+        "status": "Status"
       }
     }
   },
