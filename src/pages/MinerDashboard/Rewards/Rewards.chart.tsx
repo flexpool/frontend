@@ -25,9 +25,14 @@ import { IoMdDownload } from 'react-icons/io';
 
 const DownloadButtonContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  height: 32px;
-  margin-bottom: 10px;
+  flex-direction: column;
+  margin-top: 15px;
+`;
+
+const DownloadCsvButton = styled(Button)`
+  align-self: flex-end;
+  font-size: 1rem;
+  font-weight: 600;
 `;
 
 const FaDownloadIcon = styled(IoMdDownload)`
@@ -105,22 +110,8 @@ const RewardsChart: React.FC<{
 
   return (
     <>
-      <DownloadButtonContainer>
-        <div>
-          <h2>{t('rewards.earnings_chart.title')}</h2>
-        </div>
-
-        <Button
-          size="xs"
-          as="a"
-          className="export-button"
-          href={`https://api.flexpool.io/v2/miner/export/rewards.csv?coin=${coin?.ticker}&address=${address}`}
-        >
-          <span>Download CSV</span> &nbsp;<FaDownloadIcon></FaDownloadIcon>
-        </Button>
-      </DownloadButtonContainer>
-
       <ChartContainer
+        title={t('rewards.earnings_chart.title')}
         dataState={{
           error: props.error,
           isLoading: props.isLoading,
@@ -129,6 +120,17 @@ const RewardsChart: React.FC<{
       >
         <div id="rewards-chart" style={{ width: '100%', height: '250px' }} />
       </ChartContainer>
+      <DownloadButtonContainer>
+        <DownloadCsvButton
+          size="xs"
+          as="a"
+          className="export-button"
+          href={`https://api.flexpool.io/v2/miner/export/rewards.csv?coin=${coin?.ticker}&address=${address}`}
+        >
+          <span>{t('rewards.earnings_chart.download_csv')}</span> &nbsp;
+          <FaDownloadIcon></FaDownloadIcon>
+        </DownloadCsvButton>
+      </DownloadButtonContainer>
     </>
   );
 };
