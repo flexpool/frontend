@@ -60,7 +60,9 @@
     "stat_estimate_daily": "daily",
     "stat_estimate_weekly": "weekly",
     "stat_estimate_monthly": "monthly",
-    "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimate."
+    "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimate.",
+    "update_in": "Update in",
+    "auto_update": "Auto-update"
   },
   "nav": {
     "stats": "Stats",
