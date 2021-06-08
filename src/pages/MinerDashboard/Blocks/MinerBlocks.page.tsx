@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { useRouteMatch } from 'react-router';
 import { BlocksSection } from './MinerBlocks.section';
-
 export const MinerBlocksPage = () => {
   const {
     params: { address },
