@@ -279,7 +279,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         ),
       },
     }),
-    [t, dateFormatter, dateView, setDateView]
+    [t, dateFormatter, dateView, setDateView, activeCoinFormatter]
   );
 
   const columns = React.useMemo(() => {
