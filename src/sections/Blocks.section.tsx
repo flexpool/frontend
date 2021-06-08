@@ -288,10 +288,10 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
       return [
         blockCols.number,
         blockCols.type,
-        blockCols.reward,
         blockCols.date,
         blockCols.region,
         blockCols.miner,
+        blockCols.reward,
         blockCols.roundTime,
         blockCols.luck,
       ];
