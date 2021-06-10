@@ -16,6 +16,7 @@ import {
 import { minerDetailsGet } from 'src/rdx/minerDetails/minerDetails.actions';
 import { minerHeaderStatsGet } from 'src/rdx/minerHeaderStats/minerHeaderStats.actions';
 import { minerStatsGet } from 'src/rdx/minerStats/minerStats.actions';
+import { minerStatsChartGet } from 'src/rdx/minerStatsChart/minerStatsCharts.actions';
 import { AccountHeader } from './Header/AccountHeader';
 import { HeaderGreetings } from './Header/Greetings';
 import { HeaderStats } from './Header/Stats';
@@ -124,9 +125,19 @@ export const MinerDashboardPageContent: React.FC<
     );
   }, [coinTicker, address, d, worker]);
 
+  const loadMinerChartStats = React.useCallback(() => {
+    return d(
+      minerStatsChartGet(
+        coinTicker,
+        address,
+        typeof worker === 'string' ? worker : undefined
+      )
+    );
+  }, [coinTicker, address, d, worker]);
+
   const loadAll = React.useCallback(() => {
-    return Promise.all([loadMinerStats(), loadHeader()]);
-  }, [loadMinerStats, loadHeader]);
+    return Promise.all([loadMinerStats(), loadHeader(), loadMinerChartStats()]);
+  }, [loadMinerStats, loadHeader, loadMinerChartStats]);
 
   React.useEffect(() => {
     loadHeader();
@@ -136,6 +147,10 @@ export const MinerDashboardPageContent: React.FC<
   React.useEffect(() => {
     loadMinerStats();
   }, [loadMinerStats]);
+
+  React.useEffect(() => {
+    loadMinerChartStats();
+  }, [loadMinerChartStats]);
 
   return (
     <>
@@ -150,7 +165,11 @@ export const MinerDashboardPageContent: React.FC<
           </Helmet>
           <Content>
             <HeaderGreetings onRefresh={loadAll} />
-            <AccountHeader coin={activeCoin} address={address} onRefresh={loadAll}/>
+            <AccountHeader
+              coin={activeCoin}
+              address={address}
+              onRefresh={loadAll}
+            />
             <Spacer />
             <MinerDetails coin={activeCoin} />
             <HeaderStats coin={activeCoin} />
