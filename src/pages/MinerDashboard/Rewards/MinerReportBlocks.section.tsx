@@ -198,7 +198,7 @@ export const MinerRewardsBlocksSection: React.FC<{
         Component: ({ data }) => {
           return (
             <Mono>
-              <Ws>{(data.share * 100).toFixed(4)}%</Ws>
+              <Ws>{(data.share * 100).toFixed(6)}%</Ws>
             </Mono>
           );
         },
@@ -210,7 +210,11 @@ export const MinerRewardsBlocksSection: React.FC<{
         Component: ({ data }) => {
           return (
             <Mono>
-              <Ws>{activeCoinFormatter(data.reward)}</Ws>
+              <Ws>
+                {activeCoinFormatter(data.reward, {
+                  maximumSignificantDigits: 6,
+                })}
+              </Ws>
             </Mono>
           );
         },
