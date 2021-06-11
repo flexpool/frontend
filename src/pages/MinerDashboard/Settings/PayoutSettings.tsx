@@ -13,6 +13,7 @@ import {
 } from 'src/rdx/localSettings/localSettings.hooks';
 import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
 import { minerDetailsUpdatePayoutSettings } from 'src/rdx/minerDetails/minerDetails.actions';
+import { minerDetailsGet } from 'src/rdx/minerDetails/minerDetails.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
@@ -31,9 +32,8 @@ export const PayoutSettings: React.FC = () => {
   const numberFormatter = useLocalizedNumberFormatter();
   const d = useDispatch();
   const {
-    params: { address },
+    params: { address, coin: coinTicker },
   } = useRouteMatch<{ address: string; coin: string }>();
-
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
   const currencyFormatter = useLocalizedCurrencyFormatter();
 
@@ -53,14 +53,19 @@ export const PayoutSettings: React.FC = () => {
   return (
     <Formik
       onSubmit={async (data, { setSubmitting }) => {
-        await d(
-          minerDetailsUpdatePayoutSettings(activeCoin.ticker, address, {
-            payoutLimit:
-              Number(data.payoutLimit) * Math.pow(10, activeCoin.decimalPlaces),
-            maxFeePrice: Number(data.maxFeePrice),
-            ipAddress: data.ip,
-          })
-        );
+        Promise.all([
+          d(
+            minerDetailsUpdatePayoutSettings(activeCoin.ticker, address, {
+              payoutLimit:
+                Number(data.payoutLimit) *
+                Math.pow(10, activeCoin.decimalPlaces),
+              maxFeePrice: Number(data.maxFeePrice),
+              ipAddress: data.ip,
+            })
+          ),
+        ]).then(() => {
+          d(minerDetailsGet(coinTicker, address));
+        });
         setSubmitting(false);
       }}
       initialValues={{
@@ -97,9 +102,11 @@ export const PayoutSettings: React.FC = () => {
               <InfoBox variant="warning">
                 <h3>Important note</h3>
                 <p>
-                  {(t('dashboard:settings.payout_warning', {
-                    returnObjects: true,
-                  }) as string[]).map((item) => (
+                  {(
+                    t('dashboard:settings.payout_warning', {
+                      returnObjects: true,
+                    }) as string[]
+                  ).map((item) => (
                     <p key={item}>{item}</p>
                   ))}
                 </p>
