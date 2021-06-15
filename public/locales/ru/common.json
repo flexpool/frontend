@@ -6,7 +6,7 @@
     "statistics": "Статистика",
     "blocks": "Блоки",
     "miners": "Майнеры",
-    "faq": "ЧаВо",
+    "faq": "Часто задаваемые вопросы",
     "support": "Поддержка",
     "get_started": "Начать Майнить",
     "community_title": "Присоединиться к сообществу"
@@ -17,15 +17,15 @@
       "contact_us": "Связаться с Нами",
       "brand_assets": "Бренд",
       "partners": "Партнёры",
-      "business_dev": "Business Development",
+      "business_dev": "Развитие бизнеса",
       "blog": "Блог",
-      "terms": "Условия и положения",
+      "terms": "Условия",
       "pp": "Политика конфиденциальности"
     },
     "resources": {
       "title": "Ресурсы",
       "get_started": "Начать Майнить",
-      "faq": "ЧаВо",
+      "faq": "Часто задаваемые вопросы ",
       "api_docs": "Документация по API"
     },
     "community": {
@@ -40,7 +40,7 @@
       "title": "Настройки"
     },
     "bottom_message": "© 2020 -{{currentYear}} Flexpool.io или его филиалы. Все права защищены.",
-    "translation_help": "Помогите нам перевести наш сайт на ваш язык"
+    "translation_help": "Помогите нам перевести сайт на ваш язык"
   },
   "theme": {
     "default": "Стандартная тема",
@@ -54,13 +54,13 @@
   "errors": {
     "higher_than": "Должно быть выше чем {{value}}",
     "required": "Необходимо",
-    "Invalid IP Address": "Некорректный IP адрес",
-    "email_invalid": "Некорректный e-mail адрес",
+    "Invalid IP Address": "Неверный IP адрес",
+    "email_invalid": "Неверный e-mail адрес",
     "email_required": "Пожалуйста, введите ваш e-mail адрес",
     "address_not_found": "Specified address was not found in our system. Try waiting some time if you are already mining."
   },
   "date_time": {
-    "now": "now"
+    "now": "cейчас"
   },
   "snacks": {
     "emailConfirmed": {

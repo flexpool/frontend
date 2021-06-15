@@ -4,7 +4,7 @@
   "top_miners": {
     "title": "Top Mineradores",
     "table_head": {
-      "miner": "Mineradores",
+      "miner": "Minerador",
       "hashrate": "Hashrate",
       "balance": "Saldo",
       "workers": "Workers",

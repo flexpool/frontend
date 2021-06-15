@@ -57,17 +57,17 @@
     "Invalid IP Address": "Adresse IP non valide",
     "email_invalid": "Adresse e-mail non valide",
     "email_required": "Veuillez entrer votre adresse e-mail",
-    "address_not_found": "Specified address was not found in our system. Try waiting some time if you are already mining."
+    "address_not_found": "L'adresse spécifiée n'a pas été trouvée dans notre système. Essayez d'attendre un peu si vous êtes déjà en train de miner."
   },
   "date_time": {
     "now": "maintenant"
   },
   "snacks": {
     "emailConfirmed": {
-      "title": "Your email has been confirmed"
+      "title": "Votre email a été confirmé"
     },
     "emailUnsubscribed": {
-      "title": "You've successfully unsubscribed from email notifications"
+      "title": "Vous avez réussi à vous désabonner des notifications par e-mail"
     }
   }
 }

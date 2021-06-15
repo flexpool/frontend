@@ -1,17 +1,17 @@
 {
   "head_title": "Miners",
-  "title": "Miners Leaderboard",
+  "title": "Topplista för miners",
   "top_miners": {
     "title": "Top Miners",
     "table_head": {
       "miner": "Miner",
       "hashrate": "Hashrate",
-      "balance": "Balance",
-      "workers": "Workers",
-      "joined": "Joined"
+      "balance": "Balans",
+      "workers": "Arbetare",
+      "joined": "Förenad"
     }
   },
   "distribution": {
-    "title": "Miners Distribution by Hashrate"
+    "title": "Miners Distribution av Hashrate"
   }
 }

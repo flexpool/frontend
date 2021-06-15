@@ -18,7 +18,7 @@
   },
   "guidelines": {
     "title": "Diretrizes da Marca",
-    "description": "Ao usar nossos Itens da Marca, você deve seguir as nossas diretrizes de marca:",
+    "description": "Ao usar nossos Itens da Marca, você deve seguir as nossas diretrizes da marca:",
     "item_one": "Você não tem permissão para alterar o logotipo. Isto inclui mudanças de forma e cor.",
     "item_two": "Você não tem permissão para usar a marca Flexpool.io para sugerir uma relação e/ou uma afiliação com qualquer outra empresa, a menos que anunciemos a parceria. Exemplo: \"... em parceria com Flexpool.io.\"",
     "item_three": "Você não tem permissão para usar a marca Flexpool.io em contexto ilegal e promocional."
@@ -30,6 +30,6 @@
   },
   "legal": {
     "title": "Avisos Legais",
-    "description": "Ao usar nossa Marca, você concorda com as Diretrizes de Marca e nossos <terms>Termos</terms>. Se você precisar obter ajuda sobre o uso da marca Flexpool.io você pode entrar em contato conosco em <email>{{email}}</email>"
+    "description": "Ao usar nossa Marca, você concorda com as Diretrizes da Marca e nossos <terms>Termos</terms>. Se você precisar obter ajuda sobre o uso da marca Flexpool.io você pode entrar em contato conosco em <email>{{email}}</email>"
   }
 }
