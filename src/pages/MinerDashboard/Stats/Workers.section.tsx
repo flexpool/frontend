@@ -167,13 +167,14 @@ const MinerWorkersTable: React.FC<{
     return res;
   }, [unfilteredData, sortKey, search, sortOrder]);
 
-  const hasReportedHashrate = React.useMemo(() => {
-    const sumReported = unfilteredData.reduce(
-      (total, next) => next.reportedHashrate + total,
-      0
-    );
-    return sumReported > 0;
-  }, [unfilteredData]);
+  const uniqueHashrateValues = data
+    .map((item) => item.reportedHashrate)
+    .filter((value, index, self) => self.indexOf(value) === index);
+
+  const hasReportedHashrate = uniqueHashrateValues.reduce(
+    (total, next) => next + total,
+    0
+  );
 
   const handleColClick = React.useCallback(
     (value: string) => {
@@ -217,16 +218,16 @@ const MinerWorkersTable: React.FC<{
                 <Ws>
                   <Mono>
                     {siFormatter(data.reportedHashrate, { unit: 'H/s' })}{' '}
-                    <Percentage
-                      total={data.reportedHashrate}
-                      value={data.averageEffectiveHashrate}
-                    />{' '}
                     <Tooltip>
                       <TooltipContent>
                         {t('stats.table.table_head.average_e_hashrate')}: <br />
                         {siFormatter(data.averageEffectiveHashrate, {
                           unit: 'H/s',
                         })}{' '}
+                        <Percentage
+                          total={data.reportedHashrate}
+                          value={data.averageEffectiveHashrate}
+                        />
                       </TooltipContent>
                     </Tooltip>
                   </Mono>
@@ -234,7 +235,22 @@ const MinerWorkersTable: React.FC<{
               )),
             },
           ]
-        : []),
+        : [
+            {
+              title: t('stats.table.table_head.average_e_hashrate'),
+              alignRight: true,
+              onClickValue: 'averageEffectiveHashrate',
+              Component: React.memo(({ data }: { data: ApiMinerWorker }) => (
+                <Ws>
+                  <Mono>
+                    {siFormatter(data.averageEffectiveHashrate, {
+                      unit: 'H/s',
+                    })}{' '}
+                  </Mono>
+                </Ws>
+              )),
+            },
+          ]),
       {
         title: t('stats.table.table_head.current_e_hashrate'),
         alignRight: true,
@@ -286,7 +302,6 @@ const MinerWorkersTable: React.FC<{
       },
       {
         title: t('stats.table.table_head.last_seen'),
-        alignRight: true,
         Component: React.memo(({ data }) => (
           <Ws>{dateFormatter.distanceFromNow(data.lastSeen * 1000)}</Ws>
         )),

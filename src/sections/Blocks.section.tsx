@@ -18,6 +18,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { BiTransferAlt } from 'react-icons/bi';
 import ListDateSwitchButton from 'src/components/ButtonVariants/ListDateSwitchButton';
+import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 
 type ApiBlock = {
   confirmed: boolean;
@@ -83,7 +84,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   const [dateView, setDateView] = useLocalStorageState<
     'full_date' | 'distance'
   >('blockDateView', 'distance');
-
+  const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const dateFormatter = useLocalizedDateFormatter();
 
   React.useEffect(() => {
@@ -184,6 +185,18 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
           );
         },
       },
+      reward: {
+        title: t('table.table_head.reward'),
+        alignRight: true,
+        skeletonWidth: 80,
+        Component: ({ data }) => {
+          return (
+            <Mono>
+              <Ws>{activeCoinFormatter(data.reward)}</Ws>
+            </Mono>
+          );
+        },
+      },
       date: {
         title: t('table.table_head.date'),
         skeletonWidth: 180,
@@ -266,7 +279,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         ),
       },
     }),
-    [t, dateFormatter, dateView, setDateView]
+    [t, dateFormatter, dateView, setDateView, activeCoinFormatter]
   );
 
   const columns = React.useMemo(() => {
@@ -278,6 +291,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         blockCols.date,
         blockCols.region,
         blockCols.miner,
+        blockCols.reward,
         blockCols.roundTime,
         blockCols.luck,
       ];

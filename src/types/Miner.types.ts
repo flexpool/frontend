@@ -31,6 +31,16 @@ export type ApiMinerStats = {
   validShares: number;
 };
 
+export type ApiMinerStatsChartDataPoint = {
+  averageEffectiveHashrate: number;
+  effectiveHashrate: number;
+  invalidShares: number;
+  reportedHashrate: number;
+  staleShares: number;
+  timestamp: number;
+  validShares: number;
+};
+
 export type ApiMinerWorker = {
   count: number;
   currentEffectiveHashrate: number;
