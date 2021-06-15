@@ -1,7 +1,7 @@
 {
   "list": {
     "head_title": "Commencez à miner avec nous",
-    "title": "Commencez dès aujourd'hui à miner sur Flexpool!"
+    "title": "Commencez dès aujourd'hui à miner sur Flexpool!",
     "nicehash_rental_button": "Location de NiceHash"
   },
   "detail": {
@@ -20,9 +20,8 @@
         "location": "Emplacement de la région",
         "domain": "Domaine",
         "average_lat": "Latence moyenne"
-        "average_lat": "Latence"
       },
-      "fastest": "Le plus rapide"
+      "fastest": "Le plus rapide",
       "backup": "Serveur de secours"
     },
     "ports": {
@@ -30,7 +29,7 @@
       "description": "Nous encourageons vivement tout le monde à utiliser un port sécurisé lors de la connexion aux serveurs Flexpool. <more>Lire plus sur les raisons pour lesquelles vous ne devriez pas utiliser des ports non sécurisés</more>. <strong>IMPORTANT</strong> : L'utilisation de SSL n'augmente pas le taux de rassissement.",
       "ssl_port": "Port SSL sécurisé",
       "tcp_port": "Port TCP",
-      "tcp_port_tooltip": "Nous déconseillons fortement l'utilisation d'une connexion non cryptée (TCP) lors du minage sur notre pool. Cette connexion est vulnérable aux attaques MITM (Man-In-The-Middle), ce qui signifie que si quelqu'un se place malicieusement entre votre travailleur et le pool, un certain % de votre hashrate peut être volé. Pour en savoir plus, consultez notre page <more>FAQ</more>."
+      "tcp_port_tooltip": "Nous déconseillons fortement l'utilisation d'une connexion non cryptée (TCP) lors du minage sur notre pool. Cette connexion est vulnérable aux attaques MITM (Man-In-The-Middle), ce qui signifie que si quelqu'un se place malicieusement entre votre travailleur et le pool, un certain % de votre hashrate peut être volé. Pour en savoir plus, consultez notre page <more>FAQ</more>.",
       "high_diff_port": "Port de haute difficulté",
       "high_diff_port_tooltip": "C'est le portage spécial pour les utilisateurs avancés qui exécutent des proxys nécessitant une difficulté insensée. Cela inclut les utilisateurs qui utilisent <NiceHash>NiceHash</NiceHash> et les marchés de location de hashrate connexes. Disponible pour : "
     },

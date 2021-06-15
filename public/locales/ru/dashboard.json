@@ -147,7 +147,7 @@
         "value": "Transaction Value",
         "fee": "Комиссия",
         "duration": "Duration",
-        "hash": "Длительность"
+        "hash": "Длительность",
         "status": "Status"
       }
     }

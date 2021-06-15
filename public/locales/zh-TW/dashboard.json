@@ -126,7 +126,7 @@
       "fee": "{{value}} 費用",
       "average": "平均交易費用",
       "average_percent": "平均交易費用%",
-      "average_cta": "關於降低費用的提示"
+      "average_cta": "關於降低費用的提示",
       "average_cta_tooltip": [
         "1. Setting higher payout limit will reduce the number of transactions you will have to pay for in terms of network transaction fees.",
         "2. Set your transaction fee limit to avoid high fees in the settings. When you reach your payout threshold, we will make sure that your payout transaction will be executed as soon as it fulfills your fee limit settings."
@@ -144,7 +144,7 @@
         "value": "交易價值",
         "fee": "手續費",
         "duration": "持續時間",
-        "hash": "礦工算力"
+        "hash": "礦工算力",
         "status": "Status"
       }
     }

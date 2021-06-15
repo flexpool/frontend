@@ -126,7 +126,7 @@
       "fee": "{{value}} taxa",
       "average": "Taxa Média da Transação",
       "average_percent": "Taxa Média da Transação %",
-      "average_cta": "Dicas sobre redução de taxas"
+      "average_cta": "Dicas sobre redução de taxas",
       "average_cta_tooltip": [
         "1. Definir um limite de pagamento mais alto reduzirá o número de transações que você terá que pagar em termos de taxas de transação de rede.",
         "2. Defina o limite da taxa de transação para evitar altas taxas nas configurações. Quando você atingir seu limite de pagamento, nos certificaremos de que sua transação de pagamento será executada assim que cumprir suas configurações de limite de taxa."

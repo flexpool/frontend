@@ -56,7 +56,7 @@
     "required": "Wymagane",
     "Invalid IP Address": "Nieprawidłowy adres IP",
     "email_invalid": "Nieprawidłowy adres e-mail",
-    "email_required": "Wprowadź swój adres e-mail"
+    "email_required": "Wprowadź swój adres e-mail",
     "address_not_found": "Specified address was not found in our system. Try waiting some time if you are already mining."
   },
   "date_time": {

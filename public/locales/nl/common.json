@@ -56,7 +56,7 @@
     "required": "Verplicht",
     "Invalid IP Address": "Ongeldig IP-adres",
     "email_invalid": "Ongeldig e-mailadres",
-    "email_required": "Voer uw e-mailadres in"
+    "email_required": "Voer uw e-mailadres in",
     "address_not_found": "Specified address was not found in our system. Try waiting some time if you are already mining."
   },
   "date_time": {

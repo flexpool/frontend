@@ -56,11 +56,6 @@
     "stat_estimate_weekly": "hebdomadaire",
     "stat_estimate_monthly": "mensuellement",
     "stat_estimate_tooltip": "Cliquez pour alterner entre les estimation quotidienne, hebdomadaire ou mensuelle."
-    "stat_estimate": "Gains estimés",
-    "stat_estimate_daily": "journalier",
-    "stat_estimate_weekly": "hebdomadaire",
-    "stat_estimate_monthly": "mensuellement",
-    "stat_estimate_tooltip": "Cliquez pour passer d'une estimation quotidienne, hebdomadaire ou mensuelle à une autre."
   },
   "nav": {
     "stats": "Statistiques",
@@ -131,7 +126,7 @@
       "fee": "Frais de {{value}}",
       "average": "Frais moyens de transaction",
       "average_percent": "Frais moyens de transaction %",
-      "average_cta": "Conseils pour réduire les frais"
+      "average_cta": "Conseils pour réduire les frais",
       "average_cta_tooltip": [
         "1. En fixant une limite de paiement plus élevée, vous réduirez le nombre de transactions que vous devrez payer en termes de frais de transaction réseau.",
         "2. Définissez votre limite de frais de transaction pour éviter des frais élevés dans les paramètres. Lorsque vous atteindrez votre seuil de paiement, nous ferons en sorte que votre transaction de paiement soit exécutée dès qu'elle répondra à vos paramètres de limite de frais."

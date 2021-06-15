@@ -126,7 +126,7 @@
       "fee": "{{value}} transactiekosten",
       "average": "Gemiddelde transactiekosten",
       "average_percent": "Gemiddelde transactiekosten %",
-      "average_cta": "Tips voor lagere vergoedingen"
+      "average_cta": "Tips voor lagere vergoedingen",
       "average_cta_tooltip": [
         "1. Een hogere uitbetalingslimiet instellen verlaagt het aantal transacties waarvoor je transactiekosten van het netwerk moet betalen.",
         "2. Stel een transactiekost limiet in bij de instellingen om hoge kosten te vermijden. Wanneer je je uitbetalingsdrempel haalt, zorgen wij dat je uitbetalingstransactie zo snel mogelijk wordt verwerkt zolang je kostenlimiet niet wordt overschreden."
