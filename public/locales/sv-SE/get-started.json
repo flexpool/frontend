@@ -1,88 +1,88 @@
 {
   "list": {
-    "head_title": "Start mining with us",
-    "title": "Get started with mining on Flexpool today!",
-    "nicehash_rental_button": "NiceHash Rental"
+    "head_title": "Börja mina med oss",
+    "title": "Kom igång med att mina på Flexpool idag!",
+    "nicehash_rental_button": "NiceHash Hyrning"
   },
   "detail": {
     "title": "{{coin}} mining",
     "wallet": {
-      "title": "Get your wallet address",
-      "desc_one": "The easiest way to get a wallet is to register on a cryptocurrency exchange like <binance>Binance (Ref)</binance> or <coinbase>Coinbase</coinbase>.",
-      "desc_two": "Although exchanges are comfortable and easy to use, they are not very secure. You can use a non-custodial wallet, but the safest way to store your funds is to use a <strong>hardware wallet</strong>. <ledger>Ledger</ledger> and <trezor>Trezor</trezor> are the most popular ones.",
-      "wallet_address": "Wallet Address",
-      "invalid_address": "Invalid wallet address"
+      "title": "Få din wallet-adress",
+      "desc_one": "Det enklaste sättet att få en wallet på är att registrera dig på en kryptovalutaväxlare såsom <binance>Binance (Ref)</binance> eller <coinbase>Coinbase</coinbase>.",
+      "desc_two": "Även fast kryptovalutaväxlare är bekväma och enkla att använda, är de inte så säkra. Du kan använda en privat wallet, men det säkraste sättet att förvara dina tillgångar på är att använda en <strong>hårdvaru-wallet</strong>. <ledger>Ledger</ledger> och <trezor>Trezor</trezor> är de populäraste.",
+      "wallet_address": "Wallet-Adress",
+      "invalid_address": "Ogiltig wallet-adress"
     },
     "region": {
-      "title": "Select your region",
-      "description": "For the best performance, you should choose server with lowest latency to your mining rig or computer. The chart is displaying latency between servers and this device.",
+      "title": "Välj din region",
+      "description": "För den bästa prestandan, borde du välja en server med lägst latens till din mining-rigg eller dator. Diagrammet visar latens mellan servrarna och denna enhet.",
       "table_head": {
-        "location": "Region Name",
+        "location": "Regionsnamn",
         "domain": "Endpoint",
         "port": "Port",
-        "average_lat": "Latency"
+        "average_lat": "Latens"
       },
-      "fastest": "Fastest",
-      "backup": "Backup"
+      "fastest": "Snabbaste",
+      "backup": "Reserv"
     },
     "ports": {
-      "title": "Ports",
-      "description": "We highly encourage everyone to use secured port when connecting to Flexpool servers. <more>Read more on why you shouldn't use unsecured ports</more>. <strong>IMPORTANT</strong>: Using SSL does not increase the stale rate.",
-      "ssl_port": "Secure SSL Port",
-      "tcp_port": "TCP Port",
-      "tcp_port_tooltip": "We are strongly against using unencrypted (TCP) connection while mining on our pool. This connection is vulnerable to MITM (Man-In-The-Middle) attacks, which means that if someone will maliciously stand in between of your worker and pool, some % of your hashrate may be stolen. Read more on our <more>FAQ page</more>.",
-      "high_diff_port": "High Difficulty Port",
-      "high_diff_port_tooltip": "This is the special port for advanced users who run proxies that require insanely high difficulty. This includes users who use <NiceHash>NiceHash</NiceHash> and related hashrate rental marketplaces. Available for: "
+      "title": "Portar",
+      "description": "Vi rekommenderar verkligen alla att använda sig utav en säker port när du ansluter dig till Flexpool's servrar. <more>Läs mer om varför du inte borde använda osäkra portar</more>. <strong>VIKTIGT</strong>: Användning utav SSL öker inte din stale-rate.",
+      "ssl_port": "Säker SSL-Port",
+      "tcp_port": "TCP-Port",
+      "tcp_port_tooltip": "Vi har mycket emot att använda okrypterade (TCP) förbindelser medans du minar med våran pool. Denna förbindelse är sårbar för MITM (Man-In-The-Middle) attacker, vilket innebär att någon på skadlig grund står emellan din worker och poolen, några % av din hashrate kan bli stulen. Läs mer på våran <more>FAQ-Sida</more>.",
+      "high_diff_port": "Port med Hög Svårighetsgrad",
+      "high_diff_port_tooltip": "Detta är den speciella porten för avancerade användare som kör proxies som kräver otroligt höga svårighetsgrader. Detta inkluderar användare som använder sig utav <NiceHash>NiceHash</NiceHash> och dens relaterade hashrateuthyrnings-marknad. Tillgängligt för: "
     },
     "worker": {
-      "title": "Name your worker",
-      "description": "Naming your worker is recommended if you have multiple mining rigs connected to Flexpool. This will give you more clarity about how your mining rigs perform on your dashboard page.",
-      "worker_name": "Worker Name",
-      "worker_name_placeholder": "e.g. MY_RIG_580x2"
+      "title": "Namnge din worker",
+      "description": "Att namnge din worker är rekommenderat ifall du har flera mining-riggar anslutna till Flexpool. Detta kommer ge dig mer klarhet om hur dina mining-riggar presterar på din Dashboard.",
+      "worker_name": "Worker-Namn",
+      "worker_name_placeholder": "t.ex. MIN_RIGG_580x2"
     },
     "software": {
-      "title": "Choose your mining software",
-      "fee": "Fee"
+      "title": "Välj din mining-programvara",
+      "fee": "Avgift"
     },
     "view": {
-      "title": "View your stats",
-      "description": "Once you start mining, your data should appear on your dashboard. Please allow up to 10 minutes for the data to be processed.",
-      "cta": "Open Dashboard"
+      "title": "Visa din statistik",
+      "description": "När du börjar mina, bör din data börja dyka upp på din Dashboard. Det kan ta upp till 10 minuter för din data att bli behandlad.",
+      "cta": "Öppna Dashboard"
     }
   },
   "detail_eth": {
     "title": "Ethereum mining",
     "pool_details": [
       {
-        "key": "Reward Scheme",
+        "key": "Belöningssystem",
         "value": "PPLNS (Pay Per Last N Shares)"
       },
       {
-        "key": "Pool Fee",
+        "key": "Pool-avgift",
         "value": "0.5%"
       },
       {
-        "key": "Bonuses",
-        "value": "90% of MEV bonus"
+        "key": "Bonusar",
+        "value": "90% av MEV-bonusen"
       },
       {
-        "key": "Payout Round",
-        "value": "Once an hour"
+        "key": "Utbetalningsrunda",
+        "value": "En gång i timmen"
       },
       {
-        "key": "Payouts",
-        "value": "from 0.01 ETH up to 100 ETH"
+        "key": "Utbetalningar",
+        "value": "från 0.01 ETH upp till 100 ETH"
       },
       {
-        "key": "Block confirmation time",
-        "value": "120 Blocks"
+        "key": "Blockets bekräftelsetid",
+        "value": "120 Block"
       },
       {
-        "key": "Share Difficulty",
+        "key": "Share-Svårighetsgrad",
         "value": "4 GH"
       },
       {
-        "key": "Mining Algorithm",
+        "key": "Mining-Algoritm",
         "value": "Ethash"
       }
     ],
@@ -92,67 +92,67 @@
         "key": "GPU",
         "miners": [
           {
-            "description": "Best miner for AMD GPUs"
+            "description": "Bästa minern för AMD-GPU:er"
           },
           {
-            "description": "Best miner for NVIDIA 20/30 Series GPUs"
+            "description": "Bästa minern för NVIDIA 20/30 Series-GPU:er"
           },
           {
-            "description": "Best miner for 4GB zombie mode."
+            "description": "Bästa minern för 4GB zombie-läge."
           },
           {
-            "description": "Proprietary Ethash miner with low dev fee."
+            "description": "Självständig Ethash-miner med låg utvecklaravgift."
           },
           {
-            "description": "Actively developed and stable miner with low dev fee."
+            "description": "Aktivt utvecklad och stabil miner med låga utvecklar-utgifter."
           }
         ]
       }
     ]
   },
   "regions": {
-    "us-east": "United States (East)",
-    "us-west": "United States (West)",
-    "de": "Germany",
-    "se": "Sweden",
+    "us-east": "USA (Öst)",
+    "us-west": "USA (Väst)",
+    "de": "Tyskland",
+    "se": "Sverige",
     "sg": "Singapore",
-    "au": "Australia",
-    "br": "Brazil",
-    "kr": "South Korea"
+    "au": "Australien",
+    "br": "Brasilien",
+    "kr": "Sydkorea"
   },
   "cmd_keys": {
-    "CLOSEST_SERVER": "CLOSEST_SERVER",
-    "WALLET_ADDRESS": "WALLET_ADDRESS",
-    "WORKER_NAME": "WORKER_NAME"
+    "CLOSEST_SERVER": "NÄRMASTE_SERVERN",
+    "WALLET_ADDRESS": "WALLET_ADRESS",
+    "WORKER_NAME": "WORKER_NAMN"
   },
   "nicehash": {
-    "head_title": "NiceHash guide for mining on Flexpool",
-    "title": "NiceHash guide for mining on Flexpool",
-    "description": "NiceHash is the world's largest hashrate marketplace where anyone can rent as much hashrate as needed. This guide is about how you can start renting hashpower on Flexpool using NiceHash.",
+    "head_title": "NiceHash guide för att mina på Flexpool",
+    "title": "NiceHash guide för att mina på Flexpool",
+    "description": "NiceHash är världens största hashrate-marknad där vem som helsta kan hyra så mycket hashrate de behöver. Denna guide går igenom hur du kan börja hyra hashkraft på Flexpool genom NiceHash.",
     "step_one": {
-      "title": "Open your hashrate marketplace dashboard",
+      "title": "Öppna din Dashboard på hashrate-marknaden",
       "description": [
-        "Once you've registered on NiceHash and activated the Hashrate Marketplace account, you can head to your rental dashboard and choose the {algorithm} mining algorithm.",
-        "After that, you would be able to see this window, where you should click \"Add new pool...\""
+        "När du har registrerat dig hos NiceHash och aktiverat ett hashrate-marknads konto, kan du gå vidare till din hyrnings-dashboard och välja {algorithm} mining-algoritm.",
+        "Efter det, borde du kunna se ett fönster, där du ska klicka på \"Add new pool...\""
       ]
     },
     "step_two": {
-      "title": "Fill in Flexpool's pool settings and your wallet address",
+      "title": "Fyll i Flexpool's poolinställningar och din wallet-adress",
       "description": [
-        "Good, now you need to fill the pool settings. In the Stratum hostname or IP, you should select server based on your market choice (e.g. German server for European market). Check the list below. As a port,  high-difficulty port <strong>14444</strong> is available for NiceHash rental.",
-        "Specify your wallet address as the username. Use \"x\" as a password."
+        "Bra, nu behöver du fylla i poolinställningarna. I Stratum hostname eller IP, bör du välja en server baserat på marknadsval (t.ex. Tyska servern för europeiska marknaden). Ta en titt i listan nedanför. Som port, högsvårighetsport <strong>14444</strong> är tillgänglig för NiceHash-hyrning.",
+        "Använd din wallet-adress som ditt användarnamn. Använd \"x\" som lösenord."
       ]
     },
     "step_three": {
-      "title": "Test the pool configuration",
+      "title": "Testa pool-konfigurationen",
       "description": [
-        "Now you can click on Test Pool and check if everything is working properly."
+        "Nu kan du klicka på att testa poolen för att se om allt fungerar som det ska."
       ]
     },
     "step_four": {
-      "title": "Enjoy the benefits of Flexpool while using NiceHash!",
+      "title": "Njut av fördelarna med Flexpool medans du använder NiceHash!",
       "description": [
-        "Hooray! You've got the NiceHash working with Flexpool, which means now you can use the best mining pool with the best hashpower marketplace! "
+        "Yippie! Du har fått NiceHash att fungera med Flexpool, vilket innebär att du nu kan använda dig utav den bästa mining-ppolen med den bästa hashpower-marknaden!"
       ]
     }
   }
