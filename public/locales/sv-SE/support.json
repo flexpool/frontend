@@ -3,15 +3,15 @@
   "title": "Support",
   "section_one": {
     "title": "Kontakta Flexpool Support",
-    "description": "Hi! Before you reach out, we would like to warn you that we do not provide assistance on hardware-related topics. This includes overclocking GPUs and further advanced configuration of the mining software. We provide only pool-related support. If you want to get help on overclocking GPUs, optimizing mining software, etc., you can join our community and talk with people who want share their experience."
+    "description": "Hej! Innan du når ut vill vi varna dig för att vi inte hjälper till med hårdvarurelaterade ämnen. Detta inkluderar överklockning av GPU: er och ytterligare avancerad konfiguration av miningprogramvaran. Vi tillhandahåller endast poolrelaterad support. Om du vill få hjälp med att överklocka GPU: er, optimera miner programvara etc., kan du gå med i vårt samhälle och prata med människor som vill dela sin erfarenhet."
   },
   "section_two": {
-    "title": "Reach us via the Website Messenger",
-    "description": "The best way to reach us to get assistance is to use the built-in website messenger. You can find it in the bottom-right corner."
+    "title": "Nå oss via webbplatsens Messenger",
+    "description": "Det bästa sättet att nå oss för att få hjälp är att använda den inbyggda website messenger. Du hittar den i det nedre högra hörnet."
   },
   "section_three": {
-    "title": "Join our Community",
-    "description": "We also provide an official Discord Server and a Telegram Group, so you can talk with other Flexpool miners, and get assistance from our team there as well."
+    "title": "Gå med i vår community",
+    "description": "Vi tillhandahåller också en officiell Discord Server och en Telegram grupp, så att du kan prata med andra Flexpool miners, och få hjälp från vårt team där också."
   },
   "section_four": {
     "title": "Nå oss via e-post",

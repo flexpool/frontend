@@ -20,9 +20,9 @@
       "cta": "Primeiros Passos"
     },
     "learn": {
-      "pre_title": "Aprender",
+      "pre_title": "Aprenda",
       "title": "Leia nosso Blog",
-      "cta": "Aprender"
+      "cta": "Aprenda"
     },
     "support": {
       "pre_title": "Suporte",
@@ -36,7 +36,7 @@
     "table_head": {
       "name": "Nome",
       "price": "Preço",
-      "market_cap": "Valor de Mercado",
+      "market_cap": "Capitalização de Mercado",
       "algorithm": "Algoritmo",
       "hashrate": "Hashrate",
       "miners": "Mineradores"
@@ -53,7 +53,7 @@
     "whitepaper": "Whitepaper",
     "calculator": {
       "title": "Calculadora de Rendimento",
-      "title_tooltip": "O rendimento estimado é calculado com base na dificuldade média da rede nas últimas 24 horas e na média de recompensas de bloco nas últimas 24 horas. Este cálculo não inclui shares obsoletos e inválidos.",
+      "title_tooltip": "O Rendimento Estimado é calculado com base na dificuldade média da rede nas últimas 24 horas e na média de recompensas de bloco nas últimas 24 horas. Este cálculo não inclui shares Obsoletos e Inválidos.",
       "per_day": "por dia",
       "per_month": "por mês",
       "per_year": "por ano",
@@ -66,7 +66,7 @@
   "why_section": {
     "title": "Por que o Flexpool",
     "item_1": {
-      "title": "Velocidade da luz",
+      "title": "Velocidade relâmpago",
       "description": "Usamos clusters especializados de alto desempenho, suportados por um software super rápido projetado para lidar com mais de 100 TH/s."
     },
     "item_2": {
@@ -79,17 +79,17 @@
     "cta": "Comece a Minerar"
   },
   "chia": {
-    "email_submission_failure": "Failed to submit email",
-    "chia_comming_soon_text": "We are getting ready to launch our Chia pool. Stay tuned for more details. Sign up for email updates or join us below to become one of the first Chia miners on Flexpool!",
-    "chia_coming_soon": "Chia Coming Soon!",
-    "subscribe": "Subscribe!",
-    "subscribed": "Subscribed!"
+    "email_submission_failure": "Erro ao enviar e-mail",
+    "chia_comming_soon_text": "Estamos nos preparando para lançar nossa pool de Chia. Fique ligado para mais detalhes. Inscreva-se para receber atualizações por e-mail ou junte-se a nós abaixo para se tornar um dos primeiros mineradores de Chia da Flexpool!",
+    "chia_coming_soon": "Chia Chegará em Breve!",
+    "subscribe": "Inscreva-se!",
+    "subscribed": "Inscrito!"
   },
   "cookie_consent": {
-    "cookie_consent_text": "This website uses cookies to improve the user experience.",
-    "i_agree": "Okay"
+    "cookie_consent_text": "Este website usa cookies para melhorar a experiência do usuário.",
+    "i_agree": "Eu aceito"
   },
   "top_notification": {
-    "welcome": "Welcome to the new revamped Flexpool.io v2 Website! If you wish to visit old website, please use"
+    "welcome": "Bem-vindo à versão v2 do website da Flexpool.io! Caso deseja usar o antigo website, por favor acesse"
   }
 }

@@ -5,15 +5,15 @@
     "description": "Our brand name is <b>Flexpool.io</b>. Words \"Flex\" and \"pool\" combined together with one capital F and the .io ending."
   },
   "colors": {
-    "title": "Colors",
+    "title": "Цвета",
     "accent": "Accent Color",
-    "blue": "Blue Color",
-    "green": "Green Color",
-    "yellow": "Yellow Color",
-    "red": "Red Color"
+    "blue": "Синий цвет",
+    "green": "Зеленый цвет",
+    "yellow": "Желтый цвет",
+    "red": "Красный цвет"
   },
   "typo": {
-    "title": "Typography",
+    "title": "Типография",
     "description": "We use <font>{{fontName}}</font> across our website."
   },
   "guidelines": {
@@ -24,12 +24,12 @@
     "item_three": "You are not allowed to use the Flexpool.io Branding in illegal and promotional context."
   },
   "downloads": {
-    "title": "Downloads",
-    "description": "We have collected a package containing all types of Flexpool.io logos for both Light and Dark themes.",
-    "cta": "Download the Branding Pack"
+    "title": "Загрузки",
+    "description": "Мы собрали пакет, содержащий все типы логотипов Flexpool.io как для светлых, так и для темных тем.",
+    "cta": "Загрузить пакет брендинга"
   },
   "legal": {
-    "title": "Legal Notices",
-    "description": "By using our Branding Assets, you agree with the Branding Guidelines and our <terms>Terms</terms>. If you need to get assistance about the usage of the Flexpool.io branding, you can contact us at <email>{{email}}</email>"
+    "title": "Юридические Уведомления",
+    "description": "Используя наши Активы бренда, вы соглашаетесь с Правилами по брендингу и нашими <terms> Условиями </terms>. Если вам нужна помощь в использовании фирменного стиля Flexpool.io, вы можете связаться с нами по адресу <email> {{email}} </email>"
   }
 }

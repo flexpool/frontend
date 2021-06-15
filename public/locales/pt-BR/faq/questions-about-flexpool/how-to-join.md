@@ -1,5 +1,5 @@
 ---
-title: Como se juntar a Flexpool?
+title: Como se juntar à Flexpool?
 ---
 
-Temos aqui as instruções passo a passo: [Primeiros passos](/get-started)
+Encontre aqui as instruçoes passo-a-passo: [Comece Aqui](/get-started)

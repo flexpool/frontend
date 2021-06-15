@@ -2,17 +2,17 @@
   "settings": {
     "cta": "Configurações",
     "title": "Configurações",
-    "ip": "Endereço de IP para verificação",
-    "ip_hint": "Dica: Você está visitando esta página da web de",
-    "ip_description": "Se o seu worker está usando um endereço de proxy, exemplo: seu worker minera também em uma pool de ZIL, por favor use o endereço do proxy.",
+    "ip": "Endereço IP para verificação",
+    "ip_hint": "Dica: Você está visitando esta página a partir de",
+    "ip_description": "Se o seu worker está usando um endereço de proxy, por exemplo, seu worker está minerando através de uma pool de ZIL, por favor use o endereço proxy ao invés do seu IP.",
     "payout": {
-      "title": "Configurações de Pagamento",
+      "title": "Configuração de Pagamento",
       "limit": "Limite de pagamento (min: {{min}})",
       "limit_desc": "Você só será pago depois que o seu saldo não pago chegar em {{value}}.",
       "limit_err_higher": "Deve ser maior que {{min}}",
       "gas_limit": "Limite de preço do gás",
       "gas_limit_desc": "O preço do gás da sua taxa de transação seria limitado a {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} do limite de pagamento). Você não receberá quaisquer pagamentos se o preço do gás for mais elevado.",
-      "gas_limit_zero": "Sua taxa de transação não será limitada.",
+      "gas_limit_zero": "Sua transação não tem limite de taxa.",
       "submit": "Aplicar alterações"
     },
     "payout_warning": [
@@ -20,12 +20,12 @@
       "Você é o único responsável pelo pagamento das taxas de transação. Somos fortemente a favor de definir um limite de taxa de transação mais baixo para evitar a perda total nas taxas de rede. Isso também o ajudará a mitigar parcialmente as perdas quando ocorrerem picos repentinos de taxas."
     ],
     "notifications": {
-      "title": "Notificações por e-mail",
-      "email_enabled": "Notificações por e-mail habilitadas",
-      "email_disabled": "Notificações por e-mail desativadas",
+      "title": "Notificações por email",
+      "email_enabled": "Notificações por email habilitadas",
+      "email_disabled": "Notificações por email desativadas",
       "send_to": "Enviar notificações para",
       "send_to_placeholder": "seu@email.com",
-      "check_worker_down": "Alertar quando um dos meus workers cair",
+      "check_worker_down": "Alertar quando um dos meus workers ficar offline",
       "check_payout_sent": "Notificar-me quando um pagamento for enviado",
       "submit": "Aplicar alterações"
     }
@@ -34,31 +34,31 @@
     "greet_period_morning": "Bom dia",
     "greet_period_afternoon": "Boa tarde",
     "greet_period_evening": "Bom dia",
-    "greet_desc": "{{count}} worker está minerando {{coin}} e seu hash é de {{hashrate}} no total.",
+    "greet_desc": "{{count}} worker está minerando {{coin}} e está hasheando {{hashrate}} no total.",
     "greet_desc_1": "",
     "greet_desc_2": "",
     "greet_desc_3": "",
     "greet_desc_4": "",
     "greet_desc_5": "",
     "greet_desc_plural": "{{count}} worker está minerando {{coin}} e seu hash é de {{hashrate}} no total.",
-    "info_payout_limit": "Limite de saque",
+    "info_payout_limit": "Limite de Pagamento",
     "info_gas_limit": "Limite do Preço Gás",
     "info_joined": "Entrou",
-    "info_joined_tooltip": "Seu primeiro compartilhamento foi registrado em",
+    "info_joined_tooltip": "Sua primeira share foi registrada em",
     "info_coin_price": "{{coin}} Preço",
     "stat_workers": "Mineradores Ligados/Desligados",
-    "stat_unpaid_balance": "Saldo não pago",
+    "stat_unpaid_balance": "Saldo Não Pago",
     "stat_unpaid_balance_reach": "<v>{{value}}</v> do limite de pagamento atingido.",
     "stat_unpaid_balance_reach_est": "O limite será atingido <v>{{value}}</v>.",
     "stat_unpaid_balance_reach_ok": "Seu saque será processado na próxima rodada de pagamentos se as taxas de gas corresponderem às suas preferências.",
-    "stat_estimate": "Ganhos estimados",
+    "stat_estimate": "Ganhos Estimados",
     "stat_estimate_daily": "diário",
     "stat_estimate_weekly": "semanal",
     "stat_estimate_monthly": "mensal",
-    "stat_estimate_tooltip": "Clique para mudar entre a estimativa diária, semanal e mensal."
+    "stat_estimate_tooltip": "Clique para mudar entre estimativa diária, semanal e mensal."
   },
   "nav": {
-    "stats": "Status",
+    "stats": "Estatísticas",
     "payments": "Pagamentos",
     "rewards": "Recompensas",
     "blocks": "Blocos"
@@ -85,7 +85,7 @@
     "pplns": {
       "title": "Estatísticas Avançadas de PPLNS",
       "avp": {
-        "title": "Hashrate médio de Pagamento",
+        "title": "Hashrate Médio de Pagamento",
         "tooltip": "Calculado com base na quota da rodada atual de compartilhamento e nas últimas 3 horas do gráfico de hashrate da pool.",
         "current": "Atual"
       },
@@ -96,52 +96,52 @@
       },
       "log": {
         "title": "Duração para limpeza automática do log de Shares",
-        "tooltip": "Hora para o compartilhamento da rodada cair para zero.",
+        "tooltip": "Tempo para a share da rodada ser esvaziada.",
         "size": "{{value}} shares no log"
       }
     },
     "pplns_chart": {
-      "title": "Shares no log PPLNS",
-      "valid_shares": "Shares Válidos"
+      "title": "Shares no Log PPLNS",
+      "valid_shares": "Shares Válidas"
     }
   },
   "payments": {
-    "head_title": "Pagamentos de Mineradores",
+    "head_title": "Pagamentos à Mineradores",
     "chart": {
-      "title": "Pagamentos este ano",
+      "title": "Pagamentos Este Ano",
       "fee": "Taxa",
       "value": "Valor"
     },
     "general": {
       "title": "Estatísticas Gerais de Pagamento",
-      "total_paid": "Total pago",
-      "total_transactions": "Total de transações",
-      "paid_in_fees": "{{value}} pagou em tarifas",
+      "total_paid": "Total Pago",
+      "total_transactions": "Total de Transações",
+      "paid_in_fees": "{{value}} pago em tarifas",
       "average_payout_duration": "Duração Média de Pagamento",
       "average_payout_duration_desc": "Tempo Médio Entre Pagamentos"
     },
     "transaction_fees": {
-      "title": "Taxas de Transação",
+      "title": "Taxas da Transação",
       "last": "Última Transação",
       "fee": "{{value}} taxa",
-      "average": "Taxa Média de Transação",
-      "average_percent": "Taxa Média de Transação %",
+      "average": "Taxa Média da Transação",
+      "average_percent": "Taxa Média da Transação %",
       "average_cta": "Dicas sobre redução de taxas"
       "average_cta_tooltip": [
         "1. Definir um limite de pagamento mais alto reduzirá o número de transações que você terá que pagar em termos de taxas de transação de rede.",
-        "2. Define o limite da taxa de transação para evitar altas taxas nas configurações. Quando você atingir seu limite de pagamento, nos certificaremos de que sua transação de pagamento será executada assim que cumprir suas configurações de limite de taxa."
+        "2. Defina o limite da taxa de transação para evitar altas taxas nas configurações. Quando você atingir seu limite de pagamento, nos certificaremos de que sua transação de pagamento será executada assim que cumprir suas configurações de limite de taxa."
       ]
     },
     "table": {
       "title": "Pagamentos",
       "download": "Baixar arquivo CSV",
       "table_contents": {
-        "pending": "Pending",
-        "success": "Success"
+        "pending": "Pendente",
+        "success": "Sucesso"
       },
       "table_head": {
         "date": "Data",
-        "value": "Taxa de Transação",
+        "value": "Valor da Transação",
         "fee": "Taxa",
         "duration": "Duração",
         "hash": "Hash",
@@ -152,31 +152,31 @@
   "stats": {
     "active_worker": {
       "title": "Worker",
-      "reset": "Reset"
+      "reset": "Redefinir"
     },
     "hashrate": {
       "title": "Hashrate",
-      "current": "Efetivo Atual",
-      "average": "Média Efetiva",
+      "current": "Atual",
+      "average": "Médio",
       "reported": "Reportado"
     },
     "shares": {
       "title": "Shares",
-      "valid": "Válido",
-      "stale": "Obsoleto",
-      "invalid": "Inválido"
+      "valid": "Válida",
+      "stale": "Obsoleta",
+      "invalid": "Inválida"
     },
     "hashrate_chart": {
       "title": "Hashrate",
-      "effective": "Hashrate Efetivo",
-      "average": "Hashrate Médio Efetivo",
+      "effective": "Hashrate Atual",
+      "average": "Hashrate Médio",
       "reported": "Hashrate Reportado"
     },
     "shares_chart": {
       "title": "Shares",
-      "valid": "Shares Válidos",
-      "stale": "Shares Obsoletos",
-      "invalid": "Shares Inválidos"
+      "valid": "Shares Válidas",
+      "stale": "Shares Obsoletas",
+      "invalid": "Shares Inválidas"
     },
     "table": {
       "title_active": "Workers Ativos",
@@ -185,16 +185,16 @@
       "table_head": {
         "name": "Nome",
         "reported_hashrate": "Hashrate Reportado",
-        "current_e_hashrate": "Hashrate Efetivo Atual",
-        "average_e_hashrate": "Hashrate Médio Efetivo",
-        "valid": "Shares Válidos",
-        "stale": "Shares Obsoletos",
-        "invalid": "Shares Inválidos",
+        "current_e_hashrate": "Hashrate Atual",
+        "average_e_hashrate": "Hashrate Médio",
+        "valid": "Shares Válidas",
+        "stale": "Shares Obsoletas",
+        "invalid": "Shares Inválidas",
         "last_seen": "Visto por Último"
       }
     }
   },
-  "status_pending_tooltip": "Awating transaction confirmation",
-  "confirmation_duration_tooltip": "Confirmed in",
-  "confirmed_at_tooltip": "Confirmed at"
+  "status_pending_tooltip": "Esperando confirmação da transação",
+  "confirmation_duration_tooltip": "Confirmado em",
+  "confirmed_at_tooltip": "Confirmado na"
 }

@@ -57,17 +57,17 @@
     "Invalid IP Address": "Ogiltig IP-adress",
     "email_invalid": "Ogiltig e-postadress",
     "email_required": "Vänligen ange din e-postadress"
-    "address_not_found": "Specified address was not found in our system. Try waiting some time if you are already mining."
+    "address_not_found": "Ingen angiven adress hittades i vårt system. Försök att vänta lite tid om du redan minar."
   },
   "date_time": {
-    "now": "now"
+    "now": "nu"
   },
   "snacks": {
     "emailConfirmed": {
-      "title": "Your email has been confirmed"
+      "title": "Din e-post har bekräftats"
     },
     "emailUnsubscribed": {
-      "title": "You've successfully unsubscribed from email notifications"
+      "title": "Du har avregistrerat dig från e-postmeddelanden"
     }
   }
 }

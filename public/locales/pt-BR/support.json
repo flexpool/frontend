@@ -2,12 +2,12 @@
   "head_title": "Suporte",
   "title": "Suporte",
   "section_one": {
-    "title": "Contate o Suporte Flexpool",
-    "description": "Oi! Antes de entrar em contato, gostaríamos de avisá-lo de que não fornecemos assistência em tópicos relacionados a hardware. Isso inclui overclock de GPUs e configuração avançada do software de mineração. Oferecemos suporte apenas sobre a pool. Se você quiser obter ajuda para GPUs, otimizar o software de mineração, etc. você pode participar da nossa comunidade e conversar com pessoas que querem compartilhar sua experiência."
+    "title": "Contate o Suporte da Flexpool",
+    "description": "Oi! Antes de entrar em contato, gostaríamos de avisá-lo de que não fornecemos assistência em tópicos relacionados à hardware. Isso inclui overclock de GPUs e configuração avançada do software de mineração. Oferecemos suporte apenas relacionado à pool. Se você quiser obter ajuda para GPUs, otimizar o software de mineração, etc. você pode participar da nossa comunidade e conversar com pessoas que querem compartilhar sua experiência."
   },
   "section_two": {
-    "title": "Fale conosco através do Messenger do site",
-    "description": "A melhor maneira de nos contactar é usar o mensageiro do site embutido. Você pode encontrá-lo no canto inferior direito."
+    "title": "Fale conosco através do Messenger do Website",
+    "description": "A melhor maneira de nos contactar é usar o mensageiro embutido do site. Você pode encontrá-lo no canto inferior direito."
   },
   "section_three": {
     "title": "Participe da nossa Comunidade",
@@ -15,10 +15,10 @@
   },
   "section_four": {
     "title": "Fale conosco por e-mail",
-    "description": "Nós fornecemos suporte por e-mail, mas não garantimos o tempo de resposta rápida através deste canal de suporte. Estamos disponíveis em <email>{{email}}</email>."
+    "description": "Nós fornecemos suporte por e-mail, mas não garantimos um tempo de resposta rápida através deste canal de suporte. Estamos disponíveis em <email>{{email}}</email>."
   },
   "section_five": {
     "title": "Outras perguntas",
-    "description": "Para questões relacionadas à empresa, por favor, entre em contato conosco pelo e-mail <email>hq@flexpool.io</email>. Por favor, note que não fornecemos suporte através deste e-mail."
+    "description": "Para questões relacionadas à negócios, por favor, entre em contato conosco pelo e-mail <email>hq@flexpool.io</email>. Por favor, note que não fornecemos suporte através deste e-mail."
   }
 }

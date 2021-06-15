@@ -4,20 +4,20 @@
     "title": "Настройки",
     "ip": "IP Адрес для проверки",
     "ip_hint": "Подсказка: Вы посетили эту страницу с",
-    "ip_description": "If your worker is using proxy address, e.g. your worker is dual mining through a ZIL pool, please use the proxy address instead.",
+    "ip_description": "Если ваш воркер использует прокси-адрес, например ваш воркер занимается двойным майнингом через пул ZIL, пожалуйста, используйте вместо него прокси-адрес.",
     "payout": {
       "title": "Настройки оплаты",
       "limit": "Лимит выплат (минимум: {{min}})",
-      "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}.",
-      "limit_err_higher": "Must be higher than {{min}}",
+      "limit_desc": "Вам оплатят только после того, как ваш невыплаченный баланс достигнет {{value}}.",
+      "limit_err_higher": "Должно быть выше чем {{min}}",
       "gas_limit": "Лимит цены на Gas",
-      "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} of payout limit). You will not receive any payouts if gas price is higher.",
-      "gas_limit_zero": "Your transaction fee will not be limited.",
+      "gas_limit_desc": "Цена gas комиссии за транзакцию будет ограничена до {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} от лимита выплат). Вы не получите никаких выплат, если цена на gas будет выше.",
+      "gas_limit_zero": "Комиссия за транзакцию не будет ограничена.",
       "submit": "Применить изменения"
     },
     "payout_warning": [
-      "We highly recommend setting a higher payout limit to reduce total number of payout transactions. Less transactions means less paid in network fees.",
-      "You are the only one responsible for paying the transaction fees. We are strongly in favour of setting a transaction fee limit lower to avoid total loss on network fees. This will also help you partially mitigate losses when sudden fee spikes happen."
+      "Мы настоятельно рекомендуем установить более высокий лимит выплат, чтобы уменьшить общее количество транзакций. Меньше транзакций означает меньшую оплату сетевых сборов.",
+      "Вы единственный, кто оплачивает комиссию за транзакцию. Мы настоятельно рекомендуем установить более низкую комиссии за транзакцию, чтобы избежать полной потери сетевых комиссий. Это также поможет вам частично уменьшить убытки при внезапном скачке комиссионных."
     ],
     "notifications": {
       "title": "Уведомления на e-mail",
@@ -34,25 +34,25 @@
     "greet_period_morning": "Доброе утро",
     "greet_period_afternoon": "Добрый день",
     "greet_period_evening": "Добрый вечер",
-    "greet_desc": "{{count}} worker is mining {{coin}} and is hashing {{hashrate}} in total.",
+    "greet_desc": "{{count}} воркер добывает {{coin}} и хэширует {{hashrate}} в итоге.",
     "greet_desc_1": "",
     "greet_desc_2": "",
     "greet_desc_3": "",
     "greet_desc_4": "",
     "greet_desc_5": "",
-    "greet_desc_plural": "{{count}} workers are mining {{coin}} and are hashing {{hashrate}} in total.",
+    "greet_desc_plural": "{{count}} воркер добывает {{coin}} и хэширует {{hashrate}} в итоге.",
     "info_payout_limit": "Лимит выплаты",
     "info_gas_limit": "Лимит цены на Gas",
     "info_joined": "Присоединился",
     "info_joined_tooltip": "Ваша первая шара была",
-    "info_gas_limit_detail_none": "Gas price is not limited.",
-    "info_gas_limit_detail_na": "Price not available.",
-    "info_joined_tooltip_empty": "No share has been recorded yet",
-    "info_coin_price": "{{coin}} Price",
-    "stat_workers": "Workers Online/Offline",
+    "info_gas_limit_detail_none": "Цена на gas не ограничена.",
+    "info_gas_limit_detail_na": "Цена не указана.",
+    "info_joined_tooltip_empty": "шара еще не записана",
+    "info_coin_price": "{{coin}} Цена",
+    "stat_workers": "Воркеры Онлайн/Офлайн",
     "stat_unpaid_balance": "Невыплаченный баланс",
-    "stat_unpaid_balance_reach": "<v>{{value}}</v> of the payout limit reached.",
-    "stat_unpaid_balance_reach_est": "The limit will be reached <v>{{value}}</v>.",
+    "stat_unpaid_balance_reach": "<v>{{value}}</v> достигнутого лимита выплат.",
+    "stat_unpaid_balance_reach_est": "Лимит будет достигнут <v>{{value}}</v>.",
     "stat_unpaid_balance_reach_ok": "Your payout will be processed on the next payment round if the fees match your preferences.",
     "stat_estimate": "Приблизительная награда",
     "stat_estimate_daily": "ежедневно",
@@ -86,15 +86,15 @@
       "monthly": "Ежемесячно"
     },
     "pplns": {
-      "title": "Advanced PPLNS Statistics",
+      "title": "Расширенная статистика PPLNS",
       "avp": {
         "title": "Average Paying Hashrate",
         "tooltip": "Calculated based on current round share and the last 3 hours pool hashrate chart.",
-        "current": "Current"
+        "current": "Текущий"
       },
       "crs": {
         "title": "Current Round Share",
-        "aprox": "Approximate reward",
+        "aprox": "Примерное вознаграждение",
         "tooltip": "Derived from the share log"
       },
       "log": {
@@ -111,12 +111,12 @@
   "payments": {
     "head_title": "Miner Payments",
     "chart": {
-      "title": "Payments This Year",
+      "title": "Выплаты в этом году",
       "fee": "Комиссия",
-      "value": "Value"
+      "value": "Значение"
     },
     "general": {
-      "title": "General Payment Statistics",
+      "title": "Общая статистика платежей",
       "total_paid": "Всего Выплачено",
       "total_transactions": "Всего Транзакций",
       "paid_in_fees": "{{value}} paid in fees",
@@ -176,8 +176,8 @@
       "reported": "Reported Hashrate"
     },
     "shares_chart": {
-      "title": "Shares",
-      "valid": "Valid Shares",
+      "title": "Шара",
+      "valid": "Принятые Шары",
       "stale": "Устаревшие Шары",
       "invalid": "Неверные Шары"
     },
@@ -197,7 +197,7 @@
       }
     }
   },
-  "status_pending_tooltip": "Awating transaction confirmation",
-  "confirmation_duration_tooltip": "Confirmed in",
-  "confirmed_at_tooltip": "Confirmed at"
+  "status_pending_tooltip": "Ожидание подтверждения транзакции",
+  "confirmation_duration_tooltip": "Подтверждено в",
+  "confirmed_at_tooltip": "Подтверждено на"
 }
