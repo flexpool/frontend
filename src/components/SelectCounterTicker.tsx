@@ -4,6 +4,7 @@ import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { Ticker } from 'src/types/Ticker.types';
+import { filterUnique } from 'src/utils/array.utils';
 import styled from 'styled-components/macro';
 import { Select } from './Form/Select/Select';
 import { Img } from './Img';
@@ -21,7 +22,16 @@ const TickerWrapper = styled.div`
 export const SelectCounterTicker = () => {
   const coinsState = useReduxState('poolCoins');
   const counterTicker = useCounterTicker();
-  const counterTickers = coinsState.data?.countervalues || [];
+
+  const counterTickers = React.useMemo(() => {
+    const res = coinsState.data?.countervalues
+      ? [...coinsState.data?.countervalues]
+      : [];
+    // add some more regardless the API
+    res.push('sek');
+    return res.filter(filterUnique);
+  }, [coinsState.data?.countervalues]);
+
   const d = useDispatch();
 
   const handleTickerChange = React.useCallback(

@@ -29,7 +29,7 @@
       "api_docs": "API documentatie"
     },
     "community": {
-      "title": "Community"
+      "title": "Gemeenschap"
     },
     "contact": {
       "title": "Neem contact op",
@@ -57,8 +57,17 @@
     "Invalid IP Address": "Ongeldig IP-adres",
     "email_invalid": "Ongeldig e-mailadres",
     "email_required": "Voer uw e-mailadres in"
+    "address_not_found": "Specified address was not found in our system. Try waiting some time if you are already mining."
   },
   "date_time": {
-    "now": "now"
+    "now": "nu"
+  },
+  "snacks": {
+    "emailConfirmed": {
+      "title": "Your email has been confirmed"
+    },
+    "emailUnsubscribed": {
+      "title": "You've successfully unsubscribed from email notifications"
+    }
   }
 }

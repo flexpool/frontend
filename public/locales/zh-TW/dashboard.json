@@ -4,6 +4,7 @@
     "title": "設置",
     "ip": "IP地址（用於驗證）",
     "ip_hint": "提示：您正在訪問此網頁，來自",
+    "ip_description": "If your worker is using proxy address, e.g. your worker is dual mining through a ZIL pool, please use the proxy address instead.",
     "payout": {
       "title": "支付設置",
       "limit": "支付限額（最小：{{min}}）",
@@ -14,6 +15,10 @@
       "gas_limit_zero": "您的交易費用將不會受到限制。",
       "submit": "應用更改"
     },
+    "payout_warning": [
+      "We highly recommend setting a higher payout limit to reduce total number of payout transactions. Less transactions means less paid in network fees.",
+      "You are the only one responsible for paying the transaction fees. We are strongly in favour of setting a transaction fee limit lower to avoid total loss on network fees. This will also help you partially mitigate losses when sudden fee spikes happen."
+    ],
     "notifications": {
       "title": "電子郵件通知",
       "email_enabled": "電子郵件通知已啟用",
@@ -122,16 +127,25 @@
       "average": "平均交易費用",
       "average_percent": "平均交易費用%",
       "average_cta": "關於降低費用的提示"
+      "average_cta_tooltip": [
+        "1. Setting higher payout limit will reduce the number of transactions you will have to pay for in terms of network transaction fees.",
+        "2. Set your transaction fee limit to avoid high fees in the settings. When you reach your payout threshold, we will make sure that your payout transaction will be executed as soon as it fulfills your fee limit settings."
+      ]
     },
     "table": {
       "title": "支付",
       "download": "下載CSV文件",
+      "table_contents": {
+        "pending": "Pending",
+        "success": "Success"
+      },
       "table_head": {
         "date": "日期",
         "value": "交易價值",
         "fee": "手續費",
         "duration": "持續時間",
         "hash": "礦工算力"
+        "status": "Status"
       }
     }
   },
@@ -179,5 +193,8 @@
         "last_seen": "最後一次查看"
       }
     }
-  }
+  },
+  "status_pending_tooltip": "Awating transaction confirmation",
+  "confirmation_duration_tooltip": "Confirmed in",
+  "confirmed_at_tooltip": "Confirmed at"
 }

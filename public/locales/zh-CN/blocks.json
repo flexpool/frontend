@@ -5,7 +5,7 @@
   "average_luck": "平均区块幸运值",
   "average_luck_tooltip": "30天平均幸运值。",
   "current_luck": "目前幸运值",
-  "current_luck_tooltip": "下一个区块的幸运值，实时更新。",
+  "current_luck_tooltip": "下一个区块当前的幸运值，实时更新。",
   "network_hashrate": "全网算力",
   "network_difficulty": "全网难度",
   "network_difficulty_tooltip": "矿池平均挖出区块需要的运算次数",
@@ -46,4 +46,9 @@
   "waiting_confirmation_tooltip": "区块等待确认",
   "orphan_tooltip": "最长的区块链会被认为是绝对的正确。如果一个区块不是最长链的一部分，那么它被称为是“孤块”。 挖出孤块大多数是矿池的内部问题，或是51%算力攻击，区块链重组后而引起的问题。",
   "uncle_tooltip": "叔块是一个没有被主链包含的区块。 区块挖出的比其他矿池稍晚，或者是网络传输稍慢，就不会为主链的一部分，但还会有叔块奖励，看有几多叔块，一般是1.75 ETH， 1.5 ETH。"
+    "difficulty": "全网难度"
+  },
+  "waiting_confirmation_tooltip": "等待确认",
+  "orphan_tooltip": "孤块是没有被主链包含，也没有成为叔块的区块。孤块只会在罕有情况下出现，例如区块链的从组。",
+  "uncle_tooltip": "叔块是没有被主链包含的区块。 区块挖出的比其他矿池稍晚，或者是网络传输稍慢，就不会为主链的一部分，但还会有叔块奖励。看有几多叔块，一般奖励是1.75 ETH， 1.5 ETH。"
 }

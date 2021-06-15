@@ -43,7 +43,12 @@
     "orphan": "Wees",
     "uncle": "Nonkel"
   },
+  "chart": {
+    "title": "Beeld maandelijkse blocks",
+    "blocks_per_day": "Blocks per dag",
+    "difficulty": "Moeilijkheidsgraad"
+  },
   "waiting_confirmation_tooltip": "Wachten op bevestiging",
-  "orphan_tooltip": "Weesblokken zijn de blokken die niet in de ketting opgenomen zijn. Normaalgezien gebeurt dit door intern probleem met de infrastructuur van de mining pool of door herschikkingen van de ketting, 51% aanvallen.",
-  "uncle_tooltip": "Nonkelblokken zijn blokken die dezelfde ouder en nummer hebben. Ze ontstaan door hoge vertraging tussen mining pools. Meestal verschijnen ze wanneer twee mining pools twee blokken tegelijkertijd delven die hetzelfde nummer hebben."
+  "orphan_tooltip": "Wees blocks zijn blocks die niet in de canonische ketting werden opgenomen. Ze komen voor in zeldzame gevallen zoals bij een herschikking van 2 blocks diep van de ketting vooraleer het nieuwe werk naar de miners werd gestuurd.",
+  "uncle_tooltip": "Nonkelblocks zijn blocks die dezelfde parent hash en nummer hebben. Ze ontstaan door hoge vertraging tussen mining pools. Meestal verschijnen ze wanneer twee mining pools twee blocks die hetzelfde nummer hebben tegelijkertijd minen."
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Img } from 'src/components/Img';
+import { Tooltip } from 'src/components/Tooltip';
 import { clx } from 'src/utils/clx';
 import styled from 'styled-components';
 import { Skeleton } from '../Skeleton';
@@ -46,36 +47,48 @@ export type DynamicListProps<
     totalPages: number;
   };
   onRowClick?: (data: D) => void;
+  onRowClickAllowed?: (data: D) => boolean;
   contentEmpty?: React.ReactNode;
   wrapperProps?: Omit<JSX.IntrinsicElements['div'], 'ref'>;
+  renderRowTooltipContent?: (d: D) => React.ReactNode;
 };
 
 const ListRow = React.memo(
   <D extends {}, CP extends {} = {}>({
     item,
     onRowClick,
+    onRowClickAllowed,
     index,
     isHighlighted,
     handleActiveHover,
     columns,
     config,
+    renderRowTooltipContent,
   }: {
     item: D;
     onRowClick?: (d: D) => void;
     index: number;
     isHighlighted: boolean;
+    onRowClickAllowed?: (data: D) => boolean;
     handleActiveHover: (n: number) => void;
     columns: DynamicListColumn<D, CP>[];
     config: CP | null;
+    renderRowTooltipContent?: (d: D) => React.ReactNode;
   }) => {
     const onMouseOver = React.useCallback(() => {
       handleActiveHover(index);
     }, [handleActiveHover, index]);
+    const handleClick = React.useMemo(() => {
+      if (onRowClick && (onRowClickAllowed ? onRowClickAllowed(item) : true)) {
+        return () => onRowClick(item);
+      }
+      return undefined;
+    }, [item, onRowClick, onRowClickAllowed]);
 
-    return (
+    const content = (
       <Table.Tr
-        clickable={!!onRowClick}
-        onClick={onRowClick && (() => onRowClick(item))}
+        clickable={!!handleClick}
+        onClick={handleClick}
         className={clx({
           highlighted: isHighlighted,
         })}
@@ -90,6 +103,18 @@ const ListRow = React.memo(
         })}
       </Table.Tr>
     );
+
+    if (renderRowTooltipContent) {
+      return (
+        <>
+          <Tooltip wrapIcon={false} placement="right" icon={content}>
+            {renderRowTooltipContent(item)}
+          </Tooltip>
+        </>
+      );
+    }
+
+    return content;
   }
 );
 
@@ -109,7 +134,9 @@ export const DynamicList = <D extends {}, CP extends {}>(
     onColumnHeaderClick,
     config = null,
     onRowClick,
+    onRowClickAllowed,
     wrapperProps,
+    renderRowTooltipContent,
   } = props;
 
   const [lastMouseOver, setLastMouseOver] = React.useState<number | null>();
@@ -176,12 +203,14 @@ export const DynamicList = <D extends {}, CP extends {}>(
                     <ListRow
                       item={item}
                       onRowClick={onRowClick as any}
+                      onRowClickAllowed={onRowClickAllowed as any}
                       index={index}
                       key={(item as any).name || index}
                       isHighlighted={index === lastMouseOver}
                       handleActiveHover={setLastMouseOver}
                       columns={columns as any}
                       config={config}
+                      renderRowTooltipContent={renderRowTooltipContent as any}
                     />
                   );
                 })}
@@ -225,3 +254,4 @@ export const DynamicListEmpty: React.FC<{ children: React.ReactNode }> = ({
     </EmptyContainer>
   );
 };
+//

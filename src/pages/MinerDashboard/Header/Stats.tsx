@@ -77,7 +77,7 @@ const BalanceProgressBar: React.FC<{
   const [progress, setProgress] = useState(0);
   React.useLayoutEffect(() => {
     setTimeout(() => {
-      setProgress(Math.round(value));
+      setProgress(value);
     }, 100);
   }, [value]);
   const { t } = useTranslation('dashboard');
@@ -147,6 +147,7 @@ export const HeaderStats: React.FC<{
 }> = () => {
   const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const minerDetailsState = useReduxState('minerDetails');
+  const minerStatsState = useReduxState('minerStats');
   const data = minerHeaderStatsState.data;
   const activeTicker = useActiveCoinTicker();
   const activeCoin = useActiveCoin();
@@ -173,35 +174,46 @@ export const HeaderStats: React.FC<{
 
   const dailyRewardPerGhState = useDailyRewardPerGhState();
 
-  const estimatedDailyEarnings =
-    poolStatsState.data?.averageHashrate &&
-    dailyRewardPerGhState.data &&
-    minerHeaderStatsState.data?.roundShare
-      ? (poolStatsState.data?.averageHashrate *
-          dailyRewardPerGhState.data *
-          minerHeaderStatsState.data?.roundShare) /
-        1000000000
+  const estimatedDailyEarnings = React.useMemo(() => {
+    return poolStatsState.data?.averageHashrate &&
+      dailyRewardPerGhState.data &&
+      minerStatsState.data?.averageEffectiveHashrate
+      ? dailyRewardPerGhState.data *
+          (minerStatsState.data?.averageEffectiveHashrate / 1000000000)
       : 0;
-  const estimated = {
-    ticker: estimatedDailyEarnings
-      ? activeCoinFormatter(estimatedDailyEarnings * estimateInterval)
-      : null,
-    counterTicker:
-      estimatedDailyEarnings && data?.countervaluePrice
-        ? currencyFormatter(
-            ((estimatedDailyEarnings * estimateInterval) /
-              Math.pow(10, activeCoin?.decimalPlaces || 9)) *
-              data.countervaluePrice
-          )
-        : null,
-  };
+  }, [poolStatsState.data, dailyRewardPerGhState.data, minerStatsState.data]);
 
-  const CalendarIcon =
-    estimateInterval === 1
+  const estimated = React.useMemo(() => {
+    return {
+      ticker: estimatedDailyEarnings
+        ? activeCoinFormatter(estimatedDailyEarnings * estimateInterval)
+        : null,
+      counterTicker:
+        estimatedDailyEarnings && data?.countervaluePrice
+          ? currencyFormatter(
+              ((estimatedDailyEarnings * estimateInterval) /
+                Math.pow(10, activeCoin?.decimalPlaces || 9)) *
+                data.countervaluePrice
+            )
+          : null,
+    };
+  }, [
+    activeCoinFormatter,
+    activeCoin?.decimalPlaces,
+    currencyFormatter,
+    estimateInterval,
+    data?.countervaluePrice,
+    estimatedDailyEarnings,
+  ]);
+
+  const CalendarIcon = React.useMemo(() => {
+    return estimateInterval === 1
       ? FaCalendarDay
       : estimateInterval === 7
       ? FaCalendarWeek
       : FaCalendar;
+  }, [estimateInterval]);
+
   const estimateText =
     estimateInterval === 1
       ? 'daily'
@@ -209,7 +221,7 @@ export const HeaderStats: React.FC<{
       ? 'weekly'
       : 'monthly';
 
-  const handleToggleEstimateInterval = () => {
+  const handleToggleEstimateInterval = React.useCallback(() => {
     switch (estimateInterval) {
       case 1: {
         setEstimateInterval(7);
@@ -224,7 +236,7 @@ export const HeaderStats: React.FC<{
         return;
       }
     }
-  };
+  }, [estimateInterval, setEstimateInterval]);
 
   const balanceProgress =
     settings && data

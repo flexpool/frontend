@@ -86,10 +86,16 @@ export const MinerPplnsStats: React.FC<{
 
   const shareLogState = useAsyncState<number[]>();
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
-  const approximateBlockShare = activeCoinFormatter(
-    headerStatsData?.approximateBlockShare,
-    { maximumFractionDigits: 8 }
-  );
+
+  const averageBlockShare = React.useMemo(() => {
+    if (headerStatsData) {
+      return activeCoinFormatter(
+        headerStatsData.averageBlockShare * headerStatsData.roundShare,
+        { maximumFractionDigits: 8 }
+      );
+    }
+    return null;
+  }, [headerStatsData, activeCoinFormatter]);
 
   const dateFormatter = useLocalizedDateFormatter();
 
@@ -198,9 +204,9 @@ export const MinerPplnsStats: React.FC<{
               })
             }
             subValue={
-              approximateBlockShare && (
+              averageBlockShare && (
                 <>
-                  {t('rewards.pplns.crs.aprox')}: {approximateBlockShare}
+                  {t('rewards.pplns.crs.aprox')}: {averageBlockShare}
                 </>
               )
             }

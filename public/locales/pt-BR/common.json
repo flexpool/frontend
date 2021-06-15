@@ -57,8 +57,17 @@
     "Invalid IP Address": "Endereço IP inválido",
     "email_invalid": "Endereço de e-mail inválido",
     "email_required": "Por favor, digite seu endereço de e-mail"
+    "address_not_found": "O endereço especificado não foi encontrado em nosso sistema. Tente novamente mais tarde se você já estiver minerando."
   },
   "date_time": {
     "now": "agora"
+  },
+  "snacks": {
+    "emailConfirmed": {
+      "title": "Seu email foi confirmado"
+    },
+    "emailUnsubscribed": {
+      "title": "Você cancelou com sucesso a inscrição de notificações por e-mail"
+    }
   }
 }

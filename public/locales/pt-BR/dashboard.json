@@ -4,6 +4,7 @@
     "title": "Configurações",
     "ip": "Endereço de IP para verificação",
     "ip_hint": "Dica: Você está visitando esta página da web de",
+    "ip_description": "Se o seu worker está usando um endereço de proxy, exemplo: seu worker minera também em uma pool de ZIL, por favor use o endereço do proxy.",
     "payout": {
       "title": "Configurações de Pagamento",
       "limit": "Limite de pagamento (min: {{min}})",
@@ -14,6 +15,10 @@
       "gas_limit_zero": "Sua taxa de transação não será limitada.",
       "submit": "Aplicar alterações"
     },
+    "payout_warning": [
+      "É altamente recomendável definir um limite de pagamento mais alto para reduzir o número total de transações de pagamento. Menos transações significa menos taxas de rede pagas.",
+      "Você é o único responsável pelo pagamento das taxas de transação. Somos fortemente a favor de definir um limite de taxa de transação mais baixo para evitar a perda total nas taxas de rede. Isso também o ajudará a mitigar parcialmente as perdas quando ocorrerem picos repentinos de taxas."
+    ],
     "notifications": {
       "title": "Notificações por e-mail",
       "email_enabled": "Notificações por e-mail habilitadas",
@@ -122,16 +127,25 @@
       "average": "Taxa Média de Transação",
       "average_percent": "Taxa Média de Transação %",
       "average_cta": "Dicas sobre redução de taxas"
+      "average_cta_tooltip": [
+        "1. Definir um limite de pagamento mais alto reduzirá o número de transações que você terá que pagar em termos de taxas de transação de rede.",
+        "2. Define o limite da taxa de transação para evitar altas taxas nas configurações. Quando você atingir seu limite de pagamento, nos certificaremos de que sua transação de pagamento será executada assim que cumprir suas configurações de limite de taxa."
+      ]
     },
     "table": {
       "title": "Pagamentos",
       "download": "Baixar arquivo CSV",
+      "table_contents": {
+        "pending": "Pending",
+        "success": "Success"
+      },
       "table_head": {
         "date": "Data",
         "value": "Taxa de Transação",
         "fee": "Taxa",
         "duration": "Duração",
-        "hash": "Hash"
+        "hash": "Hash",
+        "status": "Status"
       }
     }
   },
@@ -179,5 +193,8 @@
         "last_seen": "Visto por Último"
       }
     }
-  }
+  },
+  "status_pending_tooltip": "Awating transaction confirmation",
+  "confirmation_duration_tooltip": "Confirmed in",
+  "confirmed_at_tooltip": "Confirmed at"
 }

@@ -102,9 +102,12 @@ const ModalNews: React.FC<{ data?: ApiPoolCoinFull[] | null }> = ({ data }) => {
 
   return (
     <Modal size="xl" isOpen={!!openedCoin} handleClose={handleClose} mobileFull>
+      <Modal.Header>
+        <h2>{openedCoin?.name}</h2>
+      </Modal.Header>
       <ScrollArea>
         <Modal.Body>
-          <CardGrid>
+          <CardGrid style={{ marginTop: 0 }}>
             <CoinAbout data={openedCoin} />
             {openedCoin && <CoinCalculator coin={openedCoin} />}
           </CardGrid>

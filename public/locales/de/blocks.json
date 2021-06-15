@@ -43,7 +43,12 @@
     "orphan": "Orphan",
     "uncle": "Uncle"
   },
-  "waiting_confirmation_tooltip": "Warten auf Bestätigung",
-  "orphan_tooltip": "Orphan Blocks sind Blöcke, die nicht in die Kette aufgenommen wurden. Normalerweise geschieht es aufgrund des internen Infrastrukturproblems am Mining Pool, oder aufgrund der Kettenreorganisationen, 51% Angriffe.",
-  "uncle_tooltip": "Uncles sind Blöcke, die den gleichen Vorgänger und die gleiche Nummerierung haben. Sie werden aufgrund der hohen Latenz zwischen den Mining-Pools verursacht. Normalerweise treten sie auf, wenn zwei Mining-Pools gleichzeitig zwei Blöcke abbauen und beide die gleiche Blocknummer haben."
+  "chart": {
+    "title": "Monthly Blocks Visualization",
+    "blocks_per_day": "Blocks per day",
+    "difficulty": "Difficulty"
+  },
+  "waiting_confirmation_tooltip": "Waiting for confirmation",
+  "orphan_tooltip": "Orphan blocks are the blocks that were not included into the canonical chain. They usually appear under very rare circumstances such as 2-block deep chain reorganization before the new work was sent to miners.",
+  "uncle_tooltip": "Uncle blocks are blocks that have the same parent hash and number. They are caused because of the high latency between mining pools. Typically, they appear when two mining pools mine two blocks at the same time, both having the same block number."
 }

@@ -26,6 +26,7 @@
     "title_miner_4": "You have mined {{count}} blocks",
     "title_miner_5": "You have mined {{count}} blocks",
     "title_miner_plural": "You have mined {{count}} blocks",
+    "rewards_block_list_title": "Rewards Per Block",
     "table_head": {
       "number": "Number",
       "type": "Type",
@@ -35,7 +36,8 @@
       "reward": "Reward",
       "round_time": "Round Time",
       "hash": "Hash",
-      "luck": "Luck"
+      "luck": "Luck",
+      "share": "Share"
     }
   },
   "type": {
@@ -43,7 +45,12 @@
     "orphan": "Orphan",
     "uncle": "Uncle"
   },
+  "chart": {
+    "title": "Monthly Blocks Visualization",
+    "blocks_per_day": "Blocks per day",
+    "difficulty": "Difficulty"
+  },
   "waiting_confirmation_tooltip": "Waiting for confirmation",
-  "orphan_tooltip": "Orphan blocks are the blocks that were not included to the canonical chain. Typically, it happens because of the internal infrastructure problem on the Mining Pool, or due to the chain reorganizations, 51% attacks.",
+  "orphan_tooltip": "Orphan blocks are the blocks that were not included into the canonical chain. They usually appear under very rare circumstances such as 2-block deep chain reorganization before the new work was sent to miners.",
   "uncle_tooltip": "Uncle blocks are blocks that have the same parent hash and number. They are caused because of the high latency between mining pools. Typically, they appear when two mining pools mine two blocks at the same time, both having the same block number."
 }

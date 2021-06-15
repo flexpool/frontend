@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { SectionNotAvailable } from 'src/components/SectionNotAvailable';
-import { fetchApi } from 'src/utils/fetchApi';
 import { Spacer } from 'src/components/layout/Spacer';
 import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
 import {
@@ -25,6 +24,7 @@ import { isAfter, subHours } from 'date-fns';
 import { average } from 'src/utils/number.utils';
 import { AverageEffectivePeriods } from './minerStats.types';
 import { useTranslation } from 'react-i18next';
+import { useReduxState } from 'src/rdx/useReduxState';
 
 export const StatsChart: React.FC<{
   coinTicker: string;
@@ -34,25 +34,29 @@ export const StatsChart: React.FC<{
   const { setAverageEffectivePeriods } = props;
   const [noDataAvailable, setNoDataAvailable] = useState(false);
   const { t } = useTranslation('dashboard');
+  const minerStatChartDataPointsState = useReduxState('minerStatsChart');
+  const data = minerStatChartDataPointsState.data;
 
-  const [sharesData, setSharesData] = React.useState<
-    | {
-        date: Date;
-        validShares: number;
-        staleShares: number;
-        invalidShares: number;
-      }[]
-    | null
-  >();
-  const [hashrateData, setHashrateData] = React.useState<
-    | {
-        date: Date;
-        effectiveHashrate: number;
-        averageEffectiveHashrate: number;
-        reportedHashrate: number;
-      }[]
-    | null
-  >();
+  const [sharesData, setSharesData] =
+    React.useState<
+      | {
+          date: Date;
+          validShares: number;
+          staleShares: number;
+          invalidShares: number;
+        }[]
+      | null
+    >();
+  const [hashrateData, setHashrateData] =
+    React.useState<
+      | {
+          date: Date;
+          effectiveHashrate: number;
+          averageEffectiveHashrate: number;
+          reportedHashrate: number;
+        }[]
+      | null
+    >();
 
   const worker = useActiveSearchParamWorker();
   const appTheme = useAppTheme();
@@ -179,74 +183,61 @@ export const StatsChart: React.FC<{
 
   useEffect(() => {
     if (props.coinTicker === null) return;
-    fetchApi<
-      {
-        averageEffectiveHashrate: number;
-        effectiveHashrate: number;
-        invalidShares: number;
-        reportedHashrate: number;
-        staleShares: number;
-        timestamp: number;
-        validShares: number;
-      }[]
-    >('/miner/chart', {
-      query: {
-        address: props.address,
-        coin: props.coinTicker,
-        worker,
-      },
-    }).then((resp) => {
-      if (resp === null) {
-        setNoDataAvailable(true);
-        setSharesData(null);
-        setHashrateData(null);
-        return;
-      }
-      setNoDataAvailable(false);
-      const hashrateChartData = [];
-      const sharesChartData = [];
-      const averageSixHours = [];
-      const averageTwelveHours = [];
+    if (data === null || data === undefined) {
+      setNoDataAvailable(true);
+      setSharesData(null);
+      setHashrateData(null);
+      return;
+    }
+    setNoDataAvailable(false);
+    const hashrateChartData = [];
+    const sharesChartData = [];
+    const averageSixHours = [];
+    const averageTwelveHours = [];
 
-      const nowMinus12 = subHours(new Date(), 12);
-      const nowMinus6 = subHours(new Date(), 6);
+    const nowMinus12 = subHours(new Date(), 12);
+    const nowMinus6 = subHours(new Date(), 6);
+    for (let i = 0; i < data.length; i++) {
+      const item = data[i];
 
-      for (let i = 0; i < resp.length; i++) {
-        const item = resp[i];
+      const itemTimestamp = new Date(item.timestamp * 1000);
 
-        const itemTimestamp = new Date(item.timestamp * 1000);
-
-        hashrateChartData.push({
-          date: itemTimestamp,
-          effectiveHashrate: item.effectiveHashrate,
-          averageEffectiveHashrate: item.averageEffectiveHashrate,
-          reportedHashrate: item.reportedHashrate,
-        });
-
-        sharesChartData.push({
-          date: itemTimestamp,
-          validShares: item.validShares,
-          staleShares: item.staleShares,
-          invalidShares: item.invalidShares,
-        });
-
-        if (isAfter(itemTimestamp, nowMinus12)) {
-          averageTwelveHours.push(item.effectiveHashrate);
-          if (isAfter(itemTimestamp, nowMinus6)) {
-            averageSixHours.push(item.effectiveHashrate);
-          }
-        }
-      }
-
-      setAverageEffectivePeriods({
-        '6': average(averageSixHours),
-        '12': average(averageTwelveHours),
+      hashrateChartData.push({
+        date: itemTimestamp,
+        effectiveHashrate: item.effectiveHashrate,
+        averageEffectiveHashrate: item.averageEffectiveHashrate,
+        reportedHashrate: item.reportedHashrate,
       });
 
-      setSharesData(sharesChartData);
-      setHashrateData(hashrateChartData);
+      sharesChartData.push({
+        date: itemTimestamp,
+        validShares: item.validShares,
+        staleShares: item.staleShares,
+        invalidShares: item.invalidShares,
+      });
+
+      if (isAfter(itemTimestamp, nowMinus12)) {
+        averageTwelveHours.push(item.effectiveHashrate);
+        if (isAfter(itemTimestamp, nowMinus6)) {
+          averageSixHours.push(item.effectiveHashrate);
+        }
+      }
+    }
+
+    setAverageEffectivePeriods({
+      '6': average(averageSixHours),
+      '12': average(averageTwelveHours),
     });
-  }, [props.coinTicker, props.address, worker, setAverageEffectivePeriods]);
+
+    setSharesData(sharesChartData);
+    setHashrateData(hashrateChartData);
+  }, [
+    props.coinTicker,
+    props.address,
+    worker,
+    setAverageEffectivePeriods,
+    data,
+  ]);
 
   return (
     <>

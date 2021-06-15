@@ -57,8 +57,17 @@
     "Invalid IP Address": "Érvénytelen IP cím",
     "email_invalid": "Érvénytelen email cím",
     "email_required": "Kérjük adja meg az email címét"
+    "address_not_found": "Specified address was not found in our system. Try waiting some time if you are already mining."
   },
   "date_time": {
     "now": "now"
+  },
+  "snacks": {
+    "emailConfirmed": {
+      "title": "Your email has been confirmed"
+    },
+    "emailUnsubscribed": {
+      "title": "You've successfully unsubscribed from email notifications"
+    }
   }
 }

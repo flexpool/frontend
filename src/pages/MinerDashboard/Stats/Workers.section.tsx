@@ -11,12 +11,20 @@ import { ApiMinerWorker } from 'src/types/Miner.types';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import {
   useLocalizedNumberFormatter,
+  useLocalizedPercentFormatter,
   useLocalizedSiFormatter,
 } from 'src/utils/si.utils';
 import styled from 'styled-components/macro';
-import { FaSearch, FaSort, FaSortDown, FaSortUp } from 'react-icons/fa';
+import {
+  FaSearch,
+  FaSort,
+  FaSortDown,
+  FaSortUp,
+  FaTimes,
+} from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 
 const PercentageItem = styled.span`
   color: var(--text-tertiary);
@@ -24,11 +32,13 @@ const PercentageItem = styled.span`
 const Percentage: React.FC<{ total: number; value: number }> = ({
   total,
   value,
-}) => (
-  <PercentageItem>
-    ({(Math.round((value / total) * 100 * 10) / 10).toFixed(1)}%)
-  </PercentageItem>
-);
+}) => {
+  const percentFormatter = useLocalizedPercentFormatter();
+  if (total === 0) {
+    return null;
+  }
+  return <PercentageItem>({percentFormatter(value / total)})</PercentageItem>;
+};
 
 const WorkerName = styled.span`
   color: var(--text-primary);
@@ -43,9 +53,17 @@ const WorkerNameOffline = styled(WorkerName)`
   color: var(--danger) !important;
 `;
 
+const SearchIcon = styled(FaSearch)`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: 0.2s all;
+  color: var(--text-secondary);
+`;
 const SearchInput = styled.input`
   height: 30px;
-  width: 200px;
+  width: 230px;
   border: none;
   border-bottom: 1.8px solid black;
   font-size: 15px;
@@ -57,12 +75,15 @@ const SearchInput = styled.input`
   display: block;
   background: var(--bg-primary);
   color: var(--text-primary);
-  border-color: var(--text-primary);
+  border-color: var(--border-color);
+  transition: 0.2s all;
 
+  &:hover,
   &:focus {
-    padding-bottom: 0px;
-    border-width: 2px;
     border-color: var(--primary);
+    & + ${SearchIcon} {
+      color: var(--text-primary);
+    }
   }
 `;
 
@@ -72,10 +93,31 @@ const SearchBox = styled.div`
   margin-left: 1rem;
 `;
 
-const SearchIcon = styled(FaSearch)`
+const ClearButton = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  left: 100%;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  height: 32px;
+  width: 32px;
+  background: transparent;
+  opacity: 0.5;
+  transition: 0.1s all;
+  border-radius: 6px;
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+  &:hover {
+    background: rgba(128, 128, 128, 0.08);
+  }
+  &:focus {
+    background: rgba(128, 128, 128, 0.12);
+  }
 `;
 
 const ListHeader = styled.div`
@@ -125,6 +167,15 @@ const MinerWorkersTable: React.FC<{
     return res;
   }, [unfilteredData, sortKey, search, sortOrder]);
 
+  const uniqueHashrateValues = data
+    .map((item) => item.reportedHashrate)
+    .filter((value, index, self) => self.indexOf(value) === index);
+
+  const hasReportedHashrate = uniqueHashrateValues.reduce(
+    (total, next) => next + total,
+    0
+  );
+
   const handleColClick = React.useCallback(
     (value: string) => {
       setSortKey(value as keyof ApiMinerWorker);
@@ -157,14 +208,49 @@ const MinerWorkersTable: React.FC<{
           )
         ),
       },
-      {
-        title: t('stats.table.table_head.reported_hashrate'),
-        alignRight: true,
-        onClickValue: 'reportedHashrate',
-        Component: React.memo(({ data }) => (
-          <Mono>{siFormatter(data.reportedHashrate, { unit: 'H/s' })}</Mono>
-        )),
-      },
+      ...(hasReportedHashrate
+        ? [
+            {
+              title: t('stats.table.table_head.reported_hashrate'),
+              alignRight: true,
+              onClickValue: 'reportedHashrate',
+              Component: React.memo(({ data }: { data: ApiMinerWorker }) => (
+                <Ws>
+                  <Mono>
+                    {siFormatter(data.reportedHashrate, { unit: 'H/s' })}{' '}
+                    <Tooltip>
+                      <TooltipContent>
+                        {t('stats.table.table_head.average_e_hashrate')}: <br />
+                        {siFormatter(data.averageEffectiveHashrate, {
+                          unit: 'H/s',
+                        })}{' '}
+                        <Percentage
+                          total={data.reportedHashrate}
+                          value={data.averageEffectiveHashrate}
+                        />
+                      </TooltipContent>
+                    </Tooltip>
+                  </Mono>
+                </Ws>
+              )),
+            },
+          ]
+        : [
+            {
+              title: t('stats.table.table_head.average_e_hashrate'),
+              alignRight: true,
+              onClickValue: 'averageEffectiveHashrate',
+              Component: React.memo(({ data }: { data: ApiMinerWorker }) => (
+                <Ws>
+                  <Mono>
+                    {siFormatter(data.averageEffectiveHashrate, {
+                      unit: 'H/s',
+                    })}{' '}
+                  </Mono>
+                </Ws>
+              )),
+            },
+          ]),
       {
         title: t('stats.table.table_head.current_e_hashrate'),
         alignRight: true,
@@ -206,15 +292,16 @@ const MinerWorkersTable: React.FC<{
         alignRight: true,
         onClickValue: 'invalidShares',
         Component: React.memo(({ data }) => (
-          <Mono>
-            {numberFormatter(data.invalidShares)}{' '}
-            <Percentage total={data.totalShares} value={data.invalidShares} />
-          </Mono>
+          <Ws>
+            <Mono>
+              {numberFormatter(data.invalidShares)}{' '}
+              <Percentage total={data.totalShares} value={data.invalidShares} />
+            </Mono>
+          </Ws>
         )),
       },
       {
         title: t('stats.table.table_head.last_seen'),
-        alignRight: true,
         Component: React.memo(({ data }) => (
           <Ws>{dateFormatter.distanceFromNow(data.lastSeen * 1000)}</Ws>
         )),
@@ -237,7 +324,15 @@ const MinerWorkersTable: React.FC<{
         ),
       };
     });
-  }, [sortKey, sortOrder, siFormatter, numberFormatter, t, dateFormatter]);
+  }, [
+    sortKey,
+    sortOrder,
+    siFormatter,
+    numberFormatter,
+    t,
+    dateFormatter,
+    hasReportedHashrate,
+  ]);
 
   const onSearchChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -256,13 +351,18 @@ const MinerWorkersTable: React.FC<{
           {title} ({unfilteredData.length})
         </h2>
         <SearchBox>
-          <SearchIcon />
           <SearchInput
             type="text"
             placeholder="Filter by worker name"
             value={search}
             onChange={onSearchChange}
           />
+          <SearchIcon />
+          {search && (
+            <ClearButton onClick={() => setSearch('')}>
+              <FaTimes />
+            </ClearButton>
+          )}
         </SearchBox>
       </ListHeader>
 

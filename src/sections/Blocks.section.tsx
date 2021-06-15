@@ -4,7 +4,6 @@ import DynamicList, {
 } from 'src/components/layout/List/List';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { fetchApi } from 'src/utils/fetchApi';
-import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { LinkMiner } from 'src/components/LinkMiner';
 import { Luck } from 'src/components/Luck';
 import styled from 'styled-components';
@@ -14,22 +13,12 @@ import { LinkOut, LinkOutCoin } from 'src/components/LinkOut';
 import { Mono, Ws } from 'src/components/Typo/Typo';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
-import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
+import { TableCellSpinner } from 'src/components/Loader/TableCellSpinner';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { BiTransferAlt } from 'react-icons/bi';
-
-const UnconfirmedSpinner = styled(LoaderSpinner)`
-  width: 14px;
-  height: 14px;
-  overflow: hidden;
-  display: inline-block;
-  margin-left: 0.5rem;
-  svg circle {
-    stroke: var(--text-tertiary);
-  }
-`;
+import ListDateSwitchButton from 'src/components/ButtonVariants/ListDateSwitchButton';
+import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 
 type ApiBlock = {
   confirmed: boolean;
@@ -83,21 +72,6 @@ const BlockType = styled.span<{ type: ApiBlock['type'] }>`
   }
 `;
 
-const ButtonDateSwitch = styled(Ws)`
-  padding: 0 0.35rem;
-  outline: none;
-  border: none;
-  color: var(--text-secondary);
-  svg {
-    opacity: 0.5;
-    margin-left: 0.3rem;
-  }
-  &:hover svg {
-    color: var(--primary);
-    opacity: 1;
-  }
-`;
-
 export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   const { t } = useTranslation('blocks');
   const blockState = useAsyncState<ApiBlocks>('blocks', {
@@ -107,11 +81,9 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   });
   const coinTicker = useActiveCoinTicker();
   const [currentPage, setCurrentPage] = React.useState(0);
-  const history = useHistory();
   const [dateView, setDateView] = useLocalStorageState<
     'full_date' | 'distance'
-  >('blockDateView', 'full_date');
-
+  >('blockDateView', 'distance');
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const dateFormatter = useLocalizedDateFormatter();
 
@@ -129,8 +101,6 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   const blocks = React.useMemo(() => {
     return blockState.data?.data || [];
   }, [blockState.data]);
-
-  console.log(dateView);
 
   const blockCols: {
     [key: string]: DynamicListColumn<
@@ -167,10 +137,12 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
             getCoinLink(data.type, data.hash, config.coinTicker);
 
           const content = (
-            <Ws>
+            <Ws
+              className={data.type !== 'orphan' ? 'item-hover-higjlight' : ''}
+            >
               {data.number}
               {!data.confirmed && (
-                <Tooltip icon={<UnconfirmedSpinner />}>
+                <Tooltip icon={<TableCellSpinner />}>
                   <TooltipContent message={t('waiting_confirmation_tooltip')} />
                 </Tooltip>
               )}
@@ -213,12 +185,24 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
           );
         },
       },
+      reward: {
+        title: t('table.table_head.reward'),
+        alignRight: true,
+        skeletonWidth: 80,
+        Component: ({ data }) => {
+          return (
+            <Mono>
+              <Ws>{activeCoinFormatter(data.reward)}</Ws>
+            </Mono>
+          );
+        },
+      },
       date: {
         title: t('table.table_head.date'),
         skeletonWidth: 180,
         Component: ({ data }) => {
           return (
-            <ButtonDateSwitch
+            <ListDateSwitchButton
               onClick={(e) => {
                 setDateView(
                   dateView === 'full_date' ? 'distance' : 'full_date'
@@ -230,7 +214,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
                 ? dateFormatter.dateAndTime(data.timestamp * 1000)
                 : dateFormatter.distanceFromNow(data.timestamp * 1000)}
               <BiTransferAlt />
-            </ButtonDateSwitch>
+            </ListDateSwitchButton>
           );
         },
       },
@@ -246,25 +230,15 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
           <Mono>
             <Ws>
               <LinkMiner
-                className="item-hover-higjlight"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
                 coin={config.coinTicker}
                 address={data.miner}
               />
             </Ws>
           </Mono>
         ),
-      },
-      reward: {
-        title: t('table.table_head.reward'),
-        alignRight: true,
-        skeletonWidth: 80,
-        Component: ({ data }) => {
-          return (
-            <Mono>
-              <Ws>{activeCoinFormatter(data.reward)}</Ws>
-            </Mono>
-          );
-        },
       },
       roundTime: {
         title: t('table.table_head.round_time'),
@@ -291,9 +265,11 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         alignRight: true,
         Component: ({ data, config }) => (
           <Mono>
-            <Ws className="item-hover-higjlight">
+            <Ws
+              className={data.type !== 'orphan' ? 'item-hover-higjlight' : ''}
+            >
               <LinkOutCoin
-                type="block"
+                type={data.type}
                 hash={data.hash}
                 hashLength={10}
                 coin={config.coinTicker}
@@ -303,7 +279,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         ),
       },
     }),
-    [activeCoinFormatter, t, dateFormatter, dateView, setDateView]
+    [t, dateFormatter, dateView, setDateView, activeCoinFormatter]
   );
 
   const columns = React.useMemo(() => {
@@ -326,10 +302,27 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
       blockCols.type,
       blockCols.date,
       blockCols.region,
-      blockCols.reward,
       blockCols.blockHash,
     ];
   }, [address, blockCols]);
+
+  const onRowClick = React.useCallback(
+    (data: ApiBlock) => {
+      const url =
+        data.type !== 'orphan' && getCoinLink(data.type, data.hash, coinTicker);
+      if (url) {
+        window.open(url, '_blank');
+      }
+    },
+    [coinTicker]
+  );
+
+  const onRowClickAllowed = React.useCallback((data: ApiBlock) => {
+    if (data.type !== 'orphan') {
+      return true;
+    }
+    return false;
+  }, []);
 
   return (
     <>
@@ -340,9 +333,8 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         <h2>{t('table.title', { count: blockState.data.totalItems })}</h2>
       )}
       <DynamicList
-        onRowClick={(data) => {
-          history.push(`/miner/${coinTicker}/${data.miner}`);
-        }}
+        onRowClick={onRowClick}
+        onRowClickAllowed={onRowClickAllowed}
         pagination={{
           currentPage,
           setCurrentPage,

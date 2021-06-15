@@ -24,6 +24,7 @@ const Message = styled.div`
   line-height: 1.4;
   color: var(--text-primary) !important;
   text-transform: none;
+  text-align: left;
 `;
 
 export const TooltipContent: React.FC<{

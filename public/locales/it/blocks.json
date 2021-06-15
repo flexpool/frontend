@@ -45,5 +45,10 @@
   },
   "waiting_confirmation_tooltip": "In attesa di conferma",
   "orphan_tooltip": "I blocchi orphan sono blocchi che non sono stati inclusi nella chain. Tipicamente accade a causa di problemi nell'infrastruttura interna della mining pool, a riorganizzazione della chain o ad attacchi del 51%.",
-  "uncle_tooltip": "I blocchi uncle sono blocchi che hanno lo stesso numero e hash genitore. Sono causati dall'elevata latenza tra mining pool. Tipicamente accadono quando due pool minano due blocchi allo stesso momento che hanno lo stesso numero."
+  "uncle_tooltip": "I blocchi uncle sono blocchi che hanno lo stesso numero e hash genitore. Sono causati dall'elevata latenza tra mining pool. Tipicamente accadono quando due pool minano due blocchi allo stesso momento che hanno lo stesso numero.",
+  "chart": {
+    "title": "Monthly Blocks Visualization",
+    "blocks_per_day": "Blocks per day",
+    "difficulty": "Difficulty"
+  }
 }

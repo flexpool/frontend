@@ -25,21 +25,23 @@ const StatItemTitle = styled.div`
   }
 `;
 
-export const StatItem = React.forwardRef<
-  HTMLDivElement,
-  JSX.IntrinsicElements['div'] & {
-    value?: React.ReactNode;
-    title?: React.ReactNode;
-    subValue?: React.ReactNode;
-  }
->(({ value, title, subValue, ...rest }, ref) => {
-  return (
-    <StatItemWrapper {...rest} ref={ref}>
-      <StatItemValue>{value || <Skeleton />}</StatItemValue>
-      {title && <StatItemTitle>{title}</StatItemTitle>}
-      {typeof subValue !== 'undefined' && (
-        <StatItemSubValue>{subValue || <Skeleton />}</StatItemSubValue>
-      )}
-    </StatItemWrapper>
-  );
-});
+export const StatItem = React.memo(
+  React.forwardRef<
+    HTMLDivElement,
+    JSX.IntrinsicElements['div'] & {
+      value?: React.ReactNode;
+      title?: React.ReactNode;
+      subValue?: React.ReactNode;
+    }
+  >(({ value, title, subValue, ...rest }, ref) => {
+    return (
+      <StatItemWrapper {...rest} ref={ref}>
+        <StatItemValue>{value || <Skeleton />}</StatItemValue>
+        {title && <StatItemTitle>{title}</StatItemTitle>}
+        {typeof subValue !== 'undefined' && (
+          <StatItemSubValue>{subValue || <Skeleton />}</StatItemSubValue>
+        )}
+      </StatItemWrapper>
+    );
+  })
+);

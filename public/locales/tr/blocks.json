@@ -45,5 +45,10 @@
   },
   "waiting_confirmation_tooltip": "Onay bekliyor",
   "orphan_tooltip": "Yetim bloklar, kanonik zincire dahil edilmeyen bloklardır. Tipik olarak, Madencilik Havuzundaki dahili altyapı sorunu nedeniyle veya zincir yeniden yapılanmaları nedeniyle,% 51 saldırılar meydana gelir.",
-  "uncle_tooltip": "Amca bloklar, aynı ana hash ve numaraya sahip bloklardır. Madencilik havuzları arasındaki yüksek gecikmeden kaynaklanmaktadır. Tipik olarak, her ikisi de aynı blok numarasına sahip iki madencilik havuzu aynı anda iki blok madencilik yaptığında ortaya çıkarlar."
+  "uncle_tooltip": "Amca bloklar, aynı ana hash ve numaraya sahip bloklardır. Madencilik havuzları arasındaki yüksek gecikmeden kaynaklanmaktadır. Tipik olarak, her ikisi de aynı blok numarasına sahip iki madencilik havuzu aynı anda iki blok madencilik yaptığında ortaya çıkarlar.",
+  "chart": {
+    "title": "Monthly Blocks Visualization",
+    "blocks_per_day": "Blocks per day",
+    "difficulty": "Difficulty"
+  }
 }

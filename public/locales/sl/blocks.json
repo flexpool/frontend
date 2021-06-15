@@ -45,5 +45,10 @@
   },
   "waiting_confirmation_tooltip": "Čakanje na konfirmacijo",
   "orphan_tooltip": "Osiroteli bloki so bloki, ki niso bili vključeni v kanonsko verigo. Običajno se to zgodi zaradi notranje težave z infrastrukturo v rudarskem bazenu ali zaradi 51% napadov zaradi reorganizacije verige.",
-  "uncle_tooltip": "Bloki strica so bloki, ki imajo enako nadrejeno zgoščenko in številko. Nastanejo zaradi visoke zakasnitve med rudarskimi bazeni. Običajno se pojavijo, ko dva rudarska bazena hkrati kopljeta dva bloka, oba pa imata isto številko blokov."
+  "uncle_tooltip": "Bloki strica so bloki, ki imajo enako nadrejeno zgoščenko in številko. Nastanejo zaradi visoke zakasnitve med rudarskimi bazeni. Običajno se pojavijo, ko dva rudarska bazena hkrati kopljeta dva bloka, oba pa imata isto številko blokov.",
+  "chart": {
+    "title": "Monthly Blocks Visualization",
+    "blocks_per_day": "Blocks per day",
+    "difficulty": "Difficulty"
+  }
 }

@@ -13,6 +13,7 @@ import {
 } from 'src/rdx/localSettings/localSettings.hooks';
 import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
 import { minerDetailsUpdatePayoutSettings } from 'src/rdx/minerDetails/minerDetails.actions';
+import { minerDetailsGet } from 'src/rdx/minerDetails/minerDetails.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
@@ -20,6 +21,7 @@ import {
   useLocalizedCurrencyFormatter,
   useLocalizedNumberFormatter,
 } from 'src/utils/si.utils';
+import { InfoBox } from 'src/components/InfoBox';
 
 export const PayoutSettings: React.FC = () => {
   const activeCoinTicker = useActiveCoinTicker();
@@ -30,9 +32,8 @@ export const PayoutSettings: React.FC = () => {
   const numberFormatter = useLocalizedNumberFormatter();
   const d = useDispatch();
   const {
-    params: { address },
+    params: { address, coin: coinTicker },
   } = useRouteMatch<{ address: string; coin: string }>();
-
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
   const currencyFormatter = useLocalizedCurrencyFormatter();
 
@@ -52,14 +53,19 @@ export const PayoutSettings: React.FC = () => {
   return (
     <Formik
       onSubmit={async (data, { setSubmitting }) => {
-        await d(
-          minerDetailsUpdatePayoutSettings(activeCoin.ticker, address, {
-            payoutLimit:
-              Number(data.payoutLimit) * Math.pow(10, activeCoin.decimalPlaces),
-            maxFeePrice: Number(data.maxFeePrice),
-            ipAddress: data.ip,
-          })
-        );
+        Promise.all([
+          d(
+            minerDetailsUpdatePayoutSettings(activeCoin.ticker, address, {
+              payoutLimit:
+                Number(data.payoutLimit) *
+                Math.pow(10, activeCoin.decimalPlaces),
+              maxFeePrice: Number(data.maxFeePrice),
+              ipAddress: data.ip,
+            })
+          ),
+        ]).then(() => {
+          d(minerDetailsGet(coinTicker, address));
+        });
         setSubmitting(false);
       }}
       initialValues={{
@@ -92,6 +98,19 @@ export const PayoutSettings: React.FC = () => {
           <Form>
             <FieldGroup.V>
               <h3>{t('dashboard:settings.payout.title')}</h3>
+
+              <InfoBox variant="warning">
+                <h3>Important note</h3>
+                <p>
+                  {(
+                    t('dashboard:settings.payout_warning', {
+                      returnObjects: true,
+                    }) as string[]
+                  ).map((item) => (
+                    <p key={item}>{item}</p>
+                  ))}
+                </p>
+              </InfoBox>
               <ErrorBox error={minerSettings.error} />
               <TextField
                 name="payoutLimit"
@@ -113,27 +132,31 @@ export const PayoutSettings: React.FC = () => {
                 unit={feeDetails?.unit.toUpperCase()}
                 inputMode="decimal"
                 desc={
-                  Number(values.maxFeePrice) > 0
-                    ? t('dashboard:settings.payout.gas_limit_desc', {
-                        value: Number(values.maxFeePrice),
-                        valueUnit: feeDetails?.unit,
-                        valueTicker: currencyFormatter(
-                          ((Number(values.maxFeePrice) *
-                            activeCoin.transactionSize *
-                            feeDetails.multiplier) /
-                            Math.pow(10, activeCoin.decimalPlaces)) *
-                            minerHeaderStats.data!.countervaluePrice
-                        ),
-                        percent: numberFormatter(
-                          (Number(values.maxFeePrice) *
-                            activeCoin.transactionSize *
-                            feeDetails.multiplier) /
-                            Math.pow(10, activeCoin.decimalPlaces) /
-                            Number(values.payoutLimit),
-                          { style: 'percent', maximumFractionDigits: 3 }
-                        ),
-                      })
-                    : t('dashboard:settings.payout.gas_limit_zero')
+                  <>
+                    <p>
+                      {Number(values.maxFeePrice) > 0
+                        ? t('dashboard:settings.payout.gas_limit_desc', {
+                            value: Number(values.maxFeePrice),
+                            valueUnit: feeDetails?.unit,
+                            valueTicker: currencyFormatter(
+                              ((Number(values.maxFeePrice) *
+                                activeCoin.transactionSize *
+                                feeDetails.multiplier) /
+                                Math.pow(10, activeCoin.decimalPlaces)) *
+                                minerHeaderStats.data!.countervaluePrice
+                            ),
+                            percent: numberFormatter(
+                              (Number(values.maxFeePrice) *
+                                activeCoin.transactionSize *
+                                feeDetails.multiplier) /
+                                Math.pow(10, activeCoin.decimalPlaces) /
+                                Number(values.payoutLimit),
+                              { style: 'percent', maximumFractionDigits: 3 }
+                            ),
+                          })
+                        : t('dashboard:settings.payout.gas_limit_zero')}
+                    </p>
+                  </>
                 }
               />
               <Spacer />
@@ -142,10 +165,13 @@ export const PayoutSettings: React.FC = () => {
                 label={t('dashboard:settings.ip')}
                 placeholder={minerSettings.data!.ipAddress}
               />
-              <p>
-                {t('dashboard:settings.ip_hint')}{' '}
-                <b>{minerSettings.data!.clientIPAddress}</b>.
-              </p>
+              <div>
+                <p>
+                  {t('dashboard:settings.ip_hint')}{' '}
+                  <b>{minerSettings.data!.clientIPAddress}</b>.
+                </p>
+                <p>{t('dashboard:settings.ip_description')} </p>
+              </div>
               <Submit shape="block">
                 {t('dashboard:settings.payout.submit')}
               </Submit>

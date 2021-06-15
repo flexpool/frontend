@@ -45,5 +45,10 @@
   },
   "waiting_confirmation_tooltip": "區塊等待確認",
   "orphan_tooltip": "最長的區塊鏈會被認為是絕對的正確。如果一個區塊不是最長鏈的一部分，那麼它被稱為是“孤塊”。挖出孤塊大多數是礦池的內部問題，或是51%算力攻擊，區塊鏈重組後而引起的問題。",
-  "uncle_tooltip": "叔塊是一個沒有被主鏈包含的區塊。區塊挖出的比其他礦池稍晚，或者是網絡傳輸稍慢，就不會為主鏈的一部分，但還會有叔塊獎勵，看有幾多叔塊，一般是1.75 Eth， 1.5 Eth 。"
+  "uncle_tooltip": "叔塊是一個沒有被主鏈包含的區塊。區塊挖出的比其他礦池稍晚，或者是網絡傳輸稍慢，就不會為主鏈的一部分，但還會有叔塊獎勵，看有幾多叔塊，一般是1.75 Eth， 1.5 Eth 。",
+  "chart": {
+    "title": "Monthly Blocks Visualization",
+    "blocks_per_day": "Blocks per day",
+    "difficulty": "Difficulty"
+  }
 }

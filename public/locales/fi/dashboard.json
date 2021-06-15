@@ -4,6 +4,7 @@
     "title": "Asetukset",
     "ip": "IP osoite varmistamiseen",
     "ip_hint": "Vinkki: Sinä olet tällä sivulla osoitteesta",
+    "ip_description": "If your worker is using proxy address, e.g. your worker is dual mining through a ZIL pool, please use the proxy address instead.",
     "payout": {
       "title": "Maksun asetukset",
       "limit": "Maksun raja (minimi: {{min}})",
@@ -14,6 +15,10 @@
       "gas_limit_zero": "Sinun siirtokuluja ei ole rajattu ollenkaan.",
       "submit": "Ota muutokset käyttöön"
     },
+    "payout_warning": [
+      "We highly recommend setting a higher payout limit to reduce total number of payout transactions. Less transactions means less paid in network fees.",
+      "You are the only one responsible for paying the transaction fees. We are strongly in favour of setting a transaction fee limit lower to avoid total loss on network fees. This will also help you partially mitigate losses when sudden fee spikes happen."
+    ],
     "notifications": {
       "title": "Sähköposti ilmoitukset",
       "email_enabled": "Sähköposti ilmoitukset käytössä",
@@ -122,16 +127,25 @@
       "average": "Keskivertainen siirtokulu",
       "average_percent": "Keskivertainen siirtokulut %",
       "average_cta": "Vihjeitä siirtokulujen vähentämiseen"
+      "average_cta_tooltip": [
+        "1. Setting higher payout limit will reduce the number of transactions you will have to pay for in terms of network transaction fees.",
+        "2. Set your transaction fee limit to avoid high fees in the settings. When you reach your payout threshold, we will make sure that your payout transaction will be executed as soon as it fulfills your fee limit settings."
+      ]
     },
     "table": {
       "title": "Maksut",
       "download": "Lataa tiedosto muodossa CSV",
+      "table_contents": {
+        "pending": "Pending",
+        "success": "Success"
+      },
       "table_head": {
         "date": "Päivämäärä",
         "value": "Tapahtuman arvo",
         "fee": "Siirtokulut",
         "duration": "Mainaamisen pituus",
         "hash": "Siirron hash"
+        "status": "Status"
       }
     }
   },
@@ -179,5 +193,8 @@
         "last_seen": "Viimeksi mainannut"
       }
     }
-  }
+  },
+  "status_pending_tooltip": "Awating transaction confirmation",
+  "confirmation_duration_tooltip": "Confirmed in",
+  "confirmed_at_tooltip": "Confirmed at"
 }

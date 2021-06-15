@@ -18,6 +18,7 @@ export const mainTheme = {
     warning: 'var(--warning)',
     onBg: '#fff',
     'color-discord': 'var(--color-discord)',
+    transparent: 'rgba(0,0,0,0)',
   },
   border: {
     default: '1px solid var(--border-color)',

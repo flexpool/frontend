@@ -4,6 +4,7 @@
     "title": "Configurações",
     "ip": "Endereço IP para verificação",
     "ip_hint": "Dica: Estas a visitar esta página a partir de",
+    "ip_description": "If your worker is using proxy address, e.g. your worker is dual mining through a ZIL pool, please use the proxy address instead.",
     "payout": {
       "title": "Definições de Pagamento",
       "limit": "Limite de Pagamento (min: {{min}})",
@@ -14,6 +15,10 @@
       "gas_limit_zero": "As tuas transações não estarão limitadas.",
       "submit": "Aplicar"
     },
+    "payout_warning": [
+      "We highly recommend setting a higher payout limit to reduce total number of payout transactions. Less transactions means less paid in network fees.",
+      "You are the only one responsible for paying the transaction fees. We are strongly in favour of setting a transaction fee limit lower to avoid total loss on network fees. This will also help you partially mitigate losses when sudden fee spikes happen."
+    ],
     "notifications": {
       "title": "Notificações por Email",
       "email_enabled": "Notificações por email ativas",
@@ -122,16 +127,25 @@
       "average": "Taxa média da transação",
       "average_percent": "Taxa média da transação %",
       "average_cta": "Dicas para reduzir taxas"
+      "average_cta_tooltip": [
+        "1. Setting higher payout limit will reduce the number of transactions you will have to pay for in terms of network transaction fees.",
+        "2. Set your transaction fee limit to avoid high fees in the settings. When you reach your payout threshold, we will make sure that your payout transaction will be executed as soon as it fulfills your fee limit settings."
+      ]
     },
     "table": {
       "title": "Pagamentos",
       "download": "Descarregar CSV",
+      "table_contents": {
+        "pending": "Pending",
+        "success": "Success"
+      },
       "table_head": {
         "date": "Data",
         "value": "Valor da transação",
         "fee": "Taxa",
         "duration": "Duração",
-        "hash": "Hash"
+        "hash": "Hash",
+        "status": "Status"
       }
     }
   },
@@ -179,5 +193,8 @@
         "last_seen": "Última vez visto"
       }
     }
-  }
+  },
+  "status_pending_tooltip": "Awating transaction confirmation",
+  "confirmation_duration_tooltip": "Confirmed in",
+  "confirmed_at_tooltip": "Confirmed at"
 }

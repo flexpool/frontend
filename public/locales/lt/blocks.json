@@ -45,5 +45,10 @@
   },
   "waiting_confirmation_tooltip": "Laukiama patvirtinimo",
   "orphan_tooltip": "Orphan blokai yra blokai, kurie nebuvo įtraukti į canonical chain. Paprastai tai atsitinka dėl vidinės infrastruktūros problemos „Kasybos poole“ arba dėl chain pertvarkymų, 51 proc. atakų.",
-  "uncle_tooltip": "Uncle blokai yra blokai, turintys tą patį pirminį hash ir numerį. Jie atsiranda dėl didelio vėlavimo tarp kasybos poolu. Paprastai jie atsiranda, kai du kasybos poolai vienu metu iškasa du blokus, abu turi tą patį bloko numerį."
+  "uncle_tooltip": "Uncle blokai yra blokai, turintys tą patį pirminį hash ir numerį. Jie atsiranda dėl didelio vėlavimo tarp kasybos poolu. Paprastai jie atsiranda, kai du kasybos poolai vienu metu iškasa du blokus, abu turi tą patį bloko numerį.",
+  "chart": {
+    "title": "Monthly Blocks Visualization",
+    "blocks_per_day": "Blocks per day",
+    "difficulty": "Difficulty"
+  }
 }

@@ -14,6 +14,7 @@ export type MineableCoinRegion = {
   domain: string;
   code: string;
   imageCode: string;
+  high_diff_avail?: boolean;
 };
 
 export type MineableCoinHardware = {
@@ -26,6 +27,7 @@ export type MineableCoin = {
   name: string;
   ticker: string;
   algorithm: string;
+  nicehash_algorithm: string;
   regions: MineableCoinRegion[];
   description: string;
   walletAddressExample: string;
@@ -39,6 +41,7 @@ export const mineableCoins: MineableCoin[] = [
     name: 'Ethereum',
     ticker: 'eth',
     algorithm: 'Ethash',
+    nicehash_algorithm: 'DaggerHashimoto',
     description: '',
     regex: /^0x[a-fA-F0-9]{40}$/g,
     validator: checksumEth,
@@ -48,21 +51,25 @@ export const mineableCoins: MineableCoin[] = [
         domain: 'eth-us-east.flexpool.io',
         code: 'us-east',
         imageCode: 'us',
+        high_diff_avail: true,
       },
       {
         domain: 'eth-us-west.flexpool.io',
         code: 'us-west',
         imageCode: 'us',
+        high_diff_avail: true,
       },
       {
         domain: 'eth-de.flexpool.io',
         code: 'de',
         imageCode: 'de',
+        high_diff_avail: true,
       },
       {
         domain: 'eth-se.flexpool.io',
         code: 'se',
         imageCode: 'se',
+        high_diff_avail: true,
       },
       {
         domain: 'eth-sg.flexpool.io',
@@ -99,7 +106,7 @@ export const mineableCoins: MineableCoin[] = [
             compatibleGpus: ['AMD'],
             downloadLink: 'https://github.com/todxx/teamredminer/releases',
             cmd:
-              'teamredminer.exe -a ethash -o stratum+ssl://CLOSEST_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME -p x --eth_stratum ethproxy',
+              'teamredminer.exe -a ethash -o stratum+ssl://CLOSEST_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME -o stratum+ssl://BACKUP_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME -p x --eth_stratum ethproxy',
           },
           {
             os: ['windows', 'linux', 'hiveos'],
@@ -108,13 +115,13 @@ export const mineableCoins: MineableCoin[] = [
             description: 'Best miner for NVIDIA 20/30 Series GPUs',
             fee: [1],
             compatibleGpus: ['NVIDIA'],
-            downloadLink: 'https://github.com/trexminer/T-Rex/releases',
+            downloadLink: 'https://trex-miner.com/',
             cmd:
-              't-rex.exe -a ethash -o stratum+ssl://CLOSEST_SERVER:5555 -u WALLET_ADDRESS -p x -w WORKER_NAME',
+              't-rex.exe -a ethash -o stratum+ssl://CLOSEST_SERVER:5555 -o stratum+ssl://BACKUP_SERVER:5555 -u WALLET_ADDRESS -p x -w WORKER_NAME',
           },
           {
             os: ['windows', 'linux', 'hiveos'],
-            title: 'lolminer',
+            title: 'lolMiner',
             key: 'lolminer',
             description: 'Best miner for 4GB zombie mode.',
             fee: [0.75],
@@ -122,32 +129,31 @@ export const mineableCoins: MineableCoin[] = [
             downloadLink:
               'https://github.com/Lolliedieb/lolMiner-releases/releases',
             cmd:
-              'lolMiner.exe --algo ETHASH --pool stratum+ssl://CLOSEST_SERVER:5555 --user WALLET_ADDRESS.WORKER_NAME',
-          },
-          {
-            os: ['windows', 'linux', 'hiveos'],
-            title: 'ethminer',
-            key: 'ethminer',
-            description:
-              'Open-source ethash miner with no fees. Brought by Ethereum community.',
-            fee: [0],
-            compatibleGpus: ['AMD', 'NVIDIA'],
-            downloadLink:
-              'https://github.com/ethereum-mining/ethminer/releases',
-            cmd:
-              'ethminer.exe -R -P stratum1+ssl://WALLET_ADDRESS.WORKER_NAME@CLOSEST_SERVER:5555',
+              'lolMiner.exe --algo ETHASH --pool stratum+ssl://CLOSEST_SERVER:5555 --user WALLET_ADDRESS.WORKER_NAME  --pool stratum+ssl://BACKUP_SERVER:5555 --user WALLET_ADDRESS.WORKER_NAME',
           },
           {
             os: ['windows', 'linux', 'hiveos'],
             title: 'PhoenixMiner',
             key: 'phoenixminer',
-            description: 'Proprietary Ethash miner with the lowest devfee.',
+            description: 'Proprietary Ethash miner with low devfee.',
             fee: [0.65],
             compatibleGpus: ['AMD', 'NVIDIA'],
-            downloadLink:
-              'https://github.com/PhoenixMinerDevTeam/PhoenixMiner/releases',
+            downloadLink: 'https://phoenixminer.info/downloads/',
             cmd:
-              'PhoenixMiner.exe -pool ssl://CLOSEST_SERVER:5555 -wal WALLET_ADDRESS.WORKER_NAME',
+              'PhoenixMiner.exe -pool ssl://CLOSEST_SERVER:5555 -pool2 ssl://BACKUP_SERVER:5555 -wal WALLET_ADDRESS.WORKER_NAME',
+          },
+          {
+            os: ['windows', 'linux', 'hiveos'],
+            title: 'GMiner',
+            key: 'gminer',
+            description:
+              'Actively developed and stable miner with low dev fee.',
+            compatibleGpus: ['AMD', 'NVIDIA'],
+            fee: [0.65],
+            downloadLink:
+              'https://github.com/develsoftware/GMinerRelease/releases',
+            cmd:
+              'miner.exe -a eth --ssl 1 -s CLOSEST_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME --ssl 1 -s BACKUP_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME',
           },
         ],
       },

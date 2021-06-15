@@ -45,5 +45,10 @@
   },
   "waiting_confirmation_tooltip": "À espera de confirmação",
   "orphan_tooltip": "Os blocos órfãos são blocos que não são incluídos na cadeia canônica. Normalmente isto acontece devido a problemas nas infra-estruturas internas da Pool ou devido a reorganizações da cadeia, ataques de 51%.",
-  "uncle_tooltip": "Blocos tios são blocos que têm o mesmo número e hash dos pais. São causados por causa da alta latência entre pools. Normalmente aparecem quando duas pools minam dois blocos ao mesmo tempo, partilhando o mesmo número de bloco entre eles."
+  "uncle_tooltip": "Blocos tios são blocos que têm o mesmo número e hash dos pais. São causados por causa da alta latência entre pools. Normalmente aparecem quando duas pools minam dois blocos ao mesmo tempo, partilhando o mesmo número de bloco entre eles.",
+  "chart": {
+    "title": "Monthly Blocks Visualization",
+    "blocks_per_day": "Blocks per day",
+    "difficulty": "Difficulty"
+  }
 }

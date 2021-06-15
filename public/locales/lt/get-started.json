@@ -2,6 +2,7 @@
   "list": {
     "head_title": "Pradėti kasti su mumis",
     "title": "Pradėkite nuo „Flexpool“ kasybos šiandien!"
+    "nicehash_rental_button": "NiceHash Rental"
   },
   "detail": {
     "title": "{{coin}} kasimas",
@@ -19,8 +20,10 @@
         "location": "Regiono vieta",
         "domain": "Domenas",
         "average_lat": "Vidutinis delsos laikas"
+        "average_lat": "Latency"
       },
-      "fastest": "Greičiausias"
+      "fastest": "Greičiausias",
+      "backup": "Backup"
     },
     "ports": {
       "title": "Ports",
@@ -28,6 +31,8 @@
       "ssl_port": "Saugus SSL Port",
       "tcp_port": "TCP Port",
       "tcp_port_tooltip": "Mes griežtai prieš šifruotą (TCP) ryšį, kai kasame savo poole. Šis ryšys yra pažeidžiamas MITM (Man-In-The-Middle) atakoms, o tai reiškia, kad jei kas nors piktybiškai atsistos tarp jūsų darbuotojo ir poolo, gali būti pavogta dalis jūsų hashrate. Skaitykite daugiau <more> DUK puslapyje </more>."
+      "high_diff_port": "High Difficulty Port",
+      "high_diff_port_tooltip": "This is the special port for advanced users who run proxies that require insanely high difficulty. This includes users who use <NiceHash>NiceHash</NiceHash> and related hashrate rental marketplaces. Available for: "
     },
     "worker": {
       "title": "Pavadinkite savo darbuotoja",
@@ -119,5 +124,36 @@
     "CLOSEST_SERVER": "ARČIAUSIAS_SERVERIS",
     "WALLET_ADDRESS": "PINIGINĖS_ADRESAS",
     "WORKER_NAME": "DARBUOTOJO_VARDAS"
+  },
+  "nicehash": {
+    "head_title": "NiceHash guide for mining on Flexpool",
+    "title": "NiceHash guide for mining on Flexpool",
+    "description": "NiceHash is the world's largest hashrate marketplace where anyone can rent as much hashrate as needed. This guide is about how you can start renting hashpower on Flexpool using NiceHash.",
+    "step_one": {
+      "title": "Open your hashrate marketplace dashboard",
+      "description": [
+        "Once you've registered on NiceHash and activated the Hashrate Marketplace account, you can head to your rental dashboard and choose the {algorithm} mining algorithm.",
+        "After that, you would be able to see this window, where you should click \"Add new pool...\""
+      ]
+    },
+    "step_two": {
+      "title": "Fill in Flexpool's pool settings and your wallet address",
+      "description": [
+        "Good, now you need to fill the pool settings. In the Stratum hostname or IP, you should select server based on your market choice (e.g. German server for European market). Check the list below. As a port,  high-difficulty port <strong>14444</strong> is available for NiceHash rental.",
+        "Specify your wallet address as the username. Use \"x\" as a password."
+      ]
+    },
+    "step_three": {
+      "title": "Test the pool configuration",
+      "description": [
+        "Now you can click on Test Pool and check if everything is working properly."
+      ]
+    },
+    "step_four": {
+      "title": "Enjoy the benefits of Flexpool while using NiceHash!",
+      "description": [
+        "Hooray! You've got the NiceHash working with Flexpool, which means now you can use the best mining pool with the best hashpower marketplace! "
+      ]
+    }
   }
 }

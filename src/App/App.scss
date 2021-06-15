@@ -1,6 +1,7 @@
 html,
 body {
   width: 100%;
+  overscroll-behavior-y: contain;
 }
 
 body {
@@ -18,10 +19,11 @@ body {
   --danger: #ed4f32;
   --error: #ed4f32;
   --danger-shadow: rgba(237, 79, 50, 0.5);
-  --warning: #edb431;
+  --warning: #eab02e;
   --warning-shadow: rgba(237, 180, 49, 0.5);
   --border-color: #e8eff7;
   --overlay: rgba(255, 255, 255, 0.5);
+  --bad-luck-color: #ccc;
 
   --color-discord: #7289da;
 

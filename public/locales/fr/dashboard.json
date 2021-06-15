@@ -4,6 +4,7 @@
     "title": "Paramètres",
     "ip": "Adresse IP pour vérification",
     "ip_hint": "Astuce : Vous visitez cette page Web depuis",
+    "ip_description": "Si votre infrastructure de minage utilise une adresse proxy, par exemple si votre rigs fait du double minage via un pool ZIL, veuillez utiliser l'adresse proxy à la place.",
     "payout": {
       "title": "Paramètres de paiement",
       "limit": "Limite de paiement (min: {{min}})",
@@ -14,6 +15,10 @@
       "gas_limit_zero": "Vos frais de transaction ne seront pas limités.",
       "submit": "Appliquer les modifications"
     },
+    "payout_warning": [
+      "Nous recommandons vivement de fixer une limite de paiement plus élevée afin de réduire le nombre total de transactions de paiement. Moins de transactions signifie moins de frais de réseau payés.",
+      "Vous êtes le seul responsable du paiement des frais de transaction. Nous sommes fortement en faveur de la fixation d'une limite de frais de transaction plus basse pour éviter une perte totale sur les frais de réseau. Cela vous aidera également à atténuer partiellement les pertes lorsque des pics de frais soudains se produisent."
+    ],
     "notifications": {
       "title": "Notifications par e-mail",
       "email_enabled": "Notifications par e-mail activées",
@@ -51,6 +56,11 @@
     "stat_estimate_weekly": "hebdomadaire",
     "stat_estimate_monthly": "mensuellement",
     "stat_estimate_tooltip": "Cliquez pour alterner entre les estimation quotidienne, hebdomadaire ou mensuelle."
+    "stat_estimate": "Gains estimés",
+    "stat_estimate_daily": "journalier",
+    "stat_estimate_weekly": "hebdomadaire",
+    "stat_estimate_monthly": "mensuellement",
+    "stat_estimate_tooltip": "Cliquez pour passer d'une estimation quotidienne, hebdomadaire ou mensuelle à une autre."
   },
   "nav": {
     "stats": "Statistiques",
@@ -122,16 +132,25 @@
       "average": "Frais moyens de transaction",
       "average_percent": "Frais moyens de transaction %",
       "average_cta": "Conseils pour réduire les frais"
+      "average_cta_tooltip": [
+        "1. En fixant une limite de paiement plus élevée, vous réduirez le nombre de transactions que vous devrez payer en termes de frais de transaction réseau.",
+        "2. Définissez votre limite de frais de transaction pour éviter des frais élevés dans les paramètres. Lorsque vous atteindrez votre seuil de paiement, nous ferons en sorte que votre transaction de paiement soit exécutée dès qu'elle répondra à vos paramètres de limite de frais."
+      ]
     },
     "table": {
       "title": "Paiements",
       "download": "Télécharger le CSV",
+      "table_contents": {
+        "pending": "Pending",
+        "success": "Success"
+      },
       "table_head": {
         "date": "Date",
         "value": "Valeur de la transaction",
         "fee": "Frais",
         "duration": "Durée",
-        "hash": "Hash"
+        "hash": "Hash",
+        "status": "Status"
       }
     }
   },
@@ -147,9 +166,9 @@
       "reported": "Rapporté"
     },
     "shares": {
-      "title": "Shares",
+      "title": "Partages",
       "valid": "Valid",
-      "stale": "Stale",
+      "stale": "Éventé",
       "invalid": "Invalide"
     },
     "hashrate_chart": {
@@ -159,7 +178,7 @@
       "reported": "Hashrate rapporté"
     },
     "shares_chart": {
-      "title": "Shares",
+      "title": "Partages",
       "valid": "Shares valides",
       "stale": "Stale shares",
       "invalid": "Shares invalides"
@@ -174,10 +193,13 @@
         "current_e_hashrate": "Taux de hachage E. actuel",
         "average_e_hashrate": "Average Effective Hashrate",
         "valid": "Actions valides",
-        "stale": "Stale Shares",
+        "stale": "Actions périmées",
         "invalid": "Shares invalides",
         "last_seen": "En ligne il y a"
       }
     }
-  }
+  },
+  "status_pending_tooltip": "Awating transaction confirmation",
+  "confirmation_duration_tooltip": "Confirmed in",
+  "confirmed_at_tooltip": "Confirmed at"
 }

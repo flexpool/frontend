@@ -57,8 +57,17 @@
     "Invalid IP Address": "IP地址无效",
     "email_invalid": "电邮地址无效",
     "email_required": "请输入您的电子邮件地址"
+    "address_not_found": "当前地址找不到数据。如果刚开始挖矿，请稍等一下。"
   },
   "date_time": {
-    "now": "now"
+    "now": "现在"
+  },
+  "snacks": {
+    "emailConfirmed": {
+      "title": "电子邮件地址已更改。"
+    },
+    "emailUnsubscribed": {
+      "title": "电子邮件通知已停用"
+    }
   }
 }

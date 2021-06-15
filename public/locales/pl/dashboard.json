@@ -4,6 +4,7 @@
     "title": "Ustawienia",
     "ip": "Adres IP dla weryfikacji",
     "ip_hint": "Wskazówka: Odwiedzasz tę stronę z IP: ",
+    "ip_description": "If your worker is using proxy address, e.g. your worker is dual mining through a ZIL pool, please use the proxy address instead.",
     "payout": {
       "title": "Ustawienia wypłat",
       "limit": "Limit wypłat (min: {{min}})",
@@ -14,6 +15,10 @@
       "gas_limit_zero": "Your transaction fee will not be limited.",
       "submit": "Apply changes"
     },
+    "payout_warning": [
+      "We highly recommend setting a higher payout limit to reduce total number of payout transactions. Less transactions means less paid in network fees.",
+      "You are the only one responsible for paying the transaction fees. We are strongly in favour of setting a transaction fee limit lower to avoid total loss on network fees. This will also help you partially mitigate losses when sudden fee spikes happen."
+    ],
     "notifications": {
       "title": "Email notifications",
       "email_enabled": "Email notifications enabled",
@@ -38,8 +43,13 @@
     "greet_desc_plural": "{{count}} workers are mining {{coin}} and are hashing {{hashrate}} in total.",
     "info_payout_limit": "Payout Limit",
     "info_gas_limit": "Gas Price Limit",
+    "info_gas_limit_none": "None",
+    "info_gas_limit_detail": "{{percent}} of payout limit.",
+    "info_gas_limit_detail_none": "Gas price is not limited.",
+    "info_gas_limit_detail_na": "Price not available.",
     "info_joined": "Joined",
     "info_joined_tooltip": "Your first share has been recorded on",
+    "info_joined_tooltip_empty": "No share has been recorded yet",
     "info_coin_price": "{{coin}} Price",
     "stat_workers": "Workers Online/Offline",
     "stat_unpaid_balance": "Saldo niewypłacone",
@@ -86,7 +96,7 @@
       },
       "crs": {
         "title": "Current Round Share",
-        "aprox": "Aproximate reward",
+        "aprox": "Approximate reward",
         "tooltip": "Derived from the share log"
       },
       "log": {
@@ -121,17 +131,26 @@
       "fee": "{{value}} fee",
       "average": "Average Transaction Fee",
       "average_percent": "Average Transaction Fee %",
-      "average_cta": "Tips on reducing fees"
+      "average_cta": "Tips on reducing fees",
+      "average_cta_tooltip": [
+        "1. Setting higher payout limit will reduce the number of transactions you will have to pay for in terms of network transaction fees.",
+        "2. Set your transaction fee limit to avoid high fees in the settings. When you reach your payout threshold, we will make sure that your payout transaction will be executed as soon as it fulfills your fee limit settings."
+      ]
     },
     "table": {
       "title": "Payments",
       "download": "Download CSV",
+      "table_contents": {
+        "pending": "Pending",
+        "success": "Success"
+      },
       "table_head": {
         "date": "Date",
         "value": "Transaction Value",
         "fee": "Fee",
         "duration": "Duration",
-        "hash": "Hash"
+        "hash": "Hash",
+        "status": "Status"
       }
     }
   },
@@ -179,5 +198,8 @@
         "last_seen": "Last Seen"
       }
     }
-  }
+  },
+  "status_pending_tooltip": "Awating transaction confirmation",
+  "confirmation_duration_tooltip": "Confirmed in",
+  "confirmed_at_tooltip": "Confirmed at"
 }

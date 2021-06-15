@@ -43,7 +43,12 @@
     "orphan": "Orphelin",
     "uncle": "Oncle"
   },
+  "chart": {
+    "title": "Statistiques des blocs minés au cours du mois",
+    "blocks_per_day": "Blocs par jours",
+    "difficulty": "Difficulté"
+  },
   "waiting_confirmation_tooltip": "En attente de confirmation",
-  "orphan_tooltip": "Les blocs orphelins sont les blocs qui ne sont pas inclus dans la chaîne canonique. Généralement, cela se produit en raison d'un problème d'infrastructure interne dans la Pool de minage, ou en raison de réorganisations en chaîne, des attaques de 51 %.",
+  "orphan_tooltip": "Les blocs appelés \"Uncle\" sont les blocs qui n'ont pas été inclus dans la chaîne canonique. Ils apparaissent généralement dans des circonstances très rares, comme une réorganisation profonde de la chaîne de 2 blocs avant que le nouveau travail ne soit envoyé aux mineurs.",
   "uncle_tooltip": "Les blocs \"Uncles\" sont des blocs qui ont le même hashage et le même nombre parent. Ils sont causés par la forte latence entre les groupes de pools. Typiquement, ils apparaissent lorsque deux pools de minage minent deux blocs en même temps, les deux ayant le même numéro de bloc."
 }

@@ -4,6 +4,7 @@
     "title": "設定",
     "ip": "認証用のIPアドレス",
     "ip_hint": "ヒント：あなたはこのウェブページにアクセスしているIPかもしれません",
+    "ip_description": "If your worker is using proxy address, e.g. your worker is dual mining through a ZIL pool, please use the proxy address instead.",
     "payout": {
       "title": "支払い設定",
       "limit": "支払い制限額(最小: {{min}})",
@@ -14,6 +15,10 @@
       "gas_limit_zero": "取引手数料は制限されません。",
       "submit": "変更を適用"
     },
+    "payout_warning": [
+      "We highly recommend setting a higher payout limit to reduce total number of payout transactions. Less transactions means less paid in network fees.",
+      "You are the only one responsible for paying the transaction fees. We are strongly in favour of setting a transaction fee limit lower to avoid total loss on network fees. This will also help you partially mitigate losses when sudden fee spikes happen."
+    ],
     "notifications": {
       "title": "メール通知",
       "email_enabled": "メール通知は有効になりました",
@@ -122,16 +127,25 @@
       "average": "平均取引手数料",
       "average_percent": "平均取引手数料%",
       "average_cta": "手数料を減らすためのヒント"
+      "average_cta_tooltip": [
+        "1. Setting higher payout limit will reduce the number of transactions you will have to pay for in terms of network transaction fees.",
+        "2. Set your transaction fee limit to avoid high fees in the settings. When you reach your payout threshold, we will make sure that your payout transaction will be executed as soon as it fulfills your fee limit settings."
+      ]
     },
     "table": {
       "title": "支払い",
       "download": "CSVをダウンロード",
+      "table_contents": {
+        "pending": "Pending",
+        "success": "Success"
+      },
       "table_head": {
         "date": "日付",
         "value": "取引値",
         "fee": "手数料",
         "duration": "期間",
         "hash": "ハッシュ"
+        "status": "Status"
       }
     }
   },
@@ -179,5 +193,8 @@
         "last_seen": "最後に接続が確認できた時"
       }
     }
-  }
+  },
+  "status_pending_tooltip": "Awating transaction confirmation",
+  "confirmation_duration_tooltip": "Confirmed in",
+  "confirmed_at_tooltip": "Confirmed at"
 }

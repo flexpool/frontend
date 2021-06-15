@@ -45,5 +45,10 @@
   },
   "waiting_confirmation_tooltip": "Várakozás a megerősítésre",
   "orphan_tooltip": "Az árva blokkok azok a blokkok, amelyek nem kerültek be a kanonikus láncba. Jellemzően a bányászati ​​pool belső infrastruktúra problémája miatt, vagy a lánc átszervezése, 51% támadások miatt.",
-  "uncle_tooltip": "A \"nagybácsi\" blokkok olyan blokkok, amelyeknek ugyanaz a szülő hashe és száma. Ezeket a bányász poolok közötti nagy késleltetés okozza. Jellemzően akkor jelennek meg, amikor két bányász pool egyszerre két blokkot bányász és mindkettőnek ugyanaz a blokkszáma."
+  "uncle_tooltip": "A \"nagybácsi\" blokkok olyan blokkok, amelyeknek ugyanaz a szülő hashe és száma. Ezeket a bányász poolok közötti nagy késleltetés okozza. Jellemzően akkor jelennek meg, amikor két bányász pool egyszerre két blokkot bányász és mindkettőnek ugyanaz a blokkszáma.",
+  "chart": {
+    "title": "Monthly Blocks Visualization",
+    "blocks_per_day": "Blocks per day",
+    "difficulty": "Difficulty"
+  }
 }

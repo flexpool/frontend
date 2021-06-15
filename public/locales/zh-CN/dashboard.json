@@ -4,180 +4,202 @@
     "title": "设置",
     "ip": "IP地址（用于验证）",
     "ip_hint": "提示：您正在访问此网页，来自",
+    "ip_description": "如果正在使用代理服务器，包括ETH+ZIL双排序挖矿，请使用代理服务器的IP地址。",
     "payout": {
       "title": "支付设置",
       "limit": "支付限额（最小：{{min}}）",
       "limit_desc": "您只有在未付余额达到 {{value}} 后才会收到支付款项。",
       "limit_err_higher": "必须高于 {{min}}",
-      "gas_limit": "Gas price limit",
-      "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} of payout limit). You will not receive any payouts if gas price is higher.",
-      "gas_limit_zero": "Your transaction fee will not be limited.",
+      "gas_limit": "余额转账费用上限（Gas price 上限）",
+      "gas_limit_desc": "余额转账费用会限于 {{value}} {{valueUnit}} ({{valueTicker}}, 当前起付额度的 {{percent}})。如果以太坊网络手续费市价（Gas price）超过上限，付款不会发送。",
+      "gas_limit_zero": "余额转账费用没定上限。",
       "submit": "应用更改"
     },
+    "payout_warning": [
+      "我们强烈建议把起付额度提高，减少转账次数和费用。",
+      "转账费用自身承担，强烈建议设定较低的余额转账费用上限（Gas price 上限），不需担心网络费用波动影响最后收益。起付额度偏低，更需要注意，设定一个较低的上限。"
+    ],
     "notifications": {
       "title": "电子邮件通知",
       "email_enabled": "电子邮件通知已启用",
       "email_disabled": "电子邮件通知已禁用",
       "send_to": "发送通知至",
       "send_to_placeholder": "your@email.com",
-      "check_worker_down": "Warn me when one of my workers goes down",
-      "check_payout_sent": "Notify me when a payout has been sent",
+      "check_worker_down": "矿机下线时发通知",
+      "check_payout_sent": "余额付款时发通知",
       "submit": "应用更改"
     }
   },
   "header": {
-    "greet_period_morning": "Good morning",
-    "greet_period_afternoon": "Good afternoon",
-    "greet_period_evening": "Good evening",
-    "greet_desc": "{{count}} worker is mining {{coin}} and is hashing {{hashrate}} in total.",
+    "greet_period_morning": "早上好",
+    "greet_period_afternoon": "下午好",
+    "greet_period_evening": "晚上好",
+    "greet_desc": "{{count}} 部矿机正在挖 {{coin}} ，总算力 {{hashrate}}。",
     "greet_desc_1": "",
     "greet_desc_2": "",
     "greet_desc_3": "",
     "greet_desc_4": "",
     "greet_desc_5": "",
-    "greet_desc_plural": "{{count}} workers are mining {{coin}} and are hashing {{hashrate}} in total.",
-    "info_payout_limit": "Payout Limit",
-    "info_gas_limit": "Gas Price Limit",
-    "info_joined": "Joined",
-    "info_joined_tooltip": "Your first share has been recorded on",
-    "info_coin_price": "{{coin}} Price",
-    "stat_workers": "Workers Online/Offline",
-    "stat_unpaid_balance": "Unpaid Balance",
-    "stat_unpaid_balance_reach": "<v>{{value}}</v> of the payout limit reached.",
-    "stat_unpaid_balance_reach_est": "The limit will be reached <v>{{value}}</v>.",
-    "stat_unpaid_balance_reach_ok": "Your payout will be processed on the next payment round if the fees match your preferences.",
-    "stat_estimate": "Estimated Earnings",
-    "stat_estimate_daily": "daily",
-    "stat_estimate_weekly": "weekly",
-    "stat_estimate_monthly": "monthly",
-    "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimate."
+    "greet_desc_plural": "{{count}} 部矿机正在挖 {{coin}} ，总算力 {{hashrate}}。",
+    "info_payout_limit": "起付额度",
+    "info_gas_limit": "余额转账费用上限（Gas price 上限）",
+    "info_gas_limit_none": "没有上限",
+    "info_gas_limit_detail": "起付额度的{{percent}}",
+    "info_gas_limit_detail_none": "转账费用没设定上限。",
+    "info_gas_limit_detail_na": "价格加载失败。",
+    "info_joined": "开户时间",
+    "info_joined_tooltip": "首个份额：",
+    "info_joined_tooltip_empty": "记录中没有收到份额",
+    "info_coin_price": "{{coin}} 价格",
+    "stat_workers": "在线/离线矿机",
+    "stat_unpaid_balance": "未支付余额",
+    "stat_unpaid_balance_reach": "已达到起付额度的 <v>{{value}}</v> 。",
+    "stat_unpaid_balance_reach_est": "预计还需 <v>{{value}}</v> 达到起付额度。",
+    "stat_unpaid_balance_reach_ok": "转账费用在上限以下的话，下一轮付款会转账总余额。",
+    "stat_estimate": "预计收益",
+    "stat_estimate_daily": "每天收益",
+    "stat_estimate_weekly": "每周收益",
+    "stat_estimate_monthly": "每月收益",
+    "stat_estimate_tooltip": "按这可以换每天，每周，每月预计收益。"
   },
   "nav": {
-    "stats": "Stats",
-    "payments": "Payments",
-    "rewards": "Rewards",
-    "blocks": "Blocks"
+    "stats": "矿机状态",
+    "payments": "付款",
+    "rewards": "收益",
+    "blocks": "个人出块记录"
   },
   "rewards": {
-    "head_title": "Miner Rewards",
+    "head_title": "收益",
     "earnings_chart": {
-      "title": "Earnings this month",
-      "earnings": "Earnings",
-      "daily_income": "Daily income"
+      "title": "本月收益",
+      "earnings": "收益",
+      "daily_income": "当天收入"
     },
     "past_earnings": {
-      "title": "Past Earnings",
-      "yesterday": "Yesterday",
-      "last_week": "Last Week",
-      "last_month": "Last Month"
+      "title": "过往收益",
+      "yesterday": "昨天收益",
+      "last_week": "上周收益",
+      "last_month": "上月收益"
     },
     "forecasted_earnings": {
-      "title": "Forecasted Earnings",
-      "daily": "Daily",
-      "weekly": "Weekly",
-      "monthly": "Monthly"
+      "title": "预计收益",
+      "daily": "每日收益",
+      "weekly": "每周收益",
+      "monthly": "每月收益"
     },
     "pplns": {
-      "title": "Advanced PPLNS Statistics",
+      "title": "PPLNS 数据分析",
       "avp": {
-        "title": "Average Paying Hashrate",
-        "tooltip": "Calculated based on current round share and the last 3 hours pool hashrate chart.",
-        "current": "Current"
+        "title": "计算收入用的平均有效算力",
+        "tooltip": "根据当前PPLNS滑动窗口内的份额比例，和3小時内矿池总算力计算",
+        "current": "当前"
       },
       "crs": {
-        "title": "Current Round Share",
-        "aprox": "Aproximate reward",
-        "tooltip": "Derived from the share log"
+        "title": "当前PPLNS滑动窗口份额比例",
+        "aprox": "每区块预计分配奖励",
+        "tooltip": "以PPLNS份额记录计算"
       },
       "log": {
-        "title": "Share Log Wipeout Duration",
-        "tooltip": "Time for the round share to drop to zero.",
-        "size": "{{value}} shares in log"
+        "title": "PPLNS份额记录的滑动窗口周期",
+        "tooltip": "停止挖矿后，PPLNS份额比例降为零所需时间。",
+        "size": "共有 {{value}} 份额记录在滑动窗口内"
       }
     },
     "pplns_chart": {
-      "title": "Shares in the PPLNS Log",
-      "valid_shares": "Valid Shares"
+      "title": "滑动窗口中记录的份额",
+      "valid_shares": "有效份额"
     }
   },
   "payments": {
-    "head_title": "Miner Payments",
+    "head_title": "支付记录",
     "chart": {
-      "title": "Payments This Year",
-      "fee": "Fee",
-      "value": "Value"
+      "title": "过往一年支付",
+      "fee": "转账费用",
+      "value": "价值"
     },
     "general": {
-      "title": "General Payment Statistics",
-      "total_paid": "Total Paid",
-      "total_transactions": "Total Transactions",
-      "paid_in_fees": "{{value}} paid in fees",
-      "average_payout_duration": "Average Payout Duration",
-      "average_payout_duration_desc": "Average Time Between Payouts"
+      "title": "支付数据",
+      "total_paid": "支出总额",
+      "total_transactions": "过往转账次数",
+      "paid_in_fees": "过往转账费用总付 {{value}}",
+      "average_payout_duration": "平均支付周期",
+      "average_payout_duration_desc": "每次支付相隔时间"
     },
     "transaction_fees": {
-      "title": "Transaction Fees",
-      "last": "Last Transaction",
-      "fee": "{{value}} fee",
-      "average": "Average Transaction Fee",
-      "average_percent": "Average Transaction Fee %",
-      "average_cta": "Tips on reducing fees"
+      "title": "转账费用",
+      "last": "上次转账总额",
+      "fee": "{{value}} 转账费用",
+      "average": "平均转账费用",
+      "average_percent": "平均转账费用 %",
+      "average_cta": "如何减少转账费用？",
+      "average_cta_tooltip": [
+        "1. 提高起付额度会降低转账，支付手续费次数。",
+        "2. 把余额转账费用上限（Gas price 上限）降低，可以避免支付高手续费。达到起付额度后，网络手续费市价一降到您上限以下才会付款。"
+      ]
     },
     "table": {
-      "title": "Payments",
-      "download": "Download CSV",
+      "title": "支付",
+      "download": "下载CSV文件",
+      "table_contents": {
+        "pending": "等待确认",
+        "success": "转账成功"
+      },
       "table_head": {
-        "date": "Date",
-        "value": "Transaction Value",
-        "fee": "Fee",
-        "duration": "Duration",
-        "hash": "Hash"
+        "date": "日期",
+        "value": "支出总额",
+        "fee": "转账费用",
+        "duration": "周期",
+        "hash": "交易哈希",
+        "status": "状态"
       }
     }
   },
   "stats": {
     "active_worker": {
-      "title": "Worker",
-      "reset": "Reset"
+      "title": "当前选择矿机",
+      "reset": "重置"
     },
     "hashrate": {
-      "title": "Hashrate",
-      "current": "Current Effective",
-      "average": "Average Effective",
-      "reported": "Reported"
+      "title": "算力",
+      "current": "当前有效算力",
+      "average": "平均有效算力",
+      "reported": "名义算力"
     },
     "shares": {
-      "title": "Shares",
-      "valid": "Valid",
-      "stale": "Stale",
-      "invalid": "Invalid"
+      "title": "份额总数",
+      "valid": "有效",
+      "stale": "过期",
+      "invalid": "无效"
     },
     "hashrate_chart": {
-      "title": "Hashrate",
-      "effective": "Effective Hashrate",
-      "average": "Average Effective Hashrate",
-      "reported": "Reported Hashrate"
+      "title": "矿机算力",
+      "effective": "当前有效算力",
+      "average": "平均有效算力",
+      "reported": "名义算力"
     },
     "shares_chart": {
-      "title": "Shares",
-      "valid": "Valid Shares",
-      "stale": "Stale Shares",
-      "invalid": "Invalid Shares"
+      "title": "份额总数",
+      "valid": "有效份额",
+      "stale": "过期份额",
+      "invalid": "无效份额"
     },
     "table": {
-      "title_active": "Active workers",
-      "title_inactive": "Inactive workers",
-      "search_placeholder": "Filter by worker",
+      "title_active": "在线矿机",
+      "title_inactive": "离线矿机",
+      "search_placeholder": "按矿机名字搜索",
       "table_head": {
-        "name": "Name",
-        "reported_hashrate": "Reported Hashrate",
-        "current_e_hashrate": "Current E. Hashrate",
+        "name": "矿机",
+        "reported_hashrate": "名义算力",
+        "current_e_hashrate": "当前有效算力",
         "average_e_hashrate": "Average Effective Hashrate",
-        "valid": "Valid Shares",
-        "stale": "Stale Shares",
-        "invalid": "Invalid Shares",
-        "last_seen": "Last Seen"
+        "valid": "有效份额",
+        "stale": "过期份额",
+        "invalid": "无效份额",
+        "last_seen": "最后份额时间"
       }
     }
-  }
+  },
+  "status_pending_tooltip": "等待确认",
+  "confirmation_duration_tooltip": "所需时间",
+  "confirmed_at_tooltip": "确认时间"
 }

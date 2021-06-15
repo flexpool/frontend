@@ -4,6 +4,7 @@
     "title": "Nastavení",
     "ip": "IP adresa pro ověření",
     "ip_hint": "Tip: Prohlížíte tuto stránku z",
+    "ip_description": "Pokud tvůj rig používá proxy adresu, například při duálním těžení ZILu, prosím použij tu adresu namísto IP tvého rigu.",
     "payout": {
       "title": "Nastavení vyplácení",
       "limit": "Limit vyplacení (min: {{min}})",
@@ -14,6 +15,10 @@
       "gas_limit_zero": "Transakční poplatek nebude omezen.",
       "submit": "Aplikovat změny"
     },
+    "payout_warning": [
+      "Silně doporučujeme nastavit si vyšší limit vyplácení pro snížení celkového počtu transakcí. Méně transakcí znamená méně plateb za poplatky sítě.",
+      "Jen ty jsi zodpovědný za transakční poplatky. Jsme za to nastavit si nižší limit výše transakčního poplatku. Zabrání to především náhlým růstům poplatků za transakci."
+    ],
     "notifications": {
       "title": "E-mailová upozornění",
       "email_enabled": "E-mailová upozornění zapnuta",
@@ -38,8 +43,13 @@
     "greet_desc_plural": ".",
     "info_payout_limit": "Limit vyplacení",
     "info_gas_limit": "Limit transakčního poplatku",
+    "info_gas_limit_none": "Žádný",
+    "info_gas_limit_detail": "{{percent}} z hodnoty transakce.",
+    "info_gas_limit_detail_none": "Limit poplatků nenastaven.",
+    "info_gas_limit_detail_na": "Nedostupné.",
     "info_joined": "Připojil se",
     "info_joined_tooltip": "Tvůj první share byl zaznamenán",
+    "info_joined_tooltip_empty": "Nebyl nalezen žádný záznam.",
     "info_coin_price": "{{coin}} hodnota",
     "stat_workers": "Workeři online/offline",
     "stat_unpaid_balance": "Nevyplacený zůstatek",
@@ -121,17 +131,26 @@
       "fee": "{{value}} poplatek",
       "average": "Průměrná cena transakčního poplatku",
       "average_percent": "Průměrná cena transakčního poplatku %",
-      "average_cta": "Tipy jak snížit poplatky"
+      "average_cta": "Tipy jak snížit poplatky",
+      "average_cta_tooltip": [
+        "1. Nastavení vyššího limitu vyplacení sníží celkový počet transakcí. Zaplatíš tedy dohromady méně na poplatcích.",
+        "2. Nastav si limit poplatku v nastavení. Pokud dosáhneš limitu vyplacení, transakce proběhne jen tehdy, pokud limit transakčního poplatku je vyšší než aktuální poplatek sítě."
+      ]
     },
     "table": {
       "title": "Vyplácení",
       "download": "Stáhnout CSV",
+      "table_contents": {
+        "pending": "Pending",
+        "success": "Success"
+      },
       "table_head": {
         "date": "Datum a čas",
         "value": "Hodnota",
         "fee": "Poplatek",
         "duration": "Doba trvání",
-        "hash": "Hash"
+        "hash": "Hash",
+        "status": "Status"
       }
     }
   },
@@ -179,5 +198,8 @@
         "last_seen": "Naposledy spatřen"
       }
     }
-  }
+  },
+  "status_pending_tooltip": "Awating transaction confirmation",
+  "confirmation_duration_tooltip": "Confirmed in",
+  "confirmed_at_tooltip": "Confirmed at"
 }
