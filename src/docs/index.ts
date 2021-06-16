@@ -1,6 +1,6 @@
 export const faqStructure = [
   {
-    sectionName: 'Questions about Flexpool',
+    sectionName: 'faq.questionsAboutFlexpool',
     contents: [
       'questions-about-flexpool/how-to-join.md',
       'questions-about-flexpool/how-to-make-a-digital-signature-with-exchange.md',
@@ -13,7 +13,7 @@ export const faqStructure = [
     ],
   },
   {
-    sectionName: 'Mining Basics',
+    sectionName: 'faq.miningBasics',
     contents: [
       'mining-theory/what-is-hashrate.md',
       'mining-theory/what-is-a-share.md',

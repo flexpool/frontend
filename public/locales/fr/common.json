@@ -69,5 +69,9 @@
     "emailUnsubscribed": {
       "title": "Vous avez réussi à vous désabonner des notifications par e-mail"
     }
+  },
+  "faq": {
+    "questionsAboutFlexpool": "questions sur flexpool",
+    "miningBasics": "bases de l'exploitation minière"
   }
 }

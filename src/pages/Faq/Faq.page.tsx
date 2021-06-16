@@ -76,7 +76,6 @@ const FaqQuestion: React.FC<{ data: FaqDataSection['contents'][0] }> = ({
   },
 }) => {
   const location = useLocation();
-
   const openState = useOpenState(location.hash.replace('#', '') === key);
 
   return (
@@ -103,10 +102,11 @@ const FaqQuestion: React.FC<{ data: FaqDataSection['contents'][0] }> = ({
 };
 
 const FaqSection: React.FC<FaqDataSection> = ({ name, contents }) => {
+  const { t } = useTranslation('common');
   return (
     <>
       <FSection>
-        <h2>{name}</h2>
+        <h2>{t(name)}</h2>
         {contents.map((item) => (
           <FaqQuestion key={item.key} data={item} />
         ))}
