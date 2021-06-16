@@ -152,7 +152,6 @@ export const FaqPage = () => {
     asyncState.start(
       import(`src/docs/@faq/${i18n.language}`)
         .then((r) => {
-          debugger;
           return r.default;
         })
         .catch(() => import(`src/docs/@faq/en-US`).then((r) => r.default))
@@ -166,7 +165,6 @@ export const FaqPage = () => {
         <title>FAQ</title>
       </Helmet>
       <Content paddingLg>
-        {i18n.language}
         <FaqContent>
           {(asyncState.data || []).map((item) => (
             <FaqSection key={item.name} {...item} />
