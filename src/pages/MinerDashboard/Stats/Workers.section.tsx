@@ -25,6 +25,7 @@ import {
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
+import { ProTip } from 'src/components/ProTip/ProTip';
 
 const PercentageItem = styled.span`
   color: var(--text-tertiary);
@@ -418,6 +419,9 @@ export const MinerWorkers: React.FC<{
         data={activeWorkersData}
         title={t('stats.table.title_active')}
       />
+      <ProTip>
+        <span>{t('stats.proTips.tablesProTip')}</span>
+      </ProTip>
     </div>
   );
 };

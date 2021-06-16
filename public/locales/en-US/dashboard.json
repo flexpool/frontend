@@ -200,6 +200,10 @@
         "invalid": "Invalid Shares",
         "last_seen": "Last Seen"
       }
+    },
+    "proTips": {
+      "chartsProTip": "Click on legend items to include / exclude related values on the chart",
+      "tablesProTip": "Click on table headings to sort by ascending / descending value"
     }
   },
   "status_pending_tooltip": "Awating transaction confirmation",
