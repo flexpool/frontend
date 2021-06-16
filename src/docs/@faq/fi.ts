@@ -1,3 +1,3 @@
 import { loadFaq } from 'src/docs/docs.utils';
 
-export default loadFaq('fr');
+export default loadFaq('fi');
