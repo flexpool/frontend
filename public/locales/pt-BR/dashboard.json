@@ -40,17 +40,22 @@
     "greet_desc_3": "",
     "greet_desc_4": "",
     "greet_desc_5": "",
-    "greet_desc_plural": "{{count}} worker está minerando {{coin}} e seu hash é de {{hashrate}} no total.",
+    "greet_desc_plural": "{{count}} workers estão minerando {{coin}} e estão hasheando {{hashrate}} no total.",
     "info_payout_limit": "Limite de Pagamento",
-    "info_gas_limit": "Limite do Preço Gás",
+    "info_gas_limit": "Limite do Valor do Gás",
+    "info_gas_limit_none": "Nenhum",
+    "info_gas_limit_detail": "{{percent}} do limite de pagamento.",
+    "info_gas_limit_detail_none": "O preço do gás não é limitado.",
+    "info_gas_limit_detail_na": "Preço não disponível.",
     "info_joined": "Entrou",
     "info_joined_tooltip": "Sua primeira share foi registrada em",
-    "info_coin_price": "{{coin}} Preço",
+    "info_joined_tooltip_empty": "Nenhuma share foi registrada ainda",
+    "info_coin_price": "Preço do {{coin}}",
     "stat_workers": "Mineradores Ligados/Desligados",
     "stat_unpaid_balance": "Saldo Não Pago",
     "stat_unpaid_balance_reach": "<v>{{value}}</v> do limite de pagamento atingido.",
     "stat_unpaid_balance_reach_est": "O limite será atingido <v>{{value}}</v>.",
-    "stat_unpaid_balance_reach_ok": "Seu saque será processado na próxima rodada de pagamentos se as taxas de gas corresponderem às suas preferências.",
+    "stat_unpaid_balance_reach_ok": "Seu pagamento será processado na próxima rodada de pagamentos se as taxas corresponderem às suas preferências.",
     "stat_estimate": "Ganhos Estimados",
     "stat_estimate_daily": "diário",
     "stat_estimate_weekly": "semanal",
@@ -86,16 +91,16 @@
       "title": "Estatísticas Avançadas de PPLNS",
       "avp": {
         "title": "Hashrate Médio de Pagamento",
-        "tooltip": "Calculado com base na quota da rodada atual de compartilhamento e nas últimas 3 horas do gráfico de hashrate da pool.",
+        "tooltip": "Calculado com base na share da rodada atual e nas últimas 3 horas do gráfico de hashrate da pool.",
         "current": "Atual"
       },
       "crs": {
-        "title": "Compartilhamento da Rodada Atual",
+        "title": "Share da Rodada Atual",
         "aprox": "Recompensa aproximada",
         "tooltip": "Derivado do registro de shares"
       },
       "log": {
-        "title": "Duração para limpeza automática do log de Shares",
+        "title": "Tempo para Limpeza do Log de Shares",
         "tooltip": "Tempo para a share da rodada ser esvaziada.",
         "size": "{{value}} shares no log"
       }
@@ -126,7 +131,7 @@
       "fee": "{{value}} taxa",
       "average": "Taxa Média da Transação",
       "average_percent": "Taxa Média da Transação %",
-      "average_cta": "Dicas sobre redução de taxas",
+      "average_cta": "Dicas para reduzir as taxas",
       "average_cta_tooltip": [
         "1. Definir um limite de pagamento mais alto reduzirá o número de transações que você terá que pagar em termos de taxas de transação de rede.",
         "2. Defina o limite da taxa de transação para evitar altas taxas nas configurações. Quando você atingir seu limite de pagamento, nos certificaremos de que sua transação de pagamento será executada assim que cumprir suas configurações de limite de taxa."

@@ -1,8 +1,8 @@
 {
-  "head_title": "گزارش های  اطلاعات باز",
-  "title": "گزارش های  اطلاعات باز",
-  "description": "ابتکار عمل ما برای ارائه گزارشهای پیشرفت شفاف و شفاف درباره آنچه در Flexpool انجام می دهیم.",
-  "latest": "آخرین گزارش",
-  "archive": "آرشیو گزارش ها",
-  "report_item": "گزارش عملکرد Flexpool"
+  "head_title": "Open Data Reports",
+  "title": "Open Data Reports",
+  "description": "Our initiative to provide clear and transparent progress reports about what we are doing at Flexpool.",
+  "latest": "Latest report",
+  "archive": "Reports archive",
+  "report_item": "Flexpool Progress Report"
 }

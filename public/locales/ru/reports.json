@@ -2,7 +2,7 @@
   "head_title": "Open Data Reports",
   "title": "Open Data Reports",
   "description": "Our initiative to provide clear and transparent progress reports about what we are doing at Flexpool.",
-  "latest": "Последний отчет",
-  "archive": "Архив отчетов",
-  "report_item": "Flexpool Статус Запроса"
+  "latest": "Latest report",
+  "archive": "Reports archive",
+  "report_item": "Flexpool Progress Report"
 }

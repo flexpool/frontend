@@ -1,82 +1,82 @@
 {
-  "head_title": "Pažangiausias kasybos poolas",
-  "title": "Kasybos poolų ateities kūrimas",
-  "description": "Novatoriškas kasybos poolas, sukurtas šiuolaikinei kriptovaliutų kasybai.",
+  "head_title": "The Most Advanced Mining Pool",
+  "title": "Building the Future of Mining Pools",
+  "description": "Innovative mining pool created for modern cryptocurrency mining.",
   "coin_earnings_cards": {
-    "estimated": "Numatomas uždarbis",
-    "estimated_tooltip": "Numatomas uždarbis yra pagrįstas paskutinių 7 dienų kasyklų rezultatais mūsų poole.",
-    "daily": "kasdien",
-    "monthly": "kas mėnesį",
-    "cta_mine": "Pradėti kasti",
-    "pool_fee": "{{value}} Poolo mokestis",
+    "estimated": "Estimated earnings",
+    "estimated_tooltip": "Estimated earnings are based on performance of mining last 7 days on our pool.",
+    "daily": "daily",
+    "monthly": "monthly",
+    "cta_mine": "Start mining",
+    "pool_fee": "{{value}} Pool Fee",
     "mev": "{{value}} of MEV Bonus",
-    "more_title": "Netrukus pasirodys daugiau krypto valiutų!",
-    "more_description": "Mes stengiamės artimiausiu metu paleisti kelis poolus. Palaikykite ryšį prisijungdami prie mūsų discord ar telegram."
+    "more_title": "More Coins Coming Soon!",
+    "more_description": "We are working to launch multiple pools in the near future. Stay connected by joining our discord or telegram."
   },
   "news_section": {
     "join_us": {
-      "pre_title": "Prisijunk prie mūsų",
-      "title": "Prisijunkite prie „Flexpool“",
-      "cta": "Pradėti"
+      "pre_title": "Join us",
+      "title": "Connect to Flexpool",
+      "cta": "Get Started"
     },
     "learn": {
-      "pre_title": "Mokytis",
-      "title": "Perskaitykite mūsų tinklaraštį",
-      "cta": "Mokytis"
+      "pre_title": "Learn",
+      "title": "Read our Blog",
+      "cta": "Learn"
     },
     "support": {
-      "pre_title": "Pagalba",
-      "title": "Gauti pagalbą",
-      "cta": "Susisiekite"
+      "pre_title": "Support",
+      "title": "Get Support",
+      "cta": "Contact"
     }
   },
   "mined_coins_section": {
-    "title": "Krypto valiutos kurias mes kasame",
-    "description": "„Flexpool“ yra Multi-Coin kasybos poolas, o tai reiškia, kad mėgstamas krypto valiutas galite kasti „Flexpool“.",
+    "title": "Coins we mine",
+    "description": "Flexpool is a Multi-Coin mining pool, which means that you can mine your favorite coins on Flexpool.",
     "table_head": {
-      "name": "Vardas",
-      "price": "Kaina",
-      "market_cap": "Rinkos kapitalizacija",
-      "algorithm": "Algoritmas",
+      "name": "Name",
+      "price": "Price",
+      "market_cap": "Market Cap",
+      "algorithm": "Algorithm",
       "hashrate": "Hashrate",
-      "miners": "Mineriai"
+      "miners": "Miners"
     },
-    "item_cta": "Kasti"
+    "item_cta": "Mine"
   },
   "coin_news_item": {
     "eth": {
-      "title": "Apie Ethereum",
-      "description": "„Ethereum“ yra pasaulinis kompiuteris, sukurtas valdyti decentralizuotas programas, žinomas kaip išmaniosios sutartys."
+      "title": "About Ethereum",
+      "description": "Ethereum is a worldwide computer created to power Decentralized Applications known as Smart Contracts."
     },
-    "resources": "Ištekliai",
-    "website": "Puslapis",
-    "whitepaper": "Baltas popierius",
+    "resources": "Resources",
+    "website": "Website",
+    "whitepaper": "Whitepaper",
     "calculator": {
-      "title": "Pajamų skaičiuoklė",
-      "title_tooltip": "Apskaičiuotos pajamos apskaičiuojamos pagal 24 valandų vidutinį tinklo sunkumą ir 24 valandų vidutinį bloko atlygį. Į šį skaičiavimą neįtraukiamos „Stale“ and „Invalid“ shares.",
-      "per_day": "per dieną",
-      "per_month": "per mėnesį",
-      "per_year": "per metus",
-      "cta": "Pradėti kasti"
+      "title": "Income Calculator",
+      "title_tooltip": "The Estimated Income is calculated based on the 24-hour average network difficulty and the 24-hour average block reward. This calculation does not include Stale and Invalid shares.",
+      "per_day": "per day",
+      "per_month": "per month",
+      "per_year": "per year",
+      "cta": "Start Mining"
     },
     "featured": {
-      "title": "Panašios istorijos"
+      "title": "Featured Stories"
     }
   },
   "why_section": {
-    "title": "Kodėl būtent „Flexpool“",
+    "title": "Why Flexpool",
     "item_1": {
-      "title": "Žaibo greitis",
-      "description": "Mes naudojame specializuotus didelio našumo serverių klasterius, kuriuos valdo itin greita programinė įranga, skirta apdoroti daugiau nei 100 TH / s."
+      "title": "Lightning speed",
+      "description": "We use specialized high-performance server clusters powered by superfast software designed to handle over 100 TH/s."
     },
     "item_2": {
-      "title": "Tiesiog geriau",
-      "description": "Galite pamiršti savo prastą kasybos patirtį. „Flexpool“ palaiko aukštos kokybės pagalbą, ir mes visada džiaugiamės galėdami padėti!"
+      "title": "Just Better",
+      "description": "You can forget your poor mining experience. Flexpool is backed by high-quality support, and we are always happy to help!"
     }
   },
   "get_started_section": {
-    "title": "Pasiruošes pradėti kasti?",
-    "cta": "Pradėti kasti"
+    "title": "Ready to get started?",
+    "cta": "Start Mining"
   },
   "chia": {
     "email_submission_failure": "Failed to submit email",

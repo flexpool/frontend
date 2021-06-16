@@ -1,41 +1,41 @@
 {
-  "head_title": "Najbardziej zaawansowana kopalnia",
-  "title": "Budowanie przyszłości kopalni",
-  "description": "Innowacyjna kopania stworzona dla nowoczesnego górnictwa krypto walut.",
+  "head_title": "The Most Advanced Mining Pool",
+  "title": "Building the Future of Mining Pools",
+  "description": "Innovative mining pool created for modern cryptocurrency mining.",
   "coin_earnings_cards": {
-    "estimated": "Szacowane zarobki",
-    "estimated_tooltip": "Szacowane zarobki bazują na wydajności wydobycia z ostatnich 7 dni w naszej kopalni.",
-    "daily": "dziennie",
-    "monthly": "miesięcznie",
-    "cta_mine": "Zacznij kopać",
-    "pool_fee": "Prowizja kopalnii: {{value}}",
-    "mev": "Premia MEV: {{value}}",
-    "more_title": "Więcej monet już wkrótce!",
-    "more_description": "Pracujemy nad uruchomieniem wielu nowych kopalni w najbliższej przyszłości. Dołącz do naszych grup na Discord lub Telegram, aby być na bieżąco z aktualnościami."
+    "estimated": "Estimated earnings",
+    "estimated_tooltip": "Estimated earnings are based on performance of mining last 7 days on our pool.",
+    "daily": "daily",
+    "monthly": "monthly",
+    "cta_mine": "Start mining",
+    "pool_fee": "{{value}} Pool Fee",
+    "mev": "{{value}} of MEV Bonus",
+    "more_title": "More Coins Coming Soon!",
+    "more_description": "We are working to launch multiple pools in the near future. Stay connected by joining our discord or telegram."
   },
   "news_section": {
     "join_us": {
-      "pre_title": "Dołącz do nas",
-      "title": "Podłącz się do Flexpool",
-      "cta": "Zacznij teraz"
+      "pre_title": "Join us",
+      "title": "Connect to Flexpool",
+      "cta": "Get Started"
     },
     "learn": {
       "pre_title": "Learn",
-      "title": "Przeczytaj nasz blog",
+      "title": "Read our Blog",
       "cta": "Learn"
     },
     "support": {
-      "pre_title": "Wsparcie",
-      "title": "Uzyskaj pomoc techniczną",
-      "cta": "Kontakt"
+      "pre_title": "Support",
+      "title": "Get Support",
+      "cta": "Contact"
     }
   },
   "mined_coins_section": {
-    "title": "Krypto waluty, które kopiemy",
-    "description": "Flexpool jest kopalnią multi-kryptowalutową, oznacza to, że z nami możesz wykopać swoje ulubione monety.",
+    "title": "Coins we mine",
+    "description": "Flexpool is a Multi-Coin mining pool, which means that you can mine your favorite coins on Flexpool.",
     "table_head": {
-      "name": "Nazwa",
-      "price": "Cena",
+      "name": "Name",
+      "price": "Price",
       "market_cap": "Market Cap",
       "algorithm": "Algorithm",
       "hashrate": "Hashrate",

@@ -1,17 +1,17 @@
 {
-  "head_title": "Mineriai",
-  "title": "Mineriai",
+  "head_title": "Miners",
+  "title": "Miners Leaderboard",
   "top_miners": {
-    "title": "Geriausi maineriai",
+    "title": "Top Miners",
     "table_head": {
-      "miner": "Mineris",
+      "miner": "Miner",
       "hashrate": "Hashrate",
-      "balance": "Balansas",
-      "workers": "Darbuotojai",
-      "joined": "Prisijungė"
+      "balance": "Balance",
+      "workers": "Workers",
+      "joined": "Joined"
     }
   },
   "distribution": {
-    "title": "Minerių platinimas pagal Hashrate"
+    "title": "Miners Distribution by Hashrate"
   }
 }

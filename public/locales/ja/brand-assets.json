@@ -1,35 +1,35 @@
 {
-  "head_title": "ブランドアセット",
+  "head_title": "Brand assets",
   "brand_name": {
-    "title": "当社のブランド名",
-    "description": "当社のブランド名は <b>Flexpool.io</b>です。単語「Flex」と「pool」は1つの大文字Fと.ioエンディングと組み合わされています。"
+    "title": "Our brand name",
+    "description": "Our brand name is <b>Flexpool.io</b>. Words \"Flex\" and \"pool\" combined together with one capital F and the .io ending."
   },
   "colors": {
-    "title": "カラー",
-    "accent": "アクセントカラー",
-    "blue": "青色",
-    "green": "緑色",
-    "yellow": "黄色",
-    "red": "赤色"
+    "title": "Colors",
+    "accent": "Accent Color",
+    "blue": "Blue Color",
+    "green": "Green Color",
+    "yellow": "Yellow Color",
+    "red": "Red Color"
   },
   "typo": {
-    "title": "タイポグラフィ（文法）",
-    "description": "ウェブサイト全体で <font>{{fontName}}</font> を使用しています。"
+    "title": "Typography",
+    "description": "We use <font>{{fontName}}</font> across our website."
   },
   "guidelines": {
-    "title": "ブランディングに関するガイドライン",
-    "description": "当社のブランディングアセットを使用することにより、当社のブランディングガイドラインに従う必要があります:",
-    "item_one": "ロゴを形状や色を含み、加工することは禁止されてます。",
-    "item_two": "当社がパートナーシップを発表しない限り、Flexpool.io ブランドを使用して他のビジネスとの関係および/または提携を示すことはできません。 例: 「Flexpool.ioと提携しています」。",
-    "item_three": "Flexpool.ioブランディングを違法なプロモーションコンテキストで使用することは許可されていません。"
+    "title": "Branding Guidelines",
+    "description": "By using our Branding Assets, you must follow our branding guidelines:",
+    "item_one": "You are not allowed to alter the logo. This includes shape and color changes.",
+    "item_two": "You are not allowed to use Flexpool.io Brand to imply a relationship and/or an affiliation with any other business unless we have announced the partnership. Example: \"... in partnership with Flexpool.io.\"",
+    "item_three": "You are not allowed to use the Flexpool.io Branding in illegal and promotional context."
   },
   "downloads": {
-    "title": "ダウンロード",
-    "description": "LigthテーマとDarkテーマの両方に対して、Flexpool.ioロゴのすべての形式をパッケージしました。",
-    "cta": "ブランディングパックをダウンロード"
+    "title": "Downloads",
+    "description": "We have collected a package containing all types of Flexpool.io logos for both Light and Dark themes.",
+    "cta": "Download the Branding Pack"
   },
   "legal": {
-    "title": "法的なお知らせ",
-    "description": "ブランディングアセットを利用することで、あなたはブランディングガイドラインと <terms>Terms</terms> に同意します。Flexpool.ioのブランディングに関してアシストが必要な場合、<email>{{email}}</email> までご連絡ください。"
+    "title": "Legal Notices",
+    "description": "By using our Branding Assets, you agree with the Branding Guidelines and our <terms>Terms</terms>. If you need to get assistance about the usage of the Flexpool.io branding, you can contact us at <email>{{email}}</email>"
   }
 }

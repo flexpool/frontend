@@ -1,8 +1,8 @@
 {
-  "head_title": "Zakelijke ontwikkeling",
-  "title": "Zakelijke ontwikkeling",
+  "head_title": "Business development",
+  "title": "Business development",
   "touch": {
     "title": "Neem contact op!",
-    "description": "We staan open voor discussies over uw samenwerking met ons bedrijf. Als u een zakelijk voorstel heeft of met ons wilt samenwerken, neem dan contact met ons op via <email>{{email}}</email>."
+    "description": "We staan open voor gesprekken over een samenwerking met ons bedrijf. Als je een zakelijk voorstel hebt of met ons wilt samenwerken, neem dan contact met ons op via <email>{{email}}</email>."
   }
 }

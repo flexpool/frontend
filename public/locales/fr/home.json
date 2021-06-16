@@ -1,23 +1,23 @@
 {
-  "head_title": "Le pool de minage le plus avancé",
-  "title": "Construire l'avenir des pools",
-  "description": "Pool innovant créé pour le minage des cryptomonnaies.",
+  "head_title": "Le pool minier le plus avancé",
+  "title": "Construire l'avenir des pools miniers",
+  "description": "Pool minier innovant créé pour l'exploitation moderne des crypto-monnaies.",
   "coin_earnings_cards": {
     "estimated": "Gains estimés",
-    "estimated_tooltip": "Les gains estimé sont basé sur la performance[not done]",
+    "estimated_tooltip": "Les gains estimés sont calculés en fonction de la performance de l'exploitation minière des 7 derniers jours sur notre pool.",
     "daily": "tous les jours",
     "monthly": "mensuellement",
     "cta_mine": "Commencez à miner",
-    "pool_fee": "Frais du pool {{value}}",
+    "pool_fee": "Frais du pool de {{value}}",
     "mev": "{{value}} du bonus MEV",
-    "more_title": "Plus de cryptomonnaies sont à venir!",
-    "more_description": "Nous travaillons au lancement de plusieurs pools dans un futur proche. Restez connecté en rejoignant notre discord ou notre telegram."
+    "more_title": "Plus de cryptomonnaies à miner sont à venir!",
+    "more_description": "Nous travaillons au lancement de plusieurs pools dans un futur proche. Restez connecté en rejoignant notre discord ou telegram."
   },
   "news_section": {
     "join_us": {
       "pre_title": "Rejoignez-nous",
-      "title": "Contactez Flexpool",
-      "cta": "Démarrer"
+      "title": "Se connecter à Flexpool",
+      "cta": "Commencer"
     },
     "learn": {
       "pre_title": "Apprendre",
@@ -38,14 +38,14 @@
       "price": "Prix",
       "market_cap": "Plafond du Marché",
       "algorithm": "Algorithme",
-      "hashrate": "puissance de minage",
+      "hashrate": "Puissance de minage",
       "miners": "Mineurs"
     },
     "item_cta": "Miner"
   },
   "coin_news_item": {
     "eth": {
-      "title": "À propos de l'Ethereum",
+      "title": "À propos d'Ethereum",
       "description": "Ethereum est un ordinateur mondial créé pour alimenter des applications décentralisées appelées Smart Contracts."
     },
     "resources": "Ressources",
@@ -53,7 +53,7 @@
     "whitepaper": "Livre blanc",
     "calculator": {
       "title": "Calculateur de revenus",
-      "title_tooltip": "Le revenu estimé est calculé en utilisant la difficulté moyenne du réseau sur 24 heures et de la récompense moyenne du bloc sur 24 heures. Ce calcul ne tient pas compte des \"Stales\" shares et des shares invalides.",
+      "title_tooltip": "Le revenu estimé est calculé sur la base de la difficulté moyenne du réseau sur 24 heures et de la récompense moyenne du bloc sur 24 heures. Ce calcul ne tient pas compte des actions périmées et invalides.",
       "per_day": "par jour",
       "per_month": "par mois",
       "per_year": "par an",
@@ -66,12 +66,12 @@
   "why_section": {
     "title": "Pourquoi Flexpool",
     "item_1": {
-      "title": "Vitesse incroyable",
+      "title": "Vitesse de minage",
       "description": "Nous utilisons des grappes de serveurs spécialisées à haute performance grâce à des logiciels super rapides conçus pour gérer plus de 100 TH/s de puissance."
     },
     "item_2": {
       "title": "Juste mieux",
-      "description": "Vous pouvez oublier votre mauvaise expérience de minage. Flexpool est maintenu par un support de qualité, et nous sommes toujours heureux de vous venir en aide !"
+      "description": "Vous pouvez oublier votre mauvaise expérience minière. Flexpool est maintenu par un support de qualité, et nous sommes toujours heureux de vous aider !"
     }
   },
   "get_started_section": {

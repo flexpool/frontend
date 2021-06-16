@@ -1,19 +1,19 @@
 {
   "settings": {
-    "cta": "设置",
-    "title": "设置",
-    "ip": "IP地址（用于验证）",
-    "ip_hint": "提示：您正在访问此网页，来自",
+    "cta": "支付设置",
+    "title": "支付设置",
+    "ip": "IP地址（验证用）",
+    "ip_hint": "提示：您目前电脑IP地址是",
     "ip_description": "如果正在使用代理服务器，包括ETH+ZIL双排序挖矿，请使用代理服务器的IP地址。",
     "payout": {
       "title": "支付设置",
-      "limit": "支付限额（最小：{{min}}）",
-      "limit_desc": "您只有在未付余额达到 {{value}} 后才会收到支付款项。",
-      "limit_err_higher": "必须高于 {{min}}",
+      "limit": "起付额度（最低：{{min}}）",
+      "limit_desc": "余额限于 {{value}} 以上才会转账。",
+      "limit_err_higher": "数目必须大于 {{min}}",
       "gas_limit": "余额转账费用上限（Gas price 上限）",
       "gas_limit_desc": "余额转账费用会限于 {{value}} {{valueUnit}} ({{valueTicker}}, 当前起付额度的 {{percent}})。如果以太坊网络手续费市价（Gas price）超过上限，付款不会发送。",
       "gas_limit_zero": "余额转账费用没定上限。",
-      "submit": "应用更改"
+      "submit": "确认更改"
     },
     "payout_warning": [
       "我们强烈建议把起付额度提高，减少转账次数和费用。",
@@ -22,12 +22,12 @@
     "notifications": {
       "title": "电子邮件通知",
       "email_enabled": "电子邮件通知已启用",
-      "email_disabled": "电子邮件通知已禁用",
+      "email_disabled": "电子邮件通知已停用",
       "send_to": "发送通知至",
       "send_to_placeholder": "your@email.com",
       "check_worker_down": "矿机下线时发通知",
       "check_payout_sent": "余额付款时发通知",
-      "submit": "应用更改"
+      "submit": "确认更改"
     }
   },
   "header": {
@@ -191,7 +191,7 @@
         "name": "矿机",
         "reported_hashrate": "名义算力",
         "current_e_hashrate": "当前有效算力",
-        "average_e_hashrate": "Average Effective Hashrate",
+        "average_e_hashrate": "平均有效算力",
         "valid": "有效份额",
         "stale": "过期份额",
         "invalid": "无效份额",

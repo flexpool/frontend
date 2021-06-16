@@ -40,7 +40,7 @@
       "title": "设置"
     },
     "bottom_message": "© 2020-{{currentYear}} Flexpool.io 或附属机构。保留所有权利。",
-    "translation_help": "帮我们翻译好网页"
+    "translation_help": "帮我们翻译网页"
   },
   "theme": {
     "default": "默认主题",

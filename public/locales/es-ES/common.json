@@ -1,66 +1,66 @@
 {
   "searchbar": {
-    "placeholder": "Buscar por tu dirección de minería"
+    "placeholder": "Search by your mining address"
   },
   "nav": {
-    "statistics": "Estadísticas",
-    "blocks": "Bloques",
-    "miners": "Mineros",
+    "statistics": "Statistics",
+    "blocks": "Blocks",
+    "miners": "Miners",
     "faq": "FAQ",
-    "support": "Soporte",
-    "get_started": "Comencemos",
-    "community_title": "Únete a la comunidad"
+    "support": "Support",
+    "get_started": "Get Started",
+    "community_title": "Join the community"
   },
   "footer": {
     "company": {
-      "title": "Empresa",
-      "contact_us": "Contáctenos",
-      "brand_assets": "Recursos de marca",
-      "partners": "Colaboradores",
-      "business_dev": "Desarrollo de Negocio",
+      "title": "Company",
+      "contact_us": "Contact Us",
+      "brand_assets": "Brand Assets",
+      "partners": "Partners",
+      "business_dev": "Business Development",
       "blog": "Blog",
-      "terms": "Términos",
-      "pp": "Política de privacidad"
+      "terms": "Terms",
+      "pp": "Privacy Policy"
     },
     "resources": {
-      "title": "Recursos",
-      "get_started": "Comencemos",
+      "title": "Resources",
+      "get_started": "Getting Started",
       "faq": "FAQ",
-      "api_docs": "Documentación de API"
+      "api_docs": "API Documentation"
     },
     "community": {
-      "title": "Comunidad"
+      "title": "Community"
     },
     "contact": {
-      "title": "Contacto",
-      "service_status": "Estado del Servicio",
-      "support": "Soporte"
+      "title": "Contact",
+      "service_status": "Service Status",
+      "support": "Support"
     },
     "preferences": {
-      "title": "Preferencias"
+      "title": "Preferences"
     },
-    "bottom_message": "© 2020-{{currentYear}} Flexpool.io o sus afiliados. Todos los derechos reservados.",
-    "translation_help": "Ayúdanos a traducir el sitio web a tu idioma"
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io or its affiliates. All rights reserved.",
+    "translation_help": "Help us translate the website to your language"
   },
   "theme": {
-    "default": "Tema predeterminado",
-    "dark": "Tema Oscuro",
-    "light": "Tema claro"
+    "default": "Default Theme",
+    "dark": "Dark Theme",
+    "light": "Light Theme"
   },
   "list_navigation": {
-    "previous": "Anterior",
-    "next": "Siguiente"
+    "previous": "Previous",
+    "next": "Next"
   },
   "errors": {
-    "higher_than": "Debe ser mayor que {{value}}",
-    "required": "Requerido",
-    "Invalid IP Address": "Dirección IP inválida",
-    "email_invalid": "Dirección Ip inválida",
-    "email_required": "Por favor, introduce tu dirección de correo"
+    "higher_than": "Must be higher than {{value}}",
+    "required": "Required",
+    "Invalid IP Address": "Invalid IP Address",
+    "email_invalid": "Invalid email address",
+    "email_required": "Please enter your email address",
     "address_not_found": "Specified address was not found in our system. Try waiting some time if you are already mining."
   },
   "date_time": {
-    "now": "ahora"
+    "now": "now"
   },
   "snacks": {
     "emailConfirmed": {

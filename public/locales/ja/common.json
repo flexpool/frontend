@@ -1,10 +1,10 @@
 {
   "searchbar": {
-    "placeholder": "アドレスを入力して検索"
+    "placeholder": "Search by your mining address"
   },
   "nav": {
     "statistics": "Statistics",
-    "blocks": "ブロック",
+    "blocks": "Blocks",
     "miners": "Miners",
     "faq": "FAQ",
     "support": "Support",
@@ -37,26 +37,26 @@
       "support": "Support"
     },
     "preferences": {
-      "title": "設定"
+      "title": "Preferences"
     },
     "bottom_message": "© 2020-{{currentYear}} Flexpool.io or its affiliates. All rights reserved.",
     "translation_help": "Help us translate the website to your language"
   },
   "theme": {
     "default": "Default Theme",
-    "dark": "ダークテーマ",
-    "light": "ライトテーマ"
+    "dark": "Dark Theme",
+    "light": "Light Theme"
   },
   "list_navigation": {
-    "previous": "戻る",
-    "next": "次へ"
+    "previous": "Previous",
+    "next": "Next"
   },
   "errors": {
     "higher_than": "Must be higher than {{value}}",
     "required": "Required",
-    "Invalid IP Address": "無効なIPアドレスです",
-    "email_invalid": "無効なIPアドレスです",
-    "email_required": "メールアドレスを入力してください"
+    "Invalid IP Address": "Invalid IP Address",
+    "email_invalid": "Invalid email address",
+    "email_required": "Please enter your email address",
     "address_not_found": "Specified address was not found in our system. Try waiting some time if you are already mining."
   },
   "date_time": {

@@ -1,7 +1,7 @@
 {
   "list": {
     "head_title": "Comece a minerar conosco",
-    "title": "Comece a minerar na Flexpool hoje!"
+    "title": "Comece a minerar na Flexpool hoje!",
     "nicehash_rental_button": "Aluguel de NiceHash"
   },
   "detail": {
@@ -17,12 +17,12 @@
       "title": "Selecione sua região",
       "description": "Para o melhor desempenho, você deve escolher um servidor com menor latência para o sua rig de mineração ou computador. O gráfico mostra a latência entre os servidores e este dispositivo.",
       "table_head": {
-        "location": "Localização da região",
-        "domain": "Domínio",
+        "location": "Nome da Região",
+        "domain": "Endpoint",
         "port": "Porta",
         "average_lat": "Latência"
       },
-      "fastest": "Mais Rápido"
+      "fastest": "Mais Rápido",
       "backup": "Backup"
     },
     "ports": {
@@ -30,7 +30,7 @@
       "description": "Incentivamos todos a usar a porta segura ao se conectar aos servidores da Flexpool. <more>Leia mais sobre por que você não deve usar portas não seguras</more>. <strong>IMPORTANTE</strong>: Usar SSL não aumenta a taxa de shares obsoletas.",
       "ssl_port": "Porta segura SSL",
       "tcp_port": "Porta TCP",
-      "tcp_port_tooltip": "Somos fortemente contra o uso de conexão não criptografada (TCP) enquanto mineramos na nossa pool. Esta conexão é vulnerável a ataques MITM (Man-In-The-Middle), o que significa que, se alguém com intenções maliciosas entre o seu worker e a sua pool, cerca de % do seu hashrate pode ser roubado. Leia mais em nossa <more>página de Perguntas Frequentes</more>."
+      "tcp_port_tooltip": "Somos contra o uso de conexão não criptografada (TCP) enquanto mineramos na nossa pool. Esta conexão é vulnerável a ataques MITM (Man-In-The-Middle), o que significa que, se alguém com intenções maliciosas entre o seu worker e a sua pool, um pouco de % do seu hashrate pode ser roubado. Leia mais em nossa <more>página de Perguntas Frequentes</more>.",
       "high_diff_port": "Porta de Alta Dificuldade",
       "high_diff_port_tooltip": "Esta é a porta especial para usuários avançados que executam proxies que exigem dificuldade insanamente alta. Isso inclui usuários que usam <NiceHash> NiceHash </NiceHash> e mercados de aluguel de hashrate relacionados. Disponível para: "
     },
@@ -67,7 +67,7 @@
       },
       {
         "key": "Rodada de Pagamento",
-        "value": "A cada 10 minutos"
+        "value": "Uma vez por hora"
       },
       {
         "key": "Pagamentos",
@@ -101,10 +101,10 @@
             "description": "Melhor minerador para modo zumbi de 4GB."
           },
           {
-            "description": "Ethash é um minerador de código aberto sem taxas. Criado pela comunidade Ethereum."
+            "description": "Minerador de Ethash proprietário com taxa de dev baixa."
           },
           {
-            "description": "Minerador de Ethash Proprietário com a taxa mais baixa."
+            "description": "Minerador ativamente desenvolvido e estável com taxa de dev baixa."
           }
         ]
       }

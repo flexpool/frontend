@@ -1,17 +1,17 @@
 {
-  "head_title": "Blocchi minati",
-  "title": "Blocchi",
-  "description": "Storico dei blocchi minati da Flexpool",
-  "average_luck": "Fortuna media",
-  "average_luck_tooltip": "Fortuna media negli ultimi 30 giorni.",
-  "current_luck": "Fortuna attuale",
-  "current_luck_tooltip": "Fortuna del blocco attuale. Questo valore è aggiornato in tempo reale.",
-  "network_hashrate": "Hashrate del network",
-  "network_difficulty": "Difficoltà del network",
-  "network_difficulty_tooltip": "Quante hash la pool deve produrre in media per minare un blocco.",
+  "head_title": "Mined Blocks",
+  "title": "Blocks",
+  "description": "History of mined blocks by Flexpool",
+  "average_luck": "Average luck",
+  "average_luck_tooltip": "Last 30 days average block luck.",
+  "current_luck": "Current luck",
+  "current_luck_tooltip": "Current round's block luck. This value is updated in real-time.",
+  "network_hashrate": "Network Hashrate",
+  "network_difficulty": "Network difficulty",
+  "network_difficulty_tooltip": "Average amount of how many hashes pool should produce to mine a block.",
   "table": {
-    "title_zero": "Impossibile recuperate i dati della pool",
-    "title": "Flexpool ha minato {{count}} blocchi",
+    "title_zero": "Unable to retrieve pool data",
+    "title": "Flexpool has mined {{count}} block",
     "title_1": "Flexpool has mined {{count}} blocks",
     "title_2": "Flexpool has mined {{count}} blocks",
     "title_3": "Flexpool has mined {{count}} blocks",
@@ -27,28 +27,28 @@
     "title_miner_5": "You have mined {{count}} blocks",
     "title_miner_plural": "You have mined {{count}} blocks",
     "table_head": {
-      "number": "Numero",
-      "type": "Tipo",
-      "date": "Data",
-      "region": "Regione",
+      "number": "Number",
+      "type": "Type",
+      "date": "Date",
+      "region": "Region",
       "miner": "Miner",
-      "reward": "Ricompensa",
-      "round_time": "Durata",
+      "reward": "Reward",
+      "round_time": "Round Time",
       "hash": "Hash",
-      "luck": "Fortuna"
+      "luck": "Luck"
     }
   },
   "type": {
-    "block": "Blocco",
+    "block": "Block",
     "orphan": "Orphan",
     "uncle": "Uncle"
   },
-  "waiting_confirmation_tooltip": "In attesa di conferma",
-  "orphan_tooltip": "I blocchi orphan sono blocchi che non sono stati inclusi nella chain. Tipicamente accade a causa di problemi nell'infrastruttura interna della mining pool, a riorganizzazione della chain o ad attacchi del 51%.",
-  "uncle_tooltip": "I blocchi uncle sono blocchi che hanno lo stesso numero e hash genitore. Sono causati dall'elevata latenza tra mining pool. Tipicamente accadono quando due pool minano due blocchi allo stesso momento che hanno lo stesso numero.",
   "chart": {
     "title": "Monthly Blocks Visualization",
     "blocks_per_day": "Blocks per day",
     "difficulty": "Difficulty"
-  }
+  },
+  "waiting_confirmation_tooltip": "Waiting for confirmation",
+  "orphan_tooltip": "Orphan blocks are the blocks that were not included into the canonical chain. They usually appear under very rare circumstances such as 2-block deep chain reorganization before the new work was sent to miners.",
+  "uncle_tooltip": "Uncle blocks are blocks that have the same parent hash and number. They are caused because of the high latency between mining pools. Typically, they appear when two mining pools mine two blocks at the same time, both having the same block number."
 }

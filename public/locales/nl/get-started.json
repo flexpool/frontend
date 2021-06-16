@@ -1,25 +1,26 @@
 {
   "list": {
-    "head_title": "Kom met ons minen",
+    "head_title": "Mine met ons mee",
     "title": "Begin vandaag met minen op Flexpool!",
     "nicehash_rental_button": "NiceHash Rental"
   },
   "detail": {
     "title": "{{coin}} mining",
     "wallet": {
-      "title": "Haal uw wallet address",
-      "desc_one": "De makkelijkste manier om een wallet te halen is door te registreren op een cryptovaluta beurs zoals <binance>Binance (Ref)</binance> of <coinbase>Coinbase</coinbase>.",
-      "desc_two": "Ook al zijn beurzen comfortabel en makkelijk in gebruik, zijn ze niet zo veilig. Je kan een wallet zonder bewaarder gebruiken, maar de veiligste manier om je fondsen op te slaan is op een <strong>hardware wallet</strong>. <ledger>Ledger</ledger> en <trezor>Trezor</trezor> zijn de populairsten.",
-      "wallet_address": "Wallet adres",
-      "invalid_address": "Ongeldig wallet adres"
+      "title": "Neem je wallet address",
+      "desc_one": "De makkelijkste manier om een wallet te bekomen is door je te registreren op een cryptocurrency exchange zoals <binance>Binance (Ref)</binance> of <coinbase>Coinbase</coinbase>.",
+      "desc_two": "Ook al zijn exchanges comfortabel en makkelijk in gebruik, zijn ze niet zo veilig. Je kan een wallet zonder bewaarder gebruiken, maar de veiligste manier om je fondsen op te slaan is op een <strong>hardware wallet</strong>. <ledger>Ledger</ledger> en <trezor>Trezor</trezor> zijn de populairsten.",
+      "wallet_address": "Wallet address",
+      "invalid_address": "Ongeldig wallet address"
     },
     "region": {
       "title": "Kies uw regio",
-      "description": "Voor de beste prestaties kiest u best de server met de minste vertraging naar uw mining rig of computer. De kaart geeft de vertraging weer tussen servers en dit toestel.",
+      "description": "Voor de beste prestaties kies je best de server met de minste vertraging naar uw mining rig of computer. De kaart geeft de vertraging weer tussen servers en dit toestel.",
       "table_head": {
-        "location": "Regio locatie",
-        "domain": "Domein",
-        "average_lat": "Gemiddelde vertraging"
+        "location": "Naam regio",
+        "domain": "Eindpunt",
+        "port": "Port",
+        "average_lat": "Vertraging"
       },
       "fastest": "Snelste",
       "backup": "Backup"
@@ -34,18 +35,18 @@
       "high_diff_port_tooltip": "Dit is de speciale poort voor gevorderde gebruikers die proxies gebruiken die een extreem hoge moeilijkheidsgraad nodig hebben. Dit dient voor gebruikers van <NiceHash>Nicehash</NiceHash> en andere partijen die hashrate verhuren. Beschikbaar voor: "
     },
     "worker": {
-      "title": "Geef uw worker een naam",
-      "description": "Uw worker een naam geven is aangeraden als u meerdere mining rigs met Flexpool verbonden heeft. Zo worden de prestaties van uw mining rigs duidelijker op de overzichtpagina.",
-      "worker_name": "Worker naam",
+      "title": "Geef je worker een naam",
+      "description": "Je worker een naam geven is aangeraden als je meerdere mining rigs met Flexpool verbindt. Zo worden de prestaties van je mining rigs duidelijker op je overzichtpagina.",
+      "worker_name": "Naam worker",
       "worker_name_placeholder": "bv. MIJN_RIG_580x2"
     },
     "software": {
-      "title": "Kies uw mining software",
+      "title": "Kies je mining software",
       "fee": "Kost"
     },
     "view": {
-      "title": "Bekijk uw statistieken",
-      "description": "Wanneer u begint te minen, zouden uw gegevens op het overzicht moeten verschijnen. De verwerking van de gegevens kan tot 10 minuten duren.",
+      "title": "Bekijk je statistieken",
+      "description": "Wanneer je begint te minen, zouden je gegevens op het overzicht moeten verschijnen. De verwerking van de gegevens kan tot 10 minuten duren.",
       "cta": "Overzicht openen"
     }
   },
@@ -62,22 +63,22 @@
       },
       {
         "key": "Bonussen",
-        "value": "90% van MEV bonus"
+        "value": "90% van de MEV bonus"
       },
       {
         "key": "Uitbetalingsronde",
-        "value": "Elke 10 minuten"
+        "value": "Om het uur"
       },
       {
         "key": "Uitbetalingen",
         "value": "van 0.01 ETH tot 100 ETH"
       },
       {
-        "key": "Bevestigingstijd van blok",
-        "value": "120 blokken"
+        "key": "Bevestigingstijd van block",
+        "value": "120 blocks"
       },
       {
-        "key": "Share moeilijkheidsgraad",
+        "key": "Moeilijkheidsgraad share",
         "value": "4 GH"
       },
       {
@@ -100,10 +101,10 @@
             "description": "Beste miner voor 4GB zombie mode."
           },
           {
-            "description": "Open-source ethash miner zonder kosten. Aangeboden door de Ethereum gemeenschap."
+            "description": "Proprietaire Ethash miner met lage ontwikkelingskost."
           },
           {
-            "description": "Eigendomsmatige ethash miner met de laagste ontwikkelaarskost."
+            "description": "Actief ontwikkelde en stabiele miner met lage ontwikkelingskost."
           }
         ]
       }

@@ -1,18 +1,18 @@
 {
-  "head_title": "Statistikos",
-  "title": "Statistikos",
-  "pool_hashrate": "Poolo greitis",
-  "average_luck": "Vidutinė sėkmė",
-  "average_luck_tooltip": "Vidutinė pastarųjų 30 dienų blokų sėkmė.",
-  "miners": "Mineriai",
-  "workers": "Darbininkai",
+  "head_title": "Statistics",
+  "title": "Statistics",
+  "pool_hashrate": "Pool hashrate",
+  "average_luck": "Average Luck",
+  "average_luck_tooltip": "Last 30 days average block luck.",
+  "miners": "Miners",
+  "workers": "Workers",
   "chart": {
-    "title": "Poolo greitis",
-    "total_hashrate": "Visas poolo greitis",
-    "as": "Azijos ir Ramiojo vandenyno (AS)",
-    "au": "Australija (AS)",
-    "eu": "Europa (ES)",
-    "sa": "Pietų Amerika (SA)",
-    "us": "Jungtinės Valstijos (JAV)"
+    "title": "Pool Hashrate",
+    "total_hashrate": "Total Hashrate",
+    "as": "Asia Pacific (AS)",
+    "au": "Australia (AU)",
+    "eu": "Europe (EU)",
+    "sa": "South America (SA)",
+    "us": "United States (US)"
   }
 }

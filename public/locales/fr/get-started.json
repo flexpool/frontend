@@ -17,9 +17,10 @@
       "title": "Sélectionnez votre région",
       "description": "Pour obtenir les meilleures performances, vous devez choisir le serveur avec la latence la plus faible par rapport à votre plateforme minière ou votre ordinateur. Le graphique affiche la latence entre les serveurs et ce dispositif.",
       "table_head": {
-        "location": "Emplacement de la région",
-        "domain": "Domaine",
-        "average_lat": "Latence moyenne"
+        "location": "Nom de la région",
+        "domain": "Point d'accès",
+        "port": "Port",
+        "average_lat": "Latence"
       },
       "fastest": "Le plus rapide",
       "backup": "Serveur de secours"
@@ -66,7 +67,7 @@
       },
       {
         "key": "Cycle de paiement",
-        "value": "Toutes les 10 minutes"
+        "value": "Une fois par heure"
       },
       {
         "key": "Paiements",
@@ -100,10 +101,10 @@
             "description": "Meilleur mineur pour le mode zombie de 4Go."
           },
           {
-            "description": "Mineur ethash open-source sans frais. Proposé par la communauté Ethereum."
+            "description": "Mineur Ethash propriétaire à faible coût de développement."
           },
           {
-            "description": "Mineur propriétaire Ethash avec le plus bas déduction."
+            "description": "Mineur stable et activement développé, avec des frais de développement peu élevés."
           }
         ]
       }

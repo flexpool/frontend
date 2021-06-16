@@ -1,8 +1,8 @@
 {
-  "head_title": "Poslovni razvoj",
-  "title": "Poslovni razvoj",
+  "head_title": "Business Development",
+  "title": "Business Development",
   "touch": {
-    "title": "Pridite v kontakt!",
-    "description": "Odprti smo za razgovore o vašem sodelovanju z našim podjetjem. Če imate poslovno ponudbo ali želite sodelovati z nami, nam pišite na <email>{{email}}</email>."
+    "title": "Get in touch!",
+    "description": "We are open for discussions about your cooperation with our business. If you have a business proposition, or want to partner with us, please, reach us at <email>{{email}}</email>."
   }
 }

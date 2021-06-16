@@ -56,7 +56,7 @@
     "required": "Obrigatório",
     "Invalid IP Address": "Endereço IP inválido",
     "email_invalid": "Endereço de e-mail inválido",
-    "email_required": "Por favor, digite seu endereço de e-mail"
+    "email_required": "Por favor, digite seu endereço de e-mail",
     "address_not_found": "O endereço especificado não foi encontrado em nosso sistema. Tente aguardar alguns minutos se você já estiver minerando."
   },
   "date_time": {

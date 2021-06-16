@@ -1,124 +1,124 @@
 {
   "list": {
-    "head_title": "私たちとマイニングを開始しましょう",
-    "title": "すぐにFlexpoolでマイニングを始めましょう！"
+    "head_title": "Start mining with us",
+    "title": "Get started with mining on Flexpool today!",
     "nicehash_rental_button": "NiceHash Rental"
   },
   "detail": {
-    "title": "{{coin}} 採掘中",
+    "title": "{{coin}} mining",
     "wallet": {
-      "title": "ウォレットアドレスの取得",
-      "desc_one": "ウォレットを入手する最も簡単な方法は、 <binance>Binance (Ref)</binance> または <coinbase>Coinbase</coinbase> のような暗号通貨交換に登録することです。",
+      "title": "Get your wallet address",
+      "desc_one": "The easiest way to get a wallet is to register on a cryptocurrency exchange like <binance>Binance (Ref)</binance> or <coinbase>Coinbase</coinbase>.",
       "desc_two": "Although exchanges are comfortable and easy to use, they are not very secure. You can use a non-custodial wallet, but the safest way to store your funds is to use a <strong>hardware wallet</strong>. <ledger>Ledger</ledger> and <trezor>Trezor</trezor> are the most popular ones.",
-      "wallet_address": "ウォレットアドレス",
-      "invalid_address": "無効なウォレットアドレス"
+      "wallet_address": "Wallet Address",
+      "invalid_address": "Invalid wallet address"
     },
     "region": {
-      "title": "地域を選択してください",
-      "description": "最高のパフォーマンスを得るためには、最も遅延の少ないサーバーでマイニングリグする必要があります。 チャートはサーバーとこのデバイスの間にレイテンシーを表示しています。",
+      "title": "Select your region",
+      "description": "For the best performance, you should choose server with lowest latency to your mining rig or computer. The chart is displaying latency between servers and this device.",
       "table_head": {
-        "location": "地域の場所",
-        "domain": "ドメイン",
-        "average_lat": "平均レイテンシー"
+        "location": "Region Name",
+        "domain": "Endpoint",
+        "port": "Port",
         "average_lat": "Latency"
       },
       "fastest": "Fastest",
       "backup": "Backup"
     },
     "ports": {
-      "title": "ポート番号",
+      "title": "Ports",
       "description": "We highly encourage everyone to use secured port when connecting to Flexpool servers. <more>Read more on why you shouldn't use unsecured ports</more>. <strong>IMPORTANT</strong>: Using SSL does not increase the stale rate.",
-      "ssl_port": "セキュアSSLポート",
-      "tcp_port": "TCPポート",
+      "ssl_port": "Secure SSL Port",
+      "tcp_port": "TCP Port",
       "tcp_port_tooltip": "We are strongly against using unencrypted (TCP) connection while mining on our pool. This connection is vulnerable to MITM (Man-In-The-Middle) attacks, which means that if someone will maliciously stand in between of your worker and pool, some % of your hashrate may be stolen. Read more on our <more>FAQ page</more>.",
       "high_diff_port": "High Difficulty Port",
       "high_diff_port_tooltip": "This is the special port for advanced users who run proxies that require insanely high difficulty. This includes users who use <NiceHash>NiceHash</NiceHash> and related hashrate rental marketplaces. Available for: "
     },
     "worker": {
-      "title": "ワーカーに名前をつけましょう",
-      "description": "Flexpoolに複数のマイニングリグが接続されている場合は、ワーカーに名前を付けることをお勧めします。 これにより、マイニングリグがダッシュボードページでどのように動作するかがより明確になります。",
-      "worker_name": "ワーカー名",
-      "worker_name_placeholder": "例: MY_RIG_580x2"
+      "title": "Name your worker",
+      "description": "Naming your worker is recommended if you have multiple mining rigs connected to Flexpool. This will give you more clarity about how your mining rigs perform on your dashboard page.",
+      "worker_name": "Worker Name",
+      "worker_name_placeholder": "e.g. MY_RIG_580x2"
     },
     "software": {
-      "title": "マイニングソフトウェアの選択",
-      "fee": "手数料"
+      "title": "Choose your mining software",
+      "fee": "Fee"
     },
     "view": {
-      "title": "統計を表示",
-      "description": "マイニングを開始すると、ダッシュボードにデータが表示されます。データが処理されるまでに最大10分かかります。",
-      "cta": "ダッシュボードを開く"
+      "title": "View your stats",
+      "description": "Once you start mining, your data should appear on your dashboard. Please allow up to 10 minutes for the data to be processed.",
+      "cta": "Open Dashboard"
     }
   },
   "detail_eth": {
-    "title": "イーサリアムマイニング",
+    "title": "Ethereum mining",
     "pool_details": [
       {
-        "key": "報酬制度",
-        "value": "PPLNS (最後のN個のシェア毎によって支払い金額が算出される)"
+        "key": "Reward Scheme",
+        "value": "PPLNS (Pay Per Last N Shares)"
       },
       {
-        "key": "プール手数料",
+        "key": "Pool Fee",
         "value": "0.5%"
       },
       {
-        "key": "ボーナス",
-        "value": "MEVボーナスの90%"
+        "key": "Bonuses",
+        "value": "90% of MEV bonus"
       },
       {
-        "key": "支払いラウンド",
-        "value": "10分ごと"
+        "key": "Payout Round",
+        "value": "Once an hour"
       },
       {
-        "key": "支払い",
-        "value": "0.01ETHから100ETHまで"
+        "key": "Payouts",
+        "value": "from 0.01 ETH up to 100 ETH"
       },
       {
-        "key": "ブロック確認時間",
-        "value": "120 個のブロック"
+        "key": "Block confirmation time",
+        "value": "120 Blocks"
       },
       {
-        "key": "シェアの難易度",
+        "key": "Share Difficulty",
         "value": "4 GH"
       },
       {
-        "key": "マイニングアルゴリズム",
+        "key": "Mining Algorithm",
         "value": "Ethash"
       }
     ],
     "hardware": [
       {
-        "title": "GPUマイニングマシン",
+        "title": "GPU Mining",
         "key": "GPU",
         "miners": [
           {
-            "description": "AMD GPUの推奨マイナー"
+            "description": "Best miner for AMD GPUs"
           },
           {
-            "description": "NVIDIA 20/30 シリーズの推奨マイナー"
+            "description": "Best miner for NVIDIA 20/30 Series GPUs"
           },
           {
-            "description": "4GBゾンビモード用の推奨マイナー"
+            "description": "Best miner for 4GB zombie mode."
           },
           {
-            "description": "Ethereumコミュニティーが作成した、手数料がないオープンソースのethashマイナー。"
+            "description": "Proprietary Ethash miner with low dev fee."
           },
           {
-            "description": "最低の開発手数料のプロプライエタリのEthashマイナー。"
+            "description": "Actively developed and stable miner with low dev fee."
           }
         ]
       }
     ]
   },
   "regions": {
-    "us-east": "アメリカ (東)",
-    "us-west": "アメリカ (西)",
-    "de": "ドイツ",
-    "se": "スウェーデン",
-    "sg": "シンガポール",
-    "au": "オーストラリア",
-    "br": "ブラジル",
-    "kr": "韓国"
+    "us-east": "United States (East)",
+    "us-west": "United States (West)",
+    "de": "Germany",
+    "se": "Sweden",
+    "sg": "Singapore",
+    "au": "Australia",
+    "br": "Brazil",
+    "kr": "South Korea"
   },
   "cmd_keys": {
     "CLOSEST_SERVER": "CLOSEST_SERVER",

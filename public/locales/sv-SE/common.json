@@ -4,7 +4,7 @@
   },
   "nav": {
     "statistics": "Statistik",
-    "blocks": "Block",
+    "blocks": "Blocks",
     "miners": "Gruvarbetare",
     "faq": "Vanliga frågor",
     "support": "Support",
@@ -26,7 +26,7 @@
       "title": "Resurser",
       "get_started": "Kom igång",
       "faq": "Vanliga frågor",
-      "api_docs": "API-dokumentation"
+      "api_docs": "API dokumentation"
     },
     "community": {
       "title": "Gemenskap"
@@ -56,7 +56,7 @@
     "required": "Obligatorisk",
     "Invalid IP Address": "Ogiltig IP-adress",
     "email_invalid": "Ogiltig e-postadress",
-    "email_required": "Vänligen ange din e-postadress"
+    "email_required": "Vänligen ange din e-postadress",
     "address_not_found": "Ingen angiven adress hittades i vårt system. Försök att vänta lite tid om du redan minar."
   },
   "date_time": {

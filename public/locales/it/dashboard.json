@@ -1,79 +1,84 @@
 {
   "settings": {
-    "cta": "Impostazioni",
-    "title": "Impostazioni",
-    "ip": "Indirizzo IP per verificare",
-    "ip_hint": "Suggerimento: Stai visitando questa pagina web da",
+    "cta": "Settings",
+    "title": "Settings",
+    "ip": "IP address for verification",
+    "ip_hint": "Hint: You are visiting this webpage from",
     "ip_description": "If your worker is using proxy address, e.g. your worker is dual mining through a ZIL pool, please use the proxy address instead.",
     "payout": {
-      "title": "Impostazioni di Pagamento",
-      "limit": "Limite di pagamento (min: {{min}})",
-      "limit_desc": "Sarai pagato solo dopo che il tuo saldo non pagato raggiungerà {{value}}.",
-      "limit_err_higher": "Deve essere superiore a {{min}}",
-      "gas_limit": "Limite prezzo del gas",
-      "gas_limit_desc": "La tassa gas della tua transazione dovrebbe essere limitata a {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} del pagamento limite). Non riceverai alcun pagamento se il prezzo del gas è superiore.",
-      "gas_limit_zero": "La tassa della transazione non sarà limitata.",
-      "submit": "Applica cambiamenti"
+      "title": "Payout Settings",
+      "limit": "Payout limit (min: {{min}})",
+      "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}.",
+      "limit_err_higher": "Must be higher than {{min}}",
+      "gas_limit": "Gas price limit",
+      "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} of payout limit). You will not receive any payouts if gas price is higher.",
+      "gas_limit_zero": "Your transaction fee will not be limited.",
+      "submit": "Apply changes"
     },
     "payout_warning": [
       "We highly recommend setting a higher payout limit to reduce total number of payout transactions. Less transactions means less paid in network fees.",
       "You are the only one responsible for paying the transaction fees. We are strongly in favour of setting a transaction fee limit lower to avoid total loss on network fees. This will also help you partially mitigate losses when sudden fee spikes happen."
     ],
     "notifications": {
-      "title": "Notifiche Email",
-      "email_enabled": "Notifiche email abilitate",
-      "email_disabled": "Notifiche Email disabilitate",
-      "send_to": "Invia notifiche a",
+      "title": "Email notifications",
+      "email_enabled": "Email notifications enabled",
+      "email_disabled": "Email notifications disabled",
+      "send_to": "Send notifications to",
       "send_to_placeholder": "your@email.com",
-      "check_worker_down": "Avvisami quando uno dei miei lavoratori va down",
-      "check_payout_sent": "Avvisami quando è stato inviato un pagamento",
-      "submit": "Applica cambiamenti"
+      "check_worker_down": "Warn me when one of my workers goes down",
+      "check_payout_sent": "Notify me when a payout has been sent",
+      "submit": "Apply changes"
     }
   },
   "header": {
-    "greet_period_morning": "Buongiorno",
-    "greet_period_afternoon": "Buon pomeriggio",
-    "greet_period_evening": "Buona sera",
-    "greet_desc": "{{count}} lavoratore mina {{coin}} ad una velocità totale di {{hashrate}}.",
+    "greet_period_morning": "Good morning",
+    "greet_period_afternoon": "Good afternoon",
+    "greet_period_evening": "Good evening",
+    "greet_desc": "{{count}} worker is mining {{coin}} and is hashing {{hashrate}} in total.",
     "greet_desc_1": "",
     "greet_desc_2": "",
     "greet_desc_3": "",
     "greet_desc_4": "",
     "greet_desc_5": "",
-    "greet_desc_plural": "{{count}} lavoratori minano {{coin}} ad una velocità totale di {{hashrate}}.",
-    "info_payout_limit": "Limite di Pagamento",
-    "info_gas_limit": "Limite Prezzo Gas",
-    "info_joined": "Iscritto da",
-    "info_joined_tooltip": "La tua prima quota è stata registrata il",
-    "info_coin_price": "Prezzo {{coin}}",
-    "stat_workers": "Lavoratori Online/Offline",
-    "stat_unpaid_balance": "Saldo Non Pagato",
-    "stat_unpaid_balance_reach": "<v>{{value}}</v> del limite di pagamento raggiunto.",
-    "stat_unpaid_balance_reach_est": "Il limite sarà raggiunto <v>{{value}}</v>.",
-    "stat_unpaid_balance_reach_ok": "Il tuo pagamento verrà elaborato al prossimo giro di pagamenti se le tasse corrispondono alle tue preferenze.",
-    "stat_estimate": "Guadagno stimato",
-    "stat_estimate_daily": "al giorno",
-    "stat_estimate_weekly": "settimanale",
-    "stat_estimate_monthly": "al mese",
-    "stat_estimate_tooltip": "Clicca per cambiare tra stima giornaliera, settimanale e mensile."
+    "greet_desc_plural": "{{count}} workers are mining {{coin}} and are hashing {{hashrate}} in total.",
+    "info_payout_limit": "Payout Limit",
+    "info_gas_limit": "Gas Price Limit",
+    "info_gas_limit_none": "None",
+    "info_gas_limit_detail": "{{percent}} of payout limit.",
+    "info_gas_limit_detail_none": "Gas price is not limited.",
+    "info_gas_limit_detail_na": "Price not available.",
+    "info_joined": "Joined",
+    "info_joined_tooltip": "Your first share has been recorded on",
+    "info_joined_tooltip_empty": "No share has been recorded yet",
+    "info_coin_price": "{{coin}} Price",
+    "stat_workers": "Workers Online/Offline",
+    "stat_unpaid_balance": "Unpaid Balance",
+    "stat_unpaid_balance_reach": "<v>{{value}}</v> of the payout limit reached.",
+    "stat_unpaid_balance_reach_est": "The limit will be reached <v>{{value}}</v>.",
+    "stat_unpaid_balance_reach_ok": "Your payout will be processed on the next payment round if the fees match your preferences.",
+    "stat_estimate": "Estimated Earnings",
+    "stat_estimate_daily": "daily",
+    "stat_estimate_weekly": "weekly",
+    "stat_estimate_monthly": "monthly",
+    "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimate."
   },
   "nav": {
-    "stats": "Statistiche",
-    "payments": "Pagamenti",
-    "rewards": "Ricompense",
-    "blocks": "Blocchi"
+    "stats": "Stats",
+    "payments": "Payments",
+    "rewards": "Rewards",
+    "blocks": "Blocks"
   },
   "rewards": {
-    "head_title": "Ricompense Minatore",
+    "head_title": "Miner Rewards",
     "earnings_chart": {
-      "title": "Guadagni questo mese",
-      "earnings": "Guadagni",
-      "daily_income": "Reddito giornaliero"
+      "title": "Earnings this month",
+      "earnings": "Earnings",
+      "daily_income": "Daily income"
     },
     "past_earnings": {
-      "title": "Guadagni Precedenti",
-      "yesterday": "Ieri",
-      "last_week": "Ultima Settimana",
+      "title": "Past Earnings",
+      "yesterday": "Yesterday",
+      "last_week": "Last Week",
       "last_month": "Last Month"
     },
     "forecasted_earnings": {
@@ -168,29 +173,29 @@
     },
     "hashrate_chart": {
       "title": "Hashrate",
-      "effective": "Hashrate Effettivo",
-      "average": "Hashrate Effettivo Medio",
-      "reported": "Hashrate Riportato"
+      "effective": "Effective Hashrate",
+      "average": "Average Effective Hashrate",
+      "reported": "Reported Hashrate"
     },
     "shares_chart": {
-      "title": "Quote",
-      "valid": "Quote Valide",
-      "stale": "Quote Scadute",
-      "invalid": "Quote Invalide"
+      "title": "Shares",
+      "valid": "Valid Shares",
+      "stale": "Stale Shares",
+      "invalid": "Invalid Shares"
     },
     "table": {
-      "title_active": "Lavoratori attivi",
-      "title_inactive": "Lavoratori inattivi",
-      "search_placeholder": "Filtra per lavoratore",
+      "title_active": "Active workers",
+      "title_inactive": "Inactive workers",
+      "search_placeholder": "Filter by worker",
       "table_head": {
-        "name": "Nome",
-        "reported_hashrate": "Hashrate Riportato",
-        "current_e_hashrate": "Attuale E. Hashrate",
+        "name": "Name",
+        "reported_hashrate": "Reported Hashrate",
+        "current_e_hashrate": "Current E. Hashrate",
         "average_e_hashrate": "Average Effective Hashrate",
-        "valid": "Quote Valide",
-        "stale": "Quote Scadute",
-        "invalid": "Quote Invalide",
-        "last_seen": "Ultimo Visto"
+        "valid": "Valid Shares",
+        "stale": "Stale Shares",
+        "invalid": "Invalid Shares",
+        "last_seen": "Last Seen"
       }
     }
   },

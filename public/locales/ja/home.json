@@ -1,16 +1,16 @@
 {
-  "head_title": "最も高度なマイニングプール",
-  "title": "マイニングプールの未来を築く",
-  "description": "モダンな仮想通貨マイニングのための革新的なマイニングプール。",
+  "head_title": "The Most Advanced Mining Pool",
+  "title": "Building the Future of Mining Pools",
+  "description": "Innovative mining pool created for modern cryptocurrency mining.",
   "coin_earnings_cards": {
-    "estimated": "推定収益額",
+    "estimated": "Estimated earnings",
     "estimated_tooltip": "Estimated earnings are based on performance of mining last 7 days on our pool.",
     "daily": "daily",
     "monthly": "monthly",
-    "cta_mine": "マイニングを始める",
-    "pool_fee": "{{value}} プール手数料",
-    "mev": "{{value}} のMEVボーナス",
-    "more_title": "近日、さらに多くのコインに対応予定！",
+    "cta_mine": "Start mining",
+    "pool_fee": "{{value}} Pool Fee",
+    "mev": "{{value}} of MEV Bonus",
+    "more_title": "More Coins Coming Soon!",
     "more_description": "We are working to launch multiple pools in the near future. Stay connected by joining our discord or telegram."
   },
   "news_section": {
@@ -21,11 +21,11 @@
     },
     "learn": {
       "pre_title": "Learn",
-      "title": "ブログを見る",
+      "title": "Read our Blog",
       "cta": "Learn"
     },
     "support": {
-      "pre_title": "サポート",
+      "pre_title": "Support",
       "title": "Get Support",
       "cta": "Contact"
     }
@@ -35,29 +35,29 @@
     "description": "Flexpool is a Multi-Coin mining pool, which means that you can mine your favorite coins on Flexpool.",
     "table_head": {
       "name": "Name",
-      "price": "価格",
-      "market_cap": "市場価値",
-      "algorithm": "アルゴリズム",
-      "hashrate": "ハッシュレート",
-      "miners": "マイナー"
+      "price": "Price",
+      "market_cap": "Market Cap",
+      "algorithm": "Algorithm",
+      "hashrate": "Hashrate",
+      "miners": "Miners"
     },
     "item_cta": "Mine"
   },
   "coin_news_item": {
     "eth": {
-      "title": "Ethereumについて",
+      "title": "About Ethereum",
       "description": "Ethereum is a worldwide computer created to power Decentralized Applications known as Smart Contracts."
     },
     "resources": "Resources",
     "website": "Website",
-    "whitepaper": "ホワイトペーパー",
+    "whitepaper": "Whitepaper",
     "calculator": {
       "title": "Income Calculator",
       "title_tooltip": "The Estimated Income is calculated based on the 24-hour average network difficulty and the 24-hour average block reward. This calculation does not include Stale and Invalid shares.",
-      "per_day": "1日あたり",
-      "per_month": "1ヶ月あたり",
-      "per_year": "1年あたり",
-      "cta": "マイニングを始める"
+      "per_day": "per day",
+      "per_month": "per month",
+      "per_year": "per year",
+      "cta": "Start Mining"
     },
     "featured": {
       "title": "Featured Stories"
@@ -76,7 +76,7 @@
   },
   "get_started_section": {
     "title": "Ready to get started?",
-    "cta": "マイニングを始める"
+    "cta": "Start Mining"
   },
   "chia": {
     "email_submission_failure": "Failed to submit email",

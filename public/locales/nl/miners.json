@@ -1,17 +1,17 @@
 {
-  "head_title": "Mijnwerkers",
-  "title": "Mijnwerkers",
+  "head_title": "Miners",
+  "title": "Miners",
   "top_miners": {
     "title": "Top Miners",
     "table_head": {
-      "miner": "Mijner",
+      "miner": "Miner",
       "hashrate": "Hashrate",
-      "balance": "Balans",
-      "workers": "Worker",
+      "balance": "Saldo",
+      "workers": "Workers",
       "joined": "Aangesloten"
     }
   },
   "distribution": {
-    "title": "Miners Distributie door Hashrate"
+    "title": "Miners verdeling volgens Hashrate"
   }
 }

@@ -1,35 +1,35 @@
 {
-  "head_title": "Prekės ženklo turtas",
+  "head_title": "Brand assets",
   "brand_name": {
-    "title": "Mūsų prekės pavadinimas",
-    "description": "Mūsų prekės pavadinimas yra <b> Flexpool.io </b>. Žodžiai „Flex“ ir „pool“ kartu su viena didžiąja raide F ir .io pabaiga."
+    "title": "Our brand name",
+    "description": "Our brand name is <b>Flexpool.io</b>. Words \"Flex\" and \"pool\" combined together with one capital F and the .io ending."
   },
   "colors": {
-    "title": "Spalvos",
-    "accent": "Akcento spalva",
-    "blue": "Mėlyna Spalva",
-    "green": "Žalia Spalva",
-    "yellow": "Geltona Spalva",
-    "red": "Raudona Spalva"
+    "title": "Colors",
+    "accent": "Accent Color",
+    "blue": "Blue Color",
+    "green": "Green Color",
+    "yellow": "Yellow Color",
+    "red": "Red Color"
   },
   "typo": {
     "title": "Typography",
-    "description": "Savo svetainėje naudojame <font> {{fontName}} </font>."
+    "description": "We use <font>{{fontName}}</font> across our website."
   },
   "guidelines": {
-    "title": "Prekės ženklo naudojimo gairės",
-    "description": "Naudodamiesi mūsų prekės ženklo turtu, turite laikytis mūsų prekės ženklo naudojimo gairių:",
-    "item_one": "Jums neleidžiama keisti logotipo. Tai apima formos ir spalvos pokyčius.",
-    "item_two": "Jums neleidžiama naudoti „Flexpool.io“ prekės ženklo, kad būtų galima suprasti santykius ir (arba) ryšius su bet kokiu kitu verslu, nebent mes paskelbėme apie partnerystę. Pavyzdys: \"... bendradarbiaujant su Flexpool.io.\"",
-    "item_three": "Jums draudžiama naudoti „Flexpool.io“ prekės ženklą neteisėtuose ir reklaminiuose kontekstuose."
+    "title": "Branding Guidelines",
+    "description": "By using our Branding Assets, you must follow our branding guidelines:",
+    "item_one": "You are not allowed to alter the logo. This includes shape and color changes.",
+    "item_two": "You are not allowed to use Flexpool.io Brand to imply a relationship and/or an affiliation with any other business unless we have announced the partnership. Example: \"... in partnership with Flexpool.io.\"",
+    "item_three": "You are not allowed to use the Flexpool.io Branding in illegal and promotional context."
   },
   "downloads": {
-    "title": "Atsisiuntimai",
-    "description": "Mes surinkome paketą, kuriame yra visų tipų „Flexpool.io“ logotipai tiek „Ligth“, tiek „Dark“ temoms.",
-    "cta": "Atsisiųskite prekės ženklo paketą"
+    "title": "Downloads",
+    "description": "We have collected a package containing all types of Flexpool.io logos for both Light and Dark themes.",
+    "cta": "Download the Branding Pack"
   },
   "legal": {
-    "title": "Teisiniai pranešimai",
-    "description": "Naudodamiesi mūsų prekės ženklo turtu sutinkate su prekės ženklo naudojimo gairėmis ir mūsų <terms> sąlygomis </terms>. Jei jums reikia pagalbos dėl „Flexpool.io“ prekės ženklo naudojimo, galite susisiekti su mumis adresu <email> {{email}} </email>"
+    "title": "Legal Notices",
+    "description": "By using our Branding Assets, you agree with the Branding Guidelines and our <terms>Terms</terms>. If you need to get assistance about the usage of the Flexpool.io branding, you can contact us at <email>{{email}}</email>"
   }
 }

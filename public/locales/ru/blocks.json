@@ -1,5 +1,5 @@
 {
-  "head_title": "Добытые Блоки",
+  "head_title": "Mined Blocks",
   "title": "Блоки",
   "description": "История добытых блоков от Flexpool",
   "average_luck": "Средняя удача",
@@ -20,36 +20,35 @@
     "title_plural": "Flexpool добыл {{count}} блоков",
     "title_miner_zero": "Вы еще не добыли ни одного блока",
     "title_miner": "Вы добыли {{count}} блок",
-    "title_miner_1": "Вы добыли {{count}} блок(-ов)",
-    "title_miner_2": "Вы добыли {{count}} блок(-ов)",
-    "title_miner_3": "Вы добыли {{count}} блок(-ов)",
-    "title_miner_4": "Вы добыли {{count}} блок(-ов)",
-    "title_miner_5": "Вы добыли {{count}} блок(-ов)",
-    "title_miner_plural": "Вы добыли {{count}} блок(-ов)",
+    "title_miner_1": "Вы добыли {{count}} блок",
+    "title_miner_2": "Вы добыли {{count}} блока",
+    "title_miner_3": "Вы добыли {{count}} блока",
+    "title_miner_4": "Вы добыли {{count}} блока",
+    "title_miner_5": "Вы добыли {{count}} блоков",
+    "title_miner_plural": "Вы добыли {{count}} блоков",
     "table_head": {
       "number": "Номер",
       "type": "Тип",
       "date": "Дата",
       "region": "Регион",
       "miner": "Майнер",
-      "reward": "Награда",
+      "reward": "Вознаграждение",
       "round_time": "Время Раунда",
-      "hash": "Хеш",
+      "hash": "Хэш",
       "luck": "Удача"
     }
   },
   "type": {
     "block": "Блок",
-    "orphan": "Сирота",
-    "uncle": "Дядя"
+    "orphan": "Orphan",
+    "uncle": "Uncle"
   },
-  "waiting_confirmation_tooltip": "В ожидании подтверждения",
   "chart": {
     "title": "Ежемесячная визуализация блоков",
     "blocks_per_day": "Блоков в день",
     "difficulty": "Сложность"
   },
-  "waiting_confirmation_tooltip": "Waiting for confirmation",
+  "waiting_confirmation_tooltip": "В ожидании подтверждения",
   "orphan_tooltip": "Orphan блок - это блок, который не принят или не является частью самой длинной цепочки. Обычно, это происходит в очень редких случаях таких как реорганизация цепочки с глубиной в два блока.",
   "uncle_tooltip": "Uncle blocks are blocks that have the same parent hash and number. They are caused because of the high latency between mining pools. Typically, they appear when two mining pools mine two blocks at the same time, both having the same block number."
 }

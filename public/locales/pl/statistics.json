@@ -1,7 +1,7 @@
 {
   "head_title": "Statistics",
   "title": "Statistics",
-  "pool_hashrate": "Hashrate kopalni",
+  "pool_hashrate": "Pool hashrate",
   "average_luck": "Average Luck",
   "average_luck_tooltip": "Last 30 days average block luck.",
   "miners": "Miners",

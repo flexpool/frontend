@@ -1,24 +1,24 @@
 {
-  "head_title": "Támogatás",
-  "title": "Támogatás",
+  "head_title": "Support",
+  "title": "Support",
   "section_one": {
-    "title": "Kapcsolat felvétel a Flexpool Supporttal",
-    "description": "Szia! Mielőtt kapcsolatba lépsz velünk, szeretnénk felhívni a figyelmed, hogy mi nem biztosítunk segítséget hardware-rel kapcsolatos témákban. Ebbe beletartozik a Videókártya tuning és haladó beállítások a bányász szoftveren. Mi csak a pool-al kapcsolatban nyújtunk segítséget. Ha segítséget szeretnél kérni Videókártya tuningban, bányász szoftver beállításokban, stb, akkor csatlakozni tudsz a közösségünkhöz és beszélhetsz olyan tagokkal akik szívesen megosztják tapasztalataikat."
+    "title": "Contact Flexpool Support",
+    "description": "Hi! Before you reach out, we would like to warn you that we do not provide assistance on hardware-related topics. This includes overclocking GPUs and further advanced configuration of the mining software. We provide only pool-related support. If you want to get help on overclocking GPUs, optimizing mining software, etc., you can join our community and talk with people who want share their experience."
   },
   "section_two": {
-    "title": "Írj nekünk a weboldali chaten",
-    "description": "A legjobb módja a segítségkérésnek a beépített weboldali chat, amit a jobb alsó sarokban találsz."
+    "title": "Reach us via the Website Messenger",
+    "description": "The best way to reach us to get assistance is to use the built-in website messenger. You can find it in the bottom-right corner."
   },
   "section_three": {
-    "title": "Csatlakozz a közösségünkhöz",
-    "description": "Mindezek mellett van egy hivatalos Discord szerverünk és Telegram csoportotunk, ahol beszélhetsz más Flexpool bányászokkal, illetve támogatást is kérhetsz a csapatunktól."
+    "title": "Join our Community",
+    "description": "We also provide an official Discord Server and a Telegram Group, so you can talk with other Flexpool miners, and get assistance from our team there as well."
   },
   "section_four": {
-    "title": "Írj nekünk Emailt",
-    "description": "Emailben is nyújtunk támogatást, de nem garantáljuk a gyors választ ezen a csatornán keresztül. Elérhetőek vagyunk a <email>{{email}}</email> címen."
+    "title": "Reach us via Email",
+    "description": "We provide Email support, but we do not guarantee fast response time via this support channel. We are available at <email>{{email}}</email>."
   },
   "section_five": {
-    "title": "Egyéb kérdések",
-    "description": "Üzlettel kapcsolatos kérdésekben, kérjük írjon nekünk a <email>hq@flexpool.io</email> címre. Megjegyezzük, hogy támogatást nem nyújtunk ezen az emailen keresztül."
+    "title": "Other questions",
+    "description": "For business-related questions, please, contact us at <email>hq@flexpool.io</email>. Please, note that we do not provide support via this Email."
   }
 }

@@ -1,39 +1,39 @@
 {
   "settings": {
-    "cta": "Beállítások",
-    "title": "Beállítások",
-    "ip": "IP cím a hitelesítéshez",
-    "ip_hint": "Tipp: Innen látogatod ezt a weboldalt",
+    "cta": "Settings",
+    "title": "Settings",
+    "ip": "IP address for verification",
+    "ip_hint": "Hint: You are visiting this webpage from",
     "ip_description": "If your worker is using proxy address, e.g. your worker is dual mining through a ZIL pool, please use the proxy address instead.",
     "payout": {
-      "title": "Kifizetési beállítások",
-      "limit": "Kifizetési limit (min: {{min}})",
-      "limit_desc": "Csak azután leszel kifizetve, ha a ki nem fizetett egyenleged eléri a {{value}}.",
-      "limit_err_higher": "Többnek kell lennie, mint {{min}}",
-      "gas_limit": "Üzemanyag ár limit",
-      "gas_limit_desc": "A tranzakciód díjának az üzemanyag ára limitálva lenne a következőkre: {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} -a kifizetési limitnek). Ha az üzemanyag ár magasabb, nem fogsz fizetést kapni.",
-      "gas_limit_zero": "A tranzakciós díj nem lesz korlátozva.",
-      "submit": "Változtatások mentése"
+      "title": "Payout Settings",
+      "limit": "Payout limit (min: {{min}})",
+      "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}.",
+      "limit_err_higher": "Must be higher than {{min}}",
+      "gas_limit": "Gas price limit",
+      "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} of payout limit). You will not receive any payouts if gas price is higher.",
+      "gas_limit_zero": "Your transaction fee will not be limited.",
+      "submit": "Apply changes"
     },
     "payout_warning": [
       "We highly recommend setting a higher payout limit to reduce total number of payout transactions. Less transactions means less paid in network fees.",
       "You are the only one responsible for paying the transaction fees. We are strongly in favour of setting a transaction fee limit lower to avoid total loss on network fees. This will also help you partially mitigate losses when sudden fee spikes happen."
     ],
     "notifications": {
-      "title": "Email értesítések",
-      "email_enabled": "Email értesítések bekapcsolva",
-      "email_disabled": "Email értesítések kikapcsolva",
-      "send_to": "Küldjön értesítéseket ide",
-      "send_to_placeholder": "te@emailed.com",
-      "check_worker_down": "Figyelmeztessen amikor az egyik munkásom leáll",
-      "check_payout_sent": "Értesítsen amikor egy kifizetés el lett küldve",
-      "submit": "Változtatások mentése"
+      "title": "Email notifications",
+      "email_enabled": "Email notifications enabled",
+      "email_disabled": "Email notifications disabled",
+      "send_to": "Send notifications to",
+      "send_to_placeholder": "your@email.com",
+      "check_worker_down": "Warn me when one of my workers goes down",
+      "check_payout_sent": "Notify me when a payout has been sent",
+      "submit": "Apply changes"
     }
   },
   "header": {
-    "greet_period_morning": "Jó reggelt",
-    "greet_period_afternoon": "Jó napot",
-    "greet_period_evening": "Jó estét",
+    "greet_period_morning": "Good morning",
+    "greet_period_afternoon": "Good afternoon",
+    "greet_period_evening": "Good evening",
     "greet_desc": "{{count}} worker is mining {{coin}} and is hashing {{hashrate}} in total.",
     "greet_desc_1": "",
     "greet_desc_2": "",
@@ -41,60 +41,62 @@
     "greet_desc_4": "",
     "greet_desc_5": "",
     "greet_desc_plural": "{{count}} workers are mining {{coin}} and are hashing {{hashrate}} in total.",
-    "info_payout_limit": "Kifizetési limit",
-    "info_gas_limit": "Üzemanyag ár limit",
-    "info_joined": "Csatlakozott",
+    "info_payout_limit": "Payout Limit",
+    "info_gas_limit": "Gas Price Limit",
+    "info_gas_limit_none": "None",
     "info_gas_limit_detail": "{{percent}} of payout limit.",
     "info_gas_limit_detail_none": "Gas price is not limited.",
     "info_gas_limit_detail_na": "Price not available.",
+    "info_joined": "Joined",
     "info_joined_tooltip": "Your first share has been recorded on",
-    "info_coin_price": "{{coin}} ára",
-    "stat_workers": "Dolgozók Elérhető/Nem elérhető",
-    "stat_unpaid_balance": "Kifizetetlen egyenleg",
-    "stat_unpaid_balance_reach": "<v>{{value}}</v> elérve a kifizetési limitből.",
-    "stat_unpaid_balance_reach_est": "A kifizetést eléred: <v>{{value}}</v>.",
-    "stat_unpaid_balance_reach_ok": "A kifizetésed fel lesz dolgozva a következő fizetési körben, ha a díjak egyeznek az általad preferáltakkal.",
-    "stat_estimate": "Becsült jövedelem",
-    "stat_estimate_daily": "napi",
-    "stat_estimate_weekly": "heti",
-    "stat_estimate_monthly": "havi",
-    "stat_estimate_tooltip": "Kattintsd ide a napi, heti, és havi becslések közti váltáshoz."
+    "info_joined_tooltip_empty": "No share has been recorded yet",
+    "info_coin_price": "{{coin}} Price",
+    "stat_workers": "Workers Online/Offline",
+    "stat_unpaid_balance": "Unpaid Balance",
+    "stat_unpaid_balance_reach": "<v>{{value}}</v> of the payout limit reached.",
+    "stat_unpaid_balance_reach_est": "The limit will be reached <v>{{value}}</v>.",
+    "stat_unpaid_balance_reach_ok": "Your payout will be processed on the next payment round if the fees match your preferences.",
+    "stat_estimate": "Estimated Earnings",
+    "stat_estimate_daily": "daily",
+    "stat_estimate_weekly": "weekly",
+    "stat_estimate_monthly": "monthly",
+    "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimate."
   },
   "nav": {
-    "stats": "Statisztikák",
-    "payments": "Kifizetések",
-    "rewards": "Jutalmak",
-    "blocks": "Blokkok"
+    "stats": "Stats",
+    "payments": "Payments",
+    "rewards": "Rewards",
+    "blocks": "Blocks"
   },
   "rewards": {
-    "head_title": "Bányász jutalmai",
+    "head_title": "Miner Rewards",
     "earnings_chart": {
-      "title": "E havi jövedelem",
-      "earnings": "Jövedelem",
-      "daily_income": "Napi jövedelem"
+      "title": "Earnings this month",
+      "earnings": "Earnings",
+      "daily_income": "Daily income"
     },
     "past_earnings": {
-      "title": "Múltbéli jövedelem",
-      "yesterday": "Tegnap",
-      "last_week": "Múlt hét",
-      "last_month": "Előző hónap"
+      "title": "Past Earnings",
+      "yesterday": "Yesterday",
+      "last_week": "Last Week",
+      "last_month": "Last Month"
     },
     "forecasted_earnings": {
-      "title": "Jövedelem előrejelzés",
-      "daily": "Napi",
-      "weekly": "Heti",
-      "monthly": "Havi"
+      "title": "Forecasted Earnings",
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "monthly": "Monthly"
     },
     "pplns": {
-      "title": "Részletes PPLNS statisztikák",
+      "title": "Advanced PPLNS Statistics",
       "avp": {
-        "title": "Átlagos fizető hashráta",
+        "title": "Average Paying Hashrate",
         "tooltip": "Calculated based on current round share and the last 3 hours pool hashrate chart.",
-        "current": "Jelenlegi"
+        "current": "Current"
       },
       "crs": {
         "title": "Current Round Share",
-        "aprox": "Hozzávetőleges jutalom",
+        "aprox": "Approximate reward",
         "tooltip": "Derived from the share log"
       },
       "log": {
@@ -109,44 +111,44 @@
     }
   },
   "payments": {
-    "head_title": "Bányász fizetések",
+    "head_title": "Miner Payments",
     "chart": {
-      "title": "Fizetések ebben az évben",
-      "fee": "Díj",
-      "value": "Érték"
+      "title": "Payments This Year",
+      "fee": "Fee",
+      "value": "Value"
     },
     "general": {
-      "title": "Általános fizetési statisztikák",
-      "total_paid": "Összesen fizetett",
-      "total_transactions": "Összes tranzakciók",
-      "paid_in_fees": "{{value}} fizetve díjakban",
-      "average_payout_duration": "Átlagos kifizetési időtartam",
-      "average_payout_duration_desc": "Átlagos idő kifizetések között"
+      "title": "General Payment Statistics",
+      "total_paid": "Total Paid",
+      "total_transactions": "Total Transactions",
+      "paid_in_fees": "{{value}} paid in fees",
+      "average_payout_duration": "Average Payout Duration",
+      "average_payout_duration_desc": "Average Time Between Payouts"
     },
     "transaction_fees": {
-      "title": "Tranzakció díjak",
-      "last": "Utolsó tranzakció",
-      "fee": "{{value}} díj",
-      "average": "Átlagos tranzakció díj",
-      "average_percent": "Átlagos tranzakció díj %-ban",
-      "average_cta": "Tippek a díjak csökkentéséhez"
+      "title": "Transaction Fees",
+      "last": "Last Transaction",
+      "fee": "{{value}} fee",
+      "average": "Average Transaction Fee",
+      "average_percent": "Average Transaction Fee %",
+      "average_cta": "Tips on reducing fees",
       "average_cta_tooltip": [
         "1. Setting higher payout limit will reduce the number of transactions you will have to pay for in terms of network transaction fees.",
         "2. Set your transaction fee limit to avoid high fees in the settings. When you reach your payout threshold, we will make sure that your payout transaction will be executed as soon as it fulfills your fee limit settings."
       ]
     },
     "table": {
-      "title": "Fizetések",
-      "download": "CSV letöltése",
+      "title": "Payments",
+      "download": "Download CSV",
       "table_contents": {
         "pending": "Pending",
         "success": "Success"
       },
       "table_head": {
-        "date": "Dátum",
-        "value": "Tranzakció értéke",
-        "fee": "Díj",
-        "duration": "Időtartam",
+        "date": "Date",
+        "value": "Transaction Value",
+        "fee": "Fee",
+        "duration": "Duration",
         "hash": "Hash",
         "status": "Status"
       }
@@ -154,26 +156,26 @@
   },
   "stats": {
     "active_worker": {
-      "title": "Dolgozó",
-      "reset": "Visszaállítás"
+      "title": "Worker",
+      "reset": "Reset"
     },
     "hashrate": {
-      "title": "Hashráta",
-      "current": "Jelenlegi hatékony",
-      "average": "Átlagos hatékony",
-      "reported": "Reportolt"
+      "title": "Hashrate",
+      "current": "Current Effective",
+      "average": "Average Effective",
+      "reported": "Reported"
     },
     "shares": {
       "title": "Shares",
-      "valid": "Érvényes",
+      "valid": "Valid",
       "stale": "Stale",
-      "invalid": "Érvénytelen"
+      "invalid": "Invalid"
     },
     "hashrate_chart": {
-      "title": "Hashráta",
-      "effective": "Hatékony hashráta",
-      "average": "Átlagos hatékony hashráta",
-      "reported": "Reportolt hashráta"
+      "title": "Hashrate",
+      "effective": "Effective Hashrate",
+      "average": "Average Effective Hashrate",
+      "reported": "Reported Hashrate"
     },
     "shares_chart": {
       "title": "Shares",
@@ -182,8 +184,8 @@
       "invalid": "Invalid Shares"
     },
     "table": {
-      "title_active": "Aktív dolgozók",
-      "title_inactive": "Inaktív dolgozók",
+      "title_active": "Active workers",
+      "title_inactive": "Inactive workers",
       "search_placeholder": "Filter by worker",
       "table_head": {
         "name": "Name",

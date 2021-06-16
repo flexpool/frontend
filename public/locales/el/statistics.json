@@ -1,9 +1,9 @@
 {
-  "head_title": "Στατιστικά",
-  "title": "Στατιστικά",
+  "head_title": "Statistics",
+  "title": "Statistics",
   "pool_hashrate": "Pool hashrate",
-  "average_luck": "Μέσος όρος τύχης",
-  "average_luck_tooltip": "Μέσος όρος τύχης τελευταίων 30 ημερών.",
+  "average_luck": "Average Luck",
+  "average_luck_tooltip": "Last 30 days average block luck.",
   "miners": "Miners",
   "workers": "Workers",
   "chart": {
@@ -11,7 +11,7 @@
     "total_hashrate": "Total Hashrate",
     "as": "Asia Pacific (AS)",
     "au": "Australia (AU)",
-    "eu": "Ευρώπη",
+    "eu": "Europe (EU)",
     "sa": "South America (SA)",
     "us": "United States (US)"
   }

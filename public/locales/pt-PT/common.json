@@ -1,66 +1,66 @@
 {
   "searchbar": {
-    "placeholder": "Pesquisar pelo seu endereço de mineração"
+    "placeholder": "Search by your mining address"
   },
   "nav": {
-    "statistics": "Estatística",
-    "blocks": "Blocos",
-    "miners": "Mineradores",
-    "faq": "Perguntas Frequentes",
-    "support": "Suporte",
-    "get_started": "Comece Agora",
-    "community_title": "Junta-te à comunidade"
+    "statistics": "Statistics",
+    "blocks": "Blocks",
+    "miners": "Miners",
+    "faq": "FAQ",
+    "support": "Support",
+    "get_started": "Get Started",
+    "community_title": "Join the community"
   },
   "footer": {
     "company": {
-      "title": "Empresa",
-      "contact_us": "Contate-nos",
-      "brand_assets": "Linha gráfica",
-      "partners": "Parceiros",
-      "business_dev": "Desenvolvimento de negócios",
+      "title": "Company",
+      "contact_us": "Contact Us",
+      "brand_assets": "Brand Assets",
+      "partners": "Partners",
+      "business_dev": "Business Development",
       "blog": "Blog",
-      "terms": "Termos",
-      "pp": "Política de Privacidade"
+      "terms": "Terms",
+      "pp": "Privacy Policy"
     },
     "resources": {
-      "title": "Recursos",
-      "get_started": "Primeiros passos",
-      "faq": "Perguntas Frequentes",
-      "api_docs": "Documentação da API"
+      "title": "Resources",
+      "get_started": "Getting Started",
+      "faq": "FAQ",
+      "api_docs": "API Documentation"
     },
     "community": {
-      "title": "Comunidade"
+      "title": "Community"
     },
     "contact": {
-      "title": "Contacto",
-      "service_status": "Estado do Serviço",
-      "support": "Suporte"
+      "title": "Contact",
+      "service_status": "Service Status",
+      "support": "Support"
     },
     "preferences": {
-      "title": "Preferências"
+      "title": "Preferences"
     },
-    "bottom_message": "© 2020-{{currentYear}} Flexpool.io ou seus afiliados. Todos os direitos reservados.",
-    "translation_help": "Ajude-nos a traduzir o site para o seu idioma"
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io or its affiliates. All rights reserved.",
+    "translation_help": "Help us translate the website to your language"
   },
   "theme": {
-    "default": "Tema Padrão",
-    "dark": "Tema Escuro",
-    "light": "Tema claro"
+    "default": "Default Theme",
+    "dark": "Dark Theme",
+    "light": "Light Theme"
   },
   "list_navigation": {
-    "previous": "Anterior",
-    "next": "Próximo"
+    "previous": "Previous",
+    "next": "Next"
   },
   "errors": {
-    "higher_than": "Deve ser maior que {{value}}",
-    "required": "Obrigatório",
-    "Invalid IP Address": "Endereço de IP inválido",
-    "email_invalid": "Endereço de e-mail inválido",
-    "email_required": "Por favor, insira o seu endereço de e-mail"
+    "higher_than": "Must be higher than {{value}}",
+    "required": "Required",
+    "Invalid IP Address": "Invalid IP Address",
+    "email_invalid": "Invalid email address",
+    "email_required": "Please enter your email address",
     "address_not_found": "Specified address was not found in our system. Try waiting some time if you are already mining."
   },
   "date_time": {
-    "now": "agora"
+    "now": "now"
   },
   "snacks": {
     "emailConfirmed": {

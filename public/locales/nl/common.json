@@ -4,23 +4,23 @@
   },
   "nav": {
     "statistics": "Statistieken",
-    "blocks": "Blokken",
-    "miners": "Mijnwerkers",
+    "blocks": "Blocks",
+    "miners": "Miners",
     "faq": "FAQ",
     "support": "Ondersteuning",
-    "get_started": "Aan de slag!",
-    "community_title": "Word lid van de community"
+    "get_started": "Aan de slag",
+    "community_title": "Word lid van de gemeenschap"
   },
   "footer": {
     "company": {
       "title": "Bedrijf",
-      "contact_us": "Neem contact op",
-      "brand_assets": "Merk / Middelen",
+      "contact_us": "Contacteer ons",
+      "brand_assets": "Merkactiva",
       "partners": "Partners",
       "business_dev": "Zakelijke ontwikkeling",
       "blog": "Blog",
       "terms": "Voorwaarden",
-      "pp": "Privacy Beleid"
+      "pp": "Privacybeleid"
     },
     "resources": {
       "title": "Bronnen",
@@ -32,15 +32,15 @@
       "title": "Gemeenschap"
     },
     "contact": {
-      "title": "Neem contact op",
+      "title": "Contact",
       "service_status": "Service Status",
       "support": "Ondersteuning"
     },
     "preferences": {
       "title": "Voorkeuren"
     },
-    "bottom_message": "© 2020-{{currentYear}} Flexpool.io of zijn affiliates. Alle rechten voorbehouden.",
-    "translation_help": "Help ons de website te vertalen naar uw taal"
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io of zijn partners. Alle rechten voorbehouden.",
+    "translation_help": "Help ons de website te vertalen naar jouw taal"
   },
   "theme": {
     "default": "Standaard thema",
@@ -56,7 +56,7 @@
     "required": "Verplicht",
     "Invalid IP Address": "Ongeldig IP-adres",
     "email_invalid": "Ongeldig e-mailadres",
-    "email_required": "Voer uw e-mailadres in",
+    "email_required": "Voer je e-mailadres in",
     "address_not_found": "Specified address was not found in our system. Try waiting some time if you are already mining."
   },
   "date_time": {

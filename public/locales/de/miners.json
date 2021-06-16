@@ -1,17 +1,17 @@
 {
-  "head_title": "Miner",
-  "title": "Miner",
+  "head_title": "Miners",
+  "title": "Miners Leaderboard",
   "top_miners": {
-    "title": "Top Miner",
+    "title": "Top Miners",
     "table_head": {
       "miner": "Miner",
       "hashrate": "Hashrate",
-      "balance": "Guthaben",
-      "workers": "Worker",
-      "joined": "Beigetreten"
+      "balance": "Balance",
+      "workers": "Workers",
+      "joined": "Joined"
     }
   },
   "distribution": {
-    "title": "Verteilung von Minern nach Hashrate"
+    "title": "Miners Distribution by Hashrate"
   }
 }

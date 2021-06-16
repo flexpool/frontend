@@ -1,62 +1,62 @@
 {
   "searchbar": {
-    "placeholder": "Ieškoti pagal jūsų kasybos adresą"
+    "placeholder": "Search by your mining address"
   },
   "nav": {
-    "statistics": "Statistika",
-    "blocks": "Blokai",
-    "miners": "Mineriai",
-    "faq": "DUk",
-    "support": "Pagalba",
-    "get_started": "Pradėti",
-    "community_title": "Prisijungti prie bendruomenės"
+    "statistics": "Statistics",
+    "blocks": "Blocks",
+    "miners": "Miners",
+    "faq": "FAQ",
+    "support": "Support",
+    "get_started": "Get Started",
+    "community_title": "Join the community"
   },
   "footer": {
     "company": {
-      "title": "Kompanija",
-      "contact_us": "Susisiekite su mumis",
-      "brand_assets": "Prekės ženklo turtas",
-      "partners": "Partneriai",
-      "business_dev": "Verslo plėtra",
-      "blog": "Dienoraštis",
-      "terms": "Terminai",
-      "pp": "Privatumo politika"
+      "title": "Company",
+      "contact_us": "Contact Us",
+      "brand_assets": "Brand Assets",
+      "partners": "Partners",
+      "business_dev": "Business Development",
+      "blog": "Blog",
+      "terms": "Terms",
+      "pp": "Privacy Policy"
     },
     "resources": {
-      "title": "Išteklių",
-      "get_started": "Pradėti",
-      "faq": "DUK",
-      "api_docs": "API dokumentai"
+      "title": "Resources",
+      "get_started": "Getting Started",
+      "faq": "FAQ",
+      "api_docs": "API Documentation"
     },
     "community": {
-      "title": "Bendruomenė"
+      "title": "Community"
     },
     "contact": {
-      "title": "Susisiekite su mumis",
-      "service_status": "Aptarnavimo būsena",
-      "support": "Pagalba"
+      "title": "Contact",
+      "service_status": "Service Status",
+      "support": "Support"
     },
     "preferences": {
-      "title": "Nuostatos"
+      "title": "Preferences"
     },
-    "bottom_message": "{{04-30}}.",
-    "translation_help": "Padėkite mums išversti svetainę į jūsų kalbą"
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io or its affiliates. All rights reserved.",
+    "translation_help": "Help us translate the website to your language"
   },
   "theme": {
-    "default": "Numatytoji tema",
-    "dark": "Tamsi tema",
-    "light": "Šviesi tema"
+    "default": "Default Theme",
+    "dark": "Dark Theme",
+    "light": "Light Theme"
   },
   "list_navigation": {
-    "previous": "Ankstesnis",
-    "next": "Kitas"
+    "previous": "Previous",
+    "next": "Next"
   },
   "errors": {
-    "higher_than": "Turi būti didesnis nei {{vertė}}",
-    "required": "Reikalinga",
-    "Invalid IP Address": "Neteisingas IP adresas",
-    "email_invalid": "Neteisingas pašto adresas",
-    "email_required": "Prašau įveskite savo pašto adresa"
+    "higher_than": "Must be higher than {{value}}",
+    "required": "Required",
+    "Invalid IP Address": "Invalid IP Address",
+    "email_invalid": "Invalid email address",
+    "email_required": "Please enter your email address",
     "address_not_found": "Specified address was not found in our system. Try waiting some time if you are already mining."
   },
   "date_time": {

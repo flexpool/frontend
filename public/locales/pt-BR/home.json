@@ -1,22 +1,22 @@
 {
-  "head_title": "O Pool de Mineração mais avançado",
-  "title": "Construindo o Futuro dos Pools de Mineração",
-  "description": "Pool de mineração inovador criado para minerar criptomoedas modernas.",
+  "head_title": "A Pool de Mineração Mais Avançada",
+  "title": "Construindo o Futuro das Pools de Mineração",
+  "description": "Pool de mineração inovadora criada para minerar criptomoedas modernas.",
   "coin_earnings_cards": {
     "estimated": "Ganhos estimados",
     "estimated_tooltip": "Ganhos estimados são baseados no desempenho da mineração nos últimos 7 dias na nossa pool.",
     "daily": "diariamente",
     "monthly": "mensalmente",
     "cta_mine": "Comece a minerar",
-    "pool_fee": "{{value}} Taxa do Pool",
+    "pool_fee": "{{value}} Taxa da Pool",
     "mev": "{{value}} de Bônus MEV",
     "more_title": "Mais Moedas Disponíveis em Breve!",
-    "more_description": "Estamos trabalhando para lançar vários pools em um futuro próximo. Junte-se ao nosso discord ou telegram."
+    "more_description": "Estamos trabalhando para lançar várias pools em um futuro próximo. Junte-se ao nosso discord ou telegram."
   },
   "news_section": {
     "join_us": {
       "pre_title": "Junte-se a nós",
-      "title": "Conectar ao Flexpool",
+      "title": "Conectar à Flexpool",
       "cta": "Primeiros Passos"
     },
     "learn": {
@@ -32,7 +32,7 @@
   },
   "mined_coins_section": {
     "title": "Moedas que nós mineramos",
-    "description": "Flexpool é um pool de mineração Multi-Moeda, o que significa que você pode minerar suas moedas favoritas no Flexpool.",
+    "description": "Flexpool é uma pool de mineração multi-moeda, o que significa que você pode minerar suas moedas favoritas na Flexpool.",
     "table_head": {
       "name": "Nome",
       "price": "Preço",
@@ -64,14 +64,14 @@
     }
   },
   "why_section": {
-    "title": "Por que o Flexpool",
+    "title": "Por que a Flexpool",
     "item_1": {
       "title": "Velocidade relâmpago",
       "description": "Usamos clusters especializados de alto desempenho, suportados por um software super rápido projetado para lidar com mais de 100 TH/s."
     },
     "item_2": {
       "title": "Simplesmente Melhor",
-      "description": "Você pode esquecer suas experiências ruins com pools de mineração. O Flexpool possui um suporte de alta qualidade e estamos sempre felizes em ajudar!"
+      "description": "Você pode esquecer suas experiências ruins com pools de mineração. A Flexpool possui um suporte de alta qualidade e estamos sempre felizes em ajudar!"
     }
   },
   "get_started_section": {

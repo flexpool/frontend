@@ -1,18 +1,18 @@
 {
   "head_title": "Statistiques",
   "title": "Statistiques",
-  "pool_hashrate": "Taux de hachage du pool",
+  "pool_hashrate": "Taux de hashrate du pool",
   "average_luck": "Chance moyenne",
   "average_luck_tooltip": "La chance moyenne de bloc des 30 derniers jours.",
   "miners": "Mineurs",
   "workers": "Rigs",
   "chart": {
-    "title": "Taux de hashage du pool",
-    "total_hashrate": "Taux total de hashage",
-    "as": "Asie-Pacifique (APAC)",
+    "title": "Taux de hashrate du pool",
+    "total_hashrate": "Taux total de hashrate du pool",
+    "as": "Asie-Pacifique (AS)",
     "au": "Australie (AU)",
     "eu": "Europe (UE)",
-    "sa": "Amérique du Sud (AS)",
-    "us": "États-Unis (ÉUA)"
+    "sa": "Amérique du Sud (SA)",
+    "us": "États-Unis (US)"
   }
 }

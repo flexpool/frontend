@@ -1,17 +1,17 @@
 {
-  "head_title": "very miners",
-  "title": " much miners",
+  "head_title": "Miners",
+  "title": "Miners Leaderboard",
   "top_miners": {
-    "title": "very top miners",
+    "title": "Top Miners",
     "table_head": {
-      "miner": "very miner",
-      "hashrate": "much hashrate",
-      "balance": "very balance",
-      "workers": "much workers",
-      "joined": "very joined"
+      "miner": "Miner",
+      "hashrate": "Hashrate",
+      "balance": "Balance",
+      "workers": "Workers",
+      "joined": "Joined"
     }
   },
   "distribution": {
-    "title": "much miner distribution by very hashrate"
+    "title": "Miners Distribution by Hashrate"
   }
 }

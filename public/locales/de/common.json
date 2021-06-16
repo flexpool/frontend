@@ -1,66 +1,66 @@
 {
   "searchbar": {
-    "placeholder": "Suche nach deiner Mining-Adresse"
+    "placeholder": "Search by your mining address"
   },
   "nav": {
-    "statistics": "Statistiken",
-    "blocks": "Blöcke",
-    "miners": "Miner",
+    "statistics": "Statistics",
+    "blocks": "Blocks",
+    "miners": "Miners",
     "faq": "FAQ",
     "support": "Support",
-    "get_started": "Loslegen",
-    "community_title": "Tritt der Community bei"
+    "get_started": "Get Started",
+    "community_title": "Join the community"
   },
   "footer": {
     "company": {
-      "title": "Firma",
-      "contact_us": "Kontaktiere uns",
-      "brand_assets": "Markenwerte",
-      "partners": "Partner",
-      "business_dev": "Geschäftsentwicklung",
+      "title": "Company",
+      "contact_us": "Contact Us",
+      "brand_assets": "Brand Assets",
+      "partners": "Partners",
+      "business_dev": "Business Development",
       "blog": "Blog",
-      "terms": "Glossar",
-      "pp": "Datenschutzerklärung"
+      "terms": "Terms",
+      "pp": "Privacy Policy"
     },
     "resources": {
-      "title": "Ressourcen",
-      "get_started": "Erste Schritte",
+      "title": "Resources",
+      "get_started": "Getting Started",
       "faq": "FAQ",
-      "api_docs": "API-Dokumentation"
+      "api_docs": "API Documentation"
     },
     "community": {
       "title": "Community"
     },
     "contact": {
-      "title": "Kontakt",
-      "service_status": "Service-Status",
+      "title": "Contact",
+      "service_status": "Service Status",
       "support": "Support"
     },
     "preferences": {
-      "title": "Einstellungen"
+      "title": "Preferences"
     },
-    "bottom_message": "© 2020-{{currentYear}} Flexpool.io oder seine Partner. Alle Rechte vorbehalten.",
-    "translation_help": "Helfen Sie uns, die Webseite in Ihre Sprache zu übersetzen"
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io or its affiliates. All rights reserved.",
+    "translation_help": "Help us translate the website to your language"
   },
   "theme": {
-    "default": "Standard-Design",
-    "dark": "Dunkles Design",
-    "light": "Helles Design"
+    "default": "Default Theme",
+    "dark": "Dark Theme",
+    "light": "Light Theme"
   },
   "list_navigation": {
-    "previous": "Vorherige",
-    "next": "Nächste"
+    "previous": "Previous",
+    "next": "Next"
   },
   "errors": {
-    "higher_than": "Muss höher sein als {{value}}",
-    "required": "Benötigt",
-    "Invalid IP Address": "Ungültige IP-Adresse",
-    "email_invalid": "Ungültige E-Mail-Adresse",
-    "email_required": "Bitte geben Sie Ihre E-Mail-Adresse ein"
+    "higher_than": "Must be higher than {{value}}",
+    "required": "Required",
+    "Invalid IP Address": "Invalid IP Address",
+    "email_invalid": "Invalid email address",
+    "email_required": "Please enter your email address",
     "address_not_found": "Specified address was not found in our system. Try waiting some time if you are already mining."
   },
   "date_time": {
-    "now": "jetzt"
+    "now": "now"
   },
   "snacks": {
     "emailConfirmed": {

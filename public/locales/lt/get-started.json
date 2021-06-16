@@ -1,129 +1,129 @@
 {
   "list": {
-    "head_title": "Pradėti kasti su mumis",
-    "title": "Pradėkite nuo „Flexpool“ kasybos šiandien!"
+    "head_title": "Start mining with us",
+    "title": "Get started with mining on Flexpool today!",
     "nicehash_rental_button": "NiceHash Rental"
   },
   "detail": {
-    "title": "{{coin}} kasimas",
+    "title": "{{coin}} mining",
     "wallet": {
-      "title": "Gaukite savo piniginės adresą",
-      "desc_one": "Lengviausias būdas gauti piniginę yra užsiregistruoti kriptovaliutos biržoje, tokiose kaip <binance> Binance (Ref)</binance> arba <coinbase>Coinbase</coinbase>.",
-      "desc_two": "Nors echanges yra patogios ir lengvos naudotis jos nėra labai saugios. Jūs galite naudoti a non-custodial wallet, bet saugiausias būdas laikyti savo lėšas yra naudoti <strong> hardware wallet </strong>.\n<ledger>Ledger</ledger> ir <trezor>Trezor</trezor> yra vieni iš populiariausiu.",
-      "wallet_address": "Piniginės adresas",
-      "invalid_address": "Neteisingas piniginės adresas"
+      "title": "Get your wallet address",
+      "desc_one": "The easiest way to get a wallet is to register on a cryptocurrency exchange like <binance>Binance (Ref)</binance> or <coinbase>Coinbase</coinbase>.",
+      "desc_two": "Although exchanges are comfortable and easy to use, they are not very secure. You can use a non-custodial wallet, but the safest way to store your funds is to use a <strong>hardware wallet</strong>. <ledger>Ledger</ledger> and <trezor>Trezor</trezor> are the most popular ones.",
+      "wallet_address": "Wallet Address",
+      "invalid_address": "Invalid wallet address"
     },
     "region": {
-      "title": "Pasirinkite savo regiona",
-      "description": "Norėdami gauti geriausią našumą, turėtumėte pasirinkti serverį su mažiausia vėlavimo trukme jūsų kasybos įrenginiui ar kompiuteriui. Diagramoje rodomas vėlavimas tarp serverių ir šio įrenginio.",
+      "title": "Select your region",
+      "description": "For the best performance, you should choose server with lowest latency to your mining rig or computer. The chart is displaying latency between servers and this device.",
       "table_head": {
-        "location": "Regiono vieta",
-        "domain": "Domenas",
-        "average_lat": "Vidutinis delsos laikas"
+        "location": "Region Name",
+        "domain": "Endpoint",
+        "port": "Port",
         "average_lat": "Latency"
       },
-      "fastest": "Greičiausias",
+      "fastest": "Fastest",
       "backup": "Backup"
     },
     "ports": {
       "title": "Ports",
-      "description": "Mes labai raginame visus prisijungus prie „Flexpool“ serverių naudoti secured port. <more>Pasiskaitykite daugiau kodėl jūs neturėtumete naudoti unsecured ports</more>.<strong>SVARBU</strong>: Naudojant SSL nedidėja stale rodiklis.",
-      "ssl_port": "Saugus SSL Port",
+      "description": "We highly encourage everyone to use secured port when connecting to Flexpool servers. <more>Read more on why you shouldn't use unsecured ports</more>. <strong>IMPORTANT</strong>: Using SSL does not increase the stale rate.",
+      "ssl_port": "Secure SSL Port",
       "tcp_port": "TCP Port",
-      "tcp_port_tooltip": "Mes griežtai prieš šifruotą (TCP) ryšį, kai kasame savo poole. Šis ryšys yra pažeidžiamas MITM (Man-In-The-Middle) atakoms, o tai reiškia, kad jei kas nors piktybiškai atsistos tarp jūsų darbuotojo ir poolo, gali būti pavogta dalis jūsų hashrate. Skaitykite daugiau <more> DUK puslapyje </more>."
+      "tcp_port_tooltip": "We are strongly against using unencrypted (TCP) connection while mining on our pool. This connection is vulnerable to MITM (Man-In-The-Middle) attacks, which means that if someone will maliciously stand in between of your worker and pool, some % of your hashrate may be stolen. Read more on our <more>FAQ page</more>.",
       "high_diff_port": "High Difficulty Port",
       "high_diff_port_tooltip": "This is the special port for advanced users who run proxies that require insanely high difficulty. This includes users who use <NiceHash>NiceHash</NiceHash> and related hashrate rental marketplaces. Available for: "
     },
     "worker": {
-      "title": "Pavadinkite savo darbuotoja",
-      "description": "Pavadinti savo darbuotoją rekomenduojama, jei turite kelis kasybos įrenginius, prijungtus prie „Flexpool“. Tai suteiks jums daugiau aiškumo, kaip jūsų kasybos įrenginiai veikia informacijos suvestinės puslapyje.",
-      "worker_name": "Darbuotojo vardas",
-      "worker_name_placeholder": "pvz. MY_RIG_580x2"
+      "title": "Name your worker",
+      "description": "Naming your worker is recommended if you have multiple mining rigs connected to Flexpool. This will give you more clarity about how your mining rigs perform on your dashboard page.",
+      "worker_name": "Worker Name",
+      "worker_name_placeholder": "e.g. MY_RIG_580x2"
     },
     "software": {
-      "title": "Pasirinkite savo kasybos programinę įrangą",
-      "fee": "Rinkliava"
+      "title": "Choose your mining software",
+      "fee": "Fee"
     },
     "view": {
-      "title": "Peržiūrėkite savo statistiką",
-      "description": "Pradėjus kasti, jūsų duomenys turėtų būti rodomi prietaisų skydelyje. Palaukite iki 10 minučių, kol duomenys bus apdoroti.",
-      "cta": "Atidarykite informacijos suvestinę"
+      "title": "View your stats",
+      "description": "Once you start mining, your data should appear on your dashboard. Please allow up to 10 minutes for the data to be processed.",
+      "cta": "Open Dashboard"
     }
   },
   "detail_eth": {
-    "title": "Ethereum kasimas",
+    "title": "Ethereum mining",
     "pool_details": [
       {
-        "key": "Atlygio schema",
+        "key": "Reward Scheme",
         "value": "PPLNS (Pay Per Last N Shares)"
       },
       {
-        "key": "Poolo rinkliava",
+        "key": "Pool Fee",
         "value": "0.5%"
       },
       {
-        "key": "Bonusai",
-        "value": "90% MEV premijos"
+        "key": "Bonuses",
+        "value": "90% of MEV bonus"
       },
       {
-        "key": "Išmokų raundas",
-        "value": "Kas 10 minučių"
+        "key": "Payout Round",
+        "value": "Once an hour"
       },
       {
-        "key": "Išmokos",
-        "value": "nuo 0,01 ETH iki 100 ETH"
+        "key": "Payouts",
+        "value": "from 0.01 ETH up to 100 ETH"
       },
       {
-        "key": "Bloko patvirtinimo laikas",
-        "value": "120 Blockų"
+        "key": "Block confirmation time",
+        "value": "120 Blocks"
       },
       {
-        "key": "Share sunkumas",
+        "key": "Share Difficulty",
         "value": "4 GH"
       },
       {
-        "key": "Mininimo algoritmas",
+        "key": "Mining Algorithm",
         "value": "Ethash"
       }
     ],
     "hardware": [
       {
-        "title": "GPU Mininimo rigas",
+        "title": "GPU Mining",
         "key": "GPU",
         "miners": [
           {
-            "description": "Geriausias AMD GPU mineriai"
+            "description": "Best miner for AMD GPUs"
           },
           {
-            "description": "Geriausias „NVIDIA 20/30“ serijos GPU mineriai"
+            "description": "Best miner for NVIDIA 20/30 Series GPUs"
           },
           {
-            "description": "Geriausias 4GB zombie mode."
+            "description": "Best miner for 4GB zombie mode."
           },
           {
-            "description": "Atvirojo kodo ethash kasykla be jokių mokesčių. Atnešė „Ethereum“ bendruomenė."
+            "description": "Proprietary Ethash miner with low dev fee."
           },
           {
-            "description": "Patentuotas „Ethash“ mineris su mažiausiu devfee."
+            "description": "Actively developed and stable miner with low dev fee."
           }
         ]
       }
     ]
   },
   "regions": {
-    "us-east": "Jav (rytai)",
-    "us-west": "Jungtinės Valstijos (Vakarai)",
-    "de": "Vokietija",
-    "se": "Švedija",
-    "sg": "Singapūras",
+    "us-east": "United States (East)",
+    "us-west": "United States (West)",
+    "de": "Germany",
+    "se": "Sweden",
+    "sg": "Singapore",
     "au": "Australia",
-    "br": "Brazilija",
-    "kr": "Pietų Korėja"
+    "br": "Brazil",
+    "kr": "South Korea"
   },
   "cmd_keys": {
-    "CLOSEST_SERVER": "ARČIAUSIAS_SERVERIS",
-    "WALLET_ADDRESS": "PINIGINĖS_ADRESAS",
-    "WORKER_NAME": "DARBUOTOJO_VARDAS"
+    "CLOSEST_SERVER": "CLOSEST_SERVER",
+    "WALLET_ADDRESS": "WALLET_ADDRESS",
+    "WORKER_NAME": "WORKER_NAME"
   },
   "nicehash": {
     "head_title": "NiceHash guide for mining on Flexpool",

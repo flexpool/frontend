@@ -3,60 +3,60 @@
     "placeholder": "Search by your mining address"
   },
   "nav": {
-    "statistics": "Statisztikák",
-    "blocks": "Blokkok",
-    "miners": "Bányászok",
-    "faq": "GYIK",
-    "support": "Támogatás",
+    "statistics": "Statistics",
+    "blocks": "Blocks",
+    "miners": "Miners",
+    "faq": "FAQ",
+    "support": "Support",
     "get_started": "Get Started",
-    "community_title": "Csatlakozz a közösséghez"
+    "community_title": "Join the community"
   },
   "footer": {
     "company": {
-      "title": "Cég",
-      "contact_us": "Lépj kapcsolatba velünk",
+      "title": "Company",
+      "contact_us": "Contact Us",
       "brand_assets": "Brand Assets",
-      "partners": "Partnerek",
-      "business_dev": "Üzlet fejlesztés",
+      "partners": "Partners",
+      "business_dev": "Business Development",
       "blog": "Blog",
-      "terms": "Feltételek",
-      "pp": "Adatvédelmi irányelvek"
+      "terms": "Terms",
+      "pp": "Privacy Policy"
     },
     "resources": {
-      "title": "Erőforrások",
+      "title": "Resources",
       "get_started": "Getting Started",
-      "faq": "GYIK",
-      "api_docs": "API Dokumentáció"
+      "faq": "FAQ",
+      "api_docs": "API Documentation"
     },
     "community": {
-      "title": "Közösség"
+      "title": "Community"
     },
     "contact": {
-      "title": "Kapcsolat",
-      "service_status": "Szolgáltatás státusza",
-      "support": "Támogatás"
+      "title": "Contact",
+      "service_status": "Service Status",
+      "support": "Support"
     },
     "preferences": {
-      "title": "Preferenciák"
+      "title": "Preferences"
     },
-    "bottom_message": "© 2020-{{currentYear}} Flexpool.io vagy a leányvállalatai. Minden jog fenntartva.",
-    "translation_help": "Segíts nekünk lefordítani a weboldalt a te nyelvedre"
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io or its affiliates. All rights reserved.",
+    "translation_help": "Help us translate the website to your language"
   },
   "theme": {
-    "default": "Alapértelmezett téma",
-    "dark": "Sötét téma",
-    "light": "Világos téma"
+    "default": "Default Theme",
+    "dark": "Dark Theme",
+    "light": "Light Theme"
   },
   "list_navigation": {
-    "previous": "Előző",
-    "next": "Következő"
+    "previous": "Previous",
+    "next": "Next"
   },
   "errors": {
-    "higher_than": "Többnek kell lennie, mint {{value}}",
-    "required": "Kötelező",
-    "Invalid IP Address": "Érvénytelen IP cím",
-    "email_invalid": "Érvénytelen email cím",
-    "email_required": "Kérjük adja meg az email címét"
+    "higher_than": "Must be higher than {{value}}",
+    "required": "Required",
+    "Invalid IP Address": "Invalid IP Address",
+    "email_invalid": "Invalid email address",
+    "email_required": "Please enter your email address",
     "address_not_found": "Specified address was not found in our system. Try waiting some time if you are already mining."
   },
   "date_time": {

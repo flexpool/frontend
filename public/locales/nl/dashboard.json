@@ -3,16 +3,16 @@
     "cta": "Instellingen",
     "title": "Instellingen",
     "ip": "IP-adres voor verificatie",
-    "ip_hint": "Tip: U bezoekt deze webpagina van",
+    "ip_hint": "Tip: Je bezoekt deze webpagina via",
     "ip_description": "Als je worker een proxy adres gebruikt, bv. bij dual minen via een ZIL pool, gebruik dan het proxy adres in plaats van je IP-adres.",
     "payout": {
-      "title": "Uitbetaling Instellingen",
+      "title": "Uitbetalingsinstellingen",
       "limit": "Uitbetalingslimiet (min: {{min}})",
-      "limit_desc": "U wordt pas betaald nadat uw onbetaalde saldo {{value}} bereikt.",
+      "limit_desc": "Je wordt pas betaald wanneer je onbetaald saldo {{value}} bereikt.",
       "limit_err_higher": "Moet hoger zijn dan {{min}}",
-      "gas_limit": "Gas prijslimiet",
-      "gas_limit_desc": "Uw transactiekosten zouden worden beperkt tot {{value}} {{valueUnit}} ({{valueTicker}}( {{percent}} van uitbetalingslimiet). U ontvangt geen uitbetalingen als de gasprijs hoger is.",
-      "gas_limit_zero": "Uw transactiekosten zullen niet beperkt zijn.",
+      "gas_limit": "Prijslimiet gas",
+      "gas_limit_desc": "Je transactiekosten zouden worden beperkt tot {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} van de uitbetalingslimiet. Je ontvangt geen uitbetalingen als de gasprijs hoger is.",
+      "gas_limit_zero": "Je transactiekosten zullen niet worden beperkt.",
       "submit": "Wijzigingen toepassen"
     },
     "payout_warning": [
@@ -20,64 +20,69 @@
       "Jij bent verantwoordelijk voor de betaling van de transactiekosten. We zijn voorstander van een lage limiet bij de transactiekost zodat je niet te veel verliest aan netwerkkosten. Hierdoor beperk je de verliezen ook wanneer de kosten plots zeer hoog staan."
     ],
     "notifications": {
-      "title": "E-mail meldingen",
+      "title": "E-mailmeldingen",
       "email_enabled": "E-mailmeldingen ingeschakeld",
       "email_disabled": "E-mailmeldingen uitgeschakeld",
       "send_to": "Stuur meldingen naar",
       "send_to_placeholder": "@email.com",
-      "check_worker_down": "Waarschuw me wanneer een van mijn miners uit gaat",
+      "check_worker_down": "Waarschuw me wanneer een van mijn miners uitvalt",
       "check_payout_sent": "Informeer mij wanneer een uitbetaling is verzonden",
       "submit": "Wijzigingen toepassen"
     }
   },
   "header": {
     "greet_period_morning": "Goedemorgen",
-    "greet_period_afternoon": "Goede middag",
+    "greet_period_afternoon": "Goedemiddag",
     "greet_period_evening": "Goede avond",
-    "greet_desc": "{{count}} werker delft {{coin}} en is in totaal {{hashrate}} aan het hashen.",
+    "greet_desc": "{{count}} worker minet {{coin}} en is in totaal {{hashrate}} aan het hashen.",
     "greet_desc_1": "",
     "greet_desc_2": "",
     "greet_desc_3": "",
     "greet_desc_4": "",
     "greet_desc_5": "",
-    "greet_desc_plural": "{{count}} werker delft {{coin}} en is in totaal {{hashrate}} aan het hashen.",
+    "greet_desc_plural": "{{count}} workers minen {{coin}} en zijn in totaal {{hashrate}} aan het hashen.",
     "info_payout_limit": "Uitbetalingslimiet",
-    "info_gas_limit": "Gas prijslimiet",
-    "info_joined": "Aangesloten",
-    "info_joined_tooltip": "Uw eerste aandeel werd opgenomen op",
+    "info_gas_limit": "Prijslimiet gas",
+    "info_gas_limit_none": "Geen",
+    "info_gas_limit_detail": "{{percent}} van uitbetalingslimiet.",
+    "info_gas_limit_detail_none": "Gasprijs is niet beperkt.",
+    "info_gas_limit_detail_na": "Prijs niet beschikbaar.",
+    "info_joined": "Erbij gekomen",
+    "info_joined_tooltip": "Je eerste share werd geregistreerd op",
+    "info_joined_tooltip_empty": "Nog geen share geregistreerd",
     "info_coin_price": "Prijs van {{coin}}",
-    "stat_workers": "Werkers Online/Offline",
+    "stat_workers": "Workers Online/Offline",
     "stat_unpaid_balance": "Onbetaald saldo",
-    "stat_unpaid_balance_reach": "<v>{{value}}</v> van de limiet voor uitbetaling bereikt.",
-    "stat_unpaid_balance_reach_est": "Dit limiet zal worden bereikt in <v>{{value}}</v>.",
-    "stat_unpaid_balance_reach_ok": "Uw uitbetaling wordt verwerkt tijdens de volgende betalingsronde als de kosten overeenkomen met uw voorkeuren.",
-    "stat_estimate": "Geschatte opbrengst",
+    "stat_unpaid_balance_reach": "<v>{{value}}</v> van de uitbetalingslimiet bereikt.",
+    "stat_unpaid_balance_reach_est": "Deze limiet zal worden bereikt in <v>{{value}}</v>.",
+    "stat_unpaid_balance_reach_ok": "Je uitbetaling wordt verwerkt tijdens de volgende betalingsronde als de kosten overeenkomen met uw voorkeuren.",
+    "stat_estimate": "Geschatte inkomsten",
     "stat_estimate_daily": "dagelijks",
     "stat_estimate_weekly": "wekelijks",
     "stat_estimate_monthly": "maandelijks",
-    "stat_estimate_tooltip": "Klik om te veranderen tussen dagelijkse, wekelijkse en maandelijkse schattingen."
+    "stat_estimate_tooltip": "Klik om te wisselen tussen dagelijkse, wekelijkse en maandelijkse schattingen."
   },
   "nav": {
     "stats": "Statistieken",
     "payments": "Betalingen",
     "rewards": "Beloningen",
-    "blocks": "Blokken"
+    "blocks": "Blocks"
   },
   "rewards": {
     "head_title": "Miner Beloningen",
     "earnings_chart": {
-      "title": "Verdiensten van deze maand",
+      "title": "Inkomsten van deze maand",
       "earnings": "Inkomsten",
       "daily_income": "Dagelijks inkomen"
     },
     "past_earnings": {
-      "title": "Verleden inkomen",
+      "title": "Voorgaande inkomsten",
       "yesterday": "Gisteren",
       "last_week": "Vorige week",
       "last_month": "Vorige maand"
     },
     "forecasted_earnings": {
-      "title": "Verwachte opbrengst",
+      "title": "Verwachte inkomsten",
       "daily": "Dagelijks",
       "weekly": "Wekelijks",
       "monthly": "Maandelijks"
@@ -86,22 +91,22 @@
       "title": "Geavanceerde PPLNS statistieken",
       "avp": {
         "title": "Gemiddelde betalende Hashrate",
-        "tooltip": "Berekend op basis van huidige ronde aandeel en de laatste 3 uur pool hashrate grafiek.",
+        "tooltip": "Berekend op basis van de share van de huidige ronde en de grafiek van de pool hashrate van de laatste 3 uur.",
         "current": "Huidig"
       },
       "crs": {
-        "title": "Huidige ronde delen",
+        "title": "Shares huidige ronde",
         "aprox": "Geschatte beloning",
         "tooltip": "Afgeleid van de share log"
       },
       "log": {
-        "title": "Duur delen Log Wipeout",
-        "tooltip": "Tijd voor het delen van de ronde om te laten vallen naar nul.",
-        "size": "{{value}} aandelen in het logboek"
+        "title": "Deel duur share logboek Wipeout",
+        "tooltip": "Tijd vooraleer de share van de ronde naar nul zakt.",
+        "size": "{{value}} shares in het logboek"
       }
     },
     "pplns_chart": {
-      "title": "Aandelen in het PPLNS-logboek",
+      "title": "Shares in het PPLNS-logboek",
       "valid_shares": "Geldige Shares"
     }
   },
@@ -109,31 +114,31 @@
     "head_title": "Miner Betalingen",
     "chart": {
       "title": "Betalingen dit jaar",
-      "fee": "Transactiekosten",
+      "fee": "Kost",
       "value": "Waarde"
     },
     "general": {
       "title": "Algemene betalingsstatistieken",
       "total_paid": "Totaal betaald",
       "total_transactions": "Totale transacties",
-      "paid_in_fees": "{{value}} betaalde kosten",
+      "paid_in_fees": "{{value}} betaald aan kosten",
       "average_payout_duration": "Gemiddelde duur uitbetaling",
       "average_payout_duration_desc": "Gemiddelde tijd tussen uitbetalingen"
     },
     "transaction_fees": {
-      "title": "Transactie kosten",
+      "title": "Transactiekosten",
       "last": "Laatste Transactie",
-      "fee": "{{value}} transactiekosten",
-      "average": "Gemiddelde transactiekosten",
-      "average_percent": "Gemiddelde transactiekosten %",
-      "average_cta": "Tips voor lagere vergoedingen",
+      "fee": "{{value}} kosten",
+      "average": "Gemiddelde transactiekost",
+      "average_percent": "Gemiddelde transactiekost %",
+      "average_cta": "Tips voor lagere kosten",
       "average_cta_tooltip": [
         "1. Een hogere uitbetalingslimiet instellen verlaagt het aantal transacties waarvoor je transactiekosten van het netwerk moet betalen.",
         "2. Stel een transactiekost limiet in bij de instellingen om hoge kosten te vermijden. Wanneer je je uitbetalingsdrempel haalt, zorgen wij dat je uitbetalingstransactie zo snel mogelijk wordt verwerkt zolang je kostenlimiet niet wordt overschreden."
       ]
     },
     "table": {
-      "title": "Betalingen",
+      "title": "Uitbetalingen",
       "download": "CSV-bestand downloaden",
       "table_contents": {
         "pending": "Pending",
@@ -141,9 +146,9 @@
       },
       "table_head": {
         "date": "Datum",
-        "value": "Transactie waarde",
-        "fee": "Transactiekosten",
-        "duration": "Tijdsduur",
+        "value": "Transactiewaarde",
+        "fee": "Kost",
+        "duration": "Duur",
         "hash": "Hash",
         "status": "Status"
       }
@@ -156,14 +161,14 @@
     },
     "hashrate": {
       "title": "Hashrate",
-      "current": "Huidige Effectief",
-      "average": "Gemiddelde Effectief",
-      "reported": "Gemeld"
+      "current": "Huidig effectief",
+      "average": "Gemiddeld effectief",
+      "reported": "Gerapporteerd"
     },
     "shares": {
       "title": "Shares",
       "valid": "Geldig",
-      "stale": "Verouderde",
+      "stale": "Stale",
       "invalid": "Ongeldig"
     },
     "hashrate_chart": {
@@ -173,24 +178,24 @@
       "reported": "Gerapporteerde Hashrate"
     },
     "shares_chart": {
-      "title": "Aandelen",
+      "title": "Shares",
       "valid": "Geldige Shares",
-      "stale": "Verouderde aandelen",
+      "stale": "Stale shares",
       "invalid": "Ongeldige Shares"
     },
     "table": {
-      "title_active": "Actieve werkers",
-      "title_inactive": "Inactieve werkers",
+      "title_active": "Actieve workers",
+      "title_inactive": "Inactieve workers",
       "search_placeholder": "Filteren op worker",
       "table_head": {
         "name": "Naam",
         "reported_hashrate": "Gerapporteerde Hashrate",
-        "current_e_hashrate": "Huidige Hashrate",
-        "average_e_hashrate": "Average Effective Hashrate",
+        "current_e_hashrate": "Huidige e. hashrate",
+        "average_e_hashrate": "Gemiddelde effectieve hashrate",
         "valid": "Geldige Shares",
-        "stale": "Verouderde aandelen",
+        "stale": "Stale shares",
         "invalid": "Ongeldige Shares",
-        "last_seen": "Laatste Gezien"
+        "last_seen": "Laatst gezien"
       }
     }
   },

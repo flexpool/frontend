@@ -1,17 +1,17 @@
 {
-  "head_title": "La herramienta de minería más avanzada",
-  "title": "Construyendo el futuro de las pools mineras",
-  "description": "Piscina minera innovadora creada para la minería moderna de criptomonedas.",
+  "head_title": "The Most Advanced Mining Pool",
+  "title": "Building the Future of Mining Pools",
+  "description": "Innovative mining pool created for modern cryptocurrency mining.",
   "coin_earnings_cards": {
-    "estimated": "Ganancias estimadas",
-    "estimated_tooltip": "Las ganancias estimadas se basan en el rendimiento de la minería en los últimos 7 días en nuestra piscina.",
-    "daily": "diario",
-    "monthly": "mensual",
-    "cta_mine": "Empezar a minar",
-    "pool_fee": "Tarifa de Pool {{value}}",
-    "mev": "{{value}} de Bono MEV",
-    "more_title": "¡Más monedas próximamente!",
-    "more_description": "Estamos trabajando para lanzar múltiples piscinas en un futuro próximo. Mantente conectado uniéndote a nuestra discordia o telegram."
+    "estimated": "Estimated earnings",
+    "estimated_tooltip": "Estimated earnings are based on performance of mining last 7 days on our pool.",
+    "daily": "daily",
+    "monthly": "monthly",
+    "cta_mine": "Start mining",
+    "pool_fee": "{{value}} Pool Fee",
+    "mev": "{{value}} of MEV Bonus",
+    "more_title": "More Coins Coming Soon!",
+    "more_description": "We are working to launch multiple pools in the near future. Stay connected by joining our discord or telegram."
   },
   "news_section": {
     "join_us": {

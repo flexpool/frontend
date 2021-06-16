@@ -1,82 +1,82 @@
 {
-  "head_title": "Najnaprednejši rudarski bazen",
-  "title": "Gradnja prihodnosti rudarskih bazenov",
-  "description": "Inovativni rudarski bazen, ustvarjen za sodobno rudarstvo kriptovalut.",
+  "head_title": "The Most Advanced Mining Pool",
+  "title": "Building the Future of Mining Pools",
+  "description": "Innovative mining pool created for modern cryptocurrency mining.",
   "coin_earnings_cards": {
-    "estimated": "Ocenjeni zaslužek",
-    "estimated_tooltip": "Ocenjeni zaslužek temelji na uspešnosti rudarjenja zadnjih 7 dni v našem bazenu.",
-    "daily": "dnevno",
-    "monthly": "mesečno",
-    "cta_mine": "Začnite rudarit",
-    "pool_fee": "{{value}} Bazenova provizija",
-    "mev": "{{value}} MEV bonus",
-    "more_title": "Kmalu prihaja še več kovancev!",
-    "more_description": "V bližnji prihodnosti si prizadevamo za zagon več bazenov. Ostanite povezani, če se pridružite naši neskladnosti ali telegramu."
+    "estimated": "Estimated earnings",
+    "estimated_tooltip": "Estimated earnings are based on performance of mining last 7 days on our pool.",
+    "daily": "daily",
+    "monthly": "monthly",
+    "cta_mine": "Start mining",
+    "pool_fee": "{{value}} Pool Fee",
+    "mev": "{{value}} of MEV Bonus",
+    "more_title": "More Coins Coming Soon!",
+    "more_description": "We are working to launch multiple pools in the near future. Stay connected by joining our discord or telegram."
   },
   "news_section": {
     "join_us": {
-      "pre_title": "Pridruži se nam",
-      "title": "Povežite se s Flexpool",
-      "cta": "Začnite"
+      "pre_title": "Join us",
+      "title": "Connect to Flexpool",
+      "cta": "Get Started"
     },
     "learn": {
-      "pre_title": "Nauči se",
-      "title": "Preberite naš blog",
-      "cta": "Naučiti se"
+      "pre_title": "Learn",
+      "title": "Read our Blog",
+      "cta": "Learn"
     },
     "support": {
-      "pre_title": "Podpora",
-      "title": "Poiščite podporo",
-      "cta": "Kontakt"
+      "pre_title": "Support",
+      "title": "Get Support",
+      "cta": "Contact"
     }
   },
   "mined_coins_section": {
-    "title": "Kovanci, ki jih kopamo",
-    "description": "Flexpool je rudarjenje z več kovanci, kar pomeni, da lahko na Flexpool kopate svoje najljubše kovance.",
+    "title": "Coins we mine",
+    "description": "Flexpool is a Multi-Coin mining pool, which means that you can mine your favorite coins on Flexpool.",
     "table_head": {
-      "name": "Ime",
-      "price": "Cena",
-      "market_cap": "Tržna kapitalizacija",
-      "algorithm": "Algoritem",
+      "name": "Name",
+      "price": "Price",
+      "market_cap": "Market Cap",
+      "algorithm": "Algorithm",
       "hashrate": "Hashrate",
-      "miners": "Rudarji"
+      "miners": "Miners"
     },
-    "item_cta": "Rudari"
+    "item_cta": "Mine"
   },
   "coin_news_item": {
     "eth": {
-      "title": "O Ethereumu",
-      "description": "Ethereum je svetovni računalnik, ustvarjen za pogon decentraliziranih aplikacij, znanih kot pametne pogodbe."
+      "title": "About Ethereum",
+      "description": "Ethereum is a worldwide computer created to power Decentralized Applications known as Smart Contracts."
     },
-    "resources": "Viri",
-    "website": "Spletna stran",
-    "whitepaper": "Bel papir",
+    "resources": "Resources",
+    "website": "Website",
+    "whitepaper": "Whitepaper",
     "calculator": {
-      "title": "Dobičkonosen kalkulator",
-      "title_tooltip": "Ocenjeni dohodek se izračuna na podlagi 24-urne povprečne težavnosti omrežja in 24-urne povprečne blokovske nagrade. Ta izračun ne vključuje zastarelih in neveljavnih delnic.",
-      "per_day": "dnevno",
-      "per_month": "mesečno",
-      "per_year": "letno",
-      "cta": "Začnite rudarit"
+      "title": "Income Calculator",
+      "title_tooltip": "The Estimated Income is calculated based on the 24-hour average network difficulty and the 24-hour average block reward. This calculation does not include Stale and Invalid shares.",
+      "per_day": "per day",
+      "per_month": "per month",
+      "per_year": "per year",
+      "cta": "Start Mining"
     },
     "featured": {
-      "title": "Predstavljene zgodbe"
+      "title": "Featured Stories"
     }
   },
   "why_section": {
-    "title": "Zakaj Flexpool",
+    "title": "Why Flexpool",
     "item_1": {
-      "title": "Svetlobna hitrost",
-      "description": "Uporabljamo specializirane visoko zmogljive strežniške grozde, ki jih poganja super hitra programska oprema, zasnovana za obdelavo več kot 100 TH / s."
+      "title": "Lightning speed",
+      "description": "We use specialized high-performance server clusters powered by superfast software designed to handle over 100 TH/s."
     },
     "item_2": {
-      "title": "Enostavno boljše",
-      "description": "Lahko pozabite na svoje slabe rudarske izkušnje. Flexpool je podprt z visokokakovostno podporo in z veseljem vam vedno pomagamo!"
+      "title": "Just Better",
+      "description": "You can forget your poor mining experience. Flexpool is backed by high-quality support, and we are always happy to help!"
     }
   },
   "get_started_section": {
-    "title": "Pripravljeni za začet?",
-    "cta": "Začnite rudarit"
+    "title": "Ready to get started?",
+    "cta": "Start Mining"
   },
   "chia": {
     "email_submission_failure": "Failed to submit email",

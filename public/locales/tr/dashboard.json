@@ -73,24 +73,24 @@
     "earnings_chart": {
       "title": "Earnings this month",
       "earnings": "Earnings",
-      "daily_income": "Günlük Gelir"
+      "daily_income": "Daily income"
     },
     "past_earnings": {
-      "title": "Geçmiş Gelirler",
-      "yesterday": "Dün",
+      "title": "Past Earnings",
+      "yesterday": "Yesterday",
       "last_week": "Last Week",
       "last_month": "Last Month"
     },
     "forecasted_earnings": {
       "title": "Forecasted Earnings",
-      "daily": "Günlük",
-      "weekly": "Haftalık",
-      "monthly": "Aylık"
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "monthly": "Monthly"
     },
     "pplns": {
-      "title": "Detaylı PPLNS İstatistikleri",
+      "title": "Advanced PPLNS Statistics",
       "avp": {
-        "title": "Ortalama Ödeme Hashrate",
+        "title": "Average Paying Hashrate",
         "tooltip": "Calculated based on current round share and the last 3 hours pool hashrate chart.",
         "current": "Current"
       },

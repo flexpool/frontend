@@ -1,18 +1,18 @@
 {
-  "head_title": "Statistika",
-  "title": "Statistika",
-  "pool_hashrate": "Bazenov hashrate",
-  "average_luck": "Povprečna sreča",
-  "average_luck_tooltip": "Povprečna sreča v zadnjih 30 dneh.",
-  "miners": "Rudarji",
-  "workers": "Delavci",
+  "head_title": "Statistics",
+  "title": "Statistics",
+  "pool_hashrate": "Pool hashrate",
+  "average_luck": "Average Luck",
+  "average_luck_tooltip": "Last 30 days average block luck.",
+  "miners": "Miners",
+  "workers": "Workers",
   "chart": {
-    "title": "Bazenov hashrate",
-    "total_hashrate": "Skupni hashrate",
-    "as": "Azijsko-pacifiški (AS)",
-    "au": "Australija (AU)",
-    "eu": "Evropa (EU)",
-    "sa": "Južna Amerika (JA)",
-    "us": "ZDA (ZDA)"
+    "title": "Pool Hashrate",
+    "total_hashrate": "Total Hashrate",
+    "as": "Asia Pacific (AS)",
+    "au": "Australia (AU)",
+    "eu": "Europe (EU)",
+    "sa": "South America (SA)",
+    "us": "United States (US)"
   }
 }

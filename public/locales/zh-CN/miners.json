@@ -4,9 +4,9 @@
   "top_miners": {
     "title": "最大矿工",
     "table_head": {
-      "miner": "矿工钱包",
+      "miner": "钱包",
       "hashrate": "算力",
-      "balance": "余额",
+      "balance": "当前余额",
       "workers": "矿机数量",
       "joined": "开户时间"
     }
