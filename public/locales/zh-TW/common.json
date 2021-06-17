@@ -69,9 +69,5 @@
     "emailUnsubscribed": {
       "title": "You've successfully unsubscribed from email notifications"
     }
-  },
-  "faq": {
-    "questionsAboutFlexpool": "关于flexpool的问题",
-    "miningBasics": "采矿基础"
   }
 }
