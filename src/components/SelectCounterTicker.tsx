@@ -29,6 +29,8 @@ export const SelectCounterTicker = () => {
       : [];
     // add some more regardless the API
     res.push('sek');
+    res.push('nzd');
+    res.push('thb');
     return res.filter(filterUnique);
   }, [coinsState.data?.countervalues]);
 
