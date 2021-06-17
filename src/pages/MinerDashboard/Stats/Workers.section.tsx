@@ -384,6 +384,11 @@ export const MinerWorkers: React.FC<{
   const d = useDispatch();
   const coinTicker = useActiveCoinTicker();
   const { t } = useTranslation('dashboard');
+  const proTips = [
+    'stats.proTips.tablesProTip',
+    'stats.proTips.payoutExportProTip',
+    'stats.proTips.blockRewardProTip',
+  ];
 
   const minerWorkersState = useReduxState('minerWorkers');
 
@@ -420,7 +425,7 @@ export const MinerWorkers: React.FC<{
         title={t('stats.table.title_active')}
       />
       <ProTip>
-        <span>{t('stats.proTips.tablesProTip')}</span>
+        <span>{t(proTips[Math.floor(Math.random() * proTips.length)])}</span>
       </ProTip>
     </div>
   );

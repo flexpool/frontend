@@ -237,7 +237,11 @@ export const StatsChart: React.FC<{
     setAverageEffectivePeriods,
     data,
   ]);
-
+  const proTips = [
+    'stats.proTips.chartsProTip',
+    'stats.proTips.apiProTip',
+    'stats.proTips.hoverHashrateProtip',
+  ];
   return (
     <>
       {!noDataAvailable ? (
@@ -253,7 +257,9 @@ export const StatsChart: React.FC<{
             <div id="shares-chart" style={{ width: '100%', height: '250px' }} />
           </ChartContainer>
           <ProTip>
-            <span>{t('stats.proTips.chartsProTip')}</span>
+            <span>
+              {t(proTips[Math.floor(Math.random() * proTips.length)])}
+            </span>
           </ProTip>
         </>
       ) : (
