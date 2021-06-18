@@ -21,6 +21,6 @@ In your dashboard, you have three hashrates shown:
 
 | Hashrate Type         | Description                                                                                                                                                               |
 | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Effective             | The hashrate the pool thinks you have based on the amount of shares the pool is recieving from you, this can vary a lot over time due to Luck.                            |
+| Effective             | The hashrate the pool thinks you have based on the amount of shares the pool is receiving from you, this can vary a lot over time due to Luck.                            |
 | Average \[Effective\] | The rolling 24 hour average of your Effective hashrate, this should be close to your Reported Hashrate                                                                    |
 | Reported              | The hashrate your mining software is reporting to the pool (this is not taken into account for calculating rewards but is shown for comparison to the Effective hashrate) |
