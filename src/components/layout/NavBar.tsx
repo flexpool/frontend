@@ -32,7 +32,6 @@ import { useAppTheme } from 'src/rdx/localSettings/localSettings.hooks';
 import { Img } from '../Img';
 import { useTranslation } from 'react-i18next';
 import { SelectLanguage } from '../SelectLanguage';
-import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 
 const Logo = styled(Img)`
   height: 29px;
@@ -224,71 +223,11 @@ const MobileNavLink = styled(Link)`
   }
 `;
 
-type NotificationProps = {
-  notificationDismissed?: string;
-};
-
-const NewVersionNotification = styled.div<NotificationProps>`
-  width: 100%;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-left: 15px;
-  padding-right: 15px;
-  background-color: var(--bg-secondary);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  ${(p) => p.notificationDismissed === 'dismissed' && `display: none;`}
-`;
-
-const NewVersionNotificationContents = styled.div`
-  width: 100%;
-  max-width: 1200px;
-  padding-left: 25px;
-  padding-right: 25px;
-  @media screen and (min-width: 1024px) {
-    display: flex;
-    justify-content: space-between;
-  }
-`;
-
-const NewVersionNotificationText = styled.div`
-  color: var(--text-secondary);
-  margin-right: 3rem;
-  display: inline;
-  @media screen and (max-width: 1024px) {
-    display: block;
-    text-align: center;
-  }
-`;
-
-const CloseText = styled.div`
-  color: var(--primary);
-  display: inline;
-  cursor: pointer;
-  @media screen and (max-width: 1024px) {
-    display: block;
-    text-align: center;
-  }
-  &:hover {
-    opacity: 0.8;
-  }
-`;
-
 export const NavBar: React.FC<NavBarType> = (props) => {
   const openState = useBoolState();
   const modalSearchOpenState = useOpenState();
   const { t } = useTranslation(['home', 'common']);
-
   const location = useLocation();
-
-  const [
-    notificationDismissed,
-    setNotificationDismissed,
-  ] = useLocalStorageState<'dismissed' | 'false'>(
-    'notification_dismissed',
-    'false'
-  );
 
   React.useEffect(() => {
     openState.handleFalse();
@@ -322,21 +261,6 @@ export const NavBar: React.FC<NavBarType> = (props) => {
       </Modal>
       <FixedMargin />
       <NavContainerOuter>
-        <NewVersionNotification notificationDismissed={notificationDismissed}>
-          <NewVersionNotificationContents>
-            <NewVersionNotificationText>
-              {t('home:top_notification.welcome')}{' '}
-              <a href="https://old.flexpool.io">old.flexpool.io</a>
-            </NewVersionNotificationText>
-            <CloseText
-              onClick={() => {
-                setNotificationDismissed('dismissed');
-              }}
-            >
-              Close
-            </CloseText>
-          </NewVersionNotificationContents>
-        </NewVersionNotification>
         <NavContainer>
           <NavSection>
             <NLink to="/" style={{ marginLeft: '-0.5rem' }}>
@@ -372,19 +296,6 @@ export const NavBar: React.FC<NavBarType> = (props) => {
       </NavContainerOuter>
 
       <ContainerMobile>
-        <NewVersionNotification notificationDismissed={notificationDismissed}>
-          <NewVersionNotificationText>
-            {t('home:top_notification.welcome')}{' '}
-            <a href="https://old.flexpool.io">old.flexpool.io</a>
-          </NewVersionNotificationText>
-          <CloseText
-            onClick={() => {
-              setNotificationDismissed('dismissed');
-            }}
-          >
-            Close
-          </CloseText>
-        </NewVersionNotification>
         <NavContainer>
           <NavLink to="/" aria-label="Home page">
             <LogoMobile
