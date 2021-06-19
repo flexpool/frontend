@@ -25,7 +25,6 @@ import {
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
-import { ProTip } from 'src/components/ProTip/ProTip';
 
 const PercentageItem = styled.span`
   color: var(--text-tertiary);
@@ -384,11 +383,6 @@ export const MinerWorkers: React.FC<{
   const d = useDispatch();
   const coinTicker = useActiveCoinTicker();
   const { t } = useTranslation('dashboard');
-  const proTips = [
-    'stats.proTips.tablesProTip',
-    'stats.proTips.payoutExportProTip',
-    'stats.proTips.blockRewardProTip',
-  ];
 
   const minerWorkersState = useReduxState('minerWorkers');
 
@@ -424,9 +418,6 @@ export const MinerWorkers: React.FC<{
         data={activeWorkersData}
         title={t('stats.table.title_active')}
       />
-      <ProTip>
-        <span>{t(proTips[Math.floor(Math.random() * proTips.length)])}</span>
-      </ProTip>
     </div>
   );
 };

@@ -241,6 +241,10 @@ export const StatsChart: React.FC<{
     'stats.proTips.chartsProTip',
     'stats.proTips.apiProTip',
     'stats.proTips.hoverHashrateProtip',
+    'stats.proTips.tablesProTip',
+    'stats.proTips.payoutExportProTip',
+    'stats.proTips.rewardsExportProTip',
+    'stats.proTips.searchProTip',
   ];
   return (
     <>

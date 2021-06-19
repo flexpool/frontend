@@ -96,16 +96,6 @@ export const MinerDashboardPageContent: React.FC<
 
   const d = useDispatch();
 
-  // globaly set active coin ticker
-  React.useEffect(() => {
-    if (
-      poolCoins.data &&
-      poolCoins.data.coins.find((item) => item.ticker === coinTicker)
-    ) {
-      d(localSettingsSet({ coin: coinTicker }));
-    }
-  }, [coinTicker, d, poolCoins.data]);
-
   const worker = useActiveSearchParamWorker();
 
   const loadHeader = React.useCallback(() => {
@@ -138,6 +128,16 @@ export const MinerDashboardPageContent: React.FC<
   const loadAll = React.useCallback(() => {
     return Promise.all([loadMinerStats(), loadHeader(), loadMinerChartStats()]);
   }, [loadMinerStats, loadHeader, loadMinerChartStats]);
+
+  // globaly set active coin ticker
+  React.useEffect(() => {
+    if (
+      poolCoins.data &&
+      poolCoins.data.coins.find((item) => item.ticker === coinTicker)
+    ) {
+      d(localSettingsSet({ coin: coinTicker }));
+    }
+  }, [coinTicker, d, poolCoins.data]);
 
   React.useEffect(() => {
     loadHeader();
