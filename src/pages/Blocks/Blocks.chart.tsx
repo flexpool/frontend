@@ -55,8 +55,11 @@ export const BlocksChart = () => {
       x.responsive.useDefault = false;
       x.responsive.rules.push(responsiveRule);
 
+      //account for local timezone offset to utc date
+      var userTimezoneOffset = new Date().getTimezoneOffset() * 60000;
       const data = blocksChartState.data.map((item) => ({
-        date: new Date(item.timestamp * 1000),
+        //needs to be end of day for chart to work properly
+        date: new Date(item.timestamp * 1000 + userTimezoneOffset + 345599999),
         difficulty: item.difficulty,
         blockCount: item.blockCount,
         rewards: item.rewards / Math.pow(10, activeCoin.decimalPlaces),
@@ -165,11 +168,13 @@ export const BlocksChart = () => {
       // At the moment of developing this feature,
       // the new API is not yet in production.
       // Can be removed after the new API version it out.
+
       if (data.length > 30) {
+        console.log(data[data.length - 1].date);
         x.events.on('ready', function () {
           dateAxis.zoomToDates(
-            data[60 - 1].date,
-            data[90 - 1].date,
+            data[data.length - 30].date,
+            data[data.length - 1].date,
             true,
             true
           );
