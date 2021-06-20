@@ -208,7 +208,7 @@
       "apiProTip": "The full-fledged Flexpool API is publicly available.",
       "searchProTip": "If you just click the search button on the homepage, you will be directed to your latest viewed address.",
       "payoutExportProTip": "You can export all your transactions as a CSV sheet in the \"Payouts\" tab.",
-      "rewardsExportProTip": "You can export all your rewards as a CSV sheet in the \"Payouts\" tab."
+      "rewardsExportProTip": "You can export all your rewards as a CSV sheet in the \"Rewards\" tab."
     }
   },
   "status_pending_tooltip": "Awating transaction confirmation",
