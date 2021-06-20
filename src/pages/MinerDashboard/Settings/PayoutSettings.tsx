@@ -73,30 +73,23 @@ export const PayoutSettings: React.FC = () => {
         Promise.all([
           d(
             minerDetailsUpdatePayoutSettings(activeCoin.ticker, address, {
-              payoutLimit: gweiToggle
-                ? Number(data.payoutLimit) *
-                  Math.pow(10, activeCoin.decimalPlaces)
-                : Number(
-                    currencyFormatter(
-                      ((Math.round(
-                        ((Number(data.maxFeePricePercent) / 100) *
-                          Math.pow(10, activeCoin.decimalPlaces) *
-                          Number(
-                            minerSettings &&
-                              minerSettings.data &&
-                              minerSettings.data.payoutLimit /
-                                Math.pow(10, activeCoin.decimalPlaces)
-                          )) /
-                          activeCoin.transactionSize /
-                          feeDetails.multiplier
-                      ) *
-                        activeCoin.transactionSize *
-                        feeDetails.multiplier) /
-                        Math.pow(10, activeCoin.decimalPlaces)) *
-                        minerHeaderStats.data!.countervaluePrice
-                    )
+              payoutLimit:
+                Number(data.payoutLimit) *
+                Math.pow(10, activeCoin.decimalPlaces),
+              maxFeePrice: gweiToggle
+                ? Number(data.maxFeePrice)
+                : Math.round(
+                    ((Number(data.maxFeePricePercent) / 100) *
+                      Math.pow(10, activeCoin.decimalPlaces) *
+                      Number(
+                        minerSettings &&
+                          minerSettings.data &&
+                          minerSettings.data.payoutLimit /
+                            Math.pow(10, activeCoin.decimalPlaces)
+                      )) /
+                      activeCoin.transactionSize /
+                      feeDetails.multiplier
                   ),
-              maxFeePrice: Number(data.maxFeePrice),
               ipAddress: data.ip,
             })
           ),
@@ -189,7 +182,7 @@ export const PayoutSettings: React.FC = () => {
                   label={t('dashboard:settings.payout.gas_limit')}
                   embelishment={
                     feeDetails?.unit.toUpperCase() ? (
-                      <GweiToggle onClick={toggleGwei}>
+                      <GweiToggle type="button" onClick={toggleGwei}>
                         {feeDetails?.unit.toUpperCase()}
                       </GweiToggle>
                     ) : undefined
@@ -229,7 +222,9 @@ export const PayoutSettings: React.FC = () => {
                   label={t('dashboard:settings.payout.gas_limit')}
                   embelishment={
                     feeDetails?.unit.toUpperCase() ? (
-                      <GweiToggle onClick={toggleGwei}>%</GweiToggle>
+                      <GweiToggle type="button" onClick={toggleGwei}>
+                        %
+                      </GweiToggle>
                     ) : undefined
                   }
                   inputMode="decimal"
