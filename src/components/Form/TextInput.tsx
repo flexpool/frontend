@@ -21,11 +21,10 @@ const SText = styled.input`
   padding: 0 1rem;
 `;
 
-const SUnit = styled.div`
+const Embelishment = styled.div`
   flex-grow: 0;
   display: flex;
   align-items: center;
-  padding: 0 1rem;
   background: var(--border-color);
   font-size: 0.875rem;
   font-family: 'Roboto mono';
@@ -47,11 +46,11 @@ export const TextInput: React.FC<
   JSX.IntrinsicElements['input'] &
     BaseFormFieldProps &
     Partial<FieldProps<any>> & {
-      unit?: React.ReactNode;
+      embelishment?: React.ReactNode;
     }
 > = (p) => {
   const {
-    unit,
+    embelishment,
     autoComplete,
     spellCheck,
     type = 'text',
@@ -78,7 +77,7 @@ export const TextInput: React.FC<
           autoComplete={autoComplete}
           spellCheck={spellCheck}
         />
-        {unit && <SUnit>{unit}</SUnit>}
+        {embelishment && <Embelishment>{embelishment}</Embelishment>}
       </Wrapper>
     </FieldWrap>
   );

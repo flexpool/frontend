@@ -22,6 +22,19 @@ import {
   useLocalizedNumberFormatter,
 } from 'src/utils/si.utils';
 import { InfoBox } from 'src/components/InfoBox';
+import styled from 'styled-components/macro';
+
+export const GweiToggle = styled.button`
+  height: 48px;
+  width: 100%;
+  padding: 0 1rem;
+  border: none;
+  background: none;
+`;
+
+export const UnitContainer = styled.div`
+  padding: 0 1rem;
+`;
 
 export const PayoutSettings: React.FC = () => {
   const activeCoinTicker = useActiveCoinTicker();
@@ -36,7 +49,7 @@ export const PayoutSettings: React.FC = () => {
   } = useRouteMatch<{ address: string; coin: string }>();
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
   const currencyFormatter = useLocalizedCurrencyFormatter();
-
+  const [gweiToggle, setGweiToggle] = React.useState(true);
   if (
     !minerSettings.data ||
     !activeCoin ||
@@ -50,15 +63,39 @@ export const PayoutSettings: React.FC = () => {
     activeCoin.lowestMinPayoutThreshold /
     Math.pow(10, activeCoin.decimalPlaces);
 
+  const toggleGwei = () => {
+    setGweiToggle(!gweiToggle);
+  };
+
   return (
     <Formik
       onSubmit={async (data, { setSubmitting }) => {
         Promise.all([
           d(
             minerDetailsUpdatePayoutSettings(activeCoin.ticker, address, {
-              payoutLimit:
-                Number(data.payoutLimit) *
-                Math.pow(10, activeCoin.decimalPlaces),
+              payoutLimit: gweiToggle
+                ? Number(data.payoutLimit) *
+                  Math.pow(10, activeCoin.decimalPlaces)
+                : Number(
+                    currencyFormatter(
+                      ((Math.round(
+                        ((Number(data.maxFeePricePercent) / 100) *
+                          Math.pow(10, activeCoin.decimalPlaces) *
+                          Number(
+                            minerSettings &&
+                              minerSettings.data &&
+                              minerSettings.data.payoutLimit /
+                                Math.pow(10, activeCoin.decimalPlaces)
+                          )) /
+                          activeCoin.transactionSize /
+                          feeDetails.multiplier
+                      ) *
+                        activeCoin.transactionSize *
+                        feeDetails.multiplier) /
+                        Math.pow(10, activeCoin.decimalPlaces)) *
+                        minerHeaderStats.data!.countervaluePrice
+                    )
+                  ),
               maxFeePrice: Number(data.maxFeePrice),
               ipAddress: data.ip,
             })
@@ -70,6 +107,18 @@ export const PayoutSettings: React.FC = () => {
       }}
       initialValues={{
         maxFeePrice: `${minerSettings.data.maxFeePrice}`,
+        maxFeePricePercent: numberFormatter(
+          ((Number(minerSettings.data.maxFeePrice) *
+            activeCoin.transactionSize *
+            feeDetails.multiplier) /
+            Math.pow(10, activeCoin.decimalPlaces) /
+            Number(
+              minerSettings.data.payoutLimit /
+                Math.pow(10, activeCoin.decimalPlaces)
+            )) *
+            100,
+          { style: 'decimal', maximumFractionDigits: 6 }
+        ),
         ip: '',
         payoutLimit: `${
           minerSettings.data.payoutLimit /
@@ -79,6 +128,10 @@ export const PayoutSettings: React.FC = () => {
       validateOnChange={false}
       validationSchema={yup.object().shape({
         maxFeePrice: yup
+          .number()
+          .nullable(true)
+          .min(0, t('common:errors.higher_than', { value: 0 })),
+        maxFeePricePercent: yup
           .number()
           .nullable(true)
           .min(0, t('common:errors.higher_than', { value: 0 })),
@@ -102,11 +155,9 @@ export const PayoutSettings: React.FC = () => {
               <InfoBox variant="warning">
                 <h3>Important note</h3>
                 <p>
-                  {(
-                    t('dashboard:settings.payout_warning', {
-                      returnObjects: true,
-                    }) as string[]
-                  ).map((item) => (
+                  {(t('dashboard:settings.payout_warning', {
+                    returnObjects: true,
+                  }) as string[]).map((item) => (
                     <p key={item}>{item}</p>
                   ))}
                 </p>
@@ -117,7 +168,13 @@ export const PayoutSettings: React.FC = () => {
                 label={t('dashboard:settings.payout.limit', {
                   min: minPayoutLimit,
                 })}
-                unit={activeCoinTicker.toUpperCase()}
+                embelishment={
+                  activeCoinTicker.toUpperCase() ? (
+                    <UnitContainer>
+                      {activeCoinTicker.toUpperCase()}
+                    </UnitContainer>
+                  ) : undefined
+                }
                 inputMode="decimal"
                 desc={t('dashboard:settings.payout.limit_desc', {
                   value: `${
@@ -126,39 +183,101 @@ export const PayoutSettings: React.FC = () => {
                 })}
               />
               <p></p>
-              <TextField
-                name="maxFeePrice"
-                label={t('dashboard:settings.payout.gas_limit')}
-                unit={feeDetails?.unit.toUpperCase()}
-                inputMode="decimal"
-                desc={
-                  <>
-                    <p>
-                      {Number(values.maxFeePrice) > 0
-                        ? t('dashboard:settings.payout.gas_limit_desc', {
-                            value: Number(values.maxFeePrice),
-                            valueUnit: feeDetails?.unit,
-                            valueTicker: currencyFormatter(
-                              ((Number(values.maxFeePrice) *
-                                activeCoin.transactionSize *
-                                feeDetails.multiplier) /
-                                Math.pow(10, activeCoin.decimalPlaces)) *
-                                minerHeaderStats.data!.countervaluePrice
-                            ),
-                            percent: numberFormatter(
-                              (Number(values.maxFeePrice) *
-                                activeCoin.transactionSize *
-                                feeDetails.multiplier) /
-                                Math.pow(10, activeCoin.decimalPlaces) /
-                                Number(values.payoutLimit),
-                              { style: 'percent', maximumFractionDigits: 3 }
-                            ),
-                          })
-                        : t('dashboard:settings.payout.gas_limit_zero')}
-                    </p>
-                  </>
-                }
-              />
+              {gweiToggle ? (
+                <TextField
+                  name="maxFeePrice"
+                  label={t('dashboard:settings.payout.gas_limit')}
+                  embelishment={
+                    feeDetails?.unit.toUpperCase() ? (
+                      <GweiToggle onClick={toggleGwei}>
+                        {feeDetails?.unit.toUpperCase()}
+                      </GweiToggle>
+                    ) : undefined
+                  }
+                  inputMode="decimal"
+                  desc={
+                    <>
+                      <p>
+                        {Number(values.maxFeePrice) > 0
+                          ? t('dashboard:settings.payout.gas_limit_desc', {
+                              value: Number(values.maxFeePrice),
+                              valueUnit: feeDetails?.unit,
+                              valueTicker: currencyFormatter(
+                                ((Number(values.maxFeePrice) *
+                                  activeCoin.transactionSize *
+                                  feeDetails.multiplier) /
+                                  Math.pow(10, activeCoin.decimalPlaces)) *
+                                  minerHeaderStats.data!.countervaluePrice
+                              ),
+                              percent: numberFormatter(
+                                (Number(values.maxFeePrice) *
+                                  activeCoin.transactionSize *
+                                  feeDetails.multiplier) /
+                                  Math.pow(10, activeCoin.decimalPlaces) /
+                                  Number(values.payoutLimit),
+                                { style: 'percent', maximumFractionDigits: 3 }
+                              ),
+                            })
+                          : t('dashboard:settings.payout.gas_limit_zero')}
+                      </p>
+                    </>
+                  }
+                />
+              ) : (
+                <TextField
+                  name="maxFeePricePercent"
+                  label={t('dashboard:settings.payout.gas_limit')}
+                  embelishment={
+                    feeDetails?.unit.toUpperCase() ? (
+                      <GweiToggle onClick={toggleGwei}>%</GweiToggle>
+                    ) : undefined
+                  }
+                  inputMode="decimal"
+                  desc={
+                    <>
+                      <p>
+                        {Number(values.maxFeePricePercent) > 0
+                          ? t('dashboard:settings.payout.gas_limit_desc', {
+                              value: Math.round(
+                                ((Number(values.maxFeePricePercent) / 100) *
+                                  Math.pow(10, activeCoin.decimalPlaces) *
+                                  Number(
+                                    minerSettings &&
+                                      minerSettings.data &&
+                                      minerSettings.data.payoutLimit /
+                                        Math.pow(10, activeCoin.decimalPlaces)
+                                  )) /
+                                  activeCoin.transactionSize /
+                                  feeDetails.multiplier
+                              ),
+                              valueUnit: feeDetails?.unit,
+                              valueTicker: currencyFormatter(
+                                ((Math.round(
+                                  ((Number(values.maxFeePricePercent) / 100) *
+                                    Math.pow(10, activeCoin.decimalPlaces) *
+                                    Number(
+                                      minerSettings &&
+                                        minerSettings.data &&
+                                        minerSettings.data.payoutLimit /
+                                          Math.pow(10, activeCoin.decimalPlaces)
+                                    )) /
+                                    activeCoin.transactionSize /
+                                    feeDetails.multiplier
+                                ) *
+                                  activeCoin.transactionSize *
+                                  feeDetails.multiplier) /
+                                  Math.pow(10, activeCoin.decimalPlaces)) *
+                                  minerHeaderStats.data!.countervaluePrice
+                              ),
+                              percent: `${values.maxFeePricePercent}%`,
+                            })
+                          : t('dashboard:settings.payout.gas_limit_zero')}
+                      </p>
+                    </>
+                  }
+                />
+              )}
+
               <Spacer />
               <TextField
                 name="ip"
