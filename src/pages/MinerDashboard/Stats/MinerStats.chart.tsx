@@ -25,6 +25,7 @@ import { average } from 'src/utils/number.utils';
 import { AverageEffectivePeriods } from './minerStats.types';
 import { useTranslation } from 'react-i18next';
 import { useReduxState } from 'src/rdx/useReduxState';
+import { ProTip } from 'src/components/ProTip/ProTip';
 
 export const StatsChart: React.FC<{
   coinTicker: string;
@@ -37,26 +38,24 @@ export const StatsChart: React.FC<{
   const minerStatChartDataPointsState = useReduxState('minerStatsChart');
   const data = minerStatChartDataPointsState.data;
 
-  const [sharesData, setSharesData] =
-    React.useState<
-      | {
-          date: Date;
-          validShares: number;
-          staleShares: number;
-          invalidShares: number;
-        }[]
-      | null
-    >();
-  const [hashrateData, setHashrateData] =
-    React.useState<
-      | {
-          date: Date;
-          effectiveHashrate: number;
-          averageEffectiveHashrate: number;
-          reportedHashrate: number;
-        }[]
-      | null
-    >();
+  const [sharesData, setSharesData] = React.useState<
+    | {
+        date: Date;
+        validShares: number;
+        staleShares: number;
+        invalidShares: number;
+      }[]
+    | null
+  >();
+  const [hashrateData, setHashrateData] = React.useState<
+    | {
+        date: Date;
+        effectiveHashrate: number;
+        averageEffectiveHashrate: number;
+        reportedHashrate: number;
+      }[]
+    | null
+  >();
 
   const worker = useActiveSearchParamWorker();
   const appTheme = useAppTheme();
@@ -238,7 +237,15 @@ export const StatsChart: React.FC<{
     setAverageEffectivePeriods,
     data,
   ]);
-
+  const proTips = [
+    'stats.proTips.chartsProTip',
+    'stats.proTips.apiProTip',
+    'stats.proTips.hoverHashrateProtip',
+    'stats.proTips.tablesProTip',
+    'stats.proTips.payoutExportProTip',
+    'stats.proTips.rewardsExportProTip',
+    'stats.proTips.searchProTip',
+  ];
   return (
     <>
       {!noDataAvailable ? (
@@ -253,6 +260,11 @@ export const StatsChart: React.FC<{
           <ChartContainer title={t('stats.shares_chart.title')}>
             <div id="shares-chart" style={{ width: '100%', height: '250px' }} />
           </ChartContainer>
+          <ProTip>
+            <span>
+              {t(proTips[Math.floor(Math.random() * proTips.length)])}
+            </span>
+          </ProTip>
         </>
       ) : (
         <SectionNotAvailable
