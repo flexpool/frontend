@@ -46,6 +46,19 @@ export const InactiveToggleText = styled.span`
   color: var(--text-tertiary);
 `;
 
+export const PercentageDisplaySpan = styled.span<{ color?: string }>`
+  ${(p) =>
+    p.color === 'yellow' &&
+    `
+          color: var(--warning);
+          `}
+  ${(p) =>
+    p.color === 'red' &&
+    `
+      color: var(--danger);
+      `}
+`;
+
 export const PayoutSettings: React.FC = () => {
   const activeCoinTicker = useActiveCoinTicker();
   const activeCoin = useActiveCoin();
@@ -195,8 +208,8 @@ export const PayoutSettings: React.FC = () => {
                       <GweiToggle type="button" onClick={toggleGwei}>
                         <ActiveToggleText>
                           {feeDetails?.unit.toUpperCase()}
-                        </ActiveToggleText>{' '}
-                        &nbsp;/&nbsp;<InactiveToggleText>%</InactiveToggleText>
+                        </ActiveToggleText>
+                        <InactiveToggleText>&nbsp;/&nbsp;%</InactiveToggleText>
                       </GweiToggle>
                     ) : undefined
                   }
@@ -204,8 +217,9 @@ export const PayoutSettings: React.FC = () => {
                   desc={
                     <>
                       <p>
-                        {Number(values.maxFeePrice) > 0
-                          ? t('dashboard:settings.payout.gas_limit_desc', {
+                        {Number(values.maxFeePrice) > 0 ? (
+                          <>
+                            {t('dashboard:settings.payout.gas_limit_desc_p1', {
                               value: Number(values.maxFeePrice),
                               valueUnit: feeDetails?.unit,
                               valueTicker: currencyFormatter(
@@ -215,16 +229,61 @@ export const PayoutSettings: React.FC = () => {
                                   Math.pow(10, activeCoin.decimalPlaces)) *
                                   minerHeaderStats.data!.countervaluePrice
                               ),
-                              percent: numberFormatter(
+                            })}
+                            <PercentageDisplaySpan
+                              color={
+                                Number(
+                                  numberFormatter(
+                                    ((Number(values.maxFeePrice) *
+                                      activeCoin.transactionSize *
+                                      feeDetails.multiplier) /
+                                      Math.pow(10, activeCoin.decimalPlaces) /
+                                      Number(values.payoutLimit)) *
+                                      100,
+                                    {
+                                      style: 'decimal',
+                                      maximumFractionDigits: 3,
+                                    }
+                                  )
+                                ) >= 10
+                                  ? 'red'
+                                  : Number(
+                                      numberFormatter(
+                                        ((Number(values.maxFeePrice) *
+                                          activeCoin.transactionSize *
+                                          feeDetails.multiplier) /
+                                          Math.pow(
+                                            10,
+                                            activeCoin.decimalPlaces
+                                          ) /
+                                          Number(values.payoutLimit)) *
+                                          100,
+                                        {
+                                          style: 'decimal',
+                                          maximumFractionDigits: 3,
+                                        }
+                                      )
+                                    ) >= 5
+                                  ? 'yellow'
+                                  : ''
+                              }
+                            >
+                              &nbsp;
+                              {numberFormatter(
                                 (Number(values.maxFeePrice) *
                                   activeCoin.transactionSize *
                                   feeDetails.multiplier) /
                                   Math.pow(10, activeCoin.decimalPlaces) /
                                   Number(values.payoutLimit),
                                 { style: 'percent', maximumFractionDigits: 3 }
-                              ),
-                            })
-                          : t('dashboard:settings.payout.gas_limit_zero')}
+                              )}
+                              %&nbsp;
+                            </PercentageDisplaySpan>
+                            {t('dashboard:settings.payout.gas_limit_desc_p2')}
+                          </>
+                        ) : (
+                          t('dashboard:settings.payout.gas_limit_zero')
+                        )}
                       </p>
                     </>
                   }
@@ -237,9 +296,9 @@ export const PayoutSettings: React.FC = () => {
                     feeDetails?.unit.toUpperCase() ? (
                       <GweiToggle type="button" onClick={toggleGwei}>
                         <InactiveToggleText>
-                          {feeDetails?.unit.toUpperCase()}
-                        </InactiveToggleText>{' '}
-                        &nbsp;/&nbsp;<ActiveToggleText>%</ActiveToggleText>
+                          {feeDetails?.unit.toUpperCase()}&nbsp;/&nbsp;
+                        </InactiveToggleText>
+                        <ActiveToggleText>%</ActiveToggleText>
                       </GweiToggle>
                     ) : undefined
                   }
@@ -247,8 +306,9 @@ export const PayoutSettings: React.FC = () => {
                   desc={
                     <>
                       <p>
-                        {Number(values.maxFeePricePercent) > 0
-                          ? t('dashboard:settings.payout.gas_limit_desc', {
+                        {Number(values.maxFeePricePercent) > 0 ? (
+                          <>
+                            {t('dashboard:settings.payout.gas_limit_desc_p1', {
                               value: Math.round(
                                 ((Number(values.maxFeePricePercent) / 100) *
                                   Math.pow(10, activeCoin.decimalPlaces) *
@@ -280,9 +340,24 @@ export const PayoutSettings: React.FC = () => {
                                   Math.pow(10, activeCoin.decimalPlaces)) *
                                   minerHeaderStats.data!.countervaluePrice
                               ),
-                              percent: `${values.maxFeePricePercent}%`,
-                            })
-                          : t('dashboard:settings.payout.gas_limit_zero')}
+                            })}
+
+                            <PercentageDisplaySpan
+                              color={
+                                Number(values.maxFeePricePercent) >= 10
+                                  ? 'red'
+                                  : Number(values.maxFeePricePercent) >= 5
+                                  ? 'yellow'
+                                  : ''
+                              }
+                            >
+                              &nbsp;{values.maxFeePricePercent}%&nbsp;
+                            </PercentageDisplaySpan>
+                            {t('dashboard:settings.payout.gas_limit_desc_p2')}
+                          </>
+                        ) : (
+                          t('dashboard:settings.payout.gas_limit_zero')
+                        )}
                       </p>
                     </>
                   }
