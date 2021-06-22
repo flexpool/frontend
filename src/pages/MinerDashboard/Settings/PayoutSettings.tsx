@@ -30,10 +30,20 @@ export const GweiToggle = styled.button`
   padding: 0 1rem;
   border: none;
   background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const UnitContainer = styled.div`
   padding: 0 1rem;
+`;
+
+export const ActiveToggleText = styled.span`
+  color: var(--text-primary);
+`;
+export const InactiveToggleText = styled.span`
+  color: var(--text-tertiary);
 `;
 
 export const PayoutSettings: React.FC = () => {
@@ -183,7 +193,10 @@ export const PayoutSettings: React.FC = () => {
                   embelishment={
                     feeDetails?.unit.toUpperCase() ? (
                       <GweiToggle type="button" onClick={toggleGwei}>
-                        {feeDetails?.unit.toUpperCase()}
+                        <ActiveToggleText>
+                          {feeDetails?.unit.toUpperCase()}
+                        </ActiveToggleText>{' '}
+                        &nbsp;/&nbsp;<InactiveToggleText>%</InactiveToggleText>
                       </GweiToggle>
                     ) : undefined
                   }
@@ -223,7 +236,10 @@ export const PayoutSettings: React.FC = () => {
                   embelishment={
                     feeDetails?.unit.toUpperCase() ? (
                       <GweiToggle type="button" onClick={toggleGwei}>
-                        %
+                        <InactiveToggleText>
+                          {feeDetails?.unit.toUpperCase()}
+                        </InactiveToggleText>{' '}
+                        &nbsp;/&nbsp;<ActiveToggleText>%</ActiveToggleText>
                       </GweiToggle>
                     ) : undefined
                   }
