@@ -37,26 +37,24 @@ export const StatsChart: React.FC<{
   const minerStatChartDataPointsState = useReduxState('minerStatsChart');
   const data = minerStatChartDataPointsState.data;
 
-  const [sharesData, setSharesData] =
-    React.useState<
-      | {
-          date: Date;
-          validShares: number;
-          staleShares: number;
-          invalidShares: number;
-        }[]
-      | null
-    >();
-  const [hashrateData, setHashrateData] =
-    React.useState<
-      | {
-          date: Date;
-          effectiveHashrate: number;
-          averageEffectiveHashrate: number;
-          reportedHashrate: number;
-        }[]
-      | null
-    >();
+  const [sharesData, setSharesData] = React.useState<
+    | {
+        date: Date;
+        validShares: number;
+        staleShares: number;
+        invalidShares: number;
+      }[]
+    | null
+  >();
+  const [hashrateData, setHashrateData] = React.useState<
+    | {
+        date: Date;
+        effectiveHashrate: number;
+        averageEffectiveHashrate: number;
+        reportedHashrate: number;
+      }[]
+    | null
+  >();
 
   const worker = useActiveSearchParamWorker();
   const appTheme = useAppTheme();
@@ -259,10 +257,8 @@ export const StatsChart: React.FC<{
           imageURL={
             'https://static.flexpool.io/assets/website-illustrations/stats.svg'
           }
-          title={'Not enough data'}
-          description={
-            "We don't have enough data to show charts. If your workers are already mining, please allow up to 10 minutes for the data to be processed."
-          }
+          title={t('stats.not_enough_data')}
+          description={t('stats.not_enough_data_message')}
         />
       )}
     </>
