@@ -49,6 +49,6 @@
     "difficulty": "Dificuldade"
   },
   "waiting_confirmation_tooltip": "Aguardando confirmação",
-  "orphan_tooltip": "Blocos Órfãos são os blocos não incluídos na cadeia original. Normalmente eles aparecem sob raras circunstâncias, como a reorganização de dois blocos antes que os mineiros sejam atualizados.",
-  "uncle_tooltip": "Os blocos Uncle são os blocos que têm o mesmo hash e número. Eles são causados pela alta latência entre os bancos de mineração. Normalmente, elas aparecem quando duas pools de mineração mineram dois blocos ao mesmo tempo, ambas tendo o mesmo número de bloco."
+  "orphan_tooltip": "Blocos Órfãos são os blocos não incluídos na cadeia original. Normalmente eles aparecem sob raras circunstâncias, como a reorganização de dois blocos antes dos mineradores receberem novos trabalhos.",
+  "uncle_tooltip": "Os blocos Uncle são os blocos que têm o mesmo hash e número de origem. Eles são causados pela alta latência entre as pools de mineração. Normalmente, eles aparecem quando duas pools de mineração mineram dois blocos ao mesmo tempo, ambas tendo o mesmo número de bloco."
 }

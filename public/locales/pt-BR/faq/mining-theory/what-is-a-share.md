@@ -1,6 +1,6 @@
 ---
-title: What is a Share?
+title: O que é uma Share?
 level: iniciante
 ---
 
-Share is a part of the block the pool is working on. Ao hashing na pool, sua solução/mineração de quebra-cabeças da rig envia para a pool. Você está sendo pago por esses.
+Share é uma parte do bloco em que a pool está trabalhando. Quando hasheando em uma pool, sua rig resolve esses quebra-cabeças, e envia para a pool. Você está sendo pago por esses.

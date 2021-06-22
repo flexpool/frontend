@@ -2,12 +2,14 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { Content } from 'src/components/layout/Content';
 import styled from 'styled-components/macro';
-import FAQIndex from '../../docs/faq/index.json';
 import { Page } from 'src/components/layout/Page';
 import { useOpenState } from 'src/hooks/useOpenState';
 import { Helmet } from 'react-helmet-async';
 import { CopyButton } from 'src/components/CopyButton';
 import { FaLink } from 'react-icons/fa';
+import { useAsyncState } from 'src/hooks/useAsyncState';
+import { FaqDocs } from 'src/docs/docs.utils';
+import { useTranslation } from 'react-i18next';
 
 type FaqDataSection = {
   name: string;
@@ -74,7 +76,6 @@ const FaqQuestion: React.FC<{ data: FaqDataSection['contents'][0] }> = ({
   },
 }) => {
   const location = useLocation();
-
   const openState = useOpenState(location.hash.replace('#', '') === key);
 
   return (
@@ -101,10 +102,11 @@ const FaqQuestion: React.FC<{ data: FaqDataSection['contents'][0] }> = ({
 };
 
 const FaqSection: React.FC<FaqDataSection> = ({ name, contents }) => {
+  const { t } = useTranslation('common');
   return (
     <>
       <FSection>
-        <h2>{name}</h2>
+        <h2>{t(name)}</h2>
         {contents.map((item) => (
           <FaqQuestion key={item.key} data={item} />
         ))}
@@ -143,21 +145,20 @@ const FaqContent = styled.div`
 `;
 
 export const FaqPage = () => {
-  const faqSections = FAQIndex.map((section) => ({
-    name: section.sectionName,
-    contents: section.contents.map((item) => ({
-      name: item,
-      /**
-       * "questions-about-flexpool/how-to-join.md"
-       * => "how-to-join"
-       */
-      key: item.split('/')[1].replace('.md', ''),
-      md: require(`src/docs/faq/${item}`) as {
-        attributes: { title: string };
-        react: React.FC;
-      },
-    })),
-  }));
+  const asyncState = useAsyncState<FaqDocs>();
+  const { i18n } = useTranslation();
+
+  React.useEffect(() => {
+    asyncState.start(
+      import(`src/docs/@faq/${i18n.language}`)
+        .then((r) => {
+          return r.default;
+        })
+        .catch(() => import(`src/docs/@faq/en-US`).then((r) => r.default))
+    );
+    // eslint-disable-next-line
+  }, [i18n.language]);
+
   return (
     <Page>
       <Helmet>
@@ -165,7 +166,7 @@ export const FaqPage = () => {
       </Helmet>
       <Content paddingLg>
         <FaqContent>
-          {faqSections.map((item) => (
+          {(asyncState.data || []).map((item) => (
             <FaqSection key={item.name} {...item} />
           ))}
         </FaqContent>

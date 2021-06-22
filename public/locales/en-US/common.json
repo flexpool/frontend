@@ -1,4 +1,5 @@
 {
+  "proTip": "Pro Tip",
   "searchbar": {
     "placeholder": "Search by your mining address"
   },
@@ -69,5 +70,10 @@
     "emailUnsubscribed": {
       "title": "You've successfully unsubscribed from email notifications"
     }
-  }
+  },
+  "faq": {
+    "questionsAboutFlexpool": "Questions About Flexpool",
+    "miningBasics": "Mining Basics"
+  },
+  "noDataAvailable": "No data available"
 }
