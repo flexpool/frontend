@@ -219,7 +219,7 @@ export const PayoutSettings: React.FC = () => {
                       <p>
                         {Number(values.maxFeePrice) > 0 ? (
                           <>
-                            {t('dashboard:settings.payout.gas_limit_desc_p1', {
+                            {t('dashboard:settings.payout.gas_limit_desc', {
                               value: Number(values.maxFeePrice),
                               valueUnit: feeDetails?.unit,
                               valueTicker: currencyFormatter(
@@ -229,7 +229,22 @@ export const PayoutSettings: React.FC = () => {
                                   Math.pow(10, activeCoin.decimalPlaces)) *
                                   minerHeaderStats.data!.countervaluePrice
                               ),
-                            })}
+                            }).substring(
+                              0,
+                              Number(
+                                t('dashboard:settings.payout.gas_limit_desc', {
+                                  value: Number(values.maxFeePrice),
+                                  valueUnit: feeDetails?.unit,
+                                  valueTicker: currencyFormatter(
+                                    ((Number(values.maxFeePrice) *
+                                      activeCoin.transactionSize *
+                                      feeDetails.multiplier) /
+                                      Math.pow(10, activeCoin.decimalPlaces)) *
+                                      minerHeaderStats.data!.countervaluePrice
+                                  ),
+                                }).indexOf('{delimiter}')
+                              )
+                            )}
                             <PercentageDisplaySpan
                               color={
                                 Number(
@@ -268,7 +283,6 @@ export const PayoutSettings: React.FC = () => {
                                   : ''
                               }
                             >
-                              &nbsp;
                               {numberFormatter(
                                 (Number(values.maxFeePrice) *
                                   activeCoin.transactionSize *
@@ -277,9 +291,32 @@ export const PayoutSettings: React.FC = () => {
                                   Number(values.payoutLimit),
                                 { style: 'percent', maximumFractionDigits: 3 }
                               )}
-                              &nbsp;
                             </PercentageDisplaySpan>
-                            {t('dashboard:settings.payout.gas_limit_desc_p2')}
+                            {t('dashboard:settings.payout.gas_limit_desc', {
+                              value: Number(values.maxFeePrice),
+                              valueUnit: feeDetails?.unit,
+                              valueTicker: currencyFormatter(
+                                ((Number(values.maxFeePrice) *
+                                  activeCoin.transactionSize *
+                                  feeDetails.multiplier) /
+                                  Math.pow(10, activeCoin.decimalPlaces)) *
+                                  minerHeaderStats.data!.countervaluePrice
+                              ),
+                            }).substring(
+                              Number(
+                                t('dashboard:settings.payout.gas_limit_desc', {
+                                  value: Number(values.maxFeePrice),
+                                  valueUnit: feeDetails?.unit,
+                                  valueTicker: currencyFormatter(
+                                    ((Number(values.maxFeePrice) *
+                                      activeCoin.transactionSize *
+                                      feeDetails.multiplier) /
+                                      Math.pow(10, activeCoin.decimalPlaces)) *
+                                      minerHeaderStats.data!.countervaluePrice
+                                  ),
+                                }).indexOf('{delimiter}') + 11
+                              )
+                            )}
                           </>
                         ) : (
                           t('dashboard:settings.payout.gas_limit_zero')
@@ -308,7 +345,7 @@ export const PayoutSettings: React.FC = () => {
                       <p>
                         {Number(values.maxFeePricePercent) > 0 ? (
                           <>
-                            {t('dashboard:settings.payout.gas_limit_desc_p1', {
+                            {t('dashboard:settings.payout.gas_limit_desc', {
                               value: Math.round(
                                 ((Number(values.maxFeePricePercent) / 100) *
                                   Math.pow(10, activeCoin.decimalPlaces) *
@@ -340,7 +377,22 @@ export const PayoutSettings: React.FC = () => {
                                   Math.pow(10, activeCoin.decimalPlaces)) *
                                   minerHeaderStats.data!.countervaluePrice
                               ),
-                            })}
+                            }).substring(
+                              0,
+                              Number(
+                                t('dashboard:settings.payout.gas_limit_desc', {
+                                  value: Number(values.maxFeePrice),
+                                  valueUnit: feeDetails?.unit,
+                                  valueTicker: currencyFormatter(
+                                    ((Number(values.maxFeePrice) *
+                                      activeCoin.transactionSize *
+                                      feeDetails.multiplier) /
+                                      Math.pow(10, activeCoin.decimalPlaces)) *
+                                      minerHeaderStats.data!.countervaluePrice
+                                  ),
+                                }).indexOf('{delimiter}')
+                              )
+                            )}
 
                             <PercentageDisplaySpan
                               color={
@@ -351,9 +403,55 @@ export const PayoutSettings: React.FC = () => {
                                   : ''
                               }
                             >
-                              &nbsp;{values.maxFeePricePercent}%&nbsp;
+                              {values.maxFeePricePercent}%
                             </PercentageDisplaySpan>
-                            {t('dashboard:settings.payout.gas_limit_desc_p2')}
+                            {t('dashboard:settings.payout.gas_limit_desc', {
+                              value: Math.round(
+                                ((Number(values.maxFeePricePercent) / 100) *
+                                  Math.pow(10, activeCoin.decimalPlaces) *
+                                  Number(
+                                    minerSettings &&
+                                      minerSettings.data &&
+                                      minerSettings.data.payoutLimit /
+                                        Math.pow(10, activeCoin.decimalPlaces)
+                                  )) /
+                                  activeCoin.transactionSize /
+                                  feeDetails.multiplier
+                              ),
+                              valueUnit: feeDetails?.unit,
+                              valueTicker: currencyFormatter(
+                                ((Math.round(
+                                  ((Number(values.maxFeePricePercent) / 100) *
+                                    Math.pow(10, activeCoin.decimalPlaces) *
+                                    Number(
+                                      minerSettings &&
+                                        minerSettings.data &&
+                                        minerSettings.data.payoutLimit /
+                                          Math.pow(10, activeCoin.decimalPlaces)
+                                    )) /
+                                    activeCoin.transactionSize /
+                                    feeDetails.multiplier
+                                ) *
+                                  activeCoin.transactionSize *
+                                  feeDetails.multiplier) /
+                                  Math.pow(10, activeCoin.decimalPlaces)) *
+                                  minerHeaderStats.data!.countervaluePrice
+                              ),
+                            }).substring(
+                              Number(
+                                t('dashboard:settings.payout.gas_limit_desc', {
+                                  value: Number(values.maxFeePrice),
+                                  valueUnit: feeDetails?.unit,
+                                  valueTicker: currencyFormatter(
+                                    ((Number(values.maxFeePrice) *
+                                      activeCoin.transactionSize *
+                                      feeDetails.multiplier) /
+                                      Math.pow(10, activeCoin.decimalPlaces)) *
+                                      minerHeaderStats.data!.countervaluePrice
+                                  ),
+                                }).indexOf('{delimiter}') + 11
+                              )
+                            )}
                           </>
                         ) : (
                           t('dashboard:settings.payout.gas_limit_zero')
