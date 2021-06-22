@@ -108,7 +108,7 @@
     "step_one": {
       "title": "Open your hashrate marketplace dashboard",
       "description": [
-        "Once you've registered on NiceHash and activated the Hashrate Marketplace account, you can head to your rental dashboard and choose the {algorithm} mining algorithm.",
+        "Once you've registered on NiceHash and activated the Hashrate Marketplace account, you can head to your rental dashboard and choose the {{algorithm}} mining algorithm.",
         "After that, you would be able to see this window, where you should click \"Add new pool...\""
       ]
     },

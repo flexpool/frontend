@@ -158,6 +158,8 @@
     }
   },
   "stats": {
+    "not_enough_data": "Not enough data",
+    "not_enough_data_message": "We don't have enough data to show charts. If your workers are already mining, please allow up to 10 minutes for the data to be processed.",
     "active_worker": {
       "title": "Worker",
       "reset": "Reset"
@@ -211,7 +213,7 @@
       "rewardsExportProTip": "You can export all your rewards as a CSV sheet in the \"Rewards\" tab."
     }
   },
-  "status_pending_tooltip": "Awating transaction confirmation",
+  "status_pending_tooltip": "Awaiting transaction confirmation",
   "confirmation_duration_tooltip": "Confirmed in",
   "confirmed_at_tooltip": "Confirmed at"
 }

@@ -74,5 +74,6 @@
   "faq": {
     "questionsAboutFlexpool": "Questions About Flexpool",
     "miningBasics": "Mining Basics"
-  }
+  },
+  "noDataAvailable": "No data available"
 }

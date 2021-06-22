@@ -3,6 +3,7 @@ import { Card } from '../layout/Card';
 import { LoaderOverlayWithin } from '../Loader/LoaderOverlayWithin';
 import { OverlayWithin, OverlayWithinContent } from '../OverlayWithin';
 import { ChartTitle } from '../Typo/ChartTitle';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components/macro';
 import {
   AxisRendererY,
@@ -39,6 +40,7 @@ export const ChartContainer: React.FC<{
     error?: any;
   };
 }> = ({ children, title, isLoading, dataState }) => {
+  const { t } = useTranslation('common');
   return (
     <ChartCard>
       {dataState &&
@@ -46,7 +48,7 @@ export const ChartContainer: React.FC<{
         !dataState.isLoading && (
           <OverlayWithin>
             <OverlayWithinContent>
-              <h2>No data available</h2>
+              <h2>{t('noDataAvailable')}</h2>
               <EmptyImg src="/illustrations/stats.svg" alt="Empty chart" />
             </OverlayWithinContent>
           </OverlayWithin>
