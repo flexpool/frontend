@@ -277,7 +277,7 @@ export const PayoutSettings: React.FC = () => {
                                   Number(values.payoutLimit),
                                 { style: 'percent', maximumFractionDigits: 3 }
                               )}
-                              %&nbsp;
+                              &nbsp;
                             </PercentageDisplaySpan>
                             {t('dashboard:settings.payout.gas_limit_desc_p2')}
                           </>
