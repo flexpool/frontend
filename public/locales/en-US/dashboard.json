@@ -76,7 +76,7 @@
       "title": "Earnings this month",
       "earnings": "Earnings",
       "daily_income": "Daily income",
-      "download_csv": "Download CSV"
+      "download_csv": "Export Rewards as CSV"
     },
     "past_earnings": {
       "title": "Past Earnings",
