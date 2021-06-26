@@ -59,7 +59,7 @@ export const BlocksChart = () => {
       var userTimezoneOffset = new Date().getTimezoneOffset() * 60000;
       const data = blocksChartState.data.map((item) => ({
         //needs to be end of day for chart to work properly
-        date: new Date(item.timestamp * 1000 + userTimezoneOffset + 345599999),
+        date: new Date(item.timestamp * 1000 + userTimezoneOffset + 86399999),
         difficulty: item.difficulty,
         blockCount: item.blockCount,
         rewards: item.rewards / Math.pow(10, activeCoin.decimalPlaces),
