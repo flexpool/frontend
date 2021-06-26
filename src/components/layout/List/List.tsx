@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { Skeleton } from '../Skeleton';
 import { HorizontalScrollWrapepr, ListWrapper, Table } from './components';
 import { ListPagination } from './ListPagination';
+import { LoaderOverlayWithin } from 'src/components/Loader/LoaderOverlayWithin';
 
 export interface DynamicListColumn<D extends {}, CP extends {} = {}> {
   title?: React.ReactNode;
@@ -179,6 +180,7 @@ export const DynamicList = <D extends {}, CP extends {}>(
       <HorizontalScrollWrapepr>
         <Table.Container>
           {headEl}
+          {isLoading && <LoaderOverlayWithin></LoaderOverlayWithin>}
           {(isLoading && (!data || data.length < 1) && (
             <tbody>
               {Array.apply(null, Array(loadingRowsCount)).map((_, index) => (
