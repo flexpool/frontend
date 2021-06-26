@@ -8,11 +8,17 @@ const ProTipContainer = styled.div`
   line-height: 2rem;
   display: flex;
   justify-content: center;
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
 `;
-const ProTipIconContainer = styled.span`
+const ProTipIconContainer = styled.div`
   color: var(--text-secondary);
   margin-right: 0.5rem;
   font-weight: 600;
+  @media screen and (max-width: 540px) {
+    width: 100%:
+  }
 `;
 const LightBulbIcon = styled(RiLightbulbFlashLine)`
   position: relative;
