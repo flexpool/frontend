@@ -7,6 +7,7 @@ const Container = styled.table`
   border-spacing: 0;
   color: var(--text-secondary);
   border: none;
+  position: relative;
 `;
 
 const Th = styled.th<{ alignRight?: boolean; hoverable?: boolean }>`
