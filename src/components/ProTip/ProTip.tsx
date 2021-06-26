@@ -15,7 +15,7 @@ const ProTipContainer = styled.div`
 const ProTipIconContainer = styled.div`
   color: var(--text-secondary);
   margin-right: 0.5rem;
-  font-weight: 600;
+  font-weight: 700;
   @media screen and (max-width: 768px) {
     display: flex;
     justify-content: center;
