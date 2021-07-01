@@ -155,7 +155,7 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
 
   const handleSearch = React.useCallback(
     async (address: string) => {
-      let searchAddress: string = address.trimLeft().trimRight();
+      let searchAddress: string = address.replaceAll(' ', '');
       if (/^[a-fA-F0-9]{40}$/.test(address)) {
         searchAddress = '0x' + searchAddress;
       }
