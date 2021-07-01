@@ -1,40 +1,7 @@
+import { Wrapper, Title, Image, ItemsContainer, Item } from './components';
 import { useTranslation } from 'react-i18next';
-import { Img } from 'src/components/Img';
 import { Content } from 'src/components/layout/Content';
 import { Spacer } from 'src/components/layout/Spacer';
-import styled from 'styled-components/macro';
-const Wrapper = styled.div`
-  background: var(--bg-primary);
-  border-top: 1px solid var(--border-color);
-`;
-const Title = styled.h2`
-  text-align: center;
-  margin-bottom: 3rem;
-`;
-
-const Image = styled(Img)`
-  height: 150px;
-`;
-
-const ItemsContainer = styled.div`
-  display: flex;
-  display: grid;
-  margin-top: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-`;
-
-const Item = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  * {
-    text-align: center;
-  }
-  p {
-    color: var(--text-secondary);
-  }
-`;
 
 export const WhyFlexpool = () => {
   const { t } = useTranslation('home');
