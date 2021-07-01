@@ -11,7 +11,7 @@
       "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}.",
       "limit_err_higher": "Must be higher than {{min}}",
       "gas_limit": "Gas price limit",
-      "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {{percent}} of payout limit). You will not receive any payouts if gas price is higher.",
+      "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {delimiter} of payout limit). You will not receive any payouts if gas price is higher.",
       "gas_limit_zero": "Your transaction fee will not be limited.",
       "submit": "Apply changes"
     },

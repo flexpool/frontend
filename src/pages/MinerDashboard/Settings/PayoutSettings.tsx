@@ -150,7 +150,8 @@ export const PayoutSettings: React.FC = () => {
         maxFeePricePercent: yup
           .number()
           .nullable(true)
-          .min(0, t('common:errors.higher_than', { value: 0 })),
+          .min(0, t('common:errors.higher_than', { value: 0 }))
+          .max(50, t('common:errors.lower_than', { value: 50 })),
         payoutLimit: yup
           .number()
           .positive()
@@ -158,6 +159,7 @@ export const PayoutSettings: React.FC = () => {
             minPayoutLimit,
             t('common:errors.higher_than', { value: minPayoutLimit })
           )
+          .max(1000, t('common:errors.lower_than', { value: 1000 }))
           .required(),
         ip: yup.string().required(t('common:errors.required')),
       })}

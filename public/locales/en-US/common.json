@@ -54,6 +54,7 @@
   },
   "errors": {
     "higher_than": "Must be higher than {{value}}",
+    "lower_than": "Must be lower than {{value}}",
     "required": "Required",
     "Invalid IP Address": "Invalid IP Address",
     "email_invalid": "Invalid email address",
