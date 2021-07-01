@@ -90,37 +90,38 @@ export const PayoutSettings: React.FC = () => {
     setGweiToggle(!gweiToggle);
   };
 
+  const submitPayoutSettings = (data: any, setSubmitting: Function) => {
+    Promise.all([
+      d(
+        minerDetailsUpdatePayoutSettings(activeCoin.ticker, address, {
+          payoutLimit:
+            Number(data.payoutLimit) * Math.pow(10, activeCoin.decimalPlaces),
+          maxFeePrice: gweiToggle
+            ? Number(data.maxFeePrice)
+            : Math.round(
+                ((Number(data.maxFeePricePercent) / 100) *
+                  Math.pow(10, activeCoin.decimalPlaces) *
+                  Number(
+                    minerSettings &&
+                      minerSettings.data &&
+                      minerSettings.data.payoutLimit /
+                        Math.pow(10, activeCoin.decimalPlaces)
+                  )) /
+                  activeCoin.transactionSize /
+                  feeDetails.multiplier
+              ),
+          ipAddress: data.ip,
+        })
+      ),
+    ]).then(() => {
+      d(minerDetailsGet(coinTicker, address));
+    });
+    setSubmitting(false);
+  };
+
   return (
     <Formik
-      onSubmit={async (data, { setSubmitting }) => {
-        Promise.all([
-          d(
-            minerDetailsUpdatePayoutSettings(activeCoin.ticker, address, {
-              payoutLimit:
-                Number(data.payoutLimit) *
-                Math.pow(10, activeCoin.decimalPlaces),
-              maxFeePrice: gweiToggle
-                ? Number(data.maxFeePrice)
-                : Math.round(
-                    ((Number(data.maxFeePricePercent) / 100) *
-                      Math.pow(10, activeCoin.decimalPlaces) *
-                      Number(
-                        minerSettings &&
-                          minerSettings.data &&
-                          minerSettings.data.payoutLimit /
-                            Math.pow(10, activeCoin.decimalPlaces)
-                      )) /
-                      activeCoin.transactionSize /
-                      feeDetails.multiplier
-                  ),
-              ipAddress: data.ip,
-            })
-          ),
-        ]).then(() => {
-          d(minerDetailsGet(coinTicker, address));
-        });
-        setSubmitting(false);
-      }}
+      onSubmit={() => {}}
       initialValues={{
         maxFeePrice: `${minerSettings.data.maxFeePrice}`,
         maxFeePricePercent: numberFormatter(
@@ -164,7 +165,7 @@ export const PayoutSettings: React.FC = () => {
         ip: yup.string().required(t('common:errors.required')),
       })}
     >
-      {({ values }) => {
+      {({ values, setSubmitting }) => {
         return (
           <Form>
             <FieldGroup.V>
@@ -477,7 +478,13 @@ export const PayoutSettings: React.FC = () => {
                 </p>
                 <p>{t('dashboard:settings.ip_description')} </p>
               </div>
-              <Submit shape="block">
+              <Submit
+                shape="block"
+                type="button"
+                onClick={() => {
+                  submitPayoutSettings(values, setSubmitting);
+                }}
+              >
                 {t('dashboard:settings.payout.submit')}
               </Submit>
             </FieldGroup.V>
