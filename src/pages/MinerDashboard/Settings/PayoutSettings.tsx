@@ -479,7 +479,7 @@ export const PayoutSettings: React.FC = () => {
                 <p>{t('dashboard:settings.ip_description')} </p>
               </div>
 
-              {activeCoin.name === 'Ethereum' &&
+              {activeCoin.ticker === 'eth' &&
               Number(values.payoutLimit) < 0.05 ? (
                 <LowPayoutContainer>
                   {t('dashboard:settings.high_fees_warning')}
