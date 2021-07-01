@@ -13,7 +13,7 @@ const ProTipContainer = styled.div`
   }
 `;
 const ProTipIconContainer = styled.div`
-  color: var(--text-secondary);
+  color: var(--text-primary);
   margin-right: 0.5rem;
   font-weight: 700;
   @media screen and (max-width: 768px) {
