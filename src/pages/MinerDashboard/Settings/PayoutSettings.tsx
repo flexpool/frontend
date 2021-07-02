@@ -58,6 +58,9 @@ export const PercentageDisplaySpan = styled.span<{ color?: string }>`
       color: var(--danger);
       `}
 `;
+export const LowPayoutContainer = styled.div`
+  color: var(--danger);
+`;
 
 export const PayoutSettings: React.FC = () => {
   const activeCoinTicker = useActiveCoinTicker();
@@ -91,6 +94,7 @@ export const PayoutSettings: React.FC = () => {
   };
 
   const submitPayoutSettings = (data: any, setSubmitting: Function) => {
+    setSubmitting(true);
     Promise.all([
       d(
         minerDetailsUpdatePayoutSettings(activeCoin.ticker, address, {
@@ -113,10 +117,13 @@ export const PayoutSettings: React.FC = () => {
           ipAddress: data.ip,
         })
       ),
-    ]).then(() => {
-      d(minerDetailsGet(coinTicker, address));
-    });
-    setSubmitting(false);
+    ])
+      .then(() => {
+        d(minerDetailsGet(coinTicker, address));
+      })
+      .finally(() => {
+        setSubmitting(false);
+      });
   };
 
   return (
@@ -560,10 +567,20 @@ export const PayoutSettings: React.FC = () => {
                 </p>
                 <p>{t('dashboard:settings.ip_description')} </p>
               </div>
+
+              {activeCoin.ticker === 'eth' &&
+              Number(values.payoutLimit) < 0.05 ? (
+                <LowPayoutContainer>
+                  {t('dashboard:settings.high_fees_warning')}
+                </LowPayoutContainer>
+              ) : (
+                ''
+              )}
               <Submit
                 shape="block"
                 type="button"
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
                   submitPayoutSettings(values, setSubmitting);
                 }}
               >

@@ -1,42 +1,17 @@
 import { Content } from 'src/components/layout/Content';
-import { HeroBlue } from 'src/components/layout/Hero/HeroBlue';
-import { Page } from 'src/components/layout/Page';
-import { CoinsWeMineSection } from 'src/pages/Home/CoinsWeMine.section';
-import { GetStartedSection } from 'src/pages/Home/GetStarted.section';
-import { NewsSection } from './News.section';
-import styled from 'styled-components/macro';
+import { CoinsWeMineSection } from 'src/pages/Home/components/CoinsWeMine/CoinsWeMine.section';
+import { GetStartedSection } from 'src/pages/Home/components/GetStarted/GetStarted.section';
+import { NewsSection } from './components/News/News.section';
 import { SearchAddressBar } from 'src/components/SearchAddressBar/SearchAddressBar';
 import { Helmet } from 'react-helmet-async';
 import { Spacer } from 'src/components/layout/Spacer';
-import { CoinEarnings } from './CoinEarnings';
-import { WhyFlexpool } from './WhyFlexpool';
+import { CoinEarnings } from './components/CoinEarnings/CoinEarnings';
+import { WhyFlexpool } from './components/WhyFlexpool/WhyFlexpool';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { poolCoinsFullGet } from 'src/rdx/poolCoinsFull/poolCoinsFull.actions';
 import { useTranslation } from 'react-i18next';
-
-const Hero = styled(HeroBlue)`
-  min-height: 40vh;
-  padding-top: 10rem;
-  padding-bottom: 10rem;
-  position: relative;
-  @media screen and (max-width: 800px) {
-    margin-bottom: 0;
-    padding-bottom: 3rem;
-  }
-`;
-
-const SearchWrapper = styled.div`
-  max-width: 600px;
-  width: 100%;
-  margin-top: 2rem;
-  border-radius: 5px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
-`;
-
-const PageContainer = styled(Page)`
-  background: var(--bg-secondary);
-`;
+import { Hero, SearchWrapper, PageContainer } from './components';
 
 export const HomePage = () => {
   const d = useDispatch();
