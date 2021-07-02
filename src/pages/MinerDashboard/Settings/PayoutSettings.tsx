@@ -147,11 +147,37 @@ export const PayoutSettings: React.FC = () => {
         maxFeePrice: yup
           .number()
           .nullable(true)
-          .min(0, t('common:errors.higher_than', { value: 0 })),
+          .min(0, t('common:errors.higher_than', { value: 0 }))
+          .test({
+            name: 'max',
+            exclusive: false,
+            params: {},
+            message: t('common:errors.lower_than_payout_limit'),
+            test: function (value) {
+              return (
+                Number(
+                  numberFormatter(
+                    ((Number(value) *
+                      activeCoin.transactionSize *
+                      feeDetails.multiplier) /
+                      Math.pow(10, activeCoin.decimalPlaces) /
+                      Number(this.parent.payoutLimit)) *
+                      100,
+                    {
+                      style: 'decimal',
+                      maximumFractionDigits: 3,
+                    }
+                  )
+                ) <= 100
+              );
+            },
+          }),
         maxFeePricePercent: yup
           .number()
+          .transform((o, v) => parseFloat(v.replace(/,/g, '')))
           .nullable(true)
-          .min(0, t('common:errors.higher_than', { value: 0 })),
+          .min(0, t('common:errors.higher_than', { value: 0 }))
+          .max(100, t('common:errors.lower_than', { value: 100 })),
         payoutLimit: yup
           .number()
           .positive()
@@ -382,10 +408,39 @@ export const PayoutSettings: React.FC = () => {
                               0,
                               Number(
                                 t('dashboard:settings.payout.gas_limit_desc', {
-                                  value: Number(values.maxFeePrice),
+                                  value: Math.round(
+                                    ((Number(values.maxFeePricePercent) / 100) *
+                                      Math.pow(10, activeCoin.decimalPlaces) *
+                                      Number(
+                                        minerSettings &&
+                                          minerSettings.data &&
+                                          minerSettings.data.payoutLimit /
+                                            Math.pow(
+                                              10,
+                                              activeCoin.decimalPlaces
+                                            )
+                                      )) /
+                                      activeCoin.transactionSize /
+                                      feeDetails.multiplier
+                                  ),
                                   valueUnit: feeDetails?.unit,
                                   valueTicker: currencyFormatter(
-                                    ((Number(values.maxFeePrice) *
+                                    ((Math.round(
+                                      ((Number(values.maxFeePricePercent) /
+                                        100) *
+                                        Math.pow(10, activeCoin.decimalPlaces) *
+                                        Number(
+                                          minerSettings &&
+                                            minerSettings.data &&
+                                            minerSettings.data.payoutLimit /
+                                              Math.pow(
+                                                10,
+                                                activeCoin.decimalPlaces
+                                              )
+                                        )) /
+                                        activeCoin.transactionSize /
+                                        feeDetails.multiplier
+                                    ) *
                                       activeCoin.transactionSize *
                                       feeDetails.multiplier) /
                                       Math.pow(10, activeCoin.decimalPlaces)) *
@@ -441,10 +496,39 @@ export const PayoutSettings: React.FC = () => {
                             }).substring(
                               Number(
                                 t('dashboard:settings.payout.gas_limit_desc', {
-                                  value: Number(values.maxFeePrice),
+                                  value: Math.round(
+                                    ((Number(values.maxFeePricePercent) / 100) *
+                                      Math.pow(10, activeCoin.decimalPlaces) *
+                                      Number(
+                                        minerSettings &&
+                                          minerSettings.data &&
+                                          minerSettings.data.payoutLimit /
+                                            Math.pow(
+                                              10,
+                                              activeCoin.decimalPlaces
+                                            )
+                                      )) /
+                                      activeCoin.transactionSize /
+                                      feeDetails.multiplier
+                                  ),
                                   valueUnit: feeDetails?.unit,
                                   valueTicker: currencyFormatter(
-                                    ((Number(values.maxFeePrice) *
+                                    ((Math.round(
+                                      ((Number(values.maxFeePricePercent) /
+                                        100) *
+                                        Math.pow(10, activeCoin.decimalPlaces) *
+                                        Number(
+                                          minerSettings &&
+                                            minerSettings.data &&
+                                            minerSettings.data.payoutLimit /
+                                              Math.pow(
+                                                10,
+                                                activeCoin.decimalPlaces
+                                              )
+                                        )) /
+                                        activeCoin.transactionSize /
+                                        feeDetails.multiplier
+                                    ) *
                                       activeCoin.transactionSize *
                                       feeDetails.multiplier) /
                                       Math.pow(10, activeCoin.decimalPlaces)) *
