@@ -56,17 +56,6 @@ const PageWrapper = styled(ScrollArea)`
   }
 `;
 
-const navItems = [
-  {
-    val: 'payouts',
-    title: 'Payouts',
-  },
-  {
-    val: 'notifications',
-    title: 'Notifications',
-  },
-];
-
 const pageComponents = {
   payouts: PayoutSettings,
   notifications: NotificationSettings,
@@ -96,6 +85,17 @@ export const MinerSettingsModal = () => {
   const minerSettings = useReduxState('minerDetails');
   const minerHeaderStats = useReduxState('minerHeaderStats');
   const { t } = useTranslation('dashboard');
+
+  const navItems = [
+    {
+      val: t('settings.payouts_title'),
+      title: t('settings.payouts_title'),
+    },
+    {
+      val: t('settings.notifications_title'),
+      title: t('settings.notifications_title'),
+    },
+  ];
 
   // disable opening when data is not loaded
   const disabled = !activeCoin || !minerSettings.data || !minerHeaderStats.data;

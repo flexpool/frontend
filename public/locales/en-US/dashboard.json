@@ -6,8 +6,11 @@
     "ip_hint": "Hint: You are visiting this webpage from",
     "ip_description": "If your worker is using proxy address, e.g. your worker is dual mining through a ZIL pool, please use the proxy address instead.",
     "high_fees_warning": "A payout limit under 0.05 ETH will result in high gas fees that will be deducted from your payment. Please set up a higher payout limit if possible.",
+    "payouts_title": "Payouts",
+    "notifications_title": "Notifications",
     "payout": {
       "title": "Payout Settings",
+      "important_note": "Important note",
       "limit": "Payout limit (min: {{min}})",
       "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}.",
       "limit_err_higher": "Must be higher than {{min}}",
