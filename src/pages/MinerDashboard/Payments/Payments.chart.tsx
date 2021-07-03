@@ -61,7 +61,7 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
 
       paymentSeries.dataFields.dateX = 'date';
       paymentSeries.name = `${t(
-        'payments.chart.value'
+        'payments.chart.net_value'
       )} (${coin.ticker.toUpperCase()})`;
       paymentSeries.yAxis = paymentsAxis;
       paymentSeries.dataFields.valueY = 'value';
