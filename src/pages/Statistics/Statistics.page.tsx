@@ -19,7 +19,7 @@ import {
   useLocalizedNumberFormatter,
   useLocalizedSiFormatter,
 } from 'src/utils/si.utils';
-import PoolHashrateChart from './PoolHashRate.chart';
+import PoolHashrateChart from './components/PoolHashRateChart/PoolHashRate.chart';
 
 export const StatisticsPage = () => {
   const d = useDispatch();
