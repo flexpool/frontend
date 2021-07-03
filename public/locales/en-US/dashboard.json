@@ -173,6 +173,7 @@
     },
     "shares": {
       "title": "Shares",
+      "title_points": "Points",
       "valid": "Valid",
       "stale": "Stale",
       "invalid": "Invalid"
@@ -185,9 +186,10 @@
     },
     "shares_chart": {
       "title": "Shares",
-      "valid": "Valid Shares",
-      "stale": "Stale Shares",
-      "invalid": "Invalid Shares"
+      "title_points": "Points",
+      "valid": "Valid",
+      "stale": "Stale",
+      "invalid": "Invalid"
     },
     "table": {
       "title_active": "Active workers",
@@ -196,11 +198,17 @@
       "table_head": {
         "name": "Name",
         "reported_hashrate": "Reported Hashrate",
+        "reported_space": "Reported Space",
         "current_e_hashrate": "Current E. Hashrate",
+        "current_e_space": "Current E. Space",
         "average_e_hashrate": "Average E. Hashrate",
+        "average_e_space": "Average E. Space",
         "valid": "Valid Shares",
         "stale": "Stale Shares",
         "invalid": "Invalid Shares",
+        "valid_points": "Valid Points",
+        "stale_points": "Stale Points",
+        "invalid_points": "Invalid Points",
         "last_seen": "Last Seen"
       }
     },

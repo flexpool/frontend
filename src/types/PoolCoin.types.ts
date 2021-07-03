@@ -14,6 +14,8 @@ type ApiCoinMarketData = {
 
 export type ApiPoolCoinFull = {
   algorithm: string;
+  hashrateUnit: string;
+  difficultyFactor: number;
   applicableHashrateSiPrefixes: Si[];
   chainData: {
     reward: number;

@@ -159,7 +159,9 @@ export const CoinsWeMineSection = () => {
         Component: ({ data }) => {
           return (
             <Ws>
-              <Mono>{siFormatter(data.hashrate, { unit: 'H/s' })}</Mono>
+              <Mono>
+                {siFormatter(data.hashrate, { unit: data.hashrateUnit })}
+              </Mono>
             </Ws>
           );
         },

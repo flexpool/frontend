@@ -9,7 +9,10 @@ import { HeaderStat } from 'src/components/layout/StatHeader';
 import { Luck } from 'src/components/Luck';
 import { StatBox, StatBoxContainer } from 'src/components/StatBox';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
-import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
+import {
+  useActiveCoinTicker,
+  useActiveCoin,
+} from 'src/rdx/localSettings/localSettings.hooks';
 import { poolStatsGet } from 'src/rdx/poolStats/poolStats.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import {
@@ -22,6 +25,7 @@ export const StatisticsPage = () => {
   const d = useDispatch();
 
   const activeTicker = useActiveCoinTicker();
+  const activeCoin = useActiveCoin();
   React.useEffect(() => {
     d(poolStatsGet(activeTicker));
   }, [activeTicker, d]);
@@ -44,7 +48,7 @@ export const StatisticsPage = () => {
           <StatBox
             title={t('pool_hashrate')}
             value={siFormatter(poolStatsState.data?.hashrate.total, {
-              unit: 'H/s',
+              unit: activeCoin?.hashrateUnit,
             })}
           />
           <StatBox

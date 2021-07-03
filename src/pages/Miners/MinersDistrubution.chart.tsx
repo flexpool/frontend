@@ -2,6 +2,7 @@ import React from 'react';
 
 import { fetchApi } from 'src/utils/fetchApi';
 import {
+  useActiveCoin,
   useActiveCoinTicker,
   useAppTheme,
 } from 'src/rdx/localSettings/localSettings.hooks';
@@ -40,6 +41,7 @@ export const MinersDistributionChart = () => {
   const appTheme = useAppTheme();
   const siFormatter = useLocalizedSiFormatter();
   const { t } = useTranslation('miners');
+  const activeCoin = useActiveCoin();
 
   React.useEffect(() => {
     if (coinTicker) {
@@ -56,8 +58,10 @@ export const MinersDistributionChart = () => {
     return (dataState.data || [])
       .map((item) => ({
         name: `${siFormatter(item.hashrateLowerThan / 10, {
-          unit: 'H/s',
-        })} - ${siFormatter(item.hashrateLowerThan, { unit: 'H/s' })}`,
+          unit: activeCoin?.hashrateUnit,
+        })} - ${siFormatter(item.hashrateLowerThan, {
+          unit: activeCoin?.hashrateUnit,
+        })}`,
         hashrate: item.hashrate,
       }))
       .sort(function (a, b) {

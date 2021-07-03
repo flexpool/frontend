@@ -4,7 +4,10 @@ import DynamicList, {
   DynamicListColumn,
 } from 'src/components/layout/List/List';
 import { Mono, Ws } from 'src/components/Typo/Typo';
-import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
+import {
+  useActiveCoin,
+  useActiveCoinTicker,
+} from 'src/rdx/localSettings/localSettings.hooks';
 import { minerWorkersGet } from 'src/rdx/minerWorkers/minerWorkers.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiMinerWorker } from 'src/types/Miner.types';
@@ -143,6 +146,7 @@ const MinerWorkersTable: React.FC<{
   const { t } = useTranslation('dashboard');
   const numberFormatter = useLocalizedNumberFormatter();
   const dateFormatter = useLocalizedDateFormatter();
+  const activeCoin = useActiveCoin();
 
   const data = React.useMemo(() => {
     let res = unfilteredData;
@@ -217,12 +221,14 @@ const MinerWorkersTable: React.FC<{
               Component: React.memo(({ data }: { data: ApiMinerWorker }) => (
                 <Ws>
                   <Mono>
-                    {siFormatter(data.reportedHashrate, { unit: 'H/s' })}{' '}
+                    {siFormatter(data.reportedHashrate, {
+                      unit: activeCoin?.hashrateUnit,
+                    })}{' '}
                     <Tooltip>
                       <TooltipContent>
                         {t('stats.table.table_head.average_e_hashrate')}: <br />
                         {siFormatter(data.averageEffectiveHashrate, {
-                          unit: 'H/s',
+                          unit: activeCoin?.hashrateUnit,
                         })}{' '}
                         <Percentage
                           total={data.reportedHashrate}
@@ -237,14 +243,18 @@ const MinerWorkersTable: React.FC<{
           ]
         : [
             {
-              title: t('stats.table.table_head.average_e_hashrate'),
+              title: t(
+                activeCoin?.hashrateUnit === 'B'
+                  ? 'stats.table.table_head.average_e_space'
+                  : 'stats.table.table_head.average_e_hashrate'
+              ),
               alignRight: true,
               onClickValue: 'averageEffectiveHashrate',
               Component: React.memo(({ data }: { data: ApiMinerWorker }) => (
                 <Ws>
                   <Mono>
                     {siFormatter(data.averageEffectiveHashrate, {
-                      unit: 'H/s',
+                      unit: activeCoin?.hashrateUnit,
                     })}{' '}
                   </Mono>
                 </Ws>
@@ -252,17 +262,27 @@ const MinerWorkersTable: React.FC<{
             },
           ]),
       {
-        title: t('stats.table.table_head.current_e_hashrate'),
+        title: t(
+          activeCoin?.hashrateUnit === 'B'
+            ? 'stats.table.table_head.current_e_space'
+            : 'stats.table.table_head.current_e_hashrate'
+        ),
         alignRight: true,
         onClickValue: 'currentEffectiveHashrate',
         Component: React.memo(({ data }) => (
           <Mono>
-            {siFormatter(data.currentEffectiveHashrate, { unit: 'H/s' })}
+            {siFormatter(data.currentEffectiveHashrate, {
+              unit: activeCoin?.hashrateUnit,
+            })}
           </Mono>
         )),
       },
       {
-        title: t('stats.table.table_head.valid'),
+        title: t(
+          String(activeCoin?.ticker) === 'xch'
+            ? 'stats.table.table_head.valid_points'
+            : 'stats.table.table_head.valid'
+        ),
         alignRight: true,
         onClickValue: 'validShares',
         Component: React.memo(({ data }) => (
@@ -275,7 +295,11 @@ const MinerWorkersTable: React.FC<{
         )),
       },
       {
-        title: t('stats.table.table_head.stale'),
+        title: t(
+          String(activeCoin?.ticker) === 'xch'
+            ? 'stats.table.table_head.stale_points'
+            : 'stats.table.table_head.stale'
+        ),
         alignRight: true,
         onClickValue: 'staleShares',
         Component: React.memo(({ data }) => (
@@ -288,7 +312,11 @@ const MinerWorkersTable: React.FC<{
         )),
       },
       {
-        title: t('stats.table.table_head.invalid'),
+        title: t(
+          String(activeCoin?.ticker) === 'xch'
+            ? 'stats.table.table_head.invalid_points'
+            : 'stats.table.table_head.invalid'
+        ),
         alignRight: true,
         onClickValue: 'invalidShares',
         Component: React.memo(({ data }) => (

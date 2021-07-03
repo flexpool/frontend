@@ -6,7 +6,10 @@ import {
   ChartContainer,
   responsiveRule,
 } from 'src/components/Chart/ChartContainer';
-import { useAppTheme } from 'src/rdx/localSettings/localSettings.hooks';
+import {
+  useActiveCoin,
+  useAppTheme,
+} from 'src/rdx/localSettings/localSettings.hooks';
 
 import {
   color,
@@ -56,6 +59,8 @@ export const StatsChart: React.FC<{
       }[]
     | null
   >();
+
+  const activeCoin = useActiveCoin();
 
   const worker = useActiveSearchParamWorker();
   const appTheme = useAppTheme();
@@ -257,7 +262,13 @@ export const StatsChart: React.FC<{
             />
           </ChartContainer>
           <Spacer />
-          <ChartContainer title={t('stats.shares_chart.title')}>
+          <ChartContainer
+            title={t(
+              String(activeCoin?.ticker) === 'xch'
+                ? 'stats.shares_chart.title_points'
+                : 'stats.shares_chart.title'
+            )}
+          >
             <div id="shares-chart" style={{ width: '100%', height: '250px' }} />
           </ChartContainer>
           <ProTip>
