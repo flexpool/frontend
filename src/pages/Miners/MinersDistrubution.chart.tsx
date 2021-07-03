@@ -73,7 +73,7 @@ export const MinersDistributionChart = () => {
         }
         return 0;
       });
-  }, [dataState.data, siFormatter]);
+  }, [dataState.data, siFormatter, activeCoin]);
 
   React.useLayoutEffect(() => {
     if (data.length > 0) {

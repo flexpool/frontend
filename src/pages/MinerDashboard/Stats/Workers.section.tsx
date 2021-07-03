@@ -360,6 +360,7 @@ const MinerWorkersTable: React.FC<{
     t,
     dateFormatter,
     hasReportedHashrate,
+    activeCoin,
   ]);
 
   const onSearchChange = React.useCallback(

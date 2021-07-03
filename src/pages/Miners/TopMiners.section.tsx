@@ -96,7 +96,7 @@ export const TopMinersSection = () => {
         },
       },
     ],
-    [siFormatter, activeCoinFormatter, t]
+    [siFormatter, activeCoinFormatter, t, activeCoin]
   );
   const { push } = useHistory();
   const handleMinerClick = React.useCallback(
