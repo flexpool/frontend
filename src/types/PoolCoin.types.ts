@@ -40,4 +40,6 @@ export type ApiPoolCoin = {
   shareDifficulty: number;
   ticker: Ticker;
   transactionSize: number;
+  difficultyFactor: number;
+  hashrateUnit: string;
 };
