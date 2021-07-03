@@ -41,6 +41,9 @@ export const BlocksChart = () => {
   const appTheme = useAppTheme();
 
   React.useLayoutEffect(() => {
+    if (blocksChartState.data == null) {
+      return;
+    }
     if (blocksChartState.data.length > 1 && activeCoin) {
       let x = create('blocksChart', XYChart);
 
