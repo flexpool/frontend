@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 
 import {
-  useActiveCoinTicker,
+  useActiveCoin,
   useAppTheme,
 } from 'src/rdx/localSettings/localSettings.hooks';
 import { useDispatch } from 'react-redux';
@@ -27,13 +27,13 @@ import { useTranslation } from 'react-i18next';
 
 const PoolHashrateChart = () => {
   const chartRef = useRef<HTMLDivElement>(null);
-  const activeCoin = useActiveCoinTicker();
+  const activeCoin = useActiveCoin();
   const poolHasrateState = useReduxState('poolHashrate');
   const { t } = useTranslation('statistics');
 
   const d = useDispatch();
   React.useEffect(() => {
-    d(poolHashrateGet(activeCoin));
+    d(poolHashrateGet(String(activeCoin?.ticker)));
   }, [activeCoin, d]);
 
   const appTheme = useAppTheme();
@@ -68,7 +68,8 @@ const PoolHashrateChart = () => {
       var hashrateAxis = x.yAxes.push(new ValueAxis());
       hashrateAxis.numberFormatter = new NumberFormatter();
       hashrateAxis.renderer.grid.template.disabled = true;
-      hashrateAxis.numberFormatter.numberFormat = '#.0 aH/s';
+      hashrateAxis.numberFormatter.numberFormat =
+        "#.0 a'" + activeCoin?.hashrateUnit + "'";
       var minerCountAxis = x.yAxes.push(new ValueAxis());
       minerCountAxis.numberFormatter = new NumberFormatter();
       let dateAxis = x.xAxes.push(new DateAxis());
@@ -85,7 +86,10 @@ const PoolHashrateChart = () => {
       totalHashrateSeries.name = t('chart.total_hashrate');
       totalHashrateSeries.yAxis = hashrateAxis;
       totalHashrateSeries.dataFields.valueY = 'total';
-      totalHashrateSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.00 aH/s")}`;
+      totalHashrateSeries.tooltipText =
+        `{name}: {valueY.value.formatNumber("#.00 a'` +
+        activeCoin?.hashrateUnit +
+        `'")}`;
       totalHashrateSeries.strokeWidth = 3;
       totalHashrateSeries.smoothing = 'monotoneX';
       // totalHashrateSeries.monotoneX = 0.9;
@@ -97,7 +101,10 @@ const PoolHashrateChart = () => {
         hashrateSeries.name = t(`chart.${region}`);
         hashrateSeries.yAxis = hashrateAxis;
         hashrateSeries.dataFields.valueY = region;
-        hashrateSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.00 aH/s")}`;
+        hashrateSeries.tooltipText =
+          `{name}: {valueY.value.formatNumber("#.00 a'` +
+          activeCoin?.hashrateUnit +
+          `'")}`;
         hashrateSeries.strokeWidth = 3;
         hashrateSeries.tensionX = 0.9;
         hashrateSeries.tensionY = 0.9;
@@ -116,10 +123,15 @@ const PoolHashrateChart = () => {
         x.dispose();
       };
     }
-  }, [poolHasrateState.data, appTheme, t]);
+  }, [poolHasrateState.data, appTheme, t, activeCoin]);
 
   return (
-    <ChartContainer dataState={poolHasrateState} title={t('chart.title')}>
+    <ChartContainer
+      dataState={poolHasrateState}
+      title={t(
+        activeCoin?.hashrateUnit === 'B' ? 'chart.title_space' : 'chart.title'
+      )}
+    >
       <div id="chartdiv" style={{ width: '100%', height: '400px' }}></div>
     </ChartContainer>
   );

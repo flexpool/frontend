@@ -46,7 +46,9 @@ export const StatisticsPage = () => {
       <Content>
         <StatBoxContainer>
           <StatBox
-            title={t('pool_hashrate')}
+            title={t(
+              activeCoin?.hashrateUnit === 'B' ? 'pool_space' : 'pool_hashrate'
+            )}
             value={siFormatter(poolStatsState.data?.hashrate.total, {
               unit: activeCoin?.hashrateUnit,
             })}

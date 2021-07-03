@@ -91,7 +91,8 @@ export const StatsChart: React.FC<{
       var hashrateAxis = hashrateChart.yAxes.push(new ValueAxis());
       hashrateAxis.numberFormatter = new NumberFormatter();
       hashrateAxis.renderer.grid.template.disabled = true;
-      hashrateAxis.numberFormatter.numberFormat = '#.0 aH/s';
+      hashrateAxis.numberFormatter.numberFormat =
+        "#.0 a'" + activeCoin?.hashrateUnit + "'";
       let dateAxis = hashrateChart.xAxes.push(new DateAxis());
       dateAxis.renderer.grid.template.location = 0;
       dateAxis.baseInterval = {
@@ -104,7 +105,10 @@ export const StatsChart: React.FC<{
       reportedHashrateSeries.name = t('stats.hashrate_chart.reported');
       reportedHashrateSeries.yAxis = hashrateAxis;
       reportedHashrateSeries.dataFields.valueY = 'reportedHashrate';
-      reportedHashrateSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.00 aH/s")}`;
+      reportedHashrateSeries.tooltipText =
+        `{name}: {valueY.value.formatNumber("#.00 a'` +
+        activeCoin?.hashrateUnit +
+        `'")}`;
       reportedHashrateSeries.strokeWidth = 3;
       reportedHashrateSeries.smoothing = 'monotoneX';
       // reportedHashrateSeries.monotoneX = 0.9;
@@ -115,7 +119,10 @@ export const StatsChart: React.FC<{
       effectiveHashrateSeries.name = t('stats.hashrate_chart.effective');
       effectiveHashrateSeries.yAxis = hashrateAxis;
       effectiveHashrateSeries.dataFields.valueY = 'effectiveHashrate';
-      effectiveHashrateSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.00 aH/s")}`;
+      effectiveHashrateSeries.tooltipText =
+        `{name}: {valueY.value.formatNumber("#.00 a'` +
+        activeCoin?.hashrateUnit +
+        `'")}`;
       effectiveHashrateSeries.strokeWidth = 3;
       effectiveHashrateSeries.smoothing = 'monotoneX';
       // effectiveHashrateSeries.monotoneX = 0.9;
@@ -129,7 +136,10 @@ export const StatsChart: React.FC<{
       averageEffectiveHashrateSeries.yAxis = hashrateAxis;
       averageEffectiveHashrateSeries.dataFields.valueY =
         'averageEffectiveHashrate';
-      averageEffectiveHashrateSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.00 aH/s")}`;
+      averageEffectiveHashrateSeries.tooltipText =
+        `{name}: {valueY.value.formatNumber("#.00 a'` +
+        activeCoin?.hashrateUnit +
+        `'")}`;
       averageEffectiveHashrateSeries.strokeWidth = 3;
       averageEffectiveHashrateSeries.smoothing = 'monotoneX';
       // averageEffectiveHashrateSeries.monotoneX = 0.9;
@@ -183,7 +193,7 @@ export const StatsChart: React.FC<{
         sharesChart.dispose();
       };
     }
-  }, [appTheme, sharesData, hashrateData, t]);
+  }, [appTheme, sharesData, hashrateData, t, activeCoin]);
 
   useEffect(() => {
     if (props.coinTicker === null) return;

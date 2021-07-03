@@ -87,7 +87,10 @@ export const MinersDistributionChart = () => {
         appTheme === 'light' ? colorListLight : colorListDark;
       pieSeries.dataFields.value = 'hashrate';
       pieSeries.dataFields.category = 'name';
-      pieSeries.slices.template.tooltipText = `{category}: {value.formatNumber("#.00 aH/s")}`;
+      pieSeries.slices.template.tooltipText =
+        `{category}: {value.formatNumber("#.00 a` +
+        activeCoin?.hashrateUnit +
+        `")}`;
       pieSeries.slices.template.stroke = color(
         appTheme === 'light' ? '#fff' : '#151519'
       );
@@ -102,7 +105,7 @@ export const MinersDistributionChart = () => {
         chartDistribution.dispose();
       };
     }
-  }, [data, appTheme]);
+  }, [data, appTheme, activeCoin]);
 
   return (
     <>
