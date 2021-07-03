@@ -1,6 +1,6 @@
 import { Ticker } from './Ticker.types';
 
-type Si = 'K' | 'M' | 'G' | 'T';
+type Si = 'k' | 'M' | 'G' | 'T';
 
 type ApiCoinMarketData = {
   marketCaps: {

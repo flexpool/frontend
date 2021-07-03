@@ -50,10 +50,23 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
   const counterTicker = useCounterTicker();
   const counterPrice = data?.marketData.prices[counterTicker] || 0;
 
+  var prefixMultiplier = 1;
+
+  if (data?.defaultHashrateSiPrefix === 'k') {
+    prefixMultiplier = 1000;
+  } else if (data?.defaultHashrateSiPrefix === 'M') {
+    prefixMultiplier = 1000000;
+  } else if (data?.defaultHashrateSiPrefix === 'G') {
+    prefixMultiplier = 1000000000;
+  } else if (data?.defaultHashrateSiPrefix === 'T') {
+    prefixMultiplier = 1000000000000;
+  }
+
   const dailyPer100 = data
-    ? data.chainData.dailyRewardPerGigaHashSec /
-      10 /
-      Math.pow(10, data.decimalPlaces)
+    ? (((data.chainData.dailyRewardPerGigaHashSec / 1000000000) *
+        prefixMultiplier) /
+        Math.pow(10, data.decimalPlaces)) *
+      100
     : 0;
   const monthlyPer100 = dailyPer100 * 30.5;
 
@@ -88,7 +101,10 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
         <PoolDetails>
           <p>
             {t('coin_earnings_cards.pool_fee', {
-              value: percentFormatter(5 / 1000),
+              value:
+                data?.ticker === 'eth'
+                  ? percentFormatter(5 / 1000)
+                  : percentFormatter(10 / 1000),
             })}
             <br />
             {data?.ticker === 'eth' &&
@@ -98,7 +114,10 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
       </HeadSplit>
       <IntervalContainer>
         <IntervalItem>
-          <p>100 MH/s {t('coin_earnings_cards.daily')}</p>
+          <p>
+            100 {data?.defaultHashrateSiPrefix}
+            {data?.hashrateUnit} {t('coin_earnings_cards.daily')}
+          </p>
           <FiatValue>
             {dailyCounterPrice ? (
               currencyFormatter(dailyCounterPrice)
@@ -118,7 +137,10 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
           </p>
         </IntervalItem>
         <IntervalItem>
-          <p>100 MH/s {t('coin_earnings_cards.monthly')}</p>
+          <p>
+            100 {data?.defaultHashrateSiPrefix}
+            {data?.hashrateUnit} {t('coin_earnings_cards.monthly')}
+          </p>
           <FiatValue>
             {monthlyCounterPrice ? (
               currencyFormatter(monthlyCounterPrice)
