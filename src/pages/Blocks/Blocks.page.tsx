@@ -14,7 +14,7 @@ import { Spacer } from 'src/components/layout/Spacer';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useTranslation } from 'react-i18next';
-import { BlocksChart } from './Blocks.chart';
+import { BlocksChart } from './components/BlocksChart/Blocks.chart';
 
 export const BlocksPage = () => {
   const statsState = useAsyncState<{
