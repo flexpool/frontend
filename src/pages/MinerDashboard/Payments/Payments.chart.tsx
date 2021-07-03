@@ -46,7 +46,7 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
       paymentsChart.responsive.enabled = true;
       paymentsChart.responsive.useDefault = false;
       paymentsChart.responsive.rules.push(responsiveRule);
-      paymentsChart.colors.list = [color('#edb431'), color('#0069ff')];
+      paymentsChart.colors.list = [color('#0069ff')];
 
       var paymentsAxis = paymentsChart.yAxes.push(new ValueAxis());
       paymentsAxis.numberFormatter = new NumberFormatter();
@@ -57,19 +57,6 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
         timeUnit: 'day',
         count: 1,
       };
-
-      let feeSeries = paymentsChart.series.push(new ColumnSeries());
-
-      feeSeries.dataFields.dateX = 'date';
-      feeSeries.name = `${t(
-        'payments.chart.fee'
-      )} (${coin.ticker.toUpperCase()})`;
-      feeSeries.yAxis = paymentsAxis;
-      feeSeries.dataFields.valueY = 'fee';
-      feeSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.0000")}`;
-      feeSeries.strokeWidth = 3;
-      feeSeries.stacked = true;
-
       let paymentSeries = paymentsChart.series.push(new ColumnSeries());
 
       paymentSeries.dataFields.dateX = 'date';
@@ -102,7 +89,9 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
         }).then((resp) => {
           return (resp || []).map((item) => ({
             date: new Date(item.timestamp * 1000),
-            value: item.value / Math.pow(10, coin.decimalPlaces),
+            value:
+              item.value / Math.pow(10, coin.decimalPlaces) -
+              item.fee / Math.pow(10, coin.decimalPlaces),
             fee: item.fee / Math.pow(10, coin.decimalPlaces),
           }));
         })
