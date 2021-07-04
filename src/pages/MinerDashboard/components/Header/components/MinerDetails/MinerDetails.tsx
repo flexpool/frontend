@@ -13,39 +13,8 @@ import {
   useLocalizedCurrencyFormatter,
   useLocalizedNumberFormatter,
 } from 'src/utils/si.utils';
-import styled from 'styled-components';
+import { NoFeeLimit, Item, Content } from './components';
 
-const NoFeeLimit = styled.div`
-  color: var(--text-secondary);
-`;
-
-const Item = styled.div`
-  display: flex;
-  font-weight: 600;
-  margin-right: 2rem;
-  white-space: nowrap;
-`;
-
-const Content = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  @media screen and (max-width: 900px) {
-    margin-top: -0.5rem;
-    ${Item} {
-      margin-top: 0.5rem;
-      flex-grow: 1;
-      flex-shrink: 0;
-      margin-right: 1rem;
-      display: block;
-    }
-  }
-  @media screen and (max-width: 500px) {
-    margin-top: -0.5rem;
-    ${Item} {
-      width: calc(50% - 2rem);
-    }
-  }
-`;
 export const MinerDetails: React.FC<{
   coin?: ApiPoolCoin;
 }> = ({ coin }) => {

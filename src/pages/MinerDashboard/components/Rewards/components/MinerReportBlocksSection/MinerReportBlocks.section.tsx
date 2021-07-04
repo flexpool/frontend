@@ -5,7 +5,6 @@ import DynamicList, {
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { fetchApi } from 'src/utils/fetchApi';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
-import styled from 'styled-components';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { Mono, Ws } from 'src/components/Typo/Typo';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
@@ -17,40 +16,8 @@ import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import ListDateSwitchButton from 'src/components/ButtonVariants/ListDateSwitchButton';
 import { getCoinLink } from 'src/utils/coinLinks.utils';
 import { LinkOutCoin } from 'src/components/LinkOut';
-
-export type ApiBlock = {
-  share: number;
-  reward: number;
-  confirmed: boolean;
-  blockNumber: number;
-  timestamp: number;
-  hash: string;
-  blockType: 'block' | 'uncle' | 'orphan';
-};
-
-const BlockType = styled.span<{ type: ApiBlock['blockType'] }>`
-  display: inline-block;
-  text-transform: capitalize;
-  white-space: nowrap;
-  & + * {
-    margin-left: 0.5rem;
-  }
-
-  ${(p) =>
-    p.type === 'uncle' &&
-    `
-      color: var(--warning);
-  `}
-  ${(p) =>
-    p.type === 'orphan' &&
-    `
-      color: var(--text-tertiary);
-  `}
-
-  + * svg {
-    fill: var(--text-tertiary);
-  }
-`;
+import { ApiBlock } from './types';
+import { BlockType } from './components';
 
 export const MinerRewardsBlocksSection: React.FC<{
   address?: string;

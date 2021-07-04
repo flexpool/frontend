@@ -1,13 +1,19 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from 'src/components/Button';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { useLocalizedSiFormatter } from 'src/utils/si.utils';
-import styled from 'styled-components';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
-import { FaToggleOff, FaToggleOn } from 'react-icons/fa';
 import LoaderDots from 'src/components/Loader/LoaderDots';
+import {
+  Wrap,
+  ToggleWrapper,
+  AutoUpdateWrapper,
+  AutoUpdateText,
+  ActiveToggle,
+  InactiveToggle,
+  ToggleWrapperButton,
+} from './components';
 
 export function getGreeting() {
   const hours = new Date().getHours();
@@ -19,64 +25,6 @@ export function getGreeting() {
 
   return 'evening';
 }
-
-const Wrap = styled.div`
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1.1rem;
-  font-weight: 600;
-`;
-
-const ToggleWrapper = styled.div`
-  align-self: center;
-`;
-
-const AutoUpdateWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  color: var(--text-primary);
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
-`;
-
-const AutoUpdateText = styled.span`
-  align-self: center;
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-left: 9px;
-  color: var(--text-primary);
-  &.inactive {
-    color: var(--text-secondary);
-  }
-`;
-
-const ActiveToggle = styled(FaToggleOn)`
-  color: var(--primary);
-  height: 20px;
-  width: 40px;
-`;
-
-const InactiveToggle = styled(FaToggleOff)`
-  color: var(--text-secondary);
-  height: 20px;
-  width: 40px;
-`;
-
-const ToggleWrapperButton = styled(Button)`
-  min-width: 156px;
-  padding: 0 0 0 0;
-  border: none;
-  height: 42px;
-  cursor: pointer;
-  overflow: hidden;
-  outline: none;
-  color: var(--text-secondary);
-  justify-content: center;
-`;
 
 export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
   onRefresh,
@@ -99,8 +47,10 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
     'queued_down_tick',
     false
   );
-  const [refreshInProgress, setRefreshInProgress] =
-    useLocalStorageState<boolean>('stats_refresh_in_progress', false);
+  const [
+    refreshInProgress,
+    setRefreshInProgress,
+  ] = useLocalStorageState<boolean>('stats_refresh_in_progress', false);
   const [queuedCounterValue, setQueuedCounterValue] = useLocalStorageState<
     number | undefined
   >('queued_counter_value', undefined);

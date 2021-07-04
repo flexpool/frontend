@@ -6,10 +6,9 @@ import { useAsyncState } from 'src/hooks/useAsyncState';
 import { fetchApi } from 'src/utils/fetchApi';
 import { LinkMiner } from 'src/components/LinkMiner';
 import { Luck } from 'src/components/Luck';
-import styled from 'styled-components';
 import { getCoinLink } from 'src/utils/coinLinks.utils';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
-import { LinkOut, LinkOutCoin } from 'src/components/LinkOut';
+import { LinkOutCoin } from 'src/components/LinkOut';
 import { Mono, Ws } from 'src/components/Typo/Typo';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
@@ -17,73 +16,8 @@ import { TableCellSpinner } from 'src/components/Loader/TableCellSpinner';
 import { useTranslation } from 'react-i18next';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { BiTransferAlt } from 'react-icons/bi';
-
-type ApiBlock = {
-  confirmed: boolean;
-  difficulty: number;
-  hash: string;
-  luck: number;
-  miner: string;
-  number: number;
-  region: string;
-  reward: number;
-  roundTime: number;
-  timestamp: number;
-  type: 'block' | 'uncle' | 'orphan';
-};
-
-type ApiBlocks = {
-  totalItems: number;
-  totalPages: number;
-  data: ApiBlock[];
-};
-
-const Region = styled.span`
-  text-transform: uppercase;
-`;
-
-const BlockLink = styled(LinkOut)`
-  color: var(--text-primary);
-`;
-
-const BlockType = styled.span<{ type: ApiBlock['type'] }>`
-  display: inline-block;
-  text-transform: capitalize;
-  white-space: nowrap;
-  & + * {
-    margin-left: 0.5rem;
-  }
-
-  ${(p) =>
-    p.type === 'uncle' &&
-    `
-      color: var(--warning);
-  `}
-  ${(p) =>
-    p.type === 'orphan' &&
-    `
-      color: var(--text-tertiary);
-  `}
-
-  + * svg {
-    fill: var(--text-tertiary);
-  }
-`;
-
-const ButtonDateSwitch = styled(Ws)`
-  padding: 0 0.35rem;
-  outline: none;
-  border: none;
-  color: var(--text-secondary);
-  svg {
-    opacity: 0.5;
-    margin-left: 0.3rem;
-  }
-  &:hover svg {
-    color: var(--primary);
-    opacity: 1;
-  }
-`;
+import { ApiBlock, ApiBlocks } from './types';
+import { Region, BlockLink, BlockType, ButtonDateSwitch } from './components';
 
 export const BlocksSection: React.FC<{
   address?: string;

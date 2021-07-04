@@ -19,25 +19,11 @@ import {
 } from 'src/plugins/amcharts';
 import { useTranslation } from 'react-i18next';
 import { useLocalizedCurrencyFormatter } from 'src/utils/si.utils';
-import { Button } from 'src/components/Button';
-import styled from 'styled-components';
-import { IoMdDownload } from 'react-icons/io';
-
-const DownloadButtonContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 15px;
-`;
-
-const DownloadCsvButton = styled(Button)`
-  align-self: flex-end;
-  font-size: 1rem;
-  font-weight: 600;
-`;
-
-const FaDownloadIcon = styled(IoMdDownload)`
-  font-weight: 700;
-`;
+import {
+  DownloadButtonContainer,
+  DownloadCsvButton,
+  FaDownloadIcon,
+} from './components';
 
 const RewardsChart: React.FC<{
   rewards: ApiMinerReward[];

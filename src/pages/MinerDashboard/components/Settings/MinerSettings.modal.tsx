@@ -1,60 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaCog } from 'react-icons/fa';
-import { Button } from 'src/components/Button';
-import { ScrollArea } from 'src/components/layout/ScrollArea';
 import Modal from 'src/components/Modal/Modal';
 import { useOpenState } from 'src/hooks/useOpenState';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
-import styled from 'styled-components';
 import { NotificationSettings } from './components/NotificationSettings/NotificationSettings';
 import { PayoutSettings } from './components/PayoutSettings/PayoutSettings';
-
-const Split = styled.div`
-  display: flex;
-  flex-grow: 1;
-  flex-shrink: 1;
-  max-height: calc(100vh - 166px);
-  @media screen and (max-width: 768px) {
-    flex-direction: column;
-  }
-`;
-
-const Nav = styled.div`
-  width: 200px;
-  flex-grow: 0;
-  flex-shrink: 0;
-  border-right: 1px solid var(--border-color);
-  padding: 0.5rem;
-  @media screen and (max-width: 768px) {
-    display: flex;
-    padding: 1rem 1.25rem;
-    border-right: none;
-    border-bottom: 1px solid var(--border-color);
-    width: 100%;
-  }
-`;
-
-const NavItem = styled(Button)`
-  width: 100%;
-  border: none;
-  @media screen and (max-width: 768px) {
-    width: auto;
-  }
-`;
-
-const PageWrapper = styled(ScrollArea)`
-  padding: 1rem 1.25rem;
-  flex-grow: 1;
-  @media screen and (max-width: 768px) {
-    min-height: 1px;
-    height: 1px;
-  }
-  & > * {
-    width: 100%;
-  }
-`;
+import { Split, Nav, NavItem, PageWrapper, SettingsBtn } from './components';
 
 const pageComponents = {
   payouts: PayoutSettings,
@@ -62,20 +15,6 @@ const pageComponents = {
 };
 
 type SettingsPageKey = keyof typeof pageComponents;
-
-const SettingsBtn = styled(Button)`
-  span {
-    margin-left: 0.5rem;
-  }
-  @media screen and (max-width: 768px) {
-    width: 42px;
-    padding: 0;
-    justify-content: center;
-    span {
-      display: none;
-    }
-  }
-`;
 
 export const MinerSettingsModal = () => {
   const openState = useOpenState();

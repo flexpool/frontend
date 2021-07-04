@@ -86,3 +86,7 @@ export const ListHeader = styled.div`
   margin-bottom: 1rem;
   margin-top: 2rem;
 `;
+
+export const PercentageItem = styled.span`
+  color: var(--text-tertiary);
+`;

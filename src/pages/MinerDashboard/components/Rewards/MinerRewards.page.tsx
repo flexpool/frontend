@@ -9,10 +9,10 @@ import {
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiMinerReward } from 'src/types/Miner.types';
 import { fetchApi } from 'src/utils/fetchApi';
-import { MinerPplnsStats } from './MinerPplnsStats.section';
-import { MinerRewardStatsSection } from './MinerRewardStats.section';
-import { MinerRewardsBlocksSection } from './MinerReportBlocks.section';
-import RewardsChart from './Rewards.chart';
+import { MinerPplnsStats } from './components/MinerPplnsStatsSection/MinerPplnsStats.section';
+import { MinerRewardStatsSection } from './components/MinerRewardsStatsSection/MinerRewardStats.section';
+import { MinerRewardsBlocksSection } from './components/MinerReportBlocksSection/MinerReportBlocks.section';
+import RewardsChart from './components/RewardsChart/Rewards.chart';
 
 export const MinerRewardsPage = () => {
   const {

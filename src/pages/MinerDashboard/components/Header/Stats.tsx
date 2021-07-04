@@ -6,7 +6,6 @@ import {
   useActiveCoin,
   useActiveCoinTicker,
 } from 'src/rdx/localSettings/localSettings.hooks';
-import styled from 'styled-components/macro';
 import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { StatItem } from 'src/components/StatItem';
@@ -23,52 +22,15 @@ import {
   useLocalizedCurrencyFormatter,
   useLocalizedNumberFormatter,
 } from 'src/utils/si.utils';
-//
-
-const EstimatedIntervalSwitch = styled.span`
-  cursor: pointer;
-  user-select: none;
-  &:hover {
-    color: var(--primary);
-  }
-`;
-
-const ProgressBarWrapper = styled.div`
-  margin-top: 8px;
-  width: 100%;
-  height: 8px;
-  padding: 0px !important;
-  background-color: var(--border-color);
-  display: flex;
-  border-radius: 0px 0px 4px 4px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-`;
-
-const ProgressBar = styled.div`
-  transition: 0.6s width cubic-bezier(0.35, 0.79, 0.37, 0.98);
-  border-radius: 0px 0px 5px 5px;
-
-  background-color: var(--primary);
-`;
-
-const ErrorText = styled.span`
-  color: var(--danger);
-`;
-const SecondaryText = styled.span`
-  color: var(--text-tertiary);
-`;
-
-const PayoutText = styled.p`
-  text-align: center;
-  font-weight: 600;
-  font-size: 1rem;
-`;
-
-const PayoutNumber = styled.span`
-  color: var(--success);
-`;
+import {
+  EstimatedIntervalSwitch,
+  ProgressBarWrapper,
+  ProgressBar,
+  ErrorText,
+  SecondaryText,
+  PayoutText,
+  PayoutNumber,
+} from './components';
 
 const BalanceProgressBar: React.FC<{
   value: number;

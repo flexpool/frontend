@@ -14,21 +14,21 @@ import {
   useLocalizedPercentFormatter,
   useLocalizedSiFormatter,
 } from 'src/utils/si.utils';
-import styled from 'styled-components/macro';
-import {
-  FaSearch,
-  FaSort,
-  FaSortDown,
-  FaSortUp,
-  FaTimes,
-} from 'react-icons/fa';
+import { FaSort, FaSortDown, FaSortUp, FaTimes } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
+import {
+  WorkerName,
+  WorkerNameOffline,
+  SearchIcon,
+  SearchInput,
+  SearchBox,
+  ClearButton,
+  ListHeader,
+  PercentageItem,
+} from './components';
 
-const PercentageItem = styled.span`
-  color: var(--text-tertiary);
-`;
 const Percentage: React.FC<{ total: number; value: number }> = ({
   total,
   value,
@@ -39,93 +39,6 @@ const Percentage: React.FC<{ total: number; value: number }> = ({
   }
   return <PercentageItem>({percentFormatter(value / total)})</PercentageItem>;
 };
-
-const WorkerName = styled.span`
-  color: var(--text-primary);
-  white-space: nowrap;
-  &:hover {
-    color: var(--primary);
-  }
-  font-weight: 700;
-`;
-
-const WorkerNameOffline = styled(WorkerName)`
-  color: var(--danger) !important;
-`;
-
-const SearchIcon = styled(FaSearch)`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  transition: 0.2s all;
-  color: var(--text-secondary);
-`;
-const SearchInput = styled.input`
-  height: 30px;
-  width: 230px;
-  border: none;
-  border-bottom: 1.8px solid black;
-  font-size: 15px;
-  font-weight: 500;
-  padding-bottom: 0.2px;
-  border-radius: 0px;
-  outline: none;
-  padding-left: 1.5rem;
-  display: block;
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  border-color: var(--border-color);
-  transition: 0.2s all;
-
-  &:hover,
-  &:focus {
-    border-color: var(--primary);
-    & + ${SearchIcon} {
-      color: var(--text-primary);
-    }
-  }
-`;
-
-const SearchBox = styled.div`
-  display: flex;
-  position: relative;
-  margin-left: 1rem;
-`;
-
-const ClearButton = styled.button`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 100%;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  color: var(--text-primary);
-  height: 32px;
-  width: 32px;
-  background: transparent;
-  opacity: 0.5;
-  transition: 0.1s all;
-  border-radius: 6px;
-  &:hover,
-  &:focus {
-    opacity: 1;
-  }
-  &:hover {
-    background: rgba(128, 128, 128, 0.08);
-  }
-  &:focus {
-    background: rgba(128, 128, 128, 0.12);
-  }
-`;
-
-const ListHeader = styled.div`
-  display: flex;
-  align-items: flex-end;
-  margin-bottom: 1rem;
-  margin-top: 2rem;
-`;
 
 type MinerWorker = ApiMinerWorker & { totalShares: number };
 
