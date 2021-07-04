@@ -119,7 +119,8 @@
     "chart": {
       "title": "Payments This Year",
       "fee": "Fee",
-      "value": "Value"
+      "value": "Value",
+      "net_value": "Net Value"
     },
     "general": {
       "title": "General Payment Statistics",
