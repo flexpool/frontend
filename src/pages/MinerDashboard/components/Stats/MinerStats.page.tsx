@@ -1,33 +1,15 @@
 import React from 'react';
 import { useHistory, useLocation, useRouteMatch } from 'react-router';
-import { Card } from 'src/components/layout/Card';
 import { Spacer } from 'src/components/layout/Spacer';
 import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
-import StatsChart from './MinerStats.chart';
-import { MinerStats } from './Stats.section';
-import { MinerWorkers } from './Workers.section';
-import styled from 'styled-components/macro';
+import StatsChart from './components/MinerStatsChart/MinerStats.chart';
+import { MinerStats } from './components/StatsSection/Stats.section';
+import { MinerWorkers } from './components/WorkersSection/Workers.section';
 import { Button } from 'src/components/Button';
 import qs from 'query-string';
 import { AverageEffectivePeriods } from './minerStats.types';
 import { useTranslation } from 'react-i18next';
-const WorkerTitle = styled.div`
-  text-transform: uppercase;
-  font-weight: 600;
-`;
-const Worker = styled.div`
-  font-size: 1.75rem;
-  font-weight: 800;
-  margin-top: 0.5rem;
-`;
-
-const WorkerCard = styled(Card)`
-  background: var(--primary);
-  color: var(--text-on-bg);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
+import { WorkerTitle, Worker, WorkerCard } from './components';
 
 export const MinerStatsPage = () => {
   const {

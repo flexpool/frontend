@@ -22,7 +22,7 @@ import {
 } from 'src/plugins/amcharts';
 import { isAfter, subHours } from 'date-fns';
 import { average } from 'src/utils/number.utils';
-import { AverageEffectivePeriods } from './minerStats.types';
+import { AverageEffectivePeriods } from '../../minerStats.types';
 import { useTranslation } from 'react-i18next';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ProTip } from 'src/components/ProTip/ProTip';
@@ -102,8 +102,6 @@ export const StatsChart: React.FC<{
       reportedHashrateSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.00 aH/s")}`;
       reportedHashrateSeries.strokeWidth = 3;
       reportedHashrateSeries.smoothing = 'monotoneX';
-      // reportedHashrateSeries.monotoneX = 0.9;
-      // reportedHashrateSeries.monotoneY = 0.9;
 
       let effectiveHashrateSeries = hashrateChart.series.push(new LineSeries());
       effectiveHashrateSeries.dataFields.dateX = 'date';
@@ -113,8 +111,6 @@ export const StatsChart: React.FC<{
       effectiveHashrateSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.00 aH/s")}`;
       effectiveHashrateSeries.strokeWidth = 3;
       effectiveHashrateSeries.smoothing = 'monotoneX';
-      // effectiveHashrateSeries.monotoneX = 0.9;
-      // effectiveHashrateSeries.monotoneY = 0.9;
 
       let averageEffectiveHashrateSeries = hashrateChart.series.push(
         new LineSeries()
@@ -127,8 +123,6 @@ export const StatsChart: React.FC<{
       averageEffectiveHashrateSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.00 aH/s")}`;
       averageEffectiveHashrateSeries.strokeWidth = 3;
       averageEffectiveHashrateSeries.smoothing = 'monotoneX';
-      // averageEffectiveHashrateSeries.monotoneX = 0.9;
-      // averageEffectiveHashrateSeries.monotoneY = 0.9;
 
       hashrateChart.cursor = new XYCursor();
       hashrateChart.legend = new Legend();
@@ -160,9 +154,6 @@ export const StatsChart: React.FC<{
         shareSeries.dataFields.valueY = share;
         shareSeries.tooltipText = `{name}: {valueY.value.formatNumber("#")}`;
         shareSeries.strokeWidth = 3;
-        // shareSeries.smoothing = "monotoneX";
-        // shareSeries.monotoneX = 0.9;
-        // shareSeries.monotoneY = 0.9;
         shareSeries.stacked = true;
       }
 

@@ -4,21 +4,8 @@ import { StatItem } from 'src/components/StatItem';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { useLocalizedSiFormatter } from 'src/utils/si.utils';
-import styled from 'styled-components';
-import { AverageEffectivePeriods } from './minerStats.types';
-
-const StatItemGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 1rem;
-  width: 100%;
-`;
-
-const StatGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-`;
+import { AverageEffectivePeriods } from '../../minerStats.types';
+import { StatItemGrid, StatGrid, AverageTooltipItem } from './components';
 
 const getDisplayPercentage = (
   prefix: string,
@@ -31,15 +18,6 @@ const getDisplayPercentage = (
       : '-';
   return `${prefix} (${displayValue}%)`;
 };
-
-const AverageTooltipItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-  line-height: 1.4;
-  strong {
-    margin-left: 1rem;
-  }
-`;
 
 export const MinerStats: React.FC<{
   averageEffectivePeriods: AverageEffectivePeriods;

@@ -17,19 +17,17 @@ import { minerDetailsGet } from 'src/rdx/minerDetails/minerDetails.actions';
 import { minerHeaderStatsGet } from 'src/rdx/minerHeaderStats/minerHeaderStats.actions';
 import { minerStatsGet } from 'src/rdx/minerStats/minerStats.actions';
 import { minerStatsChartGet } from 'src/rdx/minerStatsChart/minerStatsCharts.actions';
-import { AccountHeader } from './Header/AccountHeader';
-import { HeaderGreetings } from './Header/Greetings';
-import { HeaderStats } from './Header/Stats';
-import { MinerDetails } from './Header/MinerDetails';
-import { MinerStatsPage } from './Stats/MinerStats.page';
-import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { AccountHeader } from './components/Header/AccountHeader';
+import { HeaderGreetings } from './components/Header/Greetings';
+import { HeaderStats } from './components/Header/Stats';
+import { MinerDetails } from './components/Header/MinerDetails';
+import { MinerStatsPage } from './components/Stats/MinerStats.page';
 import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
 import { Spacer } from 'src/components/layout/Spacer';
-import { MinerPaymentsPage } from './Payments/MinerPayments.page';
+import { MinerPaymentsPage } from './components/Payments/MinerPayments.page';
 import { Helmet } from 'react-helmet-async';
-import { MinerBlocksPage } from './Blocks/MinerBlocks.page';
-import { MinerRewardsPage } from './Rewards/MinerRewards.page';
+import { MinerBlocksPage } from './components/Blocks/MinerBlocks.page';
+import { MinerRewardsPage } from './components/Rewards/MinerRewards.page';
 import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
@@ -38,48 +36,7 @@ import { fetchApi } from 'src/utils/fetchApi';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import { useTranslation } from 'react-i18next';
 import { PullToRefresh } from 'src/components/layout/PullToRefresh/PullToRefresh';
-
-const TabContent = styled.div`
-  box-shadow: inset -1px 18px 19px -13px var(--bg-secondary);
-  border-top: 2px solid var(--border-color);
-  padding-top: 2rem;
-`;
-
-const TabLinkContainer = styled(Content)`
-  margin-top: 3rem;
-  display: flex;
-  overflow-x: auto;
-`;
-
-const TabLink = styled(NavLink)`
-  font-weight: 600;
-  font-size: 1.125rem;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  color: var(--text-primary);
-  padding: 0 1.5rem;
-  border-bottom: 2px solid transparent;
-
-  position: relative;
-  z-index: 1;
-  svg {
-    margin-right: 0.5rem;
-  }
-  &.active {
-    color: var(--primary);
-    border-color: var(--primary);
-  }
-
-  &:hover {
-    background: rgba(128, 128, 128, 0.04);
-    color: var(--primary);
-  }
-  &:active {
-    background: rgba(128, 128, 128, 0.07);
-  }
-  text-decoration: none !important;
-`;
+import { TabContent, TabLinkContainer, TabLink } from './components';
 
 export const MinerDashboardPageContent: React.FC<
   RouteComponentProps<{
