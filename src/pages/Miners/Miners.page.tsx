@@ -5,8 +5,8 @@ import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 
 import { HeaderStat } from 'src/components/layout/StatHeader';
-import { MinersDistributionChart } from './MinersDistrubution.chart';
-import { TopMinersSection } from './TopMiners.section';
+import { MinersDistributionChart } from './components/MinerDistrubutionChart/MinersDistrubution.chart';
+import { TopMinersSection } from './components/TopMiners/TopMiners.section';
 
 export const MinersPage = () => {
   const { t } = useTranslation('miners');
