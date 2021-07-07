@@ -367,9 +367,13 @@ export const CoinEarnings = () => {
         {data.length > 0 ? (
           data.map((item) => <CoinEarningsItem key={item.ticker} data={item} />)
         ) : (
-          <CoinEarningsItem />
+          <>
+            <CoinEarningsItem />
+            <CoinEarningsItem />
+          </>
         )}
-        <ComingSoonChia />
+        {/* TODO: Get rid of ComingSoonChia completely after Chia is out */}
+        {data.length === 1 ? <ComingSoonChia /> : null}
       </Container>
     </Content>
   );
