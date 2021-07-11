@@ -181,9 +181,13 @@
     },
     "hashrate_chart": {
       "title": "Hashrate",
+      "title_space": "Space",
       "effective": "Effective Hashrate",
       "average": "Average Effective Hashrate",
-      "reported": "Reported Hashrate"
+      "reported": "Reported Hashrate",
+      "effective_space": "Effective Space",
+      "average_space": "Average Effective Space",
+      "reported_space": "Reported Space"
     },
     "shares_chart": {
       "title": "Shares",

@@ -102,7 +102,10 @@ export const StatsChart: React.FC<{
 
       let reportedHashrateSeries = hashrateChart.series.push(new LineSeries());
       reportedHashrateSeries.dataFields.dateX = 'date';
-      reportedHashrateSeries.name = t('stats.hashrate_chart.reported');
+      reportedHashrateSeries.name =
+        activeCoin?.hashrateUnit === 'B'
+          ? t('stats.hashrate_chart.reported_space')
+          : t('stats.hashrate_chart.reported');
       reportedHashrateSeries.yAxis = hashrateAxis;
       reportedHashrateSeries.dataFields.valueY = 'reportedHashrate';
       reportedHashrateSeries.tooltipText =
@@ -116,7 +119,10 @@ export const StatsChart: React.FC<{
 
       let effectiveHashrateSeries = hashrateChart.series.push(new LineSeries());
       effectiveHashrateSeries.dataFields.dateX = 'date';
-      effectiveHashrateSeries.name = t('stats.hashrate_chart.effective');
+      effectiveHashrateSeries.name =
+        activeCoin?.hashrateUnit === 'B'
+          ? t('stats.hashrate_chart.effective_space')
+          : t('stats.hashrate_chart.effective');
       effectiveHashrateSeries.yAxis = hashrateAxis;
       effectiveHashrateSeries.dataFields.valueY = 'effectiveHashrate';
       effectiveHashrateSeries.tooltipText =
@@ -132,7 +138,10 @@ export const StatsChart: React.FC<{
         new LineSeries()
       );
       averageEffectiveHashrateSeries.dataFields.dateX = 'date';
-      averageEffectiveHashrateSeries.name = t('stats.hashrate_chart.average');
+      averageEffectiveHashrateSeries.name =
+        activeCoin?.hashrateUnit === 'B'
+          ? t('stats.hashrate_chart.average_space')
+          : t('stats.hashrate_chart.average');
       averageEffectiveHashrateSeries.yAxis = hashrateAxis;
       averageEffectiveHashrateSeries.dataFields.valueY =
         'averageEffectiveHashrate';
@@ -265,7 +274,13 @@ export const StatsChart: React.FC<{
     <>
       {!noDataAvailable ? (
         <>
-          <ChartContainer title={t('stats.hashrate_chart.title')}>
+          <ChartContainer
+            title={
+              activeCoin?.hashrateUnit === 'B'
+                ? t('stats.hashrate_chart.title_space')
+                : t('stats.hashrate_chart.title')
+            }
+          >
             <div
               id="hashrate-chart"
               style={{ width: '100%', height: '250px' }}
