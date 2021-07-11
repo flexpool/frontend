@@ -56,7 +56,11 @@ export const MinerStats: React.FC<{
   return (
     <StatGrid>
       <Card padding>
-        <CardTitle>{t('stats.hashrate.title')}</CardTitle>
+        <CardTitle>
+          {activeCoin?.hashrateUnit === 'B'
+            ? t('stats.hashrate.title_space')
+            : t('stats.hashrate.title')}
+        </CardTitle>
         <StatItemGrid>
           <StatItem
             title={t('stats.hashrate.current')}

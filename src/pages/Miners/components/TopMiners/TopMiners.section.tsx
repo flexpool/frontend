@@ -55,7 +55,10 @@ export const TopMinersSection = () => {
         },
       },
       {
-        title: t('top_miners.table_head.hashrate'),
+        title:
+          activeCoin?.hashrateUnit === 'B'
+            ? t('top_miners.table_head.space')
+            : t('top_miners.table_head.hashrate'),
         skeletonWidth: 90,
         Component: ({ data }) => {
           return (

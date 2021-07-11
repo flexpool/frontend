@@ -168,6 +168,7 @@
     },
     "hashrate": {
       "title": "Hashrate",
+      "title_space": "Space",
       "current": "Current Effective",
       "average": "Average Effective",
       "reported": "Reported"
