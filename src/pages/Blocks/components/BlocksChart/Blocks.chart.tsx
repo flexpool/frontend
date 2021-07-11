@@ -71,12 +71,22 @@ export const BlocksChart = () => {
 
       const difficultyAxis = x.yAxes.push(new ValueAxis());
       difficultyAxis.numberFormatter = new NumberFormatter();
-      difficultyAxis.numberFormatter.numberFormat = '#.0 aH';
+      difficultyAxis.numberFormatter.numberFormat =
+        `#.0 a'` +
+        (String(activeCoin?.ticker) === 'xch'
+          ? 'PT'
+          : activeCoin?.hashrateUnit.split('/')[0]) +
+        `'`;
       difficultyAxis.renderer.grid.template.disabled = true;
       difficultyAxis.renderer.opposite = true;
       const blockCountAxis = x.yAxes.push(new ValueAxis());
       blockCountAxis.numberFormatter = new NumberFormatter();
-      difficultyAxis.numberFormatter.numberFormat = '#.0 aH';
+      difficultyAxis.numberFormatter.numberFormat =
+        `#.0 a'` +
+        (String(activeCoin?.ticker) === 'xch'
+          ? 'PT'
+          : activeCoin?.hashrateUnit.split('/')[0]) +
+        `'`;
       blockCountAxis.renderer.grid.template.disabled = true;
       blockCountAxis.min = 0;
 
@@ -91,7 +101,12 @@ export const BlocksChart = () => {
       difficultySeries.yAxis = difficultyAxis;
       difficultySeries.dataFields.valueY = 'difficulty';
       difficultySeries.tooltipText =
-        t('Difficulty') + `: {valueY.value.formatNumber("#.00 aH")}`;
+        t('Difficulty') +
+        `: {valueY.value.formatNumber("#.00 a'` +
+        (String(activeCoin?.ticker) === 'xch'
+          ? 'PT'
+          : activeCoin?.hashrateUnit.split('/')[0]) +
+        `'")}`;
       difficultySeries.strokeWidth = 2;
       difficultySeries.tensionX = 0.9;
       difficultySeries.tensionY = 0.9;
