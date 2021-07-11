@@ -181,12 +181,7 @@ export const HeaderStats: React.FC<{
       ? dailyRewardPerGhState.data *
           (minerStatsState.data?.averageEffectiveHashrate / 1000000000)
       : 0;
-  }, [
-    poolStatsState.data,
-    dailyRewardPerGhState.data,
-    minerStatsState.data,
-    activeCoin,
-  ]);
+  }, [poolStatsState.data, dailyRewardPerGhState.data, minerStatsState.data]);
 
   const estimated = React.useMemo(() => {
     return {
