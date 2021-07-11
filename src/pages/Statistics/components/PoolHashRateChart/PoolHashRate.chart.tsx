@@ -83,7 +83,10 @@ const PoolHashrateChart = () => {
 
       let totalHashrateSeries = x.series.push(new LineSeries());
       totalHashrateSeries.dataFields.dateX = 'date';
-      totalHashrateSeries.name = t('chart.total_hashrate');
+      totalHashrateSeries.name =
+        activeCoin?.hashrateUnit === 'B'
+          ? t('chart.total_space')
+          : t('chart.total_hashrate');
       totalHashrateSeries.yAxis = hashrateAxis;
       totalHashrateSeries.dataFields.valueY = 'total';
       totalHashrateSeries.tooltipText =
