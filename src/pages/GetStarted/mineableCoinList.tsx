@@ -1,4 +1,5 @@
-import { checksumEth } from 'src/utils/validators/ethWalletAddress.validator';
+import { checksumETH } from 'src/utils/validators/ethWalletAddress.validator';
+import { checksumXCH } from 'src/utils/validators/xchWalletAddress.validator';
 
 export type GpuHardwareDetails = {
   os: ('linux' | 'windows' | 'hiveos')[];
@@ -19,21 +20,22 @@ export type MineableCoinRegion = {
 
 export type MineableCoinHardware = {
   title: string;
-  key: 'GPU';
-  miners: GpuHardwareDetails[];
+  key: string;
+  miners: null | GpuHardwareDetails[];
 };
 
 export type MineableCoin = {
   name: string;
   ticker: string;
   algorithm: string;
-  nicehash_algorithm: string;
+  nicehash_algorithm: null | string;
   regions: MineableCoinRegion[];
   description: string;
   walletAddressExample: string;
   regex: RegExp;
   validator: (address: string) => null | string;
   hardware: MineableCoinHardware[];
+  nicehashAvailable: boolean;
 };
 
 export const mineableCoins: MineableCoin[] = [
@@ -44,8 +46,9 @@ export const mineableCoins: MineableCoin[] = [
     nicehash_algorithm: 'DaggerHashimoto',
     description: '',
     regex: /^0x[a-fA-F0-9]{40}$/g,
-    validator: checksumEth,
+    validator: checksumETH,
     walletAddressExample: '0xBf08F613ccE234c96e0e889a0B660bD819D23795',
+    nicehashAvailable: true,
     regions: [
       {
         domain: 'eth-us-east.flexpool.io',
@@ -156,6 +159,47 @@ export const mineableCoins: MineableCoin[] = [
               'miner.exe -a eth --ssl 1 -s CLOSEST_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME --ssl 1 -s BACKUP_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME',
           },
         ],
+      },
+    ],
+  },
+  {
+    name: 'Chia',
+    ticker: 'xch',
+    algorithm: 'Chia PoST',
+    nicehash_algorithm: null,
+    description: '',
+    regex: /^(t|)xch1[qpzry9x8gf2tvdw0s3jn54khce6mua7l]{58}$/g,
+    validator: checksumXCH,
+    walletAddressExample:
+      'xch1442zglfj9y8jvr9hnle7p09s0ura4vwnxfl7cfp4eud99f0hr2aqfvdl0h',
+    nicehashAvailable: false,
+    regions: [
+      {
+        domain: 'xch-de.flexpool.io',
+        code: 'de',
+        imageCode: 'de',
+      },
+      {
+        domain: 'xch-us-east.flexpool.io',
+        code: 'us-east',
+        imageCode: 'us',
+      },
+      {
+        domain: 'xch-us-west.flexpool.io',
+        code: 'us-west',
+        imageCode: 'us',
+      },
+      {
+        domain: 'xch-sg.flexpool.io',
+        code: 'sg',
+        imageCode: 'sg',
+      },
+    ],
+    hardware: [
+      {
+        title: 'Chia CLI Farming',
+        key: 'CLI',
+        miners: null,
       },
     ],
   },
