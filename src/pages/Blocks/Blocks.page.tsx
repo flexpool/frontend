@@ -81,7 +81,11 @@ export const BlocksPage = () => {
             }
           />
           <StatBox
-            title={t('network_hashrate')}
+            title={
+              activeCoin?.hashrateUnit === 'B'
+                ? t('network_space')
+                : t('network_hashrate')
+            }
             value={
               statsState.data &&
               `${siFormatter(
@@ -111,7 +115,7 @@ export const BlocksPage = () => {
                 unit:
                   String(activeCoin?.ticker) === 'xch'
                     ? 'PT'
-                    : activeCoin?.hashrateUnit,
+                    : activeCoin?.hashrateUnit.split('/')[0],
               })}`
             }
           />
