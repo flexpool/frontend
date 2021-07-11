@@ -178,9 +178,8 @@ export const HeaderStats: React.FC<{
     return poolStatsState.data?.averageHashrate &&
       dailyRewardPerGhState.data &&
       minerStatsState.data?.averageEffectiveHashrate
-      ? (dailyRewardPerGhState.data *
-          (minerStatsState.data?.averageEffectiveHashrate / 1000000000)) /
-          (activeCoin !== undefined ? activeCoin?.difficultyFactor : 1)
+      ? dailyRewardPerGhState.data *
+          (minerStatsState.data?.averageEffectiveHashrate / 1000000000)
       : 0;
   }, [
     poolStatsState.data,

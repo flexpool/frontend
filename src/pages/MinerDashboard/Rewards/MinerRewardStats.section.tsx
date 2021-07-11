@@ -107,9 +107,8 @@ export const MinerRewardStatsSection: React.FC<{
     const daily =
       dailyRewardPerGhState.data &&
       minerStatsState.data?.averageEffectiveHashrate
-        ? ((minerStatsState.data?.averageEffectiveHashrate / 1000000000) *
-            dailyRewardPerGhState.data) /
-          (activeCoin !== undefined ? activeCoin?.difficultyFactor : 1)
+        ? (minerStatsState.data?.averageEffectiveHashrate / 1000000000) *
+          dailyRewardPerGhState.data
         : 0;
 
     return [1, 7, 30.5].map((item) => ({
