@@ -46,15 +46,34 @@ const PoolHashrateChart = () => {
       x.responsive.useDefault = false;
       x.responsive.rules.push(responsiveRule);
 
-      x.colors.list = [
-        color(appTheme === 'dark' ? '#aaa' : '#000000'),
-        color('#edb431'),
-        color('#5d42f5'),
-        color('#15cd72'),
-        color('#ed4f32'),
-        color('#0069ff'),
-      ];
+      x.colors.list = [color(appTheme === 'dark' ? '#aaa' : '#000000')];
+
       var data = [];
+
+      if (poolHasrateState.data.length > 0) {
+        for (var key in poolHasrateState.data[0].regions) {
+          switch (key) {
+            case 'eu':
+              x.colors.list.push(color('#15cd72'));
+              break;
+            case 'us':
+              x.colors.list.push(color('#0069ff'));
+              break;
+            case 'as':
+              x.colors.list.push(color('#edb431'));
+              break;
+            case 'au':
+              x.colors.list.push(color('#5d42f5'));
+              break;
+            case 'sa':
+              x.colors.list.push(color('#ed4f32'));
+              break;
+            default:
+              x.colors.list.push(color('#ccc'));
+              break;
+          }
+        }
+      }
 
       for (var i = 0; i < poolHasrateState.data.length; i++) {
         const item = poolHasrateState.data[i];
