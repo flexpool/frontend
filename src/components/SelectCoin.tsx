@@ -17,11 +17,13 @@ const CoinNameShort = styled.span`
   @media screen and (max-width: 560px) {
     display: inline;
   }
+  margin-left: 5px;
 `;
 const CoinName = styled.span`
   @media screen and (max-width: 560px) {
     display: none;
   }
+  margin-left: 10px;
 `;
 
 export const SelectCoin = () => {
