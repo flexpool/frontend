@@ -100,12 +100,20 @@
       { "key": "Relative Lock Height", "value": "100" },
       { "key": "Mining Algorithm", "value": "Chia PoST" }
     ],
+    "new_farmer": "New Farmer",
+    "already_farmer": "Already Farmer",
     "plotnft_create": {
       "title": "Create your Plot NFT",
       "desc_one": "Plot NFT is a smart contract that allows the creation of plots with a possible further change of the reward destination address, which is used for pool switching.",
       "desc_two": "Flexpool is is using the official pool protocol, which means that you will need to create Plot NFT in order to join the pool. Please, note that plots made without Plot NFT (sometimes referenced as OG plots) will not work with Flexpool. You will need to replot to the Plot NFT.",
       "create_command": "You can create the Plot NFT using this command:",
       "mojo_note": "You will need to have at least 1 mojo (the minimum XCH unit, one trillionth of XCH) to create the Plot NFT contract. If you don't have any funds on your account, please use <chiafaucet>Official XCH Faucet</chiafaucet> to get 100 mojos."
+    },
+    "plotnft_join": {
+      "title": "Assign your Plot NFT to Flexpool",
+      "desc_one": "To switch to Flexpool, you will need to initiate the Plot NFT pool switch. This will change your Plot NFT state to <b>Leaving The Pool</b> for 30 minutes as a security precaution. After that, your Plot NFT will change the state to <b>Farming To Pool</b>, which means that the pool switching has completed successfully.",
+      "assign_command": "You can assign your Plot NFT to Flexpool by using this command:",
+      "time_note": "The process may take up to 45 minutes to fully complete. Please be patient."
     },
     "plotnft_show": {
       "title": "Get Plotting and Payout addresses",
@@ -115,13 +123,24 @@
       "plotting_address": "The address you will use for plotting.",
       "payout_address": "The address the funds will be paid to. All your statistics will be associated with this wallet address."
     },
+    "plotters": {
+      "standard_plotter": "Standard Plotter",
+      "madmax_plotter": "madMAx Plotter"
+    },
     "create_plots": {
       "title": "Create plots",
-      "desc_one": "In this quickstart guide, we will show you how to use <plotter>chia-plotter</plotter> by <madmax>madMAx43v3r</madmax> with your newly-created PlotNFT.",
-      "install_dependencies_command": "Install plotter dependencies (command may vary across different distributions; example is shown for Ubuntu and Debian-like Distributions):",
-      "build_and_install_command": "Build and install the plotter by executing the following commands:",
-      "cmake_version_notice": "The build requires the minimum CMake version of 3.14. In older distributions like Ubuntu 18.04, you will be required to install the newer CMake manually.",
-      "create_plots_command": "Now, you can make some plots by doing:"
+      "standard": {
+        "desc": "In this section, we will show you how to use standard Chia plotter with your newly-created PlotNFT.",
+        "create_plots_command": "To create plots, do:"
+      },
+      "madmax": {
+        "desc": "In this section, we will show you how to use fast <plotter>chia-plotter</plotter> by <madmax>madMAx43v3r</madmax> with your newly-created PlotNFT.",
+        "install_dependencies_command": "Install plotter dependencies (command may vary across different distributions; example is shown for Ubuntu and Debian-like Distributions):",
+        "build_and_install_command": "Build and install the plotter by executing the following commands:",
+        "instructions_note": "Instructions for all platforms are available on <github>chia-plotter GitHub Repository</github>.",
+        "cmake_version_notice": "The build requires the minimum CMake version of 3.14. In older distributions like Ubuntu 18.04, you will be required to install the newer CMake manually.",
+        "create_plots_command": "Now, you can make some plots by doing:"
+      }
     },
     "monitor_farm": {
       "title": "Monitor your farm in Flexpool.io Dashboard",

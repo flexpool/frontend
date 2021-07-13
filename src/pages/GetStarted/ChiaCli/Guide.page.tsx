@@ -4,91 +4,14 @@ import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOut } from 'src/components/LinkOut';
 import { Highlight } from 'src/components/Typo/Typo';
-import styled from 'styled-components';
 import { mineableCoins } from '../mineableCoinList';
-import { Redirect, useLocation, useRouteMatch } from 'react-router';
+import { Redirect, useHistory, useLocation, useRouteMatch } from 'react-router';
 import qs from 'query-string';
 import { Mono } from 'src/components/Typo/Typo';
 import { PingTestSection } from './PingTest.section';
-import { CopyButton } from 'src/components/CopyButton';
-
-const TerminalContainer = styled.code`
-  display: flex;
-  justify-content: space-between;
-  padding: 1.25rem;
-  background: var(--bg-secondary);
-  white-space: pre-line;
-`;
-
-const Commands = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-
-const Command = styled.code`
-  ::before {
-    content: '$ ';
-    color: var(--text-tertiary);
-  }
-`;
-
-const CommandSecondary = styled.code`
-  color: var(--text-tertiary);
-`;
-
-const CommandResultContainer = styled(TerminalContainer)`
-  display: block;
-  color: var(--text-secondary);
-  background: var(--bg-primary);
-  border: 5px solid var(--bg-secondary);
-`;
-
-type TerminalCommandProps = {
-  cmd: React.ReactNode;
-  desc?: React.ReactNode;
-};
-
-const TerminalCommand = (props: TerminalCommandProps) => {
-  const { cmd, desc } = props;
-  return (
-    <>
-      <TerminalContainer>
-        <Commands>
-          {(cmd as string).split('\n').map((item) => {
-            var commandItems: Array<React.ReactNode> = [];
-            item.split(' ').forEach((itemCommand) => {
-              console.log(
-                itemCommand,
-                itemCommand.substr(0, 1),
-                itemCommand.substr(itemCommand.length - 1, itemCommand.length)
-              );
-              if (
-                itemCommand.length > 0 &&
-                itemCommand.substr(0, 1) === '<' &&
-                itemCommand.substr(
-                  itemCommand.length - 1,
-                  itemCommand.length
-                ) === '>'
-              ) {
-                commandItems.push(
-                  <CommandSecondary>{itemCommand} </CommandSecondary>
-                );
-              } else {
-                commandItems.push(itemCommand + ' ');
-              }
-            });
-            return <Command>{commandItems}</Command>;
-          })}
-        </Commands>
-        <CopyButton text={cmd as string} />
-      </TerminalContainer>
-      {desc !== undefined ? (
-        <CommandResultContainer>{desc}</CommandResultContainer>
-      ) : null}
-    </>
-  );
-};
+import { TerminalCommand } from './TerminalCommand';
+import { JoinSection } from './Join.section';
+import { CreatePlotsSection } from './CreatePlots.section';
 
 export const ChiaCliGuidePage: React.FC = () => {
   const {
@@ -98,6 +21,7 @@ export const ChiaCliGuidePage: React.FC = () => {
   }>();
 
   const { t } = useTranslation('get-started');
+  const { replace: historyReplace } = useHistory();
   const { search } = useLocation();
 
   const mineableCoin = React.useMemo(() => {
@@ -108,50 +32,29 @@ export const ChiaCliGuidePage: React.FC = () => {
     return <Redirect to="/get-started" />;
   }
 
-  const { primaryServer = 'POOL_URL' } = qs.parse(search);
+  const { primaryServer = 'POOL_URL', farmerOption = 'new-farmer' } = qs.parse(
+    search
+  );
+
+  const setSelectedFarmerOption = (s: string) => {
+    historyReplace({
+      search: qs.stringify({
+        ...qs.parse(search),
+        farmerOption: s,
+      }),
+    });
+  };
 
   return (
     <Page>
       <h1>{t('detail_xch.title_cli')}</h1>
       <PingTestSection data={mineableCoin.regions} />
       <Spacer size="xl" />
-      <h2>
-        <Highlight>#2</Highlight> {t('detail_xch.plotnft_create.title')}
-      </h2>
-      <p>{t('detail_xch.plotnft_create.desc_one')}</p>
-      <Spacer />
-      <p>{t('detail_xch.plotnft_create.desc_two')}</p>
-      <Spacer />
-      <p>{t('detail_xch.plotnft_create.create_command')}</p>
-      <TerminalCommand
-        cmd={`chia plotnft create -s pool https://${primaryServer}`}
-        desc={
-          <>
-            {`Choose wallet key:
-          1) 3118587270
-          2) 2183884896
-          3) 1324486352
-          Enter a number to pick or q to quit: `}{' '}
-            <b>1</b>
-            {`
-          
-          Will create a plot NFT and join pool: https://${primaryServer}.
-          Confirm [n]/y:`}{' '}
-            <b>y</b>
-          </>
-        }
+      <JoinSection
+        primaryServer={primaryServer as string}
+        selectedFarmerOption={farmerOption as string}
+        setSelectedFarmerOption={setSelectedFarmerOption}
       />
-      <Spacer />
-      <p>
-        <b>{t('detail.note') + ' '}</b>
-        <Trans
-          ns="get-started"
-          i18nKey="detail_xch.plotnft_create.mojo_note"
-          components={{
-            chiafaucet: <LinkOut href="https://faucet.chia.net" />,
-          }}
-        />
-      </p>
       <Spacer size="xl" />
       <h2>
         <Highlight>#3</Highlight> {t('detail_xch.plotnft_show.title')}
@@ -161,7 +64,7 @@ export const ChiaCliGuidePage: React.FC = () => {
       <p>{t('detail_xch.plotnft_show.show_command')}</p>
       <TerminalCommand
         cmd={`chia plotnft show`}
-        desc={
+        output={
           <>
             {`Choose wallet key:
           1) 3118587270
@@ -205,43 +108,15 @@ export const ChiaCliGuidePage: React.FC = () => {
         </ul>
       </p>
       <Spacer size="xl" />
-      <h2>
-        <Highlight>#4</Highlight> {t('detail_xch.create_plots.title')}
-      </h2>
-      <p>
-        <Trans
-          ns="get-started"
-          i18nKey="detail_xch.create_plots.desc_one"
-          components={{
-            plotter: (
-              <LinkOut href="https://github.com/madMAx43v3r/chia-plotter" />
-            ),
-            madmax: <LinkOut href="https://github.com/madMAx43v3r" />,
-          }}
-        />
-      </p>
-      <Spacer />
-      <p>{t('detail_xch.create_plots.install_dependencies_command')}</p>
-      <TerminalCommand cmd={`sudo apt install libsodium-dev`} />
-      <p>{t('detail_xch.create_plots.build_and_install_command')}</p>
-      <TerminalCommand
-        cmd={`git clone https://github.com/madMAx43v3r/chia-plotter\ncd chia-plotter\ngit submodule update --init\nbash make_release.sh\nsudo mv build/chia_plot /usr/bin`}
-      />
-      <Spacer />
-      <p>
-        <b>{t('detail.note') + ' '}</b>
-        {t('detail_xch.create_plots.cmake_version_notice')}
-      </p>
-      <Spacer />
-      <p>{t('detail_xch.create_plots.create_plots_command')}</p>
-      <TerminalCommand
-        cmd={`chia_plot -n <plot-count> -r <thread-count> -t <tmpdir-1> -r <tmpdir-2> -d <final-dir> -c <p2-singleton-address> -f <farmer-public-key>`}
-      />
-      <Spacer size="xl" />
+      {farmerOption === 'new-farmer' ? (
+        <>
+          <CreatePlotsSection />
+          <Spacer size="xl" />
+        </>
+      ) : null}
       <h2>
         <Highlight>#5</Highlight> {t('detail_xch.monitor_farm.title')}
       </h2>
-      <Spacer />
       <p>{t('detail_xch.monitor_farm.desc')}</p>
       <Spacer size="xl" />
     </Page>
