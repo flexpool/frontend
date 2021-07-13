@@ -1,8 +1,7 @@
 import React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
-import { LinkOut } from 'src/components/LinkOut';
 import { Highlight } from 'src/components/Typo/Typo';
 import { mineableCoins } from '../mineableCoinList';
 import { Redirect, useHistory, useLocation, useRouteMatch } from 'react-router';
