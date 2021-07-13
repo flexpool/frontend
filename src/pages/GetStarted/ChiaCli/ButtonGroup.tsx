@@ -15,6 +15,7 @@ const ButtonGroupWrapper = styled.div`
 
     &.selected {
       background: var(--primary);
+      color: #fff;
     }
 
     :first-child {
