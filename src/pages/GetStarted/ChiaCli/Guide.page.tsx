@@ -114,7 +114,8 @@ export const ChiaCliGuidePage: React.FC = () => {
         </>
       ) : null}
       <h2>
-        <Highlight>#5</Highlight> {t('detail_xch.monitor_farm.title')}
+        <Highlight>#{farmerOption === 'new-farmer' ? 5 : 4}</Highlight>{' '}
+        {t('detail_xch.monitor_farm.title')}
       </h2>
       <p>{t('detail_xch.monitor_farm.desc')}</p>
       <Spacer size="xl" />
