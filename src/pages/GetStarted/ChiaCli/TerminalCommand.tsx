@@ -7,8 +7,6 @@ const TerminalContainer = styled.code`
   padding: 1.25rem;
   background: var(--bg-secondary);
   white-space: pre-line;
-  overflow-x: auto;
-  white-space: nowrap;
 `;
 
 const Commands = styled.div`
