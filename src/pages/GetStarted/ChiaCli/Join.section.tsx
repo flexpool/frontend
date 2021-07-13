@@ -107,7 +107,7 @@ const NewFarmerGuide = (props: FarmerGuideProps) => {
       <Spacer />
       <p>{t('detail_xch.plotnft_create.create_command')}</p>
       <TerminalCommand
-        cmd={`chia plotnft create -s pool https://${primaryServer}`}
+        cmd={`chia plotnft create -s pool -u https://${primaryServer}`}
         output={
           <>
             {`Choose wallet key:
