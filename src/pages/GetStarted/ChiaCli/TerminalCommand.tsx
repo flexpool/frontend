@@ -7,12 +7,15 @@ const TerminalContainer = styled.code`
   padding: 1.25rem;
   background: var(--bg-secondary);
   white-space: pre-line;
+  overflow-x: auto;
+  white-space: nowrap;
 `;
 
 const Commands = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-right: 20px;
 `;
 
 const Command = styled.code`
@@ -31,6 +34,7 @@ const CommandResultContainer = styled(TerminalContainer)`
   color: var(--text-secondary);
   background: var(--bg-primary);
   border: 5px solid var(--bg-secondary);
+  overflow-x: auto;
 `;
 
 type TerminalCommandProps = {
