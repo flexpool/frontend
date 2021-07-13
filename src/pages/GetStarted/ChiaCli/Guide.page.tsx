@@ -5,55 +5,11 @@ import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOut } from 'src/components/LinkOut';
 import { Highlight } from 'src/components/Typo/Typo';
 import styled from 'styled-components';
-import { MineableCoinRegion, mineableCoins } from '../mineableCoinList';
-import { Redirect, useRouteMatch } from 'react-router';
-import { CopyButton } from 'src/components/CopyButton';
-import { Img } from 'src/components/Img';
-import DynamicList, {
-  DynamicListColumn,
-} from 'src/components/layout/List/List';
-import { Mono, Ws } from 'src/components/Typo/Typo';
-
-export const ServerList: React.FC<{
-  data: MineableCoinRegion[];
-}> = ({ data }) => {
-  const { t } = useTranslation('get-started');
-
-  const cols: DynamicListColumn<MineableCoinRegion>[] = React.useMemo(
-    () => [
-      {
-        title: t('detail.region.table_head.location'),
-        Component: ({ data }) => {
-          return (
-            <Ws>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <Img
-                  src={`https://static.flexpool.io/assets/countries/${data.imageCode}.svg`}
-                  style={{ width: '32px', marginRight: '10px' }}
-                  alt={data.imageCode}
-                />
-                {t(`regions.${data.code}`)}
-              </div>
-            </Ws>
-          );
-        },
-      },
-      {
-        title: t('detail.region.table_head.domain'),
-        Component: ({ data }) => (
-          <Mono>
-            <Ws>
-              {data.domain} <CopyButton text={data.domain} />
-            </Ws>
-          </Mono>
-        ),
-      },
-    ],
-    [t]
-  );
-
-  return <DynamicList data={data} columns={cols} />;
-};
+import { mineableCoins } from '../mineableCoinList';
+import { Redirect, useLocation, useRouteMatch } from 'react-router';
+import qs from 'query-string';
+import { Mono } from 'src/components/Typo/Typo';
+import { PingTestSection } from './PingTest.section';
 
 const TerminalContainer = styled.code`
   display: block;
@@ -87,6 +43,7 @@ export const ChiaCliGuidePage: React.FC = () => {
   }>();
 
   const { t } = useTranslation('get-started');
+  const { search } = useLocation();
 
   const mineableCoin = React.useMemo(() => {
     return mineableCoins.find((item) => item.ticker === ticker);
@@ -96,6 +53,8 @@ export const ChiaCliGuidePage: React.FC = () => {
     return <Redirect to="/get-started" />;
   }
 
+  const { primaryServer = 'POOL_URL' } = qs.parse(search);
+
   return (
     <Page>
       <h1>{t('detail_xch.title_cli')}</h1>
@@ -104,7 +63,7 @@ export const ChiaCliGuidePage: React.FC = () => {
         <Highlight>#1</Highlight> {t('detail.region.title')}
       </h2>
       <p>{t('detail.region.description')}</p>
-      <ServerList data={mineableCoin.regions} />
+      <PingTestSection data={mineableCoin.regions} />
       <Spacer size="xl" />
       <h2>
         <Highlight>#2</Highlight> {t('detail_xch.plotnft_create.title')}
@@ -115,7 +74,9 @@ export const ChiaCliGuidePage: React.FC = () => {
       <Spacer />
       <p>{t('detail_xch.plotnft_create.create_command')}</p>
       <TerminalContainer>
-        <Command>{'chia plotnft create -s pool https://<POOL_URL>'}</Command>
+        <Command>
+          {`chia plotnft create -s pool https://${primaryServer}`}
+        </Command>
       </TerminalContainer>
       <CommandResultContainer>
         {`Choose wallet key:
@@ -126,7 +87,7 @@ export const ChiaCliGuidePage: React.FC = () => {
         <b>1</b>
         {`
           
-          Will create a plot NFT and join pool: https://<POOL URL>.
+          Will create a plot NFT and join pool: https://${primaryServer}.
           Confirm [n]/y:`}{' '}
         <b>y</b>
       </CommandResultContainer>
@@ -170,7 +131,7 @@ export const ChiaCliGuidePage: React.FC = () => {
           Target address (not for plotting): xch1d00purr0n5ae8hz706rcwge90m09w00wa4v78d9fpawgdhs6p0fsjt6rd8
           Owner public key: 1b434567c4a027e0e737245f3168e6fff86972a40803fd9243e912db192785d8f06f789f18c226c2e2f6331604c79967
           P2 singleton address (pool contract address for plotting): xch1f9el9dze3qdss22al7f3cfkupeg3eehag62gu9pwu9gmr7ta0u3s225yls
-          Current pool URL: <POOL URL>
+          Current pool URL: ${primaryServer}
           Current difficulty: 1
           Points balance: 9999
           Relative lock height: 100 blocks

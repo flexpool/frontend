@@ -16,7 +16,8 @@
     },
     "region": {
       "title": "Select your region",
-      "description": "For the best performance, you should choose server with lowest latency to your mining rig or computer. The chart is displaying latency between servers and this device.",
+      "description": "For the best performance, you should choose region with lowest latency to your mining rig or computer. This table is displaying latency between regional servers and this device.",
+      "description_chia": "For the best performance and connection reliability, you should choose the region with the lowest latency to your farming hardware. This table is displaying latency between regional servers and this device.",
       "table_head": {
         "location": "Region Name",
         "domain": "Endpoint",
