@@ -10,12 +10,20 @@ import { Redirect, useLocation, useRouteMatch } from 'react-router';
 import qs from 'query-string';
 import { Mono } from 'src/components/Typo/Typo';
 import { PingTestSection } from './PingTest.section';
+import { CopyButton } from 'src/components/CopyButton';
 
 const TerminalContainer = styled.code`
-  display: block;
+  display: flex;
+  justify-content: space-between;
   padding: 1.25rem;
   background: var(--bg-secondary);
   white-space: pre-line;
+`;
+
+const Commands = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const Command = styled.code`
@@ -30,10 +38,57 @@ const CommandSecondary = styled.code`
 `;
 
 const CommandResultContainer = styled(TerminalContainer)`
+  display: block;
   color: var(--text-secondary);
   background: var(--bg-primary);
   border: 5px solid var(--bg-secondary);
 `;
+
+type TerminalCommandProps = {
+  cmd: React.ReactNode;
+  desc?: React.ReactNode;
+};
+
+const TerminalCommand = (props: TerminalCommandProps) => {
+  const { cmd, desc } = props;
+  return (
+    <>
+      <TerminalContainer>
+        <Commands>
+          {(cmd as string).split('\n').map((item) => {
+            var commandItems: Array<React.ReactNode> = [];
+            item.split(' ').forEach((itemCommand) => {
+              console.log(
+                itemCommand,
+                itemCommand.substr(0, 1),
+                itemCommand.substr(itemCommand.length - 1, itemCommand.length)
+              );
+              if (
+                itemCommand.length > 0 &&
+                itemCommand.substr(0, 1) === '<' &&
+                itemCommand.substr(
+                  itemCommand.length - 1,
+                  itemCommand.length
+                ) === '>'
+              ) {
+                commandItems.push(
+                  <CommandSecondary>{itemCommand} </CommandSecondary>
+                );
+              } else {
+                commandItems.push(itemCommand + ' ');
+              }
+            });
+            return <Command>{commandItems}</Command>;
+          })}
+        </Commands>
+        <CopyButton text={cmd as string} />
+      </TerminalContainer>
+      {desc !== undefined ? (
+        <CommandResultContainer>{desc}</CommandResultContainer>
+      ) : null}
+    </>
+  );
+};
 
 export const ChiaCliGuidePage: React.FC = () => {
   const {
@@ -68,24 +123,24 @@ export const ChiaCliGuidePage: React.FC = () => {
       <p>{t('detail_xch.plotnft_create.desc_two')}</p>
       <Spacer />
       <p>{t('detail_xch.plotnft_create.create_command')}</p>
-      <TerminalContainer>
-        <Command>
-          {`chia plotnft create -s pool https://${primaryServer}`}
-        </Command>
-      </TerminalContainer>
-      <CommandResultContainer>
-        {`Choose wallet key:
+      <TerminalCommand
+        cmd={`chia plotnft create -s pool https://${primaryServer}`}
+        desc={
+          <>
+            {`Choose wallet key:
           1) 3118587270
           2) 2183884896
           3) 1324486352
           Enter a number to pick or q to quit: `}{' '}
-        <b>1</b>
-        {`
+            <b>1</b>
+            {`
           
           Will create a plot NFT and join pool: https://${primaryServer}.
           Confirm [n]/y:`}{' '}
-        <b>y</b>
-      </CommandResultContainer>
+            <b>y</b>
+          </>
+        }
+      />
       <Spacer />
       <p>
         <b>{t('detail.note') + ' '}</b>
@@ -104,17 +159,17 @@ export const ChiaCliGuidePage: React.FC = () => {
       <p>{t('detail_xch.plotnft_show.desc')}</p>
       <Spacer />
       <p>{t('detail_xch.plotnft_show.show_command')}</p>
-      <TerminalContainer>
-        <Command>{'chia plotnft show'}</Command>
-      </TerminalContainer>
-      <CommandResultContainer>
-        {`Choose wallet key:
+      <TerminalCommand
+        cmd={`chia plotnft show`}
+        desc={
+          <>
+            {`Choose wallet key:
           1) 3118587270
           2) 2183884896
           3) 1324486352
           Enter a number to pick or q to quit: `}{' '}
-        <b>1</b>
-        {`
+            <b>1</b>
+            {`
           
           Wallet height: ...
           Sync status: Synced
@@ -131,7 +186,10 @@ export const ChiaCliGuidePage: React.FC = () => {
           Points balance: 9999
           Relative lock height: 100 blocks
           Payout instructions (pool will pay to this address): xch1egymuhquwg94e8wdkn2gzulghs7sngnmdr4k003j8xqu76dgwhjs9n84mu`}
-      </CommandResultContainer>
+          </>
+        }
+      />
+
       <h4>{t('detail_xch.plotnft_show.grab_addresses')}</h4>
       <Spacer />
       <p>
@@ -164,23 +222,11 @@ export const ChiaCliGuidePage: React.FC = () => {
       </p>
       <Spacer />
       <p>{t('detail_xch.create_plots.install_dependencies_command')}</p>
-      <TerminalContainer>
-        <Command>{`sudo apt install libsodium-dev`}</Command>
-      </TerminalContainer>
+      <TerminalCommand cmd={`sudo apt install libsodium-dev`} />
       <p>{t('detail_xch.create_plots.build_and_install_command')}</p>
-      <TerminalContainer>
-        <Command>
-          {`git clone https://github.com/madMAx43v3r/chia-plotter`}
-        </Command>
-        <br />
-        <Command>{`cd chia-plotter`}</Command>
-        <br />
-        <Command>{`git submodule update --init`}</Command>
-        <br />
-        <Command>{`bash make_release.sh`}</Command>
-        <br />
-        <Command>{`sudo mv build/chia_plot /usr/bin`}</Command>
-      </TerminalContainer>
+      <TerminalCommand
+        cmd={`git clone https://github.com/madMAx43v3r/chia-plotter\ncd chia-plotter\ngit submodule update --init\nbash make_release.sh\nsudo mv build/chia_plot /usr/bin`}
+      />
       <Spacer />
       <p>
         <b>{t('detail.note') + ' '}</b>
@@ -188,30 +234,9 @@ export const ChiaCliGuidePage: React.FC = () => {
       </p>
       <Spacer />
       <p>{t('detail_xch.create_plots.create_plots_command')}</p>
-      <TerminalContainer>
-        <Command>
-          {'chia_plot -n '}
-          <CommandSecondary>{'<amount plots>'}</CommandSecondary>
-          {' -r '}
-          <CommandSecondary>{'<amount of threads>'}</CommandSecondary>
-          {' -t '}
-          <CommandSecondary>{'<tmpdir 1>'}</CommandSecondary>
-          {' -r '}
-          <CommandSecondary>{'<tmpdir 2>'}</CommandSecondary>
-          {' -d '}
-          <CommandSecondary>{'<final dir>'}</CommandSecondary>
-          {' -c '}
-          <CommandSecondary>
-            {'<P2 Singleton Address (see step #3)>'}
-          </CommandSecondary>
-          {' -f '}
-          <CommandSecondary>
-            {'<Farmer Public Key (can be obtained from '}
-            <b>chia keys show</b>
-            {')>'}
-          </CommandSecondary>
-        </Command>
-      </TerminalContainer>
+      <TerminalCommand
+        cmd={`chia_plot -n <plot-count> -r <thread-count> -t <tmpdir-1> -r <tmpdir-2> -d <final-dir> -c <p2-singleton-address> -f <farmer-public-key>`}
+      />
       <Spacer size="xl" />
       <h2>
         <Highlight>#5</Highlight> {t('detail_xch.monitor_farm.title')}
