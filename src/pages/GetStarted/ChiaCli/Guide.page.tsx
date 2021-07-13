@@ -58,11 +58,6 @@ export const ChiaCliGuidePage: React.FC = () => {
   return (
     <Page>
       <h1>{t('detail_xch.title_cli')}</h1>
-      <Spacer size="xl" />
-      <h2>
-        <Highlight>#1</Highlight> {t('detail.region.title')}
-      </h2>
-      <p>{t('detail.region.description')}</p>
       <PingTestSection data={mineableCoin.regions} />
       <Spacer size="xl" />
       <h2>
