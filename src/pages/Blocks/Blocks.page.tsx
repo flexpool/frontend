@@ -104,7 +104,9 @@ export const BlocksPage = () => {
             tooltip={
               <Tooltip>
                 <TooltipContent>
-                  {t('network_difficulty_tooltip')}
+                  {String(activeCoin?.ticker) === 'xch'
+                    ? t('network_difficulty_tooltip_points')
+                    : t('network_difficulty_tooltip')}
                 </TooltipContent>
               </Tooltip>
             }
