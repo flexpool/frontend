@@ -92,7 +92,7 @@ export const ChiaGuiGuidePage: React.FC = () => {
             selectedMenu={'Pool'}
             menuContent={
               <AddNewPlotNFTDetailChiaGuiMenuContent
-                selectedServer={primaryServer as string}
+                selectedServer={`https://${primaryServer}`}
               />
             }
           />
@@ -146,7 +146,7 @@ export const ChiaGuiGuidePage: React.FC = () => {
         selectedMenu={'Pool'}
         menuContent={
           <PayoutAddressChiaGuiMenuContent
-            selectedServer={primaryServer as string}
+            selectedServer={`https://${primaryServer}`}
           />
         }
       />
@@ -283,7 +283,7 @@ const AddNewPlotNFTDetailChiaGuiMenuContent = (
         <ChiaGuiMenuStepHeader stepNumber={2} text={'Verify Pool Details'} />
         <ChiaGuiMenuContent>
           <h3>Flexpool.io</h3>
-          <ChiaGuiLink>https://www.flexpool.io</ChiaGuiLink>
+          <ChiaGuiLink>{selectedServer}</ChiaGuiLink>
           <p>The Most Advanced Mining Pool</p>
         </ChiaGuiMenuContent>
       </ChiaGuiMenuStep>
