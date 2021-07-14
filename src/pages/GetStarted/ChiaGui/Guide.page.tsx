@@ -127,7 +127,7 @@ export const ChiaGuiGuidePage: React.FC = () => {
             selectedMenu={'Pool'}
             menuContent={
               <AddNewPlotNFTDetailChiaGuiMenuContent
-                selectedServer={primaryServer as string}
+                selectedServer={`https://${primaryServer}`}
                 changePool={true}
               />
             }
