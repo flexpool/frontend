@@ -520,7 +520,8 @@ const ChiaGuiMenuContainer = styled.div`
   border-radius: 5px;
   min-height: 500px;
   background: var(--bg-secondary);
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
 `;
 
 const ChiaGuiMenuSidebarWrapper = styled.div`
