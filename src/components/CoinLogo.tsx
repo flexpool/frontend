@@ -7,7 +7,6 @@ type CoinSize = 'lg' | 'xl';
 const CoinImg = styled(Img)<{ size?: CoinSize }>`
   height: 20px;
   width: 20px;
-  margin-right: 0.5rem;
 
   ${(p) => {
     switch (p.size) {

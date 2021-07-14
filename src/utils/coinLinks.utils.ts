@@ -1,5 +1,6 @@
 const blockUrlMap = {
   eth: 'https://etherscan.io/block/%v',
+  xch: 'https://www.chiaexplorer.com/blockchain/block/%v',
 };
 
 const uncleUrlMap = {
@@ -8,9 +9,12 @@ const uncleUrlMap = {
 
 const transactionUrlMap = {
   eth: 'https://etherscan.io/tx/%v',
+  xch: 'https://www.chiaexplorer.com/blockchain/coin/%v',
 };
+
 const walletAddressUrlMap = {
   eth: 'https://etherscan.io/address/%v',
+  xch: 'https://www.chiaexplorer.com/blockchain/address/%v',
 };
 
 const urlMaps = {

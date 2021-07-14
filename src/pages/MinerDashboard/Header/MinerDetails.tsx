@@ -91,42 +91,46 @@ export const MinerDetails: React.FC<{
           <div>{t('header.info_payout_limit')}:&nbsp;</div>
           <div>{settings && coin ? payoutLimit : <Skeleton width={40} />}</div>
         </Item>
-        <Tooltip
-          wrapIcon={false}
-          icon={
-            <Item>
-              <div>{t('header.info_gas_limit')}:&nbsp;</div>
-              {maxFeePrice && feeDetails ? (
-                <div>{maxFeePrice + ' ' + feeDetails?.unit}</div>
-              ) : (
-                <NoFeeLimit>
-                  {maxFeePrice === 0 ? (
-                    t('header.info_gas_limit_none')
-                  ) : (
-                    <Skeleton width={40} />
-                  )}
-                </NoFeeLimit>
-              )}
-            </Item>
-          }
-        >
-          <TooltipContent>
-            <p>
-              {maxFeePrice && maxFeePrice > 0 ? (
-                <strong>
-                  {feeTicker},{' '}
-                  {t('header.info_gas_limit_detail', {
-                    percent: feeTickerPercentage,
-                  })}
-                </strong>
-              ) : feeTicker && feeTickerPercentage ? (
-                <strong>{t('header.info_gas_limit_detail_none')}</strong>
-              ) : (
-                <strong>{t('header.info_gas_limit_detail_na')}</strong>
-              )}
-            </p>
-          </TooltipContent>
-        </Tooltip>
+        {activeCoinTicker === 'eth' ? (
+          <Tooltip
+            wrapIcon={false}
+            icon={
+              <Item>
+                <div>{t('header.info_gas_limit')}:&nbsp;</div>
+                {maxFeePrice && feeDetails ? (
+                  <div>{maxFeePrice + ' ' + feeDetails?.unit}</div>
+                ) : (
+                  <NoFeeLimit>
+                    {maxFeePrice === 0 ? (
+                      t('header.info_gas_limit_none')
+                    ) : (
+                      <Skeleton width={40} />
+                    )}
+                  </NoFeeLimit>
+                )}
+              </Item>
+            }
+          >
+            <TooltipContent>
+              <p>
+                {maxFeePrice && maxFeePrice > 0 ? (
+                  <strong>
+                    {feeTicker},{' '}
+                    {t('header.info_gas_limit_detail', {
+                      percent: feeTickerPercentage,
+                    })}
+                  </strong>
+                ) : feeTicker && feeTickerPercentage ? (
+                  <strong>{t('header.info_gas_limit_detail_none')}</strong>
+                ) : (
+                  <strong>{t('header.info_gas_limit_detail_na')}</strong>
+                )}
+              </p>
+            </TooltipContent>
+          </Tooltip>
+        ) : (
+          <></>
+        )}
         <Tooltip
           wrapIcon={false}
           icon={

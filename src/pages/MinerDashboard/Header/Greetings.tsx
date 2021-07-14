@@ -99,8 +99,10 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
     'queued_down_tick',
     false
   );
-  const [refreshInProgress, setRefreshInProgress] =
-    useLocalStorageState<boolean>('stats_refresh_in_progress', false);
+  const [
+    refreshInProgress,
+    setRefreshInProgress,
+  ] = useLocalStorageState<boolean>('stats_refresh_in_progress', false);
   const [queuedCounterValue, setQueuedCounterValue] = useLocalStorageState<
     number | undefined
   >('queued_counter_value', undefined);
@@ -197,12 +199,12 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
   const hashrate = minerStatsState.data
     ? minerStatsState.data.reportedHashrate > 0
       ? siFormatter(minerStatsState.data.reportedHashrate, {
-          unit: 'H/s',
+          unit: activeCoin?.hashrateUnit,
         })
       : siFormatter(minerStatsState.data.currentEffectiveHashrate, {
-          unit: 'H/s',
+          unit: activeCoin?.hashrateUnit,
         })
-    : '- H/s';
+    : '- ' + activeCoin?.hashrateUnit;
 
   return (
     <Wrap>

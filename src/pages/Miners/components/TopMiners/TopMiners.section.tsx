@@ -3,7 +3,10 @@ import DynamicList, {
   DynamicListColumn,
 } from 'src/components/layout/List/List';
 import { LinkMiner } from 'src/components/LinkMiner';
-import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
+import {
+  useActiveCoin,
+  useActiveCoinTicker,
+} from 'src/rdx/localSettings/localSettings.hooks';
 import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { useReduxState } from 'src/rdx/useReduxState';
@@ -26,6 +29,7 @@ export const TopMinersSection = () => {
   }, [activeCoinTicker, d]);
   const siFormatter = useLocalizedSiFormatter();
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
+  const activeCoin = useActiveCoin();
 
   const topMinersCol: DynamicListColumn<
     ApiTopMiner,
@@ -51,12 +55,17 @@ export const TopMinersSection = () => {
         },
       },
       {
-        title: t('top_miners.table_head.hashrate'),
+        title:
+          activeCoin?.hashrateUnit === 'B'
+            ? t('top_miners.table_head.space')
+            : t('top_miners.table_head.hashrate'),
         skeletonWidth: 90,
         Component: ({ data }) => {
           return (
             <Ws>
-              <Mono>{siFormatter(data.hashrate, { unit: 'H/s' })}</Mono>
+              <Mono>
+                {siFormatter(data.hashrate, { unit: activeCoin?.hashrateUnit })}
+              </Mono>
             </Ws>
           );
         },
@@ -90,7 +99,7 @@ export const TopMinersSection = () => {
         },
       },
     ],
-    [siFormatter, activeCoinFormatter, t]
+    [siFormatter, activeCoinFormatter, t, activeCoin]
   );
   const { push } = useHistory();
   const handleMinerClick = React.useCallback(

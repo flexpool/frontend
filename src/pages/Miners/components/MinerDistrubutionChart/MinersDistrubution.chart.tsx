@@ -2,6 +2,7 @@ import React from 'react';
 
 import { fetchApi } from 'src/utils/fetchApi';
 import {
+  useActiveCoin,
   useActiveCoinTicker,
   useAppTheme,
 } from 'src/rdx/localSettings/localSettings.hooks';
@@ -40,6 +41,7 @@ export const MinersDistributionChart = () => {
   const appTheme = useAppTheme();
   const siFormatter = useLocalizedSiFormatter();
   const { t } = useTranslation('miners');
+  const activeCoin = useActiveCoin();
 
   React.useEffect(() => {
     if (coinTicker) {
@@ -56,8 +58,10 @@ export const MinersDistributionChart = () => {
     return (dataState.data || [])
       .map((item) => ({
         name: `${siFormatter(item.hashrateLowerThan / 10, {
-          unit: 'H/s',
-        })} - ${siFormatter(item.hashrateLowerThan, { unit: 'H/s' })}`,
+          unit: activeCoin?.hashrateUnit,
+        })} - ${siFormatter(item.hashrateLowerThan, {
+          unit: activeCoin?.hashrateUnit,
+        })}`,
         hashrate: item.hashrate,
       }))
       .sort(function (a, b) {
@@ -69,7 +73,7 @@ export const MinersDistributionChart = () => {
         }
         return 0;
       });
-  }, [dataState.data, siFormatter]);
+  }, [dataState.data, siFormatter, activeCoin]);
 
   React.useLayoutEffect(() => {
     if (data.length > 0) {
@@ -83,7 +87,10 @@ export const MinersDistributionChart = () => {
         appTheme === 'light' ? colorListLight : colorListDark;
       pieSeries.dataFields.value = 'hashrate';
       pieSeries.dataFields.category = 'name';
-      pieSeries.slices.template.tooltipText = `{category}: {value.formatNumber("#.00 aH/s")}`;
+      pieSeries.slices.template.tooltipText =
+        `{category}: {value.formatNumber("#.00 a` +
+        activeCoin?.hashrateUnit +
+        `")}`;
       pieSeries.slices.template.stroke = color(
         appTheme === 'light' ? '#fff' : '#151519'
       );
@@ -98,7 +105,7 @@ export const MinersDistributionChart = () => {
         chartDistribution.dispose();
       };
     }
-  }, [data, appTheme]);
+  }, [data, appTheme, activeCoin]);
 
   return (
     <>

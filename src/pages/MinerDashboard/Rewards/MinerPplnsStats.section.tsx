@@ -175,7 +175,7 @@ export const MinerPplnsStats: React.FC<{
               averagePoolHashrate &&
               headerStatsData &&
               siFormatter(averagePoolHashrate * headerStatsData.roundShare, {
-                unit: 'H/s',
+                unit: activeCoin?.hashrateUnit,
               })
             }
             subValue={
@@ -183,7 +183,7 @@ export const MinerPplnsStats: React.FC<{
               headerStatsData &&
               `${t('rewards.pplns.avp.current')}: ${siFormatter(
                 poolHashrate * headerStatsData.roundShare,
-                { unit: 'H/s' }
+                { unit: activeCoin?.hashrateUnit }
               )}`
             }
           />
@@ -238,7 +238,7 @@ export const MinerPplnsStats: React.FC<{
               `${t('rewards.pplns.log.size', {
                 value: siFormatter(shareLogLength),
               })} • ${siFormatter(averagePoolHashrate, {
-                unit: 'H/s',
+                unit: activeCoin?.hashrateUnit,
               })}`
             }
           />

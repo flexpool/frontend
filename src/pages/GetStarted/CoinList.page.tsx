@@ -94,15 +94,17 @@ export const MineableCoinList: React.FC = () => {
                     {itemHw.title}
                   </Button>
                 ))}
-                <Button
-                  shape="block"
-                  size="sm"
-                  variant="warning"
-                  as={Link}
-                  to={`/get-started/${item.ticker}/nicehash`}
-                >
-                  {t('list.nicehash_rental_button')}
-                </Button>
+                {item.nicehashAvailable ? (
+                  <Button
+                    shape="block"
+                    size="sm"
+                    variant="warning"
+                    as={Link}
+                    to={`/get-started/${item.ticker}/nicehash`}
+                  >
+                    {t('list.nicehash_rental_button')}
+                  </Button>
+                ) : null}
               </GuidesList>
               <DynamicList
                 wrapperProps={{

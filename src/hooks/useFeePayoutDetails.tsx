@@ -6,6 +6,11 @@ const feePayoutLimitDetails = {
     title: 'Gas Price',
     multiplier: 1000000000,
   },
+  xch: {
+    unit: 'mojo/CU',
+    title: 'Cost Unit Price',
+    multiplier: 1,
+  },
 };
 
 export const useFeePayoutLimitDetails = (coin?: string) => {
@@ -17,7 +22,9 @@ export const useFeePayoutLimitDetails = (coin?: string) => {
   }
 
   if (activeCoinTicker in feePayoutLimitDetails) {
-    return feePayoutLimitDetails[activeCoinTicker as keyof typeof feePayoutLimitDetails];
+    return feePayoutLimitDetails[
+      activeCoinTicker as keyof typeof feePayoutLimitDetails
+    ];
   }
   return null;
 };

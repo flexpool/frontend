@@ -1,6 +1,6 @@
 import { Ticker } from './Ticker.types';
 
-type Si = 'K' | 'M' | 'G' | 'T';
+type Si = 'k' | 'M' | 'G' | 'T';
 
 type ApiCoinMarketData = {
   marketCaps: {
@@ -14,6 +14,8 @@ type ApiCoinMarketData = {
 
 export type ApiPoolCoinFull = {
   algorithm: string;
+  hashrateUnit: string;
+  difficultyFactor: number;
   applicableHashrateSiPrefixes: Si[];
   chainData: {
     reward: number;
@@ -40,4 +42,6 @@ export type ApiPoolCoin = {
   shareDifficulty: number;
   ticker: Ticker;
   transactionSize: number;
+  difficultyFactor: number;
+  hashrateUnit: string;
 };

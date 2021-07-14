@@ -11,10 +11,10 @@ import { BlocksSection } from 'src/sections/Blocks.section';
 import { Luck } from 'src/components/Luck';
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
-import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
+import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useTranslation } from 'react-i18next';
-import { BlocksChart } from './Blocks.chart';
+import { BlocksChart } from './components/BlocksChart/Blocks.chart';
 
 export const BlocksPage = () => {
   const statsState = useAsyncState<{
@@ -23,12 +23,12 @@ export const BlocksPage = () => {
     networkHashrate: number;
     networkDifficulty: number;
   } | null>('poolStats', null);
-  const activeCoinTicker = useActiveCoinTicker();
+  const activeCoin = useActiveCoin();
   const siFormatter = useLocalizedSiFormatter();
   const { t } = useTranslation('blocks');
 
   React.useEffect(() => {
-    const init = { query: { coin: activeCoinTicker } };
+    const init = { query: { coin: activeCoin?.ticker } };
     statsState.start(
       Promise.all([
         fetchApi<number>('/pool/averageLuck', init),
@@ -45,7 +45,7 @@ export const BlocksPage = () => {
       )
     );
     // eslint-disable-next-line
-  }, [activeCoinTicker]);
+  }, [activeCoin?.ticker]);
 
   return (
     <Page>
@@ -81,10 +81,23 @@ export const BlocksPage = () => {
             }
           />
           <StatBox
-            title={t('network_hashrate')}
+            title={
+              activeCoin?.hashrateUnit === 'B'
+                ? t('network_space')
+                : t('network_hashrate')
+            }
             value={
               statsState.data &&
-              `${siFormatter(statsState.data.networkHashrate, { unit: 'H/s' })}`
+              `${siFormatter(
+                statsState.data.networkHashrate *
+                  Number(activeCoin?.difficultyFactor),
+                {
+                  unit:
+                    activeCoin?.hashrateUnit === 'H'
+                      ? 'H/s'
+                      : activeCoin?.hashrateUnit,
+                }
+              )}`
             }
           />
           <StatBox
@@ -98,7 +111,12 @@ export const BlocksPage = () => {
             title={t('network_difficulty')}
             value={
               statsState.data &&
-              `${siFormatter(statsState.data.networkDifficulty, { unit: 'H' })}`
+              `${siFormatter(statsState.data.networkDifficulty, {
+                unit:
+                  String(activeCoin?.ticker) === 'xch'
+                    ? 'PT'
+                    : activeCoin?.hashrateUnit.split('/')[0],
+              })}`
             }
           />
         </StatBoxContainer>

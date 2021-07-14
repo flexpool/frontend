@@ -6,6 +6,7 @@ import { useReduxState } from 'src/rdx/useReduxState';
 import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components';
 import { AverageEffectivePeriods } from './minerStats.types';
+import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 
 const StatItemGrid = styled.div`
   display: grid;
@@ -50,22 +51,29 @@ export const MinerStats: React.FC<{
     (data && data.invalidShares + data.staleShares + data.validShares) || 0;
   const siFormatter = useLocalizedSiFormatter();
   const { t } = useTranslation('dashboard');
+  const activeCoin = useActiveCoin();
 
   return (
     <StatGrid>
       <Card padding>
-        <CardTitle>{t('stats.hashrate.title')}</CardTitle>
+        <CardTitle>
+          {activeCoin?.hashrateUnit === 'B'
+            ? t('stats.hashrate.title_space')
+            : t('stats.hashrate.title')}
+        </CardTitle>
         <StatItemGrid>
           <StatItem
             title={t('stats.hashrate.current')}
-            value={siFormatter(data?.currentEffectiveHashrate, { unit: 'H/s' })}
+            value={siFormatter(data?.currentEffectiveHashrate, {
+              unit: activeCoin?.hashrateUnit,
+            })}
           />
           <Tooltip
             icon={
               <StatItem
                 title={t('stats.hashrate.average')}
                 value={siFormatter(data?.averageEffectiveHashrate, {
-                  unit: 'H/s',
+                  unit: activeCoin?.hashrateUnit,
                 })}
               />
             }
@@ -75,25 +83,37 @@ export const MinerStats: React.FC<{
               <AverageTooltipItem>
                 12h Average:{' '}
                 <strong>
-                  {siFormatter(averageEffectivePeriods[12], { unit: 'H/s' })}
+                  {siFormatter(averageEffectivePeriods[12], {
+                    unit: activeCoin?.hashrateUnit,
+                  })}
                 </strong>
               </AverageTooltipItem>
               <AverageTooltipItem>
                 6h Average:{' '}
                 <strong>
-                  {siFormatter(averageEffectivePeriods[6], { unit: 'H/s' })}
+                  {siFormatter(averageEffectivePeriods[6], {
+                    unit: activeCoin?.hashrateUnit,
+                  })}
                 </strong>
               </AverageTooltipItem>
             </TooltipContent>
           </Tooltip>
           <StatItem
             title={t('stats.hashrate.reported')}
-            value={siFormatter(data?.reportedHashrate, { unit: 'H/s' })}
+            value={siFormatter(data?.reportedHashrate, {
+              unit: activeCoin?.hashrateUnit,
+            })}
           />
         </StatItemGrid>
       </Card>
       <Card padding>
-        <CardTitle>{t('stats.shares.title')}</CardTitle>
+        <CardTitle>
+          {t(
+            String(activeCoin?.ticker) === 'xch'
+              ? 'stats.shares.title_points'
+              : 'stats.shares.title'
+          )}
+        </CardTitle>
         <StatItemGrid>
           <StatItem
             title={getDisplayPercentage(
