@@ -3,14 +3,15 @@ import { useTranslation } from 'react-i18next';
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 import { Highlight } from 'src/components/Typo/Typo';
-import { mineableCoins } from '../mineableCoinList';
+import { MineableCoinHardware, mineableCoins } from '../mineableCoinList';
 import { Redirect, useHistory, useLocation, useRouteMatch } from 'react-router';
 import qs from 'query-string';
 import { Mono } from 'src/components/Typo/Typo';
-import { PingTestSection } from './PingTest.section';
+import { PingTestSection } from '../ChiaShared/PingTest.section';
 import { TerminalCommand } from './TerminalCommand';
 import { JoinSection } from './Join.section';
 import { CreatePlotsSection } from './CreatePlots.section';
+import merge from 'lodash.merge';
 
 export const ChiaCliGuidePage: React.FC = () => {
   const {
@@ -27,7 +28,16 @@ export const ChiaCliGuidePage: React.FC = () => {
     return mineableCoins.find((item) => item.ticker === ticker);
   }, [ticker]);
 
-  if (!mineableCoin) {
+  const jsonHw = t(`detail_${ticker}.hardware`, {
+    returnObjects: true,
+  }) as MineableCoinHardware[];
+
+  const mineableCoinConfig = React.useMemo(() => {
+    const mergedHw = merge(mineableCoin?.hardware, jsonHw);
+    return mergedHw.find((item) => item.key === 'XCH-CLI');
+  }, [jsonHw, mineableCoin?.hardware]);
+
+  if (!mineableCoin || !mineableCoinConfig) {
     return <Redirect to="/get-started" />;
   }
 

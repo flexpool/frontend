@@ -3,8 +3,8 @@ import { Trans, useTranslation } from 'react-i18next';
 import { Spacer } from 'src/components/layout/Spacer';
 import { Highlight } from 'src/components/Typo/Typo';
 import { TerminalCommand } from './TerminalCommand';
-import { ButtonGroup } from './ButtonGroup';
 import { LinkOut } from 'src/components/LinkOut';
+import { FarmerOptionSelector } from '../ChiaShared/FarmerOptionSelector';
 
 type JoinSectionProps = {
   primaryServer: string;
@@ -19,19 +19,13 @@ export const JoinSection = (props: JoinSectionProps) => {
     setSelectedFarmerOption,
   } = props;
 
-  const { t } = useTranslation('get-started');
-
   return (
     <>
-      <ButtonGroup
-        options={{
-          'new-farmer': t('detail_xch.new_farmer'),
-          'already-farmer': t('detail_xch.already_farmer'),
-        }}
-        setSelectedOption={(s: string) => {
+      <FarmerOptionSelector
+        setSelectedFarmerOption={(s: string) => {
           setSelectedFarmerOption(s);
         }}
-        selectedOption={selectedFarmerOption}
+        selectedFarmerOption={selectedFarmerOption}
       />
       {selectedFarmerOption !== 'already-farmer' ? (
         <NewFarmerGuide primaryServer={primaryServer} />
