@@ -107,7 +107,7 @@
       "title": "Create your Plot NFT",
       "title_join": "Create your Plot NFT and point it to Flexpool",
       "desc_one": "Plot NFT is a smart contract that allows the creation of plots with a possible further change of the reward destination address, which is used for pool switching.",
-      "desc_two": "Flexpool is using the official pool protocol, which means that you will need to create Plot NFT in order to join the pool. Please, note that plots made without Plot NFT (sometimes referenced as OG plots) will not work with Flexpool. You will need to replot to the Plot NFT.",
+      "desc_two": "Flexpool is using the official pool protocol, which means that you will need to create Plot NFT in order to join the pool. Please, note that plots made without Plot NFT (sometimes referenced as OG plots) cannot be used with the Flexpool Chia pool. You can continue to farm them as a solo farmer, but you will need to create new plots pointed to the Plot NFT to contribute to the pool and get rewarded.",
       "create_command": "You can create the Plot NFT using this command:",
       "mojo_note": "You will need to have at least 1 mojo (the minimum XCH unit, one trillionth of XCH) to create the Plot NFT contract. If you don't have any funds on your account, please use <chiafaucet>Official XCH Faucet</chiafaucet> to get 100 mojos.",
       "create_gui_action": "You can create the PlotNFT by clicking on the \"Add a Plot NFT\" button in the \"Pool\" section.",
