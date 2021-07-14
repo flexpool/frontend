@@ -125,7 +125,7 @@ export const CoinCalculator: React.FC<{ coin: ApiPoolCoinFull }> = ({
                   <SelectField
                     name="si"
                     options={coin.applicableHashrateSiPrefixes.map((si) => {
-                      return { value: si, label: `${si}H/s` };
+                      return { value: si, label: `${si}` + coin.hashrateUnit };
                     })}
                   />
                   <SelectField

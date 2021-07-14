@@ -41,6 +41,9 @@ export const BlocksChart = () => {
   const appTheme = useAppTheme();
 
   React.useLayoutEffect(() => {
+    if (blocksChartState.data == null) {
+      return;
+    }
     if (blocksChartState.data.length > 1 && activeCoin) {
       let x = create('blocksChart', XYChart);
 
@@ -59,7 +62,7 @@ export const BlocksChart = () => {
       var userTimezoneOffset = new Date().getTimezoneOffset() * 60000;
       const data = blocksChartState.data.map((item) => ({
         //needs to be end of day for chart to work properly
-        date: new Date(item.timestamp * 1000 + userTimezoneOffset + 345599999),
+        date: new Date(item.timestamp * 1000 + userTimezoneOffset),
         difficulty: item.difficulty,
         blockCount: item.blockCount,
         rewards: item.rewards / Math.pow(10, activeCoin.decimalPlaces),
@@ -68,12 +71,22 @@ export const BlocksChart = () => {
 
       const difficultyAxis = x.yAxes.push(new ValueAxis());
       difficultyAxis.numberFormatter = new NumberFormatter();
-      difficultyAxis.numberFormatter.numberFormat = '#.0 aH';
+      difficultyAxis.numberFormatter.numberFormat =
+        `#.0 a'` +
+        (String(activeCoin?.ticker) === 'xch'
+          ? 'PT'
+          : activeCoin?.hashrateUnit.split('/')[0]) +
+        `'`;
       difficultyAxis.renderer.grid.template.disabled = true;
       difficultyAxis.renderer.opposite = true;
       const blockCountAxis = x.yAxes.push(new ValueAxis());
       blockCountAxis.numberFormatter = new NumberFormatter();
-      difficultyAxis.numberFormatter.numberFormat = '#.0 aH';
+      difficultyAxis.numberFormatter.numberFormat =
+        `#.0 a'` +
+        (String(activeCoin?.ticker) === 'xch'
+          ? 'PT'
+          : activeCoin?.hashrateUnit.split('/')[0]) +
+        `'`;
       blockCountAxis.renderer.grid.template.disabled = true;
       blockCountAxis.min = 0;
 
@@ -88,7 +101,12 @@ export const BlocksChart = () => {
       difficultySeries.yAxis = difficultyAxis;
       difficultySeries.dataFields.valueY = 'difficulty';
       difficultySeries.tooltipText =
-        t('Difficulty') + `: {valueY.value.formatNumber("#.00 aH")}`;
+        t('Difficulty') +
+        `: {valueY.value.formatNumber("#.00 a'` +
+        (String(activeCoin?.ticker) === 'xch'
+          ? 'PT'
+          : activeCoin?.hashrateUnit.split('/')[0]) +
+        `'")}`;
       difficultySeries.strokeWidth = 2;
       difficultySeries.tensionX = 0.9;
       difficultySeries.tensionY = 0.9;
@@ -169,18 +187,19 @@ export const BlocksChart = () => {
       // the new API is not yet in production.
       // Can be removed after the new API version it out.
 
+      let alteredEndDate = new Date(data[data.length - 1].date);
+      alteredEndDate.setDate(alteredEndDate.getDate() + 1);
       if (data.length > 30) {
         console.log(data[data.length - 1].date);
         x.events.on('ready', function () {
           dateAxis.zoomToDates(
             data[data.length - 30].date,
-            data[data.length - 1].date,
+            alteredEndDate,
             true,
             true
           );
         });
       }
-
       return () => {
         x.dispose();
       };

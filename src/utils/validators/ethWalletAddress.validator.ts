@@ -26,7 +26,7 @@ const sha3 = (value: string) => {
  * @param input
  * @returns string | null
  */
-export const checksumEth = (input: string) => {
+export const checksumETH = (input: string) => {
   if (!/^(0x)?[0-9a-f]{40}$/i.test(input)) {
     return null;
   }

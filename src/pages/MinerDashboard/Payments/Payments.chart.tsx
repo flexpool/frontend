@@ -59,7 +59,7 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
       };
 
       let feeSeries = paymentsChart.series.push(new ColumnSeries());
-
+      feeSeries.stacked = true;
       feeSeries.dataFields.dateX = 'date';
       feeSeries.name = `${t(
         'payments.chart.fee'
@@ -68,13 +68,11 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
       feeSeries.dataFields.valueY = 'fee';
       feeSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.0000")}`;
       feeSeries.strokeWidth = 3;
-      feeSeries.stacked = true;
-
       let paymentSeries = paymentsChart.series.push(new ColumnSeries());
 
       paymentSeries.dataFields.dateX = 'date';
       paymentSeries.name = `${t(
-        'payments.chart.value'
+        'payments.chart.net_value'
       )} (${coin.ticker.toUpperCase()})`;
       paymentSeries.yAxis = paymentsAxis;
       paymentSeries.dataFields.valueY = 'value';
@@ -102,7 +100,9 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
         }).then((resp) => {
           return (resp || []).map((item) => ({
             date: new Date(item.timestamp * 1000),
-            value: item.value / Math.pow(10, coin.decimalPlaces),
+            value:
+              item.value / Math.pow(10, coin.decimalPlaces) -
+              item.fee / Math.pow(10, coin.decimalPlaces),
             fee: item.fee / Math.pow(10, coin.decimalPlaces),
           }));
         })

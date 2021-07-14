@@ -1,3 +1,11 @@
+import {
+  ActionIconContainer,
+  ActionIcon,
+  Wrapper,
+  CoinName,
+  TickerName,
+  PriceChange,
+} from './components';
 import React from 'react';
 import {
   FaArrowDown,
@@ -19,7 +27,6 @@ import {
   useLocalizedNumberFormatter,
   useLocalizedSiFormatter,
 } from 'src/utils/si.utils';
-import styled from 'styled-components/macro';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import qs from 'query-string';
 import { CoinAbout } from 'src/sections/CoinAbout';
@@ -30,60 +37,6 @@ import { CoinLogo } from 'src/components/CoinLogo';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { useTranslation } from 'react-i18next';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
-const ActionIconContainer = styled.div`
-  display: inline-flex;
-  & > * {
-    margin: 0;
-    margin-left: 0.3rem;
-  }
-`;
-const ActionIcon = styled(Button)`
-  width: 32px;
-  padding: 0;
-  justify-content: center;
-`;
-
-const Wrapper = styled.div`
-  padding-top: 9rem;
-  padding-bottom: 5rem;
-  background: var(--bg-secondary);
-  h2 {
-    font-size: 2rem;
-  }
-`;
-
-const CoinName = styled(Link)`
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  & > * {
-    margin-right: 0.5rem;
-  }
-`;
-
-const TickerName = styled.span`
-  color: var(--text-tertiary);
-`;
-
-const PriceChange = styled.span<{ direction: 'up' | 'down' }>`
-  svg {
-    height: 14px;
-    width: 10px;
-    margin-right: 0.25rem;
-  }
-  ${(p) => {
-    switch (p.direction) {
-      case 'up':
-        return `
-        color: var(--success);
-      `;
-      case 'down':
-        return `
-        color: var(--danger);
-      `;
-    }
-  }}
-`;
 
 const ModalNews: React.FC<{ data?: ApiPoolCoinFull[] | null }> = ({ data }) => {
   const location = useLocation();
@@ -206,7 +159,9 @@ export const CoinsWeMineSection = () => {
         Component: ({ data }) => {
           return (
             <Ws>
-              <Mono>{siFormatter(data.hashrate, { unit: 'H/s' })}</Mono>
+              <Mono>
+                {siFormatter(data.hashrate, { unit: data.hashrateUnit })}
+              </Mono>
             </Ws>
           );
         },

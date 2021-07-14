@@ -6,33 +6,12 @@ import { useTranslation } from 'react-i18next';
 import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
-import { LinkOut } from 'src/components/LinkOut';
 import { Sticker } from 'src/components/Sticker';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
-import styled from 'styled-components/macro';
-import { LatestReport } from './LatestReport';
+import { LatestReport } from './components/LatestReport/LatestReport';
 import format from 'date-fns/format';
-
-const ReportArchiveItem = styled(LinkOut)`
-  display: block;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  border: 1px solid var(--border-color);
-  margin-bottom: -1px;
-  align-items: center;
-  &:hover {
-    background: var(--bg-secondary);
-    text-decoration: none;
-  }
-`;
-
-const ReportTitle = styled.span`
-  @media screen and (max-width: 600px) {
-    display: none;
-  }
-`;
+import { ReportArchiveItem, ReportTitle } from './components';
 
 const getReportUrlByDate = (date: Date) =>
   `https://static.flexpool.io/opendata/opendata_report_${format(

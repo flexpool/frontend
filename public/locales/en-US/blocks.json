@@ -7,6 +7,7 @@
   "current_luck": "Current luck",
   "current_luck_tooltip": "Current round's block luck. This value is updated in real-time.",
   "network_hashrate": "Network Hashrate",
+  "network_space": "Network Space",
   "network_difficulty": "Network difficulty",
   "network_difficulty_tooltip": "Average amount of how many hashes pool should produce to mine a block.",
   "table": {

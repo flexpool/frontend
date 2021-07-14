@@ -6,7 +6,10 @@ import {
   ChartContainer,
   responsiveRule,
 } from 'src/components/Chart/ChartContainer';
-import { useAppTheme } from 'src/rdx/localSettings/localSettings.hooks';
+import {
+  useActiveCoin,
+  useAppTheme,
+} from 'src/rdx/localSettings/localSettings.hooks';
 
 import {
   color,
@@ -57,6 +60,8 @@ export const StatsChart: React.FC<{
     | null
   >();
 
+  const activeCoin = useActiveCoin();
+
   const worker = useActiveSearchParamWorker();
   const appTheme = useAppTheme();
   useEffect(() => {
@@ -86,7 +91,8 @@ export const StatsChart: React.FC<{
       var hashrateAxis = hashrateChart.yAxes.push(new ValueAxis());
       hashrateAxis.numberFormatter = new NumberFormatter();
       hashrateAxis.renderer.grid.template.disabled = true;
-      hashrateAxis.numberFormatter.numberFormat = '#.0 aH/s';
+      hashrateAxis.numberFormatter.numberFormat =
+        "#.0 a'" + activeCoin?.hashrateUnit + "'";
       let dateAxis = hashrateChart.xAxes.push(new DateAxis());
       dateAxis.renderer.grid.template.location = 0;
       dateAxis.baseInterval = {
@@ -96,10 +102,16 @@ export const StatsChart: React.FC<{
 
       let reportedHashrateSeries = hashrateChart.series.push(new LineSeries());
       reportedHashrateSeries.dataFields.dateX = 'date';
-      reportedHashrateSeries.name = t('stats.hashrate_chart.reported');
+      reportedHashrateSeries.name =
+        activeCoin?.hashrateUnit === 'B'
+          ? t('stats.hashrate_chart.reported_space')
+          : t('stats.hashrate_chart.reported');
       reportedHashrateSeries.yAxis = hashrateAxis;
       reportedHashrateSeries.dataFields.valueY = 'reportedHashrate';
-      reportedHashrateSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.00 aH/s")}`;
+      reportedHashrateSeries.tooltipText =
+        `{name}: {valueY.value.formatNumber("#.00 a'` +
+        activeCoin?.hashrateUnit +
+        `'")}`;
       reportedHashrateSeries.strokeWidth = 3;
       reportedHashrateSeries.smoothing = 'monotoneX';
       // reportedHashrateSeries.monotoneX = 0.9;
@@ -107,10 +119,16 @@ export const StatsChart: React.FC<{
 
       let effectiveHashrateSeries = hashrateChart.series.push(new LineSeries());
       effectiveHashrateSeries.dataFields.dateX = 'date';
-      effectiveHashrateSeries.name = t('stats.hashrate_chart.effective');
+      effectiveHashrateSeries.name =
+        activeCoin?.hashrateUnit === 'B'
+          ? t('stats.hashrate_chart.effective_space')
+          : t('stats.hashrate_chart.effective');
       effectiveHashrateSeries.yAxis = hashrateAxis;
       effectiveHashrateSeries.dataFields.valueY = 'effectiveHashrate';
-      effectiveHashrateSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.00 aH/s")}`;
+      effectiveHashrateSeries.tooltipText =
+        `{name}: {valueY.value.formatNumber("#.00 a'` +
+        activeCoin?.hashrateUnit +
+        `'")}`;
       effectiveHashrateSeries.strokeWidth = 3;
       effectiveHashrateSeries.smoothing = 'monotoneX';
       // effectiveHashrateSeries.monotoneX = 0.9;
@@ -120,11 +138,17 @@ export const StatsChart: React.FC<{
         new LineSeries()
       );
       averageEffectiveHashrateSeries.dataFields.dateX = 'date';
-      averageEffectiveHashrateSeries.name = t('stats.hashrate_chart.average');
+      averageEffectiveHashrateSeries.name =
+        activeCoin?.hashrateUnit === 'B'
+          ? t('stats.hashrate_chart.average_space')
+          : t('stats.hashrate_chart.average');
       averageEffectiveHashrateSeries.yAxis = hashrateAxis;
       averageEffectiveHashrateSeries.dataFields.valueY =
         'averageEffectiveHashrate';
-      averageEffectiveHashrateSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.00 aH/s")}`;
+      averageEffectiveHashrateSeries.tooltipText =
+        `{name}: {valueY.value.formatNumber("#.00 a'` +
+        activeCoin?.hashrateUnit +
+        `'")}`;
       averageEffectiveHashrateSeries.strokeWidth = 3;
       averageEffectiveHashrateSeries.smoothing = 'monotoneX';
       // averageEffectiveHashrateSeries.monotoneX = 0.9;
@@ -178,7 +202,7 @@ export const StatsChart: React.FC<{
         sharesChart.dispose();
       };
     }
-  }, [appTheme, sharesData, hashrateData, t]);
+  }, [appTheme, sharesData, hashrateData, t, activeCoin]);
 
   useEffect(() => {
     if (props.coinTicker === null) return;
@@ -250,14 +274,26 @@ export const StatsChart: React.FC<{
     <>
       {!noDataAvailable ? (
         <>
-          <ChartContainer title={t('stats.hashrate_chart.title')}>
+          <ChartContainer
+            title={
+              activeCoin?.hashrateUnit === 'B'
+                ? t('stats.hashrate_chart.title_space')
+                : t('stats.hashrate_chart.title')
+            }
+          >
             <div
               id="hashrate-chart"
               style={{ width: '100%', height: '250px' }}
             />
           </ChartContainer>
           <Spacer />
-          <ChartContainer title={t('stats.shares_chart.title')}>
+          <ChartContainer
+            title={t(
+              String(activeCoin?.ticker) === 'xch'
+                ? 'stats.shares_chart.title_points'
+                : 'stats.shares_chart.title'
+            )}
+          >
             <div id="shares-chart" style={{ width: '100%', height: '250px' }} />
           </ChartContainer>
           <ProTip>

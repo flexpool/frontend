@@ -76,9 +76,13 @@ const OsContainer = styled.div`
 `;
 
 export const MinerCommandSection: React.FC<{
-  data: GpuHardwareDetails[];
+  data: GpuHardwareDetails[] | null;
 }> = ({ data }) => {
   const { t } = useTranslation('get-started');
+
+  if (data === null) {
+    return null;
+  }
 
   return (
     <>
