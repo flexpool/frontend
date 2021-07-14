@@ -268,10 +268,7 @@ const AddNewPlotNFTDetailChiaGuiMenuContent = (
           )}
           <ConnectToPoolInputWrapper>
             <ConnectToPoolInputLabel>Connect to pool:</ConnectToPoolInputLabel>
-            <ChiaGuiInput
-              value={`https://${selectedServer}`}
-              copyEnabled={true}
-            />
+            <ChiaGuiInput value={selectedServer} copyEnabled={true} />
           </ConnectToPoolInputWrapper>
           <ConnectToPoolInputWrapper>
             <ConnectToPoolInputLabel>Fee: </ConnectToPoolInputLabel>

@@ -99,7 +99,7 @@ const MadmaxPlotterGuide = () => {
       <Spacer />
       <p>{t('detail_xch.create_plots.madmax.create_plots_command')}</p>
       <TerminalCommand
-        cmd={`chia_plot -n <plot-count> -r <thread-count> -t <tmpdir-1> -r <tmpdir-2> -d <final-dir> -c <p2-singleton-address> -f <farmer-public-key>`}
+        cmd={`chia_plot -n <plot-count> -r <thread-count> -t <tmpdir-1> -2 <tmpdir-2> -d <final-dir> -c <p2-singleton-address> -f <farmer-public-key>`}
       />
     </>
   );
