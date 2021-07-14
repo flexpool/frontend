@@ -61,7 +61,14 @@ export const CoinCalculator: React.FC<{ coin: ApiPoolCoinFull }> = ({
   coin,
 }) => {
   const { t } = useTranslation('home');
-  const siMap = { '': 1, k: 1000, M: 1000000, G: 1000000000, T: 1000000000000 };
+  const siMap = {
+    '': 1,
+    k: 1000,
+    M: 1000000,
+    G: 1000000000,
+    T: 1000000000000,
+    P: 1000000000000000,
+  };
   const counterTicker = useCounterTicker();
   const counterPrice = coin.marketData.prices[counterTicker];
   const numberFormatter = useLocalizedNumberFormatter();
@@ -83,7 +90,7 @@ export const CoinCalculator: React.FC<{ coin: ApiPoolCoinFull }> = ({
     period: Period;
     val: string;
   } = {
-    si: 'M',
+    si: coin.applicableHashrateSiPrefixes[0],
     period: 'm',
     val: '100',
   };
@@ -92,7 +99,7 @@ export const CoinCalculator: React.FC<{ coin: ApiPoolCoinFull }> = ({
     <div>
       <Formik initialValues={initValues} onSubmit={() => {}}>
         {({ values }) => {
-          const revenueEth = `${numberFormatter(
+          const revenueCoin = `${numberFormatter(
             Number(values.val) *
               siMap[values.si] *
               incomePerHash *
@@ -138,7 +145,7 @@ export const CoinCalculator: React.FC<{ coin: ApiPoolCoinFull }> = ({
               </CardBody>
               <CardBody>
                 <Revenue>
-                  ≈ {revenueEth}
+                  ≈ {revenueCoin}
                   <RCounter> ({revenueCounter}) </RCounter>
                   {periodNameMap[values.period]}
                 </Revenue>
