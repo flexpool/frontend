@@ -228,8 +228,8 @@ export const MinerPplnsStats: React.FC<{
               activeCoin &&
               `${dateFormatter.durationWords(
                 (shareLogLength * activeCoin.shareDifficulty) /
-                  averagePoolHashrate,
-                { includeSeconds: true }
+                  (averagePoolHashrate / activeCoin.difficultyFactor),
+                { includeSeconds: false }
               )}`
             }
             subValue={
