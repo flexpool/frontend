@@ -155,7 +155,8 @@
     },
     "gather_payout_address_gui": {
       "title": "Gather your payout address",
-      "desc": "This address is your farm identifier on Flexpool. All payouts you receive will be targeted on that address, and you can monitor statistics by it on the Flexpool.io website."
+      "desc": "This address is your farm identifier on Flexpool. All payouts you receive will be targeted on that address, and you can monitor statistics by it on the Flexpool.io website.",
+      "not_found_note": "If the Payout Instructions address is missing, please find it in the Wallets tab. If you can't find it there either, please use <b>chia plotnft show</b> CLI command in order to get the Payout Instructions Address."
     },
     "hardware": [
       {

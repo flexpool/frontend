@@ -150,6 +150,17 @@ export const ChiaGuiGuidePage: React.FC = () => {
           />
         }
       />
+      <Spacer />
+      <p>
+        <b>{t('detail.note') + ' '}</b>
+        <Trans
+          ns="get-started"
+          i18nKey="detail_xch.gather_payout_address_gui.not_found_note"
+          components={{
+            b: <b />,
+          }}
+        />
+      </p>
       <Spacer size="xl" />
       <h2>
         <Highlight>#3</Highlight> {t('detail_xch.monitor_farm.title')}
