@@ -151,7 +151,7 @@
     "monitor_farm": {
       "title": "Monitor your farm in Flexpool.io Dashboard",
       "desc": "To monitor the statistics of your farm, you should enter your Pool Payout Instructions wallet address that you have gathered from the Step #3 to the address search bar on our Home page.",
-      "desc_gui": "To monitor the statistics of your farm, you should enter your Payout Address that you have gathered from the Step #2 to the address search bar on our Home page."
+      "desc_gui": "To monitor the statistics of your farm, you should enter your Payout Address that you have gathered from Step #2 into the address search bar on our Home page."
     },
     "gather_payout_address_gui": {
       "title": "Gather your payout address",
