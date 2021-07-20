@@ -110,6 +110,7 @@ export const MinerDashboardPageContent: React.FC<
       d(minerHeaderStatsGet(coinTicker, address, counterTicker)),
       d(minerDetailsGet(coinTicker, address)),
     ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [coinTicker, address, counterTicker]);
 
   const loadMinerStats = React.useCallback(() => {
@@ -120,6 +121,7 @@ export const MinerDashboardPageContent: React.FC<
         typeof worker === 'string' ? worker : undefined
       )
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [coinTicker, address, worker]);
 
   const loadMinerChartStats = React.useCallback(() => {
@@ -130,6 +132,7 @@ export const MinerDashboardPageContent: React.FC<
         typeof worker === 'string' ? worker : undefined
       )
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [coinTicker, address, worker]);
 
   const loadAll = React.useCallback(() => {
@@ -151,6 +154,7 @@ export const MinerDashboardPageContent: React.FC<
       d(minerWorkersGet(coinTicker, address));
       d(minerRewardsGet(coinTicker, address, counterTicker));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [coinTicker, poolCoins.data]);
 
   return (

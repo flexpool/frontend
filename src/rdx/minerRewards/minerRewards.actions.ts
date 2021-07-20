@@ -1,4 +1,3 @@
-import { ApiMinerReward } from 'src/types/Miner.types';
 import { fetchApi } from 'src/utils/fetchApi';
 
 export const minerRewardsGet = (
