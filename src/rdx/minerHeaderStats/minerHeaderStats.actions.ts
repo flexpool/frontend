@@ -23,6 +23,7 @@ export const minerHeaderStatsGet = (
       ),
       fetchApi<number>('/miner/roundShare', { query }),
       fetchApi<number>('/pool/averageBlockReward', { query }),
+      fetchApi<number>('/pool/dailyRewardPerGigahashSec', { query: { coin } }),
     ]).then((res) => {
       return {
         ...res[0],
@@ -30,6 +31,7 @@ export const minerHeaderStatsGet = (
         countervaluePrice: res[1].price,
         roundShare: res[2],
         averageBlockShare: res[3],
+        dailyRewardsPerGh: res[4],
       };
     }),
   };

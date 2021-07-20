@@ -8,7 +8,6 @@ import {
   useActiveCoin,
   useActiveCoinTicker,
 } from 'src/rdx/localSettings/localSettings.hooks';
-import { minerWorkersGet } from 'src/rdx/minerWorkers/minerWorkers.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiMinerWorker } from 'src/types/Miner.types';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
@@ -409,15 +408,9 @@ const MinerWorkersTable: React.FC<{
 export const MinerWorkers: React.FC<{
   address: string;
 }> = ({ address }) => {
-  const d = useDispatch();
-  const coinTicker = useActiveCoinTicker();
   const { t } = useTranslation('dashboard');
 
   const minerWorkersState = useReduxState('minerWorkers');
-
-  React.useEffect(() => {
-    d(minerWorkersGet(coinTicker, address));
-  }, [coinTicker, address, d]);
 
   const dataWithTotalShare = React.useMemo(() => {
     return (minerWorkersState.data || []).map((item) => ({

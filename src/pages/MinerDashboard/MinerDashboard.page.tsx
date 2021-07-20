@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+
 import {
   Route,
   RouteComponentProps,
@@ -9,14 +9,22 @@ import {
 } from 'react-router';
 import { Content } from 'src/components/layout/Content';
 import { Page, PageLoading } from 'src/components/layout/Page';
-import {
-  useActiveCoin,
-  useCounterTicker,
-} from 'src/rdx/localSettings/localSettings.hooks';
+
+import { useDispatch } from 'react-redux';
+import { useReduxState } from 'src/rdx/useReduxState';
+import { minerRewardsGet } from 'src/rdx/minerRewards/minerRewards.actions';
 import { minerDetailsGet } from 'src/rdx/minerDetails/minerDetails.actions';
 import { minerHeaderStatsGet } from 'src/rdx/minerHeaderStats/minerHeaderStats.actions';
 import { minerStatsGet } from 'src/rdx/minerStats/minerStats.actions';
 import { minerStatsChartGet } from 'src/rdx/minerStatsChart/minerStatsCharts.actions';
+import { minerWorkersGet } from 'src/rdx/minerWorkers/minerWorkers.actions';
+import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
+import { poolStatsGet } from 'src/rdx/poolStats/poolStats.actions';
+import {
+  useActiveCoin,
+  useCounterTicker,
+} from 'src/rdx/localSettings/localSettings.hooks';
+
 import { AccountHeader } from './Header/AccountHeader';
 import { HeaderGreetings } from './Header/Greetings';
 import { HeaderStats } from './Header/Stats';
@@ -30,8 +38,7 @@ import { MinerPaymentsPage } from './Payments/MinerPayments.page';
 import { Helmet } from 'react-helmet-async';
 import { MinerBlocksPage } from './Blocks/MinerBlocks.page';
 import { MinerRewardsPage } from './Rewards/MinerRewards.page';
-import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
-import { useReduxState } from 'src/rdx/useReduxState';
+
 import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { fetchApi } from 'src/utils/fetchApi';
@@ -103,7 +110,7 @@ export const MinerDashboardPageContent: React.FC<
       d(minerHeaderStatsGet(coinTicker, address, counterTicker)),
       d(minerDetailsGet(coinTicker, address)),
     ]);
-  }, [coinTicker, address, d, counterTicker]);
+  }, [coinTicker, address, counterTicker]);
 
   const loadMinerStats = React.useCallback(() => {
     return d(
@@ -113,7 +120,7 @@ export const MinerDashboardPageContent: React.FC<
         typeof worker === 'string' ? worker : undefined
       )
     );
-  }, [coinTicker, address, d, worker]);
+  }, [coinTicker, address, worker]);
 
   const loadMinerChartStats = React.useCallback(() => {
     return d(
@@ -123,7 +130,7 @@ export const MinerDashboardPageContent: React.FC<
         typeof worker === 'string' ? worker : undefined
       )
     );
-  }, [coinTicker, address, d, worker]);
+  }, [coinTicker, address, worker]);
 
   const loadAll = React.useCallback(() => {
     return Promise.all([loadMinerStats(), loadHeader(), loadMinerChartStats()]);
@@ -135,22 +142,16 @@ export const MinerDashboardPageContent: React.FC<
       poolCoins.data &&
       poolCoins.data.coins.find((item) => item.ticker === coinTicker)
     ) {
+      console.log('useEffect with coin ' + coinTicker);
       d(localSettingsSet({ coin: coinTicker }));
+      d(poolStatsGet(coinTicker));
+      loadHeader();
+      loadMinerStats();
+      loadMinerChartStats();
+      d(minerWorkersGet(coinTicker, address));
+      d(minerRewardsGet(coinTicker, address, counterTicker));
     }
-  }, [coinTicker, d, poolCoins.data]);
-
-  React.useEffect(() => {
-    loadHeader();
-    // eslint-disable-next-line
-  }, [loadHeader]);
-
-  React.useEffect(() => {
-    loadMinerStats();
-  }, [loadMinerStats]);
-
-  React.useEffect(() => {
-    loadMinerChartStats();
-  }, [loadMinerChartStats]);
+  }, [coinTicker, poolCoins.data]);
 
   return (
     <>
@@ -172,6 +173,7 @@ export const MinerDashboardPageContent: React.FC<
             />
             <Spacer />
             <MinerDetails coin={activeCoin} />
+            {activeCoin?.name}
             <HeaderStats coin={activeCoin} />
           </Content>
           <TabLinkContainer>
@@ -267,6 +269,7 @@ export const MinerDashboardPage: React.FC<
             message: 'Address not found',
           });
         }
+        localSettingsSet({ coin: res });
         return res;
       })
     );

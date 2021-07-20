@@ -17,6 +17,7 @@ export type ApiMinerHeaderStats = {
   balance: number;
   balanceCountervalue: number;
   countervaluePrice: number;
+  dailyRewardsPerGh: number;
   roundShare: number;
   workersOffline: number;
   workersOnline: number;
@@ -74,4 +75,9 @@ export type ApiMinerPayments = {
 export type ApiMinerReward = {
   timestamp: number;
   totalRewards: number;
+};
+
+export type ApiMinerRewards = {
+  price: number;
+  data: ApiMinerReward[];
 };
