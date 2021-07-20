@@ -1,13 +1,9 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import DynamicList, {
   DynamicListColumn,
 } from 'src/components/layout/List/List';
 import { Mono, Ws } from 'src/components/Typo/Typo';
-import {
-  useActiveCoin,
-  useActiveCoinTicker,
-} from 'src/rdx/localSettings/localSettings.hooks';
+import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiMinerWorker } from 'src/types/Miner.types';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
