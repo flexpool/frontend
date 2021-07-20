@@ -275,14 +275,14 @@ export const MinerRewardsBlocksSection: React.FC<{
         pagination={{
           currentPage,
           setCurrentPage,
-          totalPages: blocks.length / 5 || 0,
+          totalPages: Math.ceil(blocks.length / 5) || 0,
         }}
         isLoading={blockState.isLoading}
         loadingRowsCount={5}
         data={displayedBlocks}
         config={{
           coinTicker,
-          totalPages: blocks.length / 5 || 0,
+          totalPages: Math.ceil(blocks.length / 5) || 0,
           totalItems: 0,
           currentPage,
         }}
