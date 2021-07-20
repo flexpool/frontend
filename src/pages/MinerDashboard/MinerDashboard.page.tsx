@@ -145,7 +145,6 @@ export const MinerDashboardPageContent: React.FC<
       poolCoins.data &&
       poolCoins.data.coins.find((item) => item.ticker === coinTicker)
     ) {
-      console.log('useEffect with coin ' + coinTicker);
       d(localSettingsSet({ coin: coinTicker }));
       d(poolStatsGet(coinTicker));
       loadHeader();
