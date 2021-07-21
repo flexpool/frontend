@@ -2,17 +2,11 @@ import React, { useState } from 'react';
 
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { useReduxState } from 'src/rdx/useReduxState';
-import {
-  useActiveCoin,
-  useActiveCoinTicker,
-} from 'src/rdx/localSettings/localSettings.hooks';
+import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import styled from 'styled-components/macro';
 import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { StatItem } from 'src/components/StatItem';
-import { useDailyRewardPerGhState } from 'src/hooks/useDailyRewardPerGhState';
-import { poolStatsGet } from 'src/rdx/poolStats/poolStats.actions';
-import { useDispatch } from 'react-redux';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { FaCalendar, FaCalendarDay, FaCalendarWeek } from 'react-icons/fa';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
@@ -148,14 +142,13 @@ export const HeaderStats: React.FC<{
   const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const minerDetailsState = useReduxState('minerDetails');
   const minerStatsState = useReduxState('minerStats');
-  const data = minerHeaderStatsState.data;
-  const activeTicker = useActiveCoinTicker();
-  const activeCoin = useActiveCoin();
-  const settings = minerDetailsState.data;
-  const d = useDispatch();
   const poolStatsState = useReduxState('poolStats');
-  const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
+  const activeCoin = useActiveCoin();
+  const data = minerHeaderStatsState.data;
+  const settings = minerDetailsState.data;
+
   const { t } = useTranslation('dashboard');
+  const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const currencyFormatter = useLocalizedCurrencyFormatter();
 
   const [
@@ -163,25 +156,20 @@ export const HeaderStats: React.FC<{
     setEstimateInterval,
   ] = useLocalStorageState<EstimateInterval>('estimateInterval', 1);
 
-  React.useEffect(() => {
-    d(poolStatsGet(activeTicker));
-  }, [activeTicker, d]);
-
   const balance = activeCoinFormatter(data?.balance, {
     maximumFractionDigits: 6,
   });
-  const tickerBalance = currencyFormatter(data?.balanceCountervalue || 0);
 
-  const dailyRewardPerGhState = useDailyRewardPerGhState();
+  const tickerBalance = currencyFormatter(data?.balanceCountervalue || 0);
 
   const estimatedDailyEarnings = React.useMemo(() => {
     return poolStatsState.data?.averageHashrate &&
-      dailyRewardPerGhState.data &&
+      minerHeaderStatsState.data?.dailyRewardsPerGh &&
       minerStatsState.data?.averageEffectiveHashrate
-      ? dailyRewardPerGhState.data *
+      ? minerHeaderStatsState.data?.dailyRewardsPerGh *
           (minerStatsState.data?.averageEffectiveHashrate / 1000000000)
       : 0;
-  }, [poolStatsState.data, dailyRewardPerGhState.data, minerStatsState.data]);
+  }, [poolStatsState.data, minerHeaderStatsState.data, minerStatsState.data]);
 
   const estimated = React.useMemo(() => {
     return {

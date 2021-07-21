@@ -97,7 +97,7 @@ const RewardsChart: React.FC<{
 
     rewardSeries.tooltipText = `${t(
       'rewards.earnings_chart.daily_income'
-    )} {valueY.value.formatNumber("#.0000000")} ETH ({countervaluedRewards})`;
+    )} {valueY.value.formatNumber("#.0000000")} ${coin.ticker.toUpperCase()} ({countervaluedRewards})`;
 
     rewardsChart.cursor = new XYCursor();
     rewardsChart.legend = new Legend();

@@ -6,7 +6,6 @@ import DynamicList, {
   DynamicListColumn,
 } from 'src/components/layout/List/List';
 import { Ws } from 'src/components/Typo/Typo';
-import { useAsyncState } from 'src/hooks/useAsyncState';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import {
   useActiveCoin,
@@ -15,7 +14,6 @@ import {
 } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiMinerReward } from 'src/types/Miner.types';
-import { fetchApi } from 'src/utils/fetchApi';
 import { useLocalizedCurrencyFormatter } from 'src/utils/si.utils';
 
 const getIndexPastInterval = (index: number) => {
@@ -47,26 +45,14 @@ export const MinerRewardStatsSection: React.FC<{
   rewards: ApiMinerReward[];
   counterPrice: number;
 }> = ({ rewards, counterPrice = 0 }) => {
-  const dailyRewardPerGhState = useAsyncState('dailyRewGh', 0);
+  // const dailyRewardPerGhState = useAsyncState('dailyRewGh', 0);
   const coinTicker = useActiveCoinTicker();
   const counterTicker = useCounterTicker();
   const activeCoin = useActiveCoin();
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const { t } = useTranslation('dashboard');
   const currencyFormatter = useLocalizedCurrencyFormatter();
-
   const minerStatsState = useReduxState('minerStats');
-
-  React.useEffect(() => {
-    dailyRewardPerGhState.start(
-      fetchApi('/pool/dailyRewardPerGigahashSec', {
-        query: {
-          coin: coinTicker,
-        },
-      })
-    );
-    // eslint-disable-next-line
-  }, [coinTicker]);
 
   const summary: [number, number, number] = React.useMemo(() => {
     const dailySum = rewards[0] ? rewards[0].totalRewards : 0;
@@ -103,12 +89,14 @@ export const MinerRewardStatsSection: React.FC<{
     currencyFormatter,
   ]);
 
+  const minerHeaderStats = useReduxState('minerHeaderStats');
+
   const futureData = React.useMemo(() => {
     const daily =
-      dailyRewardPerGhState.data &&
+      minerHeaderStats.data?.dailyRewardsPerGh &&
       minerStatsState.data?.averageEffectiveHashrate
         ? (minerStatsState.data?.averageEffectiveHashrate / 1000000000) *
-          dailyRewardPerGhState.data
+          minerHeaderStats.data?.dailyRewardsPerGh
         : 0;
 
     return [1, 7, 30.5].map((item) => ({
@@ -122,7 +110,7 @@ export const MinerRewardStatsSection: React.FC<{
         : '-',
     }));
   }, [
-    dailyRewardPerGhState.data,
+    minerHeaderStats.data?.dailyRewardsPerGh,
     activeCoin,
     minerStatsState.data?.averageEffectiveHashrate,
     counterPrice,
