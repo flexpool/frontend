@@ -1,7 +1,7 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { clx } from 'src/utils/clx';
-import './Page.scss';
+// import './Page.scss';
 import { ErrorBoundary } from '@sentry/react';
 
 import styled from 'styled-components/macro';

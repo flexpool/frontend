@@ -18,6 +18,7 @@
     "@types/react-helmet": "6.1.0",
     "@types/react-pdf": "5.0.2",
     "@types/styled-components": "5.1.9",
+    "babel-plugin-macros": "^3.1.0",
     "chart.js": "2.9.4",
     "copy-to-clipboard": "3.3.1",
     "date-fns": "2.19.0",
@@ -28,10 +29,11 @@
     "lodash.debounce": "4.0.8",
     "lodash.defaultsdeep": "4.6.1",
     "lodash.merge": "4.6.2",
+    "next": "^11.0.1",
     "query-string": "7.0.0",
-    "react": "17.0.1",
+    "react": "^17.0.2",
     "react-chartjs-2": "2.11.1",
-    "react-dom": "17.0.1",
+    "react-dom": "^17.0.2",
     "react-google-recaptcha": "2.1.0",
     "react-helmet": "6.1.0",
     "react-helmet-async": "1.0.9",
@@ -41,31 +43,23 @@
     "react-redux": "7.2.2",
     "react-router": "5.2.0",
     "react-router-dom": "5.2.0",
-    "react-scripts": "4.0.3",
     "react-transition-group": "4.4.1",
     "redux": "4.0.5",
     "redux-logger": "3.0.6",
     "redux-promise-middleware": "6.1.2",
     "styled-components": "5.2.1",
     "swagger-ui-react": "3.35.0",
-    "typescript": "4.1.2",
+    "typescript": "^4.1.2",
     "web-vitals": "1.0.1",
     "websocket": "1.0.33",
     "yup": "0.32.9"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject",
-    "lint": "eslint src",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
     "prepare": "husky install"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
@@ -93,11 +87,11 @@
     "@types/websocket": "1.0.2",
     "cra-bundle-analyzer": "0.1.0",
     "cross-env": "7.0.3",
+    "eslint": "^7.31.0",
+    "eslint-config-next": "^11.0.1",
     "frontmatter-markdown-loader": "3.6.2",
     "husky": "6.0.0",
     "prettier": "2.2.1",
-    "react-app-rewire-frontmatter-markdown": "1.4.0",
-    "react-app-rewired": "2.1.8",
     "sass": "1.32.8"
   }
 }

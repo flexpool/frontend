@@ -4,7 +4,7 @@ import { AiOutlineInfoCircle } from 'react-icons/ai';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/shift-away.css';
 import styled, { UIVariant } from 'styled-components/macro';
-import './Tooltip.scss';
+// import './Tooltip.scss';
 
 const IconWrapper = styled.span<{ variant?: UIVariant }>`
   transform: translateY(20%);

@@ -126,7 +126,7 @@ export const MinerPaymentsList: React.FC<{
           size="xs"
           as="a"
           className="export-button"
-          href={`${process.env.REACT_APP_API_URL}/miner/export/payments.csv?coin=${coin?.ticker}&address=${address}&countervalue=${counterTicker}`}
+          href={`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/miner/export/payments.csv?coin=${coin?.ticker}&address=${address}&countervalue=${counterTicker}`}
         >
           {t('payments.table.download')}
         </Button>
