@@ -78,6 +78,19 @@ export const SupportPage = () => {
           />
         </div>
         <Divider margin />
+        <h2>{t('section_four.title')}</h2>
+        <p>
+          <Trans
+            ns={'support'}
+            i18nKey="section_four.description" // optional -> fallbacks to defaults if not provided
+            values={{ email: 'support@flexpool.io' }}
+            components={{
+              // eslint-disable-next-line
+              email: <a href="mailto:support@flexpool.io" />,
+            }}
+          />
+        </p>
+        <Divider margin />
         <h2>{t('section_five.title')}</h2>
         <p>
           <Trans
