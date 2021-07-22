@@ -46,7 +46,6 @@ export const SelectCoin = () => {
 
   const handleChange = (e: React.MouseEvent<HTMLButtonElement>) => {
     const value = (e.target as HTMLButtonElement).value;
-    console.log(e.target as HTMLButtonElement);
     d(
       localSettingsSet({
         coin: value,

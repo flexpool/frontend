@@ -40,7 +40,7 @@ export const BlocksChart = () => {
 
   const appTheme = useAppTheme();
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     if (blocksChartState.data == null) {
       return;
     }
