@@ -27,7 +27,7 @@ export type AnchoredPopProps = PropsOf<typeof PopEl> & {
   anchorEl?: HTMLElement | null;
   visible?: boolean;
   position?: ['top' | 'bottom' | 'center', 'left' | 'right' | 'center'];
-  style?: string;
+  style?: Object;
   onOuterEvent?: Event;
   /**
    * vertical, horizontal
