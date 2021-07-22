@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 export const I18n = () => {
   const { i18n } = useTranslation();

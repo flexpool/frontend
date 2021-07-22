@@ -17,7 +17,7 @@ import {
   ValueAxis,
   ColumnSeries,
 } from 'src/plugins/amcharts';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { useLocalizedCurrencyFormatter } from 'src/utils/si.utils';
 import { Button } from 'src/components/Button';
 import styled from 'styled-components';

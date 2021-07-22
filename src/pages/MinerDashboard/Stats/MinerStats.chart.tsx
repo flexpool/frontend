@@ -26,7 +26,7 @@ import {
 import { isAfter, subHours } from 'date-fns';
 import { average } from 'src/utils/number.utils';
 import { AverageEffectivePeriods } from './minerStats.types';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ProTip } from 'src/components/ProTip/ProTip';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 import { Highlight } from 'src/components/Typo/Typo';
@@ -82,11 +82,11 @@ export const ChiaCliGuidePage: React.FC = () => {
           Enter a number to pick or q to quit: `}{' '}
             <b>1</b>
             {`
-          
+
           Wallet height: ...
           Sync status: Synced
 
-          Wallet id 2: 
+          Wallet id 2:
           Current state: FARMING_TO_POOL
           Current state from block height: ...
           Launcher ID: 4973f2b459881b08295dff931c26dc0e511ce6fd46948e142ee151b1f97d7f23

@@ -22,7 +22,7 @@ import { Sticker } from 'src/components/Sticker';
 import { Link } from 'react-router-dom';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { Img } from 'src/components/Img';
-import { Trans, useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'next-i18next';
 import { AnyAction } from 'redux';
 import { useBoolState } from 'src/hooks/useBoolState';
 

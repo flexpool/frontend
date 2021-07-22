@@ -1,16 +1,18 @@
 import React from 'react';
-// import { useLocation } from 'react-router-dom';
 import { useRouter } from 'next/router';
-import { Content } from '../src/components/layout/Content';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styled from 'styled-components';
-import { Page } from '../src/components/layout/Page';
-import { useOpenState } from '../src/hooks/useOpenState';
 import { Helmet } from 'react-helmet-async';
-import { CopyButton } from '../src/components/CopyButton';
 import { FaLink } from 'react-icons/fa';
+import { useOpenState } from '../src/hooks/useOpenState';
 import { useAsyncState } from '../src/hooks/useAsyncState';
+
+// Components
+import { Content } from '../src/components/layout/Content';
+import { Page } from '../src/components/layout/Page';
+import { CopyButton } from '../src/components/CopyButton';
 import { FaqDocs } from '../src/docs/docs.utils';
-import { useTranslation } from 'react-i18next';
 
 type FaqDataSection = {
   name: string;
@@ -25,6 +27,7 @@ type FaqDataSection = {
     };
   }[];
 };
+
 const SectionItem = styled.div`
   margin-top: -1px;
   border: 1px solid var(--border-color);
@@ -171,3 +174,12 @@ function FAQPage() {
 }
 
 export default FAQPage;
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+      // Will be passed to the page component as props
+    },
+  };
+}

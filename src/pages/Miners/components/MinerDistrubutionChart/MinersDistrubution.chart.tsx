@@ -11,7 +11,7 @@ import { ChartContainer } from 'src/components/Chart/ChartContainer';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 
 import { color, create, PieChart, PieSeries } from 'src/plugins/amcharts';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 const colorListLight = [
   color('#0069ff'),

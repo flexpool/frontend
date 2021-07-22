@@ -3,7 +3,7 @@ import { useLocation } from 'react-router';
 import styled from 'styled-components';
 import qs from 'query-string';
 import { CopyButton } from 'src/components/CopyButton';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 const HighlightItem = styled.span`
   background: var(--bg-primary);

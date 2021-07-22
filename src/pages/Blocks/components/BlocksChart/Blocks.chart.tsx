@@ -24,7 +24,7 @@ import {
   LineSeries,
   XYChartScrollbar,
 } from 'src/plugins/amcharts';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { blocksChartGet } from 'src/rdx/blocksChart/blocksChart.actions';
 
 export const BlocksChart = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { FaDownload } from 'react-icons/fa';
 import { Button } from 'src/components/Button';
 import { Img } from 'src/components/Img';

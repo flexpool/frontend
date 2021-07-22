@@ -1,6 +1,6 @@
 import { Field, Form, Formik } from 'formik';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { FaSearch } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 // import { useHistory, useLocation } from 'react-router-dom';

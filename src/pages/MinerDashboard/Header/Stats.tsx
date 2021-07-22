@@ -12,7 +12,7 @@ import { FaCalendar, FaCalendarDay, FaCalendarWeek } from 'react-icons/fa';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import { addSeconds } from 'date-fns';
-import { Trans, useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'next-i18next';
 import {
   useLocalizedCurrencyFormatter,
   useLocalizedNumberFormatter,

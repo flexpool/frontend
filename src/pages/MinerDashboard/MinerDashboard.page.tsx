@@ -43,7 +43,7 @@ import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { fetchApi } from 'src/utils/fetchApi';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { PullToRefresh } from 'src/components/layout/PullToRefresh/PullToRefresh';
 
 const TabContent = styled.div`

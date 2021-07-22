@@ -1,6 +1,6 @@
 import { Form, Formik } from 'formik';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { useDispatch } from 'react-redux';
 import { useRouteMatch } from 'react-router';
 import { CheckboxField } from 'src/components/Form/Checkbox';

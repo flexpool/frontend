@@ -15,7 +15,7 @@ import { topMinersGet } from 'src/rdx/topMiners/topMiners.actions';
 import { Mono, Ws } from 'src/components/Typo/Typo';
 import { ApiTopMiner } from 'src/types/TopMiner.types';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 // import { useHistory } from 'react-router';
 import { useRouter } from 'next/router';
 

@@ -5,7 +5,7 @@ import { createSnack } from 'src/rdx/snacks/snack.utils';
 import { useDispatch } from 'react-redux';
 import { snackActions } from 'src/rdx/snacks/snack.actions';
 import { SnackVariant } from 'src/types/Snack.types';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 // title: React.ReactNode;
 // variant?: 'success' | 'start' | 'error' | 'default';

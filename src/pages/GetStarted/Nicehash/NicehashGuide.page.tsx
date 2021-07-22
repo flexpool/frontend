@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Trans, useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'next-i18next';
 import { Redirect, useRouteMatch } from 'react-router';
 import { CopyButton } from 'src/components/CopyButton';
 import { Img } from 'src/components/Img';

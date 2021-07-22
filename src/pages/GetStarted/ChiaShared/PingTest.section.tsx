@@ -16,7 +16,7 @@ import styled from 'styled-components';
 import { Sticker } from 'src/components/Sticker';
 import { Tooltip } from 'src/components/Tooltip';
 import { Img } from 'src/components/Img';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { AnyAction } from 'redux';
 import { useBoolState } from 'src/hooks/useBoolState';
 

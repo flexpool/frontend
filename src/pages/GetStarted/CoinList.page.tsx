@@ -1,6 +1,7 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'next-i18next';
+// import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Button } from 'src/components/Button';
 import { CoinLogo } from 'src/components/CoinLogo';
 import DynamicList from 'src/components/layout/List/List';
@@ -62,71 +63,73 @@ export const MineableCoinList: React.FC = () => {
     <Page>
       <h1>{t('list.title')}</h1>
       <Spacer />
-      <MineableCoinGrid>
-        {mineableCoins.map((item) => {
-          const poolDetails = t(
-            `detail_${item.ticker.toLowerCase()}.pool_details`,
-            {
+      {t && (
+        <MineableCoinGrid>
+          {mineableCoins.map((item) => {
+            const poolDetails = t(
+              `detail_${item.ticker.toLowerCase()}.pool_details`,
+              {
+                returnObjects: true,
+              }
+            ) as { key: string; value: string }[];
+
+            const poolHw = t(`detail_${item.ticker.toLowerCase()}.hardware`, {
               returnObjects: true,
-            }
-          ) as { key: string; value: string }[];
+            }) as MineableCoinHardware[];
 
-          const poolHw = t(`detail_${item.ticker.toLowerCase()}.hardware`, {
-            returnObjects: true,
-          }) as MineableCoinHardware[];
-
-          return (
-            <MineableCoinWrapper key={item.name}>
-              <CoinContent>
-                <CoinLogo ticker={item.ticker} size="xl" />
-                <Title>{item.name}</Title>
-              </CoinContent>
-              <GuidesList>
-                {poolHw.map((itemHw) => (
-                  <Button
-                    shape="block"
-                    size="sm"
-                    variant="primary"
-                    key={itemHw.key}
-                    as={Link}
-                    to={`/get-started/${item.ticker}/${itemHw.key}`}
-                  >
-                    {itemHw.title}
-                  </Button>
-                ))}
-                {item.nicehashAvailable ? (
-                  <Button
-                    shape="block"
-                    size="sm"
-                    variant="warning"
-                    as={Link}
-                    to={`/get-started/${item.ticker}/nicehash`}
-                  >
-                    {t('list.nicehash_rental_button')}
-                  </Button>
-                ) : null}
-              </GuidesList>
-              <DynamicList
-                wrapperProps={{
-                  className: 'defWrap',
-                }}
-                hideHead
-                data={poolDetails}
-                columns={[
-                  {
-                    title: '',
-                    Component: ({ data }) => <>{data.key}</>,
-                  },
-                  {
-                    title: '',
-                    Component: ({ data }) => <Ws>{data.value}</Ws>,
-                  },
-                ]}
-              />
-            </MineableCoinWrapper>
-          );
-        })}
-      </MineableCoinGrid>
+            return (
+              <MineableCoinWrapper key={item.name}>
+                <CoinContent>
+                  <CoinLogo ticker={item.ticker} size="xl" />
+                  <Title>{item.name}</Title>
+                </CoinContent>
+                <GuidesList>
+                  {poolHw.map((itemHw) => (
+                    <Button
+                      shape="block"
+                      size="sm"
+                      variant="primary"
+                      key={itemHw.key}
+                      as={Link}
+                      href={`/get-started/${item.ticker}/${itemHw.key}`}
+                    >
+                      {itemHw.title}
+                    </Button>
+                  ))}
+                  {item.nicehashAvailable ? (
+                    <Button
+                      shape="block"
+                      size="sm"
+                      variant="warning"
+                      as={Link}
+                      href={`/get-started/${item.ticker}/nicehash`}
+                    >
+                      {t('list.nicehash_rental_button')}
+                    </Button>
+                  ) : null}
+                </GuidesList>
+                <DynamicList
+                  wrapperProps={{
+                    className: 'defWrap',
+                  }}
+                  hideHead
+                  data={poolDetails}
+                  columns={[
+                    {
+                      title: '',
+                      Component: ({ data }) => <>{data.key}</>,
+                    },
+                    {
+                      title: '',
+                      Component: ({ data }) => <Ws>{data.value}</Ws>,
+                    },
+                  ]}
+                />
+              </MineableCoinWrapper>
+            );
+          })}
+        </MineableCoinGrid>
+      )}
     </Page>
   );
 };

@@ -23,7 +23,7 @@ import {
   ValueAxis,
   LineSeries,
 } from 'src/plugins/amcharts';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 const PoolHashrateChart = () => {
   const chartRef = useRef<HTMLDivElement>(null);

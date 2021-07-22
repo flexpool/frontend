@@ -10,7 +10,7 @@ import { WhyFlexpool } from './components/WhyFlexpool/WhyFlexpool';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { poolCoinsFullGet } from 'src/rdx/poolCoinsFull/poolCoinsFull.actions';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { Hero, SearchWrapper, PageContainer } from './components';
 
 export const HomePage = () => {

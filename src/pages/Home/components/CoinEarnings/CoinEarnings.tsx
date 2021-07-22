@@ -15,7 +15,7 @@ import {
 } from './components';
 import { Form, Formik } from 'formik';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { FaDiscord, FaReddit, FaTelegram } from 'react-icons/fa';
 import Link from 'next/link';
 import { Button } from 'src/components/Button';

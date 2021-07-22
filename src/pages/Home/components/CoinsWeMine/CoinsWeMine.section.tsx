@@ -37,7 +37,7 @@ import { CoinCalculator } from 'src/sections/CoinCalculator';
 import { CardGrid } from 'src/components/layout/Card';
 import { CoinLogo } from 'src/components/CoinLogo';
 import { useReduxState } from 'src/rdx/useReduxState';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { useRouter } from 'next/router';
 

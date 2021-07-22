@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation, Trans } from 'next-i18next';
 import { FaDiscord, FaTelegram } from 'react-icons/fa';
 
 import { Content } from 'src/components/layout/Content';

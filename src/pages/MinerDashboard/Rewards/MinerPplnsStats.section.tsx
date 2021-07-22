@@ -33,7 +33,7 @@ import {
   responsiveRule,
 } from 'src/components/Chart/ChartContainer';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 const mapPplnsDataToChartData = (
   data: number[],

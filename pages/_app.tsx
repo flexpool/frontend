@@ -7,7 +7,7 @@ import { localStorage } from '../src/utils/localStorage';
 import { searchAddressStorage } from '../src/components/SearchAddressBar/searchCache';
 import { AppState } from '../src/rdx/rootReducer';
 import type { AppProps } from 'next/app';
-import { I18n } from '../src/App/I18n';
+// import { I18n } from '../src/App/I18n';
 import ServiceWorkerWrapper from '../src/App/ServiceWorkerWrapper';
 
 // Theme
@@ -24,11 +24,11 @@ import reportWebVitals from '../src/reportWebVitals';
 import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
 import { isProd } from '../src/utils/devUtils';
-import '../src/i18n';
+// import '../src/i18n';
 import { usePoolCoins } from '../src/rdx/poolCoins/poolCoins.hooks';
 import { usePwaInit } from '../src/App/PwaInit';
 
-// import { appWithTranslation } from 'next-i18next';
+import { appWithTranslation } from 'next-i18next';
 
 if (isProd()) {
   Sentry.init({
@@ -60,7 +60,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <ThemeProvider theme={mainTheme}>
           {/* <SnackViewControl /> */}
           <PoolCoins />
-          <I18n />
+          {/* <I18n /> */}
           <NavBar />
           <AppTheme />
           <Component {...pageProps} />
@@ -71,7 +71,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export default App;
+export default appWithTranslation(App);
 
 const PoolCoins = () => {
   usePoolCoins();

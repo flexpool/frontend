@@ -1,5 +1,5 @@
 import { StartButton, Wrapper, Split } from './components';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import { Content } from 'src/components/layout/Content';
 import { Ws } from 'src/components/Typo/Typo';

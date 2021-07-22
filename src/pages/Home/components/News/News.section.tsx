@@ -9,7 +9,7 @@ import {
 import Link from 'next/link';
 import React from 'react';
 import { Content } from 'src/components/layout/Content';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 const HomeNewsItem: React.FC<{
   to?: string;

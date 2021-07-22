@@ -21,7 +21,7 @@ import {
   FaTimes,
 } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 
 const PercentageItem = styled.span`

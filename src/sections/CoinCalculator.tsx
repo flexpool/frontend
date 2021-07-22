@@ -9,7 +9,7 @@ import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { ApiPoolCoinFull } from 'src/types/PoolCoin.types';
 import Link from 'next/link';
 import styled from 'styled-components';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import {
   useLocalizedCurrencyFormatter,
   useLocalizedNumberFormatter,

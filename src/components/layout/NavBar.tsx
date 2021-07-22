@@ -31,7 +31,7 @@ import { LinkOut } from '../LinkOut';
 import { DISCORD_LINK, REDDIT_LINK, TELEGRAM_LINK } from 'src/constants';
 import { useAppTheme } from 'src/rdx/localSettings/localSettings.hooks';
 import { Img } from '../Img';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { SelectLanguage } from '../SelectLanguage';
 import { useRouter } from 'next/router';
 

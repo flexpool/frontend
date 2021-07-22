@@ -6,7 +6,7 @@ import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOut } from 'src/components/LinkOut';
 import React from 'react';
 import { MineableCoin } from '../mineableCoinList';
-import { Trans, useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'next-i18next';
 export const SetWalletSection: React.FC<{ data: MineableCoin }> = ({
   data: { walletAddressExample, validator },
 }) => {

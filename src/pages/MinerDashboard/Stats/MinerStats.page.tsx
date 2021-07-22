@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import { Button } from 'src/components/Button';
 import qs from 'query-string';
 import { AverageEffectivePeriods } from './minerStats.types';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 const WorkerTitle = styled.div`
   text-transform: uppercase;
   font-weight: 600;

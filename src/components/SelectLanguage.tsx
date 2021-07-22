@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Select } from './Form/Select/Select';
 import { Img } from './Img';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { localStorage } from 'src/utils/localStorage';
 import { availableLangs } from 'src/i18n-select-lang';
 

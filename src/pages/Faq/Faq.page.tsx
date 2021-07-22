@@ -9,7 +9,7 @@ import { CopyButton } from 'src/components/CopyButton';
 import { FaLink } from 'react-icons/fa';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { FaqDocs } from 'src/docs/docs.utils';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 type FaqDataSection = {
   name: string;

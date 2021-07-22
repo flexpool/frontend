@@ -1,6 +1,7 @@
 import React from 'react';
+import { useTranslation, Trans } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 // import { Helmet } from 'react-helmet-async';
-import { useTranslation, Trans } from 'react-i18next';
 import { FaDiscord, FaTelegram } from 'react-icons/fa';
 
 import { Content } from '../src/components/layout/Content';
@@ -109,3 +110,12 @@ export const SupportPage = () => {
 };
 
 export default SupportPage;
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common', 'support'])),
+      // Will be passed to the page component as props
+    },
+  };
+}

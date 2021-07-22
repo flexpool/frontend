@@ -5,7 +5,7 @@ import { Spacer } from 'src/components/layout/Spacer';
 import React from 'react';
 import { Button } from 'src/components/Button';
 import { LinkOut } from 'src/components/LinkOut';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 export const ViewDashboardSection: React.FC<{ ticker?: string }> = ({
   ticker,

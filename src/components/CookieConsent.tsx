@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button } from 'src/components/Button';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 declare global {
   interface Window {

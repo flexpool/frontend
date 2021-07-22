@@ -1,4 +1,4 @@
-const { i18n } = require('./next-i18next-config.js');
+const { i18n } = require('./next-i18next.config');
 
 const withTM = require('next-transpile-modules')([
   '@amcharts/amcharts4/core',

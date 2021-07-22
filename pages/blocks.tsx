@@ -1,19 +1,23 @@
 import React from 'react';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
+// Components
 import { Content } from '../src/components/layout/Content';
 import { HeaderStat } from '../src/components/layout/StatHeader';
 import { StatBox, StatBoxContainer } from '../src/components/StatBox';
-import { useAsyncState } from '../src/hooks/useAsyncState';
-import { fetchApi } from '../src/utils/fetchApi';
-import { useLocalizedSiFormatter } from '../src/utils/si.utils';
 import { BlocksSection } from '../src/sections/Blocks.section';
 import { Luck } from '../src/components/Luck';
 import { Page } from '../src/components/layout/Page';
 import { Spacer } from '../src/components/layout/Spacer';
-import { useActiveCoin } from '../src/rdx/localSettings/localSettings.hooks';
 import { Tooltip, TooltipContent } from '../src/components/Tooltip';
-import { useTranslation } from 'react-i18next';
 import { BlocksChart } from '../src/pages/Blocks/components/BlocksChart/Blocks.chart';
+
+// Hooks and Utils
+import { useAsyncState } from '../src/hooks/useAsyncState';
+import { fetchApi } from '../src/utils/fetchApi';
+import { useLocalizedSiFormatter } from '../src/utils/si.utils';
+import { useActiveCoin } from '../src/rdx/localSettings/localSettings.hooks';
 
 function BlocksPage() {
   const statsState = useAsyncState<{
@@ -111,3 +115,12 @@ function BlocksPage() {
 }
 
 export default BlocksPage;
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common', 'blocks'])),
+      // Will be passed to the page component as props
+    },
+  };
+}

@@ -9,7 +9,7 @@ import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import { Helmet } from 'react-helmet-async';
 import { MinerPaymentsList } from './MinerPayments.list';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import {
   useLocalizedCurrencyFormatter,
   useLocalizedNumberFormatter,

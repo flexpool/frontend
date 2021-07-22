@@ -32,7 +32,7 @@ import { partnersData } from 'src/pages/Partners/partnersData';
 import { LinkOut } from 'src/components/LinkOut';
 import { Img } from 'src/components/Img';
 import { SelectLanguage } from 'src/components/SelectLanguage';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 const Footer = styled.footer`
   border-top: 6px solid var(--primary);
