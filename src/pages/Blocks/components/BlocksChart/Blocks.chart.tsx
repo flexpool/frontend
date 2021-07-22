@@ -32,8 +32,8 @@ export const BlocksChart = () => {
   const activeCoinTicker = useActiveCoinTicker();
   const blocksChartState = useReduxState('blocksChart');
   const { t } = useTranslation('blocks');
-
   const d = useDispatch();
+
   React.useEffect(() => {
     d(blocksChartGet(activeCoinTicker));
   }, [activeCoinTicker, d]);
@@ -190,7 +190,6 @@ export const BlocksChart = () => {
       let alteredEndDate = new Date(data[data.length - 1].date);
       alteredEndDate.setDate(alteredEndDate.getDate() + 1);
       if (data.length > 30) {
-        console.log(data[data.length - 1].date);
         x.events.on('ready', function () {
           dateAxis.zoomToDates(
             data[data.length - 30].date,

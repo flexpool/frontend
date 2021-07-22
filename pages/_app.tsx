@@ -1,8 +1,8 @@
 import '../src/index.css';
 import '../src/App/normalize.scss';
 import '../src/App/App.scss';
-import { Provider as ReduxProvider } from 'react-redux';
 import createReduxStore from '../src/rdx/createStore';
+import { Provider as ReduxProvider } from 'react-redux';
 import { localStorage } from '../src/utils/localStorage';
 import { searchAddressStorage } from '../src/components/SearchAddressBar/searchCache';
 import { AppState } from '../src/rdx/rootReducer';
@@ -30,18 +30,18 @@ import { usePwaInit } from '../src/App/PwaInit';
 
 // import { appWithTranslation } from 'next-i18next';
 
-// if (isProd()) {
-//   Sentry.init({
-//     dsn:
-//       'https://2a9294c2decc4d1c806fd0720f50204c@o719233.ingest.sentry.io/5780995',
-//     integrations: [new Integrations.BrowserTracing()],
+if (isProd()) {
+  Sentry.init({
+    dsn:
+      'https://2a9294c2decc4d1c806fd0720f50204c@o719233.ingest.sentry.io/5780995',
+    integrations: [new Integrations.BrowserTracing()],
 
-//     // Set tracesSampleRate to 1.0 to capture 100%
-//     // of transactions for performance monitoring.
-//     // We recommend adjusting this value in production
-//     tracesSampleRate: 1.0,
-//   });
-// }
+    // Set tracesSampleRate to 1.0 to capture 100%
+    // of transactions for performance monitoring.
+    // We recommend adjusting this value in production
+    tracesSampleRate: 1.0,
+  });
+}
 
 const cachedState = localStorage<AppState>('app_state').get() || {};
 const addressSearchState = searchAddressStorage.get();
@@ -51,7 +51,6 @@ const store = createReduxStore({
 });
 
 const App = ({ Component, pageProps }: AppProps) => {
-  // usePoolCoins();
   // usePwaInit();
 
   return (
@@ -60,8 +59,9 @@ const App = ({ Component, pageProps }: AppProps) => {
       <ReduxProvider store={store}>
         <ThemeProvider theme={mainTheme}>
           {/* <SnackViewControl /> */}
-          <NavBar />
+          <PoolCoins />
           <I18n />
+          <NavBar />
           <AppTheme />
           <Component {...pageProps} />
           <FooterSection />
@@ -72,5 +72,11 @@ const App = ({ Component, pageProps }: AppProps) => {
 };
 
 export default App;
+
+const PoolCoins = () => {
+  usePoolCoins();
+
+  return <></>;
+};
 
 reportWebVitals();

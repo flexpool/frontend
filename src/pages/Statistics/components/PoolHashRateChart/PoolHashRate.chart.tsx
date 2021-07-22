@@ -30,10 +30,12 @@ const PoolHashrateChart = () => {
   const activeCoin = useActiveCoin();
   const poolHasrateState = useReduxState('poolHashrate');
   const { t } = useTranslation('statistics');
-
   const d = useDispatch();
+
   React.useEffect(() => {
-    d(poolHashrateGet(String(activeCoin?.ticker)));
+    if (activeCoin?.ticker) {
+      d(poolHashrateGet(String(activeCoin?.ticker)));
+    }
   }, [activeCoin, d]);
 
   const appTheme = useAppTheme();

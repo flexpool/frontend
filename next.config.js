@@ -4,11 +4,10 @@ module.exports = {
   i18n,
 };
 
-// module.exports = {
-//   webpack: (config, { isServer }) => {
-//     if (!isServer) {
-//       config.resolve.fallback.fs = false;
-//     }
-//     return config;
-//   },
-// };
+const withTM = require('next-transpile-modules')([
+  '@amcharts/amcharts4/core',
+  '@amcharts/amcharts4/charts',
+  '@amcharts/amcharts4/themes/animated',
+]);
+
+module.exports = withTM();

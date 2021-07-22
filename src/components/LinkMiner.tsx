@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { stringUtils } from 'src/utils/string.utils';
 import styled from 'styled-components';
 
@@ -19,7 +19,7 @@ export const LinkMiner: React.FC<{
     <L
       className={className}
       onClick={onClick}
-      to={{ pathname: `/miner/${coin}/${address}` }}
+      href={{ pathname: `/miner/${coin}/${address}` }}
     >
       {stringUtils.shortenString(address, chars)}
     </L>
