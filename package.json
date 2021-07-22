@@ -92,7 +92,7 @@
     "cross-env": "7.0.3",
     "eslint": "^7.31.0",
     "eslint-config-next": "^11.0.1",
-    "frontmatter-markdown-loader": "3.6.2",
+    "frontmatter-markdown-loader": "^3.6.2",
     "husky": "6.0.0",
     "prettier": "2.2.1",
     "sass": "1.32.8"
