@@ -16,10 +16,13 @@ i18n
     lng: defaultLng || 'en-US',
     fallbackLng: 'en-US',
     keySeparator: '.',
-    debug: isDev(),
+    // debug: isDev(),
     ns: ['common', 'home'],
     interpolation: {
       escapeValue: false, // react already safes from xss
+    },
+    react: {
+      useSuspense: false,
     },
   });
 

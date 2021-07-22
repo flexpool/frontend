@@ -7,7 +7,7 @@ import { Card, CardBody } from 'src/components/layout/Card';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { ApiPoolCoinFull } from 'src/types/PoolCoin.types';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import {
@@ -156,7 +156,7 @@ export const CoinCalculator: React.FC<{ coin: ApiPoolCoinFull }> = ({
       </Formik>
       <StartMiningButton
         as={Link}
-        to={`/get-started/${coin.ticker}`}
+        href={`/get-started/${coin.ticker}`}
         variant="primary"
       >
         {t('coin_news_item.calculator.cta')}

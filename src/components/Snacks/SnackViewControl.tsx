@@ -2,7 +2,7 @@ import React from 'react';
 import { useReduxState } from 'src/rdx/useReduxState';
 
 import { Snack } from './Snack';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { useDisplaySnackOnSearchParams } from './useDisplaySnackOnSearchParams';
 
 const Container = styled.div`

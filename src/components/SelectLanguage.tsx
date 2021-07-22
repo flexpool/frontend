@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Select } from './Form/Select/Select';
 import { Img } from './Img';
 import { useTranslation } from 'react-i18next';

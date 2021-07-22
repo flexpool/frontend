@@ -6,7 +6,7 @@ import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { getCoinLink } from 'src/utils/coinLinks.utils';
 import { getCoinIconUrl } from 'src/utils/staticImage.utils';
 import { getChecksumByTicker } from 'src/utils/validators/checksum';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { MinerSettingsModal } from '../Settings/MinerSettings.modal';
 import { Button } from 'src/components/Button';
 import { BiRefresh } from 'react-icons/bi';

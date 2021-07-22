@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import qs from 'query-string';
 import { CopyButton } from 'src/components/CopyButton';
 import { useTranslation } from 'react-i18next';

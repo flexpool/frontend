@@ -4,7 +4,7 @@ import { LoaderOverlayWithin } from '../Loader/LoaderOverlayWithin';
 import { OverlayWithin, OverlayWithinContent } from '../OverlayWithin';
 import { ChartTitle } from '../Typo/ChartTitle';
 import { useTranslation } from 'react-i18next';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import {
   AxisRendererY,
   Chart,

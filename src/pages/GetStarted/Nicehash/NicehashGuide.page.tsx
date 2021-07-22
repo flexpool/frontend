@@ -12,7 +12,7 @@ import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOut } from 'src/components/LinkOut';
 import { Highlight, Mono, Ws } from 'src/components/Typo/Typo';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { MineableCoinRegion, mineableCoins } from '../mineableCoinList';
 
 import nh1 from './assets/nh_1.jpg';

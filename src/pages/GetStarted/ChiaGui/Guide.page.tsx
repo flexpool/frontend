@@ -699,6 +699,7 @@ const ChiaGuiMenu = (props: ChiaGuiMenuProps) => {
     <ChiaGuiMenuContainer>
       <ChiaGuiMenuSidebarWrapper>
         <ChiaGuiMenuSidebarLogoSection>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://static.flexpool.io/logos/chia.svg"
             alt="chia logo"

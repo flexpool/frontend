@@ -1,4 +1,4 @@
-declare module 'styled-components/macro' {
+declare module 'styled-components' {
   import { ThemedStyledComponentsModule } from 'styled-components';
   import { MainTheme, UIVariant as TUIV } from 'src/App/styledTheme';
 

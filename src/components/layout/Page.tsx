@@ -4,7 +4,7 @@ import { clx } from 'src/utils/clx';
 // import './Page.scss';
 import { ErrorBoundary } from '@sentry/react';
 
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { LoaderSpinner } from '../Loader/LoaderSpinner';
 
 const ErrorContainer = styled.div`

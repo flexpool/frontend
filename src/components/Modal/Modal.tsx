@@ -7,8 +7,8 @@ import { OpenStateControls } from 'src/hooks/useOpenState';
 import { OuterEvent, OuterEventProps } from '../DivOuterEvents';
 import { Button } from '../Button';
 import { FaTimes } from 'react-icons/fa';
-import styled from 'styled-components/macro';
-import { Helmet } from 'react-helmet-async';
+import styled from 'styled-components';
+// import { Helmet } from 'react-helmet-async';
 
 export type ModalStateControls = OpenStateControls['modalProps'];
 export type ModalProps = ModalStateControls &
@@ -88,7 +88,8 @@ export const Modal = (props: ModalProps) => {
   }
   return (
     <>
-      {isOpen && <Helmet bodyAttributes={{ class: 'scroll-lock' }} />}
+      {/* TODO: Create a bodyAttributes class hook and convert this from helmet */}
+      {/* {isOpen && <Helmet bodyAttributes={{ class: 'scroll-lock' }} />} */}
       <Overlay
         isOpen={isOpen}
         portalEl={portalEl}

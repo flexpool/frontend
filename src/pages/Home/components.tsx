@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { HeroBlue } from 'src/components/layout/Hero/HeroBlue';
 import { Page } from 'src/components/layout/Page';
 

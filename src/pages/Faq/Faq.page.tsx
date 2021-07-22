@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { Content } from 'src/components/layout/Content';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Page } from 'src/components/layout/Page';
 import { useOpenState } from 'src/hooks/useOpenState';
 import { Helmet } from 'react-helmet-async';

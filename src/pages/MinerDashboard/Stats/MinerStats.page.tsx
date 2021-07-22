@@ -6,7 +6,7 @@ import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
 import StatsChart from './MinerStats.chart';
 import { MinerStats } from './Stats.section';
 import { MinerWorkers } from './Workers.section';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Button } from 'src/components/Button';
 import qs from 'query-string';
 import { AverageEffectivePeriods } from './minerStats.types';

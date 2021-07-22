@@ -7,7 +7,7 @@ import { Card, CardBody } from 'src/components/layout/Card';
 import { LinkOut } from 'src/components/LinkOut';
 import { Highlight } from 'src/components/Typo/Typo';
 import { getOsLogoUrl } from 'src/utils/staticImage.utils';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { GpuHardwareDetails } from '../mineableCoinList';
 import { MinerCommand } from './MinerCommand';
 

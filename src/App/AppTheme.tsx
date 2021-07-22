@@ -45,11 +45,11 @@ export const AppTheme = () => {
     --overlay: rgba(0, 0, 0, 0.5);
     --bad-luck-color: #bbb;
     }
-    
+
     svg tspan {
       fill: var(--text-primary);
     }
-    
+
     `}</style>
     );
   }

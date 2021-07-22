@@ -7,7 +7,7 @@ import DynamicList from 'src/components/layout/List/List';
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 import { Ws } from 'src/components/Typo/Typo';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 import { MineableCoinHardware, mineableCoins } from './mineableCoinList';
 

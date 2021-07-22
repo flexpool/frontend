@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Document } from 'react-pdf/dist/esm/entry.webpack';
 
 export const StyledDocument = styled(Document)`

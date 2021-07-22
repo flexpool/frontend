@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { PropsOf } from 'src/types/ReactHelp.types';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { OuterEvent } from 'src/components/DivOuterEvents';
 
 const bodyEl = typeof document !== 'undefined' ? document.body : null;

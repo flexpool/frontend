@@ -1,4 +1,4 @@
-import styled, { UIVariant } from 'styled-components/macro';
+import styled, { UIVariant } from 'styled-components';
 
 const btnHeights = {
   xs: 32,
@@ -19,7 +19,7 @@ export type ButtonProps = {
   shadowless?: boolean;
 };
 
-export const Button = styled.button<ButtonProps>`
+export const Button = styled.a<ButtonProps>`
   transition: 0.1s all;
   display: flex;
   padding-left: 1rem;

@@ -22,7 +22,7 @@ import {
   useLocalizedNumberFormatter,
 } from 'src/utils/si.utils';
 import { InfoBox } from 'src/components/InfoBox';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 export const GweiToggle = styled.button`
   height: 48px;

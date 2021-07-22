@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
+
 import { Content } from 'src/components/layout/Content';
-import styled from 'styled-components/macro';
+
+import styled from 'styled-components';
 
 import {
   FaDiscord,
@@ -10,10 +12,13 @@ import {
   FaMedium,
   FaGithub,
 } from 'react-icons/fa';
+
 import React from 'react';
+
 import { SelectCounterTicker } from 'src/components/SelectCounterTicker';
 import { SelectTheme } from 'src/components/SelectTheme';
 import { Spacer } from 'src/components/layout/Spacer';
+
 import {
   DISCORD_LINK,
   GITHUB_LINK,
@@ -22,11 +27,13 @@ import {
   TELEGRAM_LINK,
   TWITTER_LINK,
 } from 'src/constants';
+
 import { partnersData } from 'src/pages/Partners/partnersData';
 import { LinkOut } from 'src/components/LinkOut';
 import { Img } from 'src/components/Img';
 import { SelectLanguage } from 'src/components/SelectLanguage';
 import { useTranslation } from 'react-i18next';
+
 const Footer = styled.footer`
   border-top: 6px solid var(--primary);
   background: #020e1f;
@@ -119,16 +126,16 @@ export const FooterSection = () => {
             {/*<Link to="/" className="link">
               About
               </Link>*/}
-            <Link to="/contact">{t('footer.company.contact_us')}</Link>
-            <Link to="/brand-assets">{t('footer.company.brand_assets')}</Link>
-            <Link to="/business-development">
+            <Link href="/contact">{t('footer.company.contact_us')}</Link>
+            <Link href="/brand-assets">{t('footer.company.brand_assets')}</Link>
+            <Link href="/business-development">
               {t('footer.company.business_dev')}
             </Link>
             {/* <Link to="/">
               Careers
             </Link> */}
             {partnersData.length > 0 && (
-              <Link to="/partners"> {t('footer.company.partners')}</Link>
+              <Link href="/partners"> {t('footer.company.partners')}</Link>
             )}
             <LinkOut href="https://medium.com/flexpool/">
               {' '}
@@ -144,10 +151,10 @@ export const FooterSection = () => {
           </Section>
           <Section>
             <FSectionTitle>{t('footer.resources.title')}</FSectionTitle>
-            <Link to="/get-started">{t('footer.resources.get_started')}</Link>
-            <Link to="/faq">{t('footer.resources.faq')}</Link>
-            <Link to="/open-data-reports">Open Data Reports</Link>
-            <Link to="/docs/api">{t('footer.resources.api_docs')}</Link>
+            <Link href="/get-started">{t('footer.resources.get_started')}</Link>
+            <Link href="/faq">{t('footer.resources.faq')}</Link>
+            <Link href="/open-data-reports">Open Data Reports</Link>
+            <Link href="/docs/api">{t('footer.resources.api_docs')}</Link>
           </Section>
           <Section>
             <FSectionTitle>{t('footer.community.title')}</FSectionTitle>
@@ -160,7 +167,7 @@ export const FooterSection = () => {
             <LinkOut href="https://status.flexpool.io">
               {t('footer.contact.service_status')}
             </LinkOut>
-            <Link to="/support">{t('footer.contact.support')}</Link>
+            <Link href="/support">{t('footer.contact.support')}</Link>
           </Section>
           <Section>
             <FSectionTitle>{t('footer.preferences.title')}</FSectionTitle>

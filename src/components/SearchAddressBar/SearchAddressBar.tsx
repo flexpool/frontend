@@ -3,15 +3,16 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaSearch } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
-import { useHistory, useLocation } from 'react-router-dom';
+// import { useHistory, useLocation } from 'react-router-dom';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { useOpenState } from 'src/hooks/useOpenState';
 import { addressSearchSet } from 'src/rdx/addressSearch/addressSearch.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { fetchApi } from 'src/utils/fetchApi';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { OuterEvent } from '../DivOuterEvents';
 import { SearchAddressCachedResult } from './SearchAddressCachedResult';
+import { useRouter } from 'next/router';
 
 const SearchButton = styled.button`
   cursor: pointer;
@@ -142,16 +143,17 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
   showResult = true,
 }) => {
   const searchState = useAsyncState<string | null>('addressSearch', null);
-  const history = useHistory();
-  const { pathname } = useLocation();
+  const router = useRouter();
+
   const searchData = useReduxState('addressSearch');
   const { t } = useTranslation(['common']);
   const d = useDispatch();
   const openState = useOpenState();
+
   React.useEffect(() => {
     openState.handleClose();
     // eslint-disable-next-line
-  }, [pathname]);
+  }, [router.pathname]);
 
   const handleSearch = React.useCallback(
     async (address: string) => {
@@ -186,7 +188,7 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
               document.activeElement?.blur();
             }
             openState.handleClose();
-            history.push(`/miner/${res}/${searchAddress}`);
+            router.push(`/miner/${res}/${searchAddress}`);
           } else {
             alert(t('errors.address_not_found'));
           }
@@ -194,7 +196,7 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
         });
     },
     // eslint-disable-next-line
-    [history, searchData[0]?.address, t]
+    [router.pathname, searchData[0]?.address, t]
   );
 
   return (

@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 // use with parent position:relative
 export const OverlayWithin = styled.div`

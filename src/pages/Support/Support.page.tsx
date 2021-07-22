@@ -8,7 +8,7 @@ import { Divider } from 'src/components/layout/Divider';
 import { HeroBlue } from 'src/components/layout/Hero/HeroBlue';
 import { Page } from 'src/components/layout/Page';
 import { DISCORD_LINK, TELEGRAM_LINK } from 'src/constants';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 const SupportChannelWrapper = styled.a`
   border: 1px solid var(--border-color);

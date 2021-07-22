@@ -13,7 +13,7 @@ import {
 
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { NavBar } from 'src/components/layout/NavBar';
-import { ThemeProvider } from 'styled-components/macro';
+import { ThemeProvider } from 'styled-components';
 import { mainTheme } from './styledTheme';
 import { FooterSection } from 'src/sections/Footer.section';
 

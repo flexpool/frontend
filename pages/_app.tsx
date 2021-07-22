@@ -1,17 +1,34 @@
 import '../src/index.css';
+import '../src/App/normalize.scss';
+import '../src/App/App.scss';
 import { Provider as ReduxProvider } from 'react-redux';
 import createReduxStore from '../src/rdx/createStore';
 import { localStorage } from '../src/utils/localStorage';
 import { searchAddressStorage } from '../src/components/SearchAddressBar/searchCache';
 import { AppState } from '../src/rdx/rootReducer';
 import type { AppProps } from 'next/app';
+import { I18n } from '../src/App/I18n';
+import ServiceWorkerWrapper from '../src/App/ServiceWorkerWrapper';
 
-// import reportWebVitals from '../src/reportWebVitals';
+// Theme
+import { ThemeProvider } from 'styled-components';
+import { AppTheme } from '../src/App/AppTheme';
+import { mainTheme } from '../src/App/styledTheme';
 
-// import * as Sentry from '@sentry/react';
-// import { Integrations } from '@sentry/tracing';
-// import { isProd } from '../src/utils/devUtils';
-// import '../src/i18n';
+// Components
+import { NavBar } from '../src/components/layout/NavBar';
+import { FooterSection } from '../src/sections/Footer.section';
+
+import reportWebVitals from '../src/reportWebVitals';
+
+import * as Sentry from '@sentry/react';
+import { Integrations } from '@sentry/tracing';
+import { isProd } from '../src/utils/devUtils';
+import '../src/i18n';
+import { usePoolCoins } from '../src/rdx/poolCoins/poolCoins.hooks';
+import { usePwaInit } from '../src/App/PwaInit';
+
+// import { appWithTranslation } from 'next-i18next';
 
 // if (isProd()) {
 //   Sentry.init({
@@ -25,6 +42,7 @@ import type { AppProps } from 'next/app';
 //     tracesSampleRate: 1.0,
 //   });
 // }
+
 const cachedState = localStorage<AppState>('app_state').get() || {};
 const addressSearchState = searchAddressStorage.get();
 const store = createReduxStore({
@@ -32,12 +50,27 @@ const store = createReduxStore({
   addressSearch: addressSearchState || [],
 });
 
-export default function App({ Component, pageProps }: AppProps) {
-  return (
-    <ReduxProvider store={store}>
-      <Component {...pageProps} />
-    </ReduxProvider>
-  );
-}
+const App = ({ Component, pageProps }: AppProps) => {
+  // usePoolCoins();
+  // usePwaInit();
 
-// reportWebVitals();
+  return (
+    <>
+      <ServiceWorkerWrapper />
+      <ReduxProvider store={store}>
+        <ThemeProvider theme={mainTheme}>
+          {/* <SnackViewControl /> */}
+          <NavBar />
+          <I18n />
+          <AppTheme />
+          <Component {...pageProps} />
+          <FooterSection />
+        </ThemeProvider>
+      </ReduxProvider>
+    </>
+  );
+};
+
+export default App;
+
+reportWebVitals();

@@ -3,7 +3,7 @@ import Tippy, { TippyProps } from '@tippyjs/react';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/shift-away.css';
-import styled, { UIVariant } from 'styled-components/macro';
+import styled, { UIVariant } from 'styled-components';
 // import './Tooltip.scss';
 
 const IconWrapper = styled.span<{ variant?: UIVariant }>`

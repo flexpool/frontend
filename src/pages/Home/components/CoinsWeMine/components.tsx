@@ -1,6 +1,6 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Button } from 'src/components/Button';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 export const ActionIconContainer = styled.div`
   display: inline-flex;

@@ -17,7 +17,7 @@ import { Form, Formik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaDiscord, FaReddit, FaTelegram } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Button } from 'src/components/Button';
 import { Submit } from 'src/components/Form/Submit';
 import { TextField } from 'src/components/Form/TextInput';
@@ -38,7 +38,7 @@ import {
   useLocalizedPercentFormatter,
 } from 'src/utils/si.utils';
 import { getCoinIconUrl } from 'src/utils/staticImage.utils';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 import chiaImage from './assets/chia_logo.svg';
 import { fetchApi } from 'src/utils/fetchApi';
@@ -167,7 +167,7 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
           <Button
             variant="success"
             as={Link}
-            to={`/get-started/${data?.ticker}`}
+            href={`/get-started/${data?.ticker}`}
           >
             {t('coin_earnings_cards.cta_mine')}
           </Button>

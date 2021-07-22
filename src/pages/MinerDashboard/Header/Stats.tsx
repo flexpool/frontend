@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { StatItem } from 'src/components/StatItem';

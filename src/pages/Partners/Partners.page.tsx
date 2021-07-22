@@ -7,7 +7,7 @@ import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOut } from 'src/components/LinkOut';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { partnersData } from './partnersData';
 
 const LogoImg = styled(Img)`
