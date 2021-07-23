@@ -3,11 +3,10 @@ import React from 'react';
 import { AnchoredPop } from 'src/components/AnchoredPop';
 import { Button } from 'src/components/Button';
 import { PropsOf } from 'src/types/ReactHelp.types';
-import SVG from 'react-inlinesvg';
-// eslint-disable-next-line
-import arrow from './arrow.svg';
+import SVGArrow from './SVGArrow';
 
-const SelectArrowSvg = styled(SVG)`
+const SelectArrowSvg = styled.div`
+  display: flex;
   position: absolute;
   right: 1rem;
   top: 50%;
@@ -40,7 +39,9 @@ export const SelectButton = React.forwardRef<HTMLElement, SelectButtonProps>(
     return (
       <SCSelectButton ref={ref as any} {...rest}>
         {children || <Placeholder>{placeholder}</Placeholder>}
-        {/* <SelectArrowSvg src={arrow} /> */}
+        <SelectArrowSvg>
+          <SVGArrow />
+        </SelectArrowSvg>
       </SCSelectButton>
     );
   }

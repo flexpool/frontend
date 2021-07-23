@@ -9,6 +9,11 @@ module.exports = withTM({
       use: 'frontmatter-markdown-loader',
     });
 
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    });
+
     return config;
   },
   i18n,
