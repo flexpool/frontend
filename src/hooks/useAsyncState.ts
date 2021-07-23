@@ -27,7 +27,7 @@ export const useAsyncState = <T = any, E = any>(
         return Promise.reject('Already loading');
       }
 
-      consola('asyncState', `${title || ''}_START`);
+      // consola('asyncState', `${title || ''}_START`);
       setIsLoading(true);
       setError(null);
       if (options?.reset) {
@@ -37,17 +37,17 @@ export const useAsyncState = <T = any, E = any>(
         .then((res) => {
           setIsLoading(false);
           setValue(res);
-          consola('asyncState', `${title || ''}_SUCCESS`);
+          // consola('asyncState', `${title || ''}_SUCCESS`);
           return res;
         })
         .catch((e) => {
           setIsLoading(false);
           setError(e);
-          consola('asyncState', `${title || ''}_ERROR`, 'Error', e);
+          // consola('asyncState', `${title || ''}_ERROR`, 'Error', e);
           return Promise.reject(e);
         });
     },
-    [isLoading, defaultState, title]
+    [isLoading, defaultState]
   );
 
   const startMerge = React.useCallback(
@@ -56,7 +56,7 @@ export const useAsyncState = <T = any, E = any>(
         return Promise.reject('Already loading');
       }
 
-      consola('asyncState', `${title || ''}_Append_START`);
+      // consola('asyncState', `${title || ''}_Append_START`);
       setIsLoading(true);
       setError(null);
       return p
@@ -66,17 +66,17 @@ export const useAsyncState = <T = any, E = any>(
             ...data,
             ...res,
           });
-          consola('asyncState', `${title || ''}_Append_SUCCESS`, 'Result', res);
+          // consola('asyncState', `${title || ''}_Append_SUCCESS`, 'Result', res);
           return res;
         })
         .catch((e) => {
           setIsLoading(false);
           setError(e);
-          consola('asyncState', `${title || ''}_Append_ERROR`, 'Error', e);
+          // consola('asyncState', `${title || ''}_Append_ERROR`, 'Error', e);
           return Promise.reject(e);
         });
     },
-    [isLoading, data, title]
+    [isLoading, data]
   );
 
   const clearErrorMessage = () => {
