@@ -33,7 +33,6 @@ function StatisticsPage() {
   const activeTicker = useActiveCoinTicker();
   const activeCoin = useActiveCoin();
   React.useEffect(() => {
-    console.log(activeTicker);
     if (activeTicker) {
       d(poolStatsGet(activeTicker));
     }

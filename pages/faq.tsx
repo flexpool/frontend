@@ -72,8 +72,6 @@ const FaqQuestion: React.FC<{ data: FaqDataSection['contents'][0] }> = ({
 }) => {
   // const location = useLocation();
   const router = useRouter();
-  console.log(window.location.hash);
-
   const openState = useOpenState(window.location.hash.replace('#', '') === key);
 
   return (

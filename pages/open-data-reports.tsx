@@ -68,7 +68,6 @@ const getDates = async () => {
 };
 
 export const OpenDataReportsPage = ({ dates }) => {
-  console.log(dates);
   // const datesState = useAsyncState<Date[]>('reportDates', []);
   // React.useEffect(() => {
   //   datesState.start(getDates());
@@ -118,7 +117,6 @@ export default OpenDataReportsPage;
 
 export async function getStaticProps({ locale }) {
   const dates = await getDates();
-  // console.log(dates);
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common', 'reports'])),
