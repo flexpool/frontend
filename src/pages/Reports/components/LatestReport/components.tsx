@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Document } from 'react-pdf/dist/esm/entry.webpack';
+import { Document } from 'react-pdf';
 
 export const StyledDocument = styled(Document)`
   position: relative;

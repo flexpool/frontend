@@ -2,7 +2,7 @@ import { Page } from '../src/components/layout/Page';
 import { Content } from '../src/components/layout/Content';
 import { useTranslation, Trans } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Link from 'next/link';
+import Link, { LinkProps } from 'next/link';
 
 export const LinkText = (props: React.PropsWithChildren<LinkProps>) => {
   return (

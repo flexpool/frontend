@@ -1,27 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'next-i18next';
-import { Page } from 'react-pdf/dist/esm/entry.webpack';
-import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import { ListPagination } from 'src/components/layout/List/ListPagination';
-import { LoaderOverlayWithin } from 'src/components/Loader/LoaderOverlayWithin';
-import { useRefBound } from 'src/hooks/useRefWidth';
-import { useLocalizedDateFormatter } from 'src/utils/date.utils';
+import { Page } from 'react-pdf';
+
+// import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+
 import {
   StyledDocument,
   LoadingContainer,
   PageContainer,
   PageContainerInner,
   Container,
-} from './componnents';
+} from './components';
+import { ListPagination } from 'src/components/layout/List/ListPagination';
+import { LoaderOverlayWithin } from 'src/components/Loader/LoaderOverlayWithin';
+
+import { useRefBound } from 'src/hooks/useRefWidth';
+
+import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 
 export const LatestReport: React.FC<{ src: string; date: Date }> = ({
   src,
   date,
 }) => {
   const [wrapperRef, bound] = useRefBound<HTMLDivElement>();
-  const [totalPages, setTotalPages] = React.useState<number>(0);
-  const [activePage, setActivePage] = React.useState<number>(0);
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [activePage, setActivePage] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState(true);
   const { t } = useTranslation('reports');
   const dateFormatter = useLocalizedDateFormatter();
 
