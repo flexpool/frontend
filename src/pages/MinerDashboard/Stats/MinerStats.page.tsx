@@ -72,7 +72,7 @@ export const MinerStatsPage: React.FC<{
     router.push({
       search: qs.stringify(restQuery),
     });
-  }, []);
+  }, [router]);
 
   return (
     <>

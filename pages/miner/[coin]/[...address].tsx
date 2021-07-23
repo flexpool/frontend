@@ -185,7 +185,7 @@ export const MinerDashboardPageContent: React.FC = (props) => {
         loadSelectedTabFromHash(window.location.hash.replace(/#/g, ''));
       }
     }
-  }, []);
+  }, [loadSelectedTabFromHash]);
 
   return (
     <>
