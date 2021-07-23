@@ -1,7 +1,7 @@
 import { Form, Formik } from 'formik';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useRouteMatch } from 'react-router';
+// import { useRouteMatch } from 'react-router';
 import { ErrorBox } from 'src/components/Form/ErrorBox';
 import { FieldGroup } from 'src/components/Form/FieldGroup';
 import { Submit } from 'src/components/Form/Submit';
@@ -70,9 +70,9 @@ export const PayoutSettings: React.FC = () => {
   const { t } = useTranslation(['dashboard', 'common']);
   const numberFormatter = useLocalizedNumberFormatter();
   const d = useDispatch();
-  const {
-    params: { address, coin: coinTicker },
-  } = useRouteMatch<{ address: string; coin: string }>();
+  // const {
+  //   params: { address, coin: coinTicker },
+  // } = useRouteMatch<{ address: string; coin: string }>();
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
   const currencyFormatter = useLocalizedCurrencyFormatter();
   const [gweiToggle, setGweiToggle] = React.useState(true);

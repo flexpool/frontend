@@ -41,8 +41,9 @@ import { PullToRefresh } from '../../../src/components/layout/PullToRefresh/Pull
 
 import styled from 'styled-components';
 // import { NavLink } from 'react-router-dom';
+import Link from 'next/link';
 import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
-import { Helmet } from 'react-helmet-async';
+// import { Helmet } from 'react-helmet-async';
 
 import { useActiveSearchParamWorker } from '../../../src/hooks/useActiveQueryWorker';
 import { useAsyncState } from '../../../src/hooks/useAsyncState';
@@ -61,7 +62,7 @@ const TabLinkContainer = styled(Content)`
   overflow-x: auto;
 `;
 
-const TabLink = styled(NavLink)`
+const TabLink = styled(Link)`
   font-weight: 600;
   font-size: 1.125rem;
   height: 3rem;
@@ -91,13 +92,9 @@ const TabLink = styled(NavLink)`
   text-decoration: none !important;
 `;
 
-export const MinerDashboardPageContent: React.FC<
-  RouteComponentProps<{
-    coin: string;
-    address: string;
-  }>
-> = (props) => {
-  const { coin: coinTicker, address } = props.match.params;
+export const MinerDashboardPageContent: React.FC = (props) => {
+  const router = useRouter();
+  const { coin: coinTicker, address } = router.query;
   const poolCoins = useReduxState('poolCoins');
   const activeCoin = useActiveCoin(coinTicker);
   // const match = useRouteMatch();
@@ -167,9 +164,9 @@ export const MinerDashboardPageContent: React.FC<
         onRefresh={loadAll}
       >
         <Page>
-          <Helmet titleTemplate={`${address} | %s | Flexpool.io`}>
+          {/* <Helmet titleTemplate={`${address} | %s | Flexpool.io`}>
             <title>Dashboard</title>
-          </Helmet>
+          </Helmet> */}
           <Content>
             <HeaderGreetings onRefresh={loadAll} />
             <AccountHeader
@@ -254,15 +251,10 @@ export const MinerDashboardPageContent: React.FC<
  * @param props
  * @returns
  */
-export const MinerDashboardPage: React.FC<
-  RouteComponentProps<{
-    coin: string;
-    address: string;
-  }>
-> = (props) => {
-  const { coin: coinTicker, address } = props.match.params;
-  const locateAddressState = useAsyncState<string | null>();
+export const MinerDashboardPage: React.FC = (props) => {
   const router = useRouter();
+  const { coin: coinTicker, address } = router.query;
+  const locateAddressState = useAsyncState<string | null>();
 
   React.useEffect(() => {
     locateAddressState.start(
@@ -302,11 +294,19 @@ export const MinerDashboardPage: React.FC<
 
 export default MinerDashboardPage;
 
-export async function getStaticProps({ locale }) {
+export async function getStaticProps({ locale, ...props }) {
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common', 'dashboard'])),
+
       // Will be passed to the page component as props
     },
+  };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
   };
 }
