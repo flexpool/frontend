@@ -19,8 +19,6 @@
     "sourceMap": true,
     "inlineSources": true,
     "sourceRoot": "/",
-    // TODO: This is a bandaid fix for Nexts ts linting not liking the way some components were built out
-    // Find the root cause and disable this before launch
     "noImplicitAny": false
   },
   "include": ["src"],
