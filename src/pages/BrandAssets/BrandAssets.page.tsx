@@ -8,7 +8,7 @@ import { LinkOut } from 'src/components/LinkOut';
 import { Spacer } from 'src/components/layout/Spacer';
 import { Helmet } from 'react-helmet-async';
 import { Img } from 'src/components/Img';
-import { Trans, useTranslation } from 'next-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 const ColorContainer = styled.div`
   display: flex;
