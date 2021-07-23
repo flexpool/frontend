@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@amcharts/amcharts4@4.10.17":
-  version "4.10.17"
-  resolved "https://registry.yarnpkg.com/@amcharts/amcharts4/-/amcharts4-4.10.17.tgz#f863f87800fc4f7447b5d4d9826fa96eb10ea740"
-  integrity sha512-7JQWiMZn/90RxJ+D862R4h3iVsF3cCuNqlBylBDxiOSfND2t6yD4ZBM9ZvM69DJgi2/lvc8BoazVyX98An81TQ==
+"@amcharts/amcharts4@^4.10.17":
+  version "4.10.20"
+  resolved "https://registry.yarnpkg.com/@amcharts/amcharts4/-/amcharts4-4.10.20.tgz#140efe53d41df534886873584d54c3dcd5df95f0"
+  integrity sha512-btjGR+LcdC4pD7u7ShlWPlr8TuewDrD0R4ShyIBX41P74kw3LJYgF8q8kG97MdLW4DQlF+UZLUicZPLnxbOaHw==
   dependencies:
     "@babel/runtime" "^7.6.3"
     core-js "^3.0.0"
@@ -1542,6 +1542,11 @@ clone@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
   integrity sha1-2jCcwmPfFZlMaIypAheco8fNfH4=
+
+clsx@^1.1.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.1.1.tgz#98b3134f9abbdf23b2663491ace13c5c03a73188"
+  integrity sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==
 
 codepage@~1.14.0:
   version "1.14.0"
@@ -5053,6 +5058,14 @@ react-syntax-highlighter@=13.5.0:
     lowlight "^1.14.0"
     prismjs "^1.21.0"
     refractor "^3.1.0"
+
+react-tabs@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/react-tabs/-/react-tabs-3.2.2.tgz#07bdc3cdb17bdffedd02627f32a93cd4b3d6e4d0"
+  integrity sha512-/o52eGKxFHRa+ssuTEgSM8qORnV4+k7ibW+aNQzKe+5gifeVz8nLxCrsI9xdRhfb0wCLdgIambIpb1qCxaMN+A==
+  dependencies:
+    clsx "^1.1.0"
+    prop-types "^15.5.0"
 
 react-transition-group@4.4.1:
   version "4.4.1"

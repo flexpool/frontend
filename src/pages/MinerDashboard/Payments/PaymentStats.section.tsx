@@ -7,7 +7,7 @@ import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { fetchApi } from 'src/utils/fetchApi';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
-import { Helmet } from 'react-helmet-async';
+// import { Helmet } from 'react-helmet-async';
 import { MinerPaymentsList } from './MinerPayments.list';
 import { useTranslation } from 'next-i18next';
 import {
@@ -117,9 +117,9 @@ export const GeneralPaymentStatsSection: React.FC<{
 
   return (
     <>
-      <Helmet>
+      {/* <Helmet>
         <title>{t('payments.head_title')}</title>
-      </Helmet>
+      </Helmet> */}
       <h2>{t('payments.general.title')}</h2>
       <CardGrid>
         <Card padding>

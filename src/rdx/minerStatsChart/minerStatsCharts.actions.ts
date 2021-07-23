@@ -1,7 +1,7 @@
 import { fetchApi } from 'src/utils/fetchApi';
 
 export const minerStatsChartGet = (
-  coin: string,
+  coin: string | string[],
   address: string,
   worker?: string
 ) => {

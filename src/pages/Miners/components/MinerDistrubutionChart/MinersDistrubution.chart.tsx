@@ -75,7 +75,7 @@ export const MinersDistributionChart = () => {
       });
   }, [dataState.data, siFormatter, activeCoin]);
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     if (data.length > 0) {
       const chartDistribution = create('chartdiv', PieChart);
       chartDistribution.colors.list = [color('#b6c0d1'), color('#0069ff')];

@@ -5,7 +5,7 @@ export const useActiveCoinTicker = () => {
   return localSettingsState.coin;
 };
 
-export const useActiveCoin = (ticker?: string) => {
+export const useActiveCoin = (ticker?: string | string[]) => {
   const activeCoinTicker = useActiveCoinTicker();
   const poolCoinsState = useReduxState('poolCoins');
 

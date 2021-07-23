@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 // import {
 //   Route,
@@ -105,10 +107,31 @@ export const MinerDashboardPageContent: React.FC = (props) => {
 
   const worker = useActiveSearchParamWorker();
 
+  const [tabIndex, setTabIndex] = useState(0);
+
+  const tabs = {
+    stats: 0,
+    payments: 1,
+    rewards: 2,
+    blocks: 3,
+  };
+
+  const loadSelectedTabFromHash = (tabHash: string) => {
+    setTabIndex(tabs[tabHash]);
+    return tabs[tabHash];
+  };
+
+  const selectTab = (index: number) => {
+    setTabIndex(index);
+    const selectedHash = Object.keys(tabs).find((key) => tabs[key] === index);
+    window.location.hash = selectedHash;
+    return selectedHash;
+  };
+
   const loadHeader = React.useCallback(() => {
     return Promise.all([
-      d(minerHeaderStatsGet(coinTicker, address, counterTicker)),
-      d(minerDetailsGet(coinTicker, address)),
+      d(minerHeaderStatsGet(coinTicker, address[0], counterTicker)),
+      d(minerDetailsGet(coinTicker, address[0])),
     ]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [coinTicker, address, counterTicker]);
@@ -117,7 +140,7 @@ export const MinerDashboardPageContent: React.FC = (props) => {
     return d(
       minerStatsGet(
         coinTicker,
-        address,
+        address[0],
         typeof worker === 'string' ? worker : undefined
       )
     );
@@ -128,7 +151,7 @@ export const MinerDashboardPageContent: React.FC = (props) => {
     return d(
       minerStatsChartGet(
         coinTicker,
-        address,
+        address[0],
         typeof worker === 'string' ? worker : undefined
       )
     );
@@ -140,7 +163,7 @@ export const MinerDashboardPageContent: React.FC = (props) => {
   }, [loadMinerStats, loadHeader, loadMinerChartStats]);
 
   // globaly set active coin ticker
-  React.useEffect(() => {
+  useEffect(() => {
     if (
       poolCoins.data &&
       poolCoins.data.coins.find((item) => item.ticker === coinTicker)
@@ -151,10 +174,18 @@ export const MinerDashboardPageContent: React.FC = (props) => {
       loadMinerStats();
       loadMinerChartStats();
       d(minerWorkersGet(coinTicker, address));
-      d(minerRewardsGet(coinTicker, address, counterTicker));
+      d(minerRewardsGet(coinTicker, address[0], counterTicker));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [coinTicker, poolCoins.data]);
+  }, [coinTicker, poolCoins?.data]);
+
+  useEffect(() => {
+    if (window !== typeof undefined) {
+      if (window.location.hash) {
+        loadSelectedTabFromHash(window.location.hash.replace(/#/g, ''));
+      }
+    }
+  }, []);
 
   return (
     <>
@@ -171,72 +202,46 @@ export const MinerDashboardPageContent: React.FC = (props) => {
             <HeaderGreetings onRefresh={loadAll} />
             <AccountHeader
               coin={activeCoin}
-              address={address}
+              address={address[0]}
               onRefresh={loadAll}
             />
             <Spacer />
             <MinerDetails coin={activeCoin} />
             <HeaderStats coin={activeCoin} />
+
+            <Tabs
+              selectedIndex={tabIndex}
+              onSelect={(index) => selectTab(index)}
+            >
+              <TabList>
+                <Tab>
+                  <FaChartBar /> {t('nav.stats')}
+                </Tab>
+                <Tab>
+                  <FaWallet /> {t('nav.payments')}
+                </Tab>
+                <Tab>
+                  <FaChartBar /> {t('nav.rewards')}
+                </Tab>
+                <Tab>
+                  <FaCube /> {t('nav.blocks')}
+                </Tab>
+              </TabList>
+
+              <TabPanel>
+                <MinerStatsPage address={address[0]} coin={coinTicker} />
+              </TabPanel>
+              <TabPanel>
+                <MinerPaymentsPage address={address[0]} coin={coinTicker} />
+              </TabPanel>
+              <TabPanel>
+                <MinerRewardsPage address={address[0]} />
+              </TabPanel>
+              <TabPanel>
+                <MinerBlocksPage address={address[0]} coin={coinTicker} />
+              </TabPanel>
+            </Tabs>
           </Content>
-          {/* <TabLinkContainer>
-            <TabLink
-              to={{
-                pathname: `${match.url}/stats`,
-                state: {
-                  noscroll: true,
-                },
-              }}
-            >
-              <FaChartBar /> {t('nav.stats')}
-            </TabLink>
-            <TabLink
-              to={{
-                pathname: `${match.url}/payments`,
-                state: { noscroll: true },
-              }}
-            >
-              <FaWallet /> {t('nav.payments')}
-            </TabLink>
-            <TabLink
-              to={{
-                pathname: `${match.url}/rewards`,
-                state: { noscroll: true },
-              }}
-            >
-              <FaChartBar /> {t('nav.rewards')}
-            </TabLink>
-            <TabLink
-              to={{
-                pathname: `${match.url}/blocks`,
-                state: { noscroll: true },
-              }}
-            >
-              <FaCube /> {t('nav.blocks')}
-            </TabLink>
-          </TabLinkContainer> */}
-          {/* <TabContent id="workertabs">
-            <Content>
-              <Switch>
-                <Route
-                  path={`${match.path}/stats`}
-                  component={MinerStatsPage}
-                />
-                <Route
-                  path={`${match.path}/blocks`}
-                  component={MinerBlocksPage}
-                />
-                <Route
-                  path={`${match.path}/rewards`}
-                  component={MinerRewardsPage}
-                />
-                <Route
-                  path={`${match.path}/payments`}
-                  component={MinerPaymentsPage}
-                />
-                <Redirect to={`${match.path}/stats`} />
-              </Switch>
-            </Content>
-          </TabContent> */}
           <Spacer size="xl" />
         </Page>
       </PullToRefresh>
@@ -294,12 +299,14 @@ export const MinerDashboardPage: React.FC = (props) => {
 
 export default MinerDashboardPage;
 
-export async function getStaticProps({ locale, ...props }) {
+export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'dashboard'])),
-
-      // Will be passed to the page component as props
+      ...(await serverSideTranslations(locale, [
+        'common',
+        'dashboard',
+        'blocks',
+      ])),
     },
   };
 }

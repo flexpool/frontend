@@ -105,7 +105,6 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common', 'statistics'])),
-      // Will be passed to the page component as props
     },
   };
 }

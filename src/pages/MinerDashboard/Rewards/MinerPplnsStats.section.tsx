@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRouteMatch } from 'react-router';
+// import { useRouteMatch } from 'react-router';
 import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';
 import { Spacer } from 'src/components/layout/Spacer';
 import { StatItem } from 'src/components/StatItem';
@@ -71,15 +71,16 @@ const mapPplnsDataToChartData = (
 export const MinerPplnsStats: React.FC<{
   averagePoolHashrate: number | null | undefined;
   poolHashrate: number | null | undefined;
-}> = ({ averagePoolHashrate = 0, poolHashrate = 0 }) => {
+  address: string;
+}> = ({ averagePoolHashrate = 0, poolHashrate = 0, address }) => {
   const { data: headerStatsData } = useReduxState('minerHeaderStats');
   const siFormatter = useLocalizedSiFormatter();
   const { t } = useTranslation('dashboard');
 
   const [shareLogLength, setShareLogLength] = React.useState(0);
-  const {
-    params: { address },
-  } = useRouteMatch<{ address: string }>();
+  // const {
+  //   params: { address },
+  // } = useRouteMatch<{ address: string }>();
   const activeCoinTicker = useActiveCoinTicker();
   const activeCoin = useActiveCoin();
   const numberFormatter = useLocalizedNumberFormatter();
