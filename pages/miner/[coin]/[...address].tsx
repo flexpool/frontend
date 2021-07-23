@@ -2,15 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
-
-// import {
-//   Route,
-//   RouteComponentProps,
-//   Switch,
-//   useRouteMatch,
-//   Redirect,
-// } from 'react-router';
 import { Content } from '../../../src/components/layout/Content';
 import { Page, PageLoading } from '../../../src/components/layout/Page';
 
@@ -42,8 +33,6 @@ import { LoaderSpinner } from '../../../src/components/Loader/LoaderSpinner';
 import { PullToRefresh } from '../../../src/components/layout/PullToRefresh/PullToRefresh';
 
 import styled from 'styled-components';
-// import { NavLink } from 'react-router-dom';
-import Link from 'next/link';
 import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
 // import { Helmet } from 'react-helmet-async';
 
@@ -101,7 +90,6 @@ export const MinerDashboardPageContent: React.FC = (props) => {
   const { coin: coinTicker, address } = router.query;
   const poolCoins = useReduxState('poolCoins');
   const activeCoin = useActiveCoin(coinTicker);
-  // const match = useRouteMatch();
   const counterTicker = useCounterTicker();
   const { t } = useTranslation('dashboard');
 
@@ -187,7 +175,7 @@ export const MinerDashboardPageContent: React.FC = (props) => {
         loadSelectedTabFromHash(window.location.hash.replace(/#/g, ''));
       }
     }
-  }, [loadSelectedTabFromHash]);
+  }, []);
 
   return (
     <>
