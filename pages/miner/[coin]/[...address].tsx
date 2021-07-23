@@ -58,13 +58,13 @@ const TabContent = styled.div`
   padding-top: 2rem;
 `;
 
-const TabLinkContainer = styled(Content)`
+const TabLinkContainer = styled(TabList)`
   margin-top: 3rem;
   display: flex;
   overflow-x: auto;
 `;
 
-const TabLink = styled(Link)`
+const TabLink = styled(Tab)`
   font-weight: 600;
   font-size: 1.125rem;
   height: 3rem;
@@ -73,13 +73,15 @@ const TabLink = styled(Link)`
   color: var(--text-primary);
   padding: 0 1.5rem;
   border-bottom: 2px solid transparent;
+  margin: 0;
+  cursor: pointer;
 
   position: relative;
   z-index: 1;
   svg {
     margin-right: 0.5rem;
   }
-  &.active {
+  &[aria-selected='true'] {
     color: var(--primary);
     border-color: var(--primary);
   }
@@ -208,40 +210,45 @@ export const MinerDashboardPageContent: React.FC = (props) => {
             <Spacer />
             <MinerDetails coin={activeCoin} />
             <HeaderStats coin={activeCoin} />
-
-            <Tabs
-              selectedIndex={tabIndex}
-              onSelect={(index) => selectTab(index)}
-            >
-              <TabList>
-                <Tab>
-                  <FaChartBar /> {t('nav.stats')}
-                </Tab>
-                <Tab>
-                  <FaWallet /> {t('nav.payments')}
-                </Tab>
-                <Tab>
-                  <FaChartBar /> {t('nav.rewards')}
-                </Tab>
-                <Tab>
-                  <FaCube /> {t('nav.blocks')}
-                </Tab>
-              </TabList>
-
-              <TabPanel>
-                <MinerStatsPage address={address[0]} coin={coinTicker} />
-              </TabPanel>
-              <TabPanel>
-                <MinerPaymentsPage address={address[0]} coin={coinTicker} />
-              </TabPanel>
-              <TabPanel>
-                <MinerRewardsPage address={address[0]} />
-              </TabPanel>
-              <TabPanel>
-                <MinerBlocksPage address={address[0]} coin={coinTicker} />
-              </TabPanel>
-            </Tabs>
           </Content>
+          <Tabs
+            className="w-full"
+            selectedIndex={tabIndex}
+            onSelect={(index) => selectTab(index)}
+          >
+            <Content>
+              <TabLinkContainer>
+                <TabLink>
+                  <FaChartBar /> {t('nav.stats')}
+                </TabLink>
+                <TabLink>
+                  <FaWallet /> {t('nav.payments')}
+                </TabLink>
+                <TabLink>
+                  <FaChartBar /> {t('nav.rewards')}
+                </TabLink>
+                <TabLink>
+                  <FaCube /> {t('nav.blocks')}
+                </TabLink>
+              </TabLinkContainer>
+            </Content>
+            <TabContent id="workertabs">
+              <Content>
+                <TabPanel>
+                  <MinerStatsPage address={address[0]} coin={coinTicker} />
+                </TabPanel>
+                <TabPanel>
+                  <MinerPaymentsPage address={address[0]} coin={coinTicker} />
+                </TabPanel>
+                <TabPanel>
+                  <MinerRewardsPage address={address[0]} />
+                </TabPanel>
+                <TabPanel>
+                  <MinerBlocksPage address={address[0]} coin={coinTicker} />
+                </TabPanel>
+              </Content>
+            </TabContent>
+          </Tabs>
           <Spacer size="xl" />
         </Page>
       </PullToRefresh>
