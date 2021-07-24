@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
-// import { Link } from 'react-router-dom';
 import Link from 'next/link';
 import { Button } from 'src/components/Button';
 import { CoinLogo } from 'src/components/CoinLogo';

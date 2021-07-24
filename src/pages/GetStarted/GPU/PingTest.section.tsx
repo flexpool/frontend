@@ -19,7 +19,7 @@ import { Highlight, Mono, Ws } from 'src/components/Typo/Typo';
 import { CopyButton } from 'src/components/CopyButton';
 import styled from 'styled-components';
 import { Sticker } from 'src/components/Sticker';
-import { Link } from 'react-router-dom';
+import Link from 'next/router';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { Img } from 'src/components/Img';
 import { Trans, useTranslation } from 'next-i18next';
@@ -435,7 +435,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
           ns="get-started"
           i18nKey="detail.ports.description"
           components={{
-            more: <Link to="/faq#should-i-use-ssl" />,
+            more: <Link href="/faq#should-i-use-ssl" />,
             strong: <strong />,
           }}
         />
