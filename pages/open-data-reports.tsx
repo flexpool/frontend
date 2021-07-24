@@ -119,7 +119,11 @@ export async function getStaticProps({ locale }) {
   const dates = await getDates();
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'reports'])),
+      ...(await serverSideTranslations(locale, [
+        'common',
+        'reports',
+        'cookie-consent',
+      ])),
       dates: dates,
     },
   };

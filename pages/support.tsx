@@ -114,7 +114,11 @@ export default SupportPage;
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'support'])),
+      ...(await serverSideTranslations(locale, [
+        'common',
+        'support',
+        'cookie-consent',
+      ])),
     },
   };
 }

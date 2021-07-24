@@ -54,7 +54,11 @@ export default HomePage;
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'home'])),
+      ...(await serverSideTranslations(locale, [
+        'common',
+        'home',
+        'cookie-consent',
+      ])),
     },
   };
 }

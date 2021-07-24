@@ -139,7 +139,11 @@ export default BlocksPage;
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'blocks'])),
+      ...(await serverSideTranslations(locale, [
+        'common',
+        'blocks',
+        'cookie-consent',
+      ])),
     },
   };
 }

@@ -176,7 +176,7 @@ export default FAQPage;
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['common', 'cookie-consent'])),
       // Will be passed to the page component as props
     },
   };

@@ -103,7 +103,11 @@ export default StatisticsPage;
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'statistics'])),
+      ...(await serverSideTranslations(locale, [
+        'common',
+        'statistics',
+        'cookie-consent',
+      ])),
     },
   };
 }

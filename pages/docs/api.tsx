@@ -21,7 +21,7 @@ export default ApiDocsPage;
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['common', 'cookie-consent'])),
     },
   };
 }

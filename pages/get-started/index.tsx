@@ -59,7 +59,11 @@ export default GetStartedPage;
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'get-started'])),
+      ...(await serverSideTranslations(locale, [
+        'common',
+        'get-started',
+        'cookie-consent',
+      ])),
     },
   };
 }

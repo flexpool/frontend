@@ -37,7 +37,11 @@ export default BusinessDevelopmentPage;
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'business-dev'])),
+      ...(await serverSideTranslations(locale, [
+        'common',
+        'business-dev',
+        'cookie-consent',
+      ])),
     },
   };
 }

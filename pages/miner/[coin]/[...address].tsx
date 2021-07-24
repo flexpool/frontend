@@ -301,6 +301,7 @@ export async function getStaticProps({ locale }) {
         'common',
         'dashboard',
         'blocks',
+        'cookie-consent',
       ])),
     },
   };

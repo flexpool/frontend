@@ -36,7 +36,11 @@ export default MinersPage;
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'miners'])),
+      ...(await serverSideTranslations(locale, [
+        'common',
+        'miners',
+        'cookie-consent',
+      ])),
     },
   };
 }
