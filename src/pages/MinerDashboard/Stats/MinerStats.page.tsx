@@ -37,17 +37,12 @@ export const MinerStatsPage: React.FC<{
 }> = ({ address, coin }) => {
   const router = useRouter();
 
-  // const {
-  //   params: { address, coin },
-  // } = useRouteMatch<{ address: string; coin: string }>();
   const [
     averageEffectivePeriods,
     setAverageEffectivePeriods,
   ] = React.useState<AverageEffectivePeriods>({ 6: 0, 12: 0 });
 
   const worker = useActiveSearchParamWorker();
-  // const history = useHistory();
-  // const location = useLocation();
   const { t } = useTranslation('dashboard');
 
   React.useLayoutEffect(() => {
@@ -99,7 +94,7 @@ export const MinerStatsPage: React.FC<{
         address={address}
         coinTicker={coin}
       />
-      {/* <MinerWorkers address={address} /> */}
+      <MinerWorkers address={address} />
     </>
   );
 };
