@@ -30,6 +30,26 @@ function BlocksPage() {
   const siFormatter = useLocalizedSiFormatter();
   const { t } = useTranslation('blocks');
 
+  React.useEffect(() => {
+    const init = { query: { coin: activeCoin?.ticker } };
+    statsState.start(
+      Promise.all([
+        fetchApi<number>('/pool/averageLuck', init),
+        fetchApi<number>('/pool/currentLuck', init),
+        fetchApi<number>('/pool/networkHashrate', init),
+        fetchApi<number>('/pool/networkDifficulty', init),
+      ]).then(
+        ([averageLuck, currentLuck, networkHashrate, networkDifficulty]) => ({
+          averageLuck,
+          currentLuck,
+          networkHashrate,
+          networkDifficulty,
+        })
+      )
+    );
+    // eslint-disable-next-line
+  }, [activeCoin?.ticker]);
+
   return (
     <Page>
       {/* <Helmet>
