@@ -67,6 +67,7 @@ const CookieConsent: React.FC<{}> = () => {
   const { t } = useTranslation('cookie-consent');
 
   React.useEffect(() => {
+    console.log(cookieConsent);
     window &&
       cookieConsent === 'false' &&
       typeof window.Intercom === 'function' &&
@@ -83,6 +84,10 @@ const CookieConsent: React.FC<{}> = () => {
       });
     setCookieConsent('consented');
   };
+
+  if (cookieConsent === 'consented') {
+    return <></>;
+  }
   return (
     <CookieConsentBaseContainer consented={cookieConsent}>
       <CookieConsentContents>
