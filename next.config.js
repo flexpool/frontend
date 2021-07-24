@@ -16,5 +16,14 @@ module.exports = withTM({
 
     return config;
   },
+  async redirects() {
+    return [
+      // {
+      //   source: '/_error',
+      //   destination: '/not-found',
+      //   permanent: true,
+      // },
+    ];
+  },
   i18n,
 });
