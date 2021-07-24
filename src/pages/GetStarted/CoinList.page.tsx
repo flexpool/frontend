@@ -84,27 +84,25 @@ export const MineableCoinList: React.FC = () => {
                 </CoinContent>
                 <GuidesList>
                   {poolHw.map((itemHw) => (
-                    <Button
-                      shape="block"
-                      size="sm"
-                      variant="primary"
+                    <Link
                       key={itemHw.key}
-                      as={Link}
                       href={`/get-started/${item.ticker}/${itemHw.key}`}
+                      passHref
                     >
-                      {itemHw.title}
-                    </Button>
+                      <Button shape="block" size="sm" variant="primary">
+                        {itemHw.title}
+                      </Button>
+                    </Link>
                   ))}
                   {item.nicehashAvailable ? (
-                    <Button
-                      shape="block"
-                      size="sm"
-                      variant="warning"
-                      as={Link}
+                    <Link
                       href={`/get-started/${item.ticker}/nicehash`}
+                      passHref
                     >
-                      {t('list.nicehash_rental_button')}
-                    </Button>
+                      <Button shape="block" size="sm" variant="warning">
+                        {t('list.nicehash_rental_button')}
+                      </Button>
+                    </Link>
                   ) : null}
                 </GuidesList>
                 <DynamicList
