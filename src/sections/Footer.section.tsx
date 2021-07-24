@@ -135,7 +135,9 @@ export const FooterSection = () => {
               Careers
             </Link> */}
             {partnersData.length > 0 && (
-              <Link href="/partners"> {t('footer.company.partners')}</Link>
+              <Link href="/partners" passHref>
+                {t('footer.company.partners')}
+              </Link>
             )}
             <LinkOut href="https://medium.com/flexpool/">
               {' '}
