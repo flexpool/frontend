@@ -164,13 +164,11 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
       </IntervalContainer>
       {data?.ticker && (
         <StartMiningContainer>
-          <Button
-            variant="success"
-            as={Link}
-            href={`/get-started/${data?.ticker}`}
-          >
-            {t('coin_earnings_cards.cta_mine')}
-          </Button>
+          <Link href={`/get-started/${data?.ticker}`} passHref>
+            <Button variant="success">
+              {t('coin_earnings_cards.cta_mine')}
+            </Button>
+          </Link>
         </StartMiningContainer>
       )}
     </EarningBox>

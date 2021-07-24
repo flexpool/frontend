@@ -11,9 +11,11 @@ export const GetStartedSection = () => {
       <Content>
         <Split>
           <h2>{t('get_started_section.title')}</h2>
-          <StartButton as={Link} href="/get-started" size="lg">
-            <Ws>{t('get_started_section.cta')}</Ws>
-          </StartButton>
+          <Link href="/get-started" passHref>
+            <StartButton size="lg">
+              <Ws>{t('get_started_section.cta')}</Ws>
+            </StartButton>
+          </Link>
         </Split>
       </Content>
     </Wrapper>

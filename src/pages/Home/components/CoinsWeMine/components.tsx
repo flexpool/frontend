@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const CoinName = styled(Link)`
+export const CoinName = styled.a`
   color: var(--text-primary);
   display: flex;
   align-items: center;

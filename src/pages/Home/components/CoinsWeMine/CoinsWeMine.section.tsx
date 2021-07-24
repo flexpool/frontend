@@ -93,16 +93,18 @@ export const CoinsWeMineSection = () => {
         skeletonWidth: 110,
         Component: ({ data }) => {
           return (
-            <CoinName
-              aria-label={`${data.ticker} news`}
+            <Link
               href={{ search: `news=${data.ticker}` }}
+              passHref
+              scroll={false}
+              shallow
             >
-              <>
+              <CoinName aria-label={`${data.ticker} news`}>
                 <CoinLogo size="lg" ticker={data.ticker} />
                 <span>{data.name}</span>
                 <TickerName>{data.ticker.toUpperCase()}</TickerName>
-              </>
-            </CoinName>
+              </CoinName>
+            </Link>
           );
         },
       },
@@ -186,17 +188,17 @@ export const CoinsWeMineSection = () => {
               <ActionIcon size="xs" variant="primary">
                 <FaCalculator />
               </ActionIcon>
-              <Button
-                size="xs"
-                variant="primary"
-                as={Link}
-                href={`/get-started/${data.ticker}`}
-                onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
-                  e.stopPropagation()
-                }
-              >
-                {t('mined_coins_section.item_cta')}
-              </Button>
+              <Link href={`/get-started/${data.ticker}`} passHref>
+                <Button
+                  size="xs"
+                  variant="primary"
+                  onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+                    e.stopPropagation()
+                  }
+                >
+                  {t('mined_coins_section.item_cta')}
+                </Button>
+              </Link>
             </ActionIconContainer>
           );
         },

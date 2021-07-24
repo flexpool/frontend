@@ -14,7 +14,7 @@ const ItemWrap = styled.div`
   align-items: center;
   height: 55px;
 `;
-const HistoryItem = styled(Link)`
+const HistoryItem = styled.a`
   color: var(--text-primary);
   background: transparent;
   height: 100%;
@@ -100,13 +100,14 @@ export const SearchAddressCachedResult: React.FC<{ isOpen?: boolean }> = ({
               d(addressSearchSet(item));
             }}
             href={`/miner/${item.coin}/${item.address}`}
+            passHref
           >
-            <a>
+            <>
               <Address>{item.address}</Address>
               <ItemRight>
                 <CoinLabel>{item.coin}</CoinLabel>
               </ItemRight>
-            </a>
+            </>
           </HistoryItem>
           <RemoveWrap
             type="button"
