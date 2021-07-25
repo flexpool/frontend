@@ -67,7 +67,6 @@ const CookieConsent: React.FC<{}> = () => {
   const { t } = useTranslation('cookie-consent');
 
   React.useEffect(() => {
-    console.log(cookieConsent);
     window &&
       cookieConsent === 'false' &&
       typeof window.Intercom === 'function' &&

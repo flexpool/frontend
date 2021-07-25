@@ -1,23 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
+import { useRouter } from 'next/router';
+import { AnyAction } from 'redux';
+import { useTranslation } from 'next-i18next';
+
+import styled from 'styled-components';
+import qs from 'query-string';
+import { w3cwebsocket } from 'websocket';
+import { differenceInMilliseconds } from 'date-fns';
+import { FaCheck } from 'react-icons/fa';
+
 import DynamicList, {
   DynamicListColumn,
 } from 'src/components/layout/List/List';
 import { MineableCoinRegion } from '../mineableCoinList';
-import { w3cwebsocket } from 'websocket';
-import { differenceInMilliseconds } from 'date-fns';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
-import qs from 'query-string';
-import { useHistory, useLocation } from 'react-router';
-import { FaCheck } from 'react-icons/fa';
 import { Highlight, Mono, Ws } from 'src/components/Typo/Typo';
 import { CopyButton } from 'src/components/CopyButton';
-import styled from 'styled-components';
 import { Sticker } from 'src/components/Sticker';
 import { Tooltip } from 'src/components/Tooltip';
 import { Img } from 'src/components/Img';
-import { useTranslation } from 'next-i18next';
-import { AnyAction } from 'redux';
 import { useBoolState } from 'src/hooks/useBoolState';
 
 // const WarningIcon = styled(FaExclamationCircle)`
@@ -122,8 +125,13 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   data,
 }) => {
   const [latencies, dispatch] = React.useReducer(reducer, {});
-  const { replace: historyReplace } = useHistory();
-  const { search } = useLocation();
+  const router = useRouter();
+  let search;
+
+  useEffect(() => {
+    search = window.location.search;
+  }, []);
+
   // const [selection, setSelection] = React.useState<'primary' | 'secondary'>(
   //   'primary'
   // );
@@ -289,23 +297,23 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
    * Automatically set primary and secondary
    */
   React.useEffect(() => {
+    console.log('firing 1');
     if (fastest.first && fastest.second && !isAutoSetOnce.value) {
       isAutoSetOnce.handleTrue();
-      historyReplace({
-        search: qs.stringify({
+      router.push(window.location.pathname, {
+        query: {
           ...searchParams,
           primaryServer: fastest.first,
-          // secondaryServer: fastest.second,
-        }),
+        },
       });
     }
-  }, [fastest, historyReplace, searchParams, isAutoSetOnce]);
+  }, [searchParams]);
 
   const setServer = React.useCallback(
     (type: 'secondary' | 'primary', domain: string) => {
       const isPrimarySelection = type === 'primary';
-      historyReplace({
-        search: qs.stringify({
+      router.push(window.location.pathname, {
+        query: {
           ...searchParams,
           ...(isPrimarySelection
             ? {
@@ -314,10 +322,10 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
             : {
                 secondaryServer: domain,
               }),
-        }),
+        },
       });
     },
-    [historyReplace, searchParams]
+    []
   );
 
   const colConfig = React.useMemo(() => {
@@ -350,17 +358,15 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   //   },
   //   [selectionhistoryReplace, searchParams]
   // );
-  const selectItem = React.useCallback(
-    (d: MineableCoinRegion) => {
-      historyReplace({
-        search: qs.stringify({
-          ...searchParams,
-          primaryServer: d.domain,
-        }),
-      });
-    },
-    [historyReplace, searchParams]
-  );
+  const selectItem = React.useCallback((d: MineableCoinRegion) => {
+    console.table(window.location.pathname, searchParams);
+    router.push(window.location.pathname, {
+      query: {
+        ...searchParams,
+        primaryServer: d.domain,
+      },
+    });
+  }, []);
 
   return (
     <>

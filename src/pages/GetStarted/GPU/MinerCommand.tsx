@@ -1,5 +1,4 @@
-import React from 'react';
-import { useLocation } from 'react-router';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import qs from 'query-string';
 import { CopyButton } from 'src/components/CopyButton';
@@ -69,7 +68,13 @@ const replaceStringWithNodes = (
 export const MinerCommand: React.FC<{
   command: string;
 }> = ({ command }) => {
-  const { search } = useLocation();
+  // const { search } = useLocation();
+  let search;
+
+  useEffect(() => {
+    search = window.location.search;
+  }, []);
+
   const { t } = useTranslation('get-started');
   const {
     primaryServer = t('cmd_keys.CLOSEST_SERVER'),

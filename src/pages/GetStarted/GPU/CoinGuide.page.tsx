@@ -1,6 +1,7 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { Redirect, useRouteMatch } from 'react-router-dom';
+
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 
@@ -13,12 +14,17 @@ import { ViewDashboardSection } from './ViewDashboard.section';
 import merge from 'lodash.merge';
 
 export const MineableCoinGuidePage: React.FC = () => {
-  const {
-    params: { ticker, hw },
-  } = useRouteMatch<{
-    ticker?: string;
-    hw?: string;
-  }>();
+  const router = useRouter();
+  const ticker = router.query.ticker;
+  let search;
+  console.log(router);
+
+  // const {
+  //   params: { ticker, hw },
+  // } = useRouteMatch<{
+  //   ticker?: string;
+  //   hw?: string;
+  // }>();
 
   const { t } = useTranslation('get-started');
 
@@ -30,25 +36,25 @@ export const MineableCoinGuidePage: React.FC = () => {
     returnObjects: true,
   }) as MineableCoinHardware[];
 
-  const mineableCoinConfig = React.useMemo(() => {
-    const mergedHw = merge(mineableCoin?.hardware, jsonHw);
-    return mergedHw.find((item) => item.key === hw);
-  }, [jsonHw, mineableCoin?.hardware, hw]);
+  // const mineableCoinConfig = React.useMemo(() => {
+  //   const mergedHw = merge(mineableCoin?.hardware, jsonHw);
+  //   return mergedHw.find((item) => item.key === hw);
+  // }, [jsonHw, mineableCoin?.hardware]);
 
-  if (!mineableCoin || !mineableCoinConfig) {
-    return <Redirect to="/get-started" />;
-  }
+  // if (!mineableCoin || !mineableCoinConfig) {
+  //   return <Redirect to="/get-started" />;
+  // }
 
   return (
     <Page>
       <h1>{t(`detail_${mineableCoin.ticker}.title`)}</h1>
       <SetWalletSection data={mineableCoin} />
       <Spacer size="xl" />
-      <PingTestSection data={mineableCoin.regions} />
+      {/* <PingTestSection data={mineableCoin.regions} /> */}
       <Spacer size="xl" />
       <SetWorkerNameSection />
       <Spacer size="xl" />
-      <MinerCommandSection data={mineableCoinConfig.miners} />
+      {/* <MinerCommandSection data={mineableCoinConfig.miners} /> */}
       <Spacer size="xl" />
       <ViewDashboardSection ticker={ticker} />
     </Page>

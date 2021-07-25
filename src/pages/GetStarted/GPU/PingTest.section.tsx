@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
+
 import DynamicList, {
   DynamicListColumn,
 } from 'src/components/layout/List/List';
@@ -8,7 +10,7 @@ import { differenceInMilliseconds } from 'date-fns';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import qs from 'query-string';
-import { useHistory, useLocation, useRouteMatch } from 'react-router';
+
 import {
   FaCheck,
   FaEthernet,
@@ -126,20 +128,22 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   data,
 }) => {
   const [latencies, dispatch] = React.useReducer(reducer, {});
-  const { replace: historyReplace } = useHistory();
-  const { search } = useLocation();
+  // const { replace: historyReplace } = useHistory();
+  // const { search } = useLocation();
   // const [selection, setSelection] = React.useState<'primary' | 'secondary'>(
   //   'primary'
   // );
+  let search;
+
+  useEffect(() => {
+    search = window.location.search;
+  }, []);
+
   const isAutoSetOnce = useBoolState();
 
   const { t } = useTranslation('get-started');
-  const {
-    params: { ticker },
-  } = useRouteMatch<{
-    ticker?: string;
-    hw?: string;
-  }>();
+  const router = useRouter();
+  const ticker = router.query.ticker;
 
   const handleSetLowestLatency = React.useCallback(
     (name: string, value: number) => {
@@ -337,21 +341,23 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   React.useEffect(() => {
     if (fastest.first && fastest.second && !isAutoSetOnce.value) {
       isAutoSetOnce.handleTrue();
-      historyReplace({
-        search: qs.stringify({
+      router.push({
+        pathname: window.location.pathname,
+        query: {
           ...searchParams,
           primaryServer: fastest.first,
           secondaryServer: fastest.second,
-        }),
+        },
       });
     }
-  }, [fastest, historyReplace, searchParams, isAutoSetOnce]);
+  }, [fastest, searchParams, isAutoSetOnce]);
 
   const setServer = React.useCallback(
     (type: 'secondary' | 'primary', domain: string) => {
       const isPrimarySelection = type === 'primary';
-      historyReplace({
-        search: qs.stringify({
+      router.push({
+        pathname: window.location.pathname,
+        query: qs.stringify({
           ...searchParams,
           ...(isPrimarySelection
             ? {
@@ -363,7 +369,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
         }),
       });
     },
-    [historyReplace, searchParams]
+    [searchParams]
   );
 
   const colConfig = React.useMemo(() => {
@@ -398,14 +404,15 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   // );
   const selectItem = React.useCallback(
     (d: MineableCoinRegion) => {
-      historyReplace({
-        search: qs.stringify({
+      router.push({
+        pathname: window.location.pathname,
+        query: {
           ...searchParams,
           primaryServer: d.domain,
-        }),
+        },
       });
     },
-    [historyReplace, searchParams]
+    [router, searchParams]
   );
 
   // const renderTooltipContent = React.useCallback(() => {

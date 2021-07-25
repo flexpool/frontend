@@ -1,14 +1,21 @@
-import { useHistory, useLocation } from 'react-router';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import qs from 'query-string';
+
+// import { useHistory, useLocation } from 'react-router';
 import { TextInput } from 'src/components/Form/TextInput';
 import { DivText, Highlight } from 'src/components/Typo/Typo';
 import { Spacer } from 'src/components/layout/Spacer';
-import React from 'react';
-import { useTranslation } from 'next-i18next';
 
 export const SetWorkerNameSection = () => {
-  const history = useHistory();
-  const { search } = useLocation();
+  const router = useRouter();
+  const ticker = router.query.ticker;
+  let search;
+
+  useEffect(() => {
+    search = window.location.search;
+  }, []);
 
   const { t } = useTranslation('get-started');
 
@@ -21,14 +28,16 @@ export const SetWorkerNameSection = () => {
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       const parsedSearch = qs.parse(search);
-      history.replace({
-        search: qs.stringify({
+
+      router.push({
+        pathname: window.location.pathname,
+        query: {
           ...parsedSearch,
           workerName: value,
-        }),
+        },
       });
     },
-    [search, history]
+    [search]
   );
 
   return (

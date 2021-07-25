@@ -1,17 +1,26 @@
-import { useHistory, useLocation } from 'react-router';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
+
+// import { useHistory, useLocation } from 'react-router';
 import qs from 'query-string';
 import { TextInput } from 'src/components/Form/TextInput';
 import { DivText, Highlight } from 'src/components/Typo/Typo';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOut } from 'src/components/LinkOut';
-import React from 'react';
 import { MineableCoin } from '../mineableCoinList';
 import { Trans, useTranslation } from 'next-i18next';
 export const SetWalletSection: React.FC<{ data: MineableCoin }> = ({
   data: { walletAddressExample, validator },
 }) => {
-  const history = useHistory();
-  const { search } = useLocation();
+  const router = useRouter();
+  let search;
+
+  useEffect(() => {
+    search = window.location.search;
+  }, []);
+
+  // const history = useHistory();
+  // const { search } = useLocation();
   const { t } = useTranslation('get-started');
 
   const initValue = React.useMemo(() => {
@@ -34,16 +43,17 @@ export const SetWalletSection: React.FC<{ data: MineableCoin }> = ({
       setChecksumError(!checksum);
 
       if (!!checksum) {
-        history.replace({
-          search: qs.stringify({
+        router.push({
+          pathname: window.location.pathname,
+          query: {
             ...parsedSearch,
             walletAddress: !!checksum ? checksum : '',
-          }),
+          },
         });
         setValue(checksum);
       }
     },
-    [search, history, validator]
+    [search, router, validator]
   );
 
   return (

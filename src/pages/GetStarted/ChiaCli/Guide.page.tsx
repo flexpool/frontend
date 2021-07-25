@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
+
+import qs from 'query-string';
 import { useTranslation } from 'next-i18next';
+
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 import { Highlight } from 'src/components/Typo/Typo';
 import { MineableCoinHardware, mineableCoins } from '../mineableCoinList';
-import { Redirect, useHistory, useLocation, useRouteMatch } from 'react-router';
-import qs from 'query-string';
 import { Mono } from 'src/components/Typo/Typo';
 import { PingTestSection } from '../ChiaShared/PingTest.section';
 import { TerminalCommand } from './TerminalCommand';
@@ -14,15 +16,15 @@ import { CreatePlotsSection } from './CreatePlots.section';
 import merge from 'lodash.merge';
 
 export const ChiaCliGuidePage: React.FC = () => {
-  const {
-    params: { ticker },
-  } = useRouteMatch<{
-    ticker?: string;
-  }>();
+  const router = useRouter();
+  const ticker = router.query.ticker;
+  let search;
+
+  useEffect(() => {
+    search = window.location.search;
+  }, []);
 
   const { t } = useTranslation('get-started');
-  const { replace: historyReplace } = useHistory();
-  const { search } = useLocation();
 
   const mineableCoin = React.useMemo(() => {
     return mineableCoins.find((item) => item.ticker === ticker);
@@ -34,11 +36,13 @@ export const ChiaCliGuidePage: React.FC = () => {
 
   const mineableCoinConfig = React.useMemo(() => {
     const mergedHw = merge(mineableCoin?.hardware, jsonHw);
-    return mergedHw.find((item) => item.key === 'XCH-CLI');
+    console.log(mergedHw);
+    return true;
+    // return mergedHw.find((item) => item.key === 'XCH-CLI');
   }, [jsonHw, mineableCoin?.hardware]);
 
   if (!mineableCoin || !mineableCoinConfig) {
-    return <Redirect to="/get-started" />;
+    return router.push('/get-started');
   }
 
   const { primaryServer = 'POOL_URL', farmerOption = 'new-farmer' } = qs.parse(
@@ -46,11 +50,12 @@ export const ChiaCliGuidePage: React.FC = () => {
   );
 
   const setSelectedFarmerOption = (s: string) => {
-    historyReplace({
-      search: qs.stringify({
-        ...qs.parse(search),
+    router.push({
+      pathname: window.location.pathname,
+      query: {
+        ...qs.parse(window.location.search),
         farmerOption: s,
-      }),
+      },
     });
   };
 

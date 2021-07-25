@@ -89,7 +89,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
           >
             <Component {...pageProps} />
           </motion.div>
-          <CookieConsent></CookieConsent>
+          <CookieConsent />
 
           <FooterSection />
         </ThemeProvider>
