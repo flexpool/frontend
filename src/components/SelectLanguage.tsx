@@ -5,6 +5,7 @@ import { Img } from './Img';
 import { useTranslation } from 'next-i18next';
 import { localStorage } from 'src/utils/localStorage';
 import { availableLangs } from 'src/i18n-select-lang';
+import router from 'next/router';
 
 const TickerFlag = styled(Img)`
   height: 20px;
@@ -18,13 +19,16 @@ const TickerWrapper = styled.div`
 `;
 export const SelectLanguage = () => {
   const { i18n } = useTranslation(['common']);
+
   const handleLangChange = React.useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       const lng = (e.target as HTMLButtonElement).value;
-      i18n.changeLanguage(lng);
       localStorage('lng').set(lng);
+      router.push(router.pathname, router.pathname, {
+        locale: lng,
+      });
     },
-    [i18n]
+    [router]
   );
 
   return (

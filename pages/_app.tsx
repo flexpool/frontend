@@ -2,6 +2,8 @@ import '../src/index.css';
 import '../src/App/normalize.scss';
 import '../src/App/App.scss';
 import { appWithTranslation } from 'next-i18next';
+import { useEffect } from 'react';
+import { useTranslation } from 'next-i18next';
 
 import createReduxStore from '../src/rdx/createStore';
 import { Provider as ReduxProvider } from 'react-redux';
@@ -56,6 +58,9 @@ const store = createReduxStore({
 
 const App = ({ Component, pageProps, router }: AppProps) => {
   // usePwaInit();
+  // const { locale } = router;
+  const languageCookie = localStorage<string>('lng').get();
+  const { i18n } = useTranslation();
 
   return (
     <>
