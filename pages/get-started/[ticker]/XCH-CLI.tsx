@@ -4,7 +4,7 @@ import { Content } from '../../../src/components/layout/Content';
 import { Page } from '../../../src/components/layout/Page';
 import { ChiaCliGuidePage } from '../../../src/pages/GetStarted/ChiaCli/Guide.page';
 
-export const GetStartedPage = () => {
+export const GetStartedXchCliPage = () => {
   return (
     <Page>
       {/* <Helmet>
@@ -17,7 +17,7 @@ export const GetStartedPage = () => {
   );
 };
 
-export default GetStartedPage;
+export default GetStartedXchCliPage;
 
 export async function getStaticProps({ locale }) {
   return {
@@ -25,7 +25,6 @@ export async function getStaticProps({ locale }) {
       ...(await serverSideTranslations(locale, [
         'common',
         'get-started',
-        'nicehash',
         'cookie-consent',
       ])),
     },
