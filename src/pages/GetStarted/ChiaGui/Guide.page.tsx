@@ -1,9 +1,11 @@
 import React from 'react';
+import { useRouter } from 'next/router';
+
 import { Trans, useTranslation } from 'next-i18next';
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 import { MineableCoinHardware, mineableCoins } from '../mineableCoinList';
-import { Redirect, useHistory, useLocation, useRouteMatch } from 'react-router';
+// import { Redirect, useHistory, useLocation, useRouteMatch } from 'react-router';
 import qs from 'query-string';
 import { PingTestSection } from '../ChiaShared/PingTest.section';
 import merge from 'lodash.merge';
@@ -19,15 +21,10 @@ import { ChiaGuiLink } from './Link';
 import { FarmerOptionSelector } from '../ChiaShared/FarmerOptionSelector';
 
 export const ChiaGuiGuidePage: React.FC = () => {
-  const {
-    params: { ticker },
-  } = useRouteMatch<{
-    ticker?: string;
-  }>();
+  const router = useRouter();
+  const ticker = router.query.ticker;
 
   const { t } = useTranslation('get-started');
-  const { replace: historyReplace } = useHistory();
-  const { search } = useLocation();
 
   const mineableCoin = React.useMemo(() => {
     return mineableCoins.find((item) => item.ticker === ticker);
@@ -43,19 +40,20 @@ export const ChiaGuiGuidePage: React.FC = () => {
   }, [jsonHw, mineableCoin?.hardware]);
 
   if (!mineableCoin || !mineableCoinConfig) {
-    return <Redirect to="/get-started" />;
+    return router.push('/get-started');
   }
 
   const { primaryServer = 'POOL_URL', farmerOption = 'new-farmer' } = qs.parse(
-    search
+    typeof window !== 'undefined' ? window.location.search : ''
   );
 
   const setSelectedFarmerOption = (s: string) => {
-    historyReplace({
-      search: qs.stringify({
-        ...qs.parse(search),
+    router.push({
+      pathname: window.location.pathname,
+      query: {
+        ...qs.parse(window.location.search),
         farmerOption: s,
-      }),
+      },
     });
   };
 
@@ -134,7 +132,6 @@ export const ChiaGuiGuidePage: React.FC = () => {
           />
         </>
       )}
-
       <Spacer size="xl" />
       <h2>
         <Highlight>#2</Highlight>{' '}

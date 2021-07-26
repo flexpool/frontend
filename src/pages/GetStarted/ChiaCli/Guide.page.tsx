@@ -31,9 +31,7 @@ export const ChiaCliGuidePage: React.FC = () => {
 
   const mineableCoinConfig = React.useMemo(() => {
     const mergedHw = merge(mineableCoin?.hardware, jsonHw);
-    console.log(mergedHw);
-    return true;
-    // return mergedHw.find((item) => item.key === 'XCH-CLI');
+    return mergedHw.find((item) => item.key === 'XCH-CLI');
   }, [jsonHw, mineableCoin?.hardware]);
 
   if (!mineableCoin || !mineableCoinConfig) {
