@@ -68,20 +68,14 @@ const replaceStringWithNodes = (
 export const MinerCommand: React.FC<{
   command: string;
 }> = ({ command }) => {
-  // const { search } = useLocation();
-  let search;
-
-  useEffect(() => {
-    search = window.location.search;
-  }, []);
-
   const { t } = useTranslation('get-started');
+
   const {
     primaryServer = t('cmd_keys.CLOSEST_SERVER'),
     secondaryServer = t('cmd_keys.CLOSEST_SERVER'),
     walletAddress = t('cmd_keys.WALLET_ADDRESS'),
     workerName = t('cmd_keys.WORKER_NAME'),
-  } = qs.parse(search);
+  } = qs.parse(typeof window !== 'undefined' ? window.location.search : '');
 
   const replacedText = React.useMemo(() => {
     return replaceStringWithNodes(command, [
@@ -105,6 +99,7 @@ export const MinerCommand: React.FC<{
       },
     ]);
   }, [command, primaryServer, secondaryServer, workerName, walletAddress]);
+
   const copyText = React.useMemo(() => {
     return replaceStringWithNodes(command, [
       {
