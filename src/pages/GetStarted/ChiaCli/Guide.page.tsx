@@ -18,11 +18,6 @@ import merge from 'lodash.merge';
 export const ChiaCliGuidePage: React.FC = () => {
   const router = useRouter();
   const ticker = router.query.ticker;
-  let search;
-
-  useEffect(() => {
-    search = window.location.search;
-  }, []);
 
   const { t } = useTranslation('get-started');
 
@@ -46,7 +41,7 @@ export const ChiaCliGuidePage: React.FC = () => {
   }
 
   const { primaryServer = 'POOL_URL', farmerOption = 'new-farmer' } = qs.parse(
-    search
+    typeof window !== 'undefined' ? window.location.search : ''
   );
 
   const setSelectedFarmerOption = (s: string) => {

@@ -297,17 +297,19 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
    * Automatically set primary and secondary
    */
   React.useEffect(() => {
-    console.log('firing 1');
+    console.log('firing outer');
     if (fastest.first && fastest.second && !isAutoSetOnce.value) {
+      console.log('firing inner');
       isAutoSetOnce.handleTrue();
-      router.push(window.location.pathname, {
-        query: {
-          ...searchParams,
-          primaryServer: fastest.first,
-        },
-      });
+      router.push(
+        `${router.asPath}/?primaryServer=${fastest.first}`,
+        undefined,
+        {
+          shallow: true,
+        }
+      );
     }
-  }, [searchParams]);
+  }, [fastest]);
 
   const setServer = React.useCallback(
     (type: 'secondary' | 'primary', domain: string) => {
@@ -360,12 +362,12 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   // );
   const selectItem = React.useCallback((d: MineableCoinRegion) => {
     console.table(window.location.pathname, searchParams);
-    router.push(window.location.pathname, {
-      query: {
-        ...searchParams,
-        primaryServer: d.domain,
-      },
-    });
+    // router.push(window.location.pathname, {
+    //   query: {
+    //     ...searchParams,
+    //     primaryServer: d.domain,
+    //   },
+    // });
   }, []);
 
   return (
