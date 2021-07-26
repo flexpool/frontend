@@ -75,7 +75,6 @@ export const MineableCoinList: React.FC = () => {
             const poolHw = t(`detail_${item.ticker.toLowerCase()}.hardware`, {
               returnObjects: true,
             }) as MineableCoinHardware[];
-            console.log(poolHw);
 
             return (
               <MineableCoinWrapper key={item.name}>

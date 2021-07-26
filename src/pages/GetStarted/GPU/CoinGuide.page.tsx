@@ -16,16 +16,6 @@ import merge from 'lodash.merge';
 export const MineableCoinGuidePage: React.FC = () => {
   const router = useRouter();
   const ticker = router.query.ticker;
-  let search;
-  console.log(router);
-
-  // const {
-  //   params: { ticker, hw },
-  // } = useRouteMatch<{
-  //   ticker?: string;
-  //   hw?: string;
-  // }>();
-
   const { t } = useTranslation('get-started');
 
   const mineableCoin = React.useMemo(() => {
@@ -36,25 +26,29 @@ export const MineableCoinGuidePage: React.FC = () => {
     returnObjects: true,
   }) as MineableCoinHardware[];
 
-  // const mineableCoinConfig = React.useMemo(() => {
-  //   const mergedHw = merge(mineableCoin?.hardware, jsonHw);
-  //   return mergedHw.find((item) => item.key === hw);
-  // }, [jsonHw, mineableCoin?.hardware]);
+  const mineableCoinConfig = React.useMemo(() => {
+    const mergedHw = merge(mineableCoin?.hardware, jsonHw);
+    return mergedHw.find(
+      (item) =>
+        item.key ===
+        router.pathname.substring(router.pathname.lastIndexOf('/') + 1)
+    );
+  }, [jsonHw, mineableCoin?.hardware, router.pathname]);
 
-  // if (!mineableCoin || !mineableCoinConfig) {
-  //   return <Redirect to="/get-started" />;
-  // }
+  if (!mineableCoin || !mineableCoinConfig) {
+    router.push('/get-started');
+  }
 
   return (
     <Page>
-      <h1>{t(`detail_${mineableCoin.ticker}.title`)}</h1>
+      <h1>{t(`detail_${mineableCoin?.ticker}.title`)}</h1>
       <SetWalletSection data={mineableCoin} />
       <Spacer size="xl" />
-      {/* <PingTestSection data={mineableCoin.regions} /> */}
+      <PingTestSection data={mineableCoin?.regions} />
       <Spacer size="xl" />
       <SetWorkerNameSection />
       <Spacer size="xl" />
-      {/* <MinerCommandSection data={mineableCoinConfig.miners} /> */}
+      <MinerCommandSection data={mineableCoinConfig?.miners} />
       <Spacer size="xl" />
       <ViewDashboardSection ticker={ticker} />
     </Page>

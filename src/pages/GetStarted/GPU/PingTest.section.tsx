@@ -1,31 +1,32 @@
 import React, { useEffect } from 'react';
+import { Trans, useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
+import { w3cwebsocket } from 'websocket';
+import { differenceInMilliseconds } from 'date-fns';
+import styled from 'styled-components';
+import qs from 'query-string';
+import { AnyAction } from 'redux';
+import Link, { LinkProps } from 'next/link';
 
+// Components
 import DynamicList, {
   DynamicListColumn,
 } from 'src/components/layout/List/List';
 import { MineableCoinRegion } from '../mineableCoinList';
-import { w3cwebsocket } from 'websocket';
-import { differenceInMilliseconds } from 'date-fns';
-import { useAsyncState } from 'src/hooks/useAsyncState';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
-import qs from 'query-string';
-
+import { Highlight, Mono, Ws } from 'src/components/Typo/Typo';
+import { CopyButton } from 'src/components/CopyButton';
+import { Sticker } from 'src/components/Sticker';
+import { Tooltip, TooltipContent } from 'src/components/Tooltip';
+import { Img } from 'src/components/Img';
 import {
   FaCheck,
   FaEthernet,
   FaExclamationCircle,
   FaNetworkWired,
 } from 'react-icons/fa';
-import { Highlight, Mono, Ws } from 'src/components/Typo/Typo';
-import { CopyButton } from 'src/components/CopyButton';
-import styled from 'styled-components';
-import { Sticker } from 'src/components/Sticker';
-import Link from 'next/router';
-import { Tooltip, TooltipContent } from 'src/components/Tooltip';
-import { Img } from 'src/components/Img';
-import { Trans, useTranslation } from 'next-i18next';
-import { AnyAction } from 'redux';
+
+import { useAsyncState } from 'src/hooks/useAsyncState';
 import { useBoolState } from 'src/hooks/useBoolState';
 
 const WarningIcon = styled(FaExclamationCircle)`
@@ -124,15 +125,18 @@ const reducer = (state: { [key: string]: number }, action: AnyAction) => {
   }
 };
 
+export const LinkText = (props: React.PropsWithChildren<LinkProps>) => {
+  return (
+    <Link {...props} href={props.href || ''}>
+      <a>{props.children}</a>
+    </Link>
+  );
+};
+
 export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   data,
 }) => {
   const [latencies, dispatch] = React.useReducer(reducer, {});
-  // const { replace: historyReplace } = useHistory();
-  // const { search } = useLocation();
-  // const [selection, setSelection] = React.useState<'primary' | 'secondary'>(
-  //   'primary'
-  // );
   let search;
 
   useEffect(() => {
@@ -428,7 +432,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
       <h2>
         <Highlight>#2</Highlight> {t('detail.region.title')}
       </h2>
-      <p>{t('detail.region.description')}</p>
+      <p className="mb-2">{t('detail.region.description')}</p>
       <DynamicList
         onRowClick={selectItem}
         // renderRowTooltipContent={renderTooltipContent}
@@ -437,13 +441,13 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
         columns={cols}
       />
       <h3>{t('detail.ports.title')}</h3>
-      <p>
+      <p className="mb-2">
         <Trans
           ns="get-started"
           i18nKey="detail.ports.description"
           components={{
-            more: <Link href="/faq#should-i-use-ssl" />,
-            strong: <strong />,
+            more: <LinkText href="/faq#should-i-use-ssl" />,
+            // strong: <strong />,
           }}
         />
       </p>
@@ -469,7 +473,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
                         ns="get-started"
                         i18nKey="detail.ports.tcp_port_tooltip"
                         components={{
-                          more: <Link to="/faq#should-i-use-ssl" />,
+                          more: <LinkText href="/faq#should-i-use-ssl" />,
                           strong: <strong />,
                         }}
                       />
@@ -490,8 +494,8 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
                         i18nKey="detail.ports.high_diff_port_tooltip"
                         components={{
                           NiceHash: (
-                            <Link
-                              to={
+                            <LinkText
+                              href={
                                 ticker
                                   ? `/get-started/${ticker}/nicehash`
                                   : 'nicehash'
