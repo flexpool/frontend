@@ -1,6 +1,4 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
-
 import { Content } from 'src/components/layout/Content';
 import { HeaderStat } from 'src/components/layout/StatHeader';
 import { StatBox, StatBoxContainer } from 'src/components/StatBox';
@@ -49,9 +47,9 @@ export const BlocksPage = () => {
 
   return (
     <Page>
-      <Helmet>
+      {/* <Head>
         <title>{t('head_title')}</title>
-      </Helmet>
+      </Head> */}
       <HeaderStat>
         <h1>{t('title')}</h1>
         <p>{t('description')}</p>

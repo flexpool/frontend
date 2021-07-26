@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet-async';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
@@ -12,9 +11,9 @@ import { ChiaGuiGuidePage } from './ChiaGui/Guide.page';
 export const GetStartedPage = () => {
   return (
     <Page>
-      <Helmet>
+      {/* <Head>
         <title>Start mining with Flexpool</title>
-      </Helmet>
+      </Head> */}
       <Content paddingLg>
         <Switch>
           <Route

@@ -1,9 +1,8 @@
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-
 import styled from 'styled-components';
-import { useRouter } from 'next/router';
-import { partnersData } from '../src/pages/Partners/partnersData';
 
 import { Img } from '../src/components/Img';
 import { Card } from '../src/components/layout/Card';
@@ -11,6 +10,7 @@ import { Content } from '../src/components/layout/Content';
 import { Page } from '../src/components/layout/Page';
 import { Spacer } from '../src/components/layout/Spacer';
 import { LinkOut } from '../src/components/LinkOut';
+import { partnersData } from '../src/pages/Partners/partnersData';
 
 const LogoImg = styled(Img)`
   height: 50px;
@@ -51,9 +51,9 @@ export const PartnersPage = () => {
   }, [router]);
   return (
     <Page>
-      {/* <Helmet>
+      <Head>
         <title>Partners</title>
-      </Helmet> */}
+      </Head>
       <Content md paddingLg>
         <h1>Partners</h1>
         <Spacer />

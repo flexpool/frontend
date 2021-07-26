@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet-async';
 import { Redirect } from 'react-router';
 import { Img } from 'src/components/Img';
 import { Card } from 'src/components/layout/Card';
@@ -46,9 +45,9 @@ export const PartnersPage = () => {
   }
   return (
     <Page>
-      <Helmet>
+      {/* <Head>
         <title>Partners</title>
-      </Helmet>
+      </Head> */}
       <Content md paddingLg>
         <h1>Partners</h1>
         <Spacer />

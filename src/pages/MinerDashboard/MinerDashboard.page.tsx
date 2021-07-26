@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 
 import {
   Route,
@@ -35,7 +36,7 @@ import { NavLink } from 'react-router-dom';
 import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
 import { Spacer } from 'src/components/layout/Spacer';
 import { MinerPaymentsPage } from './Payments/MinerPayments.page';
-import { Helmet } from 'react-helmet-async';
+
 import { MinerBlocksPage } from './Blocks/MinerBlocks.page';
 import { MinerRewardsPage } from './Rewards/MinerRewards.page';
 
@@ -164,9 +165,9 @@ export const MinerDashboardPageContent: React.FC<
         onRefresh={loadAll}
       >
         <Page>
-          <Helmet titleTemplate={`${address} | %s | Flexpool.io`}>
+          <Head titleTemplate={`${address} | %s | Flexpool.io`}>
             <title>Dashboard</title>
-          </Helmet>
+          </Head>
           <Content>
             <HeaderGreetings onRefresh={loadAll} />
             <AccountHeader

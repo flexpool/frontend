@@ -1,15 +1,15 @@
 import React from 'react';
+import Head from 'next/head';
 import { useTranslation, Trans } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-// import { Helmet } from 'react-helmet-async';
-import { FaDiscord, FaTelegram } from 'react-icons/fa';
+import styled from 'styled-components';
 
 import { Content } from '../src/components/layout/Content';
 import { Divider } from '../src/components/layout/Divider';
 import { HeroBlue } from '../src/components/layout/Hero/HeroBlue';
 import { Page } from '../src/components/layout/Page';
+import { FaDiscord, FaTelegram } from 'react-icons/fa';
 import { DISCORD_LINK, TELEGRAM_LINK } from '../src/constants';
-import styled from 'styled-components';
 
 const SupportChannelWrapper = styled.a`
   border: 1px solid var(--border-color);
@@ -49,9 +49,9 @@ export const SupportPage = () => {
   const { t } = useTranslation('support');
   return (
     <Page>
-      {/* <Helmet>
+      <Head>
         <title>{t('head_title')}</title>
-      </Helmet> */}
+      </Head>
       <HeroBlue>
         <Content md>
           <h1>{t('title')}</h1>

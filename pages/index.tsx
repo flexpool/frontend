@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'next-i18next';
 import { Content } from '../src/components/layout/Content';
@@ -29,6 +30,9 @@ export const HomePage = () => {
 
   return (
     <PageContainer>
+      <Head>
+        <title>The Most Advanced Mining Pool</title>
+      </Head>
       <Hero>
         <Content contentCenter style={{ position: 'relative', zIndex: 100 }}>
           <h1>{t('title')}</h1>

@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { Content } from '../../../src/components/layout/Content';
@@ -7,9 +8,9 @@ import { NicehashGuidePage } from '../../../src/pages/GetStarted/Nicehash/Niceha
 export const GetStartedNicehashPage = () => {
   return (
     <Page>
-      {/* <Helmet>
+      <Head>
         <title>Start mining with Flexpool</title>
-      </Helmet> */}
+      </Head>
       <Content paddingLg>
         <NicehashGuidePage />
       </Content>

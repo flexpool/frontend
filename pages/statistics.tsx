@@ -1,8 +1,8 @@
 import React from 'react';
+import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-// Components
 import { Content } from '../src/components/layout/Content';
 import { Page } from '../src/components/layout/Page';
 import { Spacer } from '../src/components/layout/Spacer';
@@ -12,16 +12,14 @@ import { StatBox, StatBoxContainer } from '../src/components/StatBox';
 import { Tooltip, TooltipContent } from '../src/components/Tooltip';
 import PoolHashrateChart from '../src/pages/Statistics/components/PoolHashRateChart/PoolHashRate.chart';
 
-// Redux
 import { useDispatch } from 'react-redux';
+import { useReduxState } from '../src/rdx/useReduxState';
+import { poolStatsGet } from '../src/rdx/poolStats/poolStats.actions';
 import {
   useActiveCoinTicker,
   useActiveCoin,
 } from '../src/rdx/localSettings/localSettings.hooks';
-import { poolStatsGet } from '../src/rdx/poolStats/poolStats.actions';
-import { useReduxState } from '../src/rdx/useReduxState';
 
-// Utils
 import {
   useLocalizedNumberFormatter,
   useLocalizedSiFormatter,
@@ -45,9 +43,9 @@ function StatisticsPage() {
 
   return (
     <Page>
-      {/* <Helmet>
+      <Head>
         <title>{t('head_title')}</title>
-      </Helmet> */}
+      </Head>
       <HeaderStat>
         <h1>{t('title')}</h1>
       </HeaderStat>

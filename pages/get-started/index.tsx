@@ -1,44 +1,18 @@
+import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { Content } from '../../src/components/layout/Content';
 import { Page } from '../../src/components/layout/Page';
 import { MineableCoinList } from '../../src/pages/GetStarted/CoinList.page';
 
-import { MineableCoinGuidePage } from '../../src/pages/GetStarted/GPU/CoinGuide.page';
-import { MiningCoinSelectTypePage } from '../../src/pages/GetStarted/CoinSelectMiningType.page';
-import { ChiaGuiGuidePage } from '../../src/pages/GetStarted/ChiaGui/Guide.page';
-
 export const GetStartedPage = () => {
   return (
     <Page>
-      {/* <Helmet>
+      <Head>
         <title>Start mining with Flexpool</title>
-      </Helmet> */}
+      </Head>
       <Content paddingLg>
         <MineableCoinList />
-        {/* <Switch>
-          <Route
-            component={NicehashGuidePage}
-            path="/get-started/:ticker/nicehash"
-          />
-          <Route
-            component={ChiaCliGuidePage}
-            path="/get-started/:ticker/XCH-CLI"
-          />
-          <Route
-            component={ChiaGuiGuidePage}
-            path="/get-started/:ticker/XCH-GUI"
-          />
-          <Route
-            component={MineableCoinGuidePage}
-            path="/get-started/:ticker/:hw"
-          />
-          <Route
-            component={MiningCoinSelectTypePage}
-            path="/get-started/:ticker"
-          />
-          <Redirect to="/get-started" />
-        </Switch> */}
       </Content>
     </Page>
   );

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import { useTranslation, Trans } from 'next-i18next';
 import { FaDiscord, FaTelegram } from 'react-icons/fa';
 
@@ -48,9 +47,9 @@ export const SupportPage = () => {
   const { t } = useTranslation('support');
   return (
     <Page>
-      <Helmet>
+      {/* <Head>
         <title>{t('head_title')}</title>
-      </Helmet>
+      </Head> */}
       <HeroBlue>
         <Content md>
           <h1>{t('title')}</h1>

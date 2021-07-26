@@ -8,7 +8,6 @@ import { OuterEvent, OuterEventProps } from '../DivOuterEvents';
 import { Button } from '../Button';
 import { FaTimes } from 'react-icons/fa';
 import styled from 'styled-components';
-// import { Helmet } from 'react-helmet-async';
 
 export type ModalStateControls = OpenStateControls['modalProps'];
 export type ModalProps = ModalStateControls &

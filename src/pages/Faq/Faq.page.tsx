@@ -4,7 +4,7 @@ import { Content } from 'src/components/layout/Content';
 import styled from 'styled-components';
 import { Page } from 'src/components/layout/Page';
 import { useOpenState } from 'src/hooks/useOpenState';
-import { Helmet } from 'react-helmet-async';
+
 import { CopyButton } from 'src/components/CopyButton';
 import { FaLink } from 'react-icons/fa';
 import { useAsyncState } from 'src/hooks/useAsyncState';
@@ -161,9 +161,9 @@ export const FaqPage = () => {
 
   return (
     <Page>
-      <Helmet>
+      {/* <Head>
         <title>FAQ</title>
-      </Helmet>
+      </Head> */}
       <Content paddingLg>
         <FaqContent>
           {(asyncState.data || []).map((item) => (

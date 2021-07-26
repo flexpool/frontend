@@ -1,5 +1,6 @@
-// import { Link, NavLink, useLocation } from 'react-router-dom';
+import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { Content } from 'src/components/layout/Content';
 import { Button } from 'src/components/Button';
 import { ScrollArea } from 'src/components/layout/ScrollArea';
@@ -14,7 +15,6 @@ import {
   FaTelegram,
 } from 'react-icons/fa';
 import { useBoolState } from 'src/hooks/useBoolState';
-import React from 'react';
 import { useOpenState } from 'src/hooks/useOpenState';
 import Modal from '../Modal/Modal';
 import { SearchAddressCachedResult } from '../SearchAddressBar/SearchAddressCachedResult';
@@ -25,7 +25,6 @@ import { clx } from 'src/utils/clx';
 
 import { SelectTheme } from '../SelectTheme';
 import { Spacer } from './Spacer';
-import { Helmet } from 'react-helmet-async';
 import { SelectCounterTicker } from '../SelectCounterTicker';
 import { LinkOut } from '../LinkOut';
 import { DISCORD_LINK, REDDIT_LINK, TELEGRAM_LINK } from 'src/constants';
@@ -33,7 +32,6 @@ import { useAppTheme } from 'src/rdx/localSettings/localSettings.hooks';
 import { Img } from '../Img';
 import { useTranslation } from 'next-i18next';
 import { SelectLanguage } from '../SelectLanguage';
-import { useRouter } from 'next/router';
 
 const Logo = styled(Img)`
   height: 29px;
@@ -349,9 +347,9 @@ export const NavBar: React.FC<NavBarType> = (props) => {
           </NavSection>
         </NavContainer>
 
-        {openState.value && (
+        {/* {openState.value && (
           <Helmet bodyAttributes={{ class: 'scroll-lock' }} />
-        )}
+        )} */}
         <MobileSlide isOpen={openState.value}>
           <SlideHideRest
             isOpen={openState.value}

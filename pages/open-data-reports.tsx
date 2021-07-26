@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { isAfter, subMonths } from 'date-fns';
@@ -80,9 +81,9 @@ export const OpenDataReportsPage = ({ dates }) => {
 
   return (
     <Page>
-      {/* <Helmet>
+      <Head>
         <title>{t('head_title')}</title>
-      </Helmet> */}
+      </Head>
       <Content md paddingLg>
         <h1>{t('title')}</h1>
         <p>{t('description')}</p>

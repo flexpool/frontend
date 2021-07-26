@@ -1,10 +1,10 @@
 import React from 'react';
+import Head from 'next/head';
 import { Trans, useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styled from 'styled-components';
 import copy from 'copy-to-clipboard';
 
-// Components
 import { Page } from '../src/components/layout/Page';
 import { Content } from '../src/components/layout/Content';
 import { Button } from '../src/components/Button';
@@ -88,9 +88,9 @@ export const BrandAssetsPage = () => {
   const { t } = useTranslation('brand-assets');
   return (
     <Page>
-      {/* <Helmet>
+      <Head>
         <title>{t('head_title')}</title>
-      </Helmet> */}
+      </Head>
       <Content md paddingLg>
         <h2>{t('brand_name.title')}</h2>
         <p>

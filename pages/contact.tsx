@@ -1,8 +1,10 @@
-import { Page } from '../src/components/layout/Page';
-import { Content } from '../src/components/layout/Content';
+import Head from 'next/head';
+import Link, { LinkProps } from 'next/link';
 import { useTranslation, Trans } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Link, { LinkProps } from 'next/link';
+
+import { Page } from '../src/components/layout/Page';
+import { Content } from '../src/components/layout/Content';
 
 export const LinkText = (props: React.PropsWithChildren<LinkProps>) => {
   return (
@@ -16,9 +18,9 @@ export const ContactPage = () => {
   const { t } = useTranslation('contact-us');
   return (
     <Page>
-      {/* <Helmet>
+      <Head>
         <title>{t('head_title')}</title>
-      </Helmet> */}
+      </Head>
       <Content md paddingLg>
         <h1>{t('title')}</h1>
         <p style={{ marginTop: '30px' }}>

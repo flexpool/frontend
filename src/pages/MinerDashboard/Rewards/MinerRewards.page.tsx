@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Helmet } from 'react-helmet-async';
+//
 // import { useRouteMatch } from 'react-router';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { MinerPplnsStats } from './MinerPplnsStats.section';
@@ -15,9 +15,9 @@ export const MinerRewardsPage: React.FC<{
 
   return (
     <>
-      {/* <Helmet>
+      {/* <Head>
         <title>Miner rewards</title>
-      </Helmet> */}
+      </Head> */}
       <RewardsChart
         counterPrice={minerRewardsState.data?.price || 0}
         rewards={minerRewardsState.data?.data || []}

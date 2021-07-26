@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
-import { useRouter } from 'next/router';
+import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styled from 'styled-components';
-import { Helmet } from 'react-helmet-async';
-import { FaLink } from 'react-icons/fa';
-import { useOpenState } from '../src/hooks/useOpenState';
-import { useAsyncState } from '../src/hooks/useAsyncState';
 
-// Components
 import { Content } from '../src/components/layout/Content';
 import { Page } from '../src/components/layout/Page';
 import { CopyButton } from '../src/components/CopyButton';
 import { FaqDocs } from '../src/docs/docs.utils';
+import { FaLink } from 'react-icons/fa';
 
 type FaqDataSection = {
   name: string;
@@ -143,26 +139,13 @@ const FaqContent = styled.div`
 `;
 
 function FAQPage({ faq }) {
-  // const asyncState = useAsyncState<FaqDocs>();
   const { i18n } = useTranslation();
-
-  // React.useEffect(() => {
-  //   asyncState.start(
-  //     import(`../src/docs/@faq/${i18n.language}`)
-  //       .then((r) => {
-  //         console.log(r.default);
-  //         return r.default;
-  //       })
-  //       .catch(() => import(`../src/docs/@faq/en-US`).then((r) => r.default))
-  //   );
-  //   // eslint-disable-next-line
-  // }, [i18n.language]);
 
   return (
     <Page>
-      {/* <Helmet>
+      <Head>
         <title>FAQ</title>
-      </Helmet> */}
+      </Head>
       <Content paddingLg>
         <FaqContent>
           {(faq || []).map((item) => (
@@ -195,7 +178,6 @@ export async function getStaticProps({ locale }) {
     })),
   }));
 
-  console.log(loadFaq[0].contents);
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common', 'cookie-consent'])),

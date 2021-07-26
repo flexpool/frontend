@@ -1,8 +1,10 @@
 import React from 'react';
+import Head from 'next/head';
+
 import { useRouter } from 'next/router';
 import { Trans, useTranslation } from 'next-i18next';
 import styled from 'styled-components';
-// import { Helmet } from 'react-helmet-async';
+//
 // import { Redirect, useRouteMatch } from 'react-router';
 import { CopyButton } from 'src/components/CopyButton';
 import { Img } from 'src/components/Img';
@@ -100,9 +102,9 @@ export const NicehashGuidePage = () => {
 
   return (
     <Page>
-      {/* <Helmet>
+      <Head>
         <title>{t('nicehash.head_title')}</title>
-      </Helmet> */}
+      </Head>
       <Content md paddingLg>
         <h1>{t('nicehash.title')}</h1>
         <p>{t('nicehash.description')}</p>

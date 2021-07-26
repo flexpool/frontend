@@ -6,7 +6,6 @@ import { Button } from 'src/components/Button';
 import styled from 'styled-components';
 import { LinkOut } from 'src/components/LinkOut';
 import { Spacer } from 'src/components/layout/Spacer';
-import { Helmet } from 'react-helmet-async';
 import { Img } from 'src/components/Img';
 import { Trans, useTranslation } from 'react-i18next';
 
@@ -86,9 +85,9 @@ export const BrandAssetsPage = () => {
   const { t } = useTranslation('brand-assets');
   return (
     <Page>
-      <Helmet>
+      {/* <Head>
         <title>{t('head_title')}</title>
-      </Helmet>
+      </Head> */}
       <Content md paddingLg>
         <h2>{t('brand_name.title')}</h2>
         <p>

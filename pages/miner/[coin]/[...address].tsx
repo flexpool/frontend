@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -34,8 +35,6 @@ import { PullToRefresh } from '../../../src/components/layout/PullToRefresh/Pull
 
 import styled from 'styled-components';
 import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
-// import { Helmet } from 'react-helmet-async';
-
 import { useActiveSearchParamWorker } from '../../../src/hooks/useActiveQueryWorker';
 import { useAsyncState } from '../../../src/hooks/useAsyncState';
 import { fetchApi } from '../../../src/utils/fetchApi';
@@ -185,9 +184,9 @@ export const MinerDashboardPageContent: React.FC = (props) => {
         onRefresh={loadAll}
       >
         <Page>
-          {/* <Helmet titleTemplate={`${address} | %s | Flexpool.io`}>
+          <Head titleTemplate={`${address} | %s | Flexpool.io`}>
             <title>Dashboard</title>
-          </Helmet> */}
+          </Head>
           <Content>
             <HeaderGreetings onRefresh={loadAll} />
             <AccountHeader

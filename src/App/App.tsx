@@ -11,7 +11,6 @@ import {
   useLocation,
 } from 'react-router-dom';
 
-import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { NavBar } from 'src/components/layout/NavBar';
 import { ThemeProvider } from 'styled-components';
 import { mainTheme } from './styledTheme';

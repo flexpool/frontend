@@ -1,4 +1,4 @@
-// import { Helmet } from 'react-helmet-async';
+//
 // import { useRouteMatch } from 'react-router';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import PaymentsChart from './Payments.chart';
@@ -12,9 +12,9 @@ export const MinerPaymentsPage: React.FC<{
 
   return (
     <>
-      {/* <Helmet>
+      {/* <Head>
         <title>Miner Payments</title>
-      </Helmet> */}
+      </Head> */}
       <PaymentsChart address={address} coin={coinData} />
       <GeneralPaymentStatsSection address={address} coin={coinData} />
     </>

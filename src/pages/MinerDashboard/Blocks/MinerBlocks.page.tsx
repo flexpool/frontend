@@ -1,13 +1,12 @@
-import { Helmet } from 'react-helmet-async';
 import { BlocksSection } from './MinerBlocks.section';
 export const MinerBlocksPage: React.FC<{
   address: string;
 }> = ({ address }) => {
   return (
     <>
-      {/* <Helmet>
+      {/* <Head>
         <title>Miner blocks</title>
-      </Helmet> */}
+      </Head> */}
       <BlocksSection address={address} />
     </>
   );
