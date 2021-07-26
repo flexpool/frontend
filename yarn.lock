@@ -930,7 +930,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.10.5", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.0", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.17", "@babel/runtime@^7.13.6", "@babel/runtime@^7.14.5", "@babel/runtime@^7.3.1", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.10.5", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.0", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.17", "@babel/runtime@^7.14.5", "@babel/runtime@^7.3.1", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
   version "7.14.8"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.8.tgz#7119a56f421018852694290b9f9148097391b446"
   integrity sha512-twj3L8Og5SaCRCErB4x4ajbvBIVV77CGeFglHpeg5WC5FF8TZzBWXtTJ4MqaD9QszLYTtr+IsaAL2rEUevb+eg==
@@ -4315,7 +4315,7 @@ hosted-git-info@^2.1.4:
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.8.9.tgz#dffc0bf9a21c02209090f2aa69429e1414daf3f9"
   integrity sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==
 
-html-parse-stringify@^3.0.0, html-parse-stringify@^3.0.1:
+html-parse-stringify@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/html-parse-stringify/-/html-parse-stringify-3.0.1.tgz#dfc1017347ce9f77c8141a507f233040c59c55d2"
   integrity sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==
@@ -6134,14 +6134,6 @@ react-helmet@6.1.0:
     prop-types "^15.7.2"
     react-fast-compare "^3.1.1"
     react-side-effect "^2.1.0"
-
-react-i18next@11.8.13:
-  version "11.8.13"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.8.13.tgz#9560376f8655b9aaa04f685da8eca0b032034ff9"
-  integrity sha512-KTNuLYnEwI9y54nSEal4yBxXBnfCCfh7t/0p/UHfhlGNcIMu+V4x/y5zGKzbOEK4noQrUzZ+J47RPYH7rMs2ZQ==
-  dependencies:
-    "@babel/runtime" "^7.13.6"
-    html-parse-stringify "^3.0.0"
 
 react-i18next@^11.8.13:
   version "11.11.3"
