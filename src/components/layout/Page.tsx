@@ -1,7 +1,4 @@
 import React from 'react';
-import { CSSTransition } from 'react-transition-group';
-import { clx } from 'src/utils/clx';
-// import './Page.scss';
 import { ErrorBoundary } from '@sentry/react';
 
 import styled from 'styled-components';
@@ -30,9 +27,7 @@ export const Page: React.FC<{
         </ErrorContainer>
       }
     >
-      <CSSTransition in={true} timeout={0} appear unmountOnExit>
-        <main className={clx('page-transition', className)}>{children}</main>
-      </CSSTransition>
+      <main>{children}</main>
     </ErrorBoundary>
   );
 };

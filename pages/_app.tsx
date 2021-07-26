@@ -91,6 +91,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
                 opacity: 1,
               },
             }}
+            transition={{ type: 'ease-in-out' }}
           >
             <Component {...pageProps} />
           </motion.div>
