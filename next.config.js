@@ -18,66 +18,56 @@ module.exports = withTM({
   },
   async redirects() {
     return [
-      {
-        source: '/:lang/stats',
-        destination: '/statistics',
-        permanent: true,
-        locale: false,
-      },
-      {
-        source: '/:lang/blocks',
-        destination: '/blocks',
-        permanent: true,
-        locale: false,
-      },
-      {
-        source: '/:lang/miners',
-        destination: '/miners',
-        permanent: true,
-        locale: false,
-      },
-      {
-        source: '/:lang/docs/api',
-        destination: '/docs/api',
-        permanent: true,
-        locale: false,
-      },
-      {
-        source: '/:lang/docs/help',
-        destination: '/get-started',
-        permanent: true,
-        locale: false,
-      },
-      {
-        source: '/:lang/docs/getting-started',
-        destination: '/get-started',
-        permanent: true,
-        locale: false,
-      },
-      {
-        source: '/:lang/docs/nicehash-guide',
-        destination: '/get-started/eth/nicehash',
-        permanent: true,
-        locale: false,
-      },
-      {
-        source: '/:lang/efficiency-and-shares',
-        destination: '/get-started/eth/nicehash',
-        permanent: true,
-        locale: false,
-      },
-      {
-        source: '/:lang/contact',
-        destination: '/support',
-        permanent: true,
-        locale: false,
-      },
-      {
-        source: '/:lang/opendata',
-        destination: '/open-data-reports',
-        permanent: true,
-        locale: false,
-      },
+      // {
+      //   source: '/:lang/stats',
+      //   destination: '/:lang/statistics/:lang',
+      //   permanent: true,
+      // },
+      // {
+      //   source: '/:lang/blocks',
+      //   destination: '/:lang/blocks',
+      //   permanent: true,
+      // },
+      // {
+      //   source: '/:lang/miners',
+      //   destination: '/:lang/miners',
+      //   permanent: true,
+      // },
+      // {
+      //   source: '/:lang/docs/api',
+      //   destination: '/:lang/docs/api',
+      //   permanent: true,
+      // },
+      // {
+      //   source: '/:lang/docs/help',
+      //   destination: '/:lang/get-started',
+      //   permanent: true,
+      // },
+      // {
+      //   source: '/:lang/docs/getting-started',
+      //   destination: '/:lang/get-started',
+      //   permanent: true,
+      // },
+      // {
+      //   source: '/:lang/docs/nicehash-guide',
+      //   destination: '/:lang/get-started/eth/nicehash',
+      //   permanent: true,
+      // },
+      // {
+      //   source: '/:lang/efficiency-and-shares',
+      //   destination: '/:lang/get-started/eth/nicehash',
+      //   permanent: true,
+      // },
+      // {
+      //   source: '/:lang/contact',
+      //   destination: '/:lang/support',
+      //   permanent: true,
+      // },
+      // {
+      //   source: '/:lang/opendata',
+      //   destination: '/:lang/open-data-reports',
+      //   permanent: true,
+      // },
     ];
   },
   i18n: {
