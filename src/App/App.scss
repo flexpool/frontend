@@ -1,4 +1,5 @@
 @import 'src/pages/Docs/ApiDocs.scss';
+@import 'src/pages/Docs/ApiDocs.scss';
 
 html,
 body {
@@ -324,6 +325,26 @@ input {
   }
 }
 
+// Tailwind Utils
+
 .w-full {
   width: 100%;
+}
+.mb-0 {
+  margin-bottom: 0px;
+}
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
+.mb-5 {
+  margin-bottom: 1.25rem;
 }
