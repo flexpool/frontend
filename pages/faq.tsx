@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -23,6 +23,7 @@ type FaqDataSection = {
       attributes: {
         title: string;
       };
+      html: string;
       react: React.FC;
     };
   }[];
@@ -67,31 +68,32 @@ const FaqQuestion: React.FC<{ data: FaqDataSection['contents'][0] }> = ({
     md: {
       react: Comp,
       attributes: { title },
+      html,
     },
   },
 }) => {
-  // const location = useLocation();
-  const router = useRouter();
-  const openState = useOpenState(window.location.hash.replace('#', '') === key);
+  const [openQuestion, setOpenQuestion] = useState(false);
 
   return (
     <SectionItem>
       <SectionItemHeader>
-        <SectionTitle id={key} onClick={openState.handleToggle}>
+        <SectionTitle id={key} onClick={() => setOpenQuestion(!openQuestion)}>
           <span>{title}</span>
         </SectionTitle>
-        {/* <CopyWrapper>
+        <CopyWrapper>
           <CopyButton
             icon={<FaLink />}
             description="Copy link"
-            text={`${window.location.href.split('#')[0]}#${key}`}
+            text={`${
+              typeof window !== 'undefined'
+                ? window.location.href.split('#')[0]
+                : ''
+            }#${key}`}
           />
-        </CopyWrapper> */}
+        </CopyWrapper>
       </SectionItemHeader>
-      {openState.isOpen && (
-        <SectionContent>
-          <Comp />
-        </SectionContent>
+      {openQuestion && (
+        <SectionContent dangerouslySetInnerHTML={{ __html: html }} />
       )}
     </SectionItem>
   );
@@ -140,20 +142,21 @@ const FaqContent = styled.div`
   }
 `;
 
-function FAQPage() {
-  const asyncState = useAsyncState<FaqDocs>();
+function FAQPage({ faq }) {
+  // const asyncState = useAsyncState<FaqDocs>();
   const { i18n } = useTranslation();
 
-  React.useEffect(() => {
-    asyncState.start(
-      import(`../src/docs/@faq/${i18n.language}`)
-        .then((r) => {
-          return r.default;
-        })
-        .catch(() => import(`../src/docs/@faq/en-US`).then((r) => r.default))
-    );
-    // eslint-disable-next-line
-  }, [i18n.language]);
+  // React.useEffect(() => {
+  //   asyncState.start(
+  //     import(`../src/docs/@faq/${i18n.language}`)
+  //       .then((r) => {
+  //         console.log(r.default);
+  //         return r.default;
+  //       })
+  //       .catch(() => import(`../src/docs/@faq/en-US`).then((r) => r.default))
+  //   );
+  //   // eslint-disable-next-line
+  // }, [i18n.language]);
 
   return (
     <Page>
@@ -162,7 +165,7 @@ function FAQPage() {
       </Helmet> */}
       <Content paddingLg>
         <FaqContent>
-          {(asyncState.data || []).map((item) => (
+          {(faq || []).map((item) => (
             <FaqSection key={item.name} {...item} />
           ))}
         </FaqContent>
@@ -173,11 +176,30 @@ function FAQPage() {
 
 export default FAQPage;
 
+import { faqStructure } from '../src/docs/index';
+
 export async function getStaticProps({ locale }) {
+  const loadFaq = faqStructure.map((section) => ({
+    name: section.sectionName,
+    contents: section.contents.map((item) => ({
+      name: item,
+      /**
+       * "questions-about-flexpool/how-to-join.md"
+       * => "how-to-join"
+       */
+      key: item.split('/')[1].replace('.md', ''),
+      md: require(`src/docs/${locale}/faq/${item}`) as {
+        attributes: { title: string };
+        react: React.FC;
+      },
+    })),
+  }));
+
+  console.log(loadFaq[0].contents);
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common', 'cookie-consent'])),
-      // Will be passed to the page component as props
+      faq: loadFaq,
     },
   };
 }
