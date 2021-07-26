@@ -31,3 +31,10 @@ export async function getStaticProps({ locale }) {
     },
   };
 }
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  };
+}
