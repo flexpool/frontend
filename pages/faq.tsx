@@ -139,7 +139,7 @@ const FaqContent = styled.div`
 `;
 
 function FAQPage({ faq }) {
-  const { i18n } = useTranslation();
+  // const { i18n } = useTranslation();
 
   return (
     <Page>

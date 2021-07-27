@@ -297,9 +297,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
    * Automatically set primary and secondary
    */
   React.useEffect(() => {
-    console.log('firing outer');
     if (fastest.first && fastest.second && !isAutoSetOnce.value) {
-      console.log('firing inner');
       isAutoSetOnce.handleTrue();
       router.push(
         `${router.asPath}/?primaryServer=${fastest.first}`,

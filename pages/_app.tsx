@@ -33,7 +33,11 @@ import reportWebVitals from '../src/reportWebVitals';
 import { isProd } from '../src/utils/devUtils';
 import { usePoolCoins } from '../src/rdx/poolCoins/poolCoins.hooks';
 
-const cachedState = localStorage<AppState>('app_state').get() || {};
+let cachedState;
+
+if (typeof window !== 'undefined') {
+  cachedState = localStorage<AppState>('app_state').get() || {};
+}
 const addressSearchState = searchAddressStorage.get();
 const store = createReduxStore({
   ...cachedState,
@@ -43,8 +47,8 @@ const store = createReduxStore({
 const App = ({ Component, pageProps, router }: AppProps) => {
   // usePwaInit();
   // const { locale } = router;
-  const languageCookie = localStorage<string>('lng').get();
-  const { i18n } = useTranslation();
+  // const languageCookie = localStorage<string>('lng').get();
+  // const { i18n } = useTranslation();
 
   return (
     <>

@@ -26,7 +26,7 @@ import { PageLoader } from 'src/components/layout/Page';
 import ServiceWorkerWrapper from './ServiceWorkerWrapper';
 import { usePwaInit } from './PwaInit';
 import { searchAddressStorage } from 'src/components/SearchAddressBar/searchCache';
-import { I18n } from './I18n';
+// import { I18n } from './I18n';
 import CookieConsent from 'src/components/CookieConsent';
 
 /**

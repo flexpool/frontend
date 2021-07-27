@@ -16,6 +16,12 @@ module.exports = withTM({
 
     return config;
   },
+
+  i18n: {
+    locales: ['cs', 'en-US', 'fr', 'nl', 'ru', 'pt-BR', 'sv-SE', 'zh-CN'],
+    defaultLocale: 'en-US',
+  },
+
   async redirects() {
     return [
       // {
@@ -69,9 +75,5 @@ module.exports = withTM({
       //   permanent: true,
       // },
     ];
-  },
-  i18n: {
-    locales: ['cs', 'en-US', 'fr', 'nl', 'ru', 'pt-BR', 'sv-SE', 'zh-CN'],
-    defaultLocale: 'en-US',
   },
 });
