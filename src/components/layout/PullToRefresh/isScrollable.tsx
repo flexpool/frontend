@@ -31,7 +31,7 @@ function isScrollable(element: Element, direction: number) {
 
   if (direction === DIRECTION.down) {
     const bottomScroll = element.scrollTop + element.clientHeight;
-    console.log(element.scrollTop);
+    // console.log(element.scrollTop);
     return bottomScroll < element.scrollHeight;
   }
 

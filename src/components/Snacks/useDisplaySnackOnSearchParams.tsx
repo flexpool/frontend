@@ -49,21 +49,17 @@ export const useDisplaySnackOnSearchParams = () => {
 
   React.useEffect(
     () => {
-      console.log(router.query);
+      // console.log(router.query);
       // const params = qs.parse(router.query);
       // const { snack, snackAutoHide, snackVariant, ...rest } = params;
-
       // const snacksToDisplay = typeof snack === 'string' ? [snack] : snack;
-
       // // default autoHide is 5s
       // const autoHide = Number(snackAutoHide) || 5000;
-
       // // default variant is success (green)
       // const variant: SnackVariant =
       //   typeof snackVariant === 'string'
       //     ? (snackVariant as SnackVariant)
       //     : 'success';
-
       // if (snacksToDisplay) {
       //   const snacksToPush = snacksToDisplay.map((key) => {
       //     const title = t(`snacks.${key}.title`);
@@ -77,13 +73,10 @@ export const useDisplaySnackOnSearchParams = () => {
       //       autoHide,
       //       variant,
       //     });
-
       //     return snack;
       //   });
-
       //   snacksToPush.forEach((snack) => d(snackActions.create(snack)));
       // }
-
       /**
        * remove snack info from the URL
        */

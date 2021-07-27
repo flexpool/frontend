@@ -5,7 +5,8 @@ import { Page } from '../src/components/layout/Page';
 const StarsSvg = require('../src/pages/NotFound/assets/stars.svg') as string;
 const EarthSrc = require('../src/pages/NotFound/assets/earth.svg') as string;
 const MoonSrc = require('../src/pages/NotFound/assets/moon.svg') as string;
-const AstronautSrc = require('../src/pages/NotFound/assets/astronaut.svg') as string;
+const AstronautSrc =
+  require('../src/pages/NotFound/assets/astronaut.svg') as string;
 import { Img } from '../src/components/Img';
 
 const Wrapper = styled(Page)`
@@ -100,7 +101,6 @@ const MiddleContainer = styled.div`
 `;
 
 export const NotFoundPage = () => {
-  console.log(EarthSrc);
   return (
     <Wrapper>
       <StarsContainer>
