@@ -69,7 +69,7 @@ const BalanceProgressBar: React.FC<{
   payoutInSeconds: number;
 }> = ({ value, payoutInSeconds }) => {
   const [progress, setProgress] = useState(0);
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     setTimeout(() => {
       setProgress(value);
     }, 100);
@@ -151,10 +151,8 @@ export const HeaderStats: React.FC<{
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const currencyFormatter = useLocalizedCurrencyFormatter();
 
-  const [
-    estimateInterval,
-    setEstimateInterval,
-  ] = useLocalStorageState<EstimateInterval>('estimateInterval', 1);
+  const [estimateInterval, setEstimateInterval] =
+    useLocalStorageState<EstimateInterval>('estimateInterval', 1);
 
   const balance = activeCoinFormatter(data?.balance, {
     maximumFractionDigits: 6,
