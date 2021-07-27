@@ -21,6 +21,7 @@
     "chart.js": "2.9.4",
     "copy-to-clipboard": "3.3.1",
     "date-fns": "2.19.0",
+    "file-loader": "^6.2.0",
     "formik": "2.2.6",
     "framer-motion": "^4.1.17",
     "i18next-browser-languagedetector": "6.1.0",

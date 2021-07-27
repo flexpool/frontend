@@ -69,13 +69,7 @@ const getDates = async () => {
 };
 
 export const OpenDataReportsPage = ({ dates }) => {
-  // const datesState = useAsyncState<Date[]>('reportDates', []);
-  // React.useEffect(() => {
-  //   datesState.start(getDates());
-  //   // eslint-disable-next-line
-  // }, []);
-
-  // const latestDate: Date | undefined = (dates || [])[0];
+  const latestDate: Date | undefined = (dates || [])[0];
   const { t } = useTranslation('reports');
   const dateFormatter = useLocalizedDateFormatter();
 
@@ -87,12 +81,12 @@ export const OpenDataReportsPage = ({ dates }) => {
       <Content md paddingLg>
         <h1>{t('title')}</h1>
         <p>{t('description')}</p>
-        {/* {latestDate && (
+        {latestDate && (
           <LatestReport
             date={latestDate}
             src={getReportUrlByDate(latestDate)}
           />
-        )} */}
+        )}
         <Spacer />
         <h2>{t('archive')}</h2>
         {(dates || []).map((item) => (

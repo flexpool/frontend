@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'next-i18next';
-import { Page } from 'react-pdf';
-
-// import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import dynamic from 'next/dynamic';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 
 import {
   StyledDocument,
@@ -13,10 +12,10 @@ import {
 } from './components';
 import { ListPagination } from 'src/components/layout/List/ListPagination';
 import { LoaderOverlayWithin } from 'src/components/Loader/LoaderOverlayWithin';
-
 import { useRefBound } from 'src/hooks/useRefWidth';
-
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
+
+const PDFViewer = dynamic(() => import('./PDFViewer'), { ssr: false });
 
 export const LatestReport: React.FC<{ src: string; date: Date }> = ({
   src,
@@ -49,27 +48,15 @@ export const LatestReport: React.FC<{ src: string; date: Date }> = ({
               }px)`,
             }}
           >
-            <StyledDocument
-              file={src}
-              onLoadSuccess={onDocumentLoad}
-              externalLinkTarget="_blank"
-              loading={
-                <LoadingContainer>
-                  <br />
-                </LoadingContainer>
-              }
-            >
-              {Array.apply(null, Array(totalPages)).map((item, index) => (
-                <Page
-                  loading=""
-                  key={index}
-                  width={bound?.width}
-                  pageIndex={index}
-                />
-              ))}
-            </StyledDocument>
+            <PDFViewer
+              src={src}
+              onDocumentLoad={onDocumentLoad}
+              totalPages={totalPages}
+              bound={bound}
+            />
           </PageContainerInner>
         </PageContainer>
+
         <ListPagination
           totalPages={totalPages}
           currentPage={activePage}

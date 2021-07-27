@@ -1,5 +1,4 @@
 const { i18n } = require('./next-i18next.config');
-
 const withTM = require('next-transpile-modules')(['@amcharts/amcharts4/']);
 
 module.exports = withTM({
@@ -12,6 +11,20 @@ module.exports = withTM({
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
+    });
+
+    config.module.rules.unshift({
+      test: /pdf\.worker\.(min\.)?js/,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: '[contenthash].[ext]',
+            publicPath: '_next/static/worker',
+            outputPath: 'static/worker',
+          },
+        },
+      ],
     });
 
     return config;
