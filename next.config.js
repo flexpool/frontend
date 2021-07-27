@@ -34,11 +34,17 @@ module.exports = withTM({
 
   async redirects() {
     return [
-      // {
-      //   source: '/:lang/stats',
-      //   destination: '/:lang/statistics/:lang',
-      //   permanent: true,
-      // },
+      {
+        source: '/get-started/eth',
+        destination: '/get-started/eth/GPU',
+        permanent: true,
+      },
+      {
+        source: '/get-started/xch',
+        destination: '/get-started',
+        permanent: true,
+      },
+      // Old Redirects from CRA app
       // {
       //   source: '/:lang/blocks',
       //   destination: '/:lang/blocks',
