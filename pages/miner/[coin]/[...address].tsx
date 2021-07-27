@@ -1,5 +1,3 @@
-// TODO: Remove this TS nocheck
-// @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -86,9 +84,13 @@ const TabLink = styled(Tab)`
   text-decoration: none !important;
 `;
 
-export const MinerDashboardPageContent: React.FC = (props) => {
-  const { coin: coinTicker, address } = props;
-
+export const MinerDashboardPageContent: React.FC<{
+  coinTicker: string;
+  address: string;
+}> = (props) => {
+  const { coinTicker, address } = props;
+  // const router = useRouter();
+  // const { coin: coinTicker, address } = router.query;
   const poolCoins = useReduxState('poolCoins');
   const activeCoin = useActiveCoin(coinTicker);
   const counterTicker = useCounterTicker();
@@ -171,6 +173,8 @@ export const MinerDashboardPageContent: React.FC = (props) => {
   }, [coinTicker, poolCoins?.data]);
 
   useEffect(() => {
+    // console.log(props);
+
     if (window !== typeof undefined) {
       if (window.location.hash) {
         loadSelectedTabFromHash(window.location.hash.replace(/#/g, ''));
@@ -186,8 +190,8 @@ export const MinerDashboardPageContent: React.FC = (props) => {
         onRefresh={loadAll}
       >
         <Page>
-          <Head>
-            <title>{`${address} | Flexpool.io`}</title>
+          <Head titleTemplate={`${address} | %s | Flexpool.io`}>
+            <title>Dashboard</title>
           </Head>
           <Content>
             <HeaderGreetings onRefresh={loadAll} />
@@ -224,16 +228,16 @@ export const MinerDashboardPageContent: React.FC = (props) => {
             <TabContent id="workertabs">
               <Content>
                 <TabPanel>
-                  <MinerStatsPage address={address} coin={coinTicker} />
+                  <MinerStatsPage address={address[0]} coin={coinTicker} />
                 </TabPanel>
                 <TabPanel>
-                  <MinerPaymentsPage address={address} coin={coinTicker} />
+                  <MinerPaymentsPage address={address[0]} coin={coinTicker} />
                 </TabPanel>
                 <TabPanel>
-                  <MinerRewardsPage address={address} />
+                  <MinerRewardsPage address={address[0]} />
                 </TabPanel>
                 <TabPanel>
-                  <MinerBlocksPage address={address} coin={coinTicker} />
+                  <MinerBlocksPage address={address[0]} coin={coinTicker} />
                 </TabPanel>
               </Content>
             </TabContent>
@@ -252,22 +256,41 @@ export const MinerDashboardPageContent: React.FC = (props) => {
  * @param props
  * @returns
  */
-export const MinerDashboardPage: React.FC = (props) => {
-  const { addressState, coin } = props;
+export const MinerDashboardPage: React.FC<{
+  addressState: string;
+  coinTicker: string;
+}> = (props) => {
+  const { addressState, coinTicker } = props;
   const router = useRouter();
+  // const { coin: coinTicker, address } = router.query;
+  const locateAddressState = useAsyncState<string | null>();
 
-  useEffect(() => {
-    localSettingsSet({ coin: coin });
-  }, []);
+  // React.useEffect(() => {
+  //   locateAddressState.start(
+  //     fetchApi<string | null>('/miner/locateAddress', {
+  //       query: { address },
+  //     }).then((res) => {
+  //       if (res !== coinTicker) {
+  //         // not found
+  //         return Promise.reject({
+  //           message: 'Address not found',
+  //         });
+  //       }
+  //       localSettingsSet({ coin: res });
+  //       return res;
+  //     })
+  //   );
+  //   // eslint-disable-next-line
+  // }, [coinTicker, address]);
 
-  if (!addressState) {
+  if (locateAddressState.error) {
     router.push('/not-found');
   }
 
   /**
    * Still loading
    */
-  if (addressState !== coin) {
+  if (addressState !== coinTicker) {
     return (
       <PageLoading>
         <LoaderSpinner />
@@ -281,6 +304,7 @@ export const MinerDashboardPage: React.FC = (props) => {
 export default MinerDashboardPage;
 
 export async function getServerSideProps({ query, locale }) {
+  // console.log(query);
   const addressState = await fetchApi<string | null>('/miner/locateAddress', {
     query: { address: query.address },
   }).then((res) => {
@@ -303,7 +327,7 @@ export async function getServerSideProps({ query, locale }) {
         'blocks',
         'cookie-consent',
       ])),
-      coin: query.coin,
+      coinTicker: query.coin,
       address: query.address,
       addressState: addressState,
     },
