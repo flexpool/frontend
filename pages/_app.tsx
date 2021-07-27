@@ -12,7 +12,7 @@ import { localStorage } from '../src/utils/localStorage';
 import { AppState } from '../src/rdx/rootReducer';
 
 import type { AppProps } from 'next/app';
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 
 import ServiceWorkerWrapper from '../src/App/ServiceWorkerWrapper';
 
@@ -66,33 +66,19 @@ const App = ({ Component, pageProps, router }: AppProps) => {
           <PoolCoins />
           <NavBar />
           <AppTheme />
-          <motion.div
-            key={router.route}
-            initial="pageInitial"
-            animate="pageAnimate"
-            variants={{
-              pageInitial: {
-                opacity: 0,
-              },
-              pageAnimate: {
-                opacity: 1,
-              },
-            }}
-            transition={{ duration: 0.75, type: 'ease-in' }}
-          >
-            <Component {...pageProps} />
-          </motion.div>
-
-          {/* <SwitchTransition>
+          <SwitchTransition>
             <CSSTransition
+              classNames="fade"
               key={router.route}
-              classNames="page"
+              in={true}
+              exit={false}
+              timeout={1000}
             >
               <Component {...pageProps} />
             </CSSTransition>
-          </SwitchTransition> */}
-          <CookieConsent />
+          </SwitchTransition>
 
+          <CookieConsent />
           <FooterSection />
         </ThemeProvider>
       </ReduxProvider>

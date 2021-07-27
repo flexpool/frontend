@@ -348,20 +348,19 @@ input {
   margin-bottom: 1.25rem;
 }
 
-.page-enter {
+.fade-enter {
   opacity: 0;
 }
-.page-enter-active {
-  opacity: 0;
-
-  transition: opacity 0.2s;
-}
-
-.page-exit {
+.fade-exit {
   opacity: 1;
 }
-
-.page-exit-active {
+.fade-enter-active {
+  opacity: 1;
+}
+.fade-exit-active {
   opacity: 0;
-  transition: opacity 0.2s;
+}
+.fade-enter-active,
+.fade-exit-active {
+  transition: opacity 1000ms;
 }
