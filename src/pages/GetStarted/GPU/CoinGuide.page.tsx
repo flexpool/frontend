@@ -38,7 +38,9 @@ export const MineableCoinGuidePage: React.FC = () => {
   }, [jsonHw, mineableCoin?.hardware, router.pathname]);
 
   if (!mineableCoin || !mineableCoinConfig) {
-    router.push('/get-started');
+    if (typeof window !== 'undefined') {
+      router.push('/get-started');
+    }
   }
 
   return (
