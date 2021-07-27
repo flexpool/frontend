@@ -32,9 +32,15 @@ export async function getStaticProps({ locale }) {
   };
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths = ({ locales }) => {
+  const paths = [];
+
+  for (const locale of locales) {
+    paths.push({ params: { slug: 'XCH-CLI' }, locale });
+  }
+
   return {
     paths: [],
-    fallback: 'blocking',
+    fallback: false,
   };
-}
+};
