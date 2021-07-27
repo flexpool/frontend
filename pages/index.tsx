@@ -25,7 +25,7 @@ export const HomePage = () => {
 
   React.useEffect(() => {
     d(poolCoinsFullGet());
-  }, [d]);
+  }, []);
 
   const { t } = useTranslation('home');
 

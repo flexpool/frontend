@@ -2,8 +2,6 @@ import '../src/index.css';
 import '../src/App/normalize.scss';
 import '../src/App/App.scss';
 import { appWithTranslation } from 'next-i18next';
-import { useEffect } from 'react';
-import { useTranslation } from 'next-i18next';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 
 import createReduxStore from '../src/rdx/createStore';
@@ -12,7 +10,6 @@ import { localStorage } from '../src/utils/localStorage';
 import { AppState } from '../src/rdx/rootReducer';
 
 import type { AppProps } from 'next/app';
-// import { motion } from 'framer-motion';
 
 import ServiceWorkerWrapper from '../src/App/ServiceWorkerWrapper';
 
@@ -28,7 +25,6 @@ import { searchAddressStorage } from '../src/components/SearchAddressBar/searchC
 import CookieConsent from '../src/components/CookieConsent';
 // import reportWebVitals from '../src/reportWebVitals';
 // import { SnackViewControl } from '../src/components/Snacks/SnackViewControl';
-
 // import { usePwaInit } from '../src/App/PwaInit';
 
 import { usePoolCoins } from '../src/rdx/poolCoins/poolCoins.hooks';
