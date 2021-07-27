@@ -23,9 +23,7 @@ export const SelectLanguage = () => {
   const handleLangChange = React.useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       const lng = (e.target as HTMLButtonElement).value;
-      console.log(lng);
       localStorage('lng').set(lng);
-      console.log(router.asPath);
 
       router.push(router.asPath, router.asPath, {
         locale: lng,
