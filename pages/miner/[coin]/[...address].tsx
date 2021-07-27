@@ -253,47 +253,46 @@ export const MinerDashboardPageContent: React.FC = (props) => {
 export const MinerDashboardPage: React.FC = (props) => {
   const router = useRouter();
   const { coin: coinTicker, address } = router.query;
-  const locateAddressState = useAsyncState<string | null>();
 
   React.useEffect(() => {
-    locateAddressState.start(
-      fetchApi<string | null>('/miner/locateAddress', {
-        query: { address },
-      }).then((res) => {
-        if (res !== coinTicker) {
-          // not found
-          return Promise.reject({
-            message: 'Address not found',
-          });
-        }
-        localSettingsSet({ coin: res });
-        return res;
-      })
-    );
     // eslint-disable-next-line
   }, [coinTicker, address]);
 
-  if (locateAddressState.error) {
-    router.push('/not-found');
-  }
+  // if (locateAddressState.error) {
+  //   router.push('/not-found');
+  // }
 
-  /**
-   * Still loading
-   */
-  if (locateAddressState.data !== coinTicker) {
-    return (
-      <PageLoading>
-        <LoaderSpinner />
-      </PageLoading>
-    );
-  }
+  // /**
+  //  * Still loading
+  //  */
+  // if (locateAddressState.data !== coinTicker) {
+  //   return (
+  //     <PageLoading>
+  //       <LoaderSpinner />
+  //     </PageLoading>
+  //   );
+  // }
 
   return <MinerDashboardPageContent {...props} />;
 };
 
 export default MinerDashboardPage;
 
-export async function getStaticProps({ locale }) {
+export async function getServerSideProps({ query, locale }) {
+  const addressState = fetchApi<string | null>('/miner/locateAddress', {
+    query: { address: query.address },
+  }).then((res) => {
+    if (res !== query.coin) {
+      // not found
+      return Promise.reject({
+        message: 'Address not found',
+      });
+    }
+    localSettingsSet({ coin: res });
+    console.log(res);
+    return res;
+  });
+
   return {
     props: {
       ...(await serverSideTranslations(locale, [
@@ -302,13 +301,9 @@ export async function getStaticProps({ locale }) {
         'blocks',
         'cookie-consent',
       ])),
+      coin: query.coin,
+      address: query.address,
+      addressState: addressState,
     },
-  };
-}
-
-export async function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: 'blocking',
   };
 }
