@@ -30,10 +30,7 @@ module.exports = withTM({
     return config;
   },
 
-  i18n: {
-    locales: ['cs', 'en-US', 'fr', 'nl', 'ru', 'pt-BR', 'sv-SE', 'zh-CN'],
-    defaultLocale: 'en-US',
-  },
+  i18n,
 
   async redirects() {
     return [
