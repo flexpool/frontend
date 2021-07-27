@@ -86,7 +86,8 @@ export const MineableCoinList: React.FC = () => {
                   {poolHw.map((itemHw) => (
                     <Link
                       key={itemHw.key}
-                      href={`/get-started/${item.ticker}/${itemHw.key}`}
+                      href="/get-started/:ticker/:hw"
+                      as={`/get-started/${item.ticker}/${itemHw.key}`}
                       passHref
                     >
                       <Button shape="block" size="sm" variant="primary">
