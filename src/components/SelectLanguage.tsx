@@ -24,7 +24,6 @@ export const SelectLanguage = () => {
     (e: React.MouseEvent<HTMLButtonElement>) => {
       const lng = (e.target as HTMLButtonElement).value;
       localStorage('lng').set(lng);
-      console.log(lng);
       router.push(router.asPath, router.asPath, {
         locale: lng,
       });
