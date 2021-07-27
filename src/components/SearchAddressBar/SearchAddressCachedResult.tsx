@@ -1,6 +1,7 @@
 import { FaTimes } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import Link from 'next/link';
+
 import {
   addressSearchRemove,
   addressSearchSet,
@@ -95,20 +96,20 @@ export const SearchAddressCachedResult: React.FC<{ isOpen?: boolean }> = ({
     <>
       {data.slice(0, 6).map((item) => (
         <ItemWrap key={item.address}>
-          <HistoryItem
+          <Link
             onClick={() => {
               d(addressSearchSet(item));
             }}
             href={`/miner/${item.coin}/${item.address}`}
             passHref
           >
-            <>
+            <HistoryItem>
               <Address>{item.address}</Address>
               <ItemRight>
                 <CoinLabel>{item.coin}</CoinLabel>
               </ItemRight>
-            </>
-          </HistoryItem>
+            </HistoryItem>
+          </Link>
           <RemoveWrap
             type="button"
             onClick={(e) => {

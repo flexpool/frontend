@@ -188,7 +188,10 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
               document.activeElement?.blur();
             }
             openState.handleClose();
-            router.push(`/miner/${res}/${searchAddress}`);
+            console.log('here');
+            router.push(`/miner/${res}/${searchAddress}`, undefined, {
+              shallow: true,
+            });
           } else {
             alert(t('errors.address_not_found'));
           }
