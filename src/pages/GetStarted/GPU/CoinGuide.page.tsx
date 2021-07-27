@@ -41,6 +41,7 @@ export const MineableCoinGuidePage: React.FC = () => {
     if (typeof window !== 'undefined') {
       router.push('/get-started');
     }
+    return <></>;
   }
 
   return (
