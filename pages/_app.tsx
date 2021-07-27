@@ -67,7 +67,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
             />
           </div> */}
           <PoolCoins />
-          {/* <NavBar /> */}
+          <NavBar />
           <AppTheme />
           {/* <motion.div
             key={router.route}
@@ -85,9 +85,9 @@ const App = ({ Component, pageProps, router }: AppProps) => {
           >
           </motion.div> */}
           <Component {...pageProps} />
-          {/* <CookieConsent /> */}
+          <CookieConsent />
 
-          {/* <FooterSection /> */}
+          <FooterSection />
         </ThemeProvider>
       </ReduxProvider>
     </>
