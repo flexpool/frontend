@@ -4,6 +4,7 @@ import '../src/App/App.scss';
 import { appWithTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
+import { SwitchTransition, CSSTransition } from 'react-transition-group';
 
 import createReduxStore from '../src/rdx/createStore';
 import { Provider as ReduxProvider } from 'react-redux';
@@ -65,7 +66,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
           <PoolCoins />
           <NavBar />
           <AppTheme />
-          {/* <motion.div
+          <motion.div
             key={router.route}
             initial="pageInitial"
             animate="pageAnimate"
@@ -77,10 +78,19 @@ const App = ({ Component, pageProps, router }: AppProps) => {
                 opacity: 1,
               },
             }}
-            transition={{ type: 'ease-in-out' }}
+            transition={{ duration: 0.75, type: 'ease-in' }}
           >
-          </motion.div> */}
-          <Component {...pageProps} />
+            <Component {...pageProps} />
+          </motion.div>
+
+          {/* <SwitchTransition>
+            <CSSTransition
+              key={router.route}
+              classNames="page"
+            >
+              <Component {...pageProps} />
+            </CSSTransition>
+          </SwitchTransition> */}
           <CookieConsent />
 
           <FooterSection />
