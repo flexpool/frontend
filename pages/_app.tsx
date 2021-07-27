@@ -13,7 +13,6 @@ import { AppState } from '../src/rdx/rootReducer';
 import type { AppProps } from 'next/app';
 import { motion } from 'framer-motion';
 
-// import { I18n } from '../src/App/I18n';
 import ServiceWorkerWrapper from '../src/App/ServiceWorkerWrapper';
 
 // Theme
@@ -33,21 +32,6 @@ import reportWebVitals from '../src/reportWebVitals';
 
 import { isProd } from '../src/utils/devUtils';
 import { usePoolCoins } from '../src/rdx/poolCoins/poolCoins.hooks';
-import * as Sentry from '@sentry/react';
-import { Integrations } from '@sentry/tracing';
-
-if (isProd()) {
-  Sentry.init({
-    dsn:
-      'https://2a9294c2decc4d1c806fd0720f50204c@o719233.ingest.sentry.io/5780995',
-    integrations: [new Integrations.BrowserTracing()],
-
-    // Set tracesSampleRate to 1.0 to capture 100%
-    // of transactions for performance monitoring.
-    // We recommend adjusting this value in production
-    tracesSampleRate: 1.0,
-  });
-}
 
 const cachedState = localStorage<AppState>('app_state').get() || {};
 const addressSearchState = searchAddressStorage.get();
