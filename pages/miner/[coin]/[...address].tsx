@@ -190,8 +190,8 @@ export const MinerDashboardPageContent: React.FC<{
         onRefresh={loadAll}
       >
         <Page>
-          <Head titleTemplate={`${address} | %s | Flexpool.io`}>
-            <title>Dashboard</title>
+          <Head>
+            <title>{`${address} | Flexpool.io`}</title>
           </Head>
           <Content>
             <HeaderGreetings onRefresh={loadAll} />
@@ -262,28 +262,9 @@ export const MinerDashboardPage: React.FC<{
 }> = (props) => {
   const { addressState, coinTicker } = props;
   const router = useRouter();
-  // const { coin: coinTicker, address } = router.query;
   const locateAddressState = useAsyncState<string | null>();
 
-  // React.useEffect(() => {
-  //   locateAddressState.start(
-  //     fetchApi<string | null>('/miner/locateAddress', {
-  //       query: { address },
-  //     }).then((res) => {
-  //       if (res !== coinTicker) {
-  //         // not found
-  //         return Promise.reject({
-  //           message: 'Address not found',
-  //         });
-  //       }
-  //       localSettingsSet({ coin: res });
-  //       return res;
-  //     })
-  //   );
-  //   // eslint-disable-next-line
-  // }, [coinTicker, address]);
-
-  if (locateAddressState.error) {
+  if (!addressState) {
     router.push('/not-found');
   }
 
@@ -314,8 +295,6 @@ export async function getServerSideProps({ query, locale }) {
         message: 'Address not found',
       });
     }
-
-    // console.log(res);
     return res;
   });
 
