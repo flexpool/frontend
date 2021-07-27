@@ -1,6 +1,7 @@
 import { FaTimes } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import {
   addressSearchRemove,
@@ -88,28 +89,29 @@ export const SearchAddressCachedResult: React.FC<{ isOpen?: boolean }> = ({
 }) => {
   const data = useReduxState('addressSearch');
   const d = useDispatch();
+  const router = useRouter();
 
   if (!isOpen) {
     return null;
   }
+
+  const openMinerAddress = (item) => {
+    d(addressSearchSet(item));
+    router.push(`/miner/${item.coin}/${item.address}`, undefined, {
+      shallow: true,
+    });
+  };
+
   return (
     <>
       {data.slice(0, 6).map((item) => (
         <ItemWrap key={item.address}>
-          <Link
-            onClick={() => {
-              d(addressSearchSet(item));
-            }}
-            href={`/miner/${item.coin}/${item.address}`}
-            passHref
-          >
-            <HistoryItem>
-              <Address>{item.address}</Address>
-              <ItemRight>
-                <CoinLabel>{item.coin}</CoinLabel>
-              </ItemRight>
-            </HistoryItem>
-          </Link>
+          <HistoryItem onClick={() => openMinerAddress(item)}>
+            <Address>{item.address}</Address>
+            <ItemRight>
+              <CoinLabel>{item.coin}</CoinLabel>
+            </ItemRight>
+          </HistoryItem>
           <RemoveWrap
             type="button"
             onClick={(e) => {
