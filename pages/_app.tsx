@@ -34,11 +34,13 @@ import { isProd } from '../src/utils/devUtils';
 import { usePoolCoins } from '../src/rdx/poolCoins/poolCoins.hooks';
 
 let cachedState;
+let addressSearchState;
 
 if (typeof window !== 'undefined') {
   cachedState = localStorage<AppState>('app_state').get() || {};
+  addressSearchState = searchAddressStorage.get();
 }
-const addressSearchState = searchAddressStorage.get();
+
 const store = createReduxStore({
   ...cachedState,
   addressSearch: addressSearchState || [],
@@ -65,9 +67,9 @@ const App = ({ Component, pageProps, router }: AppProps) => {
             />
           </div> */}
           <PoolCoins />
-          <NavBar />
+          {/* <NavBar /> */}
           <AppTheme />
-          <motion.div
+          {/* <motion.div
             key={router.route}
             initial="pageInitial"
             animate="pageAnimate"
@@ -81,11 +83,11 @@ const App = ({ Component, pageProps, router }: AppProps) => {
             }}
             transition={{ type: 'ease-in-out' }}
           >
-            <Component {...pageProps} />
-          </motion.div>
-          <CookieConsent />
+          </motion.div> */}
+          <Component {...pageProps} />
+          {/* <CookieConsent /> */}
 
-          <FooterSection />
+          {/* <FooterSection /> */}
         </ThemeProvider>
       </ReduxProvider>
     </>

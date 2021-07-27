@@ -2,6 +2,8 @@ import React from 'react';
 import Head from 'next/head';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
 import { Content } from '../src/components/layout/Content';
 import { CoinsWeMineSection } from '../src/pages/Home/components/CoinsWeMine/CoinsWeMine.section';
 import { GetStartedSection } from '../src/pages/Home/components/GetStarted/GetStarted.section';
@@ -17,7 +19,6 @@ import {
 } from '../src/pages/Home/components';
 
 import { poolCoinsFullGet } from '../src/rdx/poolCoinsFull/poolCoinsFull.actions';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 export const HomePage = () => {
   const d = useDispatch();
@@ -56,6 +57,7 @@ export const HomePage = () => {
 export default HomePage;
 
 export async function getStaticProps({ locale }) {
+  console.log(locale);
   return {
     props: {
       ...(await serverSideTranslations(locale, [

@@ -1,3 +1,5 @@
+// TODO: Remove this TS nocheck
+// @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -85,8 +87,8 @@ const TabLink = styled(Tab)`
 `;
 
 export const MinerDashboardPageContent: React.FC = (props) => {
-  const router = useRouter();
-  const { coin: coinTicker, address } = router.query;
+  const { coin: coinTicker, address } = props;
+
   const poolCoins = useReduxState('poolCoins');
   const activeCoin = useActiveCoin(coinTicker);
   const counterTicker = useCounterTicker();
@@ -222,16 +224,16 @@ export const MinerDashboardPageContent: React.FC = (props) => {
             <TabContent id="workertabs">
               <Content>
                 <TabPanel>
-                  <MinerStatsPage address={address[0]} coin={coinTicker} />
+                  <MinerStatsPage address={address} coin={coinTicker} />
                 </TabPanel>
                 <TabPanel>
-                  <MinerPaymentsPage address={address[0]} coin={coinTicker} />
+                  <MinerPaymentsPage address={address} coin={coinTicker} />
                 </TabPanel>
                 <TabPanel>
-                  <MinerRewardsPage address={address[0]} />
+                  <MinerRewardsPage address={address} />
                 </TabPanel>
                 <TabPanel>
-                  <MinerBlocksPage address={address[0]} coin={coinTicker} />
+                  <MinerBlocksPage address={address} coin={coinTicker} />
                 </TabPanel>
               </Content>
             </TabContent>
@@ -251,27 +253,27 @@ export const MinerDashboardPageContent: React.FC = (props) => {
  * @returns
  */
 export const MinerDashboardPage: React.FC = (props) => {
+  const { addressState, coin } = props;
   const router = useRouter();
-  const { coin: coinTicker, address } = router.query;
 
-  React.useEffect(() => {
-    // eslint-disable-next-line
-  }, [coinTicker, address]);
+  useEffect(() => {
+    localSettingsSet({ coin: coin });
+  }, []);
 
-  // if (locateAddressState.error) {
-  //   router.push('/not-found');
-  // }
+  if (!addressState) {
+    router.push('/not-found');
+  }
 
-  // /**
-  //  * Still loading
-  //  */
-  // if (locateAddressState.data !== coinTicker) {
-  //   return (
-  //     <PageLoading>
-  //       <LoaderSpinner />
-  //     </PageLoading>
-  //   );
-  // }
+  /**
+   * Still loading
+   */
+  if (addressState !== coin) {
+    return (
+      <PageLoading>
+        <LoaderSpinner />
+      </PageLoading>
+    );
+  }
 
   return <MinerDashboardPageContent {...props} />;
 };
@@ -279,7 +281,7 @@ export const MinerDashboardPage: React.FC = (props) => {
 export default MinerDashboardPage;
 
 export async function getServerSideProps({ query, locale }) {
-  const addressState = fetchApi<string | null>('/miner/locateAddress', {
+  const addressState = await fetchApi<string | null>('/miner/locateAddress', {
     query: { address: query.address },
   }).then((res) => {
     if (res !== query.coin) {
@@ -288,8 +290,8 @@ export async function getServerSideProps({ query, locale }) {
         message: 'Address not found',
       });
     }
-    localSettingsSet({ coin: res });
-    console.log(res);
+
+    // console.log(res);
     return res;
   });
 
