@@ -57,7 +57,6 @@ export const HomePage = () => {
 export default HomePage;
 
 export async function getStaticProps({ locale }) {
-  console.log(locale);
   return {
     props: {
       ...(await serverSideTranslations(locale, [

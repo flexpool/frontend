@@ -25,12 +25,11 @@ import { NavBar } from '../src/components/layout/NavBar';
 import { FooterSection } from '../src/sections/Footer.section';
 import { searchAddressStorage } from '../src/components/SearchAddressBar/searchCache';
 import CookieConsent from '../src/components/CookieConsent';
+// import reportWebVitals from '../src/reportWebVitals';
 // import { SnackViewControl } from '../src/components/Snacks/SnackViewControl';
 
-import reportWebVitals from '../src/reportWebVitals';
 // import { usePwaInit } from '../src/App/PwaInit';
 
-import { isProd } from '../src/utils/devUtils';
 import { usePoolCoins } from '../src/rdx/poolCoins/poolCoins.hooks';
 
 let cachedState;
@@ -48,9 +47,6 @@ const store = createReduxStore({
 
 const App = ({ Component, pageProps, router }: AppProps) => {
   // usePwaInit();
-  // const { locale } = router;
-  // const languageCookie = localStorage<string>('lng').get();
-  // const { i18n } = useTranslation();
 
   return (
     <>
@@ -98,8 +94,5 @@ export default appWithTranslation(App);
 
 const PoolCoins = () => {
   usePoolCoins();
-
   return <></>;
 };
-
-reportWebVitals();
