@@ -145,7 +145,7 @@ const AppContent = () => {
       <React.Suspense fallback={<React.Fragment />}>
         <NavBar />
         <SnackViewControl />
-        <I18n />
+        {/* <I18n /> */}
       </React.Suspense>
       <React.Suspense fallback={<PageLoader />}>
         <Switch>
