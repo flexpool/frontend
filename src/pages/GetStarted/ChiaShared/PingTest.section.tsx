@@ -362,12 +362,13 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   // );
   const selectItem = React.useCallback((d: MineableCoinRegion) => {
     console.table(window.location.pathname, searchParams);
-    // router.push(window.location.pathname, {
-    //   query: {
-    //     ...searchParams,
-    //     primaryServer: d.domain,
-    //   },
-    // });
+    router.push({
+      pathname: window.location.pathname,
+      query: {
+        ...searchParams,
+        primaryServer: d.domain,
+      },
+    });
   }, []);
 
   return (
