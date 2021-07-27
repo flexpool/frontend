@@ -36,11 +36,11 @@ export const getStaticPaths = ({ locales }) => {
   const paths = [];
 
   for (const locale of locales) {
-    paths.push({ params: { slug: 'XCH-GUI' }, locale });
+    paths.push({ params: { ticker: 'xch', hw: 'XCH-GUI' }, locale });
   }
 
   return {
-    paths: [],
+    paths: paths,
     fallback: false,
   };
 };

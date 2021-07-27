@@ -37,11 +37,11 @@ export const getStaticPaths = ({ locales }) => {
   const paths = [];
 
   for (const locale of locales) {
-    paths.push({ params: { slug: 'nicehash' }, locale });
+    paths.push({ params: { ticker: 'eth', hw: 'nicehash' }, locale });
   }
 
   return {
-    paths: [],
+    paths: paths,
     fallback: false,
   };
 };
