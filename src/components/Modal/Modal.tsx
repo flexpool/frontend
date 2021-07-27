@@ -1,3 +1,5 @@
+// TODO: Remove this TS nocheck
+// @ts-nocheck
 import React from 'react';
 import { Overlay, OverlayControlProps } from './Overlay';
 

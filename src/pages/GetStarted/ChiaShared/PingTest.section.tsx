@@ -361,7 +361,6 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   //   [selectionhistoryReplace, searchParams]
   // );
   const selectItem = React.useCallback((d: MineableCoinRegion) => {
-    console.table(window.location.pathname, searchParams);
     router.push({
       pathname: window.location.pathname,
       query: {

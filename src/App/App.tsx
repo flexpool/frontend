@@ -238,16 +238,16 @@ const AppContent = () => {
 const App = () => {
   return (
     <>
-      <HelmetProvider>
-        <ReduxProvider store={store}>
+      <ReduxProvider store={store}>
+        <ThemeProvider theme={mainTheme}>
+          <Router>
+            <AppContent />
+          </Router>
+        </ThemeProvider>
+      </ReduxProvider>
+      {/* <HelmetProvider>
           <Helmet titleTemplate="%s | Flexpool.io" />
-          <ThemeProvider theme={mainTheme}>
-            <Router>
-              <AppContent />
-            </Router>
-          </ThemeProvider>
-        </ReduxProvider>
-      </HelmetProvider>
+      </HelmetProvider> */}
     </>
   );
 };

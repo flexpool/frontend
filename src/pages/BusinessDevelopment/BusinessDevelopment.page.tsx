@@ -1,7 +1,7 @@
 import { Page } from 'src/components/layout/Page';
 import { Content } from 'src/components/layout/Content';
 
-import { Trans, useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'next-i18next';
 import { LinkOut } from 'src/components/LinkOut';
 
 export const BusinessDevelopmentPage = () => {

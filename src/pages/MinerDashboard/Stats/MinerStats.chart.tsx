@@ -1,3 +1,5 @@
+// TODO: Remove this TS nocheck
+// @ts-nocheck
 import React, { useState, useEffect } from 'react';
 import { SectionNotAvailable } from 'src/components/SectionNotAvailable';
 import { Spacer } from 'src/components/layout/Spacer';

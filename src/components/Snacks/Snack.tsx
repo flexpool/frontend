@@ -1,3 +1,5 @@
+// TODO: Remove this TS nocheck
+// @ts-nocheck
 import React from 'react';
 import { SnackOptions } from 'src/types/Snack.types';
 import cls from './Snack.module.scss';

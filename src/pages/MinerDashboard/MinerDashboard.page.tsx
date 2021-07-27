@@ -165,8 +165,8 @@ export const MinerDashboardPageContent: React.FC<
         onRefresh={loadAll}
       >
         <Page>
-          <Head titleTemplate={`${address} | %s | Flexpool.io`}>
-            <title>Dashboard</title>
+          <Head>
+            <title>{`${address} | %s | Flexpool.io`}</title>
           </Head>
           <Content>
             <HeaderGreetings onRefresh={loadAll} />

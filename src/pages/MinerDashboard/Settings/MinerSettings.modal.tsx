@@ -88,7 +88,9 @@ const SettingsBtn = styled(Button)`
   }
 `;
 
-export const MinerSettingsModal = () => {
+export const MinerSettingsModal: React.FC<{
+  address: string;
+}> = ({ address }) => {
   const openState = useOpenState();
   const [page, setPage] = React.useState<SettingsPageKey>('payouts');
 
@@ -138,7 +140,7 @@ export const MinerSettingsModal = () => {
             ))}
           </Nav>
           <PageWrapper>
-            <PageComponent />
+            <PageComponent address={address} />
           </PageWrapper>
         </Split>
       </Modal>

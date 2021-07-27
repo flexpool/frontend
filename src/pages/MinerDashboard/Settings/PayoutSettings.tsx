@@ -62,7 +62,9 @@ export const LowPayoutContainer = styled.div`
   color: var(--danger);
 `;
 
-export const PayoutSettings: React.FC = () => {
+export const PayoutSettings: React.FC<{
+  address: string;
+}> = ({ address }) => {
   const activeCoinTicker = useActiveCoinTicker();
   const activeCoin = useActiveCoin();
   const minerSettings = useReduxState('minerDetails');
@@ -120,7 +122,7 @@ export const PayoutSettings: React.FC = () => {
             })
           ),
         ]).then(() => {
-          d(minerDetailsGet(coinTicker, address));
+          d(minerDetailsGet(activeCoin.ticker, address));
         });
         setSubmitting(false);
       }}

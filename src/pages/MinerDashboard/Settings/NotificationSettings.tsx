@@ -15,7 +15,9 @@ import { useReduxState } from 'src/rdx/useReduxState';
 import * as yup from 'yup';
 import { useRouter } from 'next/router';
 
-export const NotificationSettings: React.FC = () => {
+export const NotificationSettings: React.FC<{
+  address: string;
+}> = ({ address }) => {
   const activeCoin = useActiveCoin();
   const minerSettings = useReduxState('minerDetails');
   const d = useDispatch();

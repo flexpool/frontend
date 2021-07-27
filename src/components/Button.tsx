@@ -17,6 +17,7 @@ export type ButtonProps = {
   shape?: 'square' | 'circle' | 'block';
   fill?: 'outline';
   shadowless?: boolean;
+  value: string;
 };
 
 export const Button = styled.button<ButtonProps>`

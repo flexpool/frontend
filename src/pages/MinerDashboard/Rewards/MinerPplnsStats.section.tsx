@@ -1,3 +1,5 @@
+// TODO: Remove this TS nocheck
+// @ts-nocheck
 import React from 'react';
 // import { useRouteMatch } from 'react-router';
 import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';

@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { LinkOut } from 'src/components/LinkOut';
 import { Spacer } from 'src/components/layout/Spacer';
 import { Img } from 'src/components/Img';
-import { Trans, useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'next-i18next';
 
 const ColorContainer = styled.div`
   display: flex;

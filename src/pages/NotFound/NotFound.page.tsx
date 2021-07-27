@@ -1,3 +1,5 @@
+// TODO: Remove this TS nocheck
+// @ts-nocheck
 import { Page } from 'src/components/layout/Page';
 
 import styled from 'styled-components';

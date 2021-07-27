@@ -1,3 +1,5 @@
+// TODO: Remove this TS nocheck
+// @ts-nocheck
 // https://github.com/bitcoinjs/bech32/blob/master/src/index.ts
 
 const ALPHABET = 'qpzry9x8gf2tvdw0s3jn54khce6mua7l';

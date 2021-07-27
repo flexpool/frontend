@@ -76,7 +76,7 @@ export const AccountHeader: React.FC<{
       <RefreshButton size="sm" shape="square" onClick={onRefresh}>
         <BiRefresh />
       </RefreshButton>
-      <MinerSettingsModal />
+      <MinerSettingsModal address={address} />
     </Wrap>
   );
 };
