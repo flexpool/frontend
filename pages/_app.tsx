@@ -48,7 +48,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
 
   return (
     <>
-      <ServiceWorkerWrapper />
+      {/* <ServiceWorkerWrapper /> */}
       <ReduxProvider store={store}>
         <ThemeProvider theme={mainTheme}>
           {/* <SnackViewControl /> */}
