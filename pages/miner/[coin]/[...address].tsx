@@ -339,7 +339,7 @@ export const MinerDashboardPage: React.FC<{
 
 export default MinerDashboardPage;
 
-export async function getServerSideProps({ query, locale }) {
+export async function getInitialProps({ query, locale }) {
   // console.log(query);
   const addressState = await fetchApi<string | null>('/miner/locateAddress', {
     query: { address: query.address },
