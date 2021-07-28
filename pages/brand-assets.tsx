@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { NextSeo } from 'next-seo';
 import { Trans, useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -66,7 +67,7 @@ const Color: React.FC<{ colorCode: string; colorName: string }> = ({
   colorCode,
   colorName,
 }) => {
-  const [justCopied, setJustCopied] = React.useState(false);
+  const [justCopied, setJustCopied] = useState(false);
   return (
     <div className="color-wrapper">
       <ColorButton
