@@ -188,9 +188,9 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
               document.activeElement?.blur();
             }
             openState.handleClose();
-            console.log('here');
             router.push(`/miner/${res}/${searchAddress}`, undefined, {
-              shallow: true,
+              // shallow routing is true if not on miner dashboard
+              shallow: !router.query.address,
             });
           } else {
             alert(t('errors.address_not_found'));

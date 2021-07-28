@@ -1,14 +1,13 @@
 import { FaTimes } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
+import styled from 'styled-components';
 
 import {
   addressSearchRemove,
   addressSearchSet,
 } from 'src/rdx/addressSearch/addressSearch.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
-import styled from 'styled-components';
 
 const ItemWrap = styled.div`
   border-top: 1px solid var(--border-color);
@@ -98,7 +97,7 @@ export const SearchAddressCachedResult: React.FC<{ isOpen?: boolean }> = ({
   const openMinerAddress = (item) => {
     d(addressSearchSet(item));
     router.push(`/miner/${item.coin}/${item.address}`, undefined, {
-      shallow: true,
+      shallow: !router.query.address,
     });
   };
 
