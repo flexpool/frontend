@@ -154,14 +154,7 @@ export const PayoutSettings: React.FC = () => {
           .number()
           .nullable(true)
           .min(0, t('common:errors.higher_than', { value: 0 })),
-        payoutLimit: yup
-          .number()
-          .positive()
-          .min(
-            minPayoutLimit,
-            t('common:errors.higher_than', { value: minPayoutLimit })
-          )
-          .required(),
+        payoutLimit: yup.number().positive().required(),
         ip: yup.string().required(t('common:errors.required')),
       })}
     >
@@ -175,9 +168,11 @@ export const PayoutSettings: React.FC = () => {
                 <InfoBox variant="warning">
                   <h3>Important note</h3>
                   <p>
-                    {(t('dashboard:settings.payout_warning', {
-                      returnObjects: true,
-                    }) as string[]).map((item) => (
+                    {(
+                      t('dashboard:settings.payout_warning', {
+                        returnObjects: true,
+                      }) as string[]
+                    ).map((item) => (
                       <p key={item}>{item}</p>
                     ))}
                   </p>
