@@ -19,7 +19,6 @@ export const reducer: Reducer<AddressCacheItem[], AnyAction> = (
         (item) => item.address !== nextItem.address
       );
       const nextState = [nextItem, ...nextData];
-      console.log(nextState);
       searchAddressStorage.set(nextState);
       return nextState;
     }

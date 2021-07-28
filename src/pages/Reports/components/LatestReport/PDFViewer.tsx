@@ -10,7 +10,6 @@ const PdfViewer = ({ src, onDocumentLoad, totalPages, bound }) => (
     file={src}
     onLoadSuccess={onDocumentLoad}
     externalLinkTarget="_blank"
-    onLoadError={console.error}
     loading={
       <LoadingContainer>
         <br />
