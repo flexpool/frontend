@@ -215,7 +215,7 @@ const MobileNavTitle = styled.div`
   margin-bottom: 0.5rem;
 `;
 
-const MobileNavLink = styled(Link)`
+const MobileNavLink = styled.a`
   padding: 0.5rem 1rem;
   font-weight: 600;
   display: flex;
@@ -229,7 +229,6 @@ export const NavBar: React.FC<NavBarType> = (props) => {
   const openState = useBoolState();
   const modalSearchOpenState = useOpenState();
   const { t } = useTranslation(['home', 'common']);
-  // const location = useLocation();
   const router = useRouter();
 
   React.useEffect(() => {
@@ -324,12 +323,16 @@ export const NavBar: React.FC<NavBarType> = (props) => {
             </a>
           </Link>
           <NavSection>
-            <NLink aria-label="Statistics" href="/statistics">
-              <FaChartArea />
-            </NLink>
-            <NLink href="/blocks" aria-label="Blocks">
-              <FaCubes />
-            </NLink>
+            <Link href="/statistics" passHref>
+              <NLink aria-label="Statistics">
+                <FaChartArea />
+              </NLink>
+            </Link>
+            <Link href="/blocks" passHref>
+              <NLink aria-label="Blocks">
+                <FaCubes />
+              </NLink>
+            </Link>
             <NLink
               as="button"
               aria-label="Search Address"
@@ -356,19 +359,29 @@ export const NavBar: React.FC<NavBarType> = (props) => {
             onClick={openState.handleFalse}
           />
           <ScrollArea>
-            <MobileNavLink href="/statistics">
-              {t('common:nav.statistics')}
-            </MobileNavLink>
-            <MobileNavLink href="/blocks">
-              {t('common:nav.blocks')}
-            </MobileNavLink>
-            <MobileNavLink href="/miners">
-              {t('common:nav.miners')}
-            </MobileNavLink>
-            <MobileNavLink href="/faq">{t('common:nav.faq')}</MobileNavLink>
-            <MobileNavLink href="/support">
-              {t('common:nav.support')}
-            </MobileNavLink>
+            <Link href="/statistics" passHref>
+              <MobileNavLink href="/statistics">
+                {t('common:nav.statistics')}
+              </MobileNavLink>
+            </Link>
+            <Link href="/blocks" passHref>
+              <MobileNavLink href="/blocks">
+                {t('common:nav.blocks')}
+              </MobileNavLink>
+            </Link>
+            <Link href="/miners" passHref>
+              <MobileNavLink href="/miners">
+                {t('common:nav.miners')}
+              </MobileNavLink>
+            </Link>
+            <Link href="/faq" passHref>
+              <MobileNavLink href="/faq">{t('common:nav.faq')}</MobileNavLink>
+            </Link>
+            <Link href="/support" passHref>
+              <MobileNavLink href="/support">
+                {t('common:nav.support')}
+              </MobileNavLink>
+            </Link>
             <MobileNavTitle>{t('common:nav.community_title')}</MobileNavTitle>
             <MobileNavLink as={LinkOut} href={DISCORD_LINK}>
               <FaDiscord /> Discord
