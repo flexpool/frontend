@@ -312,12 +312,27 @@ const DynamicMinerBlocksPage = dynamic<{
  * @returns
  */
 export const MinerDashboardPage: React.FC<{
-  addressState: string;
+  address: string;
   coinTicker: string;
 }> = (props) => {
-  const { addressState, coinTicker } = props;
+  const { address, coinTicker } = props;
+  let addressState;
   const router = useRouter();
   const locateAddressState = useAsyncState<string | null>();
+
+  useEffect(() => {
+    addressState = fetchApi<string | null>('/miner/locateAddress', {
+      query: { address: address },
+    }).then((res) => {
+      if (res !== query.coin) {
+        // not found
+        return Promise.reject({
+          message: 'Address not found',
+        });
+      }
+      return res;
+    });
+  }, []);
 
   if (!addressState) {
     router.push('/not-found');
@@ -339,20 +354,8 @@ export const MinerDashboardPage: React.FC<{
 
 export default MinerDashboardPage;
 
-export async function getInitialProps({ query, locale }) {
+export async function getServerSideProps({ query, locale }) {
   // console.log(query);
-  const addressState = await fetchApi<string | null>('/miner/locateAddress', {
-    query: { address: query.address },
-  }).then((res) => {
-    if (res !== query.coin) {
-      // not found
-      return Promise.reject({
-        message: 'Address not found',
-      });
-    }
-    return res;
-  });
-
   return {
     props: {
       ...(await serverSideTranslations(locale, [
@@ -363,7 +366,6 @@ export async function getInitialProps({ query, locale }) {
       ])),
       coinTicker: query.coin,
       address: query.address,
-      addressState: addressState,
     },
   };
 }
