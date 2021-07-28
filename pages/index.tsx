@@ -1,5 +1,5 @@
 import React from 'react';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -22,21 +22,18 @@ import { poolCoinsFullGet } from '../src/rdx/poolCoinsFull/poolCoinsFull.actions
 
 export const HomePage = () => {
   const d = useDispatch();
+  const { t } = useTranslation('home');
 
   React.useEffect(() => {
     d(poolCoinsFullGet());
-
     // useEffect only needs to fire on page load
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const { t } = useTranslation('home');
-
   return (
     <PageContainer>
-      <Head>
-        <title>The Most Advanced Mining Pool</title>
-      </Head>
+      <NextSeo title={'The Most Advanced Mining Pool'} />
+
       <Hero>
         <Content contentCenter style={{ position: 'relative', zIndex: 100 }}>
           <h1>{t('title')}</h1>
@@ -50,6 +47,7 @@ export const HomePage = () => {
         <Spacer />
         <NewsSection />
       </Hero>
+
       <CoinsWeMineSection />
       <WhyFlexpool />
       <GetStartedSection />

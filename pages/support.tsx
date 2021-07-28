@@ -1,5 +1,6 @@
 import React from 'react';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
+
 import { useTranslation, Trans } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styled from 'styled-components';
@@ -49,9 +50,8 @@ export const SupportPage = () => {
   const { t } = useTranslation('support');
   return (
     <Page>
-      <Head>
-        <title>{t('head_title')}</title>
-      </Head>
+      <NextSeo title={t('head_title')} />
+
       <HeroBlue>
         <Content md>
           <h1>{t('title')}</h1>

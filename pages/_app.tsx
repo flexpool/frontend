@@ -10,6 +10,7 @@ import { localStorage } from '../src/utils/localStorage';
 import { AppState } from '../src/rdx/rootReducer';
 
 import type { AppProps } from 'next/app';
+import { DefaultSeo } from 'next-seo';
 
 import ServiceWorkerWrapper from '../src/App/ServiceWorkerWrapper';
 
@@ -28,6 +29,7 @@ import CookieConsent from '../src/components/CookieConsent';
 // import { usePwaInit } from '../src/App/PwaInit';
 
 import { usePoolCoins } from '../src/rdx/poolCoins/poolCoins.hooks';
+import SEO from '../next-seo.config';
 
 let cachedState;
 let addressSearchState;
@@ -55,6 +57,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
           <PoolCoins />
           <NavBar />
           <AppTheme />
+          <DefaultSeo {...SEO} />
           <SwitchTransition>
             <CSSTransition
               classNames="fade"

@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -44,19 +44,22 @@ const Item = styled(Card)`
 
 export const PartnersPage = () => {
   const router = useRouter();
+
   useEffect(() => {
     if (partnersData.length < 1) {
       router.push('/');
     }
   }, [router]);
+
   return (
     <Page>
-      <Head>
-        <title>Partners</title>
-      </Head>
+      <NextSeo title={'Partners'} />
+
       <Content md paddingLg>
         <h1>Partners</h1>
+
         <Spacer />
+
         <ItemGrid>
           {partnersData.map((item) => (
             <Item key={item.title} as={LinkOut} href={item.url}>

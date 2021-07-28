@@ -1,5 +1,4 @@
-import React from 'react';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import dynamic from 'next/dynamic';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -16,16 +15,17 @@ function MinersPage() {
 
   return (
     <Page>
-      <Head>
-        <title>{t('head_title')}</title>
-      </Head>
+      <NextSeo title={t('head_title')} />
+
       <HeaderStat>
         <h1>{t('title')}</h1>
       </HeaderStat>
+
       <Content padding>
         <TopMinersSection />
         <DynamicMinersDistributionChart />
       </Content>
+
       <Spacer size="xl" />
     </Page>
   );

@@ -1,4 +1,5 @@
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
+
 import Link, { LinkProps } from 'next/link';
 import { useTranslation, Trans } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -16,11 +17,11 @@ export const LinkText = (props: React.PropsWithChildren<LinkProps>) => {
 
 export const ContactPage = () => {
   const { t } = useTranslation('contact-us');
+
   return (
     <Page>
-      <Head>
-        <title>{t('head_title')}</title>
-      </Head>
+      <NextSeo title={t('head_title')} />
+
       <Content md paddingLg>
         <h1>{t('title')}</h1>
         <p style={{ marginTop: '30px' }}>

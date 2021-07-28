@@ -1,5 +1,6 @@
 import React from 'react';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
+
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { isAfter, subMonths } from 'date-fns';
@@ -75,9 +76,8 @@ export const OpenDataReportsPage = ({ dates }) => {
 
   return (
     <Page>
-      <Head>
-        <title>{t('head_title')}</title>
-      </Head>
+      <NextSeo title={t('head_title')} />
+
       <Content md paddingLg>
         <h1>{t('title')}</h1>
         <p>{t('description')}</p>

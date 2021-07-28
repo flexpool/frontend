@@ -1,4 +1,5 @@
 import React from 'react';
+import { NextSeo } from 'next-seo';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { useTranslation } from 'next-i18next';
@@ -44,9 +45,7 @@ function StatisticsPage() {
 
   return (
     <Page>
-      <Head>
-        <title>{t('head_title')}</title>
-      </Head>
+      <NextSeo title={t('head_title')} />
       <HeaderStat>
         <h1>{t('title')}</h1>
       </HeaderStat>

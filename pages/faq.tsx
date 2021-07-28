@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styled from 'styled-components';
@@ -143,9 +143,7 @@ function FAQPage({ faq }) {
 
   return (
     <Page>
-      <Head>
-        <title>FAQ</title>
-      </Head>
+      <NextSeo title={'FAQ'} />
       <Content paddingLg>
         <FaqContent>
           {(faq || []).map((item) => (

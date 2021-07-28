@@ -1,6 +1,7 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styled, { keyframes } from 'styled-components';
 import { Page } from '../src/components/layout/Page';
+import { NextSeo } from 'next-seo';
 
 const StarsSvg = require('../src/pages/NotFound/assets/stars.svg') as string;
 const EarthSvg = require('../src/pages/NotFound/assets/earth.svg') as string;
@@ -113,24 +114,27 @@ const MiddleContainer = styled.div`
 
 export const NotFoundPage = () => {
   return (
-    <Wrapper>
-      <StarsContainer>
-        <StarsSvg />
-      </StarsContainer>
-      <MiddleContainer>
-        <h1>404</h1>
-        <EarthContainer>
-          <EarthSvg />
-        </EarthContainer>
-        <MoonContainer>
-          <MoonSvg />
-        </MoonContainer>
-        <AstronautContainer>
-          <AstronautSvg />
-        </AstronautContainer>
-        <h2>Can&apos;t find the moon?</h2>
-      </MiddleContainer>
-    </Wrapper>
+    <Page>
+      <Wrapper>
+        <NextSeo title={'404 Not Found'} />
+        <StarsContainer>
+          <StarsSvg />
+        </StarsContainer>
+        <MiddleContainer>
+          <h1>404</h1>
+          <EarthContainer>
+            <EarthSvg />
+          </EarthContainer>
+          <MoonContainer>
+            <MoonSvg />
+          </MoonContainer>
+          <AstronautContainer>
+            <AstronautSvg />
+          </AstronautContainer>
+          <h2>Can&apos;t find the moon?</h2>
+        </MiddleContainer>
+      </Wrapper>
+    </Page>
   );
 };
 
