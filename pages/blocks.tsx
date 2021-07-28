@@ -13,7 +13,7 @@ import { Luck } from '../src/components/Luck';
 import { Page } from '../src/components/layout/Page';
 import { Spacer } from '../src/components/layout/Spacer';
 import { Tooltip, TooltipContent } from '../src/components/Tooltip';
-import { BlocksChart } from '../src/pages/Blocks/components/BlocksChart/Blocks.chart';
+import { LoaderSpinner } from '../src/components/Loader/LoaderSpinner';
 
 // Hooks and Utils
 import { useAsyncState } from '../src/hooks/useAsyncState';
@@ -155,5 +155,10 @@ const DynamicBlocksChart = dynamic<{}>(
     import('../src/pages/Blocks/components/BlocksChart/Blocks.chart').then(
       (module) => module.BlocksChart
     ),
-  { ssr: false }
+  {
+    loading: () => (
+      <LoaderSpinner style={{ minHeight: '26rem', display: 'flex' }} />
+    ),
+    ssr: false,
+  }
 );

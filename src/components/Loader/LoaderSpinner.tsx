@@ -25,6 +25,7 @@ const dash = keyframes`
 
 const Spinner = styled.svg`
   animation: ${rotate} 1s linear infinite;
+  margin: auto;
 
   & circle {
     stroke: var(--primary);

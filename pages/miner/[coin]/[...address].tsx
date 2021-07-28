@@ -28,11 +28,7 @@ import { AccountHeader } from '../../../src/pages/MinerDashboard/Header/AccountH
 import { HeaderGreetings } from '../../../src/pages/MinerDashboard/Header/Greetings';
 import { HeaderStats } from '../../../src/pages/MinerDashboard/Header/Stats';
 import { MinerDetails } from '../../../src/pages/MinerDashboard/Header/MinerDetails';
-import { MinerStatsPage } from '../../../src/pages/MinerDashboard/Stats/MinerStats.page';
-import { MinerPaymentsPage } from '../../../src/pages/MinerDashboard/Payments/MinerPayments.page';
 import { Spacer } from '../../../src/components/layout/Spacer';
-import { MinerBlocksPage } from '../../../src/pages/MinerDashboard/Blocks/MinerBlocks.page';
-import { MinerRewardsPage } from '../../../src/pages/MinerDashboard/Rewards/MinerRewards.page';
 import { LoaderSpinner } from '../../../src/components/Loader/LoaderSpinner';
 import { PullToRefresh } from '../../../src/components/layout/PullToRefresh/PullToRefresh';
 
@@ -261,7 +257,12 @@ const DynamicMinerStatsPage = dynamic<{
     import('../../../src/pages/MinerDashboard/Stats/MinerStats.page').then(
       (module) => module.MinerStatsPage
     ),
-  { ssr: false }
+  {
+    loading: () => (
+      <LoaderSpinner style={{ minHeight: '26rem', display: 'flex' }} />
+    ),
+    ssr: false,
+  }
 );
 
 const DynamicMinerPaymentsPage = dynamic<{
@@ -272,7 +273,12 @@ const DynamicMinerPaymentsPage = dynamic<{
     import(
       '../../../src/pages/MinerDashboard/Payments/MinerPayments.page'
     ).then((module) => module.MinerPaymentsPage),
-  { ssr: false }
+  {
+    loading: () => (
+      <LoaderSpinner style={{ minHeight: '26rem', display: 'flex' }} />
+    ),
+    ssr: false,
+  }
 );
 
 const DynamicMinerRewardsPage = dynamic<{
@@ -282,7 +288,12 @@ const DynamicMinerRewardsPage = dynamic<{
     import('../../../src/pages/MinerDashboard/Rewards/MinerRewards.page').then(
       (module) => module.MinerRewardsPage
     ),
-  { ssr: false }
+  {
+    loading: () => (
+      <LoaderSpinner style={{ minHeight: '26rem', display: 'flex' }} />
+    ),
+    ssr: false,
+  }
 );
 
 const DynamicMinerBlocksPage = dynamic<{
@@ -293,7 +304,12 @@ const DynamicMinerBlocksPage = dynamic<{
     import('../../../src/pages/MinerDashboard/Blocks/MinerBlocks.page').then(
       (module) => module.MinerBlocksPage
     ),
-  { ssr: false }
+  {
+    loading: () => (
+      <LoaderSpinner style={{ minHeight: '26rem', display: 'flex' }} />
+    ),
+    ssr: false,
+  }
 );
 
 /**

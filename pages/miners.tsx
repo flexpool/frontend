@@ -9,6 +9,7 @@ import { Page } from '../src/components/layout/Page';
 import { Spacer } from '../src/components/layout/Spacer';
 import { HeaderStat } from '../src/components/layout/StatHeader';
 import { TopMinersSection } from '../src/pages/Miners/components/TopMiners/TopMiners.section';
+import { LoaderSpinner } from '../src/components/Loader/LoaderSpinner';
 
 function MinersPage() {
   const { t } = useTranslation('miners');
@@ -49,5 +50,10 @@ const DynamicMinersDistributionChart = dynamic<{}>(
     import(
       '../src/pages/Miners/components/MinerDistrubutionChart/MinersDistrubution.chart'
     ).then((module) => module.MinersDistributionChart),
-  { ssr: false }
+  {
+    loading: () => (
+      <LoaderSpinner style={{ minHeight: '26rem', display: 'flex' }} />
+    ),
+    ssr: false,
+  }
 );

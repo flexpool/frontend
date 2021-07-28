@@ -3,19 +3,19 @@ import { useTranslation } from 'next-i18next';
 import dynamic from 'next/dynamic';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 
-import {
-  StyledDocument,
-  LoadingContainer,
-  PageContainer,
-  PageContainerInner,
-  Container,
-} from './components';
+import { PageContainer, PageContainerInner, Container } from './components';
 import { ListPagination } from 'src/components/layout/List/ListPagination';
 import { LoaderOverlayWithin } from 'src/components/Loader/LoaderOverlayWithin';
 import { useRefBound } from 'src/hooks/useRefWidth';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
+import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 
-const PDFViewer = dynamic(() => import('./PDFViewer'), { ssr: false });
+const PDFViewer = dynamic(() => import('./PDFViewer'), {
+  loading: () => (
+    <LoaderSpinner style={{ minHeight: '26rem', display: 'flex' }} />
+  ),
+  ssr: false,
+});
 
 export const LatestReport: React.FC<{ src: string; date: Date }> = ({
   src,

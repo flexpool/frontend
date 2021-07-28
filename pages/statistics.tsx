@@ -11,6 +11,7 @@ import { HeaderStat } from '../src/components/layout/StatHeader';
 import { Luck } from '../src/components/Luck';
 import { StatBox, StatBoxContainer } from '../src/components/StatBox';
 import { Tooltip, TooltipContent } from '../src/components/Tooltip';
+import { LoaderSpinner } from '../src/components/Loader/LoaderSpinner';
 
 import { useDispatch } from 'react-redux';
 import { useReduxState } from '../src/rdx/useReduxState';
@@ -115,5 +116,10 @@ const DynamicPoolHashrateChart = dynamic(
     import(
       '../src/pages/Statistics/components/PoolHashRateChart/PoolHashRate.chart'
     ),
-  { ssr: false }
+  {
+    loading: () => (
+      <LoaderSpinner style={{ minHeight: '30rem', display: 'flex' }} />
+    ),
+    ssr: false,
+  }
 );
