@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -7,7 +8,6 @@ import { Content } from '../src/components/layout/Content';
 import { Page } from '../src/components/layout/Page';
 import { Spacer } from '../src/components/layout/Spacer';
 import { HeaderStat } from '../src/components/layout/StatHeader';
-import { MinersDistributionChart } from '../src/pages/Miners/components/MinerDistrubutionChart/MinersDistrubution.chart';
 import { TopMinersSection } from '../src/pages/Miners/components/TopMiners/TopMiners.section';
 
 function MinersPage() {
@@ -23,7 +23,7 @@ function MinersPage() {
       </HeaderStat>
       <Content padding>
         <TopMinersSection />
-        <MinersDistributionChart />
+        <DynamicMinersDistributionChart />
       </Content>
       <Spacer size="xl" />
     </Page>
@@ -43,3 +43,11 @@ export async function getStaticProps({ locale }) {
     },
   };
 }
+
+const DynamicMinersDistributionChart = dynamic<{}>(
+  () =>
+    import(
+      '../src/pages/Miners/components/MinerDistrubutionChart/MinersDistrubution.chart'
+    ).then((module) => module.MinersDistributionChart),
+  { ssr: false }
+);

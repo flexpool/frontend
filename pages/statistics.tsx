@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -10,7 +11,6 @@ import { HeaderStat } from '../src/components/layout/StatHeader';
 import { Luck } from '../src/components/Luck';
 import { StatBox, StatBoxContainer } from '../src/components/StatBox';
 import { Tooltip, TooltipContent } from '../src/components/Tooltip';
-import PoolHashrateChart from '../src/pages/Statistics/components/PoolHashRateChart/PoolHashRate.chart';
 
 import { useDispatch } from 'react-redux';
 import { useReduxState } from '../src/rdx/useReduxState';
@@ -89,7 +89,7 @@ function StatisticsPage() {
         </StatBoxContainer>
       </Content>
       <Content>
-        <PoolHashrateChart />
+        <DynamicPoolHashrateChart />
       </Content>
       <Spacer size="xl" />
     </Page>
@@ -109,3 +109,11 @@ export async function getStaticProps({ locale }) {
     },
   };
 }
+
+const DynamicPoolHashrateChart = dynamic(
+  () =>
+    import(
+      '../src/pages/Statistics/components/PoolHashRateChart/PoolHashRate.chart'
+    ),
+  { ssr: false }
+);

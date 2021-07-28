@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Content } from '../../../src/components/layout/Content';
 import { Page, PageLoading } from '../../../src/components/layout/Page';
@@ -38,7 +41,6 @@ import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
 import { useActiveSearchParamWorker } from '../../../src/hooks/useActiveQueryWorker';
 import { useAsyncState } from '../../../src/hooks/useAsyncState';
 import { fetchApi } from '../../../src/utils/fetchApi';
-import { useTranslation } from 'next-i18next';
 
 const TabContent = styled.div`
   box-shadow: inset -1px 18px 19px -13px var(--bg-secondary);
@@ -228,16 +230,25 @@ export const MinerDashboardPageContent: React.FC<{
             <TabContent id="workertabs">
               <Content>
                 <TabPanel>
-                  <MinerStatsPage address={address[0]} coin={coinTicker} />
+                  <DynamicMinerStatsPage
+                    address={address[0]}
+                    coin={coinTicker}
+                  />
                 </TabPanel>
                 <TabPanel>
-                  <MinerPaymentsPage address={address[0]} coin={coinTicker} />
+                  <DynamicMinerPaymentsPage
+                    address={address[0]}
+                    coin={coinTicker}
+                  />
                 </TabPanel>
                 <TabPanel>
-                  <MinerRewardsPage address={address[0]} />
+                  <DynamicMinerRewardsPage address={address[0]} />
                 </TabPanel>
                 <TabPanel>
-                  <MinerBlocksPage address={address[0]} coin={coinTicker} />
+                  <DynamicMinerBlocksPage
+                    address={address[0]}
+                    coin={coinTicker}
+                  />
                 </TabPanel>
               </Content>
             </TabContent>
@@ -248,6 +259,50 @@ export const MinerDashboardPageContent: React.FC<{
     </>
   );
 };
+
+// TODO: Testing this prod fix, most these dynamic imports to a separatefile
+const DynamicMinerStatsPage = dynamic<{
+  address: string;
+  coin: string;
+}>(
+  () =>
+    import('../../../src/pages/MinerDashboard/Stats/MinerStats.page').then(
+      (module) => module.MinerStatsPage
+    ),
+  { ssr: false }
+);
+
+const DynamicMinerPaymentsPage = dynamic<{
+  address: string;
+  coin: string;
+}>(
+  () =>
+    import(
+      '../../../src/pages/MinerDashboard/Payments/MinerPayments.page'
+    ).then((module) => module.MinerPaymentsPage),
+  { ssr: false }
+);
+
+const DynamicMinerRewardsPage = dynamic<{
+  address: string;
+}>(
+  () =>
+    import('../../../src/pages/MinerDashboard/Rewards/MinerRewards.page').then(
+      (module) => module.MinerRewardsPage
+    ),
+  { ssr: false }
+);
+
+const DynamicMinerBlocksPage = dynamic<{
+  address: string;
+  coin: string;
+}>(
+  () =>
+    import('../../../src/pages/MinerDashboard/Blocks/MinerBlocks.page').then(
+      (module) => module.MinerBlocksPage
+    ),
+  { ssr: false }
+);
 
 /**
  * Checking if the address is valid from the database first
