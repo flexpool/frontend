@@ -51,14 +51,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
       <ReduxProvider store={store}>
         <ThemeProvider theme={mainTheme}>
           {/* <SnackViewControl /> */}
-          {/* <div className="full-page-loader">
-            <img
-              width="200"
-              loading="lazy"
-              src="https://static.flexpool.io/assets/brand/icon.svg"
-              alt="Flexpool.io logo"
-            />
-          </div> */}
+
           <PoolCoins />
           <NavBar />
           <AppTheme />
