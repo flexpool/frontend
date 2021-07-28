@@ -36,6 +36,7 @@ const Spinner = styled.svg`
 const Container = styled.div<{ size?: 'xs' }>`
   width: 50px;
   height: 50px;
+  margin: auto;
 
   ${(p) =>
     p.size === 'xs' &&
