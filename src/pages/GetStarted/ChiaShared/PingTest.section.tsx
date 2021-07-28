@@ -128,9 +128,9 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   const router = useRouter();
   let search;
 
-  useEffect(() => {
+  if (typeof window !== 'undefined') {
     search = window.location.search;
-  }, []);
+  }
 
   // const [selection, setSelection] = React.useState<'primary' | 'secondary'>(
   //   'primary'
@@ -299,14 +299,16 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   React.useEffect(() => {
     if (fastest.first && fastest.second && !isAutoSetOnce.value) {
       isAutoSetOnce.handleTrue();
-      router.push(
-        `${router.asPath}/?primaryServer=${fastest.first}`,
-        undefined,
-        {
-          shallow: true,
-        }
-      );
+      router.push({
+        pathname: window.location.pathname,
+        query: {
+          ...searchParams,
+          primaryServer: fastest.first,
+        },
+      });
     }
+    // useEffect only needs to fire on fastest server selection
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fastest]);
 
   const setServer = React.useCallback(
