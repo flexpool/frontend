@@ -91,19 +91,13 @@ export const MinerDashboardPageContent: React.FC<{
   address: string;
 }> = (props) => {
   const { coinTicker, address } = props;
-  // const router = useRouter();
-  // const { coin: coinTicker, address } = router.query;
   const poolCoins = useReduxState('poolCoins');
   const activeCoin = useActiveCoin(coinTicker);
   const counterTicker = useCounterTicker();
   const { t } = useTranslation('dashboard');
-
   const d = useDispatch();
-
   const worker = useActiveSearchParamWorker();
-
   const [tabIndex, setTabIndex] = useState(0);
-
   const tabs = {
     stats: 0,
     payments: 1,
@@ -175,8 +169,6 @@ export const MinerDashboardPageContent: React.FC<{
   }, [coinTicker, poolCoins?.data]);
 
   useEffect(() => {
-    // console.log(props);
-
     if (window !== typeof undefined) {
       if (window.location.hash) {
         loadSelectedTabFromHash(window.location.hash.replace(/#/g, ''));
@@ -355,7 +347,6 @@ export const MinerDashboardPage: React.FC<{
 export default MinerDashboardPage;
 
 export async function getServerSideProps({ query, locale }) {
-  // console.log(query);
   return {
     props: {
       ...(await serverSideTranslations(locale, [

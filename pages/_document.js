@@ -35,27 +35,27 @@ export default class MyDocument extends Document {
           <link
             rel="preconnect"
             href="https://static.flexpool.io"
-            prefetch={false}
+            prefetch="false"
           />
           <link
             rel="preconnect"
             href="https://js.intercomcdn.com"
-            prefetch={false}
+            prefetch="false"
           />
           <link
             rel="preconnect"
             href="https://fonts.googleapis.com"
-            prefetch={false}
+            prefetch="false"
           />
           <link
             rel="preconnect"
             href="https://xtwj9bs7n2j9.statuspage.io"
-            prefetch={false}
+            prefetch="false"
           />
           <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap"
             rel="stylesheet"
-            prefetch={false}
+            prefetch="false"
           />
         </Head>
         <body>
