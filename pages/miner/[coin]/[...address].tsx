@@ -316,32 +316,32 @@ export const MinerDashboardPage: React.FC<{
   coinTicker: string;
 }> = (props) => {
   const { address, coinTicker } = props;
-  let addressState;
   const router = useRouter();
   const locateAddressState = useAsyncState<string | null>();
 
   useEffect(() => {
-    addressState = fetchApi<string | null>('/miner/locateAddress', {
-      query: { address: address },
-    }).then((res) => {
-      if (res !== query.coin) {
-        // not found
-        return Promise.reject({
-          message: 'Address not found',
-        });
-      }
-      return res;
-    });
-  }, []);
-
-  if (!addressState) {
-    router.push('/not-found');
-  }
+    locateAddressState.start(
+      fetchApi<string | null>('/miner/locateAddress', {
+        query: { address },
+      }).then((res) => {
+        if (res !== coinTicker) {
+          // not found
+          router.push('/not-found');
+          return Promise.reject({
+            message: 'Address not found',
+          });
+        }
+        localSettingsSet({ coin: res });
+        return res;
+      })
+    );
+    // eslint-disable-next-line
+  }, [coinTicker, address]);
 
   /**
    * Still loading
    */
-  if (addressState !== coinTicker) {
+  if (locateAddressState.data !== coinTicker) {
     return (
       <PageLoading>
         <LoaderSpinner />
