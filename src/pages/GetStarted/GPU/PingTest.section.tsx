@@ -136,18 +136,16 @@ export const LinkText = (props: React.PropsWithChildren<LinkProps>) => {
 export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   data,
 }) => {
-  const [latencies, dispatch] = React.useReducer(reducer, {});
-  let search;
-
-  useEffect(() => {
-    search = window.location.search;
-  }, []);
-
-  const isAutoSetOnce = useBoolState();
-
   const { t } = useTranslation('get-started');
   const router = useRouter();
+  const isAutoSetOnce = useBoolState();
+  const [latencies, dispatch] = React.useReducer(reducer, {});
   const ticker = router.query.ticker;
+  let search;
+
+  if (typeof window !== 'undefined') {
+    search = window.location.search;
+  }
 
   const handleSetLowestLatency = React.useCallback(
     (name: string, value: number) => {
@@ -354,6 +352,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
         },
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fastest, searchParams, isAutoSetOnce]);
 
   const setServer = React.useCallback(
@@ -373,6 +372,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
         }),
       });
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [searchParams]
   );
 

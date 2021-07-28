@@ -25,6 +25,9 @@ export const HomePage = () => {
 
   React.useEffect(() => {
     d(poolCoinsFullGet());
+
+    // useEffect only needs to fire on page load
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { t } = useTranslation('home');

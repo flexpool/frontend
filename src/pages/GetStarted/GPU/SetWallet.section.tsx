@@ -15,12 +15,10 @@ export const SetWalletSection: React.FC<{ data: MineableCoin }> = ({
   const router = useRouter();
   let search;
 
-  useEffect(() => {
+  if (typeof window !== 'undefined') {
     search = window.location.search;
-  }, []);
+  }
 
-  // const history = useHistory();
-  // const { search } = useLocation();
   const { t } = useTranslation('get-started');
 
   const initValue = React.useMemo(() => {

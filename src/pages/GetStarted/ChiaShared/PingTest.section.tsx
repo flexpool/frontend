@@ -327,6 +327,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
         },
       });
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 
@@ -368,6 +369,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
         primaryServer: d.domain,
       },
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

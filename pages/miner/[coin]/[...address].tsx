@@ -170,6 +170,8 @@ export const MinerDashboardPageContent: React.FC<{
         loadSelectedTabFromHash(window.location.hash.replace(/#/g, ''));
       }
     }
+    // useEffect only needs to fire on page load
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

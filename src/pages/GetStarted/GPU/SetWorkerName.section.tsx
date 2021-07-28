@@ -13,9 +13,9 @@ export const SetWorkerNameSection = () => {
   const ticker = router.query.ticker;
   let search;
 
-  useEffect(() => {
+  if (typeof window !== 'undefined') {
     search = window.location.search;
-  }, []);
+  }
 
   const { t } = useTranslation('get-started');
 
@@ -37,6 +37,7 @@ export const SetWorkerNameSection = () => {
         },
       });
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [search]
   );
 
