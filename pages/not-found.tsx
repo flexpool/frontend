@@ -3,13 +3,14 @@ import styled, { keyframes } from 'styled-components';
 import { Page } from '../src/components/layout/Page';
 
 const StarsSvg = require('../src/pages/NotFound/assets/stars.svg') as string;
-const EarthSrc = require('../src/pages/NotFound/assets/earth.svg') as string;
-const MoonSrc = require('../src/pages/NotFound/assets/moon.svg') as string;
-const AstronautSrc =
+const EarthSvg = require('../src/pages/NotFound/assets/earth.svg') as string;
+const MoonSvg = require('../src/pages/NotFound/assets/moon.svg') as string;
+const AstronautSvg =
   require('../src/pages/NotFound/assets/astronaut.svg') as string;
+
 import { Img } from '../src/components/Img';
 
-const Wrapper = styled(Page)`
+const Wrapper = styled.div`
   background-image: linear-gradient(80deg, #0e418a 0%, #2b2749 100%);
 
   background-image: linear-gradient(48deg, #1c3a65 0%, #27253a 100%);
@@ -53,14 +54,16 @@ const StarsContainer = styled.div`
   }
 `;
 
-const Earth = styled(Img)`
+const EarthContainer = styled.div`
   height: 5rem;
+  width: 5rem;
   position: absolute;
   top: -0rem;
   left: -10rem;
 `;
-const Moon = styled(Img)`
+const MoonContainer = styled.div`
   height: 5rem;
+  width: 5rem;
   position: absolute;
   top: -5rem;
   left: 0rem;
@@ -78,22 +81,30 @@ const astroAnimation = keyframes`
   }
 `;
 
-const Astronaut = styled(Img)`
-  height: 3rem;
-  animation: ${astroAnimation} 30s linear infinite;
-`;
-
 const AstronautContainer = styled.div`
   position: absolute;
+  height: 3rem;
+  width: 3rem;
   top: 0;
   left: -10rem;
   /* background: red; */
   animation: ${astroAnimation} 700s linear infinite;
   padding-left: 100%;
+
+  svg {
+    animation: ${astroAnimation} 30s linear infinite;
+    height: 3rem;
+    width: 3rem;
+  }
 `;
 
 const MiddleContainer = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
+  jusitfy-content: center;
+  flex-direction: column;
+  margin: auto;
 
   @media screen and (max-width: 600px) {
     transform: scale(0.6);
@@ -108,10 +119,14 @@ export const NotFoundPage = () => {
       </StarsContainer>
       <MiddleContainer>
         <h1>404</h1>
-        <Earth alt="Earth" src={EarthSrc} />
-        <Moon alt="Moon" src={MoonSrc} />
+        <EarthContainer>
+          <EarthSvg />
+        </EarthContainer>
+        <MoonContainer>
+          <MoonSvg />
+        </MoonContainer>
         <AstronautContainer>
-          <Astronaut alt="Astronaut" src={AstronautSrc} />
+          <AstronautSvg />
         </AstronautContainer>
         <h2>Can&apos;t find the moon?</h2>
       </MiddleContainer>
