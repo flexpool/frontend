@@ -33,13 +33,17 @@ import { Img } from '../Img';
 import { useTranslation } from 'next-i18next';
 import { SelectLanguage } from '../SelectLanguage';
 
-const Logo = styled(Img)`
+const LogoSvg = require('../../../public/svg/logo.svg') as string;
+
+const Logo = styled(LogoSvg)`
   height: 29px;
+  width: 165px;
   fill: var(--text-primary);
 `;
 
-const LogoMobile = styled(Img)`
+const LogoMobile = styled(LogoSvg)`
   height: 25px;
+  width: 141px;
   fill: var(--text-primary);
 `;
 
@@ -57,10 +61,10 @@ const NLink = styled.a`
   background: transparent;
   min-width: 50px;
   justify-content: center;
-  svg {
-    height: 1.4rem;
-    width: 1.4rem;
-  }
+  // svg {
+  //   height: 1.4rem;
+  //   width: 1.4rem;
+  // }
 
   &:hover {
     text-decoration: none;
@@ -242,10 +246,6 @@ export const NavBar: React.FC<NavBarType> = (props) => {
   ]);
 
   const colorMode = useAppTheme();
-  const logoSrc =
-    colorMode === 'light'
-      ? 'https://static.flexpool.io/assets/brand/light.svg'
-      : 'https://static.flexpool.io/assets/brand/dark.svg';
 
   return (
     <>
@@ -271,12 +271,7 @@ export const NavBar: React.FC<NavBarType> = (props) => {
           <NavSection>
             <Link href="/" passHref>
               <NLink style={{ marginLeft: '-0.5rem' }}>
-                <Logo
-                  height="29px"
-                  width="165px"
-                  src={logoSrc}
-                  alt="Flexpool.io Logo"
-                />
+                <Logo />
               </NLink>
             </Link>
             <Link href="/statistics" passHref>
@@ -314,12 +309,7 @@ export const NavBar: React.FC<NavBarType> = (props) => {
         <NavContainer>
           <Link href="/" aria-label="Home page">
             <a>
-              <LogoMobile
-                height="25px"
-                width="141px"
-                src={logoSrc}
-                alt="Flexpool.io Logo"
-              />
+              <LogoMobile />
             </a>
           </Link>
           <NavSection>
