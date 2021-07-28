@@ -37,8 +37,12 @@ const Spinner = styled.svg`
 const Container = styled.div<{ size?: 'xs' }>`
   width: 50px;
   height: 50px;
-  margin: auto;
 
+  ${(p) =>
+    p.center === true &&
+    `
+      margin: auto;
+  `}
   ${(p) =>
     p.size === 'xs' &&
     `
@@ -49,7 +53,7 @@ const Container = styled.div<{ size?: 'xs' }>`
 
 export const LoaderSpinner = React.forwardRef<
   HTMLDivElement,
-  JSX.IntrinsicElements['div'] & { size?: 'xs' }
+  JSX.IntrinsicElements['div'] & { size?: 'xs'; center?: true }
 >((props, ref) => (
   <Container {...props} ref={ref}>
     <Spinner viewBox="0 0 50 50">

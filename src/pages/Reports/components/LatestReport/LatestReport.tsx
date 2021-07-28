@@ -12,7 +12,7 @@ import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 
 const PDFViewer = dynamic(() => import('./PDFViewer'), {
   loading: () => (
-    <LoaderSpinner style={{ minHeight: '26rem', display: 'flex' }} />
+    <LoaderSpinner center style={{ minHeight: '26rem', display: 'flex' }} />
   ),
   ssr: false,
 });

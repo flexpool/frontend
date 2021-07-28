@@ -52,7 +52,7 @@ const DynamicMinersDistributionChart = dynamic<{}>(
     ).then((module) => module.MinersDistributionChart),
   {
     loading: () => (
-      <LoaderSpinner style={{ minHeight: '26rem', display: 'flex' }} />
+      <LoaderSpinner center style={{ minHeight: '26rem', display: 'flex' }} />
     ),
     ssr: false,
   }

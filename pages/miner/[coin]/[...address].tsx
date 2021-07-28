@@ -261,7 +261,7 @@ const DynamicMinerStatsPage = dynamic<{
     ),
   {
     loading: () => (
-      <LoaderSpinner style={{ minHeight: '26rem', display: 'flex' }} />
+      <LoaderSpinner center style={{ minHeight: '26rem', display: 'flex' }} />
     ),
     ssr: false,
   }
@@ -277,7 +277,7 @@ const DynamicMinerPaymentsPage = dynamic<{
     ).then((module) => module.MinerPaymentsPage),
   {
     loading: () => (
-      <LoaderSpinner style={{ minHeight: '26rem', display: 'flex' }} />
+      <LoaderSpinner center style={{ minHeight: '26rem', display: 'flex' }} />
     ),
     ssr: false,
   }
@@ -292,7 +292,7 @@ const DynamicMinerRewardsPage = dynamic<{
     ),
   {
     loading: () => (
-      <LoaderSpinner style={{ minHeight: '26rem', display: 'flex' }} />
+      <LoaderSpinner center style={{ minHeight: '26rem', display: 'flex' }} />
     ),
     ssr: false,
   }
@@ -308,7 +308,7 @@ const DynamicMinerBlocksPage = dynamic<{
     ),
   {
     loading: () => (
-      <LoaderSpinner style={{ minHeight: '26rem', display: 'flex' }} />
+      <LoaderSpinner center style={{ minHeight: '26rem', display: 'flex' }} />
     ),
     ssr: false,
   }

@@ -117,7 +117,7 @@ const DynamicPoolHashrateChart = dynamic(
     ),
   {
     loading: () => (
-      <LoaderSpinner style={{ minHeight: '30rem', display: 'flex' }} />
+      <LoaderSpinner center style={{ minHeight: '30rem', display: 'flex' }} />
     ),
     ssr: false,
   }
