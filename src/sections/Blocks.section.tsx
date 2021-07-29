@@ -19,6 +19,7 @@ import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { BiTransferAlt } from 'react-icons/bi';
 import ListDateSwitchButton from 'src/components/ButtonVariants/ListDateSwitchButton';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
+import router from 'next/router';
 
 type ApiBlock = {
   confirmed: boolean;
@@ -232,6 +233,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
               <LinkMiner
                 onClick={(e) => {
                   e.stopPropagation();
+                  router.push(`/miner/${config.coinTicker}/${data.miner}`);
                 }}
                 coin={config.coinTicker}
                 address={data.miner}
