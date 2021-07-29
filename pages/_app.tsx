@@ -12,8 +12,6 @@ import { AppState } from '../src/rdx/rootReducer';
 import type { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
 
-import ServiceWorkerWrapper from '../src/App/ServiceWorkerWrapper';
-
 // Theme
 import { ThemeProvider } from 'styled-components';
 import { AppTheme } from '../src/App/AppTheme';
@@ -24,9 +22,7 @@ import { NavBar } from '../src/components/layout/NavBar';
 import { FooterSection } from '../src/sections/Footer.section';
 import { searchAddressStorage } from '../src/components/SearchAddressBar/searchCache';
 import CookieConsent from '../src/components/CookieConsent';
-// import reportWebVitals from '../src/reportWebVitals';
 // import { SnackViewControl } from '../src/components/Snacks/SnackViewControl';
-// import { usePwaInit } from '../src/App/PwaInit';
 
 import { usePoolCoins } from '../src/rdx/poolCoins/poolCoins.hooks';
 import SEO from '../next-seo.config';
@@ -45,15 +41,11 @@ const store = createReduxStore({
 });
 
 const App = ({ Component, pageProps, router }: AppProps) => {
-  // usePwaInit();
-
   return (
     <>
-      {/* <ServiceWorkerWrapper /> */}
       <ReduxProvider store={store}>
         <ThemeProvider theme={mainTheme}>
           {/* <SnackViewControl /> */}
-
           <PoolCoins />
           <NavBar />
           <AppTheme />
