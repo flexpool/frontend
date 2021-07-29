@@ -9,20 +9,19 @@ import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOut } from 'src/components/LinkOut';
 import { MineableCoin } from '../mineableCoinList';
 import { Trans, useTranslation } from 'next-i18next';
+
+const getLocationSearch = () => {
+  return typeof window !== 'undefined' ? window.location.search : '';
+};
+
 export const SetWalletSection: React.FC<{ data: MineableCoin }> = ({
   data: { walletAddressExample, validator },
 }) => {
   const router = useRouter();
-  let search;
-
-  if (typeof window !== 'undefined') {
-    search = window.location.search;
-  }
-
   const { t } = useTranslation('get-started');
 
   const initValue = React.useMemo(() => {
-    const parsedSearch = qs.parse(search);
+    const parsedSearch = qs.parse(getLocationSearch());
     return parsedSearch.walletAddress || '';
     // eslint-disable-next-line
   }, []);
@@ -34,24 +33,33 @@ export const SetWalletSection: React.FC<{ data: MineableCoin }> = ({
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       setValue(value);
-      const parsedSearch = qs.parse(search);
+      const parsedSearch = qs.parse(getLocationSearch());
 
       const checksum = validator(value);
 
       setChecksumError(!checksum);
 
       if (!!checksum) {
-        router.push({
-          pathname: window.location.pathname,
-          query: {
-            ...parsedSearch,
-            walletAddress: !!checksum ? checksum : '',
-          },
+        const query = qs.stringify({
+          ...parsedSearch,
+          walletAddress: !!checksum ? checksum : '',
         });
+
+        const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+
+        window.history.replaceState(
+          { ...window.history.state, as: newUrl, url: newUrl },
+          '',
+          newUrl
+        );
+
+        let queryStringChange = new Event('popstate');
+        window.dispatchEvent(queryStringChange);
+
         setValue(checksum);
       }
     },
-    [search, router, validator]
+    [validator]
   );
 
   return (

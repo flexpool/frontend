@@ -1,6 +1,6 @@
 // TODO: Remove this TS nocheck
 // @ts-nocheck
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import qs from 'query-string';
@@ -34,24 +34,73 @@ export const ChiaCliGuidePage: React.FC = () => {
   const mineableCoinConfig = React.useMemo(() => {
     const mergedHw = merge(mineableCoin?.hardware, jsonHw);
     return mergedHw.find((item) => item.key === 'XCH-CLI');
-  }, [jsonHw, mineableCoin?.hardware]);
+  }, []);
 
   if (!mineableCoin || !mineableCoinConfig) {
     return router.push('/get-started');
   }
+  let primaryServer = 'POOL_URL';
+  let farmerOption = 'new-farmer';
+  const [urlState, setUrlState] = useState(new Date());
 
-  const { primaryServer = 'POOL_URL', farmerOption = 'new-farmer' } = qs.parse(
-    typeof window !== 'undefined' ? window.location.search : ''
-  );
+  let search;
+
+  if (typeof window !== 'undefined') {
+    search = window.location.search;
+  }
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('popstate', function (event) {
+        setUrlState(new Date());
+      });
+    }
+    const query = qs.stringify({
+      ...qs.parse(search),
+      farmerOption: 'new-farmer',
+    });
+    console.log(search);
+
+    const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+    window.history.pushState(
+      { ...window.history.state, as: newUrl, url: newUrl },
+      '',
+      newUrl
+    );
+  }, []);
+
+  const searchParams = React.useMemo(() => {
+    // return qs.parse(search) as {
+    //   primaryServer?: string;
+    //   farmerOption?: string;
+    // };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    primaryServer = qs.parse(search).primaryServer
+      ? qs.parse(search).primaryServer
+      : 'POOL_URL';
+    farmerOption = qs.parse(search).farmerOption
+      ? qs.parse(search).farmerOption
+      : 'new-farmer';
+  }, [urlState]);
 
   const setSelectedFarmerOption = (s: string) => {
-    router.push({
-      pathname: window.location.pathname,
-      query: {
-        ...qs.parse(window.location.search),
-        farmerOption: s,
-      },
+    if (typeof window !== 'undefined') {
+      search = window.location.search;
+    }
+    const query = qs.stringify({
+      ...qs.parse(search),
+      farmerOption: s,
     });
+
+    const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+
+    window.history.pushState(
+      { ...window.history.state, as: newUrl, url: newUrl },
+      '',
+      newUrl
+    );
+    let queryStringChange = new Event('popstate');
+    window.dispatchEvent(queryStringChange);
   };
 
   return (

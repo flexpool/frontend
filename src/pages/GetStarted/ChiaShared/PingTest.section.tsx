@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
 import { AnyAction } from 'redux';
@@ -162,6 +162,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
       searchParams: {
         primaryServer?: string;
         secondaryServer?: string;
+        farmerOption?: string;
       };
     }
   >[] = React.useMemo(
@@ -265,13 +266,27 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
     ],
     [t]
   );
+  const [urlState, setUrlState] = useState(new Date());
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('popstate', function (event) {
+        console.log('changed');
+        setUrlState(new Date());
+      });
+    }
+  }, []);
 
   const searchParams = React.useMemo(() => {
+    if (typeof window !== 'undefined') {
+      search = window.location.search;
+    }
     return qs.parse(search) as {
       primaryServer?: string;
       secondaryServer?: string;
+      farmerOption?: string;
     };
-  }, [search]);
+  }, [urlState]);
 
   /**
    * returns two fastest servers
@@ -299,13 +314,20 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   React.useEffect(() => {
     if (fastest.first && fastest.second && !isAutoSetOnce.value) {
       isAutoSetOnce.handleTrue();
-      router.push({
-        pathname: window.location.pathname,
-        query: {
-          ...searchParams,
-          primaryServer: fastest.first,
-        },
+      const query = qs.stringify({
+        ...searchParams,
+        primaryServer: fastest.first,
       });
+
+      const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+
+      window.history.pushState(
+        { ...window.history.state, as: newUrl, url: newUrl },
+        '',
+        newUrl
+      );
+      let queryStringChange = new Event('popstate');
+      window.dispatchEvent(queryStringChange);
     }
     // useEffect only needs to fire on fastest server selection
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -313,19 +335,31 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
 
   const setServer = React.useCallback(
     (type: 'secondary' | 'primary', domain: string) => {
+      if (typeof window !== 'undefined') {
+        search = window.location.search;
+      }
       const isPrimarySelection = type === 'primary';
-      router.push(window.location.pathname, {
-        query: {
-          ...searchParams,
-          ...(isPrimarySelection
-            ? {
-                primaryServer: domain,
-              }
-            : {
-                secondaryServer: domain,
-              }),
-        },
+      const query = qs.stringify({
+        ...searchParams,
+        ...(isPrimarySelection
+          ? {
+              primaryServer: domain,
+            }
+          : {
+              secondaryServer: domain,
+            }),
       });
+      console.log(search);
+
+      const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+
+      window.history.pushState(
+        { ...window.history.state, as: newUrl, url: newUrl },
+        '',
+        newUrl
+      );
+      let queryStringChange = new Event('popstate');
+      window.dispatchEvent(queryStringChange);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
@@ -362,13 +396,25 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   //   [selectionhistoryReplace, searchParams]
   // );
   const selectItem = React.useCallback((d: MineableCoinRegion) => {
-    router.push({
-      pathname: window.location.pathname,
-      query: {
-        ...searchParams,
-        primaryServer: d.domain,
-      },
+    if (typeof window !== 'undefined') {
+      search = window.location.search;
+    }
+    const query = qs.stringify({
+      ...qs.parse(search),
+      primaryServer: d.domain,
     });
+    console.log(search);
+
+    const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+
+    window.history.pushState(
+      { ...window.history.state, as: newUrl, url: newUrl },
+      '',
+      newUrl
+    );
+    let queryStringChange = new Event('popstate');
+    window.dispatchEvent(queryStringChange);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

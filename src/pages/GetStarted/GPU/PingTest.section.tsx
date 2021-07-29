@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { w3cwebsocket } from 'websocket';
@@ -300,6 +300,15 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
     ],
     [t]
   );
+  const [urlState, setUrlState] = useState(new Date());
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('popstate', function (event) {
+        setUrlState(new Date());
+      });
+    }
+  }, []);
 
   /**
    * list of servers with 14444
@@ -315,7 +324,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
       primaryServer?: string;
       secondaryServer?: string;
     };
-  }, [search]);
+  }, [urlState]);
 
   /**
    * returns two fastest servers
@@ -343,34 +352,50 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   React.useEffect(() => {
     if (fastest.first && fastest.second && !isAutoSetOnce.value) {
       isAutoSetOnce.handleTrue();
-      router.push({
-        pathname: window.location.pathname,
-        query: {
-          ...searchParams,
-          primaryServer: fastest.first,
-          secondaryServer: fastest.second,
-        },
+      const query = qs.stringify({
+        ...searchParams,
+        primaryServer: fastest.first,
+        secondaryServer: fastest.second,
       });
+
+      const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+
+      window.history.pushState(
+        { ...window.history.state, as: newUrl, url: newUrl },
+        '',
+        newUrl
+      );
+      let queryStringChange = new Event('popstate');
+      window.dispatchEvent(queryStringChange);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fastest, searchParams, isAutoSetOnce]);
+  }, [fastest]);
 
   const setServer = React.useCallback(
     (type: 'secondary' | 'primary', domain: string) => {
       const isPrimarySelection = type === 'primary';
-      router.push({
-        pathname: window.location.pathname,
-        query: qs.stringify({
-          ...searchParams,
-          ...(isPrimarySelection
-            ? {
-                primaryServer: domain,
-              }
-            : {
-                secondaryServer: domain,
-              }),
-        }),
+      // replaceNextRoute ('volume', volume.toString ())
+      const query = qs.stringify({
+        ...searchParams,
+        ...(isPrimarySelection
+          ? {
+              primaryServer: domain,
+            }
+          : {
+              secondaryServer: domain,
+            }),
       });
+
+      const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+
+      window.history.replaceState(
+        { ...window.history.state, as: newUrl, url: newUrl },
+        '',
+        newUrl
+      );
+
+      let queryStringChange = new Event('popstate');
+      window.dispatchEvent(queryStringChange);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [searchParams]
@@ -386,46 +411,26 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
     };
   }, [handleSetLowestLatency, fastest, searchParams, setServer]);
 
-  // uncomment to turn on toggle
-  // const selectItem = React.useCallback(
-  //   (d: MineableCoinRegion) => {
-  //     // const isPrimarySelection = selection === 'primary';
-  //     historyReplace({
-  //       search: qs.stringify({
-  //         ...searchParams,
-  //         ...(isPrimarySelection
-  //           ? {
-  //               primaryServer: d.domain,
-  //             }
-  //           : {
-  //               secondaryServer: d.domain,
-  //             }),
-  //       }),
-  //     });
-  //     // setSelection(isPrimarySelection ? 'secondary' : 'primary');
-  //   },
-  //   [selectionhistoryReplace, searchParams]
-  // );
   const selectItem = React.useCallback(
     (d: MineableCoinRegion) => {
-      router.push({
-        pathname: window.location.pathname,
-        query: {
-          ...searchParams,
-          primaryServer: d.domain,
-        },
+      const query = qs.stringify({
+        ...searchParams,
+        primaryServer: d.domain,
       });
-    },
-    [router, searchParams]
-  );
 
-  // const renderTooltipContent = React.useCallback(() => {
-  //   return selection === 'primary' ? (
-  //     <p>Select primary server</p>
-  //   ) : (
-  //     <p>Select backup server</p>
-  //   );
-  // }, [selection]);
+      const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+
+      window.history.replaceState(
+        { ...window.history.state, as: newUrl, url: newUrl },
+        '',
+        newUrl
+      );
+
+      let queryStringChange = new Event('popstate');
+      window.dispatchEvent(queryStringChange);
+    },
+    [searchParams]
+  );
 
   return (
     <>

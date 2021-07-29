@@ -1,7 +1,7 @@
 // TODO: Remove this TS nocheck
 // @ts-nocheck
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { Trans, useTranslation } from 'next-i18next';
@@ -40,24 +40,55 @@ export const ChiaGuiGuidePage: React.FC = () => {
   const mineableCoinConfig = React.useMemo(() => {
     const mergedHw = merge(mineableCoin?.hardware, jsonHw);
     return mergedHw.find((item) => item.key === 'XCH-GUI');
-  }, [jsonHw, mineableCoin?.hardware]);
+  }, []);
 
   if (!mineableCoin || !mineableCoinConfig) {
     return router.push('/get-started');
   }
+  let primaryServer;
+  let farmerOption;
+  const [urlState, setUrlState] = useState(new Date());
+  let search;
 
-  const { primaryServer = 'POOL_URL', farmerOption = 'new-farmer' } = qs.parse(
-    typeof window !== 'undefined' ? window.location.search : ''
-  );
+  if (typeof window !== 'undefined') {
+    search = window.location.search;
+  }
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('popstate', function (event) {
+        console.log(primaryServer);
+        setUrlState(new Date());
+      });
+    }
+  }, []);
+
+  const searchParams = React.useMemo(() => {
+    console.log(search);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    primaryServer = qs.parse(search).primaryServer
+      ? qs.parse(search).primaryServer
+      : 'POOL_URL';
+    farmerOption = qs.parse(search).farmerOption
+      ? qs.parse(search).farmerOption
+      : 'new-farmer';
+  }, [urlState]);
 
   const setSelectedFarmerOption = (s: string) => {
-    router.push({
-      pathname: window.location.pathname,
-      query: {
-        ...qs.parse(window.location.search),
-        farmerOption: s,
-      },
+    const query = qs.stringify({
+      ...qs.parse(search),
+      farmerOption: s,
     });
+
+    const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+
+    window.history.pushState(
+      { ...window.history.state, as: newUrl, url: newUrl },
+      '',
+      newUrl
+    );
+    let queryStringChange = new Event('popstate');
+    window.dispatchEvent(queryStringChange);
   };
 
   return (
@@ -67,9 +98,7 @@ export const ChiaGuiGuidePage: React.FC = () => {
       <Spacer size="xl" />
       <FarmerOptionSelector
         selectedFarmerOption={farmerOption as string}
-        setSelectedFarmerOption={(s: string) => {
-          setSelectedFarmerOption(s);
-        }}
+        setSelectedFarmerOption={setSelectedFarmerOption}
       />
       {farmerOption !== 'already-farmer' ? (
         <>

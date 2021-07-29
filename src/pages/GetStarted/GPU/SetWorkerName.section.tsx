@@ -8,37 +8,48 @@ import { TextInput } from 'src/components/Form/TextInput';
 import { DivText, Highlight } from 'src/components/Typo/Typo';
 import { Spacer } from 'src/components/layout/Spacer';
 
+const getLocationSearch = () => {
+  return typeof window !== 'undefined' ? window.location.search : '';
+};
+
 export const SetWorkerNameSection = () => {
   const router = useRouter();
-  const ticker = router.query.ticker;
-  let search;
-
-  if (typeof window !== 'undefined') {
-    search = window.location.search;
-  }
-
   const { t } = useTranslation('get-started');
 
-  const value = React.useMemo(() => {
-    const parsedSearch = qs.parse(search);
+  const initValue = React.useMemo(() => {
+    const parsedSearch = qs.parse(getLocationSearch());
     return parsedSearch.workerName || '';
-  }, [search]);
+    // eslint-disable-next-line
+  }, []);
+
+  const [value, setValue] = React.useState(initValue || '');
 
   const handleInputChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
-      const parsedSearch = qs.parse(search);
+      setValue(value);
+      const parsedSearch = qs.parse(getLocationSearch());
 
-      router.push({
-        pathname: window.location.pathname,
-        query: {
-          ...parsedSearch,
-          workerName: value,
-        },
+      const query = qs.stringify({
+        ...parsedSearch,
+        workerName: value,
       });
+
+      const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+
+      window.history.replaceState(
+        { ...window.history.state, as: newUrl, url: newUrl },
+        '',
+        newUrl
+      );
+
+      let queryStringChange = new Event('popstate');
+      window.dispatchEvent(queryStringChange);
+
+      setValue(value);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [search]
+    []
   );
 
   return (
