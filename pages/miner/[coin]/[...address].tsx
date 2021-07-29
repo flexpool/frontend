@@ -250,7 +250,7 @@ export const MinerDashboardPageContent: React.FC<{
   );
 };
 
-// TODO: Testing this prod fix, most these dynamic imports to a separatefile
+// TODO: Testing this prod fix, move these dynamic imports to a separatefile
 const DynamicMinerStatsPage = dynamic<{
   address: string;
   coin: string;
@@ -354,7 +354,7 @@ export const MinerDashboardPage: React.FC<{
   if (locateAddressState.data !== coinTicker) {
     return (
       <PageLoading>
-        <LoaderSpinner />
+        <LoaderSpinner center />
       </PageLoading>
     );
   }
