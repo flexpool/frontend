@@ -60,25 +60,21 @@ export default class MyDocument extends Document {
           <link
             rel="apple-touch-icon"
             sizes="180x180"
-            href="%PUBLIC_URL%/apple-touch-icon.png"
+            href="/apple-touch-icon.png"
           />
           <link
             rel="icon"
             type="image/png"
             sizes="32x32"
-            href="%PUBLIC_URL%/favicon-32x32.png"
+            href="/favicon-32x32.png"
           />
           <link
             rel="icon"
             type="image/png"
             sizes="16x16"
-            href="%PUBLIC_URL%/favicon-16x16.png"
+            href="/favicon-16x16.png"
           />
-          <link
-            rel="mask-icon"
-            href="%PUBLIC_URL%/safari-pinned-tab.svg"
-            color="#5bbad5"
-          />
+          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
           <meta name="apple-mobile-web-app-title" content="Flexpool.io" />
           <meta name="application-name" content="Flexpool.io" />
           <meta name="msapplication-TileColor" content="#312e2e" />
