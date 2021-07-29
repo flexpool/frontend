@@ -33,7 +33,7 @@ export const ChiaCliGuidePage: React.FC = () => {
   const mineableCoinConfig = React.useMemo(() => {
     const mergedHw = merge(mineableCoin?.hardware, jsonHw);
     return mergedHw.find((item) => item.key === 'XCH-CLI');
-  }, []);
+  }, [jsonHw, mineableCoin?.hardware]);
 
   let primaryServer = 'POOL_URL';
   let farmerOption = 'new-farmer';
@@ -61,12 +61,15 @@ export const ChiaCliGuidePage: React.FC = () => {
       '',
       newUrl
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const searchParams = React.useMemo(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     primaryServer = qs.parse(search).primaryServer
       ? qs.parse(search).primaryServer
       : 'POOL_URL';
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     farmerOption = qs.parse(search).farmerOption
       ? qs.parse(search).farmerOption
       : 'new-farmer';

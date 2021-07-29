@@ -108,6 +108,7 @@ export const MinerCommand: React.FC<{
         ) : null,
       },
     ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     urlState,
     command,
@@ -136,6 +137,7 @@ export const MinerCommand: React.FC<{
         replaceWith: workerName ? `.${workerName}` : '',
       },
     ]).join('');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     urlState,
     command,

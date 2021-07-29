@@ -278,6 +278,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
 
   const searchParams = React.useMemo(() => {
     if (typeof window !== 'undefined') {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       search = window.location.search;
     }
     return qs.parse(search) as {
@@ -335,6 +336,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   const setServer = React.useCallback(
     (type: 'secondary' | 'primary', domain: string) => {
       if (typeof window !== 'undefined') {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         search = window.location.search;
       }
       const isPrimarySelection = type === 'primary';
@@ -395,6 +397,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   // );
   const selectItem = React.useCallback((d: MineableCoinRegion) => {
     if (typeof window !== 'undefined') {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       search = window.location.search;
     }
     const query = qs.stringify({

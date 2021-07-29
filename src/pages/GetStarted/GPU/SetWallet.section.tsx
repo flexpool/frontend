@@ -59,6 +59,7 @@ export const SetWalletSection: React.FC<{ data: MineableCoin }> = ({
         setValue(checksum);
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [validator]
   );
 

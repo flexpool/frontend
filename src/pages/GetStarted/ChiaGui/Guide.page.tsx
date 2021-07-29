@@ -40,6 +40,7 @@ export const ChiaGuiGuidePage: React.FC = () => {
   const mineableCoinConfig = React.useMemo(() => {
     const mergedHw = merge(mineableCoin?.hardware, jsonHw);
     return mergedHw.find((item) => item.key === 'XCH-GUI');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   let primaryServer;
@@ -64,6 +65,7 @@ export const ChiaGuiGuidePage: React.FC = () => {
     primaryServer = qs.parse(search).primaryServer
       ? qs.parse(search).primaryServer
       : 'POOL_URL';
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     farmerOption = qs.parse(search).farmerOption
       ? qs.parse(search).farmerOption
       : 'new-farmer';
