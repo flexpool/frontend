@@ -271,7 +271,6 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.addEventListener('popstate', function (event) {
-        console.log('changed');
         setUrlState(new Date());
       });
     }
@@ -349,7 +348,6 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
               secondaryServer: domain,
             }),
       });
-      console.log(search);
 
       const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
 
@@ -403,7 +401,6 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
       ...qs.parse(search),
       primaryServer: d.domain,
     });
-    console.log(search);
 
     const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
 

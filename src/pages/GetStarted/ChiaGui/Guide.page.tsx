@@ -54,14 +54,12 @@ export const ChiaGuiGuidePage: React.FC = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.addEventListener('popstate', function (event) {
-        console.log(primaryServer);
         setUrlState(new Date());
       });
     }
   }, []);
 
   const searchParams = React.useMemo(() => {
-    console.log(search);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     primaryServer = qs.parse(search).primaryServer
       ? qs.parse(search).primaryServer

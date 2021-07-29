@@ -54,7 +54,6 @@ export const ChiaCliGuidePage: React.FC = () => {
       ...qs.parse(search),
       farmerOption: 'new-farmer',
     });
-    console.log(search);
 
     const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
     window.history.pushState(
