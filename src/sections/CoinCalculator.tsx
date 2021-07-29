@@ -154,13 +154,11 @@ export const CoinCalculator: React.FC<{ coin: ApiPoolCoinFull }> = ({
           );
         }}
       </Formik>
-      <StartMiningButton
-        as={Link}
-        href={`/get-started/${coin.ticker}`}
-        variant="primary"
-      >
-        {t('coin_news_item.calculator.cta')}
-      </StartMiningButton>
+      <Link href={`/get-started/${coin.ticker}`} passHref>
+        <StartMiningButton variant="primary">
+          {t('coin_news_item.calculator.cta')}
+        </StartMiningButton>
+      </Link>
     </div>
   );
 };

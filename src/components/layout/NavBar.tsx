@@ -61,10 +61,10 @@ const NLink = styled.a`
   background: transparent;
   min-width: 50px;
   justify-content: center;
-  // svg {
-  //   height: 1.4rem;
-  //   width: 1.4rem;
-  // }
+  svg.nav-svg {
+    height: 1.4rem;
+    width: 1.4rem;
+  }
 
   &:hover {
     text-decoration: none;
@@ -315,12 +315,12 @@ export const NavBar: React.FC<NavBarType> = (props) => {
           <NavSection>
             <Link href="/statistics" passHref>
               <NLink aria-label="Statistics">
-                <FaChartArea />
+                <FaChartArea className="nav-svg" />
               </NLink>
             </Link>
             <Link href="/blocks" passHref>
               <NLink aria-label="Blocks">
-                <FaCubes />
+                <FaCubes className="nav-svg" />
               </NLink>
             </Link>
             <NLink
@@ -328,7 +328,7 @@ export const NavBar: React.FC<NavBarType> = (props) => {
               aria-label="Search Address"
               onClick={modalSearchOpenState.handleOpen}
             >
-              <FaSearch />
+              <FaSearch className="nav-svg" />
             </NLink>
             <BurgerWrap
               aria-label="Open menu"
