@@ -1,5 +1,5 @@
 // import { useLocation } from 'react-router';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import qs from 'query-string';
 
@@ -15,11 +15,24 @@ export const ViewDashboardSection: React.FC<{ ticker?: string }> = ({
   const router = useRouter();
   let search;
   const { t } = useTranslation('get-started');
+  const [urlState, setUrlState] = useState(new Date());
 
   const walletAddress = React.useMemo(() => {
+    if (typeof window !== 'undefined') {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      search = window.location.search;
+    }
     const parsedSearch = qs.parse(search);
     return parsedSearch.walletAddress || '';
-  }, [search]);
+  }, [urlState]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('popstate', function (event) {
+        setUrlState(new Date());
+      });
+    }
+  }, []);
 
   if (!walletAddress || !ticker) {
     return null;
