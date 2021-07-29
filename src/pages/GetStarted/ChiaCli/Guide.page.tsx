@@ -20,7 +20,6 @@ import merge from 'lodash.merge';
 export const ChiaCliGuidePage: React.FC = () => {
   const router = useRouter();
   const ticker = router.query.ticker;
-
   const { t } = useTranslation('get-started');
 
   const mineableCoin = React.useMemo(() => {
@@ -36,13 +35,9 @@ export const ChiaCliGuidePage: React.FC = () => {
     return mergedHw.find((item) => item.key === 'XCH-CLI');
   }, []);
 
-  if (!mineableCoin || !mineableCoinConfig) {
-    return router.push('/get-started');
-  }
   let primaryServer = 'POOL_URL';
   let farmerOption = 'new-farmer';
   const [urlState, setUrlState] = useState(new Date());
-
   let search;
 
   if (typeof window !== 'undefined') {
@@ -70,11 +65,6 @@ export const ChiaCliGuidePage: React.FC = () => {
   }, []);
 
   const searchParams = React.useMemo(() => {
-    // return qs.parse(search) as {
-    //   primaryServer?: string;
-    //   farmerOption?: string;
-    // };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     primaryServer = qs.parse(search).primaryServer
       ? qs.parse(search).primaryServer
       : 'POOL_URL';
@@ -102,6 +92,10 @@ export const ChiaCliGuidePage: React.FC = () => {
     let queryStringChange = new Event('popstate');
     window.dispatchEvent(queryStringChange);
   };
+
+  if (!mineableCoin || !mineableCoinConfig) {
+    return router.push('/get-started');
+  }
 
   return (
     <Page>

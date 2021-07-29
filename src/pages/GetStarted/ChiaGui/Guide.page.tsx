@@ -42,9 +42,6 @@ export const ChiaGuiGuidePage: React.FC = () => {
     return mergedHw.find((item) => item.key === 'XCH-GUI');
   }, []);
 
-  if (!mineableCoin || !mineableCoinConfig) {
-    return router.push('/get-started');
-  }
   let primaryServer;
   let farmerOption;
   const [urlState, setUrlState] = useState(new Date());
@@ -90,6 +87,10 @@ export const ChiaGuiGuidePage: React.FC = () => {
     let queryStringChange = new Event('popstate');
     window.dispatchEvent(queryStringChange);
   };
+
+  if (!mineableCoin || !mineableCoinConfig) {
+    return router.push('/get-started');
+  }
 
   return (
     <Page>
