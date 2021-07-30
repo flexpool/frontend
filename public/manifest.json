@@ -27,5 +27,5 @@
   "display": "standalone",
   "theme_color": "#0069FF",
   "background_color": "#ffffff",
-  "start_url": "/"
+  "start_url": "/pwa/"
 }
