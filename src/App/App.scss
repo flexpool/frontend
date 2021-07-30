@@ -30,6 +30,20 @@ body {
 
   --color-discord: #7289da;
 
+  @media (prefers-color-scheme: dark) {
+    --bg-primary: #151519;
+    --bg-secondary: #1c1c1f;
+    --border-color: #333;
+    --text-secondary: #ccc;
+    --text-primary: #eee;
+    --overlay: rgba(0, 0, 0, 0.5);
+    --bad-luck-color: #bbb;
+
+    svg tspan {
+      fill: var(--text-primary);
+    }
+  }
+
   background: var(--bg-primary);
   width: 100vw;
 
