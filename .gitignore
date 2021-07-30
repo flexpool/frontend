@@ -11,8 +11,7 @@
 # production
 /build
 .next
-/public/sw.js*
-/public/workbox*
+/public/pwa
 
 # misc
 .DS_Store

@@ -5,7 +5,7 @@ const withTM = require('next-transpile-modules')(['@amcharts/amcharts4/']);
 module.exports = withPWA(
   withTM({
     pwa: {
-      dest: 'public',
+      dest: 'public/pwa',
     },
     webpack: (config) => {
       config.module.rules.push({
