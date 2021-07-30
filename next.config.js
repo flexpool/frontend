@@ -7,11 +7,11 @@ module.exports = withPWA(
     pwa: {
       dest: 'public',
       publicExcludes: [
-        'locales',
-        'unused-locales',
-        'og',
-        'illustrations',
-        'svg',
+        '!locales',
+        '!unused-locales',
+        '!og',
+        '!illustrations',
+        '!svg',
       ],
     },
     webpack: (config) => {
