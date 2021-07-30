@@ -6,8 +6,7 @@ module.exports = withPWA(
   withTM({
     pwa: {
       dest: 'public',
-      sw: 'pwa/sw.js',
-      scope: '/pwa/',
+      publicExcludes: ['locales', 'og', 'illustrations', 'svg'],
     },
     webpack: (config) => {
       config.module.rules.push({
