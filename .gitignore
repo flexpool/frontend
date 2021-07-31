@@ -10,6 +10,9 @@
 
 # production
 /build
+.next
+/public/sw.js*
+/public/workbox*
 
 # misc
 .DS_Store

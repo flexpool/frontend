@@ -1,7 +1,7 @@
 import { Form, Formik } from 'formik';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useRouteMatch } from 'react-router';
+// import { useRouteMatch } from 'react-router';
 import { ErrorBox } from 'src/components/Form/ErrorBox';
 import { FieldGroup } from 'src/components/Form/FieldGroup';
 import { Submit } from 'src/components/Form/Submit';
@@ -16,13 +16,13 @@ import { minerDetailsUpdatePayoutSettings } from 'src/rdx/minerDetails/minerDeta
 import { minerDetailsGet } from 'src/rdx/minerDetails/minerDetails.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import * as yup from 'yup';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import {
   useLocalizedCurrencyFormatter,
   useLocalizedNumberFormatter,
 } from 'src/utils/si.utils';
 import { InfoBox } from 'src/components/InfoBox';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 export const GweiToggle = styled.button`
   height: 48px;
@@ -62,7 +62,9 @@ export const LowPayoutContainer = styled.div`
   color: var(--danger);
 `;
 
-export const PayoutSettings: React.FC = () => {
+export const PayoutSettings: React.FC<{
+  address: string;
+}> = ({ address }) => {
   const activeCoinTicker = useActiveCoinTicker();
   const activeCoin = useActiveCoin();
   const minerSettings = useReduxState('minerDetails');
@@ -70,9 +72,9 @@ export const PayoutSettings: React.FC = () => {
   const { t } = useTranslation(['dashboard', 'common']);
   const numberFormatter = useLocalizedNumberFormatter();
   const d = useDispatch();
-  const {
-    params: { address, coin: coinTicker },
-  } = useRouteMatch<{ address: string; coin: string }>();
+  // const {
+  //   params: { address, coin: coinTicker },
+  // } = useRouteMatch<{ address: string; coin: string }>();
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
   const currencyFormatter = useLocalizedCurrencyFormatter();
   const [gweiToggle, setGweiToggle] = React.useState(true);
@@ -120,7 +122,7 @@ export const PayoutSettings: React.FC = () => {
             })
           ),
         ]).then(() => {
-          d(minerDetailsGet(coinTicker, address));
+          d(minerDetailsGet(activeCoin.ticker, address));
         });
         setSubmitting(false);
       }}

@@ -1,3 +1,6 @@
+// TODO: Remove this TS nocheck
+// @ts-nocheck
+
 import { applyMiddleware, createStore, AnyAction, compose } from 'redux';
 
 import { rootReducer, defaultReduxState, AppState } from './rootReducer';
@@ -18,21 +21,26 @@ export const createReduxStore = (preloadedState?: Partial<AppState>) => {
 
   const middleware = [promiseMiddleware];
 
-  if (isDev() && !isServer) {
-    // Add Redux Logger
-    const createLogger = require('redux-logger').createLogger; // eslint-disable-line
-    const logger = createLogger({
-      collapsed: true,
-      predicate: (getState: any, action: AnyAction) =>
-        action.type !== '@ui/SET_WINDOW_DIMENSION',
-    });
-    middleware.push(logger);
-  }
+  // if (isDev() && !isServer) {
+  //   // Add Redux Logger
+  //   const createLogger = require('redux-logger').createLogger; // eslint-disable-line
+  //   const logger = createLogger({
+  //     collapsed: true,
+  //     predicate: (getState: any, action: AnyAction) =>
+  //       action.type !== '@ui/SET_WINDOW_DIMENSION',
+  //   });
+  //   middleware.push(logger);
+  // }
+
+  const composeEnhancers =
+    (typeof window !== 'undefined' &&
+      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+    compose;
 
   const store = createStore(
     rootReducer,
     state,
-    compose(applyMiddleware(...middleware))
+    composeEnhancers(applyMiddleware(...middleware))
   );
 
   // if (module.hot) {

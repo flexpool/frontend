@@ -1,0 +1,17 @@
+{
+  "env": {
+    "development": {
+      "plugins": [["styled-components", { "ssr": true }]],
+      "presets": ["next/babel"]
+    },
+    "production": {
+      "plugins": [["styled-components", { "ssr": true }]],
+      "presets": ["next/babel"]
+    }
+  },
+  "plugins": [
+    ["styled-components", { "ssr": true }],
+    ["inline-react-svg"],
+    ["superjson-next"]
+  ]
+}

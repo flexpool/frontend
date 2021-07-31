@@ -1,10 +1,10 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { useDispatch } from 'react-redux';
 import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
 import { LocalSettingsState } from 'src/rdx/localSettings/localSettings.reducer';
 import { useReduxState } from 'src/rdx/useReduxState';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Select } from './Form/Select/Select';
 
 const Circle = styled.div`

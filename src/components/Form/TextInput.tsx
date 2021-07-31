@@ -1,6 +1,6 @@
 import { Field, FieldProps } from 'formik';
 import React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { BaseFormFieldProps, getInputProps } from './formikUtils';
 import { FieldWrap } from './FormWrap';
 

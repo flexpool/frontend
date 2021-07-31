@@ -1,6 +1,6 @@
 import { RiLightbulbFlashLine } from 'react-icons/ri';
 import styled from 'styled-components';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 const ProTipContainer = styled.div`
   font-size: 1.1rem;
   margin-top: 1.5rem;

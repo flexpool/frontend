@@ -1,15 +1,12 @@
-import { Helmet } from 'react-helmet-async';
-import { useRouteMatch } from 'react-router';
 import { BlocksSection } from './MinerBlocks.section';
-export const MinerBlocksPage = () => {
-  const {
-    params: { address },
-  } = useRouteMatch<{ address: string }>();
+export const MinerBlocksPage: React.FC<{
+  address: string;
+}> = ({ address }) => {
   return (
     <>
-      <Helmet>
+      {/* <Head>
         <title>Miner blocks</title>
-      </Helmet>
+      </Head> */}
       <BlocksSection address={address} />
     </>
   );

@@ -1,7 +1,7 @@
 import { fetchApi } from 'src/utils/fetchApi';
 
 export const minerHeaderStatsGet = (
-  coin: string,
+  coin: string | string[],
   address: string,
   counterTicker: string
 ) => {

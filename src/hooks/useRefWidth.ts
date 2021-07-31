@@ -8,7 +8,7 @@ export const useRefBound = <E extends HTMLElement>(): [
   const ref = React.useRef<E>(null);
   const [rect, setRect] = React.useState<DOMRect>();
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     const onWindowResize = debounce(() => {
       if (ref?.current) {
         setRect(ref?.current.getBoundingClientRect());

@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 export const Card = styled.div<{ padding?: boolean; paddingShort?: boolean }>`
   border-radius: 5px;
   border: 1px solid var(--border-color);

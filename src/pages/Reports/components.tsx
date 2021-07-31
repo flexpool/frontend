@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { LinkOut } from 'src/components/LinkOut';
 
 export const ReportArchiveItem = styled(LinkOut)`

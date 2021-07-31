@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Img } from 'src/components/Img';
 
 export const UnknownCoin = styled.div`

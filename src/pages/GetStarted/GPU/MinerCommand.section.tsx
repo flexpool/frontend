@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { FaDownload } from 'react-icons/fa';
 import { Button } from 'src/components/Button';
 import { Img } from 'src/components/Img';
@@ -7,7 +7,7 @@ import { Card, CardBody } from 'src/components/layout/Card';
 import { LinkOut } from 'src/components/LinkOut';
 import { Highlight } from 'src/components/Typo/Typo';
 import { getOsLogoUrl } from 'src/utils/staticImage.utils';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { GpuHardwareDetails } from '../mineableCoinList';
 import { MinerCommand } from './MinerCommand';
 

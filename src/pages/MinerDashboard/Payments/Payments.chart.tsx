@@ -18,7 +18,7 @@ import {
   ChartContainer,
   responsiveRule,
 } from 'src/components/Chart/ChartContainer';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 type ChartData = {
   fee: number;

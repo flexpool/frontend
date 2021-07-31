@@ -1,6 +1,6 @@
 import React from 'react';
 import { clx } from 'src/utils/clx';
-import './burger.scss';
+// import './burger.scss';
 
 export const Burger: React.FC<
   JSX.IntrinsicElements['div'] & { isOpen: boolean }

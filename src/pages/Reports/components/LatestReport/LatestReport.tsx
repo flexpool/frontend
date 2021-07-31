@@ -1,27 +1,30 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Page } from 'react-pdf/dist/esm/entry.webpack';
+import React, { useState } from 'react';
+import { useTranslation } from 'next-i18next';
+import dynamic from 'next/dynamic';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+
+import { PageContainer, PageContainerInner, Container } from './components';
 import { ListPagination } from 'src/components/layout/List/ListPagination';
 import { LoaderOverlayWithin } from 'src/components/Loader/LoaderOverlayWithin';
 import { useRefBound } from 'src/hooks/useRefWidth';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
-import {
-  StyledDocument,
-  LoadingContainer,
-  PageContainer,
-  PageContainerInner,
-  Container,
-} from './componnents';
+import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
+
+const PDFViewer = dynamic(() => import('./PDFViewer'), {
+  loading: () => (
+    <LoaderSpinner center style={{ minHeight: '26rem', display: 'flex' }} />
+  ),
+  ssr: false,
+});
 
 export const LatestReport: React.FC<{ src: string; date: Date }> = ({
   src,
   date,
 }) => {
   const [wrapperRef, bound] = useRefBound<HTMLDivElement>();
-  const [totalPages, setTotalPages] = React.useState<number>(0);
-  const [activePage, setActivePage] = React.useState<number>(0);
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [activePage, setActivePage] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState(true);
   const { t } = useTranslation('reports');
   const dateFormatter = useLocalizedDateFormatter();
 
@@ -45,27 +48,15 @@ export const LatestReport: React.FC<{ src: string; date: Date }> = ({
               }px)`,
             }}
           >
-            <StyledDocument
-              file={src}
-              onLoadSuccess={onDocumentLoad}
-              externalLinkTarget="_blank"
-              loading={
-                <LoadingContainer>
-                  <br />
-                </LoadingContainer>
-              }
-            >
-              {Array.apply(null, Array(totalPages)).map((item, index) => (
-                <Page
-                  loading=""
-                  key={index}
-                  width={bound?.width}
-                  pageIndex={index}
-                />
-              ))}
-            </StyledDocument>
+            <PDFViewer
+              src={src}
+              onDocumentLoad={onDocumentLoad}
+              totalPages={totalPages}
+              bound={bound}
+            />
           </PageContainerInner>
         </PageContainer>
+
         <ListPagination
           totalPages={totalPages}
           currentPage={activePage}

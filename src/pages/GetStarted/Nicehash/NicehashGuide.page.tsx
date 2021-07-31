@@ -1,7 +1,13 @@
+// TODO: Remove this TS nocheck
+// @ts-nocheck
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import { Trans, useTranslation } from 'react-i18next';
-import { Redirect, useRouteMatch } from 'react-router';
+import Head from 'next/head';
+
+import { useRouter } from 'next/router';
+import { Trans, useTranslation } from 'next-i18next';
+import styled from 'styled-components';
+//
+// import { Redirect, useRouteMatch } from 'react-router';
 import { CopyButton } from 'src/components/CopyButton';
 import { Img } from 'src/components/Img';
 import { Content } from 'src/components/layout/Content';
@@ -12,7 +18,6 @@ import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOut } from 'src/components/LinkOut';
 import { Highlight, Mono, Ws } from 'src/components/Typo/Typo';
-import styled from 'styled-components/macro';
 import { MineableCoinRegion, mineableCoins } from '../mineableCoinList';
 
 import nh1 from './assets/nh_1.jpg';
@@ -79,11 +84,8 @@ const GuideImg = styled(Img)`
 `;
 
 export const NicehashGuidePage = () => {
-  const {
-    params: { ticker },
-  } = useRouteMatch<{
-    ticker?: string;
-  }>();
+  const router = useRouter();
+  const ticker = router.query.ticker;
 
   const { t } = useTranslation('get-started');
 
@@ -92,19 +94,19 @@ export const NicehashGuidePage = () => {
   }, [ticker]);
 
   if (!mineableCoin) {
-    return <Redirect to="/get-started" />;
+    router.push('/get-started');
   }
 
   const algo =
-    mineableCoin.algorithm === mineableCoin.nicehash_algorithm
-      ? mineableCoin.algorithm
-      : `${mineableCoin.nicehash_algorithm} (${mineableCoin.algorithm})`;
+    mineableCoin?.algorithm === mineableCoin?.nicehash_algorithm
+      ? mineableCoin?.algorithm
+      : `${mineableCoin?.nicehash_algorithm} (${mineableCoin?.algorithm})`;
 
   return (
     <Page>
-      <Helmet>
+      <Head>
         <title>{t('nicehash.head_title')}</title>
-      </Helmet>
+      </Head>
       <Content md paddingLg>
         <h1>{t('nicehash.title')}</h1>
         <p>{t('nicehash.description')}</p>
@@ -118,8 +120,8 @@ export const NicehashGuidePage = () => {
         }) as string[]).map((p) => (
           <p key={p}>{p}</p>
         ))}
-        <LinkOut href={nh1}>
-          <GuideImg src={nh1} alt="nicehash guide" />
+        <LinkOut href={nh1.src}>
+          <GuideImg src={nh1.src} alt="nicehash guide" />
         </LinkOut>
         <h2>
           <Highlight>#2 </Highlight>
@@ -140,8 +142,8 @@ export const NicehashGuidePage = () => {
         <Spacer />
         <ServerList data={mineableCoin?.regions} />
         <Spacer />
-        <LinkOut href={nh2}>
-          <GuideImg src={nh2} alt="nicehash guide" />
+        <LinkOut href={nh2.src}>
+          <GuideImg src={nh2.src} alt="nicehash guide" />
         </LinkOut>
         <h2>
           <Highlight>#3 </Highlight>
@@ -159,8 +161,8 @@ export const NicehashGuidePage = () => {
             <p key={p}>{p}</p>
           ))}
         </Trans>
-        <LinkOut href={nh3}>
-          <GuideImg src={nh3} alt="nicehash guide" />
+        <LinkOut href={nh3.src}>
+          <GuideImg src={nh3.src} alt="nicehash guide" />
         </LinkOut>
         <h2>
           <Highlight>#4</Highlight> {t('nicehash.step_four.title')}

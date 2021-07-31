@@ -1,11 +1,15 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+// TODO: Remove this TS nocheck
+// @ts-nocheck
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+
+import qs from 'query-string';
+import { useTranslation } from 'next-i18next';
+
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 import { Highlight } from 'src/components/Typo/Typo';
 import { MineableCoinHardware, mineableCoins } from '../mineableCoinList';
-import { Redirect, useHistory, useLocation, useRouteMatch } from 'react-router';
-import qs from 'query-string';
 import { Mono } from 'src/components/Typo/Typo';
 import { PingTestSection } from '../ChiaShared/PingTest.section';
 import { TerminalCommand } from './TerminalCommand';
@@ -14,15 +18,9 @@ import { CreatePlotsSection } from './CreatePlots.section';
 import merge from 'lodash.merge';
 
 export const ChiaCliGuidePage: React.FC = () => {
-  const {
-    params: { ticker },
-  } = useRouteMatch<{
-    ticker?: string;
-  }>();
-
+  const router = useRouter();
+  const ticker = router.query.ticker;
   const { t } = useTranslation('get-started');
-  const { replace: historyReplace } = useHistory();
-  const { search } = useLocation();
 
   const mineableCoin = React.useMemo(() => {
     return mineableCoins.find((item) => item.ticker === ticker);
@@ -37,22 +35,69 @@ export const ChiaCliGuidePage: React.FC = () => {
     return mergedHw.find((item) => item.key === 'XCH-CLI');
   }, [jsonHw, mineableCoin?.hardware]);
 
-  if (!mineableCoin || !mineableCoinConfig) {
-    return <Redirect to="/get-started" />;
+  let primaryServer = 'POOL_URL';
+  let farmerOption = 'new-farmer';
+  const [urlState, setUrlState] = useState(new Date());
+  let search;
+
+  if (typeof window !== 'undefined') {
+    search = window.location.search;
   }
 
-  const { primaryServer = 'POOL_URL', farmerOption = 'new-farmer' } = qs.parse(
-    search
-  );
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('popstate', function (event) {
+        setUrlState(new Date());
+      });
+    }
+    const query = qs.stringify({
+      ...qs.parse(search),
+      farmerOption: 'new-farmer',
+    });
+
+    const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+    window.history.pushState(
+      { ...window.history.state, as: newUrl, url: newUrl },
+      '',
+      newUrl
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const searchParams = React.useMemo(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    primaryServer = qs.parse(search).primaryServer
+      ? qs.parse(search).primaryServer
+      : 'POOL_URL';
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    farmerOption = qs.parse(search).farmerOption
+      ? qs.parse(search).farmerOption
+      : 'new-farmer';
+  }, [urlState]);
 
   const setSelectedFarmerOption = (s: string) => {
-    historyReplace({
-      search: qs.stringify({
-        ...qs.parse(search),
-        farmerOption: s,
-      }),
+    if (typeof window !== 'undefined') {
+      search = window.location.search;
+    }
+    const query = qs.stringify({
+      ...qs.parse(search),
+      farmerOption: s,
     });
+
+    const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+
+    window.history.pushState(
+      { ...window.history.state, as: newUrl, url: newUrl },
+      '',
+      newUrl
+    );
+    let queryStringChange = new Event('popstate');
+    window.dispatchEvent(queryStringChange);
   };
+
+  if (!mineableCoin || !mineableCoinConfig) {
+    return router.push('/get-started');
+  }
 
   return (
     <Page>
@@ -82,11 +127,11 @@ export const ChiaCliGuidePage: React.FC = () => {
           Enter a number to pick or q to quit: `}{' '}
             <b>1</b>
             {`
-          
+
           Wallet height: ...
           Sync status: Synced
 
-          Wallet id 2: 
+          Wallet id 2:
           Current state: FARMING_TO_POOL
           Current state from block height: ...
           Launcher ID: 4973f2b459881b08295dff931c26dc0e511ce6fd46948e142ee151b1f97d7f23

@@ -64,7 +64,7 @@ export const TerminalCommand = (props: TerminalCommandProps) => {
                 commandItems.push(itemCommand + ' ');
               }
             });
-            return <Command>{commandItems}</Command>;
+            return <Command key={item}>{commandItems}</Command>;
           })}
         </Commands>
         <CopyButton text={cmd as string} />

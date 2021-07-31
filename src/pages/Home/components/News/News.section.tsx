@@ -6,10 +6,10 @@ import {
   Wrapper,
   WrapperInner,
 } from './components';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import React from 'react';
 import { Content } from 'src/components/layout/Content';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 const HomeNewsItem: React.FC<{
   to?: string;
@@ -28,7 +28,7 @@ const HomeNewsItem: React.FC<{
     </>
   );
   return to ? (
-    <ItemWrapper as={Link} to={to} className="home-news-item">
+    <ItemWrapper as={Link} href={to} className="home-news-item">
       {innerContent}
     </ItemWrapper>
   ) : (
@@ -48,7 +48,7 @@ export const NewsSection = () => {
             category={t('news_section.join_us.pre_title')}
             title={t('news_section.join_us.title')}
             action={t('news_section.join_us.cta')}
-            to="/get-started"
+            href="/get-started"
           />
           <HomeNewsItem
             category={t('news_section.learn.pre_title')}
@@ -60,7 +60,7 @@ export const NewsSection = () => {
             category={t('news_section.support.pre_title')}
             title={t('news_section.support.title')}
             action={t('news_section.support.cta')}
-            to="/support"
+            href="/support"
           />
         </WrapperInner>
       </Content>

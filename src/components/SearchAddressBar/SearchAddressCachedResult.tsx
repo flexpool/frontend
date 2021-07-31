@@ -1,12 +1,13 @@
 import { FaTimes } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useRouter } from 'next/router';
+import styled from 'styled-components';
+
 import {
   addressSearchRemove,
   addressSearchSet,
 } from 'src/rdx/addressSearch/addressSearch.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
-import styled from 'styled-components';
 
 const ItemWrap = styled.div`
   border-top: 1px solid var(--border-color);
@@ -14,7 +15,7 @@ const ItemWrap = styled.div`
   align-items: center;
   height: 55px;
 `;
-const HistoryItem = styled(Link)`
+const HistoryItem = styled.a`
   color: var(--text-primary);
   background: transparent;
   height: 100%;
@@ -87,20 +88,24 @@ export const SearchAddressCachedResult: React.FC<{ isOpen?: boolean }> = ({
 }) => {
   const data = useReduxState('addressSearch');
   const d = useDispatch();
+  const router = useRouter();
 
   if (!isOpen) {
     return null;
   }
+
+  const openMinerAddress = (item) => {
+    d(addressSearchSet(item));
+    router.push(`/miner/${item.coin}/${item.address}`, undefined, {
+      shallow: !router.query.address,
+    });
+  };
+
   return (
     <>
       {data.slice(0, 6).map((item) => (
         <ItemWrap key={item.address}>
-          <HistoryItem
-            onClick={() => {
-              d(addressSearchSet(item));
-            }}
-            to={`/miner/${item.coin}/${item.address}`}
-          >
+          <HistoryItem onClick={() => openMinerAddress(item)}>
             <Address>{item.address}</Address>
             <ItemRight>
               <CoinLabel>{item.coin}</CoinLabel>

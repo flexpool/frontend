@@ -1,9 +1,14 @@
-import React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+// TODO: Remove this TS nocheck
+// @ts-nocheck
+
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+
+import { Trans, useTranslation } from 'next-i18next';
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 import { MineableCoinHardware, mineableCoins } from '../mineableCoinList';
-import { Redirect, useHistory, useLocation, useRouteMatch } from 'react-router';
+// import { Redirect, useHistory, useLocation, useRouteMatch } from 'react-router';
 import qs from 'query-string';
 import { PingTestSection } from '../ChiaShared/PingTest.section';
 import merge from 'lodash.merge';
@@ -19,15 +24,10 @@ import { ChiaGuiLink } from './Link';
 import { FarmerOptionSelector } from '../ChiaShared/FarmerOptionSelector';
 
 export const ChiaGuiGuidePage: React.FC = () => {
-  const {
-    params: { ticker },
-  } = useRouteMatch<{
-    ticker?: string;
-  }>();
+  const router = useRouter();
+  const ticker = router.query.ticker;
 
   const { t } = useTranslation('get-started');
-  const { replace: historyReplace } = useHistory();
-  const { search } = useLocation();
 
   const mineableCoin = React.useMemo(() => {
     return mineableCoins.find((item) => item.ticker === ticker);
@@ -40,24 +40,57 @@ export const ChiaGuiGuidePage: React.FC = () => {
   const mineableCoinConfig = React.useMemo(() => {
     const mergedHw = merge(mineableCoin?.hardware, jsonHw);
     return mergedHw.find((item) => item.key === 'XCH-GUI');
-  }, [jsonHw, mineableCoin?.hardware]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  if (!mineableCoin || !mineableCoinConfig) {
-    return <Redirect to="/get-started" />;
+  let primaryServer;
+  let farmerOption;
+  const [urlState, setUrlState] = useState(new Date());
+  let search;
+
+  if (typeof window !== 'undefined') {
+    search = window.location.search;
   }
 
-  const { primaryServer = 'POOL_URL', farmerOption = 'new-farmer' } = qs.parse(
-    search
-  );
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('popstate', function (event) {
+        setUrlState(new Date());
+      });
+    }
+  }, []);
+
+  const searchParams = React.useMemo(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    primaryServer = qs.parse(search).primaryServer
+      ? qs.parse(search).primaryServer
+      : 'POOL_URL';
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    farmerOption = qs.parse(search).farmerOption
+      ? qs.parse(search).farmerOption
+      : 'new-farmer';
+  }, [urlState]);
 
   const setSelectedFarmerOption = (s: string) => {
-    historyReplace({
-      search: qs.stringify({
-        ...qs.parse(search),
-        farmerOption: s,
-      }),
+    const query = qs.stringify({
+      ...qs.parse(search),
+      farmerOption: s,
     });
+
+    const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+
+    window.history.pushState(
+      { ...window.history.state, as: newUrl, url: newUrl },
+      '',
+      newUrl
+    );
+    let queryStringChange = new Event('popstate');
+    window.dispatchEvent(queryStringChange);
   };
+
+  if (!mineableCoin || !mineableCoinConfig) {
+    return router.push('/get-started');
+  }
 
   return (
     <Page>
@@ -66,9 +99,7 @@ export const ChiaGuiGuidePage: React.FC = () => {
       <Spacer size="xl" />
       <FarmerOptionSelector
         selectedFarmerOption={farmerOption as string}
-        setSelectedFarmerOption={(s: string) => {
-          setSelectedFarmerOption(s);
-        }}
+        setSelectedFarmerOption={setSelectedFarmerOption}
       />
       {farmerOption !== 'already-farmer' ? (
         <>
@@ -134,7 +165,6 @@ export const ChiaGuiGuidePage: React.FC = () => {
           />
         </>
       )}
-
       <Spacer size="xl" />
       <h2>
         <Highlight>#2</Highlight>{' '}
@@ -699,6 +729,7 @@ const ChiaGuiMenu = (props: ChiaGuiMenuProps) => {
     <ChiaGuiMenuContainer>
       <ChiaGuiMenuSidebarWrapper>
         <ChiaGuiMenuSidebarLogoSection>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://static.flexpool.io/logos/chia.svg"
             alt="chia logo"

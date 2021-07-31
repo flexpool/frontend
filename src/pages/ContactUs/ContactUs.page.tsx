@@ -1,16 +1,15 @@
 import { Page } from 'src/components/layout/Page';
 import { Content } from 'src/components/layout/Content';
-import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation, Trans } from 'next-i18next';
 
 export const ContactUsPage = () => {
   const { t } = useTranslation('contact-us');
   return (
     <Page>
-      <Helmet>
+      {/* <Head>
         <title>{t('head_title')}</title>
-      </Helmet>
+      </Head> */}
       <Content md paddingLg>
         <h1>{t('title')}</h1>
         <p style={{ marginTop: '30px' }}>

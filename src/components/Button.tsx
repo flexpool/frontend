@@ -1,4 +1,4 @@
-import styled, { UIVariant } from 'styled-components/macro';
+import styled, { UIVariant } from 'styled-components';
 
 const btnHeights = {
   xs: 32,
@@ -17,6 +17,7 @@ export type ButtonProps = {
   shape?: 'square' | 'circle' | 'block';
   fill?: 'outline';
   shadowless?: boolean;
+  value: string;
 };
 
 export const Button = styled.button<ButtonProps>`

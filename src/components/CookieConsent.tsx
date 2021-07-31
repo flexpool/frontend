@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button } from 'src/components/Button';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 declare global {
   interface Window {
@@ -64,7 +64,7 @@ const CookieConsent: React.FC<{}> = () => {
     'consented' | 'false'
   >('cookie_consent', 'false');
 
-  const { t } = useTranslation('home');
+  const { t } = useTranslation('cookie-consent');
 
   React.useEffect(() => {
     window &&
@@ -83,19 +83,21 @@ const CookieConsent: React.FC<{}> = () => {
       });
     setCookieConsent('consented');
   };
+
+  if (cookieConsent === 'consented') {
+    return <></>;
+  }
   return (
     <CookieConsentBaseContainer consented={cookieConsent}>
       <CookieConsentContents>
-        <CookieConsentText>
-          {t('home:cookie_consent.cookie_consent_text')}
-        </CookieConsentText>
+        <CookieConsentText>{t('cookie_consent_text')}</CookieConsentText>
         <AcceptConsentButton
           variant="primary"
           size="sm"
           shadowless
           onClick={applyConsent}
         >
-          {t('home:cookie_consent.i_agree')}
+          {t('i_agree')}
         </AcceptConsentButton>
       </CookieConsentContents>
     </CookieConsentBaseContainer>

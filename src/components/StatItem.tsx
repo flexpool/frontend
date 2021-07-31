@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Skeleton } from './layout/Skeleton';
 
 const StatItemWrapper = styled.div``;

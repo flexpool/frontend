@@ -1,29 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Trans, useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
+import { w3cwebsocket } from 'websocket';
+import { differenceInMilliseconds } from 'date-fns';
+import styled from 'styled-components';
+import qs from 'query-string';
+import { AnyAction } from 'redux';
+import Link, { LinkProps } from 'next/link';
+
+// Components
 import DynamicList, {
   DynamicListColumn,
 } from 'src/components/layout/List/List';
 import { MineableCoinRegion } from '../mineableCoinList';
-import { w3cwebsocket } from 'websocket';
-import { differenceInMilliseconds } from 'date-fns';
-import { useAsyncState } from 'src/hooks/useAsyncState';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
-import qs from 'query-string';
-import { useHistory, useLocation, useRouteMatch } from 'react-router';
+import { Highlight, Mono, Ws } from 'src/components/Typo/Typo';
+import { CopyButton } from 'src/components/CopyButton';
+import { Sticker } from 'src/components/Sticker';
+import { Tooltip, TooltipContent } from 'src/components/Tooltip';
+import { Img } from 'src/components/Img';
 import {
   FaCheck,
   FaEthernet,
   FaExclamationCircle,
   FaNetworkWired,
 } from 'react-icons/fa';
-import { Highlight, Mono, Ws } from 'src/components/Typo/Typo';
-import { CopyButton } from 'src/components/CopyButton';
-import styled from 'styled-components';
-import { Sticker } from 'src/components/Sticker';
-import { Link } from 'react-router-dom';
-import { Tooltip, TooltipContent } from 'src/components/Tooltip';
-import { Img } from 'src/components/Img';
-import { Trans, useTranslation } from 'react-i18next';
-import { AnyAction } from 'redux';
+
+import { useAsyncState } from 'src/hooks/useAsyncState';
 import { useBoolState } from 'src/hooks/useBoolState';
 
 const WarningIcon = styled(FaExclamationCircle)`
@@ -122,24 +125,27 @@ const reducer = (state: { [key: string]: number }, action: AnyAction) => {
   }
 };
 
+export const LinkText = (props: React.PropsWithChildren<LinkProps>) => {
+  return (
+    <Link {...props} href={props.href || ''}>
+      <a>{props.children}</a>
+    </Link>
+  );
+};
+
 export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   data,
 }) => {
-  const [latencies, dispatch] = React.useReducer(reducer, {});
-  const { replace: historyReplace } = useHistory();
-  const { search } = useLocation();
-  // const [selection, setSelection] = React.useState<'primary' | 'secondary'>(
-  //   'primary'
-  // );
-  const isAutoSetOnce = useBoolState();
-
   const { t } = useTranslation('get-started');
-  const {
-    params: { ticker },
-  } = useRouteMatch<{
-    ticker?: string;
-    hw?: string;
-  }>();
+  const router = useRouter();
+  const isAutoSetOnce = useBoolState();
+  const [latencies, dispatch] = React.useReducer(reducer, {});
+  const ticker = router.query.ticker;
+  let search;
+
+  if (typeof window !== 'undefined') {
+    search = window.location.search;
+  }
 
   const handleSetLowestLatency = React.useCallback(
     (name: string, value: number) => {
@@ -294,6 +300,15 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
     ],
     [t]
   );
+  const [urlState, setUrlState] = useState(new Date());
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('popstate', function (event) {
+        setUrlState(new Date());
+      });
+    }
+  }, []);
 
   /**
    * list of servers with 14444
@@ -309,7 +324,8 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
       primaryServer?: string;
       secondaryServer?: string;
     };
-  }, [search]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [urlState]);
 
   /**
    * returns two fastest servers
@@ -337,33 +353,53 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   React.useEffect(() => {
     if (fastest.first && fastest.second && !isAutoSetOnce.value) {
       isAutoSetOnce.handleTrue();
-      historyReplace({
-        search: qs.stringify({
-          ...searchParams,
-          primaryServer: fastest.first,
-          secondaryServer: fastest.second,
-        }),
+      const query = qs.stringify({
+        ...searchParams,
+        primaryServer: fastest.first,
+        secondaryServer: fastest.second,
       });
+
+      const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+
+      window.history.pushState(
+        { ...window.history.state, as: newUrl, url: newUrl },
+        '',
+        newUrl
+      );
+      let queryStringChange = new Event('popstate');
+      window.dispatchEvent(queryStringChange);
     }
-  }, [fastest, historyReplace, searchParams, isAutoSetOnce]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fastest]);
 
   const setServer = React.useCallback(
     (type: 'secondary' | 'primary', domain: string) => {
       const isPrimarySelection = type === 'primary';
-      historyReplace({
-        search: qs.stringify({
-          ...searchParams,
-          ...(isPrimarySelection
-            ? {
-                primaryServer: domain,
-              }
-            : {
-                secondaryServer: domain,
-              }),
-        }),
+      // replaceNextRoute ('volume', volume.toString ())
+      const query = qs.stringify({
+        ...searchParams,
+        ...(isPrimarySelection
+          ? {
+              primaryServer: domain,
+            }
+          : {
+              secondaryServer: domain,
+            }),
       });
+
+      const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+
+      window.history.replaceState(
+        { ...window.history.state, as: newUrl, url: newUrl },
+        '',
+        newUrl
+      );
+
+      let queryStringChange = new Event('popstate');
+      window.dispatchEvent(queryStringChange);
     },
-    [historyReplace, searchParams]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [searchParams]
   );
 
   const colConfig = React.useMemo(() => {
@@ -376,52 +412,34 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
     };
   }, [handleSetLowestLatency, fastest, searchParams, setServer]);
 
-  // uncomment to turn on toggle
-  // const selectItem = React.useCallback(
-  //   (d: MineableCoinRegion) => {
-  //     // const isPrimarySelection = selection === 'primary';
-  //     historyReplace({
-  //       search: qs.stringify({
-  //         ...searchParams,
-  //         ...(isPrimarySelection
-  //           ? {
-  //               primaryServer: d.domain,
-  //             }
-  //           : {
-  //               secondaryServer: d.domain,
-  //             }),
-  //       }),
-  //     });
-  //     // setSelection(isPrimarySelection ? 'secondary' : 'primary');
-  //   },
-  //   [selectionhistoryReplace, searchParams]
-  // );
   const selectItem = React.useCallback(
     (d: MineableCoinRegion) => {
-      historyReplace({
-        search: qs.stringify({
-          ...searchParams,
-          primaryServer: d.domain,
-        }),
+      const query = qs.stringify({
+        ...searchParams,
+        primaryServer: d.domain,
       });
-    },
-    [historyReplace, searchParams]
-  );
 
-  // const renderTooltipContent = React.useCallback(() => {
-  //   return selection === 'primary' ? (
-  //     <p>Select primary server</p>
-  //   ) : (
-  //     <p>Select backup server</p>
-  //   );
-  // }, [selection]);
+      const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+
+      window.history.replaceState(
+        { ...window.history.state, as: newUrl, url: newUrl },
+        '',
+        newUrl
+      );
+
+      let queryStringChange = new Event('popstate');
+      window.dispatchEvent(queryStringChange);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [searchParams]
+  );
 
   return (
     <>
       <h2>
         <Highlight>#2</Highlight> {t('detail.region.title')}
       </h2>
-      <p>{t('detail.region.description')}</p>
+      <p className="mb-2">{t('detail.region.description')}</p>
       <DynamicList
         onRowClick={selectItem}
         // renderRowTooltipContent={renderTooltipContent}
@@ -430,13 +448,13 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
         columns={cols}
       />
       <h3>{t('detail.ports.title')}</h3>
-      <p>
+      <p className="mb-2">
         <Trans
           ns="get-started"
           i18nKey="detail.ports.description"
           components={{
-            more: <Link to="/faq#should-i-use-ssl" />,
-            strong: <strong />,
+            more: <LinkText href="/faq#should-i-use-ssl" />,
+            // strong: <strong />,
           }}
         />
       </p>
@@ -462,7 +480,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
                         ns="get-started"
                         i18nKey="detail.ports.tcp_port_tooltip"
                         components={{
-                          more: <Link to="/faq#should-i-use-ssl" />,
+                          more: <LinkText href="/faq#should-i-use-ssl" />,
                           strong: <strong />,
                         }}
                       />
@@ -483,8 +501,8 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
                         i18nKey="detail.ports.high_diff_port_tooltip"
                         components={{
                           NiceHash: (
-                            <Link
-                              to={
+                            <LinkText
+                              href={
                                 ticker
                                   ? `/get-started/${ticker}/nicehash`
                                   : 'nicehash'

@@ -9,7 +9,7 @@ import {
 } from 'date-fns';
 
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import * as locales from 'src/i18n-date-locales';
 
 const getLocaleByKey = (key: string = 'en-US'): Locale => {

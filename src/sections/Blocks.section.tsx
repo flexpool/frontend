@@ -14,11 +14,12 @@ import { Mono, Ws } from 'src/components/Typo/Typo';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { TableCellSpinner } from 'src/components/Loader/TableCellSpinner';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { BiTransferAlt } from 'react-icons/bi';
 import ListDateSwitchButton from 'src/components/ButtonVariants/ListDateSwitchButton';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
+import router from 'next/router';
 
 type ApiBlock = {
   confirmed: boolean;
@@ -232,6 +233,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
               <LinkMiner
                 onClick={(e) => {
                   e.stopPropagation();
+                  router.push(`/miner/${config.coinTicker}/${data.miner}`);
                 }}
                 coin={config.coinTicker}
                 address={data.miner}

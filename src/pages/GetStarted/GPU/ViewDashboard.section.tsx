@@ -1,22 +1,38 @@
-import { useLocation } from 'react-router';
+// import { useLocation } from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import qs from 'query-string';
+
 import { Highlight } from 'src/components/Typo/Typo';
 import { Spacer } from 'src/components/layout/Spacer';
-import React from 'react';
 import { Button } from 'src/components/Button';
 import { LinkOut } from 'src/components/LinkOut';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 export const ViewDashboardSection: React.FC<{ ticker?: string }> = ({
   ticker,
 }) => {
-  const { search } = useLocation();
+  const router = useRouter();
+  let search;
   const { t } = useTranslation('get-started');
+  const [urlState, setUrlState] = useState(new Date());
 
   const walletAddress = React.useMemo(() => {
+    if (typeof window !== 'undefined') {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      search = window.location.search;
+    }
     const parsedSearch = qs.parse(search);
     return parsedSearch.walletAddress || '';
-  }, [search]);
+  }, [urlState]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('popstate', function (event) {
+        setUrlState(new Date());
+      });
+    }
+  }, []);
 
   if (!walletAddress || !ticker) {
     return null;

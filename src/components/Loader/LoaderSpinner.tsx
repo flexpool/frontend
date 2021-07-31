@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { keyframes } from 'styled-components/macro';
+import { keyframes } from 'styled-components';
 
 const rotate = keyframes`
   100% {
@@ -25,6 +25,7 @@ const dash = keyframes`
 
 const Spinner = styled.svg`
   animation: ${rotate} 1s linear infinite;
+  margin: auto;
 
   & circle {
     stroke: var(--primary);
@@ -38,6 +39,11 @@ const Container = styled.div<{ size?: 'xs' }>`
   height: 50px;
 
   ${(p) =>
+    p.center === true &&
+    `
+      margin: auto;
+  `}
+  ${(p) =>
     p.size === 'xs' &&
     `
       width: 14px;
@@ -47,7 +53,7 @@ const Container = styled.div<{ size?: 'xs' }>`
 
 export const LoaderSpinner = React.forwardRef<
   HTMLDivElement,
-  JSX.IntrinsicElements['div'] & { size?: 'xs' }
+  JSX.IntrinsicElements['div'] & { size?: 'xs'; center?: true }
 >((props, ref) => (
   <Container {...props} ref={ref}>
     <Spinner viewBox="0 0 50 50">

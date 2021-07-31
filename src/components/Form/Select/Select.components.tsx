@@ -1,12 +1,12 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import React from 'react';
 import { AnchoredPop } from 'src/components/AnchoredPop';
 import { Button } from 'src/components/Button';
 import { PropsOf } from 'src/types/ReactHelp.types';
+import SVGArrow from './SVGArrow';
 
-import { ReactComponent as SelectArrow } from './arrow.svg';
-
-const SelectArrowImg = styled(SelectArrow)`
+const SelectArrowSvg = styled.div`
+  display: flex;
   position: absolute;
   right: 1rem;
   top: 50%;
@@ -39,7 +39,9 @@ export const SelectButton = React.forwardRef<HTMLElement, SelectButtonProps>(
     return (
       <SCSelectButton ref={ref as any} {...rest}>
         {children || <Placeholder>{placeholder}</Placeholder>}
-        <SelectArrowImg />
+        <SelectArrowSvg>
+          <SVGArrow />
+        </SelectArrowSvg>
       </SCSelectButton>
     );
   }

@@ -6,9 +6,8 @@ import { Button } from 'src/components/Button';
 import styled from 'styled-components';
 import { LinkOut } from 'src/components/LinkOut';
 import { Spacer } from 'src/components/layout/Spacer';
-import { Helmet } from 'react-helmet-async';
 import { Img } from 'src/components/Img';
-import { Trans, useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'next-i18next';
 
 const ColorContainer = styled.div`
   display: flex;
@@ -86,9 +85,9 @@ export const BrandAssetsPage = () => {
   const { t } = useTranslation('brand-assets');
   return (
     <Page>
-      <Helmet>
+      {/* <Head>
         <title>{t('head_title')}</title>
-      </Helmet>
+      </Head> */}
       <Content md paddingLg>
         <h2>{t('brand_name.title')}</h2>
         <p>
@@ -185,7 +184,9 @@ export const BrandAssetsPage = () => {
               email: 'hq@flexpool.io',
             }}
             components={{
-              terms: <LinkOut href="https://static.flexpool.io/legal/terms.pdf" />,
+              terms: (
+                <LinkOut href="https://static.flexpool.io/legal/terms.pdf" />
+              ),
               email: <LinkOut href="mailto:hq@flexpool.io" />,
             }}
           />

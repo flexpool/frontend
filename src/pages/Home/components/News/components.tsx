@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 export const ItemWrapper = styled.a`
   min-height: 120px;

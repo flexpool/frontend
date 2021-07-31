@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 const Container = styled.table`
   width: 100%;
@@ -81,7 +81,7 @@ export const ListWrapper = styled.div`
   width: 100%;
   border: 1px solid var(--border-color);
   border-radius: 5px;
-  &:not(:first-child) {
-    margin-top: 1rem;
-  }
+  // &:not(:first-child) {
+  //   margin-top: 1rem;
+  // }
 `;

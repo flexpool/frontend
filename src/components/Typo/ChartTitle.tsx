@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 export const ChartTitle = styled.h2`
   text-align: center;

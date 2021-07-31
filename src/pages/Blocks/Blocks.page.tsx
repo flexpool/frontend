@@ -1,6 +1,4 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
-
 import { Content } from 'src/components/layout/Content';
 import { HeaderStat } from 'src/components/layout/StatHeader';
 import { StatBox, StatBoxContainer } from 'src/components/StatBox';
@@ -13,7 +11,7 @@ import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { BlocksChart } from './components/BlocksChart/Blocks.chart';
 
 export const BlocksPage = () => {
@@ -49,9 +47,9 @@ export const BlocksPage = () => {
 
   return (
     <Page>
-      <Helmet>
+      {/* <Head>
         <title>{t('head_title')}</title>
-      </Helmet>
+      </Head> */}
       <HeaderStat>
         <h1>{t('title')}</h1>
         <p>{t('description')}</p>

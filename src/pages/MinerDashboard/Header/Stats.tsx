@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { StatItem } from 'src/components/StatItem';
@@ -12,7 +12,7 @@ import { FaCalendar, FaCalendarDay, FaCalendarWeek } from 'react-icons/fa';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import { addSeconds } from 'date-fns';
-import { Trans, useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'next-i18next';
 import {
   useLocalizedCurrencyFormatter,
   useLocalizedNumberFormatter,
@@ -69,7 +69,7 @@ const BalanceProgressBar: React.FC<{
   payoutInSeconds: number;
 }> = ({ value, payoutInSeconds }) => {
   const [progress, setProgress] = useState(0);
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     setTimeout(() => {
       setProgress(value);
     }, 100);
@@ -151,10 +151,8 @@ export const HeaderStats: React.FC<{
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const currencyFormatter = useLocalizedCurrencyFormatter();
 
-  const [
-    estimateInterval,
-    setEstimateInterval,
-  ] = useLocalStorageState<EstimateInterval>('estimateInterval', 1);
+  const [estimateInterval, setEstimateInterval] =
+    useLocalStorageState<EstimateInterval>('estimateInterval', 1);
 
   const balance = activeCoinFormatter(data?.balance, {
     maximumFractionDigits: 6,

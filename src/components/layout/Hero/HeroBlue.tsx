@@ -1,6 +1,6 @@
 import React from 'react';
 import { Img } from 'src/components/Img';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 const Hero = styled.div`
   padding-top: 3rem;

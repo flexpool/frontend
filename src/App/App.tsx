@@ -11,9 +11,8 @@ import {
   useLocation,
 } from 'react-router-dom';
 
-import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { NavBar } from 'src/components/layout/NavBar';
-import { ThemeProvider } from 'styled-components/macro';
+import { ThemeProvider } from 'styled-components';
 import { mainTheme } from './styledTheme';
 import { FooterSection } from 'src/sections/Footer.section';
 
@@ -27,7 +26,7 @@ import { PageLoader } from 'src/components/layout/Page';
 import ServiceWorkerWrapper from './ServiceWorkerWrapper';
 import { usePwaInit } from './PwaInit';
 import { searchAddressStorage } from 'src/components/SearchAddressBar/searchCache';
-import { I18n } from './I18n';
+// import { I18n } from './I18n';
 import CookieConsent from 'src/components/CookieConsent';
 
 /**
@@ -146,7 +145,7 @@ const AppContent = () => {
       <React.Suspense fallback={<React.Fragment />}>
         <NavBar />
         <SnackViewControl />
-        <I18n />
+        {/* <I18n /> */}
       </React.Suspense>
       <React.Suspense fallback={<PageLoader />}>
         <Switch>
@@ -239,16 +238,16 @@ const AppContent = () => {
 const App = () => {
   return (
     <>
-      <HelmetProvider>
-        <ReduxProvider store={store}>
+      <ReduxProvider store={store}>
+        <ThemeProvider theme={mainTheme}>
+          <Router>
+            <AppContent />
+          </Router>
+        </ThemeProvider>
+      </ReduxProvider>
+      {/* <HelmetProvider>
           <Helmet titleTemplate="%s | Flexpool.io" />
-          <ThemeProvider theme={mainTheme}>
-            <Router>
-              <AppContent />
-            </Router>
-          </ThemeProvider>
-        </ReduxProvider>
-      </HelmetProvider>
+      </HelmetProvider> */}
     </>
   );
 };

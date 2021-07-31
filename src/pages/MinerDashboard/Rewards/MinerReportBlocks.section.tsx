@@ -10,7 +10,7 @@ import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { Mono, Ws } from 'src/components/Typo/Typo';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { TableCellSpinner } from 'src/components/Loader/TableCellSpinner';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { BiTransferAlt } from 'react-icons/bi';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';

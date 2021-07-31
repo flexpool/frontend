@@ -1,10 +1,12 @@
+// TODO: Remove this TS nocheck
+// @ts-nocheck
 import React from 'react';
 import { SnackOptions } from 'src/types/Snack.types';
 import cls from './Snack.module.scss';
 import { useDispatch } from 'react-redux';
 import { snackActions } from 'src/rdx/snacks/snack.actions';
 import { clx } from 'src/utils/clx';
-import { Link } from 'react-router-dom';
+import Link from 'next/router';
 import { FaTimes } from 'react-icons/fa';
 
 type SnackProps = {
@@ -41,7 +43,7 @@ export const Snack = (props: SnackProps) => {
   const linkProps = data.url
     ? {
         as: Link,
-        to: data.url,
+        href: data.url,
       }
     : {};
 

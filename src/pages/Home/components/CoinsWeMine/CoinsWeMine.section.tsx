@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import {
   ActionIconContainer,
   ActionIcon,
@@ -27,7 +28,8 @@ import {
   useLocalizedNumberFormatter,
   useLocalizedSiFormatter,
 } from 'src/utils/si.utils';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+// import { Link, useHistory, useLocation } from 'react-router-dom';
 import qs from 'query-string';
 import { CoinAbout } from 'src/sections/CoinAbout';
 import { ScrollArea } from 'src/components/layout/ScrollArea';
@@ -35,21 +37,18 @@ import { CoinCalculator } from 'src/sections/CoinCalculator';
 import { CardGrid } from 'src/components/layout/Card';
 import { CoinLogo } from 'src/components/CoinLogo';
 import { useReduxState } from 'src/rdx/useReduxState';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
+import { useRouter } from 'next/router';
 
 const ModalNews: React.FC<{ data?: ApiPoolCoinFull[] | null }> = ({ data }) => {
-  const location = useLocation();
-  const history = useHistory();
-  const { news: newsQueryParam, ...restSearch } = qs.parse(location.search);
-
+  const router = useRouter();
+  const newsQueryParam = router.query.news;
   const openedCoin = data?.find((item) => item.ticker === newsQueryParam);
 
   const handleClose = React.useCallback(() => {
-    history.push({
-      search: qs.stringify(restSearch),
-    });
-  }, [restSearch, history]);
+    router.replace(router.pathname);
+  }, [router]);
 
   const { t } = useTranslation('home');
 
@@ -79,14 +78,12 @@ export const CoinsWeMineSection = () => {
   const currencyFormatter = useLocalizedCurrencyFormatter();
   const numberFormatter = useLocalizedNumberFormatter();
   const activeCounterTicker = useCounterTicker();
-  const { push } = useHistory();
+  const router = useRouter();
   const handleRowClick = React.useCallback(
     (data: ApiPoolCoinFull) => {
-      push({
-        search: `news=${data.ticker}`,
-      });
+      router.push({ search: `news=${data.ticker}` });
     },
-    [push]
+    [router]
   );
 
   const columns: DynamicListColumn<ApiPoolCoinFull>[] = React.useMemo(() => {
@@ -96,14 +93,18 @@ export const CoinsWeMineSection = () => {
         skeletonWidth: 110,
         Component: ({ data }) => {
           return (
-            <CoinName
-              aria-label={`${data.ticker} news`}
-              to={{ search: `news=${data.ticker}` }}
+            <Link
+              href={{ search: `news=${data.ticker}` }}
+              passHref
+              scroll={false}
+              shallow
             >
-              <CoinLogo size="lg" ticker={data.ticker} />
-              <span>{data.name}</span>
-              <TickerName>{data.ticker.toUpperCase()}</TickerName>
-            </CoinName>
+              <CoinName aria-label={`${data.ticker} news`}>
+                <CoinLogo size="lg" ticker={data.ticker} />
+                <span>{data.name}</span>
+                <TickerName>{data.ticker.toUpperCase()}</TickerName>
+              </CoinName>
+            </Link>
           );
         },
       },
@@ -187,17 +188,17 @@ export const CoinsWeMineSection = () => {
               <ActionIcon size="xs" variant="primary">
                 <FaCalculator />
               </ActionIcon>
-              <Button
-                size="xs"
-                variant="primary"
-                as={Link}
-                to={`/get-started/${data.ticker}`}
-                onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
-                  e.stopPropagation()
-                }
-              >
-                {t('mined_coins_section.item_cta')}
-              </Button>
+              <Link href={`/get-started/${data.ticker}`} passHref>
+                <Button
+                  size="xs"
+                  variant="primary"
+                  onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+                    e.stopPropagation()
+                  }
+                >
+                  {t('mined_coins_section.item_cta')}
+                </Button>
+              </Link>
             </ActionIconContainer>
           );
         },

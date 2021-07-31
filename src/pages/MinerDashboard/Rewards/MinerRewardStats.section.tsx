@@ -1,6 +1,6 @@
 import { isBefore, subDays } from 'date-fns';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { CardGrid } from 'src/components/layout/Card';
 import DynamicList, {
   DynamicListColumn,
