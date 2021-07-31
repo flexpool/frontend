@@ -62,11 +62,9 @@ export const MinerStatsPage: React.FC<{
 
   const handleResetActiveWorker = React.useCallback(() => {
     // just remove the worker
-    const { worker, ...restQuery } = qs.parse(window.location.search);
+    // const { worker, ...restQuery } = qs.parse(window.location.search);
+    router.push(`/miner/${router.query.coin}/${router.query.address[0]}/`, undefined, {shallow: true});
 
-    router.push({
-      search: qs.stringify(restQuery),
-    });
   }, [router]);
 
   return (
