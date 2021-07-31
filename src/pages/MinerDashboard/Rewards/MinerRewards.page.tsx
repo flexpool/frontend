@@ -1,25 +1,23 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import { useRouteMatch } from 'react-router';
+//
+// import { useRouteMatch } from 'react-router';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { MinerPplnsStats } from './MinerPplnsStats.section';
 import { MinerRewardStatsSection } from './MinerRewardStats.section';
 import { MinerRewardsBlocksSection } from './MinerReportBlocks.section';
 import RewardsChart from './Rewards.chart';
 
-export const MinerRewardsPage = () => {
-  const {
-    params: { address },
-  } = useRouteMatch<{ address: string }>();
-
+export const MinerRewardsPage: React.FC<{
+  address: string;
+}> = ({ address }) => {
   const poolStatsState = useReduxState('poolStats');
   const minerRewardsState = useReduxState('minerRewards');
 
   return (
     <>
-      <Helmet>
+      {/* <Head>
         <title>Miner rewards</title>
-      </Helmet>
+      </Head> */}
       <RewardsChart
         counterPrice={minerRewardsState.data?.price || 0}
         rewards={minerRewardsState.data?.data || []}
@@ -34,6 +32,7 @@ export const MinerRewardsPage = () => {
       <MinerPplnsStats
         averagePoolHashrate={poolStatsState.data?.averageHashrate}
         poolHashrate={poolStatsState.data?.hashrate.total}
+        address={address}
       />
       <MinerRewardsBlocksSection address={address}></MinerRewardsBlocksSection>
     </>

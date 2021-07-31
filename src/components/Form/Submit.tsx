@@ -7,6 +7,7 @@ import { LoaderDots } from 'src/components/Loader/LoaderDots';
 type ButtonSubmitFieldProps = PropsOf<typeof Button> & {
   disableWhenFormNotDirty?: boolean;
   captchaDisableOverride?: boolean;
+  shape?: string;
 };
 
 const ButtonField: React.FunctionComponent<

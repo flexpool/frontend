@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React from 'react';
 import { Img } from 'src/components/Img';
 import { Tooltip } from 'src/components/Tooltip';

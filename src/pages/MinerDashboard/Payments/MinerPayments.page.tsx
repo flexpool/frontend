@@ -1,21 +1,20 @@
-import { Helmet } from 'react-helmet-async';
-import { useRouteMatch } from 'react-router';
+//
+// import { useRouteMatch } from 'react-router';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import PaymentsChart from './Payments.chart';
 import { GeneralPaymentStatsSection } from './PaymentStats.section';
 
-export const MinerPaymentsPage = () => {
-  const {
-    params: { address, coin },
-  } = useRouteMatch<{ address: string; coin: string }>();
-
+export const MinerPaymentsPage: React.FC<{
+  address: string;
+  coin: string;
+}> = ({ address, coin }) => {
   const coinData = useActiveCoin(coin);
 
   return (
     <>
-      <Helmet>
+      {/* <Head>
         <title>Miner Payments</title>
-      </Helmet>
+      </Head> */}
       <PaymentsChart address={address} coin={coinData} />
       <GeneralPaymentStatsSection address={address} coin={coinData} />
     </>

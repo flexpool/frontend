@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { PropsOf } from 'src/types/ReactHelp.types';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { OuterEvent } from 'src/components/DivOuterEvents';
 
 const bodyEl = typeof document !== 'undefined' ? document.body : null;
@@ -27,6 +27,8 @@ export type AnchoredPopProps = PropsOf<typeof PopEl> & {
   anchorEl?: HTMLElement | null;
   visible?: boolean;
   position?: ['top' | 'bottom' | 'center', 'left' | 'right' | 'center'];
+  style?: Object;
+  onOuterEvent?: Event;
   /**
    * vertical, horizontal
    */

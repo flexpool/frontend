@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Button } from 'src/components/Button';
 export const StartButton = styled(Button)`
   color: var(--primary);

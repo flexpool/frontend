@@ -19,7 +19,7 @@
   "Import styled": {
     "scope": "typescript, typescript-react, javascript, typescriptreact",
     "prefix": "ims",
-    "body": ["import styled from 'styled-components/macro';", "$2"],
+    "body": ["import styled from 'styled-components';", "$2"],
     "description": "import styled macro component"
   },
   "Import React": {

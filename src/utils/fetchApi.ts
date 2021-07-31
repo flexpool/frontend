@@ -1,7 +1,7 @@
 import qs from 'query-string';
 
-export const apiURL = process.env.REACT_APP_API_URL;
-export const chiaURL = process.env.REACT_APP_CHIA_API_URL;
+export const apiURL = process.env.NEXT_PUBLIC_REACT_APP_API_URL;
+export const chiaURL = process.env.NEXT_PUBLIC_REACT_APP_CHIA_API_URL;
 
 const transformQuery = (query?: object) => {
   return (query && qs.stringify(query)) || '';

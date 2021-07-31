@@ -1,8 +1,10 @@
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import React from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { Content } from 'src/components/layout/Content';
 import { Button } from 'src/components/Button';
 import { ScrollArea } from 'src/components/layout/ScrollArea';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 import {
   FaChartArea,
@@ -13,7 +15,6 @@ import {
   FaTelegram,
 } from 'react-icons/fa';
 import { useBoolState } from 'src/hooks/useBoolState';
-import React from 'react';
 import { useOpenState } from 'src/hooks/useOpenState';
 import Modal from '../Modal/Modal';
 import { SearchAddressCachedResult } from '../SearchAddressBar/SearchAddressCachedResult';
@@ -24,26 +25,29 @@ import { clx } from 'src/utils/clx';
 
 import { SelectTheme } from '../SelectTheme';
 import { Spacer } from './Spacer';
-import { Helmet } from 'react-helmet-async';
 import { SelectCounterTicker } from '../SelectCounterTicker';
 import { LinkOut } from '../LinkOut';
 import { DISCORD_LINK, REDDIT_LINK, TELEGRAM_LINK } from 'src/constants';
 import { useAppTheme } from 'src/rdx/localSettings/localSettings.hooks';
 import { Img } from '../Img';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { SelectLanguage } from '../SelectLanguage';
 
-const Logo = styled(Img)`
+const LogoSvg = require('../../../public/svg/logo.svg') as string;
+
+const Logo = styled(LogoSvg)`
   height: 29px;
+  width: 165px;
   fill: var(--text-primary);
 `;
 
-const LogoMobile = styled(Img)`
+const LogoMobile = styled(LogoSvg)`
   height: 25px;
+  width: 141px;
   fill: var(--text-primary);
 `;
 
-const NLink = styled(NavLink)`
+const NLink = styled.a`
   height: 100%;
   display: flex;
   align-items: center;
@@ -57,7 +61,7 @@ const NLink = styled(NavLink)`
   background: transparent;
   min-width: 50px;
   justify-content: center;
-  svg {
+  svg.nav-svg {
     height: 1.4rem;
     width: 1.4rem;
   }
@@ -75,6 +79,8 @@ const NLink = styled(NavLink)`
     &:active {
       background: rgba(128, 128, 128, 0.07);
     }
+  }
+  a {
   }
 `;
 
@@ -213,7 +219,7 @@ const MobileNavTitle = styled.div`
   margin-bottom: 0.5rem;
 `;
 
-const MobileNavLink = styled(Link)`
+const MobileNavLink = styled.a`
   padding: 0.5rem 1rem;
   font-weight: 600;
   display: flex;
@@ -227,19 +233,19 @@ export const NavBar: React.FC<NavBarType> = (props) => {
   const openState = useBoolState();
   const modalSearchOpenState = useOpenState();
   const { t } = useTranslation(['home', 'common']);
-  const location = useLocation();
+  const router = useRouter();
 
   React.useEffect(() => {
     openState.handleFalse();
     modalSearchOpenState.handleClose();
     // eslint-disable-next-line
-  }, [location, openState.handleFalse, modalSearchOpenState.handleClose]);
+  }, [
+    router.pathname,
+    openState.handleFalse,
+    modalSearchOpenState.handleClose,
+  ]);
 
   const colorMode = useAppTheme();
-  const logoSrc =
-    colorMode === 'light'
-      ? 'https://static.flexpool.io/assets/brand/light.svg'
-      : 'https://static.flexpool.io/assets/brand/dark.svg';
 
   return (
     <>
@@ -263,17 +269,20 @@ export const NavBar: React.FC<NavBarType> = (props) => {
       <NavContainerOuter>
         <NavContainer>
           <NavSection>
-            <NLink to="/" style={{ marginLeft: '-0.5rem' }}>
-              <Logo
-                height="29px"
-                width="165px"
-                src={logoSrc}
-                alt="Flexpool.io Logo"
-              />
-            </NLink>
-            <NLink to="/statistics">{t('common:nav.statistics')}</NLink>
-            <NLink to="/blocks">{t('common:nav.blocks')}</NLink>
-            <NLink to="/miners">{t('common:nav.miners')}</NLink>
+            <Link href="/" passHref>
+              <NLink style={{ marginLeft: '-0.5rem' }}>
+                <Logo />
+              </NLink>
+            </Link>
+            <Link href="/statistics" passHref>
+              <NLink>{t('common:nav.statistics')}</NLink>
+            </Link>
+            <Link href="/blocks" passHref>
+              <NLink>{t('common:nav.blocks')}</NLink>
+            </Link>
+            <Link href="/miners" passHref>
+              <NLink>{t('common:nav.miners')}</NLink>
+            </Link>
           </NavSection>
           <NavSectionSearch>
             <SearchContainer>
@@ -281,43 +290,45 @@ export const NavBar: React.FC<NavBarType> = (props) => {
             </SearchContainer>
           </NavSectionSearch>
           <NavSection>
-            <NLink to="/faq">{t('common:nav.faq')}</NLink>
-            <NLink to="/support">{t('common:nav.support')}</NLink>
-            <Button
-              style={{ marginLeft: 10 }}
-              variant="primary"
-              as={Link}
-              to="/get-started"
-            >
-              <Ws>{t('common:nav.get_started')}</Ws>
-            </Button>
+            <Link href="/faq" passHref>
+              <NLink>{t('common:nav.faq')}</NLink>
+            </Link>
+            <Link href="/support" passHref>
+              <NLink>{t('common:nav.support')}</NLink>
+            </Link>
+            <Link href="/get-started" passHref>
+              <Button style={{ marginLeft: 10 }} variant="primary">
+                {t('common:nav.get_started')}
+              </Button>
+            </Link>
           </NavSection>
         </NavContainer>
       </NavContainerOuter>
 
       <ContainerMobile>
         <NavContainer>
-          <NavLink to="/" aria-label="Home page">
-            <LogoMobile
-              height="25px"
-              width="141px"
-              src={logoSrc}
-              alt="Flexpool.io Logo"
-            />
-          </NavLink>
+          <Link href="/" aria-label="Home page">
+            <a>
+              <LogoMobile />
+            </a>
+          </Link>
           <NavSection>
-            <NLink aria-label="Statistics" to="/statistics">
-              <FaChartArea />
-            </NLink>
-            <NLink to="/blocks" aria-label="Blocks">
-              <FaCubes />
-            </NLink>
+            <Link href="/statistics" passHref>
+              <NLink aria-label="Statistics">
+                <FaChartArea className="nav-svg" />
+              </NLink>
+            </Link>
+            <Link href="/blocks" passHref>
+              <NLink aria-label="Blocks">
+                <FaCubes className="nav-svg" />
+              </NLink>
+            </Link>
             <NLink
               as="button"
               aria-label="Search Address"
               onClick={modalSearchOpenState.handleOpen}
             >
-              <FaSearch />
+              <FaSearch className="nav-svg" />
             </NLink>
             <BurgerWrap
               aria-label="Open menu"
@@ -329,24 +340,38 @@ export const NavBar: React.FC<NavBarType> = (props) => {
           </NavSection>
         </NavContainer>
 
-        {openState.value && (
+        {/* {openState.value && (
           <Helmet bodyAttributes={{ class: 'scroll-lock' }} />
-        )}
+        )} */}
         <MobileSlide isOpen={openState.value}>
           <SlideHideRest
             isOpen={openState.value}
             onClick={openState.handleFalse}
           />
           <ScrollArea>
-            <MobileNavLink to="/statistics">
-              {t('common:nav.statistics')}
-            </MobileNavLink>
-            <MobileNavLink to="/blocks">{t('common:nav.blocks')}</MobileNavLink>
-            <MobileNavLink to="/miners">{t('common:nav.miners')}</MobileNavLink>
-            <MobileNavLink to="/faq">{t('common:nav.faq')}</MobileNavLink>
-            <MobileNavLink to="/support">
-              {t('common:nav.support')}
-            </MobileNavLink>
+            <Link href="/statistics" passHref>
+              <MobileNavLink href="/statistics">
+                {t('common:nav.statistics')}
+              </MobileNavLink>
+            </Link>
+            <Link href="/blocks" passHref>
+              <MobileNavLink href="/blocks">
+                {t('common:nav.blocks')}
+              </MobileNavLink>
+            </Link>
+            <Link href="/miners" passHref>
+              <MobileNavLink href="/miners">
+                {t('common:nav.miners')}
+              </MobileNavLink>
+            </Link>
+            <Link href="/faq" passHref>
+              <MobileNavLink href="/faq">{t('common:nav.faq')}</MobileNavLink>
+            </Link>
+            <Link href="/support" passHref>
+              <MobileNavLink href="/support">
+                {t('common:nav.support')}
+              </MobileNavLink>
+            </Link>
             <MobileNavTitle>{t('common:nav.community_title')}</MobileNavTitle>
             <MobileNavLink as={LinkOut} href={DISCORD_LINK}>
               <FaDiscord /> Discord
@@ -359,9 +384,11 @@ export const NavBar: React.FC<NavBarType> = (props) => {
             </MobileNavLink>
           </ScrollArea>
           <div>
-            <Button shape="block" as={Link} to="/get-started" variant="primary">
-              <Ws>{t('common:nav.get_started')}</Ws>
-            </Button>
+            <Link href="/get-started" passHref>
+              <Button shape="block" variant="primary">
+                <Ws>{t('common:nav.get_started')}</Ws>
+              </Button>
+            </Link>
             <Spacer />
             <SelectCounterTicker />
             <Spacer />

@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 
 import {
   Route,
@@ -35,7 +36,7 @@ import { NavLink } from 'react-router-dom';
 import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
 import { Spacer } from 'src/components/layout/Spacer';
 import { MinerPaymentsPage } from './Payments/MinerPayments.page';
-import { Helmet } from 'react-helmet-async';
+
 import { MinerBlocksPage } from './Blocks/MinerBlocks.page';
 import { MinerRewardsPage } from './Rewards/MinerRewards.page';
 
@@ -43,7 +44,7 @@ import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { fetchApi } from 'src/utils/fetchApi';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { PullToRefresh } from 'src/components/layout/PullToRefresh/PullToRefresh';
 
 const TabContent = styled.div`
@@ -164,9 +165,9 @@ export const MinerDashboardPageContent: React.FC<
         onRefresh={loadAll}
       >
         <Page>
-          <Helmet titleTemplate={`${address} | %s | Flexpool.io`}>
-            <title>Dashboard</title>
-          </Helmet>
+          <Head>
+            <title>{`${address} | %s | Flexpool.io`}</title>
+          </Head>
           <Content>
             <HeaderGreetings onRefresh={loadAll} />
             <AccountHeader

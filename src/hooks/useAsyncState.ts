@@ -47,7 +47,7 @@ export const useAsyncState = <T = any, E = any>(
           return Promise.reject(e);
         });
     },
-    [isLoading, defaultState, title]
+    [isLoading, defaultState]
   );
 
   const startMerge = React.useCallback(
@@ -76,7 +76,7 @@ export const useAsyncState = <T = any, E = any>(
           return Promise.reject(e);
         });
     },
-    [isLoading, data, title]
+    [isLoading, data]
   );
 
   const clearErrorMessage = () => {

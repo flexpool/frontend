@@ -1,21 +1,27 @@
-import { useHistory, useLocation } from 'react-router';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
+
+// import { useHistory, useLocation } from 'react-router';
 import qs from 'query-string';
 import { TextInput } from 'src/components/Form/TextInput';
 import { DivText, Highlight } from 'src/components/Typo/Typo';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOut } from 'src/components/LinkOut';
-import React from 'react';
 import { MineableCoin } from '../mineableCoinList';
-import { Trans, useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'next-i18next';
+
+const getLocationSearch = () => {
+  return typeof window !== 'undefined' ? window.location.search : '';
+};
+
 export const SetWalletSection: React.FC<{ data: MineableCoin }> = ({
   data: { walletAddressExample, validator },
 }) => {
-  const history = useHistory();
-  const { search } = useLocation();
+  const router = useRouter();
   const { t } = useTranslation('get-started');
 
   const initValue = React.useMemo(() => {
-    const parsedSearch = qs.parse(search);
+    const parsedSearch = qs.parse(getLocationSearch());
     return parsedSearch.walletAddress || '';
     // eslint-disable-next-line
   }, []);
@@ -27,23 +33,34 @@ export const SetWalletSection: React.FC<{ data: MineableCoin }> = ({
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       setValue(value);
-      const parsedSearch = qs.parse(search);
+      const parsedSearch = qs.parse(getLocationSearch());
 
       const checksum = validator(value);
 
       setChecksumError(!checksum);
 
       if (!!checksum) {
-        history.replace({
-          search: qs.stringify({
-            ...parsedSearch,
-            walletAddress: !!checksum ? checksum : '',
-          }),
+        const query = qs.stringify({
+          ...parsedSearch,
+          walletAddress: !!checksum ? checksum : '',
         });
+
+        const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+
+        window.history.replaceState(
+          { ...window.history.state, as: newUrl, url: newUrl },
+          '',
+          newUrl
+        );
+
+        let queryStringChange = new Event('popstate');
+        window.dispatchEvent(queryStringChange);
+
         setValue(checksum);
       }
     },
-    [search, history, validator]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [validator]
   );
 
   return (

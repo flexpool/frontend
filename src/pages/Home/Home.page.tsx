@@ -3,14 +3,13 @@ import { CoinsWeMineSection } from 'src/pages/Home/components/CoinsWeMine/CoinsW
 import { GetStartedSection } from 'src/pages/Home/components/GetStarted/GetStarted.section';
 import { NewsSection } from './components/News/News.section';
 import { SearchAddressBar } from 'src/components/SearchAddressBar/SearchAddressBar';
-import { Helmet } from 'react-helmet-async';
 import { Spacer } from 'src/components/layout/Spacer';
 import { CoinEarnings } from './components/CoinEarnings/CoinEarnings';
 import { WhyFlexpool } from './components/WhyFlexpool/WhyFlexpool';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { poolCoinsFullGet } from 'src/rdx/poolCoinsFull/poolCoinsFull.actions';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { Hero, SearchWrapper, PageContainer } from './components';
 
 export const HomePage = () => {
@@ -22,9 +21,9 @@ export const HomePage = () => {
 
   return (
     <PageContainer>
-      <Helmet>
+      {/* <Head>
         <title>{t('head_title')}</title>
-      </Helmet>
+      </Head> */}
       <Hero>
         <Content contentCenter style={{ position: 'relative', zIndex: 100 }}>
           <h1>{t('title')}</h1>

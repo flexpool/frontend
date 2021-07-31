@@ -1,4 +1,4 @@
-import styled, { UIVariant } from 'styled-components/macro';
+import styled, { UIVariant } from 'styled-components';
 
 export const Sticker = styled.span<{
   variant?: UIVariant;

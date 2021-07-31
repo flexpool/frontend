@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { FaGlobeAmericas, FaPaperclip } from 'react-icons/fa';
 import { Card } from 'src/components/layout/Card';
 import { LinkOut } from 'src/components/LinkOut';

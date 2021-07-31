@@ -1,16 +1,18 @@
 import React from 'react';
-import { useHistory, useLocation, useRouteMatch } from 'react-router';
+import { useRouter } from 'next/router';
+// import { useHistory, useLocation, useRouteMatch } from 'react-router';
 import { Card } from 'src/components/layout/Card';
 import { Spacer } from 'src/components/layout/Spacer';
 import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
 import StatsChart from './MinerStats.chart';
 import { MinerStats } from './Stats.section';
 import { MinerWorkers } from './Workers.section';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Button } from 'src/components/Button';
 import qs from 'query-string';
 import { AverageEffectivePeriods } from './minerStats.types';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
+
 const WorkerTitle = styled.div`
   text-transform: uppercase;
   font-weight: 600;
@@ -29,18 +31,18 @@ const WorkerCard = styled(Card)`
   align-items: center;
 `;
 
-export const MinerStatsPage = () => {
-  const {
-    params: { address, coin },
-  } = useRouteMatch<{ address: string; coin: string }>();
+export const MinerStatsPage: React.FC<{
+  address: string;
+  coin: string;
+}> = ({ address, coin }) => {
+  const router = useRouter();
+
   const [
     averageEffectivePeriods,
     setAverageEffectivePeriods,
   ] = React.useState<AverageEffectivePeriods>({ 6: 0, 12: 0 });
 
   const worker = useActiveSearchParamWorker();
-  const history = useHistory();
-  const location = useLocation();
   const { t } = useTranslation('dashboard');
 
   React.useLayoutEffect(() => {
@@ -60,12 +62,12 @@ export const MinerStatsPage = () => {
 
   const handleResetActiveWorker = React.useCallback(() => {
     // just remove the worker
-    const { worker, ...restQuery } = qs.parse(location.search);
+    const { worker, ...restQuery } = qs.parse(window.location.search);
 
-    history.push({
+    router.push({
       search: qs.stringify(restQuery),
     });
-  }, [location.search, history]);
+  }, [router]);
 
   return (
     <>

@@ -5,7 +5,7 @@ import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { Ticker } from 'src/types/Ticker.types';
 import { filterUnique } from 'src/utils/array.utils';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Select } from './Form/Select/Select';
 import { Img } from './Img';
 

@@ -1,8 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
+
+// Components
 import DynamicList, {
   DynamicListColumn,
 } from 'src/components/layout/List/List';
 import { Mono, Ws } from 'src/components/Typo/Typo';
+import { Tooltip, TooltipContent } from 'src/components/Tooltip';
+
+// Redux
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiMinerWorker } from 'src/types/Miner.types';
@@ -12,7 +20,6 @@ import {
   useLocalizedPercentFormatter,
   useLocalizedSiFormatter,
 } from 'src/utils/si.utils';
-import styled from 'styled-components/macro';
 import {
   FaSearch,
   FaSort,
@@ -20,9 +27,6 @@ import {
   FaSortUp,
   FaTimes,
 } from 'react-icons/fa';
-import { useHistory } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 
 const PercentageItem = styled.span`
   color: var(--text-tertiary);
@@ -136,7 +140,9 @@ const MinerWorkersTable: React.FC<{
   const [sortKey, setSortKey] = React.useState<keyof ApiMinerWorker>('name');
   const [sortOrder, setSortOrder] = React.useState<-1 | 1>(1);
   const [search, setSearch] = React.useState('');
-  const { push } = useHistory();
+
+  const router = useRouter();
+
   const siFormatter = useLocalizedSiFormatter();
   const { t } = useTranslation('dashboard');
   const numberFormatter = useLocalizedNumberFormatter();
@@ -187,9 +193,9 @@ const MinerWorkersTable: React.FC<{
 
   const onRowClick = React.useCallback(
     (data: ApiMinerWorker) => {
-      push({ search: `?worker=${data.name}` });
+      router.push({ search: `?worker=${data.name}` });
     },
-    [push]
+    [router]
   );
 
   const cols = React.useMemo(() => {

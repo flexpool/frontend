@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { InfoBox } from '../InfoBox';
 
 export const ErrorBox: React.FC<{ error?: { message: string } | null }> = ({

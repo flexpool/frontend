@@ -52,7 +52,9 @@ const ServiceWorkerWrapper: FC = () => {
       waitingServiceWorker.addEventListener('statechange', (event) => {
         if ((event.target as any)?.state === 'activated') {
           console.log('[SW]: New service worker has been activated');
-          window.location.reload();
+          if (typeof window !== 'undefined') {
+            window.location.reload();
+          }
           setShowReload(false);
         }
       });

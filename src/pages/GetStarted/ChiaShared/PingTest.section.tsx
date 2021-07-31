@@ -1,23 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { useRouter } from 'next/router';
+import { AnyAction } from 'redux';
+import { useTranslation } from 'next-i18next';
+
+import styled from 'styled-components';
+import qs from 'query-string';
+import { w3cwebsocket } from 'websocket';
+import { differenceInMilliseconds } from 'date-fns';
+import { FaCheck } from 'react-icons/fa';
+
 import DynamicList, {
   DynamicListColumn,
 } from 'src/components/layout/List/List';
 import { MineableCoinRegion } from '../mineableCoinList';
-import { w3cwebsocket } from 'websocket';
-import { differenceInMilliseconds } from 'date-fns';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
-import qs from 'query-string';
-import { useHistory, useLocation } from 'react-router';
-import { FaCheck } from 'react-icons/fa';
 import { Highlight, Mono, Ws } from 'src/components/Typo/Typo';
 import { CopyButton } from 'src/components/CopyButton';
-import styled from 'styled-components';
 import { Sticker } from 'src/components/Sticker';
 import { Tooltip } from 'src/components/Tooltip';
 import { Img } from 'src/components/Img';
-import { useTranslation } from 'react-i18next';
-import { AnyAction } from 'redux';
 import { useBoolState } from 'src/hooks/useBoolState';
 
 // const WarningIcon = styled(FaExclamationCircle)`
@@ -122,8 +125,13 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   data,
 }) => {
   const [latencies, dispatch] = React.useReducer(reducer, {});
-  const { replace: historyReplace } = useHistory();
-  const { search } = useLocation();
+  const router = useRouter();
+  let search;
+
+  if (typeof window !== 'undefined') {
+    search = window.location.search;
+  }
+
   // const [selection, setSelection] = React.useState<'primary' | 'secondary'>(
   //   'primary'
   // );
@@ -154,6 +162,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
       searchParams: {
         primaryServer?: string;
         secondaryServer?: string;
+        farmerOption?: string;
       };
     }
   >[] = React.useMemo(
@@ -257,13 +266,27 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
     ],
     [t]
   );
+  const [urlState, setUrlState] = useState(new Date());
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('popstate', function (event) {
+        setUrlState(new Date());
+      });
+    }
+  }, []);
 
   const searchParams = React.useMemo(() => {
+    if (typeof window !== 'undefined') {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      search = window.location.search;
+    }
     return qs.parse(search) as {
       primaryServer?: string;
       secondaryServer?: string;
+      farmerOption?: string;
     };
-  }, [search]);
+  }, [urlState]);
 
   /**
    * returns two fastest servers
@@ -291,33 +314,55 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   React.useEffect(() => {
     if (fastest.first && fastest.second && !isAutoSetOnce.value) {
       isAutoSetOnce.handleTrue();
-      historyReplace({
-        search: qs.stringify({
-          ...searchParams,
-          primaryServer: fastest.first,
-          // secondaryServer: fastest.second,
-        }),
+      const query = qs.stringify({
+        ...searchParams,
+        primaryServer: fastest.first,
       });
+
+      const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+
+      window.history.pushState(
+        { ...window.history.state, as: newUrl, url: newUrl },
+        '',
+        newUrl
+      );
+      let queryStringChange = new Event('popstate');
+      window.dispatchEvent(queryStringChange);
     }
-  }, [fastest, historyReplace, searchParams, isAutoSetOnce]);
+    // useEffect only needs to fire on fastest server selection
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fastest]);
 
   const setServer = React.useCallback(
     (type: 'secondary' | 'primary', domain: string) => {
+      if (typeof window !== 'undefined') {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        search = window.location.search;
+      }
       const isPrimarySelection = type === 'primary';
-      historyReplace({
-        search: qs.stringify({
-          ...searchParams,
-          ...(isPrimarySelection
-            ? {
-                primaryServer: domain,
-              }
-            : {
-                secondaryServer: domain,
-              }),
-        }),
+      const query = qs.stringify({
+        ...searchParams,
+        ...(isPrimarySelection
+          ? {
+              primaryServer: domain,
+            }
+          : {
+              secondaryServer: domain,
+            }),
       });
+
+      const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+
+      window.history.pushState(
+        { ...window.history.state, as: newUrl, url: newUrl },
+        '',
+        newUrl
+      );
+      let queryStringChange = new Event('popstate');
+      window.dispatchEvent(queryStringChange);
     },
-    [historyReplace, searchParams]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
   );
 
   const colConfig = React.useMemo(() => {
@@ -350,17 +395,28 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   //   },
   //   [selectionhistoryReplace, searchParams]
   // );
-  const selectItem = React.useCallback(
-    (d: MineableCoinRegion) => {
-      historyReplace({
-        search: qs.stringify({
-          ...searchParams,
-          primaryServer: d.domain,
-        }),
-      });
-    },
-    [historyReplace, searchParams]
-  );
+  const selectItem = React.useCallback((d: MineableCoinRegion) => {
+    if (typeof window !== 'undefined') {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      search = window.location.search;
+    }
+    const query = qs.stringify({
+      ...qs.parse(search),
+      primaryServer: d.domain,
+    });
+
+    const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+
+    window.history.pushState(
+      { ...window.history.state, as: newUrl, url: newUrl },
+      '',
+      newUrl
+    );
+    let queryStringChange = new Event('popstate');
+    window.dispatchEvent(queryStringChange);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>

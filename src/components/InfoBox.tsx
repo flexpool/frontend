@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { UIVariant } from 'styled-components/macro';
+import styled, { UIVariant } from 'styled-components';
 
 const InfoBoxWrapper = styled.div<{ variant?: 'error' | UIVariant }>`
   padding: 1rem;

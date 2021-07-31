@@ -1,3 +1,5 @@
+// TODO: Remove this TS nocheck
+// @ts-nocheck
 import React, { useRef } from 'react';
 
 import {
@@ -23,17 +25,19 @@ import {
   ValueAxis,
   LineSeries,
 } from 'src/plugins/amcharts';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 const PoolHashrateChart = () => {
   const chartRef = useRef<HTMLDivElement>(null);
   const activeCoin = useActiveCoin();
   const poolHasrateState = useReduxState('poolHashrate');
   const { t } = useTranslation('statistics');
-
   const d = useDispatch();
+
   React.useEffect(() => {
-    d(poolHashrateGet(String(activeCoin?.ticker)));
+    if (activeCoin?.ticker) {
+      d(poolHashrateGet(String(activeCoin?.ticker)));
+    }
   }, [activeCoin, d]);
 
   const appTheme = useAppTheme();

@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet-async';
 import { Redirect } from 'react-router';
 import { Img } from 'src/components/Img';
 import { Card } from 'src/components/layout/Card';
@@ -7,7 +6,7 @@ import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOut } from 'src/components/LinkOut';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { partnersData } from './partnersData';
 
 const LogoImg = styled(Img)`
@@ -46,9 +45,9 @@ export const PartnersPage = () => {
   }
   return (
     <Page>
-      <Helmet>
+      {/* <Head>
         <title>Partners</title>
-      </Helmet>
+      </Head> */}
       <Content md paddingLg>
         <h1>Partners</h1>
         <Spacer />

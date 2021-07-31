@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'next-i18next';
 import { Spacer } from 'src/components/layout/Spacer';
 import { Highlight } from 'src/components/Typo/Typo';
 import { TerminalCommand } from './TerminalCommand';
@@ -71,7 +71,7 @@ const AlreadyFarmerGuide = (props: FarmerGuideProps) => {
   Enter a number to pick or q to quit: `}{' '}
             <b>1</b>
             {`
-  
+
   Will join pool: https://${primaryServer} with Plot NFT 3118587270.
   Confirm [n]/y:`}{' '}
             <b>y</b>
@@ -111,7 +111,7 @@ const NewFarmerGuide = (props: FarmerGuideProps) => {
   Enter a number to pick or q to quit: `}{' '}
             <b>1</b>
             {`
-  
+
   Will create a plot NFT and join pool: https://${primaryServer}.
   Confirm [n]/y:`}{' '}
             <b>y</b>

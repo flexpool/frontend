@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { FaCog } from 'react-icons/fa';
 import { Button } from 'src/components/Button';
 import { ScrollArea } from 'src/components/layout/ScrollArea';
@@ -88,7 +88,9 @@ const SettingsBtn = styled(Button)`
   }
 `;
 
-export const MinerSettingsModal = () => {
+export const MinerSettingsModal: React.FC<{
+  address: string;
+}> = ({ address }) => {
   const openState = useOpenState();
   const [page, setPage] = React.useState<SettingsPageKey>('payouts');
 
@@ -138,7 +140,7 @@ export const MinerSettingsModal = () => {
             ))}
           </Nav>
           <PageWrapper>
-            <PageComponent />
+            <PageComponent address={address} />
           </PageWrapper>
         </Split>
       </Modal>

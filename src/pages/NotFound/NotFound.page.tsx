@@ -1,6 +1,8 @@
+// TODO: Remove this TS nocheck
+// @ts-nocheck
 import { Page } from 'src/components/layout/Page';
 
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 import { ReactComponent as StarsSvg } from './assets/stars.svg';
 import EarthSrc from './assets/earth.svg';
@@ -113,7 +115,7 @@ export const NotFoundPage = () => {
         <AstronautContainer>
           <Astronaut alt="Astronaut" src={AstronautSrc} />
         </AstronautContainer>
-        <h2>Can't find the moon?</h2>
+        <h2>Can&apos;t find the moon?</h2>
       </MiddleContainer>
     </Wrapper>
   );

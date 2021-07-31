@@ -15,8 +15,9 @@ import { topMinersGet } from 'src/rdx/topMiners/topMiners.actions';
 import { Mono, Ws } from 'src/components/Typo/Typo';
 import { ApiTopMiner } from 'src/types/TopMiner.types';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
-import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router';
+import { useTranslation } from 'next-i18next';
+// import { useHistory } from 'react-router';
+import { useRouter } from 'next/router';
 
 export const TopMinersSection = () => {
   const activeCoinTicker = useActiveCoinTicker();
@@ -27,6 +28,7 @@ export const TopMinersSection = () => {
   React.useEffect(() => {
     d(topMinersGet(activeCoinTicker));
   }, [activeCoinTicker, d]);
+
   const siFormatter = useLocalizedSiFormatter();
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const activeCoin = useActiveCoin();
@@ -101,12 +103,13 @@ export const TopMinersSection = () => {
     ],
     [siFormatter, activeCoinFormatter, t, activeCoin]
   );
-  const { push } = useHistory();
+  // const { push } = useHistory();
+  const router = useRouter();
   const handleMinerClick = React.useCallback(
     (miner: ApiTopMiner) => {
-      push(`/miner/${activeCoinTicker}/${miner.address}`);
+      router.push(`/miner/${activeCoinTicker}/${miner.address}`);
     },
-    [push, activeCoinTicker]
+    [router, activeCoinTicker]
   );
 
   return (

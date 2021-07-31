@@ -1,3 +1,6 @@
+@import 'src/pages/Docs/ApiDocs.scss';
+@import 'src/components/Tooltip.scss';
+
 html,
 body {
   width: 100%;
@@ -26,6 +29,20 @@ body {
   --bad-luck-color: #ccc;
 
   --color-discord: #7289da;
+
+  @media (prefers-color-scheme: dark) {
+    --bg-primary: #151519;
+    --bg-secondary: #1c1c1f;
+    --border-color: #333;
+    --text-secondary: #ccc;
+    --text-primary: #eee;
+    --overlay: rgba(0, 0, 0, 0.5);
+    --bad-luck-color: #bbb;
+
+    svg tspan {
+      fill: var(--text-primary);
+    }
+  }
 
   background: var(--bg-primary);
   width: 100vw;
@@ -189,7 +206,7 @@ scrllbar
   }
 }
 
-#root {
+#__next {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -229,4 +246,136 @@ input {
   border-radius: none;
   color: var(--text-primary);
   padding: 0 1rem;
+}
+
+.burger {
+  font-size: 12px;
+
+  font-size: 8px;
+  height: 3em;
+  width: 3em;
+  position: relative;
+  cursor: pointer;
+  transition: 0.2s all;
+  -webkit-tap-highlight-color: transparent;
+
+  .burger-lines:after {
+    left: 0;
+    top: -1em;
+  }
+  .burger-lines:before {
+    left: 1em;
+    top: 1em;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 150%;
+    width: 150%;
+    top: -25%;
+    left: -25%;
+  }
+  .burger-lines {
+    top: 50%;
+    margin-top: -0.125em;
+    &,
+    &:after,
+    &:before {
+      pointer-events: none;
+      display: block;
+      content: '';
+      width: 100%;
+      border-radius: 4px;
+      background-color: var(--text-primary);
+      height: 4px;
+      position: absolute;
+      transform: rotate(0);
+    }
+    &:after {
+      left: 0;
+      top: -1em;
+    }
+    &:before {
+      left: 1em;
+      top: 1em;
+    }
+  }
+}
+
+.burger.burger-slip {
+  .burger-lines {
+    &:after,
+    &:before {
+      width: 2em;
+    }
+    &,
+    &:after,
+    &:before {
+      transition: all 0.2s;
+    }
+  }
+
+  &.open {
+    .burger-lines {
+      & {
+        transform: translateX(-2em);
+        background-color: transparent;
+      }
+      &:before,
+      &:after {
+        width: 3em;
+        left: 0em;
+        top: 0px;
+      }
+      &:before {
+        transform: translateX(2em) rotate(135deg);
+      }
+      &:after {
+        transform: translateX(2em) rotate(-135deg);
+      }
+    }
+  }
+}
+
+// Tailwind Utils
+
+.w-full {
+  width: 100%;
+}
+.mb-0 {
+  margin-bottom: 0px;
+}
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-enter-active {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+}
+.fade-enter-active,
+.fade-exit-active {
+  transition: opacity 1000ms;
 }
