@@ -193,7 +193,7 @@ const MinerWorkersTable: React.FC<{
 
   const onRowClick = React.useCallback(
     (data: ApiMinerWorker) => {
-      router.push({ search: `?worker=${data.name}` });
+      router.push(`/miner/${router.query.coin}/${router.query.address[0]}/?worker=${data.name}`, undefined, {shallow: true});
     },
     [router]
   );
