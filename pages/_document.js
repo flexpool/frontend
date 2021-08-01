@@ -1,6 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
-import Script from 'next/script';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -80,32 +79,6 @@ export default class MyDocument extends Document {
           <meta name="application-name" content="Flexpool.io" />
           <meta name="msapplication-TileColor" content="#312e2e" />
           <meta name="theme-color" content="#ffffff" />
-
-          <Script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-PWS9985F4X"
-          />
-
-          <Script
-            onLoad={() => {
-              window.dataLayer = window.dataLayer || [];
-              function gtag() {
-                dataLayer.push(arguments);
-              }
-              gtag('js', new Date());
-              gtag('config', 'G-PWS9985F4X');
-            }}
-          />
-
-          <Script
-            async
-            src="https://xtwj9bs7n2j9.statuspage.io/embed/script.js"
-          />
-
-          <Script
-            id="ze-snippet"
-            src="https://static.zdassets.com/ekr/snippet.js?key=d3afb9ee-8238-4043-b961-08e6c726a8f0"
-          />
         </Head>
         <body>
           <Main />
