@@ -26,6 +26,7 @@ import CookieConsent from '../src/components/CookieConsent';
 
 import { usePoolCoins } from '../src/rdx/poolCoins/poolCoins.hooks';
 import SEO from '../next-seo.config';
+import Script from 'next/script';
 
 let cachedState;
 let addressSearchState;
@@ -44,6 +45,28 @@ const App = ({ Component, pageProps, router }: AppProps) => {
   return (
     <>
       <ReduxProvider store={store}>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-PWS9985F4X"
+        />
+        <Script
+          onLoad={() => {
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', 'G-PWS9985F4X');
+          }}
+        />
+
+        <Script
+          src="https://xtwj9bs7n2j9.statuspage.io/embed/script.js"
+        />
+
+        <Script
+          id="ze-snippet"
+          src="https://static.zdassets.com/ekr/snippet.js?key=d3afb9ee-8238-4043-b961-08e6c726a8f0"
+        />
         <ThemeProvider theme={mainTheme}>
           {/* <SnackViewControl /> */}
           <PoolCoins />
