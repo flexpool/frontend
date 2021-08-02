@@ -47,16 +47,14 @@ export const MinerStatsPage: React.FC<{
 
   React.useLayoutEffect(() => {
     if (worker) {
-      setTimeout(() => {
-        const scrollToEl = document.getElementById('workertabs');
-        if (scrollToEl) {
-          window.scrollTo({
-            top: scrollToEl.getBoundingClientRect().top - 100 + window.scrollY,
-            left: 0,
-            behavior: 'smooth',
-          });
-        }
-      }, 50);
+      const scrollToEl = document.getElementById('workertabs');
+      if (scrollToEl) {
+        window.scrollTo({
+          top: scrollToEl.getBoundingClientRect().top - 100 + window.scrollY,
+          left: 0,
+          behavior: 'smooth',
+        });
+      }
     }
   }, [worker]);
 

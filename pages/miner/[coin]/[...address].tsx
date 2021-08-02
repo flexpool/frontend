@@ -162,7 +162,7 @@ export const MinerDashboardPageContent: React.FC<{
       d(minerRewardsGet(coinTicker, address[0], counterTicker));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [coinTicker, poolCoins?.data]);
+  }, [coinTicker, poolCoins?.data, worker]);
 
   useEffect(() => {
     if (window !== typeof undefined) {
