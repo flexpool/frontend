@@ -34,7 +34,6 @@ function BlocksPage() {
 
   React.useEffect(() => {
     if (activeCoin?.ticker) {
-      console.log(activeCoin.ticker);
       const init = { query: { coin: activeCoin?.ticker } };
       statsState.start(
         Promise.all([
