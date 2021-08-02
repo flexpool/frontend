@@ -24,6 +24,7 @@ export const ChiaCliGuidePage: React.FC = () => {
 
   const mineableCoin = React.useMemo(() => {
     return mineableCoins.find((item) => item.ticker === ticker);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const jsonHw = t(`detail_${ticker}.hardware`, {
@@ -33,6 +34,7 @@ export const ChiaCliGuidePage: React.FC = () => {
   const mineableCoinConfig = React.useMemo(() => {
     const mergedHw = merge(mineableCoin?.hardware, jsonHw);
     return mergedHw.find((item) => item.key === 'XCH-CLI');
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   let primaryServer = 'POOL_URL';
