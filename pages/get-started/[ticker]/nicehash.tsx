@@ -29,7 +29,6 @@ export async function getStaticProps({ locale }) {
       ...(await serverSideTranslations(locale, [
         'common',
         'get-started',
-        'nicehash',
         'cookie-consent',
       ])),
     },

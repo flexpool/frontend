@@ -31,7 +31,7 @@ export const ChiaGuiGuidePage: React.FC = () => {
 
   const mineableCoin = React.useMemo(() => {
     return mineableCoins.find((item) => item.ticker === ticker);
-  }, [ticker]);
+  }, []);
 
   const jsonHw = t(`detail_${ticker}.hardware`, {
     returnObjects: true,
