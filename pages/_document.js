@@ -39,11 +39,6 @@ export default class MyDocument extends Document {
           />
           <link
             rel="preconnect"
-            href="https://js.intercomcdn.com"
-            prefetch="false"
-          />
-          <link
-            rel="preconnect"
             href="https://fonts.googleapis.com"
             prefetch="false"
           />

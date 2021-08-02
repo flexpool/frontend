@@ -1,5 +1,7 @@
 const SEO = {
   titleTemplate: '%s | Flexpool.io',
+  description:
+    'The mining pool that offers you the best mining experience. We build the future of mining pools here.',
   openGraph: {
     type: 'website',
     locale: 'en_US',

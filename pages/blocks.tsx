@@ -33,28 +33,35 @@ function BlocksPage() {
   const { t } = useTranslation('blocks');
 
   React.useEffect(() => {
-    const init = { query: { coin: activeCoin?.ticker } };
-    statsState.start(
-      Promise.all([
-        fetchApi<number>('/pool/averageLuck', init),
-        fetchApi<number>('/pool/currentLuck', init),
-        fetchApi<number>('/pool/networkHashrate', init),
-        fetchApi<number>('/pool/networkDifficulty', init),
-      ]).then(
-        ([averageLuck, currentLuck, networkHashrate, networkDifficulty]) => ({
-          averageLuck,
-          currentLuck,
-          networkHashrate,
-          networkDifficulty,
-        })
-      )
-    );
+    if (activeCoin?.ticker) {
+      const init = { query: { coin: activeCoin?.ticker } };
+      statsState.start(
+        Promise.all([
+          fetchApi<number>('/pool/averageLuck', init),
+          fetchApi<number>('/pool/currentLuck', init),
+          fetchApi<number>('/pool/networkHashrate', init),
+          fetchApi<number>('/pool/networkDifficulty', init),
+        ]).then(
+          ([averageLuck, currentLuck, networkHashrate, networkDifficulty]) => ({
+            averageLuck,
+            currentLuck,
+            networkHashrate,
+            networkDifficulty,
+          })
+          )
+          );
+    }
     // eslint-disable-next-line
   }, [activeCoin?.ticker]);
 
   return (
     <Page>
-      <NextSeo title={t('head_title')} />
+      <NextSeo
+        title={t('head_title')}
+        openGraph={{
+          title: t('head_title'),
+        }}
+      />
       <HeaderStat>
         <h1>{t('title')}</h1>
         <p>{t('description')}</p>

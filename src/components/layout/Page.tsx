@@ -1,34 +1,14 @@
 import React from 'react';
-import { ErrorBoundary } from '@sentry/react';
 
 import styled from 'styled-components';
 import { LoaderSpinner } from '../Loader/LoaderSpinner';
-
-const ErrorContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 3rem;
-  margin: auto;
-  min-height: 70vh;
-`;
 
 export const Page: React.FC<{
   children: React.ReactNode;
   className?: string;
 }> = ({ children, className }) => {
   return (
-    <ErrorBoundary
-      fallback={
-        <ErrorContainer>
-          <h1>Something went wrong.</h1>
-          <p>Apologies for the inconvenience! Please try again later. </p>
-        </ErrorContainer>
-      }
-    >
-      <main>{children}</main>
-    </ErrorBoundary>
+    <main>{children}</main>
   );
 };
 

@@ -4,8 +4,6 @@
   "private": true,
   "dependencies": {
     "@amcharts/amcharts4": "^4.10.17",
-    "@sentry/nextjs": "^6.10.0",
-    "@sentry/tracing": "6.2.5",
     "@svgr/webpack": "^5.5.0",
     "@tippyjs/react": "4.2.5",
     "@types/jest": "26.0.15",
