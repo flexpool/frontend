@@ -1,5 +1,3 @@
-// TODO: Remove this TS nocheck
-// @ts-nocheck
 import React from 'react';
 import Head from 'next/head';
 
@@ -133,11 +131,11 @@ export const NicehashGuidePage = () => {
 
           <h2>
             <Highlight>#1</Highlight> {t('nicehash.step_one.title')}
-          </h2>
+        </h2>
           {stepOneDirections &&
             <>
-              {stepOneDirections.map((p) => (
-                <p key={p}>{p}</p>
+              {Object.keys(stepOneDirections).map((p) => (
+                <p key={p}>{stepOneDirections[p]}</p>
               ))}
             </>
           }
@@ -150,8 +148,8 @@ export const NicehashGuidePage = () => {
           </h2>
           {stepTwoDirections &&
             <>
-              {stepTwoDirections.map((p) => (
-                <p key={p} dangerouslySetInnerHTML={{ __html: p }}/>
+              {Object.keys(stepTwoDirections).map((p) => (
+                <p key={p} dangerouslySetInnerHTML={{ __html: stepTwoDirections[p] }}/>
               ))}
             </>
           }
@@ -167,8 +165,8 @@ export const NicehashGuidePage = () => {
           </h2>
           {stepThreeDirections &&
             <>
-              {stepThreeDirections.map((p) => (
-                <p key={p} dangerouslySetInnerHTML={{ __html: p }}/>
+              {Object.keys(stepThreeDirections).map((p) => (
+                <p key={p} dangerouslySetInnerHTML={{ __html: stepThreeDirections[p] }}/>
               ))}
             </>
           }
@@ -180,8 +178,8 @@ export const NicehashGuidePage = () => {
           </h2>
           {stepFourDirections &&
             <>
-              {stepFourDirections.map((p) => (
-                <p key={p} dangerouslySetInnerHTML={{ __html: p }}/>
+              {Object.keys(stepFourDirections).map((p) => (
+                <p key={p} dangerouslySetInnerHTML={{ __html: stepFourDirections[p] }}/>
               ))}
             </>
           }
