@@ -57,7 +57,12 @@ function BlocksPage() {
 
   return (
     <Page>
-      <NextSeo title={t('head_title')} />
+      <NextSeo
+        title={t('head_title')}
+        openGraph={{
+          title: t('head_title'),
+        }}
+      />
       <HeaderStat>
         <h1>{t('title')}</h1>
         <p>{t('description')}</p>

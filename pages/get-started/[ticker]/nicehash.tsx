@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { Content } from '../../../src/components/layout/Content';
@@ -8,9 +8,12 @@ import { NicehashGuidePage } from '../../../src/pages/GetStarted/Nicehash/Niceha
 export const GetStartedNicehashPage = () => {
   return (
     <Page>
-      <Head>
-        <title>Start mining with Flexpool</title>
-      </Head>
+      <NextSeo
+        title={'Start mining with Flexpool'}
+        openGraph={{
+          title: 'Start mining with Flexpool',
+        }}
+      />
       <Content paddingLg>
         <NicehashGuidePage />
       </Content>

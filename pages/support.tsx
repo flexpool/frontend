@@ -50,7 +50,12 @@ export const SupportPage = () => {
   const { t } = useTranslation('support');
   return (
     <Page>
-      <NextSeo title={t('head_title')} />
+      <NextSeo
+        title={t('head_title')}
+        openGraph={{
+          title: t('head_title'),
+        }}
+      />
 
       <HeroBlue>
         <Content md>

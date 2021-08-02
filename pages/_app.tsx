@@ -44,6 +44,7 @@ const store = createReduxStore({
 const App = ({ Component, pageProps, router }: AppProps) => {
   return (
     <>
+      <DefaultSeo {...SEO} />
       <ReduxProvider store={store}>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-PWS9985F4X"
@@ -72,7 +73,6 @@ const App = ({ Component, pageProps, router }: AppProps) => {
           <PoolCoins />
           <NavBar />
           <AppTheme />
-          <DefaultSeo {...SEO} />
           <SwitchTransition>
             <CSSTransition
               classNames="fade"

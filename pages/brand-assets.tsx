@@ -89,7 +89,12 @@ export const BrandAssetsPage = () => {
   const { t } = useTranslation('brand-assets');
   return (
     <Page>
-      <NextSeo title={t('head_title')} />
+      <NextSeo
+        title={t('head_title')}
+        openGraph={{
+          title: t('head_title'),
+        }}
+      />
 
       <Content md paddingLg>
         <h2>{t('brand_name.title')}</h2>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Head from 'next/head';
+
+import { NextSeo } from 'next-seo';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
@@ -182,9 +183,12 @@ export const MinerDashboardPageContent: React.FC<{
         onRefresh={loadAll}
       >
         <Page>
-          <Head>
-            <title>{`${address} | Flexpool.io`}</title>
-          </Head>
+          <NextSeo
+            title={`${address}`}
+            openGraph={{
+              title: `${address}`,
+            }}
+          />
           <Content>
             <HeaderGreetings onRefresh={loadAll} />
             <AccountHeader

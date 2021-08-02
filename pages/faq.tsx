@@ -143,7 +143,12 @@ function FAQPage({ faq }) {
 
   return (
     <Page>
-      <NextSeo title={'FAQ'} />
+      <NextSeo
+        title={'FAQ'}
+        openGraph={{
+          title: 'FAQ'
+        }}
+      />
       <Content paddingLg>
         <FaqContent>
           {(faq || []).map((item) => (

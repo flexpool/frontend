@@ -53,8 +53,12 @@ export const PartnersPage = () => {
 
   return (
     <Page>
-      <NextSeo title={'Partners'} />
-
+      <NextSeo
+        title={'Partners'}
+        openGraph={{
+          title: 'Partners',
+        }}
+      />
       <Content md paddingLg>
         <h1>Partners</h1>
 
