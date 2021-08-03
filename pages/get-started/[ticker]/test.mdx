@@ -1,0 +1,33 @@
+import { Page } from '../../../src/components/layout/Page';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+const { t } = useTranslation('get-started');
+
+<Page>
+  # {t(`detail_xch.title`)}
+</Page>
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'common',
+        'get-started',
+        'cookie-consent',
+      ])),
+    },
+  };
+}
+
+// export const getStaticPaths = ({ locales }) => {
+//   const paths = [];
+
+//   for (const locale of locales) {
+//     paths.push({ params: { ticker: 'xch', hw: 'flexfarmer' }, locale });
+//   }
+
+//   return {
+//     paths: paths,
+//     fallback: false,
+//   };
+// };
