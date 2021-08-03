@@ -76,6 +76,10 @@ export const MineableCoinList: React.FC = () => {
               returnObjects: true,
             }) as MineableCoinHardware[];
 
+            if (typeof poolHw === 'string') {
+              return <></>;
+            }
+
             return (
               <MineableCoinWrapper key={item.name}>
                 <CoinContent>
