@@ -1,30 +1,30 @@
-import '../src/index.css';
-import '../src/App/normalize.scss';
-import '../src/App/App.scss';
+import 'src/index.css';
+import 'src/App/normalize.scss';
+import 'src/App/App.scss';
 import { appWithTranslation } from 'next-i18next';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 
-import createReduxStore from '../src/rdx/createStore';
+import createReduxStore from 'src/rdx/createStore';
 import { Provider as ReduxProvider } from 'react-redux';
-import { localStorage } from '../src/utils/localStorage';
-import { AppState } from '../src/rdx/rootReducer';
+import { localStorage } from 'src/utils/localStorage';
+import { AppState } from 'src/rdx/rootReducer';
 
 import type { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
 
 // Theme
 import { ThemeProvider } from 'styled-components';
-import { AppTheme } from '../src/App/AppTheme';
-import { mainTheme } from '../src/App/styledTheme';
+import { AppTheme } from 'src/App/AppTheme';
+import { mainTheme } from 'src/App/styledTheme';
 
 // Components
-import { NavBar } from '../src/components/layout/NavBar';
-import { FooterSection } from '../src/sections/Footer.section';
-import { searchAddressStorage } from '../src/components/SearchAddressBar/searchCache';
-import CookieConsent from '../src/components/CookieConsent';
-// import { SnackViewControl } from '../src/components/Snacks/SnackViewControl';
+import { NavBar } from 'src/components/layout/NavBar';
+import { FooterSection } from 'src/sections/Footer.section';
+import { searchAddressStorage } from 'src/components/SearchAddressBar/searchCache';
+import CookieConsent from 'src/components/CookieConsent';
+// import { SnackViewControl } from 'src/components/Snacks/SnackViewControl';
 
-import { usePoolCoins } from '../src/rdx/poolCoins/poolCoins.hooks';
+import { usePoolCoins } from 'src/rdx/poolCoins/poolCoins.hooks';
 import SEO from '../next-seo.config';
 import Script from 'next/script';
 

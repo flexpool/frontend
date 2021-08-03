@@ -1,9 +1,9 @@
 import { NextSeo } from 'next-seo';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { Content } from '../../../src/components/layout/Content';
-import { Page } from '../../../src/components/layout/Page';
-import { NicehashGuidePage } from '../../../src/pages/GetStarted/Nicehash/NicehashGuide.page';
+import { Content } from 'src/components/layout/Content';
+import { Page } from 'src/components/layout/Page';
+import { NicehashGuidePage } from 'src/pages/GetStarted/Nicehash/NicehashGuide.page';
 
 export const GetStartedNicehashPage = () => {
   return (

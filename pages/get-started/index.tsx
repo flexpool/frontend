@@ -1,9 +1,9 @@
 import { NextSeo } from 'next-seo';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { Content } from '../../src/components/layout/Content';
-import { Page } from '../../src/components/layout/Page';
-import { MineableCoinList } from '../../src/pages/GetStarted/CoinList.page';
+import { Content } from 'src/components/layout/Content';
+import { Page } from 'src/components/layout/Page';
+import { MineableCoinList } from 'src/pages/GetStarted/CoinList.page';
 
 export const GetStartedPage = () => {
   return (
