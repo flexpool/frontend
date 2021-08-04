@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { Content } from '../../../src/components/layout/Content';
@@ -8,9 +8,12 @@ import { ChiaGuiGuidePage } from '../../../src/pages/GetStarted/ChiaGui/Guide.pa
 export const GetStartedXchGuiPage = () => {
   return (
     <Page>
-      <Head>
-        <title>Start mining with Flexpool</title>
-      </Head>
+      <NextSeo
+        title={'Start mining with Flexpool'}
+        openGraph={{
+          title: 'Start mining with Flexpool',
+        }}
+      />
       <Content paddingLg>
         <ChiaGuiGuidePage />
       </Content>

@@ -32,7 +32,12 @@ export const HomePage = () => {
 
   return (
     <PageContainer>
-      <NextSeo title={'The Most Advanced Mining Pool'} />
+      <NextSeo
+        title='The Most Advanced Mining Pool'
+        openGraph={{
+          title: 'The Most Advanced Mining Pool',
+        }}
+      />
 
       <Hero>
         <Content contentCenter style={{ position: 'relative', zIndex: 100 }}>

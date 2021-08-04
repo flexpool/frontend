@@ -24,7 +24,8 @@ export const ChiaCliGuidePage: React.FC = () => {
 
   const mineableCoin = React.useMemo(() => {
     return mineableCoins.find((item) => item.ticker === ticker);
-  }, [ticker]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const jsonHw = t(`detail_${ticker}.hardware`, {
     returnObjects: true,
@@ -33,7 +34,8 @@ export const ChiaCliGuidePage: React.FC = () => {
   const mineableCoinConfig = React.useMemo(() => {
     const mergedHw = merge(mineableCoin?.hardware, jsonHw);
     return mergedHw.find((item) => item.key === 'XCH-CLI');
-  }, [jsonHw, mineableCoin?.hardware]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   let primaryServer = 'POOL_URL';
   let farmerOption = 'new-farmer';
@@ -64,16 +66,16 @@ export const ChiaCliGuidePage: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const searchParams = React.useMemo(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    primaryServer = qs.parse(search).primaryServer
-      ? qs.parse(search).primaryServer
-      : 'POOL_URL';
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    farmerOption = qs.parse(search).farmerOption
-      ? qs.parse(search).farmerOption
-      : 'new-farmer';
-  }, [urlState]);
+  // const searchParams = React.useMemo(() => {
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   primaryServer = qs.parse(search).primaryServer
+  //     ? qs.parse(search).primaryServer
+  //     : 'POOL_URL';
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   farmerOption = qs.parse(search).farmerOption
+  //     ? qs.parse(search).farmerOption
+  //     : 'new-farmer';
+  // }, [urlState]);
 
   const setSelectedFarmerOption = (s: string) => {
     if (typeof window !== 'undefined') {

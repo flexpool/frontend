@@ -3,9 +3,8 @@ import { useLocation } from 'react-router';
 import { useRouter } from 'next/router';
 
 export const useActiveSearchParamWorker = () => {
-  const { worker } = qs.parse(
-    typeof window !== 'undefined' ? window.location.search : ''
-  );
+  const router = useRouter();
+  const { worker } = router.query;
 
   return typeof worker === 'string' ? worker : undefined;
 };

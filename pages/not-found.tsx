@@ -116,7 +116,12 @@ export const NotFoundPage = () => {
   return (
     <Page>
       <Wrapper>
-        <NextSeo title={'404 Not Found'} />
+        <NextSeo
+          title={'404 Not Found'}
+          openGraph={{
+            title: '404 Not Found',
+          }}
+        />
         <StarsContainer>
           <StarsSvg />
         </StarsContainer>

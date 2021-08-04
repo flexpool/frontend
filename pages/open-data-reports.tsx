@@ -76,7 +76,12 @@ export const OpenDataReportsPage = ({ dates }) => {
 
   return (
     <Page>
-      <NextSeo title={t('head_title')} />
+      <NextSeo
+        title={t('head_title')}
+        openGraph={{
+          title: t('head_title'),
+        }}
+      />
 
       <Content md paddingLg>
         <h1>{t('title')}</h1>

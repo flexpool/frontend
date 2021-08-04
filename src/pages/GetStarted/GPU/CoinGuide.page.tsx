@@ -22,7 +22,8 @@ export const MineableCoinGuidePage: React.FC = () => {
 
   const mineableCoin = React.useMemo(() => {
     return mineableCoins.find((item) => item.ticker === ticker);
-  }, [ticker]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const jsonHw = t(`detail_${ticker}.hardware`, {
     returnObjects: true,
@@ -35,7 +36,8 @@ export const MineableCoinGuidePage: React.FC = () => {
         item.key ===
         router.pathname.substring(router.pathname.lastIndexOf('/') + 1)
     );
-  }, [jsonHw, mineableCoin?.hardware, router.pathname]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!mineableCoin || !mineableCoinConfig) {
     if (typeof window !== 'undefined') {

@@ -67,12 +67,14 @@ export const ServerList: React.FC<{
         ),
       },
     ],
-    [t]
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
   );
 
   const serverList = React.useMemo(() => {
     return data.filter((item) => item.high_diff_avail);
-  }, [data]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return <DynamicList data={serverList} columns={cols} />;
 };
@@ -91,7 +93,8 @@ export const NicehashGuidePage = () => {
 
   const mineableCoin = React.useMemo(() => {
     return mineableCoins.find((item) => item.ticker === ticker);
-  }, [ticker]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!mineableCoin) {
     router.push('/get-started');
@@ -102,84 +105,87 @@ export const NicehashGuidePage = () => {
       ? mineableCoin?.algorithm
       : `${mineableCoin?.nicehash_algorithm} (${mineableCoin?.algorithm})`;
 
+  const stepOneDirections = t('nicehash.step_one.description', {
+    returnObjects: true,
+    algorithm: algo,
+  });
+  const stepTwoDirections = t('nicehash.step_two.description', {
+    returnObjects: true,
+    algorithm: algo,
+  });
+  const stepThreeDirections = t('nicehash.step_three.description', {
+    returnObjects: true,
+    algorithm: algo,
+  });
+  const stepFourDirections = t('nicehash.step_four.description', {
+    returnObjects: true,
+    algorithm: algo,
+  });
+
   return (
     <Page>
       <Head>
         <title>{t('nicehash.head_title')}</title>
       </Head>
-      <Content md paddingLg>
-        <h1>{t('nicehash.title')}</h1>
-        <p>{t('nicehash.description')}</p>
+        <Content md paddingLg>
+          <h1>{t('nicehash.title')}</h1>
+          <p>{t('nicehash.description')}</p>
 
-        <h2>
-          <Highlight>#1</Highlight> {t('nicehash.step_one.title')}
+          <h2>
+            <Highlight>#1</Highlight> {t('nicehash.step_one.title')}
         </h2>
-        {(t('nicehash.step_one.description', {
-          returnObjects: true,
-          algorithm: algo,
-        }) as string[]).map((p) => (
-          <p key={p}>{p}</p>
-        ))}
-        <LinkOut href={nh1.src}>
-          <GuideImg src={nh1.src} alt="nicehash guide" />
-        </LinkOut>
-        <h2>
-          <Highlight>#2 </Highlight>
-          {t('nicehash.step_two.title')}
-        </h2>
-        <Trans
-          components={{
-            strong: <strong />,
-          }}
-        >
-          {(t('nicehash.step_two.description', {
-            returnObjects: true,
-            algorithm: algo,
-          }) as string[]).map((p) => (
-            <p key={p}>{p}</p>
-          ))}
-        </Trans>
-        <Spacer />
-        <ServerList data={mineableCoin?.regions} />
-        <Spacer />
-        <LinkOut href={nh2.src}>
-          <GuideImg src={nh2.src} alt="nicehash guide" />
-        </LinkOut>
-        <h2>
-          <Highlight>#3 </Highlight>
-          {t('nicehash.step_three.title')}
-        </h2>
-        <Trans
-          components={{
-            strong: <strong />,
-          }}
-        >
-          {(t('nicehash.step_three.description', {
-            returnObjects: true,
-            algorithm: algo,
-          }) as string[]).map((p) => (
-            <p key={p}>{p}</p>
-          ))}
-        </Trans>
-        <LinkOut href={nh3.src}>
-          <GuideImg src={nh3.src} alt="nicehash guide" />
-        </LinkOut>
-        <h2>
-          <Highlight>#4</Highlight> {t('nicehash.step_four.title')}
-        </h2>
-        <Trans
-          components={{
-            strong: <strong />,
-          }}
-        >
-          {(t('nicehash.step_four.description', {
-            returnObjects: true,
-            algorithm: algo,
-          }) as string[]).map((p) => (
-            <p key={p}>{p}</p>
-          ))}
-        </Trans>
-      </Content>
+          {stepOneDirections &&
+            <>
+              {Object.keys(stepOneDirections).map((p) => (
+                <p key={p}>{stepOneDirections[p]}</p>
+              ))}
+            </>
+          }
+          <LinkOut href={nh1.src}>
+            <GuideImg src={nh1.src} alt="nicehash guide" />
+          </LinkOut>
+          <h2>
+            <Highlight>#2 </Highlight>
+            {t('nicehash.step_two.title')}
+          </h2>
+          {stepTwoDirections &&
+            <>
+              {Object.keys(stepTwoDirections).map((p) => (
+                <p key={p} dangerouslySetInnerHTML={{ __html: stepTwoDirections[p] }}/>
+              ))}
+            </>
+          }
+          <Spacer />
+          <ServerList data={mineableCoin?.regions} />
+          <Spacer />
+          <LinkOut href={nh2.src}>
+            <GuideImg src={nh2.src} alt="nicehash guide" />
+          </LinkOut>
+          <h2>
+            <Highlight>#3 </Highlight>
+            {t('nicehash.step_three.title')}
+          </h2>
+          {stepThreeDirections &&
+            <>
+              {Object.keys(stepThreeDirections).map((p) => (
+                <p key={p} dangerouslySetInnerHTML={{ __html: stepThreeDirections[p] }}/>
+              ))}
+            </>
+          }
+          <LinkOut href={nh3.src}>
+            <GuideImg src={nh3.src} alt="nicehash guide" />
+          </LinkOut>
+          <h2>
+            <Highlight>#4</Highlight> {t('nicehash.step_four.title')}
+          </h2>
+          {stepFourDirections &&
+            <>
+              {Object.keys(stepFourDirections).map((p) => (
+                <p key={p} dangerouslySetInnerHTML={{ __html: stepFourDirections[p] }}/>
+              ))}
+            </>
+          }
+        </Content>
     </Page>
   );
 };

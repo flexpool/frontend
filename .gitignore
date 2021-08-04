@@ -13,6 +13,7 @@
 .next
 /public/service-worker.js*
 /public/workbox*
+/public/worker*
 
 # misc
 .DS_Store

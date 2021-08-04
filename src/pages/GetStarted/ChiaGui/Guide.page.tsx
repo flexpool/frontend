@@ -31,7 +31,8 @@ export const ChiaGuiGuidePage: React.FC = () => {
 
   const mineableCoin = React.useMemo(() => {
     return mineableCoins.find((item) => item.ticker === ticker);
-  }, [ticker]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const jsonHw = t(`detail_${ticker}.hardware`, {
     returnObjects: true,
@@ -58,6 +59,7 @@ export const ChiaGuiGuidePage: React.FC = () => {
         setUrlState(new Date());
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const searchParams = React.useMemo(() => {
