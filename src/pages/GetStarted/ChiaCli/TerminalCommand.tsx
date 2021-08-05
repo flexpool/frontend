@@ -38,12 +38,13 @@ const CommandResultContainer = styled(TerminalContainer)`
 type TerminalCommandProps = {
   cmd: React.ReactNode;
   output?: React.ReactNode;
+  className?: string;
 };
 
 export const TerminalCommand = (props: TerminalCommandProps) => {
-  const { cmd, output } = props;
+  const { cmd, output, className } = props;
   return (
-    <>
+    <div className={className}>
       <TerminalContainer>
         <Commands>
           {(cmd as string).split('\n').map((item) => {
@@ -52,14 +53,9 @@ export const TerminalCommand = (props: TerminalCommandProps) => {
               if (
                 itemCommand.length > 0 &&
                 itemCommand.substr(0, 1) === '<' &&
-                itemCommand.substr(
-                  itemCommand.length - 1,
-                  itemCommand.length
-                ) === '>'
+                itemCommand.substr(itemCommand.length - 1, itemCommand.length) === '>'
               ) {
-                commandItems.push(
-                  <CommandSecondary>{itemCommand} </CommandSecondary>
-                );
+                commandItems.push(<CommandSecondary>{itemCommand} </CommandSecondary>);
               } else {
                 commandItems.push(itemCommand + ' ');
               }
@@ -69,9 +65,7 @@ export const TerminalCommand = (props: TerminalCommandProps) => {
         </Commands>
         <CopyButton text={cmd as string} />
       </TerminalContainer>
-      {output !== undefined ? (
-        <CommandResultContainer>{output}</CommandResultContainer>
-      ) : null}
-    </>
+      {output !== undefined ? <CommandResultContainer>{output}</CommandResultContainer> : null}
+    </div>
   );
 };

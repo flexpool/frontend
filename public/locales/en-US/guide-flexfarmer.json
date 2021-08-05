@@ -1,12 +1,10 @@
 {
   "head_title": "Farming with Flexfarmer",
   "title": "Farming with Flexfarmer",
+  "description": "FlexFarmer aims to make farming Chia as easy as crypto mining through rewriting and optimizing the entire farming process in Golang replacing the standard harvester+farmer. It connects farmers to our hosted nodes over a blockchain bridge gateway which runs on powerful infrastructure hosted by us",
   "requirements": {
     "heading": "Requirements",
-    "list": [
-      { "text": "Initialized Plot NFT (Made via GUI or CLI)" },
-      { "text": "Plots bound to that Plot NFT" }
-    ]
+    "list": [{ "text": "Initialized Plot NFT (Made via GUI or CLI)" }, { "text": "Plots bound to that Plot NFT" }]
   },
   "select_os": {
     "heading": "Select Your OS",
@@ -44,5 +42,15 @@
         ]
       }
     }
+  },
+  "farmer_secret_key": {
+    "heading": "Extract Farmer Secret Key",
+    "description": "Use the `extract_farmer_key.py` Python script to securely extract your farmer secret key, and when prompted, enter your 24 word mnemonic phrase.",
+    "input_label": "Farmer Secret Key"
+  },
+  "launcher_id": {
+    "heading": "Copy Launcher ID",
+    "description": "Your launcher ID found in `chia plotnft show`, or in the GUI Pool Overview",
+    "input_label": "Launcher ID"
   }
 }
