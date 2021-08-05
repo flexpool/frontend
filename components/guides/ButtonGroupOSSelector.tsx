@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect} from 'react'
 import { ButtonGroup } from 'src/pages/GetStarted/ChiaShared/ButtonGroup';
 import qs from 'query-string';
 import { useRouter } from 'next/router';
@@ -11,13 +11,22 @@ function ButtonGroupOSSelector() {
     'macOS': 'macOS',
   };
   const [selectedOS, setSelectedOS] = useState('')
-
   let search;
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      search = window.location.search;
+      const os = qs.parse(search).os;
+      selectOS(os ? os : 'linux');
+    }
+  }, [])
+
 
   const selectOS = (s: string) => {
     if (typeof window !== 'undefined') {
       search = window.location.search;
     }
+
     const query = qs.stringify({
       ...qs.parse(search),
       os: s,

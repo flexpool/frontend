@@ -1,0 +1,48 @@
+{
+  "head_title": "Farming with Flexfarmer",
+  "title": "Farming with Flexfarmer",
+  "requirements": {
+    "heading": "Requirements",
+    "list": [
+      { "text": "Initialized Plot NFT (Made via GUI or CLI)" },
+      { "text": "Plots bound to that Plot NFT" }
+    ]
+  },
+  "select_os": {
+    "heading": "Select Your OS",
+    "button_text": "Download for",
+    "operating_systems": {
+      "linux": {
+        "name": "Linux",
+        "downloads": [
+          {
+            "name": "Linux x86_64",
+            "url": "https://static.flexpool.io/dl/flexfarmer/flexfarmer-linux-amd64-v1.0.0a8.tar.gz"
+          },
+          {
+            "name": "Linux ARM (RPi)",
+            "url": "https://static.flexpool.io/dl/flexfarmer/flexfarmer-linux-amd64-v1.0.0a8.tar.gz"
+          }
+        ]
+      },
+      "windows": {
+        "name": "Windows",
+        "downloads": [
+          {
+            "name": "Windows x64",
+            "url": "https://static.flexpool.io/dl/flexfarmer/flexfarmer-windows-amd64-v1.0.0a8.zip"
+          }
+        ]
+      },
+      "macOS": {
+        "name": "macOS",
+        "downloads": [
+          {
+            "name": "macOS",
+            "url": "https://static.flexpool.io/dl/flexfarmer/flexfarmer-macos-amd64-v1.0.0a8.zip"
+          }
+        ]
+      }
+    }
+  }
+}
