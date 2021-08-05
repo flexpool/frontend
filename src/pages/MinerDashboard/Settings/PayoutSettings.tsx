@@ -98,7 +98,12 @@ export const PayoutSettings: React.FC<{
 
   const validate = (values) => {
     return sleep(100).then(() => {
-        const errors = {};
+        const errors = {}as {
+        payoutLimit: string;
+        maxFeePrice: Number;
+        maxFeePricePercent: Number;
+        ip: string;
+      };
         if (values.payoutLimit <= 0) {
           errors.payoutLimit = t('common:errors.higher_than', { value: 0 });
         }

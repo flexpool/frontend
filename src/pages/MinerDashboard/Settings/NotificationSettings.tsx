@@ -41,7 +41,10 @@ export const NotificationSettings: React.FC<{
 
   const validate = (values) => {
     return sleep(100).then(() => {
-      const errors = {};
+      const errors = {} as {
+        email: string;
+        ipAddress: string;
+      };
 
       if (values.emailEnabled && !validateEmail(values.email)) {
         errors.email = t('common:errors.email_invalid');
