@@ -28,9 +28,46 @@ export const NotificationSettings: React.FC<{
 
   const { t } = useTranslation(['common', 'dashboard']);
 
+  function validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
   if (!minerSettings.data || !activeCoin) {
     return null;
   }
+
+  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+  const validate = (values) => {
+    return sleep(100).then(() => {
+      const errors = {};
+
+      if (values.emailEnabled && !validateEmail(values.email)) {
+        errors.email = t('common:errors.email_invalid');
+      }
+      if (values.emailEnabled && values.email === '') {
+        errors.email = t('common:errors.email_required');
+      }
+      if (values.ipAddress === '') {
+        errors.ipAddress = t('common:errors.required');
+      }
+
+      return errors;
+    });
+  }
+
+//   validationSchema={yup.object().shape({
+//   ipAddress: yup.string().required('Required'),
+//   emailEnabled: yup.boolean(),
+//   email: yup
+//     .string()
+//     .email(t('common:errors.email_invalid'))
+//     .when('emailEnabled', {
+//       is: true,
+//       then: yup.string().required(t('common:errors.email_required')),
+//     }),
+// })}
 
   return (
     <Formik
@@ -64,18 +101,8 @@ export const NotificationSettings: React.FC<{
           minerSettings.data.notificationPreferences
             ?.workersOfflineNotifications || true,
       }}
-      validateOnChange={false}
-      validationSchema={yup.object().shape({
-        ipAddress: yup.string().required('Required'),
-        emailEnabled: yup.boolean(),
-        email: yup
-          .string()
-          .email(t('common:errors.email_invalid'))
-          .when('emailEnabled', {
-            is: true,
-            then: yup.string().required(t('common:errors.email_required')),
-          }),
-      })}
+      validateOnChange={true}
+      validate={validate}
     >
       {({ values }) => {
         return (
