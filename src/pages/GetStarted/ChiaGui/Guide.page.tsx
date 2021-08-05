@@ -97,6 +97,10 @@ export const ChiaGuiGuidePage: React.FC = () => {
   return (
     <Page>
       <h1>{t('detail_xch.title_gui')}</h1>
+      <h2>
+        <Highlight>#1</Highlight> {t('detail.region.title')}
+      </h2>
+      <p>{t('detail.region.description_chia')}</p>
       <PingTestSection data={mineableCoin.regions} />
       <Spacer size="xl" />
       <FarmerOptionSelector

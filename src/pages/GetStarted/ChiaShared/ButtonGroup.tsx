@@ -12,6 +12,7 @@ const ButtonGroupWrapper = styled.div`
     color: var(--text-primary);
     font-weight: 600;
     position: relative;
+    border-radius: 0;
 
     transition: background-color 0.1s;
 
