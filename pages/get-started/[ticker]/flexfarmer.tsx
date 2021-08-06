@@ -46,6 +46,7 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
 
   useEffect(() => {
     const parsedSearch = qs.parse(getLocationSearch());
+    const parsedRegion = parsedSearch?.primaryServer?.toString().split('xch-').pop().split('.flexpool')[0];
 
     if (parsedSearch.farmerSecretKey !== farmerSecretKey) {
       setFarmerSecretKey(
@@ -58,14 +59,13 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
     if (parsedSearch.workerName !== workerName) {
       setWorkerName(parsedSearch.workerName || 'worker');
     }
-    const parsedRegion = parsedSearch?.primaryServer?.toString().split('xch-').pop().split('.flexpool')[0];
-
     if (parsedRegion !== region) {
       setRegion(parsedRegion || 'us-east');
     }
     if (parsedSearch.payoutAddress !== payoutAddress) {
       setPayoutAddress(parsedSearch.payoutAddress || 'xch1fh6f088cxcvqscy4xtxfq7762vhsh9mjcql6m3svfhmlxsc3jd4sd37xdl');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlState]);
 
   useEffect(() => {
