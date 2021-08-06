@@ -177,40 +177,6 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
   );
 };
 
-// const ComingSoonCoin = () => {
-//   const { t } = useTranslation('home');
-//   return (
-//     <EarningBox>
-//       <HeadSplit>
-//         {/* <CoinIcon src={getCoinIconSrc('zec')} /> */}
-//         <UnknownCoin>
-//           <FaRocket />
-//         </UnknownCoin>
-//         <HeadContent>
-//           <h2>{t('coin_earnings_cards.more_title')}</h2>
-//           <p>{t('coin_earnings_cards.more_description')}</p>
-//         </HeadContent>
-//       </HeadSplit>
-//       <IntervalContainer>
-//         <StartMiningContainer>
-//           <ButtonGroup>
-//             <Button variant="danger" as={LinkOut} href={REDDIT_LINK}>
-//               <FaReddit /> &nbsp; Reddit
-//             </Button>{' '}
-//             <Button variant="primary" as={LinkOut} href={TELEGRAM_LINK}>
-//               <FaTelegram /> &nbsp; Telegram
-//             </Button>{' '}
-//             <Button variant="warning" as={LinkOut} href={DISCORD_LINK}>
-//               <FaDiscord />
-//               &nbsp;Discord
-//             </Button>
-//           </ButtonGroup>
-//         </StartMiningContainer>
-//       </IntervalContainer>
-//     </EarningBox>
-//   );
-// };
-
 const FormContainer = styled.div`
   display: flex;
   margin-top: 1rem;
