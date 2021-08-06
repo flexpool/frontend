@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button } from 'src/components/Button';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
-import { useTranslation } from 'next-i18next';
+import { Trans, useTranslation } from 'next-i18next';
+import { LinkOut } from './LinkOut';
 
 declare global {
   interface Window {
@@ -90,7 +91,20 @@ const CookieConsent: React.FC<{}> = () => {
   return (
     <CookieConsentBaseContainer consented={cookieConsent}>
       <CookieConsentContents>
-        <CookieConsentText>{t('cookie_consent_text')}</CookieConsentText>
+        <CookieConsentText>
+          <Trans
+            i18nKey="cookie_consent_text"
+            ns="cookie-consent"
+            components={{
+              terms: (
+                <LinkOut href="https://static.flexpool.io/legal/terms.pdf" />
+              ),
+              privacypolicy: (
+                <LinkOut href="https://static.flexpool.io/legal/privacy-policy.pdf" />
+              ),
+            }}
+          />
+        </CookieConsentText>
         <AcceptConsentButton
           variant="primary"
           size="sm"

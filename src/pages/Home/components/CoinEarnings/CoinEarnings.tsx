@@ -113,6 +113,10 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
             <br />
             {data?.ticker === 'eth' &&
               t('coin_earnings_cards.mev', { value: percentFormatter(0.9) })}
+            {data?.ticker === 'xch' &&
+              t('coin_earnings_cards.finder_reward', {
+                value: `0.25 ${data?.ticker.toUpperCase()}`,
+              })}
           </p>
         </PoolDetails>
       </HeadSplit>
@@ -168,7 +172,9 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
         <StartMiningContainer>
           <Link href={`/get-started/${data?.ticker}`} passHref>
             <Button variant="success">
-              {t('coin_earnings_cards.cta_mine')}
+              {data?.ticker === 'xch'
+                ? t('coin_earnings_cards.cta_farm')
+                : t('coin_earnings_cards.cta_mine')}
             </Button>
           </Link>
         </StartMiningContainer>

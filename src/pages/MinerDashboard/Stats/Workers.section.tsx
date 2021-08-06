@@ -193,7 +193,11 @@ const MinerWorkersTable: React.FC<{
 
   const onRowClick = React.useCallback(
     (data: ApiMinerWorker) => {
-      router.push(`/miner/${router.query.coin}/${router.query.address[0]}/?worker=${data.name}`, undefined, {shallow: true});
+      router.push(
+        `/miner/${router.query.coin}/${router.query.address[0]}/?worker=${data.name}`,
+        undefined,
+        { shallow: true }
+      );
     },
     [router]
   );
@@ -216,7 +220,10 @@ const MinerWorkersTable: React.FC<{
       ...(hasReportedHashrate
         ? [
             {
-              title: t('stats.table.table_head.reported_hashrate'),
+              title:
+                activeCoin?.hashrateUnit === 'B'
+                  ? t('stats.table.table_head.reported_space')
+                  : t('stats.table.table_head.reported_hashrate'),
               alignRight: true,
               onClickValue: 'reportedHashrate',
               Component: React.memo(({ data }: { data: ApiMinerWorker }) => (
