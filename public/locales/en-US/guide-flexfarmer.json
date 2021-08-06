@@ -45,7 +45,8 @@
   },
   "farmer_secret_key": {
     "heading": "Extract Farmer Secret Key",
-    "description": "Use the `extract_farmer_key.py` Python script to securely extract your farmer secret key, and when prompted, enter your 24 word mnemonic phrase.",
+    "description_extract": "Use the `extract_farmer_key.py` Python script to securely extract your farmer secret key.",
+    "description_mnemonic": "Enter your 24 word mnemonic phrase, and paste the secret key below.",
     "input_label": "Farmer Secret Key"
   },
   "launcher_id": {

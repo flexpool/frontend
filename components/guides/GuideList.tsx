@@ -1,8 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function GuideList({ listItems }) {
-  console.log(listItems);
-  if (typeof listItems === 'string') return <></>
+  if (typeof listItems === 'string') return <></>;
 
   return (
     <ul>
@@ -10,7 +9,7 @@ function GuideList({ listItems }) {
         <li key={item.text}>{item.text}</li>
       ))}
     </ul>
-  )
+  );
 }
 
-export default GuideList
+export default GuideList;
