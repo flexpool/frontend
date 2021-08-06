@@ -6,7 +6,10 @@ import qs from 'query-string';
 
 import { Page } from 'src/components/layout/Page';
 import { Content } from 'src/components/layout/Content';
-import { MineableCoinHardware, mineableCoins } from 'src/pages/GetStarted/mineableCoinList';
+import {
+  MineableCoinHardware,
+  mineableCoins,
+} from 'src/pages/GetStarted/mineableCoinList';
 import { Highlight } from 'src/components/Typo/Typo';
 import { PingTestSection } from 'src/pages/GetStarted/ChiaShared/PingTest.section';
 
@@ -33,37 +36,37 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
 
   const { t } = useTranslation(['guide-flexfarmer']);
 
-  let configTemplate = `plot_directories:
+  const configTemplate = `plot_directories:
       - "/plotdir1"
       - "/plotdir2"
     farmer_secret_key: "${farmerSecretKey}"
     launcher_id: "${launcherID}"
     worker_name: ${workerName}
     region: ${region}
-    payout_address: ${
-      payoutAddress ? payoutAddress : 'xch1fh6f088cxcvqscy4xtxfq7762vhsh9mjcql6m3svfhmlxsc3jd4sd37xdl'
-    }`;
+    payout_address: ${payoutAddress}`;
 
   useEffect(() => {
     const parsedSearch = qs.parse(getLocationSearch());
-    const parsedRegion = parsedSearch?.primaryServer?.toString().split('xch-').pop().split('.flexpool')[0];
+    const parsedRegion = parsedSearch?.primaryServer
+      ?.toString()
+      .split('xch-')
+      .pop()
+      .split('.flexpool')[0];
 
     if (parsedSearch.farmerSecretKey !== farmerSecretKey) {
-      setFarmerSecretKey(
-        parsedSearch.farmerSecretKey || '0xf61398a76cdbd6ee5d0f31d757ca96c549876b287c0b19becd26e9e2990eae3e'
-      );
+      setFarmerSecretKey(parsedSearch.farmerSecretKey || 'FARMER_SECRET_KEY');
     }
     if (parsedSearch.launcherID !== launcherID) {
-      setLauncherID(parsedSearch.launcherID || '4973f2b459881b08295dff931c26dc0e511ce6fd46948e142ee151b1f97d7f23');
+      setLauncherID(parsedSearch.launcherID || 'LAUNCHER_ID');
     }
     if (parsedSearch.workerName !== workerName) {
-      setWorkerName(parsedSearch.workerName || 'worker');
+      setWorkerName(parsedSearch.workerName || 'WORKER_NAME');
     }
     if (parsedRegion !== region) {
-      setRegion(parsedRegion || 'us-east');
+      setRegion(parsedRegion || 'REGION');
     }
     if (parsedSearch.payoutAddress !== payoutAddress) {
-      setPayoutAddress(parsedSearch.payoutAddress || 'xch1fh6f088cxcvqscy4xtxfq7762vhsh9mjcql6m3svfhmlxsc3jd4sd37xdl');
+      setPayoutAddress(parsedSearch.payoutAddress || 'PAYOUT_ADDRESS');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlState]);
@@ -115,7 +118,11 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
           </h2>
           <p className="mb-5">{t('farmer_secret_key.description_extract')}</p>
 
-          <TerminalCommand cmd={`python3 extract_farmer_key.py `} output={`Enter your mnemonic > `} className="mb-5" />
+          <TerminalCommand
+            cmd={`python3 extract_farmer_key.py `}
+            output={`Enter your mnemonic > `}
+            className="mb-5"
+          />
 
           <p className="mb-5">{t('farmer_secret_key.description_mnemonic')}</p>
 
@@ -133,7 +140,15 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
           </h2>
           <p className="mb-5">{t('launcher_id.description')}</p>
 
-          <TerminalCommand cmd={`chia plotnft show `} output={chiaPlotNFTOutput} className="mb-5" />
+          <TerminalCommand
+            cmd={`chia plotnft show`}
+            output={chiaPlotNFTOutput}
+            className="mb-5"
+          />
+          <p className="mb-5">
+            {/* {t('launcher_id.description')} */}
+            Test
+          </p>
 
           <GuideInput
             className="mb-5"
@@ -146,11 +161,15 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
         <h2>
           <Highlight>#</Highlight> Select Your Region
         </h2>
+
         <p className="mb-5">{t('detail.region.description_chia')}</p>
+
         <PingTestSection data={mineableCoin.regions} className="mt-2" />
+
         <h2>
           <Highlight>#</Highlight> Select Your Region
         </h2>
+
         <h2>
           <Highlight>#</Highlight> Setup Config
         </h2>
@@ -165,7 +184,12 @@ export default GetStartedFlexfarmerPage;
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'guide-flexfarmer', 'get-started', 'cookie-consent'])),
+      ...(await serverSideTranslations(locale, [
+        'common',
+        'guide-flexfarmer',
+        'get-started',
+        'cookie-consent',
+      ])),
       ticker: 'xch',
     },
   };
