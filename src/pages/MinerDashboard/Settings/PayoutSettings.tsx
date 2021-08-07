@@ -94,63 +94,56 @@ export const PayoutSettings: React.FC<{
     setGweiToggle(!gweiToggle);
   };
 
-  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const validate = (values) => {
     return sleep(100).then(() => {
-        const errors = {}as {
+      const errors = {} as {
         payoutLimit: string;
         maxFeePrice: Number;
         maxFeePricePercent: Number;
         ip: string;
       };
-        if (values.payoutLimit < 0) {
-          errors.payoutLimit = t('common:errors.required', { value: 0 });
-        }
-        if (values.maxFeePrice && values.maxFeePrice <= 0) {
-          errors.maxFeePrice = t('common:errors.higher_than', { value: 0 });
-        }
-        if (values.maxFeePricePercent && values.maxFeePricePercent <= 0) {
-          errors.maxFeePricePercent = t('common:errors.higher_than', { value: 0 });
-        }
-        if (values.ip === '') {
-          errors.ip = t('common:errors.required');
-        }
-        return errors;
+      if (values.payoutLimit < 0) {
+        errors.payoutLimit = t('common:errors.required', { value: 0 });
+      }
+      if (values.ip === '') {
+        errors.ip = t('common:errors.required');
+      }
+      return errors;
     });
-  }
+  };
 
   return (
     <Formik
-      onSubmit={
-        async (data, { setSubmitting }) => {
-          Promise.all([
-            d(
-              minerDetailsUpdatePayoutSettings(activeCoin.ticker, address, {
-                payoutLimit:
-                  Number(data.payoutLimit) *
-                  Math.pow(10, activeCoin.decimalPlaces),
-                maxFeePrice: gweiToggle
-                  ? Number(data.maxFeePrice)
-                  : Math.round(
-                      ((Number(data.maxFeePricePercent) / 100) *
-                        Math.pow(10, activeCoin.decimalPlaces) *
-                        Number(
-                          minerSettings &&
-                            minerSettings.data &&
-                            minerSettings.data.payoutLimit /
-                              Math.pow(10, activeCoin.decimalPlaces)
-                        )) /
-                        activeCoin.transactionSize /
-                        feeDetails.multiplier
-                    ),
-                ipAddress: data.ip,
-              })
-            ),
-          ]).then(() => {
-            d(minerDetailsGet(activeCoin.ticker, address));
-          });
-          setSubmitting(false);
+      onSubmit={async (data, { setSubmitting }) => {
+        Promise.all([
+          d(
+            minerDetailsUpdatePayoutSettings(activeCoin.ticker, address, {
+              payoutLimit:
+                Number(data.payoutLimit) *
+                Math.pow(10, activeCoin.decimalPlaces),
+              maxFeePrice: gweiToggle
+                ? Number(data.maxFeePrice)
+                : Math.round(
+                    ((Number(data.maxFeePricePercent) / 100) *
+                      Math.pow(10, activeCoin.decimalPlaces) *
+                      Number(
+                        minerSettings &&
+                          minerSettings.data &&
+                          minerSettings.data.payoutLimit /
+                            Math.pow(10, activeCoin.decimalPlaces)
+                      )) /
+                      activeCoin.transactionSize /
+                      feeDetails.multiplier
+                  ),
+              ipAddress: data.ip,
+            })
+          ),
+        ]).then(() => {
+          d(minerDetailsGet(activeCoin.ticker, address));
+        });
+        setSubmitting(false);
       }}
       initialValues={{
         maxFeePrice: `${minerSettings.data.maxFeePrice}`,
@@ -281,7 +274,10 @@ export const PayoutSettings: React.FC<{
                                         ((Number(values.maxFeePrice) *
                                           activeCoin.transactionSize *
                                           feeDetails.multiplier) /
-                                          Math.pow(10, activeCoin.decimalPlaces) /
+                                          Math.pow(
+                                            10,
+                                            activeCoin.decimalPlaces
+                                          ) /
                                           Number(values.payoutLimit)) *
                                           100,
                                         {
@@ -318,7 +314,10 @@ export const PayoutSettings: React.FC<{
                                       feeDetails.multiplier) /
                                       Math.pow(10, activeCoin.decimalPlaces) /
                                       Number(values.payoutLimit),
-                                    { style: 'percent', maximumFractionDigits: 3 }
+                                    {
+                                      style: 'percent',
+                                      maximumFractionDigits: 3,
+                                    }
                                   )}
                                 </PercentageDisplaySpan>
                                 {t('dashboard:settings.payout.gas_limit_desc', {
@@ -389,7 +388,10 @@ export const PayoutSettings: React.FC<{
                                         minerSettings &&
                                           minerSettings.data &&
                                           minerSettings.data.payoutLimit /
-                                            Math.pow(10, activeCoin.decimalPlaces)
+                                            Math.pow(
+                                              10,
+                                              activeCoin.decimalPlaces
+                                            )
                                       )) /
                                       activeCoin.transactionSize /
                                       feeDetails.multiplier
@@ -397,7 +399,8 @@ export const PayoutSettings: React.FC<{
                                   valueUnit: feeDetails?.unit,
                                   valueTicker: currencyFormatter(
                                     ((Math.round(
-                                      ((Number(values.maxFeePricePercent) / 100) *
+                                      ((Number(values.maxFeePricePercent) /
+                                        100) *
                                         Math.pow(10, activeCoin.decimalPlaces) *
                                         Number(
                                           minerSettings &&
@@ -459,7 +462,10 @@ export const PayoutSettings: React.FC<{
                                         minerSettings &&
                                           minerSettings.data &&
                                           minerSettings.data.payoutLimit /
-                                            Math.pow(10, activeCoin.decimalPlaces)
+                                            Math.pow(
+                                              10,
+                                              activeCoin.decimalPlaces
+                                            )
                                       )) /
                                       activeCoin.transactionSize /
                                       feeDetails.multiplier
@@ -467,7 +473,8 @@ export const PayoutSettings: React.FC<{
                                   valueUnit: feeDetails?.unit,
                                   valueTicker: currencyFormatter(
                                     ((Math.round(
-                                      ((Number(values.maxFeePricePercent) / 100) *
+                                      ((Number(values.maxFeePricePercent) /
+                                        100) *
                                         Math.pow(10, activeCoin.decimalPlaces) *
                                         Number(
                                           minerSettings &&
