@@ -22,19 +22,22 @@ const ButtonField: React.FunctionComponent<
     ...rest
   } = props;
   return (
-    <Button
-      variant="primary"
-      {...rest}
-      type="submit"
-      disabled={
-        !form.dirty ||
-        form.isSubmitting ||
-        captchaDisableOverride ||
-        disableWhenFormNotDirty
-      }
-    >
-      {form.isSubmitting || captchaDisableOverride ? <LoaderDots /> : children}
-    </Button>
+    <>
+      <Button
+        variant="primary"
+        {...rest}
+        type="submit"
+        disabled={
+          !form.dirty ||
+          form.isSubmitting ||
+          Object.keys(form.errors).length !== 0 ||
+          captchaDisableOverride ||
+          disableWhenFormNotDirty
+        }
+      >
+        {form.isSubmitting || captchaDisableOverride ? <LoaderDots /> : children}
+      </Button>
+    </>
   );
 };
 
