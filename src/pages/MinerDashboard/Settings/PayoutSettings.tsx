@@ -104,8 +104,8 @@ export const PayoutSettings: React.FC<{
         maxFeePricePercent: Number;
         ip: string;
       };
-        if (values.payoutLimit <= 0) {
-          errors.payoutLimit = t('common:errors.higher_than', { value: 0 });
+        if (values.payoutLimit < 0) {
+          errors.payoutLimit = t('common:errors.required', { value: 0 });
         }
         if (values.maxFeePrice && values.maxFeePrice <= 0) {
           errors.maxFeePrice = t('common:errors.higher_than', { value: 0 });
