@@ -8,8 +8,10 @@
     "daily": "dagelijks",
     "monthly": "maandelijks",
     "cta_mine": "Begin met minen",
+    "cta_farm": "Start Farming",
     "pool_fee": "{{value}} Pool kost",
     "mev": "{{value}} van MEV Bonus",
+    "finder_reward": "{{value}} Block Finder Reward",
     "more_title": "Binnenkort meer coins!",
     "more_description": "We zijn bezig om in de nabije toekomst meerdere pools te lanceren. Blijf op de hoogte via ons Discordkanaal of Telegramgroep."
   },
@@ -48,6 +50,10 @@
       "title": "Over Ethereum",
       "description": "Ethereum is een wereldwijde computer die gemaakt is om gedecentraliseerde applicaties, ook wel smart contracts genoemd, aan te sturen."
     },
+    "xch": {
+      "title": "About Chia",
+      "description": "Chia is a programmable cryptocurrency focused on the eco-friendly way of securing the blockchain."
+    },
     "resources": "Bronnen",
     "website": "Website",
     "whitepaper": "Whitepaper",
@@ -67,11 +73,11 @@
     "title": "Waarom Flexpool",
     "item_1": {
       "title": "Bliksemsnel",
-      "description": "We gebruiken krachtige server clusters aangedreven door supersnelle software die meer dan 100 TH/s aankan."
+      "description": "We gebruiken krachtige serverclusters aangedreven door supersnelle software die meer dan 100 TH/s aankan."
     },
     "item_2": {
       "title": "Gewoon beter",
-      "description": "Vergeet je slechte mining ervaring. Flexpool voorziet kwaliteitsvolle ondersteuning, we helpen je graag!"
+      "description": "Vergeet je slechte mining ervaring. Flexpool voorziet kwaliteitsvolle ondersteuning. We helpen je graag!"
     }
   },
   "get_started_section": {
@@ -79,13 +85,13 @@
     "cta": "Begin met minen"
   },
   "chia": {
-    "email_submission_failure": "Failed to submit email",
-    "chia_comming_soon_text": "We are getting ready to launch our Chia pool. Stay tuned for more details. Sign up for email updates or join us below to become one of the first Chia miners on Flexpool!",
-    "chia_coming_soon": "Chia Coming Soon!",
-    "subscribe": "Subscribe!",
-    "subscribed": "Subscribed!"
+    "email_submission_failure": "E-mailadres invoeren mislukt",
+    "chia_comming_soon_text": "We maken ons klaar om onze Chia pool te lanceren. Check regelmatig voor meer details. Schrijf je in voor email updates of sluit je hieronder aan om één van de eerste Chia miners op Flexpool te worden!",
+    "chia_coming_soon": "Chia komt eraan!",
+    "subscribe": "Abonneer je!",
+    "subscribed": "Geabonneerd!"
   },
   "top_notification": {
-    "welcome": "Welcome to the new revamped Flexpool.io v2 Website! If you wish to visit old website, please use"
+    "welcome": "Welkom op de nieuwe, herwerkte Flexpool.io v2 website! Als je naar de oude website wilt, gebruik dan"
   }
 }

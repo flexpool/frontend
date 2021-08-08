@@ -7,8 +7,10 @@
   "current_luck": "Текущая удача",
   "current_luck_tooltip": "Текущая удача за раунд. Обновляется в реальном времени.",
   "network_hashrate": "Хэшрейт сети",
+  "network_space": "Network Space",
   "network_difficulty": "Сложность сети",
   "network_difficulty_tooltip": "Среднее количество хэшей, которое должен произвести пул для добычи блока.",
+  "network_difficulty_tooltip_points": "Average amount of how many points pool should produce to mine a block.",
   "table": {
     "title_zero": "Не удается получить данные пула",
     "title": "Flexpool добыл {{count}} блок",
@@ -26,6 +28,7 @@
     "title_miner_4": "Вы добыли {{count}} блока",
     "title_miner_5": "Вы добыли {{count}} блоков",
     "title_miner_plural": "Вы добыли {{count}} блоков",
+    "rewards_block_list_title": "Rewards Per Block",
     "table_head": {
       "number": "Номер",
       "type": "Тип",
@@ -35,7 +38,8 @@
       "reward": "Вознаграждение",
       "round_time": "Время Раунда",
       "hash": "Хэш",
-      "luck": "Удача"
+      "luck": "Удача",
+      "share": "Share"
     }
   },
   "type": {

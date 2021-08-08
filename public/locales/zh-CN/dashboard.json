@@ -5,13 +5,14 @@
     "ip": "IP地址（验证用）",
     "ip_hint": "提示：您目前电脑IP地址是",
     "ip_description": "如果正在使用代理服务器，包括ETH+ZIL双排序挖矿，请使用代理服务器的IP地址。",
+    "high_fees_warning": "A payout limit under 0.05 ETH will result in high gas fees that will be deducted from your payment. Please set up a higher payout limit if possible.",
     "payout": {
       "title": "支付设置",
       "limit": "起付额度（最低：{{min}}）",
       "limit_desc": "余额限于 {{value}} 以上才会转账。",
       "limit_err_higher": "数目必须大于 {{min}}",
       "gas_limit": "余额转账费用上限（Gas price 上限）",
-      "gas_limit_desc": "余额转账费用会限于 {{value}} {{valueUnit}} ({{valueTicker}}, 当前起付额度的 {{percent}})。如果以太坊网络手续费市价（Gas price）超过上限，付款不会发送。",
+      "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {delimiter} of payout limit). You will not receive any payouts if gas price is higher.",
       "gas_limit_zero": "余额转账费用没定上限。",
       "submit": "确认更改"
     },
@@ -35,12 +36,9 @@
     "greet_period_afternoon": "下午好",
     "greet_period_evening": "晚上好",
     "greet_desc": "{{count}} 部矿机正在挖 {{coin}} ，总算力 {{hashrate}}。",
-    "greet_desc_1": "",
-    "greet_desc_2": "",
-    "greet_desc_3": "",
-    "greet_desc_4": "",
-    "greet_desc_5": "",
     "greet_desc_plural": "{{count}} 部矿机正在挖 {{coin}} ，总算力 {{hashrate}}。",
+    "greet_desc_farm": "{{count}} worker is farming {{coin}} and is having {{hashrate}} in total.",
+    "greet_desc_farm_plural": "{{count}} workers are farming {{coin}} and are having {{hashrate}} in total.",
     "info_payout_limit": "起付额度",
     "info_gas_limit": "余额转账费用上限（Gas price 上限）",
     "info_gas_limit_none": "没有上限",
@@ -60,7 +58,9 @@
     "stat_estimate_daily": "每天收益",
     "stat_estimate_weekly": "每周收益",
     "stat_estimate_monthly": "每月收益",
-    "stat_estimate_tooltip": "按这可以换每天，每周，每月预计收益。"
+    "stat_estimate_tooltip": "按这可以换每天，每周，每月预计收益。",
+    "update_in": "Update in",
+    "auto_update": "Auto-update"
   },
   "nav": {
     "stats": "矿机状态",
@@ -73,7 +73,8 @@
     "earnings_chart": {
       "title": "本月收益",
       "earnings": "收益",
-      "daily_income": "当天收入"
+      "daily_income": "当天收入",
+      "download_csv": "Export Rewards as CSV"
     },
     "past_earnings": {
       "title": "过往收益",
@@ -115,7 +116,8 @@
     "chart": {
       "title": "过往一年支付",
       "fee": "转账费用",
-      "value": "价值"
+      "value": "价值",
+      "net_value": "Net Value"
     },
     "general": {
       "title": "支付数据",
@@ -155,33 +157,42 @@
     }
   },
   "stats": {
+    "not_enough_data": "Not enough data",
+    "not_enough_data_message": "We don't have enough data to show charts. If your workers are already mining, please allow up to 10 minutes for the data to be processed.",
     "active_worker": {
       "title": "当前选择矿机",
       "reset": "重置"
     },
     "hashrate": {
       "title": "算力",
+      "title_space": "Space",
       "current": "当前有效算力",
       "average": "平均有效算力",
       "reported": "名义算力"
     },
     "shares": {
       "title": "份额总数",
+      "title_points": "Points",
       "valid": "有效",
       "stale": "过期",
       "invalid": "无效"
     },
     "hashrate_chart": {
       "title": "矿机算力",
+      "title_space": "Space",
       "effective": "当前有效算力",
       "average": "平均有效算力",
-      "reported": "名义算力"
+      "reported": "名义算力",
+      "effective_space": "Effective Space",
+      "average_space": "Average Effective Space",
+      "reported_space": "Reported Space"
     },
     "shares_chart": {
       "title": "份额总数",
-      "valid": "有效份额",
-      "stale": "过期份额",
-      "invalid": "无效份额"
+      "title_points": "Points",
+      "valid": "Valid",
+      "stale": "Stale",
+      "invalid": "Invalid"
     },
     "table": {
       "title_active": "在线矿机",
@@ -190,16 +201,31 @@
       "table_head": {
         "name": "矿机",
         "reported_hashrate": "名义算力",
+        "reported_space": "Reported Space",
         "current_e_hashrate": "当前有效算力",
-        "average_e_hashrate": "平均有效算力",
+        "current_e_space": "Current E. Space",
+        "average_e_hashrate": "Average E. Hashrate",
+        "average_e_space": "Average E. Space",
         "valid": "有效份额",
         "stale": "过期份额",
         "invalid": "无效份额",
+        "valid_points": "Valid Points",
+        "stale_points": "Stale Points",
+        "invalid_points": "Invalid Points",
         "last_seen": "最后份额时间"
       }
+    },
+    "proTips": {
+      "chartsProTip": "Click on legend items to include/exclude related values on the chart",
+      "tablesProTip": "You can sort your worker table by clicking on the headers.",
+      "hoverHashrateProtip": "You can hover on \"Average Effective (E.)\" hashrate and see the last 6h and 12h average hashrate.",
+      "apiProTip": "The full-fledged Flexpool API is publicly available.",
+      "searchProTip": "If you just click the search button on the homepage, you will be directed to your latest viewed address.",
+      "payoutExportProTip": "You can export all your transactions as a CSV sheet in the \"Payouts\" tab.",
+      "rewardsExportProTip": "You can export all your rewards as a CSV sheet in the \"Rewards\" tab."
     }
   },
-  "status_pending_tooltip": "等待确认",
+  "status_pending_tooltip": "Awaiting transaction confirmation",
   "confirmation_duration_tooltip": "所需时间",
   "confirmed_at_tooltip": "确认时间"
 }

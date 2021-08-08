@@ -7,8 +7,10 @@
   "current_luck": "Aktuell tur",
   "current_luck_tooltip": "Den aktuella rundans block lycka. Det här värdet uppdateras i realtid.",
   "network_hashrate": "Hashrate för nätverk",
+  "network_space": "Network Space",
   "network_difficulty": "Nätverkssvårigheter",
   "network_difficulty_tooltip": "Genomsnittlig mängd av hur många hashpooler som ska produceras för att bryta ett block.",
+  "network_difficulty_tooltip_points": "Average amount of how many points pool should produce to mine a block.",
   "table": {
     "title_zero": "Det gick inte att hämta pooldata",
     "title": "Flexpool har minat {{count}} block",
@@ -26,6 +28,7 @@
     "title_miner_4": "Du har minat {{count}} blocks",
     "title_miner_5": "Du har minat {{count}} blocks",
     "title_miner_plural": "Du har minat {{count}} blocks",
+    "rewards_block_list_title": "Rewards Per Block",
     "table_head": {
       "number": "Nummer",
       "type": "Typ",
@@ -35,7 +38,8 @@
       "reward": "Belöningar",
       "round_time": "Rundtur",
       "hash": "Hash",
-      "luck": "Tur"
+      "luck": "Tur",
+      "share": "Share"
     }
   },
   "type": {

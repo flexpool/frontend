@@ -7,8 +7,10 @@
   "current_luck": "Sorte atual",
   "current_luck_tooltip": "Sorte de bloco da rodada atual. Este valor é atualizado em tempo real.",
   "network_hashrate": "Hashrate da Rede",
+  "network_space": "Network Space",
   "network_difficulty": "Dificuldade da rede",
   "network_difficulty_tooltip": "Quantidade média de quantos hashes a pool deve produzir para minerar um bloco.",
+  "network_difficulty_tooltip_points": "Average amount of how many points pool should produce to mine a block.",
   "table": {
     "title_zero": "Não foi possível obter os dados da pool",
     "title": "A Flexpool minerou {{count}} bloco",
@@ -26,6 +28,7 @@
     "title_miner_4": "Você minerou {{count}} blocos",
     "title_miner_5": "Você minerou {{count}} blocos",
     "title_miner_plural": "Você minerou {{count}} blocos",
+    "rewards_block_list_title": "Rewards Per Block",
     "table_head": {
       "number": "Número",
       "type": "Tipo",
@@ -35,7 +38,8 @@
       "reward": "Recompensa",
       "round_time": "Tempo da Rodada",
       "hash": "Hash",
-      "luck": "Sorte"
+      "luck": "Sorte",
+      "share": "Share"
     }
   },
   "type": {

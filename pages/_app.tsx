@@ -21,7 +21,7 @@ import { mainTheme } from '../src/App/styledTheme';
 import { NavBar } from '../src/components/layout/NavBar';
 import { FooterSection } from '../src/sections/Footer.section';
 import { searchAddressStorage } from '../src/components/SearchAddressBar/searchCache';
-import CookieConsent from '../src/components/CookieConsent';
+import TermsConsent from '../src/components/TermsConsent';
 // import { SnackViewControl } from '../src/components/Snacks/SnackViewControl';
 
 import { usePoolCoins } from '../src/rdx/poolCoins/poolCoins.hooks';
@@ -46,9 +46,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
     <>
       <DefaultSeo {...SEO} />
       <ReduxProvider store={store}>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-PWS9985F4X"
-        />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-PWS9985F4X" />
         <Script
           onLoad={() => {
             window.dataLayer = window.dataLayer || [];
@@ -60,9 +58,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
           }}
         />
 
-        <Script
-          src="https://xtwj9bs7n2j9.statuspage.io/embed/script.js"
-        />
+        <Script src="https://xtwj9bs7n2j9.statuspage.io/embed/script.js" />
 
         <Script
           id="ze-snippet"
@@ -85,7 +81,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
             </CSSTransition>
           </SwitchTransition>
 
-          <CookieConsent />
+          <TermsConsent />
           <FooterSection />
         </ThemeProvider>
       </ReduxProvider>

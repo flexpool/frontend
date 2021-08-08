@@ -7,8 +7,10 @@
   "current_luck": "Aktuální luck",
   "current_luck_tooltip": "Luck bloku aktuálního těžení. Tato hodnota je aktualizována v reálném čase.",
   "network_hashrate": "Síťová hashrate",
+  "network_space": "Network Space",
   "network_difficulty": "Obtížnost sítě",
   "network_difficulty_tooltip": "Průměrná výše počtu hashů pro těžbu bloku.",
+  "network_difficulty_tooltip_points": "Average amount of how many points pool should produce to mine a block.",
   "table": {
     "title_zero": "Nelze získat data",
     "title": "Společně jsme vytěžili {{count}} blok",
@@ -26,6 +28,7 @@
     "title_miner_4": "Vytěžil jsi {{count}} bloků",
     "title_miner_5": "Vytěžil jsi {{count}} bloků",
     "title_miner_plural": "Vytěžil jsi {{count}} bloků",
+    "rewards_block_list_title": "Rewards Per Block",
     "table_head": {
       "number": "Číslo bloku",
       "type": "Typ",
@@ -35,7 +38,8 @@
       "reward": "Odměna",
       "round_time": "Doba trvání",
       "hash": "Hash",
-      "luck": "Luck"
+      "luck": "Luck",
+      "share": "Share"
     }
   },
   "type": {
