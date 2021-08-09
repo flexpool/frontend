@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next';
 import qs from 'query-string';
 import { LinkOut } from 'src/components/LinkOut';
 import { Button } from 'src/components/Button';
+import { array } from '@amcharts/amcharts4/core';
 
 function FlexfarmerDownloads() {
   const { t } = useTranslation('guide-flexfarmer');
@@ -20,8 +21,10 @@ function FlexfarmerDownloads() {
   }, [osState]);
 
   const downloadData = osSelection
-    ? t(`select_os.operating_systems.${osSelection}.downloads`, { returnObjects: true })
-    : [];
+    ? (t(`select_os.operating_systems.${osSelection}.downloads`, {
+        returnObjects: true,
+      }) as Array<Object>)
+    : ([] as Array<Object>);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
