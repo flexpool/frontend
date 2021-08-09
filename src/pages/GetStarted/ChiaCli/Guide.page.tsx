@@ -1,5 +1,3 @@
-// TODO: Remove this TS nocheck
-// @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -24,7 +22,7 @@ export const ChiaCliGuidePage: React.FC = () => {
 
   const mineableCoin = React.useMemo(() => {
     return mineableCoins.find((item) => item.ticker === ticker);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const jsonHw = t(`detail_${ticker}.hardware`, {
@@ -34,11 +32,9 @@ export const ChiaCliGuidePage: React.FC = () => {
   const mineableCoinConfig = React.useMemo(() => {
     const mergedHw = merge(mineableCoin?.hardware, jsonHw);
     return mergedHw.find((item) => item.key === 'XCH-CLI');
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  let primaryServer = 'POOL_URL';
-  let farmerOption = 'new-farmer';
   const [urlState, setUrlState] = useState(new Date());
   let search;
 
@@ -46,36 +42,17 @@ export const ChiaCliGuidePage: React.FC = () => {
     search = window.location.search;
   }
 
+  const { primaryServer = 'POOL_URL', farmerOption = 'new-farmer' } =
+    qs.parse(search);
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.addEventListener('popstate', function (event) {
         setUrlState(new Date());
       });
     }
-    const query = qs.stringify({
-      ...qs.parse(search),
-      farmerOption: 'new-farmer',
-    });
-
-    const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
-    window.history.pushState(
-      { ...window.history.state, as: newUrl, url: newUrl },
-      '',
-      newUrl
-    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // const searchParams = React.useMemo(() => {
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   primaryServer = qs.parse(search).primaryServer
-  //     ? qs.parse(search).primaryServer
-  //     : 'POOL_URL';
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   farmerOption = qs.parse(search).farmerOption
-  //     ? qs.parse(search).farmerOption
-  //     : 'new-farmer';
-  // }, [urlState]);
 
   const setSelectedFarmerOption = (s: string) => {
     if (typeof window !== 'undefined') {
@@ -98,7 +75,8 @@ export const ChiaCliGuidePage: React.FC = () => {
   };
 
   if (!mineableCoin || !mineableCoinConfig) {
-    return router.push('/get-started');
+    router.push('/get-started');
+    return null;
   }
 
   return (
