@@ -44,6 +44,12 @@ export const AppTheme = () => {
     --text-primary: #eee;
     --overlay: rgba(0, 0, 0, 0.5);
     --bad-luck-color: #bbb;
+    --code-comment: #8b949e;
+    --code-keyword: #ff7b72;
+    --code-key: #7ee787;
+    --code-constant: #79c0ff;
+    --code-string: #a5d6ff;
+    --code-number: #79c0ff;
     }
 
     svg tspan {

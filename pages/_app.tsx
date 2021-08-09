@@ -46,9 +46,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
     <>
       <DefaultSeo {...SEO} />
       <ReduxProvider store={store}>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-PWS9985F4X"
-        />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-PWS9985F4X" />
         <Script
           onLoad={() => {
             window.dataLayer = window.dataLayer || [];
@@ -60,9 +58,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
           }}
         />
 
-        <Script
-          src="https://xtwj9bs7n2j9.statuspage.io/embed/script.js"
-        />
+        <Script src="https://xtwj9bs7n2j9.statuspage.io/embed/script.js" />
 
         <Script
           id="ze-snippet"

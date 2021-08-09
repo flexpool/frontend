@@ -27,6 +27,8 @@
     "next-pwa": "^5.2.24",
     "next-seo": "^4.26.0",
     "next-transpile-modules": "^8.0.0",
+    "prism-react-renderer": "^1.2.1",
+    "prismjs": "^1.24.1",
     "query-string": "^7.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

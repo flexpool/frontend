@@ -1,4 +1,4 @@
-import { useMemo, useEffect, useState } from 'react';
+import React, { useMemo, useEffect, useState, ReactNode } from 'react';
 import { NextSeo } from 'next-seo';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -6,10 +6,7 @@ import qs from 'query-string';
 
 import { Page } from 'src/components/layout/Page';
 import { Content } from 'src/components/layout/Content';
-import {
-  MineableCoinHardware,
-  mineableCoins,
-} from 'src/pages/GetStarted/mineableCoinList';
+import { mineableCoins } from 'src/pages/GetStarted/mineableCoinList';
 import { Highlight } from 'src/components/Typo/Typo';
 import { PingTestSection } from 'src/pages/GetStarted/ChiaShared/PingTest.section';
 
@@ -20,6 +17,7 @@ import { TerminalCommand } from 'src/pages/GetStarted/ChiaCli/TerminalCommand';
 import GuideInput from 'components/GuideInput';
 import { getLocationSearch } from 'utils/url';
 import { chiaPlotNFTOutput } from 'components/guides/flexfarmer/text-content';
+import { Code } from 'src/components/Code/Code';
 
 export const GetStartedFlexfarmerPage = ({ ticker }) => {
   const mineableCoin = useMemo(() => {
@@ -34,16 +32,17 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
   const [region, setRegion] = useState('' as string | string[]);
   const [payoutAddress, setPayoutAddress] = useState('' as string | string[]);
 
-  const { t } = useTranslation(['guide-flexfarmer']);
+  const { t: localT } = useTranslation('guide-flexfarmer');
+  const { t: globalT } = useTranslation('get-started');
 
-  const configTemplate = `plot_directories:
+  const configTemplate = `plot_directories: # Directories (folder paths) where plots are located
       - "/plotdir1"
       - "/plotdir2"
-    farmer_secret_key: "${farmerSecretKey}"
-    launcher_id: "${launcherID}"
-    worker_name: ${workerName}
-    region: ${region}
-    payout_address: ${payoutAddress}`;
+    farmer_secret_key: "${farmerSecretKey}" # Used to sign partials and blocks
+    launcher_id: "${launcherID}" # Identifier of your Plot NFT
+    worker_name: "${workerName}" # Arbitrary name that will be shown on your Dashboard
+    region: "${region}" # The primary region FlexFarmer will connect to by dafault
+    payout_address: "${payoutAddress}" # Address to where all rewards will go`;
 
   useEffect(() => {
     const parsedSearch = qs.parse(getLocationSearch());
@@ -89,18 +88,18 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
       />
       <Content paddingLg>
         <div id="intro" className="mb-9">
-          <h1 className="mb-8">{t(`title`)}</h1>
-          <p>{t(`description`)}</p>
+          <h1 className="mb-8">{localT(`title`)}</h1>
+          <p>{localT(`description`)}</p>
         </div>
 
         <div id="requirements" className="mb-9">
-          <h2>{t('requirements.heading')}</h2>
-          <GuideList listItems={t('requirements.list', { returnObjects: true })} />
+          <h2>{localT('requirements.heading')}</h2>
+          <GuideList listItems={localT('requirements.list', { returnObjects: true })} />
         </div>
 
         <div id="install-flexfarmer-cli" className="mb-9">
           <h2>
-            <Highlight>#1</Highlight> {t('select_os.heading')}
+            <Highlight>#1</Highlight> {localT('select_os.heading')}
           </h2>
           <ButtonGroupOSSelector />
         </div>
@@ -114,9 +113,9 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
 
         <div id="extract-farmer-secret-key" className="mb-9">
           <h2>
-            <Highlight>#3</Highlight> {t('farmer_secret_key.heading')}
+            <Highlight>#3</Highlight> {localT('farmer_secret_key.heading')}
           </h2>
-          <p className="mb-5">{t('farmer_secret_key.description_extract')}</p>
+          <p className="mb-5">{localT('farmer_secret_key.description_extract')}</p>
 
           <TerminalCommand
             cmd={`python3 extract_farmer_key.py `}
@@ -124,11 +123,11 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
             className="mb-5"
           />
 
-          <p className="mb-5">{t('farmer_secret_key.description_mnemonic')}</p>
+          <p className="mb-5">{localT('farmer_secret_key.description_mnemonic')}</p>
 
           <GuideInput
             className="mb-5"
-            label={t('farmer_secret_key.input_label')}
+            label={localT('farmer_secret_key.input_label')}
             placeholderText={`0xf61398a76cdbd6ee5d0f31d757ca96c549876b287c0b19becd26e9e2990eae3e`}
             param={`farmerSecretKey`}
           />
@@ -136,23 +135,20 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
 
         <div id="copy-launch-id" className="mb-9">
           <h2>
-            <Highlight>#3</Highlight> {t('launcher_id.heading')}
+            <Highlight>#3</Highlight> {localT('launcher_id.heading')}
           </h2>
-          <p className="mb-5">{t('launcher_id.description')}</p>
+          <p className="mb-5">{localT('launcher_id.description')}</p>
 
           <TerminalCommand
             cmd={`chia plotnft show`}
             output={chiaPlotNFTOutput}
             className="mb-5"
           />
-          <p className="mb-5">
-            {/* {t('launcher_id.description')} */}
-            Test
-          </p>
+          <p className="mb-5">{localT('launcher_id.description')}</p>
 
           <GuideInput
             className="mb-5"
-            label={t('launcher_id.input_label')}
+            label={localT('launcher_id.input_label')}
             placeholderText={`0x2be1162ad1148809bd01c81cea6eba4f9531fd7d330ab8df34404b5a33facd60`}
             param={`launcherID`}
           />
@@ -162,18 +158,17 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
           <Highlight>#</Highlight> Select Your Region
         </h2>
 
-        <p className="mb-5">{t('detail.region.description_chia')}</p>
+        <p className="mb-5">{globalT('detail.region.description_chia')}</p>
 
         <PingTestSection data={mineableCoin.regions} className="mt-2" />
 
         <h2>
-          <Highlight>#</Highlight> Select Your Region
-        </h2>
-
-        <h2>
           <Highlight>#</Highlight> Setup Config
         </h2>
-        <TerminalCommand cmd={configTemplate} />
+
+        <Code language="yaml" lineNumbers={true}>
+          {configTemplate}
+        </Code>
       </Content>
     </Page>
   );

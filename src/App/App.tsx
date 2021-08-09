@@ -32,29 +32,19 @@ import CookieConsent from 'src/components/CookieConsent';
 /**
  * Pages code splitting
  */
-const StatisticsPage = React.lazy(
-  () => import('../pages/Statistics/Statistics.page')
-);
+const StatisticsPage = React.lazy(() => import('../pages/Statistics/Statistics.page'));
 const MinerDashboardPage = React.lazy(
   () => import('../pages/MinerDashboard/MinerDashboard.page')
 );
 const MinersPage = React.lazy(() => import('../pages/Miners/Miners.page'));
 const BlocksPage = React.lazy(() => import('../pages/Blocks/Blocks.page'));
-const GetStartedPage = React.lazy(
-  () => import('../pages/GetStarted/GetStarted.page')
-);
-const ContactUsPage = React.lazy(
-  () => import('../pages/ContactUs/ContactUs.page')
-);
-const BrandAssetsPage = React.lazy(
-  () => import('../pages/BrandAssets/BrandAssets.page')
-);
+const GetStartedPage = React.lazy(() => import('../pages/GetStarted/GetStarted.page'));
+const ContactUsPage = React.lazy(() => import('../pages/ContactUs/ContactUs.page'));
+const BrandAssetsPage = React.lazy(() => import('../pages/BrandAssets/BrandAssets.page'));
 const HomePage = React.lazy(() => import('../pages/Home/Home.page'));
 const SupportPage = React.lazy(() => import('../pages/Support/Support.page'));
 const FaqPage = React.lazy(() => import('../pages/Faq/Faq.page'));
-const NotFoundPage = React.lazy(
-  () => import('../pages/NotFound/NotFound.page')
-);
+const NotFoundPage = React.lazy(() => import('../pages/NotFound/NotFound.page'));
 const BusinessDevelopmentPage = React.lazy(
   () => import('../pages/BusinessDevelopment/BusinessDevelopment.page')
 );
@@ -62,9 +52,7 @@ const BusinessDevelopmentPage = React.lazy(
 const OpenDataReportsPage = React.lazy(
   () => import('../pages/Reports/OpenDataReports.page')
 );
-const PartnersPage = React.lazy(
-  () => import('../pages/Partners/Partners.page')
-);
+const PartnersPage = React.lazy(() => import('../pages/Partners/Partners.page'));
 const BaseOldUrlSupportPage = React.lazy(
   () => import('../pages/V1Urlsupport/BaseOldUrlSupport.page')
 );
@@ -150,16 +138,8 @@ const AppContent = () => {
       <React.Suspense fallback={<PageLoader />}>
         <Switch>
           <Route exact component={ApiDocsPage} path="/docs/api" />
-          <Route
-            exact
-            component={OpenDataReportsPage}
-            path="/open-data-reports"
-          />
-          <Route
-            exact
-            path="/business-development"
-            component={BusinessDevelopmentPage}
-          />
+          <Route exact component={OpenDataReportsPage} path="/open-data-reports" />
+          <Route exact path="/business-development" component={BusinessDevelopmentPage} />
           <Route exact path="/partners" component={PartnersPage} />
           <Route component={GetStartedPage} path="/get-started" />
           <Route exact component={StatisticsPage} path="/statistics" />
@@ -172,27 +152,11 @@ const AppContent = () => {
           <Route exact component={ContactUsPage} path="/contact" />
           <Route exact component={HomePage} path="/" />
           <Route path="/not-found" component={NotFoundPage} />
-          <Route
-            exact
-            path="/:langOrAddress/"
-            component={BaseOldUrlSupportPage}
-          />
+          <Route exact path="/:langOrAddress/" component={BaseOldUrlSupportPage} />
           <Route exact path="/:lang/stats" component={StatsOldUrlSupportPage} />
-          <Route
-            exact
-            path="/:lang/blocks"
-            component={BlocksOldUrlSupportPage}
-          />
-          <Route
-            exact
-            path="/:lang/miners"
-            component={MinersOldUrlSupportPage}
-          />
-          <Route
-            exact
-            path="/:lang/docs/help"
-            component={GetStartedOldUrlSupportPage}
-          />
+          <Route exact path="/:lang/blocks" component={BlocksOldUrlSupportPage} />
+          <Route exact path="/:lang/miners" component={MinersOldUrlSupportPage} />
+          <Route exact path="/:lang/docs/help" component={GetStartedOldUrlSupportPage} />
           <Route
             exact
             path="/:lang/docs/getting-started"
@@ -208,21 +172,9 @@ const AppContent = () => {
             path="/:lang/efficiency-and-shares"
             component={NicehashOldUrlSupportPage}
           />
-          <Route
-            exact
-            path="/:lang/contact"
-            component={SupportOldUrlSupportPage}
-          />
-          <Route
-            exact
-            path="/:lang/opendata"
-            component={OpenDataOldUrlSupportPage}
-          />
-          <Route
-            exact
-            path="/:lang/docs/API"
-            component={ApiDocsOldUrlSupportPage}
-          />
+          <Route exact path="/:lang/contact" component={SupportOldUrlSupportPage} />
+          <Route exact path="/:lang/opendata" component={OpenDataOldUrlSupportPage} />
+          <Route exact path="/:lang/docs/API" component={ApiDocsOldUrlSupportPage} />
           <Redirect to="/" />
         </Switch>
         <CookieConsent></CookieConsent>
