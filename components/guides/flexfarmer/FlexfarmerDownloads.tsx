@@ -19,7 +19,9 @@ function FlexfarmerDownloads() {
     return parsedSearch.os || 'linux';
   }, [osState]);
 
-  const downloadData = osSelection ? t(`select_os.operating_systems.${osSelection}.downloads`, { returnObjects: true }) : [];
+  const downloadData = osSelection
+    ? t(`select_os.operating_systems.${osSelection}.downloads`, { returnObjects: true })
+    : [];
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -31,7 +33,7 @@ function FlexfarmerDownloads() {
 
   return (
     <>
-      {downloadData &&
+      {downloadData && (
         <ul className="unstyled flex flex-wrap">
           {downloadData.map((item) => (
             <li key={item.name} className="mr-2">
@@ -43,13 +45,12 @@ function FlexfarmerDownloads() {
               >
                 {t(`select_os.button_text`)} {item.name}
               </Button>
-
             </li>
           ))}
         </ul>
-      }
+      )}
     </>
-  )
+  );
 }
 
-export default FlexfarmerDownloads
+export default FlexfarmerDownloads;

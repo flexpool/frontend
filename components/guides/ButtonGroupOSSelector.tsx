@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react';
 import { ButtonGroup } from 'src/pages/GetStarted/ChiaShared/ButtonGroup';
 import qs from 'query-string';
 import { useRouter } from 'next/router';
@@ -6,21 +6,20 @@ import { useRouter } from 'next/router';
 function ButtonGroupOSSelector() {
   const router = useRouter();
   const osList = {
-    'linux': 'Linux',
-    'windows': 'Windows',
-    'macOS': 'macOS',
+    linux: 'Linux',
+    windows: 'Windows',
+    macOS: 'macOS',
   };
-  const [selectedOS, setSelectedOS] = useState('')
+  const [selectedOS, setSelectedOS] = useState('');
   let search;
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       search = window.location.search;
-      const os = qs.parse(search).os;
+      const os = qs.parse(search).os?.toString();
       selectOS(os ? os : 'linux');
     }
-  }, [])
-
+  }, []);
 
   const selectOS = (s: string) => {
     if (typeof window !== 'undefined') {
@@ -50,7 +49,7 @@ function ButtonGroupOSSelector() {
       selectedOption={selectedOS}
       setSelectedOption={selectOS}
     />
-  )
+  );
 }
 
-export default ButtonGroupOSSelector
+export default ButtonGroupOSSelector;
