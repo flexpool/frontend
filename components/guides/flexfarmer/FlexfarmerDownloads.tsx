@@ -20,11 +20,16 @@ function FlexfarmerDownloads() {
     return parsedSearch.os || 'linux';
   }, [osState]);
 
+  interface DownloadData {
+    name: string;
+    url: string;
+  }
+
   const downloadData = osSelection
     ? (t(`select_os.operating_systems.${osSelection}.downloads`, {
         returnObjects: true,
-      }) as Array<Object>)
-    : ([] as Array<Object>);
+      }) as Array<DownloadData>)
+    : ([] as Array<DownloadData>);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
