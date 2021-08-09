@@ -36,8 +36,14 @@ const ButtonGroupWrapper = styled.div`
   }
 `;
 
+const OptionThumbnail = styled.img`
+  height: 2em;
+  width: 2em;
+  margin-right: 1em;
+`;
+
 type ButtonGroupProps = {
-  options: { [key: string]: string };
+  options: { [key: string]: { label: string; logoURL?: string } };
   selectedOption: string;
   setSelectedOption: (s: string) => void;
 };
@@ -51,7 +57,10 @@ export const ButtonGroup = (props: ButtonGroupProps) => {
         onClick={() => props.setSelectedOption(key)}
         className={`${props.selectedOption === key ? 'selected' : ''}`}
       >
-        {props.options[key] as string}
+        {props.options[key].logoURL && (
+          <OptionThumbnail src={props.options[key].logoURL} />
+        )}
+        {props.options[key].label as string}
       </Button>
     );
   }

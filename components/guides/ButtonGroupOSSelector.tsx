@@ -6,12 +6,14 @@ import { useRouter } from 'next/router';
 function ButtonGroupOSSelector() {
   const router = useRouter();
   const osList = {
-    linux: 'Linux',
-    windows: 'Windows',
-    macOS: 'macOS',
+    linux: { label: 'Linux', logoURL: 'https://static.flexpool.io/assets/os/linux.png' },
+    windows: {
+      label: 'Windows',
+      logoURL: 'https://static.flexpool.io/assets/os/windows.png',
+    },
   };
   const [selectedOS, setSelectedOS] = useState('');
-  let search;
+  let search: string;
 
   useEffect(() => {
     if (typeof window !== 'undefined') {

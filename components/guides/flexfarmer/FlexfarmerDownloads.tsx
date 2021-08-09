@@ -41,7 +41,7 @@ function FlexfarmerDownloads() {
 
   return (
     <>
-      {downloadData && (
+      {downloadData && downloadData.map && (
         <ul className="unstyled flex flex-wrap">
           {downloadData.map((item) => (
             <li key={item.name} className="mr-2">
