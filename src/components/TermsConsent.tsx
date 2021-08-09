@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button } from 'src/components/Button';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
-import { useTranslation } from 'next-i18next';
+import { Trans, useTranslation } from 'next-i18next';
+import { LinkOut } from './LinkOut';
 
 declare global {
   interface Window {
@@ -10,10 +11,10 @@ declare global {
   }
 }
 
-type CookieConsentProps = {
+type TermsConsentProps = {
   consented?: String;
 };
-const CookieConsentBaseContainer = styled.div<CookieConsentProps>`
+const TermsConsentBaseContainer = styled.div<TermsConsentProps>`
   ${(p) => `{
     ${p.consented === 'consented' && `display: none;`}
   }`}
@@ -32,7 +33,7 @@ const CookieConsentBaseContainer = styled.div<CookieConsentProps>`
   width: 100%;
 `;
 
-const CookieConsentContents = styled.div`
+const TermsConsentContents = styled.div`
   width: 100%;
   max-width: 1200px;
   padding-top: 15px;
@@ -41,7 +42,7 @@ const CookieConsentContents = styled.div`
   padding-right: 15px;
 `;
 
-const CookieConsentText = styled.div`
+const TermsConsentText = styled.div`
   display: inline;
   font-size: 1.1rem;
   font-weight: 600;
@@ -59,38 +60,40 @@ const AcceptConsentButton = styled(Button)`
   }
 `;
 
-const CookieConsent: React.FC<{}> = () => {
-  const [cookieConsent, setCookieConsent] = useLocalStorageState<
-    'consented' | 'false'
-  >('cookie_consent', 'false');
+const TermsConsent: React.FC<{}> = () => {
+  const [termsConsent, setTermsConsent] = useLocalStorageState<
+    'termsConsented' | 'false'
+  >('termsConsent', 'false');
 
-  const { t } = useTranslation('cookie-consent');
-
-  React.useEffect(() => {
-    window &&
-      cookieConsent === 'false' &&
-      typeof window.Intercom === 'function' &&
-      window.Intercom('update', {
-        hide_default_launcher: true,
-      });
-  });
+  const { t, ready } = useTranslation('cookie-consent');
 
   const applyConsent = () => {
-    window &&
-      typeof window.Intercom === 'function' &&
-      window.Intercom('update', {
-        hide_default_launcher: false,
-      });
-    setCookieConsent('consented');
+    setTermsConsent('termsConsented');
   };
 
-  if (cookieConsent === 'consented') {
+  if (termsConsent === 'termsConsented') {
     return <></>;
   }
+
   return (
-    <CookieConsentBaseContainer consented={cookieConsent}>
-      <CookieConsentContents>
-        <CookieConsentText>{t('cookie_consent_text')}</CookieConsentText>
+    <TermsConsentBaseContainer consented={termsConsent}>
+      <TermsConsentContents>
+        <TermsConsentText>
+          {ready && (
+            <Trans
+              i18nKey="cookie_consent_text"
+              components={{
+                terms: (
+                  <LinkOut href="https://static.flexpool.io/legal/terms.pdf" />
+                ),
+                privacypolicy: (
+                  <LinkOut href="https://static.flexpool.io/legal/privacy-policy.pdf" />
+                ),
+              }}
+              ns="cookie-consent"
+            />
+          )}
+        </TermsConsentText>
         <AcceptConsentButton
           variant="primary"
           size="sm"
@@ -99,9 +102,9 @@ const CookieConsent: React.FC<{}> = () => {
         >
           {t('i_agree')}
         </AcceptConsentButton>
-      </CookieConsentContents>
-    </CookieConsentBaseContainer>
+      </TermsConsentContents>
+    </TermsConsentBaseContainer>
   );
 };
 
-export default CookieConsent;
+export default TermsConsent;

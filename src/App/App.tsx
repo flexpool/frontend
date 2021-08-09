@@ -27,7 +27,7 @@ import ServiceWorkerWrapper from './ServiceWorkerWrapper';
 import { usePwaInit } from './PwaInit';
 import { searchAddressStorage } from 'src/components/SearchAddressBar/searchCache';
 // import { I18n } from './I18n';
-import CookieConsent from 'src/components/CookieConsent';
+import TermsConsent from 'src/components/TermsConsent';
 
 /**
  * Pages code splitting
@@ -225,7 +225,7 @@ const AppContent = () => {
           />
           <Redirect to="/" />
         </Switch>
-        <CookieConsent></CookieConsent>
+        <TermsConsent />
       </React.Suspense>
       <React.Suspense fallback={<React.Fragment />}>
         {/** __TODO footer loader */}

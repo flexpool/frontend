@@ -11,9 +11,6 @@ import { ChiaGuiGuidePage } from './ChiaGui/Guide.page';
 export const GetStartedPage = () => {
   return (
     <Page>
-      {/* <Head>
-        <title>Start mining with Flexpool</title>
-      </Head> */}
       <Content paddingLg>
         <Switch>
           <Route

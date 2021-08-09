@@ -1,4 +1,5 @@
 {
+  "proTip": "Pro Tip",
   "searchbar": {
     "placeholder": "Sök via din gruvadress"
   },
@@ -39,7 +40,7 @@
     "preferences": {
       "title": "Inställningar"
     },
-    "bottom_message": "© 2020-{{currentYear}} Flexpool.io eller dess dotterbolag. Alla rättigheter förbehållna.",
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io Technologies Inc., or its affiliates. All rights reserved.",
     "translation_help": "Hjälp oss att översätta webbplatsen till ditt språk"
   },
   "theme": {
@@ -69,5 +70,10 @@
     "emailUnsubscribed": {
       "title": "Du har avregistrerat dig från e-postmeddelanden"
     }
-  }
+  },
+  "faq": {
+    "questionsAboutFlexpool": "Questions About Flexpool",
+    "miningBasics": "Mining Basics"
+  },
+  "noDataAvailable": "No data available"
 }

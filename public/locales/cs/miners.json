@@ -6,6 +6,7 @@
     "table_head": {
       "miner": "Miner",
       "hashrate": "Hashrate",
+      "space": "Space",
       "balance": "Zůstatek",
       "workers": "Workeři",
       "joined": "Připojil se"

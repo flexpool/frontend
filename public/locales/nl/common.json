@@ -1,4 +1,5 @@
 {
+  "proTip": "Pro Tip",
   "searchbar": {
     "placeholder": "Zoek op uw mining address"
   },
@@ -39,7 +40,7 @@
     "preferences": {
       "title": "Voorkeuren"
     },
-    "bottom_message": "© 2020-{{currentYear}} Flexpool.io of zijn partners. Alle rechten voorbehouden.",
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io Technologies Inc., or its affiliates. All rights reserved.",
     "translation_help": "Help ons de website te vertalen naar jouw taal"
   },
   "theme": {
@@ -57,17 +58,22 @@
     "Invalid IP Address": "Ongeldig IP-adres",
     "email_invalid": "Ongeldig e-mailadres",
     "email_required": "Voer je e-mailadres in",
-    "address_not_found": "Specified address was not found in our system. Try waiting some time if you are already mining."
+    "address_not_found": "Het opgegeven adres werd niet teruggevonden in ons systeem. Wacht een ogenblikje als je al aan het minen bent."
   },
   "date_time": {
     "now": "nu"
   },
   "snacks": {
     "emailConfirmed": {
-      "title": "Your email has been confirmed"
+      "title": "Je mailadres is bevestigd"
     },
     "emailUnsubscribed": {
-      "title": "You've successfully unsubscribed from email notifications"
+      "title": "Je bent nu uitgeschreven van e-mail meldingen"
     }
-  }
+  },
+  "faq": {
+    "questionsAboutFlexpool": "Questions About Flexpool",
+    "miningBasics": "Mining Basics"
+  },
+  "noDataAvailable": "No data available"
 }

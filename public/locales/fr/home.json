@@ -8,8 +8,10 @@
     "daily": "tous les jours",
     "monthly": "mensuellement",
     "cta_mine": "Commencez à miner",
+    "cta_farm": "Start Farming",
     "pool_fee": "Frais du pool de {{value}}",
     "mev": "{{value}} du bonus MEV",
+    "finder_reward": "{{value}} Block Finder Reward",
     "more_title": "Plus de cryptomonnaies à miner sont à venir!",
     "more_description": "Nous travaillons au lancement de plusieurs pools dans un futur proche. Restez connecté en rejoignant notre discord ou telegram."
   },
@@ -48,6 +50,10 @@
       "title": "À propos d'Ethereum",
       "description": "Ethereum est un ordinateur mondial créé pour alimenter des applications décentralisées appelées Smart Contracts."
     },
+    "xch": {
+      "title": "About Chia",
+      "description": "Chia is a programmable cryptocurrency focused on the eco-friendly way of securing the blockchain."
+    },
     "resources": "Ressources",
     "website": "Site Web",
     "whitepaper": "Livre blanc",
@@ -84,10 +90,6 @@
     "chia_coming_soon": "Chia bientôt disponible !",
     "subscribe": "Abonnez-vous !",
     "subscribed": "Souscrit !"
-  },
-  "cookie_consent": {
-    "cookie_consent_text": "Ce site web utilise des cookies pour améliorer l'expérience de l'utilisateur.",
-    "i_agree": "D'accord"
   },
   "top_notification": {
     "welcome": "Bienvenue sur le nouveau site Flexpool.io v2 ! Si vous souhaitez visiter l'ancien site, veuillez utiliser le lien suivant"
