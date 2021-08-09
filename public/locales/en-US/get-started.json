@@ -7,6 +7,7 @@
   "detail": {
     "title": "{{coin}} mining",
     "note": "Note:",
+    "invalid": "{{value}} is invalid",
     "wallet": {
       "title": "Get your wallet address",
       "desc_one": "The easiest way to get a wallet is to register on a cryptocurrency exchange like <binance>Binance (Ref)</binance> or <coinbase>Coinbase</coinbase>.",

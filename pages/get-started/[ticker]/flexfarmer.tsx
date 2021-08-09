@@ -26,8 +26,8 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
   }, []);
 
   const [urlState, setUrlState] = useState(new Date());
-  const [farmerSecretKey, setFarmerSecretKey] = useState('' as string | string[]);
-  const [launcherID, setLauncherID] = useState('' as string | string[]);
+  const [farmerSecretKey, setFarmerSecretKey] = useState('');
+  const [launcherID, setLauncherID] = useState('');
   const [workerName, setWorkerName] = useState('' as string | string[]);
   const [region, setRegion] = useState('' as string | string[]);
   const [payoutAddress, setPayoutAddress] = useState('' as string | string[]);
@@ -52,9 +52,6 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
       .pop()
       .split('.flexpool')[0];
 
-    if (parsedSearch.farmerSecretKey !== farmerSecretKey) {
-      setFarmerSecretKey(parsedSearch.farmerSecretKey || 'FARMER_SECRET_KEY');
-    }
     if (parsedSearch.launcherID !== launcherID) {
       setLauncherID(parsedSearch.launcherID || 'LAUNCHER_ID');
     }
@@ -129,7 +126,10 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
             className="mb-5"
             label={localT('farmer_secret_key.input_label')}
             placeholderText={`0xf61398a76cdbd6ee5d0f31d757ca96c549876b287c0b19becd26e9e2990eae3e`}
-            param={`farmerSecretKey`}
+            setExternalValue={(value: string) => {
+              setFarmerSecretKey(value);
+            }}
+            regexp={/^(0x)?[A-Fa-f0-9]{64}$/}
           />
         </div>
 
@@ -144,18 +144,20 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
             output={chiaPlotNFTOutput}
             className="mb-5"
           />
-          <p className="mb-5">{localT('launcher_id.description')}</p>
 
           <GuideInput
             className="mb-5"
             label={localT('launcher_id.input_label')}
             placeholderText={`0x2be1162ad1148809bd01c81cea6eba4f9531fd7d330ab8df34404b5a33facd60`}
-            param={`launcherID`}
+            setExternalValue={(value: string) => {
+              setLauncherID(value);
+            }}
+            regexp={/^(0x)?[A-Fa-f0-9]{64}$/}
           />
         </div>
 
         <h2>
-          <Highlight>#</Highlight> Select Your Region
+          <Highlight>#4</Highlight> {globalT('detail.region.title')}
         </h2>
 
         <p className="mb-5">{globalT('detail.region.description_chia')}</p>
@@ -163,8 +165,9 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
         <PingTestSection data={mineableCoin.regions} className="mt-2" />
 
         <h2>
-          <Highlight>#</Highlight> Setup Config
+          <Highlight>#</Highlight> {localT('config.heading')}
         </h2>
+        <p className="mb-5">{localT('config.description')}</p>
 
         <Code language="yaml" lineNumbers={true}>
           {configTemplate}
