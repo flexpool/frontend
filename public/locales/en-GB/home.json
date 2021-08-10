@@ -7,9 +7,11 @@
     "estimated_tooltip": "Estimated earnings are based on performance of mining last 7 days on our pool.",
     "daily": "daily",
     "monthly": "monthly",
-    "cta_mine": "Start mining",
+    "cta_mine": "Start Mining",
+    "cta_farm": "Start Farming",
     "pool_fee": "{{value}} Pool Fee",
     "mev": "{{value}} of MEV Bonus",
+    "finder_reward": "{{value}} Block Finder Reward",
     "more_title": "More Coins Coming Soon!",
     "more_description": "We are working to launch multiple pools in the near future. Stay connected by joining our discord or telegram."
   },
@@ -47,6 +49,10 @@
     "eth": {
       "title": "About Ethereum",
       "description": "Ethereum is a worldwide computer created to power Decentralized Applications known as Smart Contracts."
+    },
+    "xch": {
+      "title": "About Chia",
+      "description": "Chia is a programmable cryptocurrency focused on the eco-friendly way of securing the blockchain."
     },
     "resources": "Resources",
     "website": "Website",

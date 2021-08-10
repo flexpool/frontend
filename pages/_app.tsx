@@ -18,11 +18,10 @@ import { AppTheme } from 'src/App/AppTheme';
 import { mainTheme } from 'src/App/styledTheme';
 
 // Components
-import { NavBar } from 'src/components/layout/NavBar';
-import { FooterSection } from 'src/sections/Footer.section';
-import { searchAddressStorage } from 'src/components/SearchAddressBar/searchCache';
-import CookieConsent from 'src/components/CookieConsent';
-// import { SnackViewControl } from 'src/components/Snacks/SnackViewControl';
+import { NavBar } from '../src/components/layout/NavBar';
+import { FooterSection } from '../src/sections/Footer.section';
+import { searchAddressStorage } from '../src/components/SearchAddressBar/searchCache';
+import TermsConsent from '../src/components/TermsConsent';
 
 import { usePoolCoins } from 'src/rdx/poolCoins/poolCoins.hooks';
 import SEO from '../next-seo.config';
@@ -81,7 +80,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
             </CSSTransition>
           </SwitchTransition>
 
-          <CookieConsent />
+          <TermsConsent />
           <FooterSection />
         </ThemeProvider>
       </ReduxProvider>

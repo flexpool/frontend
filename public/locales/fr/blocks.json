@@ -7,8 +7,10 @@
   "current_luck": "Chance actuelle",
   "current_luck_tooltip": "La chance du bloc du tour actuel. Cette valeur est mise à jour en temps réel.",
   "network_hashrate": "Puissance du Réseau",
+  "network_space": "Network Space",
   "network_difficulty": "Difficulté du réseau",
   "network_difficulty_tooltip": "Montant moyen du nombre de hashrate à produire pour miner un bloc.",
+  "network_difficulty_tooltip_points": "Average amount of how many points pool should produce to mine a block.",
   "table": {
     "title_zero": "Impossible de récupérer les données du pool",
     "title": "Flexpool a miné {{count}} bloc",
@@ -26,6 +28,7 @@
     "title_miner_4": "Vous avez miné {{count}} blocs",
     "title_miner_5": "Vous avez miné {{count}} blocs",
     "title_miner_plural": "Vous avez miné {{count}} blocs",
+    "rewards_block_list_title": "Rewards Per Block",
     "table_head": {
       "number": "Nombre",
       "type": "Type",
@@ -35,7 +38,8 @@
       "reward": "Récompense",
       "round_time": "Temps du tour",
       "hash": "Hash",
-      "luck": "Chance"
+      "luck": "Chance",
+      "share": "Share"
     }
   },
   "type": {

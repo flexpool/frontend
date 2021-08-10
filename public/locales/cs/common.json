@@ -1,4 +1,5 @@
 {
+  "proTip": "Pro Tip",
   "searchbar": {
     "placeholder": "Hledat podle Vaší adresy"
   },
@@ -39,7 +40,7 @@
     "preferences": {
       "title": "Nastavení"
     },
-    "bottom_message": "© 2020-{{currentYear}} Flexpool.io nebo jeho partnerů. Všechna práva vyhrazena.",
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io Technologies Inc., or its affiliates. All rights reserved.",
     "translation_help": "Pomozte nám s překladem"
   },
   "theme": {
@@ -69,5 +70,10 @@
     "emailUnsubscribed": {
       "title": "You've successfully unsubscribed from email notifications"
     }
-  }
+  },
+  "faq": {
+    "questionsAboutFlexpool": "Questions About Flexpool",
+    "miningBasics": "Mining Basics"
+  },
+  "noDataAvailable": "No data available"
 }
