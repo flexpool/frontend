@@ -1,4 +1,5 @@
 {
+  "proTip": "Pro Tip",
   "searchbar": {
     "placeholder": "Искать по адресу"
   },
@@ -39,7 +40,7 @@
     "preferences": {
       "title": "Настройки"
     },
-    "bottom_message": "© 2020 -{{currentYear}} Flexpool.io или его филиалы. Все права защищены.",
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io Technologies Inc., or its affiliates. All rights reserved.",
     "translation_help": "Помогите нам перевести сайт на ваш язык"
   },
   "theme": {
@@ -69,5 +70,10 @@
     "emailUnsubscribed": {
       "title": "You've successfully unsubscribed from email notifications"
     }
-  }
+  },
+  "faq": {
+    "questionsAboutFlexpool": "Questions About Flexpool",
+    "miningBasics": "Mining Basics"
+  },
+  "noDataAvailable": "No data available"
 }

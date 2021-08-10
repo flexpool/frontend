@@ -40,7 +40,7 @@
     "preferences": {
       "title": "Preferences"
     },
-    "bottom_message": "© 2020-{{currentYear}} Flexpool.io or its affiliates. All rights reserved.",
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io Technologies Inc., or its affiliates. All rights reserved.",
     "translation_help": "Help us translate the website to your language"
   },
   "theme": {

@@ -99,10 +99,8 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
     'queued_down_tick',
     false
   );
-  const [
-    refreshInProgress,
-    setRefreshInProgress,
-  ] = useLocalStorageState<boolean>('stats_refresh_in_progress', false);
+  const [refreshInProgress, setRefreshInProgress] =
+    useLocalStorageState<boolean>('stats_refresh_in_progress', false);
   const [queuedCounterValue, setQueuedCounterValue] = useLocalStorageState<
     number | undefined
   >('queued_counter_value', undefined);
@@ -212,11 +210,17 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
         <span>{t(`header.greet_period_${greetingId}`)}</span>
         {', '}
         <span>
-          {t(`header.greet_desc`, {
-            count: workersOnline,
-            hashrate,
-            coin: activeCoin?.name,
-          })}
+          {activeCoin?.ticker === 'xch'
+            ? t(`header.greet_desc_farm`, {
+                count: workersOnline,
+                hashrate,
+                coin: activeCoin?.name,
+              })
+            : t(`header.greet_desc`, {
+                count: workersOnline,
+                hashrate,
+                coin: activeCoin?.name,
+              })}
         </span>
       </div>
       <AutoUpdateWrapper>

@@ -6,6 +6,7 @@
     "table_head": {
       "miner": "Mineur",
       "hashrate": "Puissance de minage",
+      "space": "Space",
       "balance": "Solde",
       "workers": "Personnes qui minent",
       "joined": "Inscrit"

@@ -7,8 +7,10 @@
   "current_luck": "Huidig geluk",
   "current_luck_tooltip": "Blockgeluk van huidige ronde. Deze waarde wordt in real-time bijgewerkt.",
   "network_hashrate": "Hashrate netwerk",
+  "network_space": "Network Space",
   "network_difficulty": "Moeilijkheidsgraad netwerk",
   "network_difficulty_tooltip": "Gemiddeld aantal hashes die pool moet produceren om een block te minen.",
+  "network_difficulty_tooltip_points": "Average amount of how many points pool should produce to mine a block.",
   "table": {
     "title_zero": "Kan poolgegevens niet ophalen",
     "title": "Flexpool heeft {{count}} block gemined",
@@ -26,6 +28,7 @@
     "title_miner_4": "Je hebt {{count}} blocks gemined",
     "title_miner_5": "Je hebt {{count}} blocks gemined",
     "title_miner_plural": "Je hebt {{count}} blocks gemined",
+    "rewards_block_list_title": "Rewards Per Block",
     "table_head": {
       "number": "Nummer",
       "type": "Type",
@@ -35,7 +38,8 @@
       "reward": "Beloning",
       "round_time": "Duur ronde",
       "hash": "Hash",
-      "luck": "Geluk"
+      "luck": "Geluk",
+      "share": "Share"
     }
   },
   "type": {

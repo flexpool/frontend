@@ -8,8 +8,10 @@
     "daily": "daily",
     "monthly": "monthly",
     "cta_mine": "Начать майнить",
+    "cta_farm": "Start Farming",
     "pool_fee": "{{value}} Pool Fee",
     "mev": "{{value}} бонуса MEV",
+    "finder_reward": "{{value}} Block Finder Reward",
     "more_title": "Скоро Будет Больше Монет!",
     "more_description": "В ближайшем будущем мы запустим несколько пулов. Следите за новостями в нашем discord или telegram."
   },
@@ -47,6 +49,10 @@
     "eth": {
       "title": "Об Ethereum",
       "description": "Ethereum – это мировой компьютер, созданный для того, чтобы на нём работали Децентрализованные Приложения, известные как Смарт-Контракты."
+    },
+    "xch": {
+      "title": "About Chia",
+      "description": "Chia is a programmable cryptocurrency focused on the eco-friendly way of securing the blockchain."
     },
     "resources": "Ресурсы",
     "website": "Вебсайт",

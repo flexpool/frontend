@@ -8,8 +8,10 @@
     "daily": "每日收益",
     "monthly": "每月收益",
     "cta_mine": "开始挖矿",
+    "cta_farm": "Start Farming",
     "pool_fee": "费率 {{value}} (PPLNS)",
     "mev": "额外加成 MEV（矿工可提取价值）{{value}} 收入",
+    "finder_reward": "{{value}} Block Finder Reward",
     "more_title": "其他币种即將上線，敬請期待！",
     "more_description": "将来还会推出其他币种，加入社群留意最新公报。"
   },
@@ -48,6 +50,10 @@
       "title": "关于以太币",
       "description": "以太坊是一个以区块链为基础的公共平台，专用加密货币以太币。分布式的以太网络，支持多种去中心化应用，智能合约。"
     },
+    "xch": {
+      "title": "About Chia",
+      "description": "Chia is a programmable cryptocurrency focused on the eco-friendly way of securing the blockchain."
+    },
     "resources": "资源",
     "website": "官方网站",
     "whitepaper": "白皮书",
@@ -84,10 +90,6 @@
     "chia_coming_soon": "奇亚币即将来临！",
     "subscribe": "订阅！",
     "subscribed": "成功订阅！"
-  },
-  "cookie_consent": {
-    "cookie_consent_text": "这个网站正在使用 cookies 优化用户体验。",
-    "i_agree": "明白"
   },
   "top_notification": {
     "welcome": "欢迎使用新推出的 Flexpool.io v2版网站！前往旧版网站请使用"

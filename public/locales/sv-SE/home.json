@@ -8,8 +8,10 @@
     "daily": "daglig",
     "monthly": "måntlig",
     "cta_mine": "Börja mina",
+    "cta_farm": "Start Farming",
     "pool_fee": "{{value}} Pool Avgift",
     "mev": "{{value}} av MEV Bonus",
+    "finder_reward": "{{value}} Block Finder Reward",
     "more_title": "Mer Coins Kommer Snart!",
     "more_description": "Vi jobbar på att lansera mer pools inom kort. Håll dig uppdaterad genom att joina våran discord eller telegram."
   },
@@ -48,6 +50,10 @@
       "title": "Om Ethereum",
       "description": "Ethereum är en global dator skapad för att ge kraft åt Decentraliserade Applikationer som Smarta Kontrakt."
     },
+    "xch": {
+      "title": "About Chia",
+      "description": "Chia is a programmable cryptocurrency focused on the eco-friendly way of securing the blockchain."
+    },
     "resources": "Resurser",
     "website": "Webbsida",
     "whitepaper": "Vit bok",
@@ -84,10 +90,6 @@
     "chia_coming_soon": "Chia Kommer Snart!",
     "subscribe": "Prenumerera!",
     "subscribed": "Prenumererar!"
-  },
-  "cookie_consent": {
-    "cookie_consent_text": "Denna webbplats använder cookies för att förbättra användarupplevelsen.",
-    "i_agree": "Okej"
   },
   "top_notification": {
     "welcome": "Välkommen till den nya Flexpool.io v2-webbplatsen! Om du vill besöka gammal webbplats, vänligen använd"
