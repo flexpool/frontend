@@ -12,6 +12,7 @@ import { PingTestSection } from 'src/pages/GetStarted/ChiaShared/PingTest.sectio
 
 import GuideList from 'components/guides/GuideList';
 import ButtonGroupOSSelector from 'components/guides/ButtonGroupOSSelector';
+import { ButtonGroupFarmerSkExtractionMethodSelector } from 'components/guides/flexfarmer/ButtonGroupFarmerSkExtractionMethodSelector';
 import { FlexfarmerDownloads } from 'components/guides/flexfarmer/FlexfarmerDownloads';
 import { TerminalCommand } from 'src/pages/GetStarted/ChiaCli/TerminalCommand';
 import GuideInput from 'components/GuideInput';
@@ -19,6 +20,7 @@ import { getLocationSearch } from 'utils/url';
 import { chiaPlotNFTOutput } from 'components/guides/flexfarmer/text-content';
 import { Code } from 'src/components/Code/Code';
 import { useAsyncState } from 'src/hooks/useAsyncState';
+import { FarmerSkExtractor } from 'components/guides/flexfarmer/FarmerSkExtractor';
 
 export const GetStartedFlexfarmerPage = ({ ticker }) => {
   const mineableCoin = useMemo(() => {
@@ -29,6 +31,7 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
   const [urlState, setUrlState] = useState(new Date());
   const [farmerSecretKey, setFarmerSecretKey] = useState('');
   const [launcherID, setLauncherID] = useState('');
+  const [farmerSkExtractionMethod, setFarmerSkExtractionMethod] = useState('');
   const [workerName, setWorkerName] = useState('' as string | string[]);
   const [region, setRegion] = useState('' as string | string[]);
   const [payoutAddress, setPayoutAddress] = useState('' as string | string[]);
@@ -47,9 +50,11 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
 
   useEffect(() => {
     const parsedSearch = qs.parse(getLocationSearch());
-    const parsedRegion = (
-      parsedSearch?.primaryServer?.toString().split('xch-').pop() as string
-    ).split('.flexpool')[0];
+    const parsedRegion = parsedSearch?.primaryServer
+      ?.toString()
+      .split('xch-')
+      .pop()
+      .split('.flexpool')[0];
 
     if (parsedSearch.launcherID !== launcherID) {
       setLauncherID((parsedSearch.launcherID as string) || 'LAUNCHER_ID');
@@ -62,6 +67,11 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
     }
     if (parsedSearch.payoutAddress !== payoutAddress) {
       setPayoutAddress(parsedSearch.payoutAddress || 'PAYOUT_ADDRESS');
+    }
+    if (parsedSearch.farmerSkExtractionMethod !== farmerSkExtractionMethod) {
+      setFarmerSkExtractionMethod(
+        (parsedSearch.farmerSkExtractionMethod as string) || 'browser'
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlState]);
@@ -127,6 +137,10 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
             <Highlight>#3</Highlight> {localT('farmer_secret_key.heading')}
           </h2>
           <p className="mb-5">{localT('farmer_secret_key.description_extract')}</p>
+
+          <ButtonGroupFarmerSkExtractionMethodSelector />
+          {farmerSkExtractionMethod}
+          <FarmerSkExtractor />
 
           <TerminalCommand
             cmd={`python3 extract_farmer_key.py `}

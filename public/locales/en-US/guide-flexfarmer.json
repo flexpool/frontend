@@ -17,7 +17,11 @@
   },
   "farmer_secret_key": {
     "heading": "Extract Farmer Secret Key",
-    "description_extract": "Use the `extract_farmer_key.py` Python script to securely extract your farmer secret key.",
+    "extraction_methods": {
+      "browser": "In this Browser",
+      "local": "On your Machine"
+    },
+    "description_extract": "To farm with FlexFarmer, you will need to extract your Farmer Secret Key from your primary mnemonic phrase. You can do it both locally on your machine, and in this browser.",
     "description_mnemonic": "Enter your 24 word mnemonic phrase, and paste the secret key below.",
     "input_label": "Farmer Secret Key"
   },
