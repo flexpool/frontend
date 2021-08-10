@@ -1,13 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
 import qs from 'query-string';
-import { LinkOut } from 'src/components/LinkOut';
-import { Button } from 'src/components/Button';
-import { array } from '@amcharts/amcharts4/core';
+import { FlexfarmerDownloadLink } from './FlexfarmerDownloadLink';
+import { osList } from 'src/utils/oses';
+import styled from 'styled-components';
 
-function FlexfarmerDownloads() {
-  const { t } = useTranslation('guide-flexfarmer');
+const downloads = {
+  linux: [
+    {
+      arch: 'amd64',
+      link: 'https://static.flexpool.io/dl/flexfarmer/flexfarmer-linux-amd64-{{version}}.tar.gz',
+      name: 'x86_64',
+      bits: '64',
+    },
+    {
+      arch: 'arm64',
+      link: 'https://static.flexpool.io/dl/flexfarmer/flexfarmer-linux-arm64-{{version}}.tar.gz',
+      name: 'ARM x64 (RPi)',
+      bits: '64',
+    },
+  ],
+  windows: [
+    {
+      arch: 'amd64',
+      link: 'https://static.flexpool.io/dl/flexfarmer/flexfarmer-windows-amd64-{{version}}.zip',
+      name: 'x64',
+      bits: '64',
+    },
+  ],
+};
 
+const DownloadsList = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const FlexfarmerDownloads: React.FC<{
+  version: string;
+}> = ({ version }) => {
   let search;
   const [osState, setOSState] = useState(new Date());
 
@@ -17,19 +47,8 @@ function FlexfarmerDownloads() {
       search = window.location.search;
     }
     const parsedSearch = qs.parse(search);
-    return parsedSearch.os || 'linux';
+    return (parsedSearch.os as string) || 'linux';
   }, [osState]);
-
-  interface DownloadData {
-    name: string;
-    url: string;
-  }
-
-  const downloadData = osSelection
-    ? (t(`select_os.operating_systems.${osSelection}.downloads`, {
-        returnObjects: true,
-      }) as Array<DownloadData>)
-    : ([] as Array<DownloadData>);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -39,26 +58,20 @@ function FlexfarmerDownloads() {
     }
   }, []);
 
-  return (
-    <>
-      {downloadData && downloadData.map && (
-        <ul className="unstyled flex flex-wrap">
-          {downloadData.map((item) => (
-            <li key={item.name} className="mr-2">
-              <Button
-                variant="primary"
-                // shape="block"
-                as={LinkOut}
-                href={item.url}
-              >
-                {t(`select_os.button_text`)} {item.name}
-              </Button>
-            </li>
-          ))}
-        </ul>
-      )}
-    </>
-  );
-}
-
-export default FlexfarmerDownloads;
+  return downloads[osSelection] ? (
+    <DownloadsList className="nostyled">
+      {downloads[osSelection].map((item) => {
+        return (
+          <FlexfarmerDownloadLink
+            os={osSelection}
+            osName={osList[osSelection].label}
+            info={item}
+            link={item.link.replace('{{version}}', version)}
+            version={version}
+            key={item.link}
+          />
+        );
+      })}
+    </DownloadsList>
+  ) : null;
+};

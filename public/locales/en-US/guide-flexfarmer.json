@@ -1,50 +1,19 @@
 {
-  "head_title": "Farming with Flexfarmer",
-  "title": "Farming with Flexfarmer",
+  "head_title": "Farming with FlexFarmer",
+  "title": "Farming with FlexFarmer",
   "description": "FlexFarmer aims to make farming Chia as easy as crypto mining through rewriting and optimizing the entire farming process in Golang replacing the standard harvester+farmer. It connects farmers to our hosted nodes over a blockchain bridge gateway which runs on powerful infrastructure hosted by us",
   "requirements": {
     "heading": "Requirements",
     "list": [
+      { "text": "Computer that is compatible with FlexFarmer" },
       { "text": "Initialized Plot NFT (Made via GUI or CLI)" },
       { "text": "Plots bound to that Plot NFT" }
     ]
   },
+  "download": "Download",
   "select_os": {
     "heading": "Select Your OS",
-    "button_text": "Download for",
-    "operating_systems": {
-      "linux": {
-        "name": "Linux",
-        "downloads": [
-          {
-            "name": "Linux x86_64",
-            "url": "https://static.flexpool.io/dl/flexfarmer/flexfarmer-linux-amd64-v1.0.0a8.tar.gz"
-          },
-          {
-            "name": "Linux ARM (RPi)",
-            "url": "https://static.flexpool.io/dl/flexfarmer/flexfarmer-linux-amd64-v1.0.0a8.tar.gz"
-          }
-        ]
-      },
-      "windows": {
-        "name": "Windows",
-        "downloads": [
-          {
-            "name": "Windows x64",
-            "url": "https://static.flexpool.io/dl/flexfarmer/flexfarmer-windows-amd64-v1.0.0a8.zip"
-          }
-        ]
-      },
-      "macOS": {
-        "name": "macOS",
-        "downloads": [
-          {
-            "name": "macOS",
-            "url": "https://static.flexpool.io/dl/flexfarmer/flexfarmer-macos-amd64-v1.0.0a8.zip"
-          }
-        ]
-      }
-    }
+    "button_text": "Download for"
   },
   "farmer_secret_key": {
     "heading": "Extract Farmer Secret Key",

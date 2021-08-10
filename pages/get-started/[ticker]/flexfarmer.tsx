@@ -6,18 +6,19 @@ import qs from 'query-string';
 
 import { Page } from 'src/components/layout/Page';
 import { Content } from 'src/components/layout/Content';
-import { mineableCoins } from 'src/pages/GetStarted/mineableCoinList';
+import { MineableCoinRegion, mineableCoins } from 'src/pages/GetStarted/mineableCoinList';
 import { Highlight } from 'src/components/Typo/Typo';
 import { PingTestSection } from 'src/pages/GetStarted/ChiaShared/PingTest.section';
 
 import GuideList from 'components/guides/GuideList';
 import ButtonGroupOSSelector from 'components/guides/ButtonGroupOSSelector';
-import FlexfarmerDownloads from 'components/guides/flexfarmer/FlexfarmerDownloads';
+import { FlexfarmerDownloads } from 'components/guides/flexfarmer/FlexfarmerDownloads';
 import { TerminalCommand } from 'src/pages/GetStarted/ChiaCli/TerminalCommand';
 import GuideInput from 'components/GuideInput';
 import { getLocationSearch } from 'utils/url';
 import { chiaPlotNFTOutput } from 'components/guides/flexfarmer/text-content';
 import { Code } from 'src/components/Code/Code';
+import { useAsyncState } from 'src/hooks/useAsyncState';
 
 export const GetStartedFlexfarmerPage = ({ ticker }) => {
   const mineableCoin = useMemo(() => {
@@ -46,14 +47,12 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
 
   useEffect(() => {
     const parsedSearch = qs.parse(getLocationSearch());
-    const parsedRegion = parsedSearch?.primaryServer
-      ?.toString()
-      .split('xch-')
-      .pop()
-      .split('.flexpool')[0];
+    const parsedRegion = (
+      parsedSearch?.primaryServer?.toString().split('xch-').pop() as string
+    ).split('.flexpool')[0];
 
     if (parsedSearch.launcherID !== launcherID) {
-      setLauncherID(parsedSearch.launcherID || 'LAUNCHER_ID');
+      setLauncherID((parsedSearch.launcherID as string) || 'LAUNCHER_ID');
     }
     if (parsedSearch.workerName !== workerName) {
       setWorkerName(parsedSearch.workerName || 'WORKER_NAME');
@@ -73,6 +72,21 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
         setUrlState(new Date());
       });
     }
+  }, []);
+
+  const versionState = useAsyncState<Response>();
+  const [latestVersion, setLatestVersion] = useState<string | null>(null);
+
+  React.useEffect(() => {
+    versionState
+      .start(fetch('https://static.flexpool.io/dl/flexfarmer/version'))
+      .then((res) => {
+        res.text().then((text) => {
+          setLatestVersion(text);
+        });
+        return res;
+      });
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -105,7 +119,7 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
           <h2>
             <Highlight>#2</Highlight> Install Flexfarmer CLI
           </h2>
-          <FlexfarmerDownloads />
+          <FlexfarmerDownloads version={latestVersion as string} />
         </div>
 
         <div id="extract-farmer-secret-key" className="mb-9">
@@ -162,16 +176,14 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
 
         <p className="mb-5">{globalT('detail.region.description_chia')}</p>
 
-        <PingTestSection data={mineableCoin.regions} className="mt-2" />
+        <PingTestSection data={mineableCoin?.regions as MineableCoinRegion[]} />
 
         <h2>
           <Highlight>#</Highlight> {localT('config.heading')}
         </h2>
         <p className="mb-5">{localT('config.description')}</p>
 
-        <Code language="yaml" lineNumbers={true}>
-          {configTemplate}
-        </Code>
+        <Code language="yaml">{configTemplate}</Code>
       </Content>
     </Page>
   );

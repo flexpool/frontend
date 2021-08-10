@@ -19,9 +19,7 @@ const buildUri = (url = '', query?: object, api?: string) => {
   return resUrl.toString();
 };
 
-const transformBody = (
-  body?: object
-): FormData | ArrayBuffer | string | null => {
+const transformBody = (body?: object): FormData | ArrayBuffer | string | null => {
   if (!body) {
     return null;
   }

@@ -65,7 +65,9 @@ export const TerminalCommand = (props: TerminalCommandProps) => {
         </Commands>
         <CopyButton text={cmd as string} />
       </TerminalContainer>
-      {output !== undefined ? <CommandResultContainer>{output}</CommandResultContainer> : null}
+      {output !== undefined ? (
+        <CommandResultContainer>{output}</CommandResultContainer>
+      ) : null}
     </div>
   );
 };

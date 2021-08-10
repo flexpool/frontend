@@ -2,16 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { ButtonGroup } from 'src/pages/GetStarted/ChiaShared/ButtonGroup';
 import qs from 'query-string';
 import { useRouter } from 'next/router';
+import { osList } from 'src/utils/oses';
 
 function ButtonGroupOSSelector() {
   const router = useRouter();
-  const osList = {
-    linux: { label: 'Linux', logoURL: 'https://static.flexpool.io/assets/os/linux.png' },
-    windows: {
-      label: 'Windows',
-      logoURL: 'https://static.flexpool.io/assets/os/windows.png',
-    },
-  };
+
   const [selectedOS, setSelectedOS] = useState('');
   let search: string;
 
