@@ -1,6 +1,3 @@
-// TODO: Remove this TS nocheck
-// @ts-nocheck
-
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -31,7 +28,7 @@ export const ChiaGuiGuidePage: React.FC = () => {
 
   const mineableCoin = React.useMemo(() => {
     return mineableCoins.find((item) => item.ticker === ticker);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const jsonHw = t(`detail_${ticker}.hardware`, {
@@ -44,8 +41,6 @@ export const ChiaGuiGuidePage: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  let primaryServer;
-  let farmerOption;
   const [urlState, setUrlState] = useState(new Date());
   let search;
 
@@ -53,25 +48,17 @@ export const ChiaGuiGuidePage: React.FC = () => {
     search = window.location.search;
   }
 
+  const { primaryServer = 'POOL_URL', farmerOption = 'new-farmer' } =
+    qs.parse(search);
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.addEventListener('popstate', function (event) {
         setUrlState(new Date());
       });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const searchParams = React.useMemo(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    primaryServer = qs.parse(search).primaryServer
-      ? qs.parse(search).primaryServer
-      : 'POOL_URL';
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    farmerOption = qs.parse(search).farmerOption
-      ? qs.parse(search).farmerOption
-      : 'new-farmer';
-  }, [urlState]);
 
   const setSelectedFarmerOption = (s: string) => {
     const query = qs.stringify({
@@ -91,7 +78,8 @@ export const ChiaGuiGuidePage: React.FC = () => {
   };
 
   if (!mineableCoin || !mineableCoinConfig) {
-    return router.push('/get-started');
+    router.push('/get-started');
+    return null;
   }
 
   return (
