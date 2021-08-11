@@ -29,15 +29,15 @@ export const FarmerSkExtractor: React.FC<{}> = ({}) => {
 
     validateMnemonic(value).then((ok) => {
       setMnemonicValid(ok);
-      mnemonicToSeed(value).then((seed) => {
-        console.log('seed', (seed as Buffer).toString('hex'));
-        keyGen(seed as Buffer).then((masterKey) => {
-          console.log('master', masterKey);
-          derivePath(masterKey, [12381, 8444, 0, 0]).then((farmerSk) => {
-            setFarmerSk('0x' + farmerSk.toString('hex'));
+      if (ok) {
+        mnemonicToSeed(value).then((seed) => {
+          keyGen(seed as Buffer).then((masterKey) => {
+            derivePath(masterKey, [12381, 8444, 0, 0]).then((farmerSk) => {
+              setFarmerSk('0x' + farmerSk.toString('hex'));
+            });
           });
         });
-      });
+      }
     });
   }, [value]);
 
@@ -52,6 +52,7 @@ export const FarmerSkExtractor: React.FC<{}> = ({}) => {
         }
         value={value}
         onChange={handleInputChange}
+        type="password"
         errorMessage={
           !mnemonicValid ? (
             <Trans ns="get-started" i18nKey="detail.invalid" values={{ value: label }} />

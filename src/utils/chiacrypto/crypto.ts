@@ -27,19 +27,22 @@ async function deriveLamportPublicKey(ikm: Buffer, index: number) {
 
   var lamportPrivateKey = new Uint8Array(16320);
   for (var i = 0; i < 255; i++) {
-    const hash = await crypto.subtle.digest(
-      'SHA-256',
-      lamport0.subarray(i * 32, (i + 1) * 32)
+    const hash = Uint8Array.from(
+      Buffer.from(
+        await crypto.subtle.digest('SHA-256', lamport0.subarray(i * 32, (i + 1) * 32))
+      )
     );
+
     for (var j = 0; j < 32; j++) {
       lamportPrivateKey[i * 32 + j] = hash[j];
     }
   }
 
   for (var i = 0; i < 255; i++) {
-    const hash = await crypto.subtle.digest(
-      'SHA-256',
-      lamport1.subarray(i * 32, (i + 1) * 32)
+    const hash = Uint8Array.from(
+      Buffer.from(
+        await crypto.subtle.digest('SHA-256', lamport1.subarray(i * 32, (i + 1) * 32))
+      )
     );
     for (var j = 0; j < 32; j++) {
       lamportPrivateKey[32 * 255 + i * 32 + j] = hash[j];
@@ -50,6 +53,22 @@ async function deriveLamportPublicKey(ikm: Buffer, index: number) {
   return hash;
 }
 
+function padBEBuffer(buf: Buffer, len: number) {
+  if (buf.length == len) {
+    return buf;
+  }
+
+  if (buf.length > len) {
+    throw new Error(`buffer length ${buf.length} exceeds the required length of ${len}`);
+  }
+
+  const newBuf = Buffer.from(new ArrayBuffer(len));
+
+  buf.copy(newBuf);
+
+  return newBuf;
+}
+
 export async function keyGen(key: Buffer) {
   const okm = await extractAndExpand(
     48,
@@ -58,11 +77,12 @@ export async function keyGen(key: Buffer) {
     Buffer.from([0, 48])
   );
 
-  console.log('okm', okm.toString('hex'));
-
-  // TODO: Definitely not the fastest approach below
+  // TODO: Definitely not the fastest approach
   const okmInt = BigInt('0x' + okm.toString('hex'));
-  return Buffer.from((okmInt % BLS12381_Q).toString(16), 'hex');
+  var tmp = (okmInt % BLS12381_Q).toString(16);
+  tmp = !(tmp.length % 2) ? tmp : '0' + tmp;
+  const ret = padBEBuffer(Buffer.from(tmp, 'hex'), 32);
+  return ret;
 }
 
 async function deriveChildKey(parent: Buffer, index: number) {
