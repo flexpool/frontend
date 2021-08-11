@@ -22,7 +22,8 @@ import { poolCoinsFullGet } from '../src/rdx/poolCoinsFull/poolCoinsFull.actions
 
 export const HomePage = () => {
   const d = useDispatch();
-  const { t } = useTranslation('home');
+  const { t, i18n } = useTranslation('home');
+  const { t: seoT } = useTranslation('seo');
 
   React.useEffect(() => {
     d(poolCoinsFullGet());
@@ -33,10 +34,19 @@ export const HomePage = () => {
   return (
     <PageContainer>
       <NextSeo
-        title='The Most Advanced Mining Pool'
+        title={seoT('title.home')}
+        description={seoT('website_description.home')}
         openGraph={{
-          title: 'The Most Advanced Mining Pool',
+          title: seoT('title.home'),
+          description: seoT('website_description.home'),
+          locale: i18n.language,
         }}
+        additionalMetaTags={[
+          {
+            property: 'keywords',
+            content: seoT('keywords.home'),
+          },
+        ]}
       />
 
       <Hero>
@@ -69,6 +79,7 @@ export async function getStaticProps({ locale }) {
         'common',
         'home',
         'cookie-consent',
+        'seo',
       ])),
     },
   };

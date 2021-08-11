@@ -7,14 +7,25 @@ import { Content } from '../src/components/layout/Content';
 import { LinkOut } from '../src/components/LinkOut';
 
 export const BusinessDevelopmentPage = () => {
-  const { t } = useTranslation('business-dev');
+  const { t, i18n } = useTranslation('business-dev');
+  const { t: seoT } = useTranslation('seo');
+
   return (
     <Page>
       <NextSeo
-        title={t('head_title')}
+        title={seoT('title.business_development')}
+        description={seoT('website_description.business_development')}
         openGraph={{
-          title: t('head_title'),
+          title: seoT('title.business_development'),
+          description: seoT('website_description.business_development'),
+          locale: i18n.language,
         }}
+        additionalMetaTags={[
+          {
+            property: 'keywords',
+            content: seoT('keywords.business_development'),
+          },
+        ]}
       />
 
       <Content md paddingLg>
@@ -46,6 +57,7 @@ export async function getStaticProps({ locale }) {
         'common',
         'business-dev',
         'cookie-consent',
+        'seo',
       ])),
     },
   };

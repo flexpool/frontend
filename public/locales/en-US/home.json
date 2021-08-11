@@ -34,7 +34,7 @@
   },
   "mined_coins_section": {
     "title": "Coins we mine",
-    "description": "Flexpool is a Multi-Coin mining pool, which means that you can mine your favorite coins on Flexpool.",
+    "description": "Flexpool is a Multi-Coin mining pool, which means that you can mine multiple coins includnig Ethereum and Chia on Flexpool.",
     "table_head": {
       "name": "Name",
       "price": "Price",
@@ -73,25 +73,15 @@
     "title": "Why Flexpool",
     "item_1": {
       "title": "Lightning speed",
-      "description": "We use specialized high-performance server clusters powered by superfast software designed to handle over 100 TH/s."
+      "description": "We use worldwide high-performance server clusters powered by superfast software designed to handle a tremendous amount of miners concurrently mining on our pool."
     },
     "item_2": {
       "title": "Just Better",
-      "description": "You can forget your poor mining experience. Flexpool is backed by high-quality support, and we are always happy to help!"
+      "description": "You can forget your poor mining experience. Flexpool is backed by an expert team and excellent support that is always happy to help!"
     }
   },
   "get_started_section": {
     "title": "Ready to get started?",
     "cta": "Start Mining"
-  },
-  "chia": {
-    "email_submission_failure": "Failed to submit email",
-    "chia_comming_soon_text": "We are getting ready to launch our Chia pool. Stay tuned for more details. Sign up for email updates or join us below to become one of the first Chia miners on Flexpool!",
-    "chia_coming_soon": "Chia Coming Soon!",
-    "subscribe": "Subscribe!",
-    "subscribed": "Subscribed!"
-  },
-  "top_notification": {
-    "welcome": "Welcome to the new revamped Flexpool.io v2 Website! If you wish to visit old website, please use"
   }
 }
