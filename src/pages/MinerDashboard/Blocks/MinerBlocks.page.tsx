@@ -4,9 +4,6 @@ export const MinerBlocksPage: React.FC<{
 }> = ({ address }) => {
   return (
     <>
-      {/* <Head>
-        <title>Miner blocks</title>
-      </Head> */}
       <BlocksSection address={address} />
     </>
   );

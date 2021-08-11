@@ -47,9 +47,6 @@ export const BlocksPage = () => {
 
   return (
     <Page>
-      {/* <Head>
-        <title>{t('head_title')}</title>
-      </Head> */}
       <HeaderStat>
         <h1>{t('title')}</h1>
         <p>{t('description')}</p>

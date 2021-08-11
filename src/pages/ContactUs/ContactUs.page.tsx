@@ -7,9 +7,6 @@ export const ContactUsPage = () => {
   const { t } = useTranslation('contact-us');
   return (
     <Page>
-      {/* <Head>
-        <title>{t('head_title')}</title>
-      </Head> */}
       <Content md paddingLg>
         <h1>{t('title')}</h1>
         <p style={{ marginTop: '30px' }}>

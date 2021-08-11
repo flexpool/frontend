@@ -85,9 +85,6 @@ export const BrandAssetsPage = () => {
   const { t } = useTranslation('brand-assets');
   return (
     <Page>
-      {/* <Head>
-        <title>{t('head_title')}</title>
-      </Head> */}
       <Content md paddingLg>
         <h2>{t('brand_name.title')}</h2>
         <p>

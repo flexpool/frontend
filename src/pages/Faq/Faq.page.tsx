@@ -161,9 +161,6 @@ export const FaqPage = () => {
 
   return (
     <Page>
-      {/* <Head>
-        <title>FAQ</title>
-      </Head> */}
       <Content paddingLg>
         <FaqContent>
           {(asyncState.data || []).map((item) => (

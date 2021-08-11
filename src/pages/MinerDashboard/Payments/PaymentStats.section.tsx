@@ -117,9 +117,6 @@ export const GeneralPaymentStatsSection: React.FC<{
 
   return (
     <>
-      {/* <Head>
-        <title>{t('payments.head_title')}</title>
-      </Head> */}
       <h2>{t('payments.general.title')}</h2>
       <CardGrid>
         <Card padding>
@@ -210,9 +207,11 @@ export const GeneralPaymentStatsSection: React.FC<{
                 icon={<span>{t('payments.transaction_fees.average_cta')}</span>}
               >
                 <TooltipContent>
-                  {(t('payments.transaction_fees.average_cta_tooltip', {
-                    returnObjects: true,
-                  }) as string[]).map((item) => (
+                  {(
+                    t('payments.transaction_fees.average_cta_tooltip', {
+                      returnObjects: true,
+                    }) as string[]
+                  ).map((item) => (
                     <p key={item}>{item}</p>
                   ))}
                 </TooltipContent>

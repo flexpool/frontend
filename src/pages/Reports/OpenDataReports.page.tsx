@@ -77,9 +77,6 @@ export const OpenDataReportsPage = () => {
 
   return (
     <Page>
-      {/* <Head>
-        <title>{t('head_title')}</title>
-      </Head> */}
       <Content md paddingLg>
         <h1>{t('title')}</h1>
         <p>{t('description')}</p>

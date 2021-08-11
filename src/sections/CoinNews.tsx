@@ -1,3 +1,4 @@
+import { NextSeo } from 'next-seo';
 import React from 'react';
 import { Img } from 'src/components/Img';
 import { LinkOut } from 'src/components/LinkOut';
@@ -128,6 +129,7 @@ export const CoinNews: React.FC<{ coinTicker: string }> = ({ coinTicker }) => {
 
   return (
     <>
+      <NextSeo noindex={true} />
       {(newsState.data || []).map((item) => (
         <CoinNewsItem data={item} key={item.link} />
       ))}

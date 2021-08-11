@@ -21,9 +21,6 @@ export const HomePage = () => {
 
   return (
     <PageContainer>
-      {/* <Head>
-        <title>{t('head_title')}</title>
-      </Head> */}
       <Hero>
         <Content contentCenter style={{ position: 'relative', zIndex: 100 }}>
           <h1>{t('title')}</h1>

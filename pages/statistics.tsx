@@ -1,6 +1,5 @@
 import React from 'react';
 import { NextSeo } from 'next-seo';
-import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
