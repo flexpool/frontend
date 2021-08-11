@@ -83,15 +83,5 @@
   "get_started_section": {
     "title": "Připraveni začít?",
     "cta": "Začít těžit"
-  },
-  "chia": {
-    "email_submission_failure": "Failed to submit email",
-    "chia_comming_soon_text": "We are getting ready to launch our Chia pool. Stay tuned for more details. Sign up for email updates or join us below to become one of the first Chia miners on Flexpool!",
-    "chia_coming_soon": "Chia Coming Soon!",
-    "subscribe": "Subscribe!",
-    "subscribed": "Subscribed!"
-  },
-  "top_notification": {
-    "welcome": "Welcome to the new revamped Flexpool.io v2 Website! If you wish to visit old website, please use"
   }
 }
