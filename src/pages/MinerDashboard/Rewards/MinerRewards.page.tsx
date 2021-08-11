@@ -15,9 +15,6 @@ export const MinerRewardsPage: React.FC<{
 
   return (
     <>
-      {/* <Head>
-        <title>Miner rewards</title>
-      </Head> */}
       <RewardsChart
         counterPrice={minerRewardsState.data?.price || 0}
         rewards={minerRewardsState.data?.data || []}

@@ -12,9 +12,6 @@ export const MinersPage = () => {
   const { t } = useTranslation('miners');
   return (
     <Page>
-      {/* <Head>
-        <title>{t('head_title')}</title>
-      </Head> */}
       <HeaderStat>
         <h1>{t('title')}</h1>
       </HeaderStat>

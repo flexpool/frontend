@@ -36,9 +36,6 @@ export const StatisticsPage = () => {
 
   return (
     <Page>
-      {/* <Head>
-        <title>{t('head_title')}</title>
-      </Head> */}
       <HeaderStat>
         <h1>{t('title')}</h1>
       </HeaderStat>
