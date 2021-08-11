@@ -4,16 +4,28 @@ import { Spacer } from 'src/components/layout/Spacer';
 import SwaggerUI from 'swagger-ui-react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { NextSeo } from 'next-seo';
+import { useTranslation } from 'next-i18next';
 
 export const ApiDocsPage = () => {
+  const { t: seoT, i18n } = useTranslation('seo');
+
   return (
     <Page>
       <Content padding>
         <NextSeo
-          title={'API Documentation'}
+          title={seoT('title.api_documentation')}
+          description={seoT('website_description.api_documentation')}
           openGraph={{
-            title: 'API Documentation',
+            title: seoT('title.api_documentation'),
+            description: seoT('website_description.api_documentation'),
+            locale: i18n.language,
           }}
+          additionalMetaTags={[
+            {
+              property: 'keywords',
+              content: seoT('keywords.api_documentation'),
+            },
+          ]}
         />
         <Spacer size="xl" />
         <SwaggerUI url="https://static.flexpool.io/api/openapi.json" />
@@ -28,7 +40,11 @@ export default ApiDocsPage;
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'cookie-consent'])),
+      ...(await serverSideTranslations(locale, [
+        'common',
+        'cookie-consent',
+        'seo',
+      ])),
     },
   };
 }

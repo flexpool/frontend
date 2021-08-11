@@ -14,11 +14,13 @@ import { TerminalCommand } from './TerminalCommand';
 import { JoinSection } from './Join.section';
 import { CreatePlotsSection } from './CreatePlots.section';
 import merge from 'lodash.merge';
+import { NextSeo } from 'next-seo';
 
 export const ChiaCliGuidePage: React.FC = () => {
   const router = useRouter();
   const ticker = router.query.ticker;
-  const { t } = useTranslation('get-started');
+  const { t, i18n } = useTranslation('get-started');
+  const { t: seoT } = useTranslation('seo');
 
   const mineableCoin = React.useMemo(() => {
     return mineableCoins.find((item) => item.ticker === ticker);
@@ -79,8 +81,39 @@ export const ChiaCliGuidePage: React.FC = () => {
     return null;
   }
 
+  const seoTitle = seoT('title.get_started_chia_regular', {
+    coinName: mineableCoin?.name,
+    coinTicker: mineableCoin?.ticker.toUpperCase(),
+    client: 'CLI',
+  });
+
+  const seoDescription = seoT('website_description.get_started_chia_regular', {
+    coinName: mineableCoin?.name,
+    coinTicker: mineableCoin?.ticker.toUpperCase(),
+    client: 'CLI',
+  });
+
   return (
     <Page>
+      <NextSeo
+        title={seoTitle}
+        description={seoDescription}
+        openGraph={{
+          title: seoTitle,
+          description: seoDescription,
+          locale: i18n.language,
+        }}
+        additionalMetaTags={[
+          {
+            property: 'keywords',
+            content: seoT('keywords.get_started_chia_regular', {
+              coinName: mineableCoin?.name,
+              coinTicker: mineableCoin?.ticker.toUpperCase(),
+              client: 'CLI',
+            }),
+          },
+        ]}
+      />
       <h1>{t('detail_xch.title_cli')}</h1>
       <PingTestSection data={mineableCoin.regions} />
       <Spacer size="xl" />

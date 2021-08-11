@@ -11,15 +11,25 @@ import { TopMinersSection } from '../src/pages/Miners/components/TopMiners/TopMi
 import { LoaderSpinner } from '../src/components/Loader/LoaderSpinner';
 
 function MinersPage() {
-  const { t } = useTranslation('miners');
+  const { t, i18n } = useTranslation('miners');
+  const { t: seoT } = useTranslation('seo');
 
   return (
     <Page>
       <NextSeo
-        title={t('head_title')}
+        title={seoT('title.miners')}
+        description={seoT('website_description.miners')}
         openGraph={{
-          title: t('head_title'),
+          title: seoT('title.miners'),
+          description: seoT('website_description.miners'),
+          locale: i18n.language,
         }}
+        additionalMetaTags={[
+          {
+            property: 'keywords',
+            content: seoT('keywords.miners'),
+          },
+        ]}
       />
 
       <HeaderStat>
@@ -45,6 +55,7 @@ export async function getStaticProps({ locale }) {
         'common',
         'miners',
         'cookie-consent',
+        'seo',
       ])),
     },
   };

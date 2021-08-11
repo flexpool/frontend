@@ -1,0 +1,52 @@
+{
+  "title": {
+    "home": "The Most Advanced Mining Pool",
+    "faq": "Frequently Asked Questions",
+    "miners": "Miners Leaderboard",
+    "not-found": "Page not found",
+    "statistics": "Pool Statistics",
+    "support": "Contact Support",
+    "contact": "Contact Us",
+    "business_development": "Business Development",
+    "brand_assets": "Brand Assets",
+    "blocks": "Blocks",
+    "api_documentation": "API Documentation",
+    "get_started_gpu": "Mine {{coinName}} ({{coinTicker}}) using GPU rig",
+    "get_started_nicehash": "Rent NiceHash to {{coinName}} ({{coinTicker}})",
+    "get_started_chia_regular": "Farm {{coinName}} ({{coinTicker}}) using {{client}}",
+    "get_started_home": "Get Started"
+  },
+  "website_description": {
+    "home": "Flexpool.io is the world's most advanced mining pool that provides an easy-to-use way to mine your favorite coins. We are a pool that supports Ethereum and Chia.",
+    "faq": "Frequently Asked Questions of a typical Flexpool.io user are described here. Here you can learn what pooling terms mean, and how to troubleshoot common issues.",
+    "miners": "Top 10 largest Flexpool.io miners, and miner distribution by size are shown on this page.",
+    "not-found": "Page not found",
+    "statistics": "Global pool statistics are shown on this page. You can see the pool hashrate, miner count, average and current luck, and the overall hashrate chart for the past day.",
+    "support": "Flexpool.io provides support via on-website messenger and via dedicated support email. You can find details and instructions on getting support on this page.",
+    "contact": "You can find out how to reach out Flexpool.io team on this page. Please note that the instructions on this page are for business-related purposes only. For support, please see the support page.",
+    "business_development": "Instructions on contacting Flexpool.io for Business Development-related inquiries are located on this page",
+    "brand_assets": "You can find Flexpool.io branding assets and brand guidelines on this page.",
+    "blocks": "Blocks statistics are located on this page. Here you can find useful metrics like average and current luck, network hashrate and difficulty, blocks visualization, list of blocks, and many other things.",
+    "api_documentation": "Comprehensive Flexpool APIv2 documentation is located on this page.",
+    "get_started_gpu": "On this page, you can find an interactive guide on how to get started mining {{coinName}} ({{coinTicker}}) with {{coinAlgorithm}} using GPU rig on Flexpool.",
+    "get_started_nicehash": "On this page, you can find an interactive guide on how to get started renting NiceHash to {{coinName}} ({{coinTicker}}) with {{coinAlgorithm}} on Flexpool.",
+    "get_started_chia_regular": "On this page, you can find an interactive guide on how to get started farming {{coinName}} ({{coinTicker}}) using {{client}} on Flexpool.",
+    "get_started_home": "On this page, you can find all our interactive get started guides on how to mine on Flexpool."
+  },
+  "keywords": {
+    "home": "ethereum pool,chia pool,best ethereum pool, best chia pool,ethereum mining,chia farming,mining pool,farming pool,best mining pool,best farming pool",
+    "faq": "faq,frequently asked questions,troubleshooting",
+    "miners": "top miners,top farmers,leaderboard,miner distribution,farmer distribution",
+    "statistics": "pool statistics,pool hashrate,pool netspace,pool space,pool size,miner count,farmer count,average luck,current luck,pool hashrate chart,pool netspace chart,pool space chart",
+    "support": "support,help,troubleshooting,contact",
+    "contact": "contact team",
+    "business_development": "business development",
+    "brand_assets": "flexpool logo,flexpool brand,brand assets",
+    "blocks": "blocks mined,blocks farmed,blocks statistics,blocks",
+    "api_documentation": "api,api docs,api documentation,flexpool api",
+    "get_started_gpu": "guide,tutorial,{{coinName}} mining,{{coinTicker}} mining,{{coinAlgorithm}} mining,{{coinName}} instructions,{{coinTicker}} instructions,{{coinAlgorithm}} instructions",
+    "get_started_nicehash": "guide,tutorial,nicehash {{coinName}} rental,nicehash {{coinTicker}} rental,nicehash {{coinName}} instructions,nicehash {{coinTicker}} instructions,nicehash {{coinName}} rent,nicehash {{coinTicker}} rent,nicehash flexpool,nicehash flexpool {{coinAlgorithm}}",
+    "get_started_chia_regular": "guide,tutorial,{{coinName}} {{client}} farming,{{coinTicker}} {{client}} farming, {{coinName}} {{client}} instructions,{{coinTicker}} {{client}} instructions",
+    "get_started_home": "guide,tutorial,start mining,start farming,mining guide,mining tutorial,get started,instructions"
+  }
+}
