@@ -8,9 +8,6 @@ export const BusinessDevelopmentPage = () => {
   const { t } = useTranslation('business-dev');
   return (
     <Page>
-      {/* <Head>
-        <title>{t('head_title')}</title>
-      </Head> */}
       <Content md paddingLg>
         <h1>{t('title')}</h1>
         <h2>{t('touch.title')}</h2>

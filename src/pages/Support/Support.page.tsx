@@ -47,9 +47,6 @@ export const SupportPage = () => {
   const { t } = useTranslation('support');
   return (
     <Page>
-      {/* <Head>
-        <title>{t('head_title')}</title>
-      </Head> */}
       <HeroBlue>
         <Content md>
           <h1>{t('title')}</h1>
