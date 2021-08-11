@@ -185,6 +185,7 @@ export const MinerDashboardPageContent: React.FC<{
         <Page>
           <NextSeo
             title={`${address}`}
+            noindex={true}
             openGraph={{
               title: `${address}`,
             }}

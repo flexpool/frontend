@@ -45,9 +45,6 @@ export const PartnersPage = () => {
   }
   return (
     <Page>
-      {/* <Head>
-        <title>Partners</title>
-      </Head> */}
       <Content md paddingLg>
         <h1>Partners</h1>
         <Spacer />

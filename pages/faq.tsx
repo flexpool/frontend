@@ -7,7 +7,6 @@ import styled from 'styled-components';
 import { Content } from '../src/components/layout/Content';
 import { Page } from '../src/components/layout/Page';
 import { CopyButton } from '../src/components/CopyButton';
-import { FaqDocs } from '../src/docs/docs.utils';
 import { FaLink } from 'react-icons/fa';
 
 type FaqDataSection = {
@@ -139,15 +138,24 @@ const FaqContent = styled.div`
 `;
 
 function FAQPage({ faq }) {
-  // const { i18n } = useTranslation();
+  const { i18n, t: seoT } = useTranslation('seo');
 
   return (
     <Page>
       <NextSeo
-        title={'FAQ'}
+        title={seoT('title.faq')}
+        description={seoT('website_description.faq')}
         openGraph={{
-          title: 'FAQ'
+          title: seoT('title.faq'),
+          description: seoT('website_description.faq'),
+          locale: i18n.language,
         }}
+        additionalMetaTags={[
+          {
+            property: 'keywords',
+            content: seoT('keywords.faq'),
+          },
+        ]}
       />
       <Content paddingLg>
         <FaqContent>
@@ -183,7 +191,11 @@ export async function getStaticProps({ locale }) {
 
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'cookie-consent'])),
+      ...(await serverSideTranslations(locale, [
+        'common',
+        'cookie-consent',
+        'seo',
+      ])),
       faq: loadFaq,
     },
   };

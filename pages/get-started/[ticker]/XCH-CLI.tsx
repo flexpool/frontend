@@ -8,12 +8,6 @@ import { ChiaCliGuidePage } from 'src/pages/GetStarted/ChiaCli/Guide.page';
 export const GetStartedXchCliPage = () => {
   return (
     <Page>
-      <NextSeo
-        title={'Start mining with Flexpool'}
-        openGraph={{
-          title: 'Start mining with Flexpool',
-        }}
-      />
       <Content paddingLg>
         <ChiaCliGuidePage />
       </Content>
@@ -30,6 +24,7 @@ export async function getStaticProps({ locale }) {
         'common',
         'get-started',
         'cookie-consent',
+        'seo',
       ])),
     },
   };

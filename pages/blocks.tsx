@@ -30,7 +30,8 @@ function BlocksPage() {
   } | null>('poolStats', null);
   const activeCoin = useActiveCoin();
   const siFormatter = useLocalizedSiFormatter();
-  const { t } = useTranslation('blocks');
+  const { t, i18n } = useTranslation('blocks');
+  const { t: seoT } = useTranslation('seo');
 
   React.useEffect(() => {
     if (activeCoin?.ticker) {
@@ -48,8 +49,8 @@ function BlocksPage() {
             networkHashrate,
             networkDifficulty,
           })
-          )
-          );
+        )
+      );
     }
     // eslint-disable-next-line
   }, [activeCoin?.ticker]);
@@ -57,10 +58,19 @@ function BlocksPage() {
   return (
     <Page>
       <NextSeo
-        title={t('head_title')}
+        title={seoT('title.blocks')}
+        description={seoT('website_description.blocks')}
         openGraph={{
-          title: t('head_title'),
+          title: seoT('title.blocks'),
+          description: seoT('website_description.blocks'),
+          locale: i18n.language,
         }}
+        additionalMetaTags={[
+          {
+            property: 'keywords',
+            content: seoT('keywords.blocks'),
+          },
+        ]}
       />
       <HeaderStat>
         <h1>{t('title')}</h1>
@@ -150,6 +160,7 @@ export async function getStaticProps({ locale }) {
         'common',
         'blocks',
         'cookie-consent',
+        'seo',
       ])),
     },
   };

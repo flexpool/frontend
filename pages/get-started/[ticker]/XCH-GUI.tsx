@@ -1,4 +1,3 @@
-import { NextSeo } from 'next-seo';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { Content } from 'src/components/layout/Content';
@@ -8,12 +7,6 @@ import { ChiaGuiGuidePage } from 'src/pages/GetStarted/ChiaGui/Guide.page';
 export const GetStartedXchGuiPage = () => {
   return (
     <Page>
-      <NextSeo
-        title={'Start mining with Flexpool'}
-        openGraph={{
-          title: 'Start mining with Flexpool',
-        }}
-      />
       <Content paddingLg>
         <ChiaGuiGuidePage />
       </Content>
@@ -30,6 +23,7 @@ export async function getStaticProps({ locale }) {
         'common',
         'get-started',
         'cookie-consent',
+        'seo',
       ])),
     },
   };

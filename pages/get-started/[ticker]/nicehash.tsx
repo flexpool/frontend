@@ -1,4 +1,3 @@
-import { NextSeo } from 'next-seo';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { Content } from 'src/components/layout/Content';
@@ -8,12 +7,6 @@ import { NicehashGuidePage } from 'src/pages/GetStarted/Nicehash/NicehashGuide.p
 export const GetStartedNicehashPage = () => {
   return (
     <Page>
-      <NextSeo
-        title={'Start mining with Flexpool'}
-        openGraph={{
-          title: 'Start mining with Flexpool',
-        }}
-      />
       <Content paddingLg>
         <NicehashGuidePage />
       </Content>
@@ -30,6 +23,7 @@ export async function getStaticProps({ locale }) {
         'common',
         'get-started',
         'cookie-consent',
+        'seo',
       ])),
     },
   };

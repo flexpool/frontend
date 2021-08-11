@@ -16,17 +16,26 @@ export const LinkText = (props: React.PropsWithChildren<LinkProps>) => {
 };
 
 export const ContactPage = () => {
-  const { t } = useTranslation('contact-us');
+  const { t, i18n } = useTranslation('contact-us');
+  const { t: seoT } = useTranslation('seo');
 
   return (
     <Page>
       <NextSeo
-        title={t('head_title')}
+        title={seoT('title.contact')}
+        description={seoT('website_description.contact')}
         openGraph={{
-          title: t('head_title'),
+          title: seoT('title.contact'),
+          description: seoT('website_description.contact'),
+          locale: i18n.language,
         }}
+        additionalMetaTags={[
+          {
+            property: 'keywords',
+            content: seoT('keywords.contact'),
+          },
+        ]}
       />
-
       <Content md paddingLg>
         <h1>{t('title')}</h1>
         <p style={{ marginTop: '30px' }}>
@@ -55,6 +64,7 @@ export async function getStaticProps({ locale }) {
         'common',
         'contact-us',
         'cookie-consent',
+        'seo',
       ])),
     },
   };

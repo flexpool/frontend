@@ -11,7 +11,6 @@ import { Content } from '../src/components/layout/Content';
 import { Page } from '../src/components/layout/Page';
 import { Spacer } from '../src/components/layout/Spacer';
 import { Sticker } from '../src/components/Sticker';
-import { useAsyncState } from '../src/hooks/useAsyncState';
 import { LatestReport } from '../src/pages/Reports/components/LatestReport/LatestReport';
 import {
   ReportArchiveItem,

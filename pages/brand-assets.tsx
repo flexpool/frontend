@@ -86,14 +86,25 @@ const Color: React.FC<{ colorCode: string; colorName: string }> = ({
 };
 
 export const BrandAssetsPage = () => {
-  const { t } = useTranslation('brand-assets');
+  const { t, i18n } = useTranslation('brand-assets');
+  const { t: seoT } = useTranslation('seo');
+
   return (
     <Page>
       <NextSeo
-        title={t('head_title')}
+        title={seoT('title.brand_assets')}
+        description={seoT('website_description.brand_assets')}
         openGraph={{
-          title: t('head_title'),
+          title: seoT('title.brand_assets'),
+          description: seoT('website_description.brand_assets'),
+          locale: i18n.language,
         }}
+        additionalMetaTags={[
+          {
+            property: 'keywords',
+            content: seoT('keywords.brand_assets'),
+          },
+        ]}
       />
 
       <Content md paddingLg>
@@ -213,6 +224,7 @@ export async function getStaticProps({ locale }) {
         'common',
         'brand-assets',
         'cookie-consent',
+        'seo',
       ])),
     },
   };

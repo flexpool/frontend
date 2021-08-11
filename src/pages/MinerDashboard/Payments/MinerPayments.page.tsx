@@ -12,9 +12,6 @@ export const MinerPaymentsPage: React.FC<{
 
   return (
     <>
-      {/* <Head>
-        <title>Miner Payments</title>
-      </Head> */}
       <PaymentsChart address={address} coin={coinData} />
       <GeneralPaymentStatsSection address={address} coin={coinData} />
     </>

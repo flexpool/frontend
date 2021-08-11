@@ -17,3 +17,5 @@ declare module 'styled-components' {
   export type UIVariant = TUIV;
   export default ModuleInterface.default;
 }
+
+declare module '*.jpg';

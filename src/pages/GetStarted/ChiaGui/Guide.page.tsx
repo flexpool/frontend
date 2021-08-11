@@ -19,12 +19,14 @@ import { Highlight } from 'src/components/Typo/Typo';
 import { ChiaGuiInput } from './Input';
 import { ChiaGuiLink } from './Link';
 import { FarmerOptionSelector } from '../ChiaShared/FarmerOptionSelector';
+import { NextSeo } from 'next-seo';
 
 export const ChiaGuiGuidePage: React.FC = () => {
   const router = useRouter();
   const ticker = router.query.ticker;
 
-  const { t } = useTranslation('get-started');
+  const { t, i18n } = useTranslation('get-started');
+  const { t: seoT } = useTranslation('seo');
 
   const mineableCoin = React.useMemo(() => {
     return mineableCoins.find((item) => item.ticker === ticker);
@@ -82,8 +84,40 @@ export const ChiaGuiGuidePage: React.FC = () => {
     return null;
   }
 
+  const seoTitle = seoT('title.get_started_chia_regular', {
+    coinName: mineableCoin?.name,
+    coinTicker: mineableCoin?.ticker.toUpperCase(),
+    client: 'GUI',
+  });
+
+  const seoDescription = seoT('website_description.get_started_chia_regular', {
+    coinName: mineableCoin?.name,
+    coinTicker: mineableCoin?.ticker.toUpperCase(),
+    client: 'GUI',
+  });
+
   return (
     <Page>
+      <NextSeo
+        title={seoTitle}
+        description={seoDescription}
+        openGraph={{
+          title: seoTitle,
+          description: seoDescription,
+          locale: i18n.language,
+        }}
+        additionalMetaTags={[
+          {
+            property: 'keywords',
+            content: seoT('keywords.get_started_chia_regular', {
+              coinName: mineableCoin?.name,
+              coinTicker: mineableCoin?.ticker.toUpperCase(),
+              client: 'GUI',
+            }),
+          },
+        ]}
+      />
+
       <h1>{t('detail_xch.title_gui')}</h1>
       <h2>
         <Highlight>#1</Highlight> {t('detail.region.title')}
