@@ -50,11 +50,13 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
 
   useEffect(() => {
     const parsedSearch = qs.parse(getLocationSearch());
-    const parsedRegion = parsedSearch?.primaryServer
-      ?.toString()
-      .split('xch-')
-      .pop()
-      .split('.flexpool')[0];
+    const parsedRegionTmp = parsedSearch?.primaryServer?.toString().split('xch-').pop();
+
+    if (!parsedRegionTmp) {
+      return;
+    }
+
+    const parsedRegion = parsedRegionTmp.split('.flexpool')[0];
 
     if (parsedSearch.launcherID !== launcherID) {
       setLauncherID((parsedSearch.launcherID as string) || 'LAUNCHER_ID');
@@ -219,8 +221,16 @@ export async function getStaticProps({ locale }) {
   };
 }
 
+interface Path {
+  params: {
+    ticker: string;
+    hw: string;
+  };
+  locale: any;
+}
+
 export const getStaticPaths = ({ locales }) => {
-  const paths = [];
+  const paths: Array<Path> = [];
 
   for (const locale of locales) {
     paths.push({ params: { ticker: 'xch', hw: 'flexfarmer' }, locale });
