@@ -83,15 +83,5 @@
   "get_started_section": {
     "title": "Prêt à commencer?",
     "cta": "Commencez à miner"
-  },
-  "chia": {
-    "email_submission_failure": "Échec de l'envoi de l'e-mail",
-    "chia_comming_soon_text": "Nous nous préparons à lancer notre pool de Chia. Restez à l'écoute pour plus de détails. Inscrivez-vous pour recevoir des mises à jour par courriel ou rejoignez-nous ci-dessous pour devenir l'un des premiers mineurs de Chia sur Flexpool !",
-    "chia_coming_soon": "Chia bientôt disponible !",
-    "subscribe": "Abonnez-vous !",
-    "subscribed": "Souscrit !"
-  },
-  "top_notification": {
-    "welcome": "Bienvenue sur le nouveau site Flexpool.io v2 ! Si vous souhaitez visiter l'ancien site, veuillez utiliser le lien suivant"
   }
 }

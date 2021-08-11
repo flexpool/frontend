@@ -47,14 +47,25 @@ const SupportChannel: React.FC<{
 };
 
 export const SupportPage = () => {
-  const { t } = useTranslation('support');
+  const { t, i18n } = useTranslation('support');
+  const { t: seoT } = useTranslation('seo');
+
   return (
     <Page>
       <NextSeo
-        title={t('head_title')}
+        title={seoT('title.support')}
+        description={seoT('website_description.support')}
         openGraph={{
-          title: t('head_title'),
+          title: seoT('title.support'),
+          description: seoT('website_description.support'),
+          locale: i18n.language,
         }}
+        additionalMetaTags={[
+          {
+            property: 'keywords',
+            content: seoT('keywords.support'),
+          },
+        ]}
       />
 
       <HeroBlue>
@@ -123,6 +134,7 @@ export async function getStaticProps({ locale }) {
         'common',
         'support',
         'cookie-consent',
+        'seo',
       ])),
     },
   };

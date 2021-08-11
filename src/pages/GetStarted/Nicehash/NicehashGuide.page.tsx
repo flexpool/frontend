@@ -1,13 +1,8 @@
-// TODO: Remove this TS nocheck
-// @ts-nocheck
 import React from 'react';
-import Head from 'next/head';
 
 import { useRouter } from 'next/router';
 import { Trans, useTranslation } from 'next-i18next';
 import styled from 'styled-components';
-//
-// import { Redirect, useRouteMatch } from 'react-router';
 import { CopyButton } from 'src/components/CopyButton';
 import { Img } from 'src/components/Img';
 import { Content } from 'src/components/layout/Content';
@@ -19,6 +14,7 @@ import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOut } from 'src/components/LinkOut';
 import { Highlight, Mono, Ws } from 'src/components/Typo/Typo';
 import { MineableCoinRegion, mineableCoins } from '../mineableCoinList';
+import { NextSeo } from 'next-seo';
 
 import nh1 from './assets/nh_1.jpg';
 import nh2 from './assets/nh_2.jpg';
@@ -67,13 +63,13 @@ export const ServerList: React.FC<{
         ),
       },
     ],
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 
   const serverList = React.useMemo(() => {
     return data.filter((item) => item.high_diff_avail);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <DynamicList data={serverList} columns={cols} />;
@@ -89,11 +85,12 @@ export const NicehashGuidePage = () => {
   const router = useRouter();
   const ticker = router.query.ticker;
 
-  const { t } = useTranslation('get-started');
+  const { t, i18n } = useTranslation('get-started');
+  const { t: seoT } = useTranslation('seo');
 
   const mineableCoin = React.useMemo(() => {
     return mineableCoins.find((item) => item.ticker === ticker);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!mineableCoin) {
@@ -122,70 +119,106 @@ export const NicehashGuidePage = () => {
     algorithm: algo,
   });
 
+  const seoTitle = seoT('title.get_started_nicehash', {
+    coinName: mineableCoin?.name,
+    coinTicker: mineableCoin?.ticker.toUpperCase(),
+  });
+
+  const seoDescription = seoT('website_description.get_started_nicehash', {
+    coinName: mineableCoin?.name,
+    coinTicker: mineableCoin?.ticker.toUpperCase(),
+    coinAlgorithm: mineableCoin?.algorithm,
+  });
+
   return (
     <Page>
-      <Head>
-        <title>{t('nicehash.head_title')}</title>
-      </Head>
-        <Content md paddingLg>
-          <h1>{t('nicehash.title')}</h1>
-          <p>{t('nicehash.description')}</p>
+      <NextSeo
+        title={seoTitle}
+        description={seoDescription}
+        openGraph={{
+          title: seoTitle,
+          description: seoDescription,
+          locale: i18n.language,
+        }}
+        additionalMetaTags={[
+          {
+            property: 'keywords',
+            content: seoT('keywords.get_started_nicehash', {
+              coinName: mineableCoin?.name,
+              coinTicker: mineableCoin?.ticker.toUpperCase(),
+              coinAlgorithm: mineableCoin?.algorithm,
+            }),
+          },
+        ]}
+      />
+      <Content md paddingLg>
+        <h1>{t('nicehash.title')}</h1>
+        <p>{t('nicehash.description')}</p>
 
-          <h2>
-            <Highlight>#1</Highlight> {t('nicehash.step_one.title')}
+        <h2>
+          <Highlight>#1</Highlight> {t('nicehash.step_one.title')}
         </h2>
-          {stepOneDirections &&
-            <>
-              {Object.keys(stepOneDirections).map((p) => (
-                <p key={p}>{stepOneDirections[p]}</p>
-              ))}
-            </>
-          }
-          <LinkOut href={nh1.src}>
-            <GuideImg src={nh1.src} alt="nicehash guide" />
-          </LinkOut>
-          <h2>
-            <Highlight>#2 </Highlight>
-            {t('nicehash.step_two.title')}
-          </h2>
-          {stepTwoDirections &&
-            <>
-              {Object.keys(stepTwoDirections).map((p) => (
-                <p key={p} dangerouslySetInnerHTML={{ __html: stepTwoDirections[p] }}/>
-              ))}
-            </>
-          }
-          <Spacer />
-          <ServerList data={mineableCoin?.regions} />
-          <Spacer />
-          <LinkOut href={nh2.src}>
-            <GuideImg src={nh2.src} alt="nicehash guide" />
-          </LinkOut>
-          <h2>
-            <Highlight>#3 </Highlight>
-            {t('nicehash.step_three.title')}
-          </h2>
-          {stepThreeDirections &&
-            <>
-              {Object.keys(stepThreeDirections).map((p) => (
-                <p key={p} dangerouslySetInnerHTML={{ __html: stepThreeDirections[p] }}/>
-              ))}
-            </>
-          }
-          <LinkOut href={nh3.src}>
-            <GuideImg src={nh3.src} alt="nicehash guide" />
-          </LinkOut>
-          <h2>
-            <Highlight>#4</Highlight> {t('nicehash.step_four.title')}
-          </h2>
-          {stepFourDirections &&
-            <>
-              {Object.keys(stepFourDirections).map((p) => (
-                <p key={p} dangerouslySetInnerHTML={{ __html: stepFourDirections[p] }}/>
-              ))}
-            </>
-          }
-        </Content>
+        {stepOneDirections && (
+          <>
+            {Object.keys(stepOneDirections).map((p) => (
+              <p key={p}>{stepOneDirections[p]}</p>
+            ))}
+          </>
+        )}
+        <LinkOut href={nh1.src}>
+          <GuideImg src={nh1.src} alt="nicehash guide" />
+        </LinkOut>
+        <h2>
+          <Highlight>#2 </Highlight>
+          {t('nicehash.step_two.title')}
+        </h2>
+        {stepTwoDirections && (
+          <>
+            {Object.keys(stepTwoDirections).map((p) => (
+              <p
+                key={p}
+                dangerouslySetInnerHTML={{ __html: stepTwoDirections[p] }}
+              />
+            ))}
+          </>
+        )}
+        <Spacer />
+        <ServerList data={mineableCoin?.regions as MineableCoinRegion[]} />
+        <Spacer />
+        <LinkOut href={nh2.src}>
+          <GuideImg src={nh2.src} alt="nicehash guide" />
+        </LinkOut>
+        <h2>
+          <Highlight>#3 </Highlight>
+          {t('nicehash.step_three.title')}
+        </h2>
+        {stepThreeDirections && (
+          <>
+            {Object.keys(stepThreeDirections).map((p) => (
+              <p
+                key={p}
+                dangerouslySetInnerHTML={{ __html: stepThreeDirections[p] }}
+              />
+            ))}
+          </>
+        )}
+        <LinkOut href={nh3.src}>
+          <GuideImg src={nh3.src} alt="nicehash guide" />
+        </LinkOut>
+        <h2>
+          <Highlight>#4</Highlight> {t('nicehash.step_four.title')}
+        </h2>
+        {stepFourDirections && (
+          <>
+            {Object.keys(stepFourDirections).map((p) => (
+              <p
+                key={p}
+                dangerouslySetInnerHTML={{ __html: stepFourDirections[p] }}
+              />
+            ))}
+          </>
+        )}
+      </Content>
     </Page>
   );
 };

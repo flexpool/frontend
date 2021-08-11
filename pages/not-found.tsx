@@ -2,14 +2,13 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styled, { keyframes } from 'styled-components';
 import { Page } from '../src/components/layout/Page';
 import { NextSeo } from 'next-seo';
+import { useTranslation } from 'next-i18next';
 
 const StarsSvg = require('../src/pages/NotFound/assets/stars.svg') as string;
 const EarthSvg = require('../src/pages/NotFound/assets/earth.svg') as string;
 const MoonSvg = require('../src/pages/NotFound/assets/moon.svg') as string;
 const AstronautSvg =
   require('../src/pages/NotFound/assets/astronaut.svg') as string;
-
-import { Img } from '../src/components/Img';
 
 const Wrapper = styled.div`
   background-image: linear-gradient(80deg, #0e418a 0%, #2b2749 100%);
@@ -103,7 +102,7 @@ const MiddleContainer = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  jusitfy-content: center;
+  justify-content: center;
   flex-direction: column;
   margin: auto;
 
@@ -113,14 +112,20 @@ const MiddleContainer = styled.div`
 `;
 
 export const NotFoundPage = () => {
+  const { t: seoT, i18n } = useTranslation('seo');
+
   return (
     <Page>
       <Wrapper>
         <NextSeo
-          title={'404 Not Found'}
+          title={seoT('title.not-found')}
+          description={seoT('website_description.not-found')}
           openGraph={{
-            title: '404 Not Found',
+            title: seoT('title.not-found'),
+            description: seoT('website_description.not-found'),
+            locale: i18n.language,
           }}
+          noindex={true}
         />
         <StarsContainer>
           <StarsSvg />
@@ -148,7 +153,11 @@ export default NotFoundPage;
 export async function getStaticProps({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'cookie-consent'])),
+      ...(await serverSideTranslations(locale, [
+        'common',
+        'cookie-consent',
+        'seo',
+      ])),
     },
   };
 }

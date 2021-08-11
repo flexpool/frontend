@@ -39,17 +39,27 @@ function StatisticsPage() {
   }, [activeTicker, d]);
 
   const poolStatsState = useReduxState('poolStats');
-  const { t } = useTranslation('statistics');
+  const { t, i18n } = useTranslation('statistics');
+  const { t: seoT } = useTranslation('seo');
   const siFormatter = useLocalizedSiFormatter();
   const numberFormatter = useLocalizedNumberFormatter();
 
   return (
     <Page>
       <NextSeo
-        title={t('head_title')}
+        title={seoT('title.statistics')}
+        description={seoT('website_description.statistics')}
         openGraph={{
-          title: t('head_title'),
+          title: seoT('title.statistics'),
+          description: seoT('website_description.statistics'),
+          locale: i18n.language,
         }}
+        additionalMetaTags={[
+          {
+            property: 'keywords',
+            content: seoT('keywords.statistics'),
+          },
+        ]}
       />
       <HeaderStat>
         <h1>{t('title')}</h1>
@@ -110,6 +120,7 @@ export async function getStaticProps({ locale }) {
         'common',
         'statistics',
         'cookie-consent',
+        'seo',
       ])),
     },
   };
