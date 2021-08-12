@@ -6,22 +6,13 @@ import { getLocationSearch } from 'utils/url';
 import qs from 'query-string';
 
 const GuideInput: React.FC<{
-  className: string;
   label: string;
   placeholderText: string;
   param?: string;
   setExternalValue?: (value: string | null) => void;
   regexp?: RegExp;
   verifyFunc?: (s: string) => boolean;
-}> = ({
-  className,
-  label,
-  placeholderText,
-  param,
-  setExternalValue,
-  regexp,
-  verifyFunc,
-}) => {
+}> = ({ label, placeholderText, param, setExternalValue, regexp, verifyFunc }) => {
   const initValue = useMemo(() => {
     const parsedSearch = qs.parse(getLocationSearch());
     return parsedSearch.walletAddress || '';
@@ -67,7 +58,7 @@ const GuideInput: React.FC<{
   );
 
   return (
-    <div className={className}>
+    <div>
       <TextInput
         autoComplete="off"
         spellCheck="false"

@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
-import { useTranslation } from 'next-i18next';
+import { Trans, useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import qs from 'query-string';
 
@@ -22,6 +22,7 @@ import { Code } from 'src/components/Code/Code';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { FarmerSkExtractor } from 'components/guides/flexfarmer/FarmerSkExtractor';
 import { checksumXCH } from 'src/utils/validators/xchWalletAddress.validator';
+import { Spacer } from 'src/components/layout/Spacer';
 
 export const GetStartedFlexfarmerPage = ({ ticker }) => {
   const mineableCoin = useMemo(() => {
@@ -38,6 +39,7 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
   const [workerName, setWorkerName] = useState<string | null>(null);
   const [region, setRegion] = useState('' as string | string[]);
   const [payoutAddress, setPayoutAddress] = useState<string | null>(null);
+  const [os, setOS] = useState<string | null>(null);
 
   const { t: localT } = useTranslation('guide-flexfarmer');
   const { t: globalT } = useTranslation('get-started');
@@ -73,12 +75,15 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
       setRegion(parsedRegion || 'N/A');
     }
     if (parsedSearch.payoutAddress !== payoutAddress) {
-      setPayoutAddress(parsedSearch.payoutAddress || 'N/A');
+      setPayoutAddress((parsedSearch.payoutAddress as string) || 'N/A');
     }
     if (parsedSearch.farmerSkExtractionMethod !== farmerSkExtractionMethod) {
       setFarmerSkExtractionMethod(
         (parsedSearch.farmerSkExtractionMethod as string) || 'browser'
       );
+    }
+    if (parsedSearch.os !== os) {
+      setOS((parsedSearch.os as string) || 'linux');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlState]);
@@ -108,6 +113,7 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
 
   return (
     <Page>
+      {/* TODO: Normal seo */}
       <NextSeo
         title={'Start mining with Flexpool'}
         openGraph={{
@@ -115,39 +121,49 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
         }}
       />
       <Content paddingLg>
-        <div id="intro" className="mb-9">
+        <div id="intro">
           <h1 className="mb-8">{localT(`title`)}</h1>
           <p>{localT(`description`)}</p>
         </div>
 
-        <div id="requirements" className="mb-9">
+        <Spacer size="xl" />
+
+        <div id="requirements">
           <h2>{localT('requirements.heading')}</h2>
           <GuideList listItems={localT('requirements.list', { returnObjects: true })} />
         </div>
 
-        <div id="install-flexfarmer-cli" className="mb-9">
+        <Spacer size="xl" />
+
+        <div id="select-os">
           <h2>
             <Highlight>#1</Highlight> {localT('select_os.heading')}
           </h2>
           <ButtonGroupOSSelector />
         </div>
 
-        <div id="install-flexfarmer-cli" className="mb-9">
+        <Spacer size="xl" />
+
+        <div id="download-flexfarmer">
           <h2>
-            <Highlight>#2</Highlight> Install Flexfarmer CLI
+            <Highlight>#2</Highlight> {localT('download_farmer.heading')}
           </h2>
           <FlexfarmerDownloads version={latestVersion as string} />
         </div>
 
-        <div id="extract-farmer-secret-key" className="mb-9">
+        <Spacer size="xl" />
+
+        <div id="extract-farmer-secret-key">
           <h2>
             <Highlight>#3</Highlight> {localT('farmer_secret_key.heading')}
           </h2>
-          <p className="mb-5">{localT('farmer_secret_key.description_extract')}</p>
+          <p>{localT('farmer_secret_key.description_extract')}</p>
+          <Spacer />
 
-          <div id="extract-farmer-secret-key-method-selector" className="mb-5">
+          <div id="extract-farmer-secret-key-method-selector">
             <ButtonGroupFarmerSkExtractionMethodSelector />
           </div>
+          <Spacer />
           {farmerSkExtractionMethod === 'browser' ? (
             <FarmerSkExtractor setExternalFarmerSk={setFarmerSecretKey} />
           ) : (
@@ -155,13 +171,11 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
               <TerminalCommand
                 cmd={`python3 extract_farmer_key.py `}
                 output={`Enter your mnemonic > `}
-                className="mb-5"
               />
 
-              <p className="mb-5">{localT('farmer_secret_key.description_mnemonic')}</p>
+              <p>{localT('farmer_secret_key.description_mnemonic')}</p>
 
               <GuideInput
-                className="mb-5"
                 label={localT('farmer_secret_key.input_label')}
                 placeholderText={`0xf61398a76cdbd6ee5d0f31d757ca96c549876b287c0b19becd26e9e2990eae3e`}
                 setExternalValue={(value: string | null) => {
@@ -173,20 +187,28 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
           )}
         </div>
 
-        <div id="copy-launch-id" className="mb-9">
+        <Spacer size="xl" />
+
+        <div id="copy-launch-id">
           <h2>
             <Highlight>#3</Highlight> {localT('launcher_id.heading')}
           </h2>
-          <p className="mb-5">{localT('launcher_id.description')}</p>
+          <p>
+            <Trans
+              ns="guide-flexfarmer"
+              i18nKey="launcher_id.description"
+              components={{
+                command: <b />,
+              }}
+            />
+          </p>
 
-          <TerminalCommand
-            cmd={`chia plotnft show`}
-            output={chiaPlotNFTOutput}
-            className="mb-5"
-          />
+          <Spacer />
 
+          <TerminalCommand cmd={`chia plotnft show`} output={chiaPlotNFTOutput} />
+
+          <Spacer />
           <GuideInput
-            className="mb-5"
             label={'Launcher ID'}
             placeholderText={`0x2be1162ad1148809bd01c81cea6eba4f9531fd7d330ab8df34404b5a33facd60`}
             setExternalValue={(value: string | null) => {
@@ -197,14 +219,14 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
         </div>
 
         <h2>
-          <Highlight>#4</Highlight> {localT('payout_address.title')}
+          <Highlight>#4</Highlight> {localT('payout_address.heading')}
         </h2>
 
-        <p className="mb-5">{localT('payout_address.description')}</p>
+        <p>{localT('payout_address.description')}</p>
+        <Spacer />
 
-        <div id="name-worker" className="mb-9">
+        <div id="name-worker">
           <GuideInput
-            className="mb-5"
             label={localT('payout_address.input_label')}
             placeholderText={`xch1a3ncr9ks4wk8c0npzmge8y6u2df8vx0ym5j5747cye0cwhm0zg8ssmj380`}
             setExternalValue={(value: string | null) => {
@@ -215,14 +237,13 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
         </div>
 
         <h2>
-          <Highlight>#5</Highlight> {localT('worker_name.title')}
+          <Highlight>#5</Highlight> {localT('worker_name.heading')}
         </h2>
 
-        <p className="mb-5">{localT('worker_name.description')}</p>
-
-        <div id="name-worker" className="mb-9">
+        <p>{localT('worker_name.description')}</p>
+        <Spacer />
+        <div id="name-worker">
           <GuideInput
-            className="mb-5"
             label={localT('worker_name.input_label')}
             placeholderText={`my_chia_rig`}
             setExternalValue={(value: string | null) => {
@@ -236,16 +257,48 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
           <Highlight>#6</Highlight> {globalT('detail.region.title')}
         </h2>
 
-        <p className="mb-5">{globalT('detail.region.description_chia')}</p>
-
+        <p>{globalT('detail.region.description_chia')}</p>
+        <Spacer />
         <PingTestSection data={mineableCoin?.regions as MineableCoinRegion[]} />
 
         <h2>
           <Highlight>#7</Highlight> {localT('config.heading')}
         </h2>
-        <p className="mb-5">{localT('config.description')}</p>
+        <p>
+          <Trans
+            ns="guide-flexfarmer"
+            i18nKey="config.description"
+            components={{ config: <b /> }}
+          />
+        </p>
+        <Spacer />
 
         <Code language="yaml">{configTemplate}</Code>
+
+        <h2>
+          <Highlight>#8</Highlight> {localT('run.heading')}
+        </h2>
+
+        <p>
+          {os === 'windows' ? (
+            <Trans
+              ns="guide-flexfarmer"
+              i18nKey="run.description_windows"
+              components={{ file: <b /> }}
+            />
+          ) : (
+            localT('run.description')
+          )}
+        </p>
+
+        {os !== 'windows' ? (
+          <>
+            <Spacer />
+            <TerminalCommand cmd={'./flexfarmer -c config.yml'} />
+          </>
+        ) : null}
+
+        <Spacer size="xl" />
       </Content>
     </Page>
   );

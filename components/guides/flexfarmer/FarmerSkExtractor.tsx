@@ -1,4 +1,4 @@
-import { Trans } from 'next-i18next';
+import { Trans, useTranslation } from 'next-i18next';
 import React from 'react';
 import { Button } from 'src/components/Button';
 import { TextInput } from 'src/components/Form/TextInput';
@@ -7,6 +7,7 @@ import { keyGen, derivePath } from 'src/utils/chiacrypto/crypto';
 import styled from 'styled-components';
 import { BsFillLockFill, BsFillUnlockFill } from 'react-icons/bs';
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
+import { Spacer } from 'src/components/layout/Spacer';
 
 const MnemonicClearBoxWrapper = styled.div`
   margin-bottom: 1em;
@@ -24,6 +25,7 @@ const MnemonicClearBoxWrapper = styled.div`
 export const FarmerSkExtractor: React.FC<{
   setExternalFarmerSk: (s: string | null) => void;
 }> = ({ setExternalFarmerSk }) => {
+  const { t } = useTranslation('guide-flexfarmer');
   const [value, setValue] = React.useState('');
   const [mnemonicValid, setMnemonicValid] = React.useState(true);
   const label = 'Mnemonic Phrase';
@@ -41,8 +43,7 @@ export const FarmerSkExtractor: React.FC<{
     []
   );
 
-  // TODO: i18n
-  const lockedMessage = 'Accepted. Click on the lock to unlock the mnemonic entry';
+  const lockedMessage = t('farmer_secret_key.extractor_locked');
 
   React.useEffect(() => {
     if (value === lockedMessage) {
@@ -75,13 +76,14 @@ export const FarmerSkExtractor: React.FC<{
 
   return (
     <>
-      <div className="mb-5">
+      <p>
         <Trans
           ns="guide-flexfarmer"
           i18nKey="farmer_secret_key.browser_security_notice"
           components={{ warning: <b /> }}
         />
-      </div>
+      </p>
+      <Spacer />
       <MnemonicClearBoxWrapper>
         <TextInput
           autoComplete="off"

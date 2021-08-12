@@ -38,13 +38,12 @@ const CommandResultContainer = styled(TerminalContainer)`
 type TerminalCommandProps = {
   cmd: React.ReactNode;
   output?: React.ReactNode;
-  className?: string;
 };
 
 export const TerminalCommand = (props: TerminalCommandProps) => {
-  const { cmd, output, className } = props;
+  const { cmd, output } = props;
   return (
-    <div className={className}>
+    <div>
       <TerminalContainer>
         <Commands>
           {(cmd as string).split('\n').map((item) => {
