@@ -10,7 +10,6 @@ import { Ws } from 'src/components/Typo/Typo';
 import styled from 'styled-components';
 
 import { MineableCoinHardware, mineableCoins } from './mineableCoinList';
-import { MdFiberNew } from 'react-icons/md';
 
 const MineableCoinWrapper = styled.div`
   border-radius: 5px;
