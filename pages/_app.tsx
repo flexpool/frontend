@@ -40,6 +40,12 @@ const store = createReduxStore({
   addressSearch: addressSearchState || [],
 });
 
+declare global {
+  interface Window {
+    dataLayer: any;
+  }
+}
+
 const App = ({ Component, pageProps, router }: AppProps) => {
   return (
     <>
@@ -49,8 +55,8 @@ const App = ({ Component, pageProps, router }: AppProps) => {
         <Script
           onLoad={() => {
             window.dataLayer = window.dataLayer || [];
-            function gtag() {
-              dataLayer.push(arguments);
+            function gtag(a: any, b: any) {
+              window.dataLayer.push(a, b);
             }
             gtag('js', new Date());
             gtag('config', 'G-PWS9985F4X');

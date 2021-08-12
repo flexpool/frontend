@@ -31,7 +31,7 @@ export async function getStaticProps({ locale }) {
 }
 
 export const getStaticPaths = ({ locales }) => {
-  const paths = [];
+  const paths: Array<{ params: { ticker: string; hw: string }; locale: any }> = [];
 
   for (const locale of locales) {
     paths.push({ params: { ticker: 'xch', hw: 'XCH-CLI' }, locale });

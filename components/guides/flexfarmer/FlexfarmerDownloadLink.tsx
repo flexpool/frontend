@@ -4,6 +4,7 @@ import { Button } from 'src/components/Button';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
+import { Img } from 'src/components/Img';
 
 const FlexfarmerDownloadLinkWrapper = styled.div`
   display: grid;
@@ -66,7 +67,8 @@ export const FlexfarmerDownloadLink: React.FC<{
       });
       return res;
     });
-  }, [version]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [version, link]);
 
   return (
     <FlexfarmerDownloadLinkWrapper>
@@ -76,7 +78,10 @@ export const FlexfarmerDownloadLink: React.FC<{
         }}
         title={`${t('download')} FlexFarmer ${version} (${osName} ${info.name})`}
       >
-        <img src={`https://static.flexpool.io/assets/os/${os}.png`} />
+        <Img
+          src={`https://static.flexpool.io/assets/os/${os}.png`}
+          alt={`${osName} logo`}
+        />
         {osName} {info.name}
       </FlexfarmerDownloadButton>
       <FlexfarmerDownloadInfoBox>

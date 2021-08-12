@@ -15,8 +15,8 @@ export const CreatePlotsSection = () => {
     <>
       <ButtonGroup
         options={{
-          standard: t('detail_xch.plotters.standard_plotter'),
-          madmax: t('detail_xch.plotters.madmax_plotter'),
+          standard: { label: t('detail_xch.plotters.standard_plotter') },
+          madmax: { label: t('detail_xch.plotters.madmax_plotter') },
         }}
         selectedOption={selectedPlotter}
         setSelectedOption={(s: string) => {
@@ -26,11 +26,7 @@ export const CreatePlotsSection = () => {
       <h2>
         <Highlight>#4</Highlight> {t('detail_xch.create_plots.title')}
       </h2>
-      {selectedPlotter !== 'madmax' ? (
-        <StandardPlotterGuide />
-      ) : (
-        <MadmaxPlotterGuide />
-      )}
+      {selectedPlotter !== 'madmax' ? <StandardPlotterGuide /> : <MadmaxPlotterGuide />}
     </>
   );
 };
@@ -40,10 +36,7 @@ const StandardPlotterGuide = () => {
   return (
     <>
       <p>
-        <Trans
-          ns="get-started"
-          i18nKey="detail_xch.create_plots.standard.desc"
-        />
+        <Trans ns="get-started" i18nKey="detail_xch.create_plots.standard.desc" />
       </p>
       <Spacer />
       <p>{t('detail_xch.create_plots.standard.create_plots_command')}</p>
@@ -63,9 +56,7 @@ const MadmaxPlotterGuide = () => {
           ns="get-started"
           i18nKey="detail_xch.create_plots.madmax.desc"
           components={{
-            plotter: (
-              <LinkOut href="https://github.com/madMAx43v3r/chia-plotter" />
-            ),
+            plotter: <LinkOut href="https://github.com/madMAx43v3r/chia-plotter" />,
             madmax: <LinkOut href="https://github.com/madMAx43v3r" />,
           }}
         />
@@ -80,9 +71,7 @@ const MadmaxPlotterGuide = () => {
           ns="get-started"
           i18nKey="detail_xch.create_plots.madmax.instructions_note"
           components={{
-            github: (
-              <LinkOut href="https://github.com/madMAx43v3r/chia-plotter" />
-            ),
+            github: <LinkOut href="https://github.com/madMAx43v3r/chia-plotter" />,
           }}
         />
       </p>

@@ -15,37 +15,41 @@ export const ButtonGroupFarmerSkExtractionMethodSelector: React.FC<{}> = ({}) =>
   };
 
   const [selectedMethod, setSelectedMethod] = useState('');
-  let search: string;
+  const [search, setSearch] = useState('');
+  const selectMethod = React.useCallback(
+    (s: string) => {
+      if (typeof window !== 'undefined') {
+        setSearch(window.location.search);
+      }
+
+      const query = qs.stringify({
+        ...qs.parse(window.location.search),
+        farmerSkExtractionMethod: s,
+      });
+
+      const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+
+      window.history.pushState(
+        { ...window.history.state, as: newUrl, url: newUrl },
+        '',
+        newUrl
+      );
+      let queryStringChange = new Event('popstate');
+      setSelectedMethod(s);
+      window.dispatchEvent(queryStringChange);
+    },
+    [router]
+  );
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      search = window.location.search;
-      const method = qs.parse(search).farmerSkExtractionMethod?.toString();
+      setSearch(window.location.search);
+      const method = qs
+        .parse(window.location.search)
+        .farmerSkExtractionMethod?.toString();
       selectMethod(method ? method : 'browser');
     }
-  }, []);
-
-  const selectMethod = (s: string) => {
-    if (typeof window !== 'undefined') {
-      search = window.location.search;
-    }
-
-    const query = qs.stringify({
-      ...qs.parse(search),
-      farmerSkExtractionMethod: s,
-    });
-
-    const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
-
-    window.history.pushState(
-      { ...window.history.state, as: newUrl, url: newUrl },
-      '',
-      newUrl
-    );
-    let queryStringChange = new Event('popstate');
-    setSelectedMethod(s);
-    window.dispatchEvent(queryStringChange);
-  };
+  }, [selectMethod]);
 
   return (
     <ButtonGroup

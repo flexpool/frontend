@@ -12,17 +12,11 @@ import { Page } from '../src/components/layout/Page';
 import { Spacer } from '../src/components/layout/Spacer';
 import { Sticker } from '../src/components/Sticker';
 import { LatestReport } from '../src/pages/Reports/components/LatestReport/LatestReport';
-import {
-  ReportArchiveItem,
-  ReportTitle,
-} from '../src/pages/Reports/components';
+import { ReportArchiveItem, ReportTitle } from '../src/pages/Reports/components';
 import { useLocalizedDateFormatter } from '../src/utils/date.utils';
 
 const getReportUrlByDate = (date: Date) =>
-  `https://static.flexpool.io/opendata/opendata_report_${format(
-    date,
-    'y_MM'
-  )}.pdf`;
+  `https://static.flexpool.io/opendata/opendata_report_${format(date, 'y_MM')}.pdf`;
 
 /**
  * tries to get the latest report date (month)
@@ -58,7 +52,7 @@ const getDates = async () => {
     return [];
   }
   let date = latestReportDate;
-  const dates = [];
+  const dates: Array<Date> = [];
 
   while (isAfter(date, oldestReport)) {
     dates.push(date);
@@ -86,10 +80,7 @@ export const OpenDataReportsPage = ({ dates }) => {
         <h1>{t('title')}</h1>
         <p>{t('description')}</p>
         {latestDate && (
-          <LatestReport
-            date={latestDate}
-            src={getReportUrlByDate(latestDate)}
-          />
+          <LatestReport date={latestDate} src={getReportUrlByDate(latestDate)} />
         )}
         <Spacer />
         <h2>{t('archive')}</h2>
@@ -118,11 +109,7 @@ export async function getStaticProps({ locale }) {
   const dates = await getDates();
   return {
     props: {
-      ...(await serverSideTranslations(locale, [
-        'common',
-        'reports',
-        'cookie-consent',
-      ])),
+      ...(await serverSideTranslations(locale, ['common', 'reports', 'cookie-consent'])),
       dates: dates,
     },
   };

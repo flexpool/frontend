@@ -110,7 +110,7 @@ export const MinerDashboardPageContent: React.FC<{
   const selectTab = (index: number) => {
     setTabIndex(index);
     const selectedHash = Object.keys(tabs).find((key) => tabs[key] === index);
-    window.location.hash = selectedHash;
+    window.location.hash = selectedHash as string;
     return selectedHash;
   };
 
@@ -177,11 +177,7 @@ export const MinerDashboardPageContent: React.FC<{
 
   return (
     <>
-      <PullToRefresh
-        triggerHeight="auto"
-        pullDownThreshold={300}
-        onRefresh={loadAll}
-      >
+      <PullToRefresh triggerHeight="auto" pullDownThreshold={300} onRefresh={loadAll}>
         <Page>
           <NextSeo
             title={`${address}`}
@@ -192,11 +188,7 @@ export const MinerDashboardPageContent: React.FC<{
           />
           <Content>
             <HeaderGreetings onRefresh={loadAll} />
-            <AccountHeader
-              coin={activeCoin}
-              address={address[0]}
-              onRefresh={loadAll}
-            />
+            <AccountHeader coin={activeCoin} address={address[0]} onRefresh={loadAll} />
             <Spacer />
             <MinerDetails coin={activeCoin} />
             <HeaderStats coin={activeCoin} />
@@ -225,25 +217,16 @@ export const MinerDashboardPageContent: React.FC<{
             <TabContent id="workertabs">
               <Content>
                 <TabPanel>
-                  <DynamicMinerStatsPage
-                    address={address[0]}
-                    coin={coinTicker}
-                  />
+                  <DynamicMinerStatsPage address={address[0]} coin={coinTicker} />
                 </TabPanel>
                 <TabPanel>
-                  <DynamicMinerPaymentsPage
-                    address={address[0]}
-                    coin={coinTicker}
-                  />
+                  <DynamicMinerPaymentsPage address={address[0]} coin={coinTicker} />
                 </TabPanel>
                 <TabPanel>
                   <DynamicMinerRewardsPage address={address[0]} />
                 </TabPanel>
                 <TabPanel>
-                  <DynamicMinerBlocksPage
-                    address={address[0]}
-                    coin={coinTicker}
-                  />
+                  <DynamicMinerBlocksPage address={address[0]} coin={coinTicker} />
                 </TabPanel>
               </Content>
             </TabContent>
@@ -277,9 +260,9 @@ const DynamicMinerPaymentsPage = dynamic<{
   coin: string;
 }>(
   () =>
-    import(
-      'src/pages/MinerDashboard/Payments/MinerPayments.page'
-    ).then((module) => module.MinerPaymentsPage),
+    import('src/pages/MinerDashboard/Payments/MinerPayments.page').then(
+      (module) => module.MinerPaymentsPage
+    ),
   {
     loading: () => (
       <LoaderSpinner center style={{ minHeight: '26rem', display: 'flex' }} />

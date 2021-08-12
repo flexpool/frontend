@@ -56,6 +56,7 @@ export const ButtonGroup = (props: ButtonGroupProps) => {
       <Button
         onClick={() => props.setSelectedOption(key)}
         className={`${props.selectedOption === key ? 'selected' : ''}`}
+        key={key}
       >
         {props.options[key].logoURL && (
           <OptionThumbnail src={props.options[key].logoURL} />

@@ -72,7 +72,7 @@ export const FarmerSkExtractor: React.FC<{
         });
       }
     });
-  }, [value]);
+  }, [value, lockedMessage, setFarmerSk, setExternalFarmerSk]);
 
   return (
     <>
