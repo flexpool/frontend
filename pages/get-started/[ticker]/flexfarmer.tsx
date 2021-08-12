@@ -43,6 +43,7 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
 
   const { t: localT } = useTranslation('guide-flexfarmer');
   const { t: globalT } = useTranslation('get-started');
+  const { t: seoT, i18n } = useTranslation('seo');
 
   const configTemplate = `plot_directories: # Directories (folder paths) where plots are located
       - "/plotdir1"
@@ -111,14 +112,38 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
     // eslint-disable-next-line
   }, []);
 
+  const seoTitle = seoT('title.get_started_chia_regular', {
+    coinName: mineableCoin?.name,
+    coinTicker: mineableCoin?.ticker.toUpperCase(),
+    client: 'FlexFarmer',
+  });
+
+  const seoDescription = seoT('website_description.get_started_chia_regular', {
+    coinName: mineableCoin?.name,
+    coinTicker: mineableCoin?.ticker.toUpperCase(),
+    client: 'FlexFarmer',
+  });
+
   return (
     <Page>
-      {/* TODO: Normal seo */}
       <NextSeo
-        title={'Start mining with Flexpool'}
+        title={seoTitle}
+        description={seoDescription}
         openGraph={{
-          title: 'Start mining with Flexpool',
+          title: seoTitle,
+          description: seoDescription,
+          locale: i18n.language,
         }}
+        additionalMetaTags={[
+          {
+            property: 'keywords',
+            content: seoT('keywords.get_started_chia_regular', {
+              coinName: mineableCoin?.name,
+              coinTicker: mineableCoin?.ticker.toUpperCase(),
+              client: 'FlexFarmer',
+            }),
+          },
+        ]}
       />
       <Content paddingLg>
         <div id="intro">
@@ -314,6 +339,7 @@ export async function getStaticProps({ locale }) {
         'guide-flexfarmer',
         'get-started',
         'cookie-consent',
+        'seo',
       ])),
       ticker: 'xch',
     },

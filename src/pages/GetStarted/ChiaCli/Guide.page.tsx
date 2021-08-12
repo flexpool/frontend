@@ -44,8 +44,7 @@ export const ChiaCliGuidePage: React.FC = () => {
     search = window.location.search;
   }
 
-  const { primaryServer = 'POOL_URL', farmerOption = 'new-farmer' } =
-    qs.parse(search);
+  const { primaryServer = 'POOL_URL', farmerOption = 'new-farmer' } = qs.parse(search);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
