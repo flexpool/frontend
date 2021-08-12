@@ -167,6 +167,10 @@
       {
         "title": "Chia Farmer (GUI)",
         "key": "XCH-GUI"
+      },
+      {
+        "title": "FlexFarmer",
+        "key": "flexfarmer"
       }
     ]
   },
