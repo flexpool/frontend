@@ -23,12 +23,22 @@
     },
     "description_extract": "To farm with FlexFarmer, you will need to extract your Farmer Secret Key from your primary mnemonic phrase. You can do it both locally on your machine, and in this browser.",
     "description_mnemonic": "Enter your 24 word mnemonic phrase, and paste the secret key below.",
-    "input_label": "Farmer Secret Key"
+    "input_label": "Farmer Secret Key",
+    "browser_security_notice": "<warning>Important Security Warning:</warning> Farmer secret key extraction is done locally in this Browser using JavaScript, and your mnemonic is never sent to our servers. To ensure the security of this procedure, please make sure that you are using a malware-free machine running without untrusted browser extensions. If you don't trust the browser, we strongly advise you to use the on-machine extraction method that utilizes the script bundled with the FlexFarmer download archive. We always recommend you to have a different mnemonic phrase for farming and storing funds. Flexpool is not responsible for the mnemonic phrase theft."
   },
   "launcher_id": {
     "heading": "Copy Launcher ID",
-    "description": "Your launcher ID found in `chia plotnft show`, or in the GUI Pool Overview",
-    "input_label": "Launcher ID"
+    "description": "Your launcher ID found in `chia plotnft show`, or in the GUI Pool Overview"
+  },
+  "worker_name": {
+    "title": "Name your worker",
+    "description": "Select an arbitrary name for your FlexFarmer instance. This name will be used to identify a certain worker in the Flexpool dashboard.",
+    "input_label": "Worker Name"
+  },
+  "payout_address": {
+    "title": "Specify your Payout Address",
+    "description": "Payout address is the wallet address where all your rewards (including the finder 0.25 XCH reward) will go. You will be able to view statistics on the Flexpool dashboard by entering this address.",
+    "input_label": "Payout Address"
   },
   "config": {
     "heading": "Configure FlexFarmer",

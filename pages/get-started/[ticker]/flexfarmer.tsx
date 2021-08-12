@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useState, ReactNode } from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -21,6 +21,7 @@ import { chiaPlotNFTOutput } from 'components/guides/flexfarmer/text-content';
 import { Code } from 'src/components/Code/Code';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { FarmerSkExtractor } from 'components/guides/flexfarmer/FarmerSkExtractor';
+import { checksumXCH } from 'src/utils/validators/xchWalletAddress.validator';
 
 export const GetStartedFlexfarmerPage = ({ ticker }) => {
   const mineableCoin = useMemo(() => {
@@ -29,12 +30,14 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
   }, []);
 
   const [urlState, setUrlState] = useState(new Date());
-  const [farmerSecretKey, setFarmerSecretKey] = useState('');
-  const [launcherID, setLauncherID] = useState('');
-  const [farmerSkExtractionMethod, setFarmerSkExtractionMethod] = useState('');
-  const [workerName, setWorkerName] = useState('' as string | string[]);
+  const [farmerSecretKey, setFarmerSecretKey] = useState<string | null>(null);
+  const [launcherID, setLauncherID] = useState<string | null>(null);
+  const [farmerSkExtractionMethod, setFarmerSkExtractionMethod] = useState<string | null>(
+    null
+  );
+  const [workerName, setWorkerName] = useState<string | null>(null);
   const [region, setRegion] = useState('' as string | string[]);
-  const [payoutAddress, setPayoutAddress] = useState('' as string | string[]);
+  const [payoutAddress, setPayoutAddress] = useState<string | null>(null);
 
   const { t: localT } = useTranslation('guide-flexfarmer');
   const { t: globalT } = useTranslation('get-started');
@@ -42,7 +45,9 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
   const configTemplate = `plot_directories: # Directories (folder paths) where plots are located
       - "/plotdir1"
       - "/plotdir2"
-    farmer_secret_key: "${farmerSecretKey}" # Used to sign partials and blocks
+    farmer_secret_key: "${
+      farmerSecretKey ? farmerSecretKey : 'N/A'
+    }" # Used to sign partials and blocks
     launcher_id: "${launcherID}" # Identifier of your Plot NFT
     worker_name: "${workerName}" # Arbitrary name that will be shown on your Dashboard
     region: "${region}" # The primary region FlexFarmer will connect to by dafault
@@ -59,16 +64,16 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
     const parsedRegion = parsedRegionTmp.split('.flexpool')[0];
 
     if (parsedSearch.launcherID !== launcherID) {
-      setLauncherID((parsedSearch.launcherID as string) || 'LAUNCHER_ID');
+      setLauncherID((parsedSearch.launcherID as string) || 'N/A');
     }
     if (parsedSearch.workerName !== workerName) {
-      setWorkerName(parsedSearch.workerName || 'WORKER_NAME');
+      setWorkerName((parsedSearch.workerName as string) || 'N/A');
     }
     if (parsedRegion !== region) {
-      setRegion(parsedRegion || 'REGION');
+      setRegion(parsedRegion || 'N/A');
     }
     if (parsedSearch.payoutAddress !== payoutAddress) {
-      setPayoutAddress(parsedSearch.payoutAddress || 'PAYOUT_ADDRESS');
+      setPayoutAddress(parsedSearch.payoutAddress || 'N/A');
     }
     if (parsedSearch.farmerSkExtractionMethod !== farmerSkExtractionMethod) {
       setFarmerSkExtractionMethod(
@@ -140,27 +145,32 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
           </h2>
           <p className="mb-5">{localT('farmer_secret_key.description_extract')}</p>
 
-          <ButtonGroupFarmerSkExtractionMethodSelector />
-          {farmerSkExtractionMethod}
-          <FarmerSkExtractor />
+          <div id="extract-farmer-secret-key-method-selector" className="mb-5">
+            <ButtonGroupFarmerSkExtractionMethodSelector />
+          </div>
+          {farmerSkExtractionMethod === 'browser' ? (
+            <FarmerSkExtractor setExternalFarmerSk={setFarmerSecretKey} />
+          ) : (
+            <>
+              <TerminalCommand
+                cmd={`python3 extract_farmer_key.py `}
+                output={`Enter your mnemonic > `}
+                className="mb-5"
+              />
 
-          <TerminalCommand
-            cmd={`python3 extract_farmer_key.py `}
-            output={`Enter your mnemonic > `}
-            className="mb-5"
-          />
+              <p className="mb-5">{localT('farmer_secret_key.description_mnemonic')}</p>
 
-          <p className="mb-5">{localT('farmer_secret_key.description_mnemonic')}</p>
-
-          <GuideInput
-            className="mb-5"
-            label={localT('farmer_secret_key.input_label')}
-            placeholderText={`0xf61398a76cdbd6ee5d0f31d757ca96c549876b287c0b19becd26e9e2990eae3e`}
-            setExternalValue={(value: string) => {
-              setFarmerSecretKey(value);
-            }}
-            regexp={/^(0x)?[A-Fa-f0-9]{64}$/}
-          />
+              <GuideInput
+                className="mb-5"
+                label={localT('farmer_secret_key.input_label')}
+                placeholderText={`0xf61398a76cdbd6ee5d0f31d757ca96c549876b287c0b19becd26e9e2990eae3e`}
+                setExternalValue={(value: string | null) => {
+                  setFarmerSecretKey(value);
+                }}
+                regexp={/^(0x)?[A-Fa-f0-9]{64}$/}
+              />
+            </>
+          )}
         </div>
 
         <div id="copy-launch-id" className="mb-9">
@@ -177,9 +187,9 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
 
           <GuideInput
             className="mb-5"
-            label={localT('launcher_id.input_label')}
+            label={'Launcher ID'}
             placeholderText={`0x2be1162ad1148809bd01c81cea6eba4f9531fd7d330ab8df34404b5a33facd60`}
-            setExternalValue={(value: string) => {
+            setExternalValue={(value: string | null) => {
               setLauncherID(value);
             }}
             regexp={/^(0x)?[A-Fa-f0-9]{64}$/}
@@ -187,7 +197,43 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
         </div>
 
         <h2>
-          <Highlight>#4</Highlight> {globalT('detail.region.title')}
+          <Highlight>#4</Highlight> {localT('payout_address.title')}
+        </h2>
+
+        <p className="mb-5">{localT('payout_address.description')}</p>
+
+        <div id="name-worker" className="mb-9">
+          <GuideInput
+            className="mb-5"
+            label={localT('payout_address.input_label')}
+            placeholderText={`xch1a3ncr9ks4wk8c0npzmge8y6u2df8vx0ym5j5747cye0cwhm0zg8ssmj380`}
+            setExternalValue={(value: string | null) => {
+              setPayoutAddress(value);
+            }}
+            verifyFunc={(s: string) => checksumXCH(s) !== null}
+          />
+        </div>
+
+        <h2>
+          <Highlight>#5</Highlight> {localT('worker_name.title')}
+        </h2>
+
+        <p className="mb-5">{localT('worker_name.description')}</p>
+
+        <div id="name-worker" className="mb-9">
+          <GuideInput
+            className="mb-5"
+            label={localT('worker_name.input_label')}
+            placeholderText={`my_chia_rig`}
+            setExternalValue={(value: string | null) => {
+              setWorkerName(value);
+            }}
+            regexp={/^[\w.#@:$%()!+,/\'\*-]*$/}
+          />
+        </div>
+
+        <h2>
+          <Highlight>#6</Highlight> {globalT('detail.region.title')}
         </h2>
 
         <p className="mb-5">{globalT('detail.region.description_chia')}</p>
@@ -195,7 +241,7 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
         <PingTestSection data={mineableCoin?.regions as MineableCoinRegion[]} />
 
         <h2>
-          <Highlight>#</Highlight> {localT('config.heading')}
+          <Highlight>#7</Highlight> {localT('config.heading')}
         </h2>
         <p className="mb-5">{localT('config.description')}</p>
 

@@ -10,9 +10,18 @@ const GuideInput: React.FC<{
   label: string;
   placeholderText: string;
   param?: string;
-  setExternalValue?: (value: string) => void;
+  setExternalValue?: (value: string | null) => void;
   regexp?: RegExp;
-}> = ({ className, label, placeholderText, param, setExternalValue, regexp }) => {
+  verifyFunc?: (s: string) => boolean;
+}> = ({
+  className,
+  label,
+  placeholderText,
+  param,
+  setExternalValue,
+  regexp,
+  verifyFunc,
+}) => {
   const initValue = useMemo(() => {
     const parsedSearch = qs.parse(getLocationSearch());
     return parsedSearch.walletAddress || '';
@@ -23,37 +32,35 @@ const GuideInput: React.FC<{
     regexp = /.*/;
   }
 
-  const router = useRouter();
   const [value, setValue] = useState(initValue || '');
+  const [valueValid, setValueValid] = useState(true);
 
   const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
-
-      const parsedSearch = qs.parse(getLocationSearch());
       setValue(value);
-      if (!(regexp?.test(value as string) || value === '')) {
-        return;
+
+      var valid = false;
+
+      if (value === '') {
+        valid = true;
+      } else {
+        if (verifyFunc !== undefined) {
+          valid = verifyFunc(value);
+        } else {
+          valid = regexp?.test(value) as boolean;
+        }
       }
 
-      if (param !== undefined) {
-        const query = qs.stringify({
-          ...parsedSearch,
-          [param]: value ? value : '',
-        });
-        const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
-        window.history.replaceState(
-          { ...window.history.state, as: newUrl, url: newUrl },
-          '',
-          newUrl
-        );
-        let queryStringChange = new Event('popstate');
-        window.dispatchEvent(queryStringChange);
-      } else if (setExternalValue !== undefined) {
-        setExternalValue(value);
-      } else {
-        throw Error('No set value action specified');
+      if (setExternalValue !== undefined) {
+        if (valid) {
+          setExternalValue(value);
+        } else {
+          setExternalValue(null);
+        }
       }
+
+      setValueValid(valid);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
@@ -69,7 +76,7 @@ const GuideInput: React.FC<{
         value={value}
         onChange={handleInputChange}
         errorMessage={
-          !regexp.test(value as string) && value !== '' ? (
+          !valueValid ? (
             <Trans ns="get-started" i18nKey="detail.invalid" values={{ value: label }} />
           ) : null
         }

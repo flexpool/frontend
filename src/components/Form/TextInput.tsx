@@ -38,7 +38,7 @@ const Wrapper = styled.div`
   display: flex;
   &:focus-within,
   &:hover {
-    border-color: var(--primary);
+    border-color: ${(p) => (p.disabled ? `none` : `var(--primary)`)};
   }
 `;
 
@@ -62,7 +62,7 @@ export const TextInput: React.FC<
 
   return (
     <FieldWrap {...props}>
-      <Wrapper>
+      <Wrapper disabled={props.disabled}>
         <SText
           min={min}
           type={type}
