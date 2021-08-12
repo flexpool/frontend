@@ -1,7 +1,5 @@
 # Flexpool Front-End (v2)
 
-[![Production Deployment](https://github.com/flexpool/frontend/actions/workflows/deploy.yml/badge.svg)](https://github.com/flexpool/frontend/actions/workflows/deploy.yml)  
-
 <h2 align="center">
 <p><a href="https://www.flexpool.io"><img src="https://static.flexpool.io/assets/brand/light.svg" width="50%"></a></p>
 <p>Welcome to Flexpool.io v2 Website!</p>
@@ -30,7 +28,7 @@ yarn install
 #### Run the development server
 
 ```
-yarn start
+yarn run dev
 ```
 
 That's it! You can access the website at `http://localhost:3000`. It automatically uses the production API (`api.flexpool.io/v2`) as backend.
