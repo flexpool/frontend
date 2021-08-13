@@ -1,7 +1,7 @@
 {
   "head_title": "Farming with FlexFarmer",
   "title": "Farming with FlexFarmer",
-  "description": "FlexFarmer aims to make farming Chia as easy as crypto mining through rewriting and optimizing the entire farming process in Golang replacing the standard harvester+farmer. It connects farmers to our hosted nodes over a blockchain bridge gateway which runs on powerful infrastructure hosted by us",
+  "description": "FlexFarmer aims to make farming Chia as easy as crypto mining through rewriting and optimizing the entire farming process in Golang replacing the standard harvester+farmer. It connects farmers to our hosted nodes over a blockchain bridge gateway which runs on powerful infrastructure hosted by us.",
   "requirements": {
     "heading": "Requirements",
     "list": [
