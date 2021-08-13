@@ -44,6 +44,12 @@
     "description": "Payout address is the wallet address where all your rewards (including the finder 0.25 XCH reward) will go. You will be able to view statistics on the Flexpool dashboard by entering this address.",
     "input_label": "Payout Address"
   },
+  "plot_directories": {
+    "heading": "Specify where your plots are located",
+    "description": "You must tell FlexFarmer what plot directories it should use. Use the interactive directory selector below to configure them.",
+    "selected_dirs": "Selected Plot Directories: {{value}}",
+    "plot_dir": "Plot Directory #{{value}}"
+  },
   "config": {
     "heading": "Configure FlexFarmer",
     "description": "Create a new file named <config>config.yml</config>, and copy-paste the FlexFarmer configuration we have prefilled for you. Save it, and proceed to the next step."

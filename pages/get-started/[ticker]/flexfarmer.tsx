@@ -23,8 +23,16 @@ import { useAsyncState } from 'src/hooks/useAsyncState';
 import { FarmerSkExtractor } from 'components/guides/flexfarmer/FarmerSkExtractor';
 import { checksumXCH } from 'src/utils/validators/xchWalletAddress.validator';
 import { Spacer } from 'src/components/layout/Spacer';
+import { PlotDirectoriesSelector } from 'components/guides/flexfarmer/PlotDirectoriesSelector';
 
-export const GetStartedFlexfarmerPage = ({ ticker }) => {
+const escapeYamlValue = (s: string) => {
+  if (s === null) {
+    return s;
+  }
+  return s.replaceAll('\\', '\\\\').replaceAll('"', '\\"');
+};
+
+export const GetStartedFlexfarmerPage = () => {
   const mineableCoin = useMemo(() => {
     return mineableCoins.find((item) => item.ticker === 'xch');
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -40,21 +48,34 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
   const [region, setRegion] = useState('' as string | string[]);
   const [payoutAddress, setPayoutAddress] = useState<string | null>(null);
   const [os, setOS] = useState<string | null>(null);
+  const [dirs, setDirs] = useState<Array<string>>(['']);
 
   const { t: localT } = useTranslation('guide-flexfarmer');
   const { t: globalT } = useTranslation('get-started');
   const { t: seoT, i18n } = useTranslation('seo');
 
   const configTemplate = `plot_directories: # Directories (folder paths) where plots are located
-      - "/plotdir1"
-      - "/plotdir2"
-    farmer_secret_key: "${
-      farmerSecretKey ? farmerSecretKey : 'N/A'
-    }" # Used to sign partials and blocks
-    launcher_id: "${launcherID}" # Identifier of your Plot NFT
-    worker_name: "${workerName}" # Arbitrary name that will be shown on your Dashboard
-    region: "${region}" # The primary region FlexFarmer will connect to by dafault
-    payout_address: "${payoutAddress}" # Address to where all rewards will go`;
+${
+  '    ' +
+  dirs
+    .map((dir) => {
+      return `- "${dir !== '' ? escapeYamlValue(dir) : 'N/A'}"`;
+    })
+    .join('\n    ')
+}
+farmer_secret_key: "${
+    farmerSecretKey ? escapeYamlValue(farmerSecretKey) : 'N/A'
+  }" # Used to sign partials and blocks
+launcher_id: "${escapeYamlValue(launcherID as string)}" # Identifier of your Plot NFT
+worker_name: "${escapeYamlValue(
+    workerName as string
+  )}" # Arbitrary name that will be shown on your Dashboard
+region: "${escapeYamlValue(
+    region as string
+  )}" # The primary region FlexFarmer will connect to by dafault
+payout_address: "${escapeYamlValue(
+    payoutAddress as string
+  )}" # Address to where all rewards will go`;
 
   useEffect(() => {
     const parsedSearch = qs.parse(getLocationSearch());
@@ -200,6 +221,7 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
 
               <p>{localT('farmer_secret_key.description_mnemonic')}</p>
 
+              <Spacer />
               <GuideInput
                 label={localT('farmer_secret_key.input_label')}
                 placeholderText={`0xf61398a76cdbd6ee5d0f31d757ca96c549876b287c0b19becd26e9e2990eae3e`}
@@ -279,7 +301,16 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
         </div>
 
         <h2>
-          <Highlight>#6</Highlight> {globalT('detail.region.title')}
+          <Highlight>#6</Highlight> {localT('plot_directories.heading')}
+        </h2>
+
+        <p>{localT('plot_directories.description')}</p>
+        <Spacer />
+
+        <PlotDirectoriesSelector os={os as string} dirs={dirs} setDirs={setDirs} />
+
+        <h2>
+          <Highlight>#7</Highlight> {globalT('detail.region.title')}
         </h2>
 
         <p>{globalT('detail.region.description_chia')}</p>
@@ -287,7 +318,7 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
         <PingTestSection data={mineableCoin?.regions as MineableCoinRegion[]} />
 
         <h2>
-          <Highlight>#7</Highlight> {localT('config.heading')}
+          <Highlight>#8</Highlight> {localT('config.heading')}
         </h2>
         <p>
           <Trans
@@ -301,7 +332,7 @@ export const GetStartedFlexfarmerPage = ({ ticker }) => {
         <Code language="yaml">{configTemplate}</Code>
 
         <h2>
-          <Highlight>#8</Highlight> {localT('run.heading')}
+          <Highlight>#9</Highlight> {localT('run.heading')}
         </h2>
 
         <p>
