@@ -44,6 +44,7 @@ export const PlotDirectoriesSelector: React.FC<{
       tmp[index] = value;
       setDirs(tmp);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [dirs]
   );
 
@@ -53,12 +54,14 @@ export const PlotDirectoriesSelector: React.FC<{
       tmp.splice(index, 1);
       setDirs(tmp);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [dirs]
   );
 
   const addNewDir = React.useCallback(() => {
     const tmp = [...dirs, ''];
     setDirs(tmp);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dirs]);
 
   return (
