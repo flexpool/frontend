@@ -16,6 +16,11 @@ const FlexfarmerDownloadLinkWrapper = styled.div`
   &:last-child {
     border-bottom: none;
   }
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
 `;
 
 const FlexfarmerDownloadButton = styled(Button)`
@@ -38,6 +43,7 @@ const FlexfarmerDownloadInfoBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 `;
 
 interface DownloadInfo {

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'next-i18next';
 import qs from 'query-string';
 import { FlexfarmerDownloadLink } from './FlexfarmerDownloadLink';
 import { osList } from 'src/utils/oses';
