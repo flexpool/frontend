@@ -5,9 +5,13 @@
   "requirements": {
     "heading": "Requirements",
     "list": [
-      { "text": "Computer that is compatible with FlexFarmer" },
-      { "text": "Initialized Plot NFT (Made via GUI or CLI)" },
-      { "text": "Plots bound to that Plot NFT" }
+      {
+        "text": "Hardware compatible with FlexFarmer: A modern computer running 64-bit Linux or Windows. Raspberry Pi is also supported."
+      },
+      { "text": "At least 128MB available RAM." },
+      { "text": "Initialized Plot NFT (Made via GUI or CLI)." },
+      { "text": "Plots bound to that Plot NFT." },
+      { "text": "PlotNFT joined to Flexpool (see getting started for instructions)." }
     ]
   },
   "download": "Download",
@@ -28,7 +32,8 @@
     "description_mnemonic": "Enter your 24 word mnemonic phrase, and paste the secret key below.",
     "input_label": "Farmer Secret Key",
     "browser_security_notice": "<warning>Important Security Warning:</warning> Farmer secret key extraction is done locally in this Browser using JavaScript, and your mnemonic is never sent to our servers. To ensure the security of this procedure, please make sure that you are using a malware-free machine running without untrusted browser extensions. If you don't trust the browser, we strongly advise you to use the on-machine extraction method that utilizes the script bundled with the FlexFarmer download archive. We always recommend you to have a different mnemonic phrase for farming and storing funds. Flexpool is not responsible for the mnemonic phrase theft.",
-    "extractor_locked": "Accepted. Click on the lock to unlock the mnemonic entry"
+    "extractor_locked": "Accepted. Click on the lock to unlock the mnemonic entry",
+    "description_local_win": "To run the extraction script, ensure that you have installed Python from the <link>official Python download website</link>"
   },
   "launcher_id": {
     "heading": "Copy Launcher ID",
@@ -52,7 +57,8 @@
   },
   "config": {
     "heading": "Configure FlexFarmer",
-    "description": "Create a new file named <config>config.yml</config>, and copy-paste the FlexFarmer configuration we have prefilled for you. Save it, and proceed to the next step."
+    "description": "Create a new file named <config>config.yml</config>, and copy-paste the FlexFarmer configuration we have prefilled for you. Save it, and proceed to the next step.",
+    "license_note": "<b>IMPORTANT!</b> We have prefilled <b>license: true</b> to your FlexFarmer config, which agrees to the <license>FlexFarmer's software license</license> (the <b>\"License\"</b>) on your behalf. By using this config, you herein agree to the license."
   },
   "run": {
     "heading": "Run FlexFarmer",

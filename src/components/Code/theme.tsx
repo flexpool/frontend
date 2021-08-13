@@ -101,6 +101,12 @@ var theme: PrismTheme = {
         color: 'rgb(209, 105, 105)',
       },
     },
+    {
+      types: ['boolean'],
+      style: {
+        color: 'var(--code-constant)',
+      },
+    },
   ],
 };
 

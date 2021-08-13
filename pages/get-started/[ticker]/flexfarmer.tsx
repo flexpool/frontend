@@ -24,6 +24,7 @@ import { FarmerSkExtractor } from 'components/guides/flexfarmer/FarmerSkExtracto
 import { checksumXCH } from 'src/utils/validators/xchWalletAddress.validator';
 import { Spacer } from 'src/components/layout/Spacer';
 import { PlotDirectoriesSelector } from 'components/guides/flexfarmer/PlotDirectoriesSelector';
+import { LinkOut } from 'src/components/LinkOut';
 
 const escapeYamlValue = (s: string) => {
   if (s === null) {
@@ -75,7 +76,8 @@ region: "${escapeYamlValue(
   )}" # The primary region FlexFarmer will connect to by dafault
 payout_address: "${escapeYamlValue(
     payoutAddress as string
-  )}" # Address to where all rewards will go`;
+  )}" # Address to where all rewards will go
+license: true # Agree to FlexFarmer's license located at https://static.flexpool.io/legal/FLEXFARMER_LICENSE.txt`;
 
   useEffect(() => {
     const parsedSearch = qs.parse(getLocationSearch());
@@ -214,8 +216,23 @@ payout_address: "${escapeYamlValue(
             <FarmerSkExtractor setExternalFarmerSk={setFarmerSecretKey} />
           ) : (
             <>
+              {os === 'windows' && (
+                <p>
+                  <Trans
+                    ns="guide-flexfarmer"
+                    i18nKey="farmer_secret_key.description_local_win"
+                    components={{
+                      link: <LinkOut href="https://www.python.org/downloads/windows/" />,
+                    }}
+                  />
+                </p>
+              )}
               <TerminalCommand
-                cmd={`python3 extract_farmer_key.py `}
+                cmd={
+                  os === 'windows'
+                    ? `python extract_farmer_key.py`
+                    : `python3 extract_farmer_key.py`
+                }
                 output={`Enter your mnemonic > `}
               />
 
@@ -330,6 +347,19 @@ payout_address: "${escapeYamlValue(
         <Spacer />
 
         <Code language="yaml">{configTemplate}</Code>
+
+        <p>
+          <Trans
+            ns="guide-flexfarmer"
+            i18nKey="config.license_note"
+            components={{
+              b: <b />,
+              license: (
+                <LinkOut href="https://static.flexpool.io/legal/FLEXFARMER_LICENSE.txt" />
+              ),
+            }}
+          />
+        </p>
 
         <h2>
           <Highlight>#9</Highlight> {localT('run.heading')}
