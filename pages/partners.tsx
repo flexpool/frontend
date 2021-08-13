@@ -49,7 +49,8 @@ export const PartnersPage = () => {
     if (partnersData.length < 1) {
       router.push('/');
     }
-  }, [router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Page>
