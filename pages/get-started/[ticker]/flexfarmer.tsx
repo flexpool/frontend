@@ -29,7 +29,7 @@ const escapeYamlValue = (s: string) => {
   if (s === null) {
     return s;
   }
-  return s.replaceAll('\\', '\\\\').replaceAll('"', '\\"');
+  return s.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
 };
 
 export const GetStartedFlexfarmerPage = () => {
