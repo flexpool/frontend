@@ -50,8 +50,7 @@ export const ChiaGuiGuidePage: React.FC = () => {
     search = window.location.search;
   }
 
-  const { primaryServer = 'POOL_URL', farmerOption = 'new-farmer' } =
-    qs.parse(search);
+  const { primaryServer = 'POOL_URL', farmerOption = 'new-farmer' } = qs.parse(search);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -119,6 +118,10 @@ export const ChiaGuiGuidePage: React.FC = () => {
       />
 
       <h1>{t('detail_xch.title_gui')}</h1>
+      <h2>
+        <Highlight>#1</Highlight> {t('detail.region.title')}
+      </h2>
+      <p>{t('detail.region.description_chia')}</p>
       <PingTestSection data={mineableCoin.regions} />
       <Spacer size="xl" />
       <FarmerOptionSelector
@@ -128,8 +131,7 @@ export const ChiaGuiGuidePage: React.FC = () => {
       {farmerOption !== 'already-farmer' ? (
         <>
           <h2>
-            <Highlight>#1</Highlight>{' '}
-            {t('detail_xch.plotnft_create.title_join')}
+            <Highlight>#1</Highlight> {t('detail_xch.plotnft_create.title_join')}
           </h2>
           <p>{t('detail_xch.plotnft_create.desc_one')}</p>
           <Spacer />
@@ -191,17 +193,14 @@ export const ChiaGuiGuidePage: React.FC = () => {
       )}
       <Spacer size="xl" />
       <h2>
-        <Highlight>#2</Highlight>{' '}
-        {t('detail_xch.gather_payout_address_gui.title')}
+        <Highlight>#2</Highlight> {t('detail_xch.gather_payout_address_gui.title')}
       </h2>
       <p>{t('detail_xch.gather_payout_address_gui.desc')}</p>
       <Spacer />
       <ChiaGuiMenu
         selectedMenu={'Pool'}
         menuContent={
-          <PayoutAddressChiaGuiMenuContent
-            selectedServer={`https://${primaryServer}`}
-          />
+          <PayoutAddressChiaGuiMenuContent selectedServer={`https://${primaryServer}`} />
         }
       />
       <Spacer />
@@ -316,19 +315,14 @@ const AddNewPlotNFTDetailChiaGuiMenuContent = (
       <ChiaGuiMenuStep>
         <ChiaGuiMenuStepHeader
           stepNumber={1}
-          text={
-            !changePool
-              ? 'Want to Join a Pool? Create a Plot NFT'
-              : 'Change Pool'
-          }
+          text={!changePool ? 'Want to Join a Pool? Create a Plot NFT' : 'Change Pool'}
         />
         <ChiaGuiMenuContent>
           {!changePool && (
             <p>
-              Join a pool and get consistent XCH farming rewards. The average
-              returns are the same, but it is much less volatile. Assign plots
-              to a plot NFT. You can easily switch pools without having to
-              re-plot.
+              Join a pool and get consistent XCH farming rewards. The average returns are
+              the same, but it is much less volatile. Assign plots to a plot NFT. You can
+              easily switch pools without having to re-plot.
             </p>
           )}
           <ConnectToPoolInputWrapper>
@@ -350,9 +344,7 @@ const AddNewPlotNFTDetailChiaGuiMenuContent = (
         </ChiaGuiMenuContent>
       </ChiaGuiMenuStep>
       <PlotNFTCreateButtonWrapper>
-        <ChiaGuiButton glowing={true}>
-          {!changePool ? 'Create' : 'Change'}
-        </ChiaGuiButton>
+        <ChiaGuiButton glowing={true}>{!changePool ? 'Create' : 'Change'}</ChiaGuiButton>
       </PlotNFTCreateButtonWrapper>
     </>
   );
@@ -405,7 +397,7 @@ const ChiaPlotNFTDetailItems = (props: ChiaPlotNFTDetailItemsProps) => {
 
   for (const key in items) {
     elements.push(
-      <ChiaPlotNFTDetailItemWrapper>
+      <ChiaPlotNFTDetailItemWrapper key={key}>
         <ChiaPlotNFTDetailItemLabel>{key}</ChiaPlotNFTDetailItemLabel>
         <p>{items[key]}</p>
       </ChiaPlotNFTDetailItemWrapper>
@@ -507,15 +499,11 @@ const ChiaGuiNFTDetails = (props: ChiaGuiNFTDetailsProps) => {
       <ChiaPlotNFTCredentialsWrapper>
         <ChiaPlotNFTCredential
           label={'Launcher ID'}
-          value={
-            '0xf874b591d216ca37eb02c537b3e944302b7d5c3c36fb2a6a706112e3d77e59ea'
-          }
+          value={'0xf874b591d216ca37eb02c537b3e944302b7d5c3c36fb2a6a706112e3d77e59ea'}
         />
         <ChiaPlotNFTCredential
           label={'Payout Address'}
-          value={
-            'xch1s5495j75swjzszdc6c4eecafxcu5t0n4qulm6fews8d97yr535hq08pcz5'
-          }
+          value={'xch1s5495j75swjzszdc6c4eecafxcu5t0n4qulm6fews8d97yr535hq08pcz5'}
           glowing={glowingPayoutAddress === true}
         />
       </ChiaPlotNFTCredentialsWrapper>
@@ -533,29 +521,19 @@ type PayoutAddressChiaGuiMenuContentProps = {
   selectedServer: string;
 };
 
-const PayoutAddressChiaGuiMenuContent = (
-  props: PayoutAddressChiaGuiMenuContentProps
-) => {
+const PayoutAddressChiaGuiMenuContent = (props: PayoutAddressChiaGuiMenuContentProps) => {
   const { selectedServer } = props;
 
   return (
-    <ChiaGuiNFTDetails
-      selectedServer={selectedServer}
-      glowingPayoutAddress={true}
-    />
+    <ChiaGuiNFTDetails selectedServer={selectedServer} glowingPayoutAddress={true} />
   );
 };
 
-const PoolSwitchChiaGuiMenuContent = (
-  props: PayoutAddressChiaGuiMenuContentProps
-) => {
+const PoolSwitchChiaGuiMenuContent = (props: PayoutAddressChiaGuiMenuContentProps) => {
   const { selectedServer } = props;
 
   return (
-    <ChiaGuiNFTDetails
-      selectedServer={selectedServer}
-      switchButtonAvailable={true}
-    />
+    <ChiaGuiNFTDetails selectedServer={selectedServer} switchButtonAvailable={true} />
   );
 };
 
@@ -631,6 +609,7 @@ const ChiaGuiSidebarItems = (props: ChiaGuiSidebarItemsProps) => {
     listItems.push(
       <ChiaGuiSidebarItem
         label={key}
+        key={key}
         icon={items[key]}
         selected={selectedItem === key}
       />
@@ -754,10 +733,7 @@ const ChiaGuiMenu = (props: ChiaGuiMenuProps) => {
       <ChiaGuiMenuSidebarWrapper>
         <ChiaGuiMenuSidebarLogoSection>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://static.flexpool.io/logos/chia.svg"
-            alt="chia logo"
-          />
+          <img src="https://static.flexpool.io/logos/chia.svg" alt="chia logo" />
         </ChiaGuiMenuSidebarLogoSection>
         <ChiaGuiSidebarItems
           items={{

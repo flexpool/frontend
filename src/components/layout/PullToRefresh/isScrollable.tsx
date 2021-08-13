@@ -55,14 +55,11 @@ export function isTreeScrollable(element: Element, dir: number): boolean {
   }
 
   // if a body is overflow: hidden, scrolling will be disabled even though scrollingElement will report that it is not.
-  if (
-    element === document.body &&
-    getComputedStyle(document.body).overflowY === 'hidden'
-  ) {
+  if (element === document.body && getComputedStyle(document.body).overflowY === 'hidden') {
     return false;
   }
 
-  if (element.parentElement == null) {
+  if (element.parentElement === null) {
     return false;
   }
 

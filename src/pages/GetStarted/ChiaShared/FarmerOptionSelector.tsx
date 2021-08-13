@@ -14,8 +14,8 @@ export const FarmerOptionSelector = (props: FarmerOptionProps) => {
   return (
     <ButtonGroup
       options={{
-        'new-farmer': t('detail_xch.new_farmer'),
-        'already-farmer': t('detail_xch.already_farmer'),
+        'new-farmer': { label: t('detail_xch.new_farmer') },
+        'already-farmer': { label: t('detail_xch.already_farmer') },
       }}
       setSelectedOption={(s: string) => {
         setSelectedFarmerOption(s);

@@ -7,37 +7,37 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { Content } from '../../../src/components/layout/Content';
-import { Page, PageLoading } from '../../../src/components/layout/Page';
+import { Content } from 'src/components/layout/Content';
+import { Page, PageLoading } from 'src/components/layout/Page';
 
 import { useDispatch } from 'react-redux';
-import { useReduxState } from '../../../src/rdx/useReduxState';
-import { minerRewardsGet } from '../../../src/rdx/minerRewards/minerRewards.actions';
-import { minerDetailsGet } from '../../../src/rdx/minerDetails/minerDetails.actions';
-import { minerHeaderStatsGet } from '../../../src/rdx/minerHeaderStats/minerHeaderStats.actions';
-import { minerStatsGet } from '../../../src/rdx/minerStats/minerStats.actions';
-import { minerStatsChartGet } from '../../../src/rdx/minerStatsChart/minerStatsCharts.actions';
-import { minerWorkersGet } from '../../../src/rdx/minerWorkers/minerWorkers.actions';
-import { localSettingsSet } from '../../../src/rdx/localSettings/localSettings.actions';
-import { poolStatsGet } from '../../../src/rdx/poolStats/poolStats.actions';
+import { useReduxState } from 'src/rdx/useReduxState';
+import { minerRewardsGet } from 'src/rdx/minerRewards/minerRewards.actions';
+import { minerDetailsGet } from 'src/rdx/minerDetails/minerDetails.actions';
+import { minerHeaderStatsGet } from 'src/rdx/minerHeaderStats/minerHeaderStats.actions';
+import { minerStatsGet } from 'src/rdx/minerStats/minerStats.actions';
+import { minerStatsChartGet } from 'src/rdx/minerStatsChart/minerStatsCharts.actions';
+import { minerWorkersGet } from 'src/rdx/minerWorkers/minerWorkers.actions';
+import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
+import { poolStatsGet } from 'src/rdx/poolStats/poolStats.actions';
 import {
   useActiveCoin,
   useCounterTicker,
-} from '../../../src/rdx/localSettings/localSettings.hooks';
+} from 'src/rdx/localSettings/localSettings.hooks';
 
-import { AccountHeader } from '../../../src/pages/MinerDashboard/Header/AccountHeader';
-import { HeaderGreetings } from '../../../src/pages/MinerDashboard/Header/Greetings';
-import { HeaderStats } from '../../../src/pages/MinerDashboard/Header/Stats';
-import { MinerDetails } from '../../../src/pages/MinerDashboard/Header/MinerDetails';
-import { Spacer } from '../../../src/components/layout/Spacer';
-import { LoaderSpinner } from '../../../src/components/Loader/LoaderSpinner';
-import { PullToRefresh } from '../../../src/components/layout/PullToRefresh/PullToRefresh';
+import { AccountHeader } from 'src/pages/MinerDashboard/Header/AccountHeader';
+import { HeaderGreetings } from 'src/pages/MinerDashboard/Header/Greetings';
+import { HeaderStats } from 'src/pages/MinerDashboard/Header/Stats';
+import { MinerDetails } from 'src/pages/MinerDashboard/Header/MinerDetails';
+import { Spacer } from 'src/components/layout/Spacer';
+import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
+import { PullToRefresh } from 'src/components/layout/PullToRefresh/PullToRefresh';
 
 import styled from 'styled-components';
 import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
-import { useActiveSearchParamWorker } from '../../../src/hooks/useActiveQueryWorker';
-import { useAsyncState } from '../../../src/hooks/useAsyncState';
-import { fetchApi } from '../../../src/utils/fetchApi';
+import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
+import { useAsyncState } from 'src/hooks/useAsyncState';
+import { fetchApi } from 'src/utils/fetchApi';
 
 const TabContent = styled.div`
   box-shadow: inset -1px 18px 19px -13px var(--bg-secondary);
@@ -110,7 +110,7 @@ export const MinerDashboardPageContent: React.FC<{
   const selectTab = (index: number) => {
     setTabIndex(index);
     const selectedHash = Object.keys(tabs).find((key) => tabs[key] === index);
-    window.location.hash = selectedHash;
+    window.location.hash = selectedHash as string;
     return selectedHash;
   };
 
@@ -177,11 +177,7 @@ export const MinerDashboardPageContent: React.FC<{
 
   return (
     <>
-      <PullToRefresh
-        triggerHeight="auto"
-        pullDownThreshold={300}
-        onRefresh={loadAll}
-      >
+      <PullToRefresh triggerHeight="auto" pullDownThreshold={300} onRefresh={loadAll}>
         <Page>
           <NextSeo
             title={`${address}`}
@@ -192,11 +188,7 @@ export const MinerDashboardPageContent: React.FC<{
           />
           <Content>
             <HeaderGreetings onRefresh={loadAll} />
-            <AccountHeader
-              coin={activeCoin}
-              address={address[0]}
-              onRefresh={loadAll}
-            />
+            <AccountHeader coin={activeCoin} address={address[0]} onRefresh={loadAll} />
             <Spacer />
             <MinerDetails coin={activeCoin} />
             <HeaderStats coin={activeCoin} />
@@ -225,25 +217,16 @@ export const MinerDashboardPageContent: React.FC<{
             <TabContent id="workertabs">
               <Content>
                 <TabPanel>
-                  <DynamicMinerStatsPage
-                    address={address[0]}
-                    coin={coinTicker}
-                  />
+                  <DynamicMinerStatsPage address={address[0]} coin={coinTicker} />
                 </TabPanel>
                 <TabPanel>
-                  <DynamicMinerPaymentsPage
-                    address={address[0]}
-                    coin={coinTicker}
-                  />
+                  <DynamicMinerPaymentsPage address={address[0]} coin={coinTicker} />
                 </TabPanel>
                 <TabPanel>
                   <DynamicMinerRewardsPage address={address[0]} />
                 </TabPanel>
                 <TabPanel>
-                  <DynamicMinerBlocksPage
-                    address={address[0]}
-                    coin={coinTicker}
-                  />
+                  <DynamicMinerBlocksPage address={address[0]} coin={coinTicker} />
                 </TabPanel>
               </Content>
             </TabContent>
@@ -261,7 +244,7 @@ const DynamicMinerStatsPage = dynamic<{
   coin: string;
 }>(
   () =>
-    import('../../../src/pages/MinerDashboard/Stats/MinerStats.page').then(
+    import('src/pages/MinerDashboard/Stats/MinerStats.page').then(
       (module) => module.MinerStatsPage
     ),
   {
@@ -277,9 +260,9 @@ const DynamicMinerPaymentsPage = dynamic<{
   coin: string;
 }>(
   () =>
-    import(
-      '../../../src/pages/MinerDashboard/Payments/MinerPayments.page'
-    ).then((module) => module.MinerPaymentsPage),
+    import('src/pages/MinerDashboard/Payments/MinerPayments.page').then(
+      (module) => module.MinerPaymentsPage
+    ),
   {
     loading: () => (
       <LoaderSpinner center style={{ minHeight: '26rem', display: 'flex' }} />
@@ -292,7 +275,7 @@ const DynamicMinerRewardsPage = dynamic<{
   address: string;
 }>(
   () =>
-    import('../../../src/pages/MinerDashboard/Rewards/MinerRewards.page').then(
+    import('src/pages/MinerDashboard/Rewards/MinerRewards.page').then(
       (module) => module.MinerRewardsPage
     ),
   {
@@ -308,7 +291,7 @@ const DynamicMinerBlocksPage = dynamic<{
   coin: string;
 }>(
   () =>
-    import('../../../src/pages/MinerDashboard/Blocks/MinerBlocks.page').then(
+    import('src/pages/MinerDashboard/Blocks/MinerBlocks.page').then(
       (module) => module.MinerBlocksPage
     ),
   {

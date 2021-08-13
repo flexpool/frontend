@@ -1,9 +1,9 @@
 import { NextSeo } from 'next-seo';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { Content } from '../../../src/components/layout/Content';
-import { Page } from '../../../src/components/layout/Page';
-import { MineableCoinGuidePage } from '../../../src/pages/GetStarted/GPU/CoinGuide.page';
+import { Content } from 'src/components/layout/Content';
+import { Page } from 'src/components/layout/Page';
+import { MineableCoinGuidePage } from 'src/pages/GetStarted/GPU/CoinGuide.page';
 
 export const GetStartedGPUPage = () => {
   return (
@@ -31,7 +31,7 @@ export async function getStaticProps({ locale }) {
 }
 
 export const getStaticPaths = ({ locales }) => {
-  const paths = [];
+  const paths: Array<{ params: { ticker: string; hw: string }; locale: any }> = [];
 
   for (const locale of locales) {
     paths.push({ params: { ticker: 'eth', hw: 'GPU' }, locale });

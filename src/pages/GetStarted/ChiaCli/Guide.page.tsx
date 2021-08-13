@@ -44,8 +44,7 @@ export const ChiaCliGuidePage: React.FC = () => {
     search = window.location.search;
   }
 
-  const { primaryServer = 'POOL_URL', farmerOption = 'new-farmer' } =
-    qs.parse(search);
+  const { primaryServer = 'POOL_URL', farmerOption = 'new-farmer' } = qs.parse(search);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -115,6 +114,10 @@ export const ChiaCliGuidePage: React.FC = () => {
         ]}
       />
       <h1>{t('detail_xch.title_cli')}</h1>
+      <h2>
+        <Highlight>#1</Highlight> {t('detail.region.title')}
+      </h2>
+      <p>{t('detail.region.description_chia')}</p>
       <PingTestSection data={mineableCoin.regions} />
       <Spacer size="xl" />
       <JoinSection

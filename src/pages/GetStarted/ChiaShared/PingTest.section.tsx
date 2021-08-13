@@ -420,10 +420,6 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
 
   return (
     <>
-      <h2>
-        <Highlight>#1</Highlight> {t('detail.region.title')}
-      </h2>
-      <p>{t('detail.region.description_chia')}</p>
       <DynamicList
         onRowClick={selectItem}
         config={colConfig}

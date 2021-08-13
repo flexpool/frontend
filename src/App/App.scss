@@ -1,5 +1,6 @@
 @import 'src/pages/Docs/ApiDocs.scss';
 @import 'src/components/Tooltip.scss';
+@import 'styles/util.scss';
 
 html,
 body {
@@ -30,6 +31,13 @@ body {
 
   --color-discord: #7289da;
 
+  --code-comment: #6a737d;
+  --code-keyword: #d73a49;
+  --code-key: #22863a;
+  --code-constant: #005cc5;
+  --code-string: #032f62;
+  --code-number: #005cc5;
+
   @media (prefers-color-scheme: dark) {
     --bg-primary: #151519;
     --bg-secondary: #1c1c1f;
@@ -38,6 +46,16 @@ body {
     --text-primary: #eee;
     --overlay: rgba(0, 0, 0, 0.5);
     --bad-luck-color: #bbb;
+
+    // ! Don't forget to edit the values in src/App/AppTheme.tsx
+    // ! too for the dark theme to work
+
+    --code-comment: #8b949e;
+    --code-keyword: #ff7b72;
+    --code-key: #7ee787;
+    --code-constant: #79c0ff;
+    --code-string: #a5d6ff;
+    --code-number: #79c0ff;
 
     svg tspan {
       fill: var(--text-primary);
@@ -337,30 +355,6 @@ input {
       }
     }
   }
-}
-
-// Tailwind Utils
-
-.w-full {
-  width: 100%;
-}
-.mb-0 {
-  margin-bottom: 0px;
-}
-.mb-1 {
-  margin-bottom: 0.25rem;
-}
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
-.mb-3 {
-  margin-bottom: 0.75rem;
-}
-.mb-4 {
-  margin-bottom: 1rem;
-}
-.mb-5 {
-  margin-bottom: 1.25rem;
 }
 
 .fade-enter {
