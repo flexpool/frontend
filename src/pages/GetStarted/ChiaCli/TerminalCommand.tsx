@@ -43,28 +43,25 @@ type TerminalCommandProps = {
 export const TerminalCommand = (props: TerminalCommandProps) => {
   const { cmd, output } = props;
   return (
-    <>
+    <div>
       <TerminalContainer>
         <Commands>
-          {(cmd as string).split('\n').map((item) => {
+          {(cmd as string).split('\n').map((item, i) => {
             var commandItems: Array<React.ReactNode> = [];
             item.split(' ').forEach((itemCommand) => {
               if (
                 itemCommand.length > 0 &&
                 itemCommand.substr(0, 1) === '<' &&
-                itemCommand.substr(
-                  itemCommand.length - 1,
-                  itemCommand.length
-                ) === '>'
+                itemCommand.substr(itemCommand.length - 1, itemCommand.length) === '>'
               ) {
                 commandItems.push(
-                  <CommandSecondary>{itemCommand} </CommandSecondary>
+                  <CommandSecondary key={Math.random()}>{itemCommand} </CommandSecondary>
                 );
               } else {
                 commandItems.push(itemCommand + ' ');
               }
             });
-            return <Command key={item}>{commandItems}</Command>;
+            return <Command key={Math.random()}>{commandItems}</Command>;
           })}
         </Commands>
         <CopyButton text={cmd as string} />
@@ -72,6 +69,6 @@ export const TerminalCommand = (props: TerminalCommandProps) => {
       {output !== undefined ? (
         <CommandResultContainer>{output}</CommandResultContainer>
       ) : null}
-    </>
+    </div>
   );
 };

@@ -211,6 +211,10 @@
       {
         "title": "Chia Farmer (GUI)",
         "key": "XCH-GUI"
+      },
+      {
+        "title": "FlexFarmer",
+        "key": "flexfarmer"
       }
     ]
   },
@@ -249,9 +253,7 @@
     },
     "step_three": {
       "title": "Test de pool configuratie",
-      "description": [
-        "Nu kan je op Test Pool klikken en zien of alles goed werkt."
-      ]
+      "description": ["Nu kan je op Test Pool klikken en zien of alles goed werkt."]
     },
     "step_four": {
       "title": "Geniet van de voordelen van Flexpool terwijl je NiceHash gebruikt!",

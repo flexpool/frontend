@@ -1,8 +1,8 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { Content } from '../../../src/components/layout/Content';
-import { Page } from '../../../src/components/layout/Page';
-import { NicehashGuidePage } from '../../../src/pages/GetStarted/Nicehash/NicehashGuide.page';
+import { Content } from 'src/components/layout/Content';
+import { Page } from 'src/components/layout/Page';
+import { NicehashGuidePage } from 'src/pages/GetStarted/Nicehash/NicehashGuide.page';
 
 export const GetStartedNicehashPage = () => {
   return (
@@ -30,7 +30,7 @@ export async function getStaticProps({ locale }) {
 }
 
 export const getStaticPaths = ({ locales }) => {
-  const paths = [];
+  const paths: Array<{ params: { ticker: string; hw: string }; locale: any }> = [];
 
   for (const locale of locales) {
     paths.push({ params: { ticker: 'eth', hw: 'nicehash' }, locale });

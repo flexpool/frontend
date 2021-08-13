@@ -65,12 +65,9 @@ export const MineableCoinList: React.FC = () => {
       {t && (
         <MineableCoinGrid>
           {mineableCoins.map((item) => {
-            const poolDetails = t(
-              `detail_${item.ticker.toLowerCase()}.pool_details`,
-              {
-                returnObjects: true,
-              }
-            ) as { key: string; value: string }[];
+            const poolDetails = t(`detail_${item.ticker.toLowerCase()}.pool_details`, {
+              returnObjects: true,
+            }) as { key: string; value: string }[];
 
             const poolHw = t(`detail_${item.ticker.toLowerCase()}.hardware`, {
               returnObjects: true,
@@ -93,16 +90,23 @@ export const MineableCoinList: React.FC = () => {
                       href={`/get-started/${item.ticker}/${itemHw.key}`}
                       passHref
                     >
-                      <Button shape="block" size="sm" variant="primary">
-                        {itemHw.title}
+                      <Button
+                        shape="block"
+                        size="sm"
+                        variant={itemHw.key === 'flexfarmer' ? 'success' : 'primary'}
+                      >
+                        {itemHw.key === 'flexfarmer' ? (
+                          <>
+                            +&nbsp;<b>{itemHw.title}</b>&nbsp;[NEW]
+                          </>
+                        ) : (
+                          itemHw.title
+                        )}
                       </Button>
                     </Link>
                   ))}
                   {item.nicehashAvailable ? (
-                    <Link
-                      href={`/get-started/${item.ticker}/nicehash`}
-                      passHref
-                    >
+                    <Link href={`/get-started/${item.ticker}/nicehash`} passHref>
                       <Button shape="block" size="sm" variant="warning">
                         {t('list.nicehash_rental_button')}
                       </Button>

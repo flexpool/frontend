@@ -1,3 +1,33 @@
+// {
+//   "extends": ["next", "eslint:recommended", "plugin:@typescript-eslint/recommended"],
+//   "plugins": ["react-hooks", "@typescript-eslint"],
+//   "rules": {
+//     "react/display-name": "off",
+//     "react/jsx-max-props-per-line": [1, { "maximum": 1 }],
+//     "eqeqeq": "error",
+//     "no-console": "warn",
+//     "@typescript-eslint/explicit-module-boundary-types": "off",
+//     "@typescript-eslint/explicit-function-return-type": "off",
+//     "@typescript-eslint/no-explicit-any": "warn",
+//     "@typescript-eslint/no-unused-vars": "warn",
+//     "react/react-in-jsx-scope": "off",
+//     "react-hooks/rules-of-hooks": "warn",
+//     "react-hooks/exhaustive-deps": "warn"
+//   },
+//   "parser": "@typescript-eslint/parser",
+//   "parserOptions": {
+//     "ecmaVersion": 6,
+//     "sourceType": "module"
+//   },
+//   "env": {
+//     "browser": true,
+//     "node": true,
+//     "es6": true,
+//     "jest": true
+//   },
+//   "ignorePatterns": ["node_modules", "build", "dist", "public"]
+// }
+
 {
   "extends": "next",
   "rules": {
