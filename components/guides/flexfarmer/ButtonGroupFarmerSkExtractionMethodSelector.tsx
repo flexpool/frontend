@@ -38,7 +38,8 @@ export const ButtonGroupFarmerSkExtractionMethodSelector: React.FC<{}> = ({}) =>
       setSelectedMethod(s);
       window.dispatchEvent(queryStringChange);
     },
-    [router]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
   );
 
   useEffect(() => {
