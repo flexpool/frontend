@@ -9,26 +9,24 @@ function ButtonGroupOSSelector() {
 
   const [selectedOS, setSelectedOS] = useState('');
 
-  const selectOS = React.useCallback(
-    (s: string) => {
-      const query = qs.stringify({
-        ...qs.parse(window.location.search),
-        os: s,
-      });
+  const selectOS = React.useCallback((s: string) => {
+    const query = qs.stringify({
+      ...qs.parse(window.location.search),
+      os: s,
+    });
 
-      const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
+    const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
 
-      window.history.pushState(
-        { ...window.history.state, as: newUrl, url: newUrl },
-        '',
-        newUrl
-      );
-      let queryStringChange = new Event('popstate');
-      setSelectedOS(s);
-      window.dispatchEvent(queryStringChange);
-    },
-    [router]
-  );
+    window.history.pushState(
+      { ...window.history.state, as: newUrl, url: newUrl },
+      '',
+      newUrl
+    );
+    let queryStringChange = new Event('popstate');
+    setSelectedOS(s);
+    window.dispatchEvent(queryStringChange);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {

@@ -8,17 +8,10 @@ import {
   PriceChange,
 } from './components';
 import React from 'react';
-import {
-  FaArrowDown,
-  FaArrowUp,
-  FaCalculator,
-  FaNewspaper,
-} from 'react-icons/fa';
+import { FaArrowDown, FaArrowUp, FaCalculator, FaNewspaper } from 'react-icons/fa';
 import { Button } from 'src/components/Button';
 import { Content } from 'src/components/layout/Content';
-import DynamicList, {
-  DynamicListColumn,
-} from 'src/components/layout/List/List';
+import DynamicList, { DynamicListColumn } from 'src/components/layout/List/List';
 import Modal from 'src/components/Modal/Modal';
 import { Mono, Ws } from 'src/components/Typo/Typo';
 import { CoinNews } from 'src/sections/CoinNews';
@@ -48,7 +41,8 @@ const ModalNews: React.FC<{ data?: ApiPoolCoinFull[] | null }> = ({ data }) => {
 
   const handleClose = React.useCallback(() => {
     router.replace(router.pathname);
-  }, [router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const { t } = useTranslation('home');
 
@@ -83,7 +77,8 @@ export const CoinsWeMineSection = () => {
     (data: ApiPoolCoinFull) => {
       router.push({ search: `news=${data.ticker}` });
     },
-    [router]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
   );
 
   const columns: DynamicListColumn<ApiPoolCoinFull>[] = React.useMemo(() => {
@@ -122,12 +117,7 @@ export const CoinsWeMineSection = () => {
               <Ws>
                 {currencyFormatter(value)}{' '}
                 <PriceChange direction={priceChangeDirection}>
-                  (
-                  {priceChangeDirection === 'up' ? (
-                    <FaArrowUp />
-                  ) : (
-                    <FaArrowDown />
-                  )}
+                  ({priceChangeDirection === 'up' ? <FaArrowUp /> : <FaArrowDown />}
                   {Math.round(Math.abs(priceChange) * 10) / 10}%)
                 </PriceChange>
               </Ws>
@@ -160,9 +150,7 @@ export const CoinsWeMineSection = () => {
         Component: ({ data }) => {
           return (
             <Ws>
-              <Mono>
-                {siFormatter(data.hashrate, { unit: data.hashrateUnit })}
-              </Mono>
+              <Mono>{siFormatter(data.hashrate, { unit: data.hashrateUnit })}</Mono>
             </Ws>
           );
         },

@@ -37,10 +37,8 @@ export const MinerStatsPage: React.FC<{
 }> = ({ address, coin }) => {
   const router = useRouter();
 
-  const [
-    averageEffectivePeriods,
-    setAverageEffectivePeriods,
-  ] = React.useState<AverageEffectivePeriods>({ 6: 0, 12: 0 });
+  const [averageEffectivePeriods, setAverageEffectivePeriods] =
+    React.useState<AverageEffectivePeriods>({ 6: 0, 12: 0 });
 
   const worker = useActiveSearchParamWorker();
   const { t } = useTranslation('dashboard');
@@ -61,9 +59,12 @@ export const MinerStatsPage: React.FC<{
   const handleResetActiveWorker = React.useCallback(() => {
     // just remove the worker
     // const { worker, ...restQuery } = qs.parse(window.location.search);
-    router.push(`/miner/${router.query.coin}/${router.query.address[0]}/`, undefined, {shallow: true});
+    router.push(`/miner/${router.query.coin}/${router.query.address[0]}/`, undefined, {
+      shallow: true,
+    });
 
-  }, [router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
