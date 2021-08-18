@@ -13,16 +13,15 @@ function ikmToLamportSecretKey(ikm: Buffer, salt: Buffer) {
 }
 
 async function deriveLamportPublicKey(ikm: Buffer, index: number) {
-  const ikmPadded = Buffer.concat([Buffer.from(new ArrayBuffer(32 - ikm.length)), ikm]);
   const salt = new ArrayBuffer(4);
   const saltView = new DataView(salt);
   saltView.setUint32(0, index, false);
-  var ikmInv = new Uint8Array(ikmPadded.length);
-  for (var i = 0; i < 32; i++) {
-    ikmInv[i] = ikmPadded[i] ^ 0xff;
+  var ikmInv = new Uint8Array(ikm.length);
+  for (var i = 0; i < ikm.length; i++) {
+    ikmInv[i] = ikm[i] ^ 0xff;
   }
 
-  const lamport0 = await ikmToLamportSecretKey(ikmPadded, Buffer.from(salt));
+  const lamport0 = await ikmToLamportSecretKey(ikm, Buffer.from(salt));
   const lamport1 = await ikmToLamportSecretKey(Buffer.from(ikmInv), Buffer.from(salt));
 
   var lamportPrivateKey = new Uint8Array(16320);
@@ -64,7 +63,7 @@ function padBEBuffer(buf: Buffer, len: number) {
 
   const newBuf = Buffer.from(new ArrayBuffer(len));
 
-  buf.copy(newBuf);
+  buf.copy(newBuf, len - buf.length);
 
   return newBuf;
 }
@@ -81,12 +80,12 @@ export async function keyGen(key: Buffer) {
   const okmInt = BigInt('0x' + okm.toString('hex'));
   var tmp = (okmInt % BLS12381_Q).toString(16);
   tmp = !(tmp.length % 2) ? tmp : '0' + tmp;
-  const ret = padBEBuffer(Buffer.from(tmp, 'hex'), 32);
+  const ret = Buffer.from(tmp, 'hex');
   return ret;
 }
 
 async function deriveChildKey(parent: Buffer, index: number) {
-  const lamportPublicKey = await deriveLamportPublicKey(parent, index);
+  const lamportPublicKey = await deriveLamportPublicKey(padBEBuffer(parent, 32), index);
   return keyGen(Buffer.from(lamportPublicKey));
 }
 
