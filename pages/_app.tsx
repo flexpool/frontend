@@ -26,6 +26,8 @@ import TermsConsent from '../src/components/TermsConsent';
 import { usePoolCoins } from 'src/rdx/poolCoins/poolCoins.hooks';
 import SEO from '../next-seo.config';
 import Script from 'next/script';
+import { useEffect } from 'react';
+import { getDynamicManifestUrl } from 'utils/url';
 
 let cachedState;
 let addressSearchState;
@@ -47,6 +49,13 @@ declare global {
 }
 
 const App = ({ Component, pageProps, router }: AppProps) => {
+  useEffect(() => {
+    const { locale, pathname } = router;
+    const manifest = document.getElementById('manifest');
+
+    manifest?.setAttribute('href', getDynamicManifestUrl(locale, pathname));
+  }, [router.pathname, router.locale]);
+
   return (
     <>
       <DefaultSeo {...SEO} />

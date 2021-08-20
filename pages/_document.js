@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import { getDynamicManifestUrl } from '../utils/url';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -9,8 +10,7 @@ export default class MyDocument extends Document {
     try {
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: (App) => (props) =>
-            sheet.collectStyles(<App {...props} />),
+          enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
         });
 
       const initialProps = await Document.getInitialProps(ctx);
@@ -29,19 +29,13 @@ export default class MyDocument extends Document {
   }
 
   render() {
+    const { locale, page } = this.props.__NEXT_DATA__;
+
     return (
       <Html lang="en">
         <Head>
-          <link
-            rel="preconnect"
-            href="https://static.flexpool.io"
-            prefetch="false"
-          />
-          <link
-            rel="preconnect"
-            href="https://fonts.googleapis.com"
-            prefetch="false"
-          />
+          <link rel="preconnect" href="https://static.flexpool.io" prefetch="false" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" prefetch="false" />
           <link
             rel="preconnect"
             href="https://xtwj9bs7n2j9.statuspage.io"
@@ -51,24 +45,10 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap"
             rel="stylesheet"
           />
-          <link rel="manifest" href="/manifest.json" />
-          <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/apple-touch-icon.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/favicon-32x32.png"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/favicon-16x16.png"
-          />
+          <link rel="manifest" href={getDynamicManifestUrl(locale, page)} id="manifest" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
           <meta name="apple-mobile-web-app-title" content="Flexpool.io" />
           <meta name="application-name" content="Flexpool.io" />
