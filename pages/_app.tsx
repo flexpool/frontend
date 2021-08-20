@@ -1,6 +1,7 @@
 import 'src/index.css';
 import 'src/App/normalize.scss';
 import 'src/App/App.scss';
+import { useEffect } from 'react';
 import { appWithTranslation } from 'next-i18next';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 
@@ -47,6 +48,11 @@ declare global {
 }
 
 const App = ({ Component, pageProps, router }: AppProps) => {
+  useEffect(() => {
+    const manifestElement = document.getElementById('manifest');
+    manifestElement?.setAttribute('href', `/api/manifest?url=${router.asPath}`);
+  }, [router.asPath]);
+
   return (
     <>
       <DefaultSeo {...SEO} />
