@@ -42,9 +42,7 @@ export const GetStartedFlexfarmerPage = () => {
   const [urlState, setUrlState] = useState(new Date());
   const [farmerSecretKey, setFarmerSecretKey] = useState<string | null>(null);
   const [launcherID, setLauncherID] = useState<string | null>(null);
-  const [farmerSkExtractionMethod, setFarmerSkExtractionMethod] = useState<string | null>(
-    null
-  );
+  const [farmerSkExtractionMethod, setFarmerSkExtractionMethod] = useState<string | null>(null);
   const [workerName, setWorkerName] = useState<string | null>(null);
   const [region, setRegion] = useState('' as string | string[]);
   const [payoutAddress, setPayoutAddress] = useState<string | null>(null);
@@ -83,11 +81,12 @@ license: true # Agree to FlexFarmer's license located at https://static.flexpool
     const parsedSearch = qs.parse(getLocationSearch());
     const parsedRegionTmp = parsedSearch?.primaryServer?.toString().split('xch-').pop();
 
-    if (!parsedRegionTmp) {
-      return;
+    if (parsedRegionTmp) {
+      const parsedRegion = parsedRegionTmp.split('.flexpool')[0];
+      if (parsedRegion !== region) {
+        setRegion(parsedRegion || 'N/A');
+      }
     }
-
-    const parsedRegion = parsedRegionTmp.split('.flexpool')[0];
 
     if (parsedSearch.launcherID !== launcherID) {
       setLauncherID((parsedSearch.launcherID as string) || 'N/A');
@@ -95,9 +94,7 @@ license: true # Agree to FlexFarmer's license located at https://static.flexpool
     if (parsedSearch.workerName !== workerName) {
       setWorkerName((parsedSearch.workerName as string) || 'N/A');
     }
-    if (parsedRegion !== region) {
-      setRegion(parsedRegion || 'N/A');
-    }
+
     if (parsedSearch.payoutAddress !== payoutAddress) {
       setPayoutAddress((parsedSearch.payoutAddress as string) || 'N/A');
     }
@@ -212,9 +209,7 @@ license: true # Agree to FlexFarmer's license located at https://static.flexpool
             <ButtonGroupFarmerSkExtractionMethodSelector />
           </div>
           <Spacer />
-          {farmerSkExtractionMethod === 'browser' ? (
-            <FarmerSkExtractor setExternalFarmerSk={setFarmerSecretKey} />
-          ) : (
+          {farmerSkExtractionMethod === 'python' ? (
             <>
               {os === 'windows' && (
                 <p>
@@ -247,6 +242,10 @@ license: true # Agree to FlexFarmer's license located at https://static.flexpool
                 }}
                 regexp={/^(0x)?[A-Fa-f0-9]{64}$/}
               />
+            </>
+          ) : (
+            <>
+              <FarmerSkExtractor setExternalFarmerSk={setFarmerSecretKey} />
             </>
           )}
         </div>
