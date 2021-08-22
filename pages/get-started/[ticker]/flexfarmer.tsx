@@ -254,7 +254,7 @@ license: true # Agree to FlexFarmer's license located at https://static.flexpool
 
         <div id="copy-launch-id">
           <h2>
-            <Highlight>#3</Highlight> {localT('launcher_id.heading')}
+            <Highlight>#4</Highlight> {localT('launcher_id.heading')}
           </h2>
           <p>
             <Trans
@@ -282,7 +282,7 @@ license: true # Agree to FlexFarmer's license located at https://static.flexpool
         </div>
 
         <h2>
-          <Highlight>#4</Highlight> {localT('payout_address.heading')}
+          <Highlight>#5</Highlight> {localT('payout_address.heading')}
         </h2>
 
         <p>{localT('payout_address.description')}</p>
@@ -300,7 +300,7 @@ license: true # Agree to FlexFarmer's license located at https://static.flexpool
         </div>
 
         <h2>
-          <Highlight>#5</Highlight> {localT('worker_name.heading')}
+          <Highlight>#6</Highlight> {localT('worker_name.heading')}
         </h2>
 
         <p>{localT('worker_name.description')}</p>
@@ -317,7 +317,7 @@ license: true # Agree to FlexFarmer's license located at https://static.flexpool
         </div>
 
         <h2>
-          <Highlight>#6</Highlight> {localT('plot_directories.heading')}
+          <Highlight>#7</Highlight> {localT('plot_directories.heading')}
         </h2>
 
         <p>{localT('plot_directories.description')}</p>
@@ -326,7 +326,7 @@ license: true # Agree to FlexFarmer's license located at https://static.flexpool
         <PlotDirectoriesSelector os={os as string} dirs={dirs} setDirs={setDirs} />
 
         <h2>
-          <Highlight>#7</Highlight> {globalT('detail.region.title')}
+          <Highlight>#8</Highlight> {globalT('detail.region.title')}
         </h2>
 
         <p>{globalT('detail.region.description_chia')}</p>
@@ -334,7 +334,7 @@ license: true # Agree to FlexFarmer's license located at https://static.flexpool
         <PingTestSection data={mineableCoin?.regions as MineableCoinRegion[]} />
 
         <h2>
-          <Highlight>#8</Highlight> {localT('config.heading')}
+          <Highlight>#9</Highlight> {localT('config.heading')}
         </h2>
         <p>
           <Trans
@@ -361,7 +361,7 @@ license: true # Agree to FlexFarmer's license located at https://static.flexpool
         </p>
 
         <h2>
-          <Highlight>#9</Highlight> {localT('run.heading')}
+          <Highlight>#10</Highlight> {localT('run.heading')}
         </h2>
 
         <p>
