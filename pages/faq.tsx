@@ -4,24 +4,25 @@ import { NextSeo } from 'next-seo';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styled from 'styled-components';
-
+import {HeaderStat } from '@/components/layout/StatHeader';
+import { useActiveCoinTicker } from '@/rdx/localSettings/localSettings.hooks';
 import { Content } from '../src/components/layout/Content';
 import { Page } from '../src/components/layout/Page';
 import { CopyButton } from '../src/components/CopyButton';
 import { FaLink } from 'react-icons/fa';
+
+type FaqMarkdown = {
+  attributes: { title: string, coin?: string };
+  html: string;
+  react: React.FC;
+}
 
 type FaqDataSection = {
   name: string;
   contents: {
     name: string;
     key: string;
-    md: {
-      attributes: {
-        title: string;
-      };
-      html: string;
-      react: React.FC;
-    };
+    md: FaqMarkdown
   }[];
 };
 
@@ -97,11 +98,16 @@ const FaqQuestion: React.FC<{ data: FaqDataSection['contents'][0] }> = ({
 
 const FaqSection: React.FC<FaqDataSection> = ({ name, contents }) => {
   const { t } = useTranslation('common');
+  const selectedCoinTicker = useActiveCoinTicker();
+
   return (
     <>
       <FSection>
         <h2>{t(name)}</h2>
-        {contents.map((item) => (
+        {contents.filter((item) => {
+          const markdownCoinAttribute = item.md.attributes.coin;
+          return !markdownCoinAttribute || markdownCoinAttribute === selectedCoinTicker
+        }).map((item) => (
           <FaqQuestion key={item.key} data={item} />
         ))}
       </FSection>
@@ -158,7 +164,10 @@ function FAQPage({ faq }) {
           },
         ]}
       />
-      <Content paddingLg>
+      <HeaderStat>
+        <h1>FAQ</h1>
+      </HeaderStat>
+      <Content >
         <FaqContent>
           {(faq || []).map((item) => (
             <FaqSection key={item.name} {...item} />
@@ -172,11 +181,6 @@ function FAQPage({ faq }) {
 export default FAQPage;
 
 import { faqStructure } from '../src/docs/index';
-
-type FaqMarkdown = {
-  attributes: { title: string };
-  react: React.FC;
-};
 
 const loadFaqMarkdown = (locale: string, item: string): FaqMarkdown | {} => {
   const isTranslationAvailable = !_.isError(

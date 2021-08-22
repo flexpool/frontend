@@ -4,7 +4,8 @@ export const faqStructure = [
     contents: [
       'questions-about-flexpool/how-to-join.md',
       'questions-about-flexpool/flexpool-pool-fee.md',
-      'questions-about-flexpool/what-is-minimum-payout.md',
+      'questions-about-flexpool/eth-what-is-minimum-payout.md',
+      'questions-about-flexpool/xch-what-is-minimum-payout.md',
       'questions-about-flexpool/when-do-payouts-happen.md',
       'questions-about-flexpool/how-long-will-i-receive-payout.md',
       'questions-about-flexpool/what-is-payout-criteria.md',
