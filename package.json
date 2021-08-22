@@ -18,6 +18,7 @@
     "copy-to-clipboard": "3.3.1",
     "date-fns": "^2.19.0",
     "formik": "^2.2.6",
+    "lodash": "^4.17.21",
     "lodash.debounce": "^4.0.8",
     "lodash.defaultsdeep": "^4.6.1",
     "lodash.merge": "^4.6.2",
