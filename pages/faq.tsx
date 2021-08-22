@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import _ from 'lodash';
 import { NextSeo } from 'next-seo';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -172,22 +173,48 @@ export default FAQPage;
 
 import { faqStructure } from '../src/docs/index';
 
+type FaqMarkdown = {
+  attributes: { title: string };
+  react: React.FC;
+};
+
+const loadFaqMarkdown = (locale: string, item: string): FaqMarkdown | {} => {
+  const isTranslationAvailable = !_.isError(
+    _.attempt(() => require(`src/docs/${locale}/faq/${item}`))
+  );
+
+  if (isTranslationAvailable) return require(`src/docs/${locale}/faq/${item}`);
+  const isEnglishAvailable = !_.isError(
+    _.attempt(() => require(`src/docs/en-US/faq/${item}`))
+  );
+
+  if (isEnglishAvailable) return require(`src/docs/en-US/faq/${item}`);
+  return {};
+};
+
 export async function getStaticProps({ locale }) {
-  const loadFaq = faqStructure.map((section) => ({
-    name: section.sectionName,
-    contents: section.contents.map((item) => ({
-      name: item,
-      /**
-       * "questions-about-flexpool/how-to-join.md"
-       * => "how-to-join"
-       */
-      key: item.split('/')[1].replace('.md', ''),
-      md: require(`src/docs/${locale}/faq/${item}`) as {
-        attributes: { title: string };
-        react: React.FC;
-      },
-    })),
-  }));
+  const loadFaq = faqStructure.map((section) => {
+    return {
+      name: section.sectionName,
+      contents: section.contents
+        .map((item) => {
+          const markdown = loadFaqMarkdown(locale, item);
+          if (_.isEmpty(markdown))
+            console.log(`\x1b[91mERROR:\x1b[39m ${item} not found`);
+
+          return {
+            name: item,
+            /**
+             * "questions-about-flexpool/how-to-join.md"
+             * => "how-to-join"
+             */
+            key: item.split('/')[1].replace('.md', ''),
+            md: markdown,
+          };
+        })
+        .filter((item) => !_.isEmpty(item.md)),
+    };
+  });
 
   return {
     props: {
