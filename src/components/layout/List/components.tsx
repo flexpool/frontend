@@ -51,6 +51,7 @@ const Tr = styled.tr<{ clickable?: boolean }>`
       color: var(--primary);
       text-decoration: underline;
     }
+    background: rgba(128, 128, 128, 0.06);
   }
 
   ${(p) =>

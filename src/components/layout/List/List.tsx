@@ -141,7 +141,9 @@ export const DynamicList = <D extends {}, CP extends {}>(
     renderRowTooltipContent,
   } = props;
 
-  const [lastMouseOver, setLastMouseOver] = React.useState<number | null>();
+  const [lastMouseOver, setLastMouseOver] = React.useState<{
+    hoverIndex: number | null;
+  }>({ hoverIndex: null });
 
   const headEl = React.useMemo(() => {
     return (
@@ -197,7 +199,10 @@ export const DynamicList = <D extends {}, CP extends {}>(
               ))}
             </tbody>
           )) || (
-            <tbody>
+            <tbody
+              onMouseEnter={() => setLastMouseOver({ hoverIndex: null })}
+              onMouseLeave={() => setLastMouseOver({ ...lastMouseOver })}
+            >
               {columns &&
                 data &&
                 data.length > 0 &&
@@ -209,8 +214,10 @@ export const DynamicList = <D extends {}, CP extends {}>(
                       onRowClickAllowed={onRowClickAllowed as any}
                       index={index}
                       key={(item as any).name || index}
-                      isHighlighted={index === lastMouseOver}
-                      handleActiveHover={setLastMouseOver}
+                      isHighlighted={index === lastMouseOver.hoverIndex}
+                      handleActiveHover={(rowIndex) => {
+                        lastMouseOver.hoverIndex = rowIndex;
+                      }}
                       columns={columns as any}
                       config={config}
                       renderRowTooltipContent={renderRowTooltipContent as any}
