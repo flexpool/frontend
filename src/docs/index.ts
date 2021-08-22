@@ -8,7 +8,6 @@ export const faqStructure = [
       'questions-about-flexpool/when-do-payouts-happen.md',
       'questions-about-flexpool/how-long-will-i-receive-payout.md',
       'questions-about-flexpool/what-is-payout-criteria.md',
-      'questions-about-flexpool/how-to-make-a-digital-signature-with-exchange.md',
       'questions-about-flexpool/balance-is-zero.md',
       'questions-about-flexpool/what-reward-scheme.md',
       'questions-about-flexpool/does-flexpool-have-transaction-fees.md',
