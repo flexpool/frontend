@@ -21,6 +21,7 @@ export const faqStructure = [
       'questions-about-flexpool/eth-what-does-zil-mean.md',
       'questions-about-flexpool/eth-what-happens-inactive-worker.md',
       'questions-about-flexpool/eth-no-longer-mining.md',
+      'questions-about-flexpool/eth-is-your-live-support-24-7.md',
 
       // XCH
       'questions-about-flexpool/xch-how-to-join-flexpool-chia-pool.md',
