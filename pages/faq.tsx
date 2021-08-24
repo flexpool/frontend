@@ -4,7 +4,7 @@ import { NextSeo } from 'next-seo';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styled from 'styled-components';
-import {HeaderStat } from '@/components/layout/StatHeader';
+import { HeaderStat } from '@/components/layout/StatHeader';
 import { useActiveCoinTicker } from '@/rdx/localSettings/localSettings.hooks';
 import { Content } from '../src/components/layout/Content';
 import { Page } from '../src/components/layout/Page';
@@ -12,17 +12,17 @@ import { CopyButton } from '../src/components/CopyButton';
 import { FaLink } from 'react-icons/fa';
 
 type FaqMarkdown = {
-  attributes: { title: string, coin?: string };
+  attributes: { title: string; coin?: string };
   html: string;
   react: React.FC;
-}
+};
 
 type FaqDataSection = {
   name: string;
   contents: {
     name: string;
     key: string;
-    md: FaqMarkdown
+    md: FaqMarkdown;
   }[];
 };
 
@@ -100,16 +100,23 @@ const FaqSection: React.FC<FaqDataSection> = ({ name, contents }) => {
   const { t } = useTranslation('common');
   const selectedCoinTicker = useActiveCoinTicker();
 
+  if (name === 'faq.miningBasics' && selectedCoinTicker === 'xch') return null;
+
   return (
     <>
       <FSection>
         <h2>{t(name)}</h2>
-        {contents.filter((item) => {
-          const markdownCoinAttribute = item.md.attributes.coin;
-          return !markdownCoinAttribute || markdownCoinAttribute === selectedCoinTicker
-        }).map((item) => (
-          <FaqQuestion key={item.key} data={item} />
-        ))}
+        {contents
+          .filter((item) => {
+            const markdownCoinAttribute = item.md.attributes.coin;
+            return (
+              !markdownCoinAttribute ||
+              markdownCoinAttribute === selectedCoinTicker
+            );
+          })
+          .map((item) => (
+            <FaqQuestion key={item.key} data={item} />
+          ))}
       </FSection>
     </>
   );
@@ -167,7 +174,7 @@ function FAQPage({ faq }) {
       <HeaderStat>
         <h1>FAQ</h1>
       </HeaderStat>
-      <Content >
+      <Content>
         <FaqContent>
           {(faq || []).map((item) => (
             <FaqSection key={item.name} {...item} />
