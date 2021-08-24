@@ -1,5 +1,6 @@
 ---
 title: Should I use SSL?
+coin: eth
 ---
 
 **Yes**, use SSL where possible.

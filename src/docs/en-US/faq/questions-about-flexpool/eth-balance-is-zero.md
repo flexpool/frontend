@@ -1,7 +1,6 @@
 ---
-
 title: My balance has frozen for a long time. Have I configured my mining software properly?
-
+coin: eth
 ---
 
 Yes, everything is good unless you cannot see your workers on the dashboard page. As we are not the largest mining pool, we don't find blocks every minute. During unlucky periods, your balance may stall for some time.

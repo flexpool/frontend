@@ -3,4 +3,4 @@ title: What is the minimum payout amount?
 coin: xch
 ---
 
-From 0.01 XCH up to 10 XCH
+You may set your minimum payout to as low as 0.01 XCH, or as high as 10 XCH. The default is 0.1 XCH.

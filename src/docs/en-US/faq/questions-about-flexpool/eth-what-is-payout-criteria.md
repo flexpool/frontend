@@ -1,5 +1,6 @@
 ---
 title: How is payout criteria calculated?
+coin: eth
 ---
 
 The payout criteria is calculated based on your payout limit, gas price limit and the current network status.
