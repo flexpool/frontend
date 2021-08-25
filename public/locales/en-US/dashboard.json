@@ -177,6 +177,7 @@
     },
     "shares": {
       "title": "Shares",
+      "title_hint": "past 24 hours",
       "title_points": "Points",
       "valid": "Valid",
       "stale": "Stale",
