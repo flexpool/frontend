@@ -101,7 +101,7 @@ export const ListPagination: React.FC<{
 
     selectionsAvailable.push(
       <PageButton
-        key={page}
+        key={`${page}-${currentPage}`}
         className={clx({ active: page === currentPage })}
         onClick={setPage}
         value={page}
