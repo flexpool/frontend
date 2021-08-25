@@ -529,10 +529,11 @@ export const PayoutSettings: React.FC<{
                 <Spacer />
                 <TextField
                   name="ip"
-                  label={t('dashboard:settings.ip')}
+                  label={`${t('dashboard:settings.ip')}*`}
                   placeholder={minerSettings.data!.ipAddress}
                 />
                 <div>
+                  <p>*{t('dashboard:settings.ip_caption')} </p>
                   <p>
                     {t('dashboard:settings.ip_hint')}{' '}
                     <b>{minerSettings.data!.clientIPAddress}</b>.
