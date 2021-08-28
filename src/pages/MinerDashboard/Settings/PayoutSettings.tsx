@@ -533,7 +533,9 @@ export const PayoutSettings: React.FC<{
                   placeholder={minerSettings.data!.ipAddress}
                 />
                 <div>
-                  <p>*{t('dashboard:settings.ip_caption')} </p>
+                  <p>
+                    <i>*{t('dashboard:settings.ip_caption')}</i>
+                  </p>
                   <p>
                     {t('dashboard:settings.ip_hint')}{' '}
                     <b>{minerSettings.data!.clientIPAddress}</b>.
