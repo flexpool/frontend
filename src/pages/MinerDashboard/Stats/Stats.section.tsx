@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next';
-import { Card, CardTitle, CardTitleCaption } from 'src/components/layout/Card';
+import { Card, CardTitle } from 'src/components/layout/Card';
 import { StatItem } from 'src/components/StatItem';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useReduxState } from 'src/rdx/useReduxState';
@@ -108,12 +108,11 @@ export const MinerStats: React.FC<{
       </Card>
       <Card padding>
         <CardTitle>
-          {t(
+          {`${t(
             String(activeCoin?.ticker) === 'xch'
               ? 'stats.shares.title_points'
               : 'stats.shares.title'
-          )}
-          <CardTitleCaption> ({t('stats.shares.title_hint')})</CardTitleCaption>
+          )} (${t('stats.shares.title_hint')})`}
         </CardTitle>
         <StatItemGrid>
           <StatItem

@@ -31,11 +31,6 @@ export const CardTitle = styled.h3`
   }
 `;
 
-export const CardTitleCaption = styled.span`
-  font-size: 0.75rem;
-  font-weight: 400;
-`;
-
 export const CardGrid = styled.div`
   display: grid;
   margin-top: 1rem;
