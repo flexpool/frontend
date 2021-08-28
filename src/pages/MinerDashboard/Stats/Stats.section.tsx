@@ -108,11 +108,11 @@ export const MinerStats: React.FC<{
       </Card>
       <Card padding>
         <CardTitle>
-          {t(
+          {`${t(
             String(activeCoin?.ticker) === 'xch'
               ? 'stats.shares.title_points'
               : 'stats.shares.title'
-          )}
+          )} (${t('stats.shares.title_hint')})`}
         </CardTitle>
         <StatItemGrid>
           <StatItem
