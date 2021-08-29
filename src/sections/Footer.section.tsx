@@ -15,7 +15,10 @@ import {
 
 import React from 'react';
 
-import { SelectCounterTicker } from 'src/components/SelectCounterTicker';
+import {
+  SelectCounterTicker,
+  NewSelectCounterTicker,
+} from 'src/components/SelectCounterTicker';
 import { SelectTheme } from 'src/components/SelectTheme';
 import { Spacer } from 'src/components/layout/Spacer';
 
@@ -173,7 +176,8 @@ export const FooterSection = () => {
           </Section>
           <Section>
             <FSectionTitle>{t('footer.preferences.title')}</FSectionTitle>
-            <SelectCounterTicker />
+            {/* <SelectCounterTicker /> */}
+            <NewSelectCounterTicker />
             <Spacer />
             <SelectTheme />
             <Spacer />
