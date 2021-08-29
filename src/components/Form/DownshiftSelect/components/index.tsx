@@ -70,12 +70,16 @@ export const SelectOptionButton = styled(Button)`
 `;
 
 export const DropdownList = styled.ul`
-  ${(p) => !p.isOpen && `display: none`}
+  ${(p) =>
+    !p.isOpen &&
+    `
+    display: none;
+  `};
   list-style-type: none;
   margin: 0;
   background: var(--bg-secondary);
   ${(p) => p.theme.boxShadow};
-  ${(p) => p.theme.border};
+  border: ${(p) => p.theme.border.default};
   padding: 10px;
   min-width: 200px;
   border-radius: 5px;
