@@ -86,7 +86,9 @@ function BlocksPage() {
             }
             title={<>{t('average_luck')}&nbsp;</>}
             value={
-              statsState.data && <Luck value={statsState.data.averageLuck} />
+              statsState.isLoading || !statsState.data ? undefined : (
+                <Luck value={statsState.data.averageLuck} />
+              )
             }
           />
           <StatBox
@@ -97,7 +99,9 @@ function BlocksPage() {
             }
             title={t('current_luck')}
             value={
-              statsState.data && <Luck value={statsState.data.currentLuck} />
+              statsState.isLoading || !statsState.data ? undefined : (
+                <Luck value={statsState.data.currentLuck} />
+              )
             }
           />
           <StatBox
@@ -107,17 +111,18 @@ function BlocksPage() {
                 : t('network_hashrate')
             }
             value={
-              statsState.data &&
-              `${siFormatter(
-                statsState.data.networkHashrate *
-                  Number(activeCoin?.difficultyFactor),
-                {
-                  unit:
-                    activeCoin?.hashrateUnit === 'H'
-                      ? 'H/s'
-                      : activeCoin?.hashrateUnit,
-                }
-              )}`
+              statsState.isLoading || !statsState.data
+                ? undefined
+                : `${siFormatter(
+                    statsState.data.networkHashrate *
+                      Number(activeCoin?.difficultyFactor),
+                    {
+                      unit:
+                        activeCoin?.hashrateUnit === 'H'
+                          ? 'H/s'
+                          : activeCoin?.hashrateUnit,
+                    }
+                  )}`
             }
           />
           <StatBox
@@ -132,13 +137,14 @@ function BlocksPage() {
             }
             title={t('network_difficulty')}
             value={
-              statsState.data &&
-              `${siFormatter(statsState.data.networkDifficulty, {
-                unit:
-                  String(activeCoin?.ticker) === 'xch'
-                    ? 'PT'
-                    : activeCoin?.hashrateUnit.split('/')[0],
-              })}`
+              statsState.isLoading || !statsState.data
+                ? undefined
+                : `${siFormatter(statsState.data.networkDifficulty, {
+                    unit:
+                      String(activeCoin?.ticker) === 'xch'
+                        ? 'PT'
+                        : activeCoin?.hashrateUnit.split('/')[0],
+                  })}`
             }
           />
         </StatBoxContainer>

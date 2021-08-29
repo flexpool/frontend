@@ -19,7 +19,10 @@
     "sourceMap": true,
     "inlineSources": true,
     "sourceRoot": "/",
-    "noImplicitAny": false
+    "noImplicitAny": false,
+     "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "exclude": ["node_modules"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
