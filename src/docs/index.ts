@@ -41,6 +41,7 @@ export const faqStructure = [
       'questions-about-flexpool/xch-i-m-having-problems-with-my-farm-how-can-i-get-help.md',
       'questions-about-flexpool/xch-why-does-my-gui-show-current-difficulty-of-1-and-current-points-balance-of-9999.md',
       'questions-about-flexpool/xch-how-can-i-transfer-unpaid-balance-to-another-account.md',
+      'questions-about-flexpool/xch-how-do-i-change-to-a-different-pool-server-for-my-chia-farm.md',
       'questions-about-flexpool/xch-is-your-live-support-24-7.md',
     ],
   },
