@@ -122,7 +122,10 @@ export const MinerRewardsBlocksSection: React.FC<{
   } = React.useMemo(
     () => ({
       number: {
-        title: t('table.table_head.number'),
+        title:
+          coinTicker === 'eth'
+            ? t('table.table_head.number')
+            : t('table.table_head.height'),
         skeletonWidth: 80,
         Component: ({ data, config }) => {
           const content = (
