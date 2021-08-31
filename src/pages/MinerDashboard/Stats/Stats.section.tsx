@@ -98,12 +98,14 @@ export const MinerStats: React.FC<{
               </AverageTooltipItem>
             </TooltipContent>
           </Tooltip>
-          <StatItem
-            title={t('stats.hashrate.reported')}
-            value={siFormatter(data?.reportedHashrate, {
-              unit: activeCoin?.hashrateUnit,
-            })}
-          />
+          {Number(data?.reportedHashrate) > 0 && (
+            <StatItem
+              title={t('stats.hashrate.reported')}
+              value={siFormatter(data?.reportedHashrate, {
+                unit: activeCoin?.hashrateUnit,
+              })}
+            />
+          )}
         </StatItemGrid>
       </Card>
       <Card padding>

@@ -102,22 +102,36 @@ export const StatsChart: React.FC<{
         count: 1,
       };
 
-      let reportedHashrateSeries = hashrateChart.series.push(new LineSeries());
-      reportedHashrateSeries.dataFields.dateX = 'date';
-      reportedHashrateSeries.name =
-        activeCoin?.hashrateUnit === 'B'
-          ? t('stats.hashrate_chart.reported_space')
-          : t('stats.hashrate_chart.reported');
-      reportedHashrateSeries.yAxis = hashrateAxis;
-      reportedHashrateSeries.dataFields.valueY = 'reportedHashrate';
-      reportedHashrateSeries.tooltipText =
-        `{name}: {valueY.value.formatNumber("#.00 a'` +
-        activeCoin?.hashrateUnit +
-        `'")}`;
-      reportedHashrateSeries.strokeWidth = 3;
-      reportedHashrateSeries.smoothing = 'monotoneX';
-      // reportedHashrateSeries.monotoneX = 0.9;
-      // reportedHashrateSeries.monotoneY = 0.9;
+      var reportedHashrateExists = false;
+
+      hashrateData.forEach((item) => {
+        if (item.reportedHashrate > 0) reportedHashrateExists = true;
+      });
+
+      if (!reportedHashrateExists) {
+        hashrateChart.colors.list.splice(0, 1);
+      }
+
+      if (reportedHashrateExists) {
+        let reportedHashrateSeries = hashrateChart.series.push(
+          new LineSeries()
+        );
+        reportedHashrateSeries.dataFields.dateX = 'date';
+        reportedHashrateSeries.name =
+          activeCoin?.hashrateUnit === 'B'
+            ? t('stats.hashrate_chart.reported_space')
+            : t('stats.hashrate_chart.reported');
+        reportedHashrateSeries.yAxis = hashrateAxis;
+        reportedHashrateSeries.dataFields.valueY = 'reportedHashrate';
+        reportedHashrateSeries.tooltipText =
+          `{name}: {valueY.value.formatNumber("#.00 a'` +
+          activeCoin?.hashrateUnit +
+          `'")}`;
+        reportedHashrateSeries.strokeWidth = 3;
+        reportedHashrateSeries.smoothing = 'monotoneX';
+        // reportedHashrateSeries.monotoneX = 0.9;
+        // reportedHashrateSeries.monotoneY = 0.9;
+      }
 
       let effectiveHashrateSeries = hashrateChart.series.push(new LineSeries());
       effectiveHashrateSeries.dataFields.dateX = 'date';
