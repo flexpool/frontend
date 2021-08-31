@@ -30,7 +30,6 @@ export const faqStructure = [
       'questions-about-flexpool/xch-what-is-flexpool-s-chia-pool-fee.md',
       'questions-about-flexpool/xch-what-is-minimum-payout.md',
       'questions-about-flexpool/xch-when-do-payouts-happen.md',
-      'questions-about-flexpool/xch-does-flexpool-have-transaction-fees.md',
       'questions-about-flexpool/xch-how-many-chia-do-i-get-for-x-tb-of-plots.md',
       'questions-about-flexpool/xch-how-are-rewards-calculated-what-if-i-find-a-block.md',
       'questions-about-flexpool/xch-what-address-do-i-use-on-the-flexpool-website-to-see-my-dashboard.md',
