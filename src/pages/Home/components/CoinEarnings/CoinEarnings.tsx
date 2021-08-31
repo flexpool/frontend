@@ -15,25 +15,17 @@ import {
   ButtonGroup,
   Desc,
 } from './components';
-import { Form, Formik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'next-i18next';
-import { FaDiscord, FaReddit, FaTelegram } from 'react-icons/fa';
 import Link from 'next/link';
 import { Button } from 'src/components/Button';
-import { Submit } from 'src/components/Form/Submit';
-import { TextField } from 'src/components/Form/TextInput';
-import { Img } from 'src/components/Img';
 import { Content } from 'src/components/layout/Content';
 import { Skeleton } from 'src/components/layout/Skeleton';
 import { Spacer } from 'src/components/layout/Spacer';
-import { LinkOut } from 'src/components/LinkOut';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
-import { DISCORD_LINK, REDDIT_LINK, TELEGRAM_LINK } from 'src/constants';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoinFull } from 'src/types/PoolCoin.types';
-import * as yup from 'yup';
 import {
   useLocalizedCurrencyFormatter,
   useLocalizedNumberFormatter,
@@ -41,12 +33,6 @@ import {
 } from 'src/utils/si.utils';
 import { getCoinIconUrl } from 'src/utils/staticImage.utils';
 import styled from 'styled-components';
-
-import chiaImage from './assets/chia_logo.svg';
-import { fetchApi } from 'src/utils/fetchApi';
-import { useAsyncState } from 'src/hooks/useAsyncState';
-import ReCAPTCHA from 'react-google-recaptcha';
-export const recaptchaKey = process.env.REACT_APP_RECAPTCHA_KEY;
 
 const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
   const counterTicker = useCounterTicker();
@@ -208,128 +194,6 @@ const ChiaCoin = styled(UnknownCoin)`
   background: white;
 `;
 
-const CapchaContainer = styled.div<{ showCaptcha?: false | any }>`
-  position: fixed;
-  margin-top: -78px;
-  margin-left: 0px;
-  ${(p) => `${p.showCaptcha === false && `display: none;`}
-`};
-`;
-const ComingSoonChia: React.FC = () => {
-  const { t } = useTranslation(['home', 'common']);
-  const chiaSignupState = useAsyncState<string | null>('email', null);
-  const [captchaToken, setCaptchaToken] = React.useState(false);
-  const [showCaptcha, setShowCaptcha] = React.useState(false);
-  const [email, setEmail] = React.useState('');
-  const [submissionSuccessful, setSubmissionSuccessful] = React.useState(false);
-
-  const submitEmail = (capchaToken: any) => {
-    chiaSignupState
-      .start(
-        fetchApi(
-          '/subscribe',
-          {
-            method: 'POST',
-            body: { email: email, captcha: capchaToken },
-          },
-          'chia'
-        )
-      )
-      .then((response) => {
-        if (response) {
-          setSubmissionSuccessful(true);
-        } else {
-          alert(t('home:chia.email_submission_failure'));
-        }
-      })
-      .catch(() => {
-        alert(t('home:chia.email_submission_failure'));
-      });
-  };
-  return (
-    <ChiaBox>
-      <HeadSplit>
-        <ChiaCoin>
-          <Img alt="xch chia coin" src={chiaImage} />
-        </ChiaCoin>
-        <HeadContent>
-          <h2>{t('home:chia.chia_coming_soon')}</h2>
-          <p>{t('home:chia.chia_comming_soon_text')}</p>
-          <Formik
-            initialValues={{ email: '' }}
-            onSubmit={({ email }, { setSubmitting }) => {
-              if (!captchaToken) {
-                setShowCaptcha(true);
-                setSubmitting(false);
-              }
-              setEmail(email);
-              setSubmitting(false);
-            }}
-            validateOnChange={false}
-            validateOnBlur={false}
-            validationSchema={yup.object().shape({
-              email: yup
-                .string()
-                .email(t('common:errors.email_invalid'))
-                .required(t('common:errors.email_required')),
-            })}
-          >
-            <Form>
-              <FormContainer>
-                <CapchaContainer showCaptcha={showCaptcha}>
-                  <ReCAPTCHA
-                    theme="dark"
-                    sitekey={recaptchaKey || ''}
-                    onChange={(value: any) => {
-                      if (value !== false && value !== null) {
-                        setCaptchaToken(value);
-                        submitEmail(value);
-                        setTimeout(() => {
-                          setShowCaptcha(false);
-                        }, 1000);
-                      }
-                    }}
-                  />
-                </CapchaContainer>
-                <TextField
-                  name="email"
-                  placeholder="mail@example.com"
-                  disabled={submissionSuccessful}
-                />
-                <Submit
-                  variant="success"
-                  captchaDisableOverride={showCaptcha}
-                  disableWhenFormNotDirty={submissionSuccessful}
-                >
-                  {submissionSuccessful
-                    ? t('home:chia.subscribed')
-                    : t('home:chia.subscribe')}
-                </Submit>
-              </FormContainer>
-            </Form>
-          </Formik>
-        </HeadContent>
-      </HeadSplit>
-      <IntervalContainer>
-        <StartMiningContainer>
-          <ButtonGroup>
-            <Button variant="primary" as={LinkOut} href={TELEGRAM_LINK}>
-              <FaTelegram /> &nbsp; Telegram
-            </Button>{' '}
-            <Button variant="danger" as={LinkOut} href={REDDIT_LINK}>
-              <FaReddit /> &nbsp; Reddit
-            </Button>{' '}
-            <Button variant="warning" as={LinkOut} href={DISCORD_LINK}>
-              <FaDiscord />
-              &nbsp;Discord
-            </Button>
-          </ButtonGroup>
-        </StartMiningContainer>
-      </IntervalContainer>
-    </ChiaBox>
-  );
-};
-
 export const CoinEarnings = () => {
   const coinsFull = useReduxState('poolCoinsFull');
 
@@ -346,8 +210,6 @@ export const CoinEarnings = () => {
             <CoinEarningsItem />
           </>
         )}
-        {/* TODO: Get rid of ComingSoonChia completely after Chia is out */}
-        {data.length === 1 ? <ComingSoonChia /> : null}
       </Container>
     </Content>
   );
