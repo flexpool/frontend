@@ -33,19 +33,11 @@ const SelectButton = React.forwardRef(
   }
 );
 
-type DownshiftSelectProps = {
-  value?: SelectOption['value'];
-  items: SelectOption[];
-  initialSelectedItem?: SelectOption | null;
-  handleSelectedItemChange: UseSelectProps<SelectOption>['onSelectedItemChange'];
-} & BaseFormFieldProps;
+interface DownshiftSelectProps
+  extends BaseFormFieldProps,
+    UseSelectProps<SelectOption> {}
 
-const DownshiftSelect = ({
-  label,
-  items,
-  initialSelectedItem,
-  handleSelectedItemChange,
-}: DownshiftSelectProps) => {
+const DownshiftSelect = ({ label, ...rest }: DownshiftSelectProps) => {
   const {
     isOpen,
     getToggleButtonProps,
@@ -54,18 +46,10 @@ const DownshiftSelect = ({
     selectedItem,
     highlightedIndex,
     getItemProps,
-    selectItem,
   } = useSelect({
-    items,
-    onSelectedItemChange: handleSelectedItemChange,
     itemToString: (item) => item?.value || '',
+    ...rest,
   });
-
-  React.useEffect(() => {
-    if (initialSelectedItem) {
-      selectItem(initialSelectedItem);
-    }
-  }, [initialSelectedItem, selectItem]);
 
   return (
     <SelectContainer>
@@ -76,7 +60,7 @@ const DownshiftSelect = ({
 
       <DropdownList {...getMenuProps()} isOpen={isOpen}>
         {isOpen &&
-          items.map((item, index) => (
+          rest.items.map((item, index) => (
             <DropdownItem
               key={`${item.value}-${index}`}
               {...getItemProps({ index, item })}
