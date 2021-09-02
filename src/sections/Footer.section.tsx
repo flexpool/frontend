@@ -19,7 +19,7 @@ import {
   SelectCounterTicker,
   NewSelectCounterTicker,
 } from 'src/components/SelectCounterTicker';
-import { SelectTheme } from 'src/components/SelectTheme';
+import { NewSelectTheme, SelectTheme } from 'src/components/SelectTheme';
 import { Spacer } from 'src/components/layout/Spacer';
 
 import {
@@ -179,7 +179,8 @@ export const FooterSection = () => {
             {/* <SelectCounterTicker /> */}
             <NewSelectCounterTicker />
             <Spacer />
-            <SelectTheme />
+            {/* <SelectTheme /> */}
+            <NewSelectTheme />
             <Spacer />
             <SelectLanguage />
             <HelpText>

@@ -79,7 +79,7 @@ export const NewSelectCounterTicker = () => {
   const poolCoins = usePoolCoins();
   const counterTicker = useCounterTicker();
   const d = useDispatch();
-  const [init, setInit] = React.useState<SelectOption | null>(null);
+  const [selected, setSelected] = React.useState<SelectOption | null>(null);
 
   const items = React.useMemo(() => {
     const currencyOptions = poolCoins.data?.countervalues
@@ -104,30 +104,24 @@ export const NewSelectCounterTicker = () => {
 
   React.useEffect(() => {
     if (items.length && counterTicker) {
-      setInit(
+      setSelected(
         items.find((item) => item.value === counterTicker) || items[0] || null
       );
     }
-  }, [items, setInit, counterTicker]);
-
-  const handleTickerChange = React.useCallback(
-    (item: SelectOption) => {
-      d(
-        localSettingsSet({
-          counterTicker: item.value as Ticker,
-        })
-      );
-    },
-    [d]
-  );
+  }, [items, setSelected, counterTicker]);
 
   return (
     <DownshiftSelect
-      initialSelectedItem={init}
+      selectedItem={selected}
       items={items}
-      handleSelectedItemChange={({ selectedItem }) => {
-        if (selectedItem) {
-          handleTickerChange(selectedItem);
+      onSelectedItemChange={(changes) => {
+        if (changes.selectedItem) {
+          setSelected(changes.selectedItem);
+          d(
+            localSettingsSet({
+              counterTicker: changes.selectedItem.value as Ticker,
+            })
+          );
         }
       }}
     />
