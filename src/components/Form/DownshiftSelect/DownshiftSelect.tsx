@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelect, UseSelectProps } from 'downshift';
 import SVGArrow from '../Select/SVGArrow';
 import { SelectOption } from '../Select/Select';
@@ -33,11 +33,9 @@ const SelectButton = React.forwardRef(
   }
 );
 
-interface DownshiftSelectProps
-  extends BaseFormFieldProps,
-    UseSelectProps<SelectOption> {}
+type DownshiftSelectProps = UseSelectProps<SelectOption> & BaseFormFieldProps;
 
-const DownshiftSelect = ({ label, ...rest }: DownshiftSelectProps) => {
+const DownshiftSelect = ({ label, items, ...rest }: DownshiftSelectProps) => {
   const {
     isOpen,
     getToggleButtonProps,
@@ -48,6 +46,7 @@ const DownshiftSelect = ({ label, ...rest }: DownshiftSelectProps) => {
     getItemProps,
   } = useSelect({
     itemToString: (item) => item?.value || '',
+    items,
     ...rest,
   });
 
@@ -60,7 +59,7 @@ const DownshiftSelect = ({ label, ...rest }: DownshiftSelectProps) => {
 
       <DropdownList {...getMenuProps()} isOpen={isOpen}>
         {isOpen &&
-          rest.items.map((item, index) => (
+          items.map((item, index) => (
             <DropdownItem
               key={`${item.value}-${index}`}
               {...getItemProps({ index, item })}

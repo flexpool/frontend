@@ -34,7 +34,10 @@ import {
 import { partnersData } from 'src/pages/Partners/partnersData';
 import { LinkOut } from 'src/components/LinkOut';
 import { Img } from 'src/components/Img';
-import { SelectLanguage } from 'src/components/SelectLanguage';
+import {
+  SelectLanguage,
+  NewSelectLanguage,
+} from 'src/components/SelectLanguage';
 import { useTranslation } from 'next-i18next';
 
 const Footer = styled.footer`
@@ -182,7 +185,8 @@ export const FooterSection = () => {
             {/* <SelectTheme /> */}
             <NewSelectTheme />
             <Spacer />
-            <SelectLanguage />
+            {/* <SelectLanguage /> */}
+            <NewSelectLanguage />
             <HelpText>
               <LinkOut href="https://crowdin.com/project/flexpoolio-website">
                 {t('footer.translation_help')}
