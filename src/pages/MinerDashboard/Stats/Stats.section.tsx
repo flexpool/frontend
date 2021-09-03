@@ -42,6 +42,19 @@ const AverageTooltipItem = styled.div`
   }
 `;
 
+const ReportedHashrateWrapper = styled.div`
+  vertical-align: middle;
+
+  & span {
+    font-size: 1.125rem;
+    display: inline;
+  }
+`;
+
+const FlexFarmerLink = styled.a`
+  color: var(--success);
+`;
+
 export const MinerStats: React.FC<{
   averageEffectivePeriods: AverageEffectivePeriods;
 }> = ({ averageEffectivePeriods }) => {
@@ -100,9 +113,29 @@ export const MinerStats: React.FC<{
           </Tooltip>
           <StatItem
             title={t('stats.hashrate.reported')}
-            value={siFormatter(data?.reportedHashrate, {
-              unit: activeCoin?.hashrateUnit,
-            })}
+            value={
+              minerStatsState.isLoading || !data ? undefined : (
+                <ReportedHashrateWrapper>
+                  {siFormatter(data?.reportedHashrate, {
+                    unit: activeCoin?.hashrateUnit,
+                  })}{' '}
+                  {String(activeCoin?.ticker) === 'xch' &&
+                    data?.reportedHashrate === 0 && (
+                      <Tooltip>
+                        <TooltipContent>
+                          Only available with{' '}
+                          <FlexFarmerLink
+                            href="/get-started/xch/flexfarmer"
+                            target="_blank"
+                          >
+                            FlexFarmer
+                          </FlexFarmerLink>
+                        </TooltipContent>
+                      </Tooltip>
+                    )}
+                </ReportedHashrateWrapper>
+              )
+            }
           />
         </StatItemGrid>
       </Card>
