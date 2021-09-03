@@ -114,25 +114,27 @@ export const MinerStats: React.FC<{
           <StatItem
             title={t('stats.hashrate.reported')}
             value={
-              <ReportedHashrateWrapper>
-                {siFormatter(data?.reportedHashrate, {
-                  unit: activeCoin?.hashrateUnit,
-                })}{' '}
-                {String(activeCoin?.ticker) === 'xch' &&
-                  data?.reportedHashrate === 0 && (
-                    <Tooltip>
-                      <TooltipContent>
-                        Only available with{' '}
-                        <FlexFarmerLink
-                          href="/get-started/xch/flexfarmer"
-                          target="_blank"
-                        >
-                          FlexFarmer
-                        </FlexFarmerLink>
-                      </TooltipContent>
-                    </Tooltip>
-                  )}
-              </ReportedHashrateWrapper>
+              minerStatsState.isLoading || !data ? undefined : (
+                <ReportedHashrateWrapper>
+                  {siFormatter(data?.reportedHashrate, {
+                    unit: activeCoin?.hashrateUnit,
+                  })}{' '}
+                  {String(activeCoin?.ticker) === 'xch' &&
+                    data?.reportedHashrate === 0 && (
+                      <Tooltip>
+                        <TooltipContent>
+                          Only available with{' '}
+                          <FlexFarmerLink
+                            href="/get-started/xch/flexfarmer"
+                            target="_blank"
+                          >
+                            FlexFarmer
+                          </FlexFarmerLink>
+                        </TooltipContent>
+                      </Tooltip>
+                    )}
+                </ReportedHashrateWrapper>
+              )
             }
           />
         </StatItemGrid>
