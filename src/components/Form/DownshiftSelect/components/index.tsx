@@ -91,6 +91,10 @@ export const DropdownList = styled.ul`
   position: absolute;
   right: 0;
   z-index: 100;
+
+  &.top {
+    bottom: calc(100% + 5px);
+  }
 `;
 
 export const DropdownItem = styled.li`

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useRef } from 'react';
 import { useSelect, UseSelectProps } from 'downshift';
 import SVGArrow from '../Select/SVGArrow';
 import { SelectOption } from '../Select/Select';
@@ -56,14 +56,41 @@ const DownshiftSelect = ({
     ...rest,
   });
 
+  const selectContainerRef = useRef<HTMLElement>(null);
+  const dropdownListRef = useRef<HTMLElement>(null);
+
+  React.useEffect(() => {
+    const checkFlip = () => {
+      const dropdownHeight =
+        selectContainerRef.current && dropdownListRef.current
+          ? selectContainerRef.current?.getBoundingClientRect().bottom +
+            dropdownListRef.current?.getBoundingClientRect().height
+          : 0;
+
+      if (isOpen) {
+        dropdownHeight > window.innerHeight
+          ? dropdownListRef.current?.classList.add('top')
+          : dropdownListRef.current?.classList.remove('top');
+      }
+    };
+
+    checkFlip();
+
+    window.addEventListener('scroll', checkFlip);
+
+    return () => {
+      window.removeEventListener('scroll', checkFlip);
+    };
+  }, [isOpen]);
+
   return (
-    <SelectContainer>
+    <SelectContainer ref={selectContainerRef}>
       {label && <label {...getLabelProps()}>{label}</label>}
       <SelectButton {...getToggleButtonProps()}>
         {selectedItem?.label}
       </SelectButton>
 
-      <DropdownList {...getMenuProps()} isOpen={isOpen}>
+      <DropdownList {...getMenuProps({ ref: dropdownListRef })} isOpen={isOpen}>
         {isOpen &&
           items.map((item, index) => (
             <DropdownItem
