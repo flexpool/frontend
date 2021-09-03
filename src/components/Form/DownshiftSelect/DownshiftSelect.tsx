@@ -35,7 +35,12 @@ const SelectButton = React.forwardRef(
 
 type DownshiftSelectProps = UseSelectProps<SelectOption> & BaseFormFieldProps;
 
-const DownshiftSelect = ({ label, items, ...rest }: DownshiftSelectProps) => {
+const DownshiftSelect = ({
+  label,
+  items,
+  initialHighlightedIndex = -1,
+  ...rest
+}: DownshiftSelectProps) => {
   const {
     isOpen,
     getToggleButtonProps,
@@ -47,6 +52,7 @@ const DownshiftSelect = ({ label, items, ...rest }: DownshiftSelectProps) => {
   } = useSelect({
     itemToString: (item) => item?.value || '',
     items,
+    initialHighlightedIndex,
     ...rest,
   });
 

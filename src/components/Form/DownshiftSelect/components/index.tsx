@@ -46,10 +46,11 @@ export const SelectOptionButton = styled(Button)`
     ${(p) => `
       background-color: ${p.theme.color.primary};
     `};
-    color: white;
   }
 
   background-color: ${(p) => p.highlighted && p.theme.color.primary};
+
+  color: ${(p) => (p.highlighted ? 'white' : 'var(--text-primary)')};
 
   ${(p: { active?: boolean; theme: any }) =>
     p.active &&
@@ -66,7 +67,7 @@ export const SelectOptionButton = styled(Button)`
       border-radius: 3px;
       background: ${p.theme.color.primary}
     }
-  `}
+  `};
 `;
 
 export const DropdownList = styled.ul`
