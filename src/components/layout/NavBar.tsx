@@ -23,15 +23,18 @@ import { Ws } from '../Typo/Typo';
 import { Burger } from '../Burger/Burger';
 import { clx } from 'src/utils/clx';
 
-import { SelectTheme } from '../SelectTheme';
+import { SelectTheme, NewSelectTheme } from '../SelectTheme';
 import { Spacer } from './Spacer';
-import { SelectCounterTicker } from '../SelectCounterTicker';
+import {
+  SelectCounterTicker,
+  NewSelectCounterTicker,
+} from '../SelectCounterTicker';
 import { LinkOut } from '../LinkOut';
 import { DISCORD_LINK, REDDIT_LINK, TELEGRAM_LINK } from 'src/constants';
 import { useAppTheme } from 'src/rdx/localSettings/localSettings.hooks';
 import { Img } from '../Img';
 import { useTranslation } from 'next-i18next';
-import { SelectLanguage } from '../SelectLanguage';
+import { NewSelectLanguage, SelectLanguage } from '../SelectLanguage';
 
 const LogoSvg = require('../../../public/svg/logo.svg') as string;
 
@@ -390,11 +393,14 @@ export const NavBar: React.FC<NavBarType> = (props) => {
               </Button>
             </Link>
             <Spacer />
-            <SelectCounterTicker />
+            {/* <SelectCounterTicker /> */}
+            <NewSelectCounterTicker />
             <Spacer />
-            <SelectTheme />
+            {/* <SelectTheme /> */}
+            <NewSelectTheme />
             <Spacer />
-            <SelectLanguage />
+            {/* <SelectLanguage /> */}
+            <NewSelectLanguage />
           </div>
         </MobileSlide>
       </ContainerMobile>
