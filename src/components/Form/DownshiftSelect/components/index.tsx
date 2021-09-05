@@ -95,6 +95,10 @@ export const DropdownList = styled.ul`
   &.top {
     bottom: calc(100% + 5px);
   }
+
+  &:focus-visible {
+    outline: none;
+  }
 `;
 
 export const DropdownItem = styled.li`
