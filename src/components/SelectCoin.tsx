@@ -4,7 +4,9 @@ import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import styled from 'styled-components';
 import { CoinLogo } from './CoinLogo';
-import { Select } from './Form/Select/Select';
+import { Select, SelectOption } from './Form/Select/Select';
+import DownshiftSelect from './Form/DownshiftSelect';
+import { usePoolCoins } from '@/rdx/poolCoins/poolCoins.hooks';
 
 const LabelWrap = styled.div`
   display: flex;
@@ -26,6 +28,9 @@ const CoinName = styled.span`
   margin-left: 10px;
 `;
 
+/**
+ * @deprecated A new implementation with Downshift is available.
+ */
 export const SelectCoin = () => {
   const localSettingsState = useReduxState('localSettings');
   const poolCoinsState = useReduxState('poolCoins');
@@ -58,6 +63,48 @@ export const SelectCoin = () => {
       onChange={handleChange}
       value={localSettingsState.coin || 'eth'}
       options={options}
+    />
+  );
+};
+
+export const NewSelectCoin = () => {
+  const localSettingsState = useReduxState('localSettings');
+  const poolCoinsState = usePoolCoins();
+  const d = useDispatch();
+  const [selected, setSelected] = React.useState<SelectOption | null>(null);
+
+  const items = React.useMemo(() => {
+    return (poolCoinsState.data?.coins || []).map((item) => ({
+      label: (
+        <LabelWrap>
+          <CoinLogo ticker={item.ticker} />
+          <CoinName>{item.name}</CoinName>
+          <CoinNameShort>{item.ticker}</CoinNameShort>
+        </LabelWrap>
+      ),
+      value: item.ticker,
+    }));
+  }, [poolCoinsState.data]);
+
+  React.useEffect(() => {
+    const selectedCoin = localSettingsState.coin || 'eth';
+
+    if (localSettingsState.coin) {
+      setSelected(items.find((item) => item.value === selectedCoin) || null);
+    }
+  }, [localSettingsState.coin, items, setSelected]);
+
+  return (
+    <DownshiftSelect
+      items={items}
+      selectedItem={selected}
+      onSelectedItemChange={(changes) => {
+        d(
+          localSettingsSet({
+            coin: changes.selectedItem?.value,
+          })
+        );
+      }}
     />
   );
 };

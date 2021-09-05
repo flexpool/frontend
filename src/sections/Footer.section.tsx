@@ -15,8 +15,11 @@ import {
 
 import React from 'react';
 
-import { SelectCounterTicker } from 'src/components/SelectCounterTicker';
-import { SelectTheme } from 'src/components/SelectTheme';
+import {
+  SelectCounterTicker,
+  NewSelectCounterTicker,
+} from 'src/components/SelectCounterTicker';
+import { NewSelectTheme, SelectTheme } from 'src/components/SelectTheme';
 import { Spacer } from 'src/components/layout/Spacer';
 
 import {
@@ -31,7 +34,10 @@ import {
 import { partnersData } from 'src/pages/Partners/partnersData';
 import { LinkOut } from 'src/components/LinkOut';
 import { Img } from 'src/components/Img';
-import { SelectLanguage } from 'src/components/SelectLanguage';
+import {
+  SelectLanguage,
+  NewSelectLanguage,
+} from 'src/components/SelectLanguage';
 import { useTranslation } from 'next-i18next';
 
 const Footer = styled.footer`
@@ -173,11 +179,14 @@ export const FooterSection = () => {
           </Section>
           <Section>
             <FSectionTitle>{t('footer.preferences.title')}</FSectionTitle>
-            <SelectCounterTicker />
+            {/* <SelectCounterTicker /> */}
+            <NewSelectCounterTicker />
             <Spacer />
-            <SelectTheme />
+            {/* <SelectTheme /> */}
+            <NewSelectTheme />
             <Spacer />
-            <SelectLanguage />
+            {/* <SelectLanguage /> */}
+            <NewSelectLanguage />
             <HelpText>
               <LinkOut href="https://crowdin.com/project/flexpoolio-website">
                 {t('footer.translation_help')}
