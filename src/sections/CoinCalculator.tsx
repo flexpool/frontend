@@ -2,6 +2,7 @@ import { Formik } from 'formik';
 import React from 'react';
 import { Button } from 'src/components/Button';
 import { SelectField } from 'src/components/Form/Select/Select';
+import { DownshiftSelectField } from 'src/components/Form/DownshiftSelect';
 import { TextField } from 'src/components/Form/TextInput';
 import { Card, CardBody } from 'src/components/layout/Card';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
@@ -129,15 +130,27 @@ export const CoinCalculator: React.FC<{ coin: ApiPoolCoinFull }> = ({
                 </h2>
                 <FieldContainer>
                   <TextField name="val" inputMode="decimal" />
-                  <SelectField
+                  {/* <SelectField
                     name="si"
                     options={coin.applicableHashrateSiPrefixes.map((si) => {
                       return { value: si, label: `${si}` + coin.hashrateUnit };
                     })}
+                  /> */}
+                  <DownshiftSelectField
+                    name="si"
+                    items={coin.applicableHashrateSiPrefixes.map((si) => {
+                      return { value: si, label: `${si}` + coin.hashrateUnit };
+                    })}
                   />
-                  <SelectField
+                  {/* <SelectField
                     name="period"
                     options={periodsAvailable.map((period) => {
+                      return { value: period, label: periodNameMap[period] };
+                    })}
+                  /> */}
+                  <DownshiftSelectField
+                    name="period"
+                    items={periodsAvailable.map((period) => {
                       return { value: period, label: periodNameMap[period] };
                     })}
                   />

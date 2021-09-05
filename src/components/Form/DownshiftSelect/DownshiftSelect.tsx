@@ -3,6 +3,8 @@ import { useSelect, UseSelectProps } from 'downshift';
 import SVGArrow from '../Select/SVGArrow';
 import { SelectOption } from '../Select/Select';
 import { BaseFormFieldProps } from '../formikUtils';
+import { FieldWrap } from '../FormWrap';
+import { Field, FieldHookConfig, FieldProps } from 'formik';
 
 import {
   SCSelectButton,
@@ -33,14 +35,14 @@ const SelectButton = React.forwardRef(
   }
 );
 
-type DownshiftSelectProps = UseSelectProps<SelectOption> & BaseFormFieldProps;
+type DownshiftSelectProps = {
+  disabled?: boolean;
+} & UseSelectProps<SelectOption> &
+  BaseFormFieldProps;
 
-const DownshiftSelect = ({
-  label,
-  items,
-  initialHighlightedIndex = -1,
-  ...rest
-}: DownshiftSelectProps) => {
+const DownshiftSelect = (props: DownshiftSelectProps) => {
+  const { label, items, initialHighlightedIndex = -1, ...rest } = props;
+
   const {
     isOpen,
     getToggleButtonProps,
@@ -50,7 +52,6 @@ const DownshiftSelect = ({
     highlightedIndex,
     getItemProps,
   } = useSelect({
-    itemToString: (item) => item?.value || '',
     items,
     initialHighlightedIndex,
     ...rest,
@@ -85,30 +86,59 @@ const DownshiftSelect = ({
 
   return (
     <SelectContainer ref={selectContainerRef}>
-      {label && <label {...getLabelProps()}>{label}</label>}
-      <SelectButton {...getToggleButtonProps()}>
-        {selectedItem?.label}
-      </SelectButton>
+      <FieldWrap {...props} {...getLabelProps()}>
+        <SelectButton {...getToggleButtonProps()}>
+          {selectedItem?.label}
+        </SelectButton>
 
-      <DropdownList {...getMenuProps({ ref: dropdownListRef })} isOpen={isOpen}>
-        {isOpen &&
-          items.map((item, index) => (
-            <DropdownItem
-              key={`${item.value}-${index}`}
-              {...getItemProps({ index, item })}
-            >
-              <SelectOptionButton
-                size="sm"
-                active={selectedItem?.value === item.value}
-                highlighted={highlightedIndex === index}
-                value={item.value}
+        <DropdownList
+          {...getMenuProps({ ref: dropdownListRef })}
+          isOpen={isOpen}
+        >
+          {isOpen &&
+            items.map((item, index) => (
+              <DropdownItem
+                key={`${item.value}-${index}`}
+                {...getItemProps({ index, item })}
               >
-                {item.label}
-              </SelectOptionButton>
-            </DropdownItem>
-          ))}
-      </DropdownList>
+                <SelectOptionButton
+                  size="sm"
+                  active={selectedItem?.value === item.value}
+                  highlighted={highlightedIndex === index}
+                  value={item.value}
+                >
+                  {item.label}
+                </SelectOptionButton>
+              </DropdownItem>
+            ))}
+        </DropdownList>
+      </FieldWrap>
     </SelectContainer>
+  );
+};
+
+export const DownshiftSelectField = (
+  props: DownshiftSelectProps & (FieldHookConfig<string> | { name: string })
+) => {
+  return (
+    <Field {...props}>
+      {(formikProps: FieldProps<string>) => {
+        const { field, form, meta } = formikProps;
+        return (
+          <DownshiftSelect
+            {...props}
+            {...formikProps}
+            onSelectedItemChange={(changes) =>
+              form.setFieldValue(props.name, changes.selectedItem?.value)
+            }
+            selectedItem={props.items.find(
+              (item) => item.value === field.value
+            )}
+            errorMessage={meta.error}
+          />
+        );
+      }}
+    </Field>
   );
 };
 
