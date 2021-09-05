@@ -62,14 +62,19 @@ const DownshiftSelect = (props: DownshiftSelectProps) => {
 
   React.useEffect(() => {
     const checkFlip = () => {
-      const dropdownHeight =
+      const dropdownBottom =
+        dropdownListRef.current?.getBoundingClientRect().bottom || 0;
+
+      // The dropdown bottom position if display at bottom
+      const bottomPosition =
         selectContainerRef.current && dropdownListRef.current
           ? selectContainerRef.current?.getBoundingClientRect().bottom +
             dropdownListRef.current?.getBoundingClientRect().height
           : 0;
 
       if (isOpen) {
-        dropdownHeight > window.innerHeight
+        bottomPosition > window.innerHeight ||
+        dropdownBottom > window.innerHeight
           ? dropdownListRef.current?.classList.add('top')
           : dropdownListRef.current?.classList.remove('top');
       }
