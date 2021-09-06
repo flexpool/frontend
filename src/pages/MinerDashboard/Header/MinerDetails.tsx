@@ -27,11 +27,13 @@ const Item = styled.div`
   font-weight: 600;
   margin-right: 2rem;
   white-space: nowrap;
+  margin-top: 8px;
 `;
 
 const Content = styled.div`
   display: flex;
   flex-wrap: wrap;
+  margin-top: -8px; // To compensate Item's 8px margin-top
   @media screen and (max-width: 900px) {
     margin-top: -0.5rem;
     ${Item} {
