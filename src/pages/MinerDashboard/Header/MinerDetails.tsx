@@ -3,7 +3,10 @@ import { useTranslation } from 'next-i18next';
 import { Card } from 'src/components/layout/Card';
 import { Skeleton } from 'src/components/layout/Skeleton';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
-import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
+import {
+  useLocalizedActiveCoinValueFormatter,
+  useLocalizedActiveCoinValueConverter,
+} from 'src/hooks/useDisplayReward';
 import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
@@ -51,9 +54,11 @@ export const MinerDetails: React.FC<{
 }> = ({ coin }) => {
   const minerDetailsState = useReduxState('minerDetails');
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
+  const activeCoinConverter = useLocalizedActiveCoinValueConverter();
   const settings = minerDetailsState.data;
   const activeCoinTicker = useActiveCoinTicker();
   const payoutLimit = activeCoinFormatter(settings?.payoutLimit);
+  const networkFeeValue = activeCoinConverter(settings?.currentNetworkFeePrice);
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
   const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const maxFeePrice = settings?.maxFeePrice;
@@ -63,6 +68,26 @@ export const MinerDetails: React.FC<{
   const counterValuePrice = currencyFormatter(
     minerHeaderStatsState.data?.countervaluePrice || 0
   );
+
+  const networkFee = React.useMemo(() => {
+    if (
+      typeof feeDetails?.multiplier !== 'undefined' &&
+      networkFeeValue !== null
+    ) {
+      const fee = numberFormatter(networkFeeValue * feeDetails?.multiplier, {
+        maximumFractionDigits: 0,
+      });
+
+      return `${fee} ${feeDetails.unit}`;
+    }
+
+    return undefined;
+  }, [
+    networkFeeValue,
+    feeDetails?.multiplier,
+    feeDetails?.unit,
+    numberFormatter,
+  ]);
 
   const feeTicker = currencyFormatter(
     ((Number(maxFeePrice) *
@@ -171,6 +196,14 @@ export const MinerDetails: React.FC<{
           <div>{t('header.info_coin_price', { coin: coin?.name })}:&nbsp;</div>
           <div>{counterValuePrice || <Skeleton width={40} />}</div>
         </Item>
+        {activeCoinTicker === 'eth' && (
+          <Item>
+            <div>
+              {t('header.info_coin_network_fee', { coin: coin?.name })}:&nbsp;
+            </div>
+            <div>{networkFee || <Skeleton width={40} />}</div>
+          </Item>
+        )}
       </Content>
     </Card>
   );

@@ -2,6 +2,7 @@ export type ApiMinerSettings = {
   clientIPAddress: string;
   firstJoined: number;
   ipAddress: string;
+  currentNetworkFeePrice: number;
   maxFeePrice: number;
   notificationPreferences: null | {
     payoutNotifications: boolean;
