@@ -22,6 +22,10 @@ const NoFeeLimit = styled.div`
   color: var(--text-secondary);
 `;
 
+const NetworkFee = styled.div`
+  color: var(--text-secondary);
+`;
+
 const Item = styled.div`
   display: flex;
   font-weight: 600;
@@ -133,7 +137,7 @@ export const MinerDetails: React.FC<{
                     ) : (
                       <div>{maxFeePrice + ' ' + feeDetails?.unit}</div>
                     )}
-                    <div>&nbsp;{`(${networkFee} now)`}</div>
+                    <NetworkFee>&nbsp;{`(${networkFee} now)`}</NetworkFee>
                   </>
                 )}
               </Item>
