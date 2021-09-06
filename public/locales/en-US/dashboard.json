@@ -55,7 +55,6 @@
     "info_joined_tooltip": "Your first share has been recorded on",
     "info_joined_tooltip_empty": "No share has been recorded yet",
     "info_coin_price": "{{coin}} Price",
-    "info_coin_network_fee": "Current {{coin}} Network Fee",
     "stat_workers": "Workers Online/Offline",
     "stat_unpaid_balance": "Unpaid Balance",
     "stat_unpaid_balance_reach": "<v>{{value}}</v> of the payout limit reached.",

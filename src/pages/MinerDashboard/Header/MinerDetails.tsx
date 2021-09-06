@@ -27,13 +27,11 @@ const Item = styled.div`
   font-weight: 600;
   margin-right: 2rem;
   white-space: nowrap;
-  margin-top: 8px;
 `;
 
 const Content = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-top: -8px; // To compensate Item's 8px margin-top
   @media screen and (max-width: 900px) {
     margin-top: -0.5rem;
     ${Item} {
@@ -124,16 +122,19 @@ export const MinerDetails: React.FC<{
             icon={
               <Item>
                 <div>{t('header.info_gas_limit')}:&nbsp;</div>
-                {maxFeePrice && feeDetails ? (
-                  <div>{maxFeePrice + ' ' + feeDetails?.unit}</div>
+                {typeof maxFeePrice === 'undefined' ||
+                typeof networkFee === 'undefined' ||
+                feeDetails === null ? (
+                  <Skeleton width={40} />
                 ) : (
-                  <NoFeeLimit>
+                  <>
                     {maxFeePrice === 0 ? (
-                      t('header.info_gas_limit_none')
+                      <NoFeeLimit>{t('header.info_gas_limit_none')}</NoFeeLimit>
                     ) : (
-                      <Skeleton width={40} />
+                      <div>{maxFeePrice + ' ' + feeDetails?.unit}</div>
                     )}
-                  </NoFeeLimit>
+                    <div>&nbsp;{`(${networkFee} now)`}</div>
+                  </>
                 )}
               </Item>
             }
@@ -198,14 +199,6 @@ export const MinerDetails: React.FC<{
           <div>{t('header.info_coin_price', { coin: coin?.name })}:&nbsp;</div>
           <div>{counterValuePrice || <Skeleton width={40} />}</div>
         </Item>
-        {activeCoinTicker === 'eth' && (
-          <Item>
-            <div>
-              {t('header.info_coin_network_fee', { coin: coin?.name })}:&nbsp;
-            </div>
-            <div>{networkFee || <Skeleton width={40} />}</div>
-          </Item>
-        )}
       </Content>
     </Card>
   );
