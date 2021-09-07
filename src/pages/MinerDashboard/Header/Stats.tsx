@@ -6,6 +6,8 @@ import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import styled from 'styled-components';
 import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
+import { useNetworkFeeLimit } from '@/rdx/minerDetails/minerDetails.selectors';
+import useActiveCoinNetworkFee from '@/hooks/useActiveCoinNetworkFee';
 import { StatItem } from 'src/components/StatItem';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { FaCalendar, FaCalendarDay, FaCalendarWeek } from 'react-icons/fa';
@@ -17,7 +19,7 @@ import {
   useLocalizedCurrencyFormatter,
   useLocalizedNumberFormatter,
 } from 'src/utils/si.utils';
-//
+import { isNil } from 'lodash';
 
 const EstimatedIntervalSwitch = styled.span`
   cursor: pointer;
@@ -64,6 +66,10 @@ const PayoutNumber = styled.span`
   color: var(--success);
 `;
 
+const GasWarning = styled.span`
+  color: var(--warning);
+`;
+
 const BalanceProgressBar: React.FC<{
   value: number;
   payoutInSeconds: number;
@@ -78,6 +84,71 @@ const BalanceProgressBar: React.FC<{
   const numberFormatter = useLocalizedNumberFormatter();
   const dateFormatter = useLocalizedDateFormatter();
 
+  const currentNetworkFee = useActiveCoinNetworkFee();
+  const networkFeeLimit = useNetworkFeeLimit();
+
+  const backgroundColorStyle = React.useMemo(() => {
+    if (progress === 100) {
+      if (
+        !isNil(networkFeeLimit) &&
+        !isNil(currentNetworkFee) &&
+        currentNetworkFee > networkFeeLimit
+      ) {
+        return { backgroundColor: 'var(--warning)' };
+      } else {
+        return { backgroundColor: 'var(--success)' };
+      }
+    }
+    return {};
+  }, [progress, networkFeeLimit, currentNetworkFee]);
+
+  const renderPayoutToolTip = React.useCallback(() => {
+    const delayedByNetworkFee =
+      !isNil(currentNetworkFee) &&
+      !isNil(networkFeeLimit) &&
+      currentNetworkFee > networkFeeLimit;
+
+    if (payoutInSeconds && payoutInSeconds > 0) {
+      return (
+        <PayoutText>
+          <Trans
+            i18nKey="header.stat_unpaid_balance_reach_est"
+            ns="dashboard"
+            values={{
+              value: dateFormatter.distanceFromNow(
+                addSeconds(new Date(), payoutInSeconds)
+              ),
+            }}
+            components={{
+              v: <PayoutNumber />,
+            }}
+          />
+        </PayoutText>
+      );
+    } else {
+      if (delayedByNetworkFee) {
+        return (
+          <PayoutText>
+            <Trans
+              i18nKey="header.stat_unpaid_balance_reach_delayed_by_gas_limit"
+              ns="dashboard"
+              values={{
+                gasLimit: networkFeeLimit,
+                currentGas: currentNetworkFee,
+              }}
+              components={{
+                v: <GasWarning />,
+              }}
+            />
+          </PayoutText>
+        );
+      }
+      return (
+        <PayoutText>{t('header.stat_unpaid_balance_reach_ok')}</PayoutText>
+      );
+    }
+  }, [payoutInSeconds, currentNetworkFee, networkFeeLimit, dateFormatter, t]);
+
   return (
     <Tooltip
       wrapIcon={false}
@@ -87,9 +158,7 @@ const BalanceProgressBar: React.FC<{
           <ProgressBar
             style={{
               width: `${progress}%`,
-              ...(progress === 100
-                ? { backgroundColor: 'var(--success)' }
-                : {}),
+              ...backgroundColorStyle,
             }}
           />
         </ProgressBarWrapper>
@@ -111,24 +180,7 @@ const BalanceProgressBar: React.FC<{
             }}
           />
         </PayoutText>
-        {payoutInSeconds && payoutInSeconds > 0 ? (
-          <PayoutText>
-            <Trans
-              i18nKey="header.stat_unpaid_balance_reach_est"
-              ns="dashboard"
-              values={{
-                value: dateFormatter.distanceFromNow(
-                  addSeconds(new Date(), payoutInSeconds)
-                ),
-              }}
-              components={{
-                v: <PayoutNumber />,
-              }}
-            />
-          </PayoutText>
-        ) : (
-          <PayoutText>{t('header.stat_unpaid_balance_reach_ok')}</PayoutText>
-        )}
+        {renderPayoutToolTip()}
       </TooltipContent>
     </Tooltip>
   );
