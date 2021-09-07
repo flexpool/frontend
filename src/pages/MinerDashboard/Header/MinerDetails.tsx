@@ -3,10 +3,7 @@ import { useTranslation } from 'next-i18next';
 import { Card } from 'src/components/layout/Card';
 import { Skeleton } from 'src/components/layout/Skeleton';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
-import {
-  useLocalizedActiveCoinValueFormatter,
-  useLocalizedActiveCoinValueConverter,
-} from 'src/hooks/useDisplayReward';
+import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
@@ -17,6 +14,8 @@ import {
   useLocalizedNumberFormatter,
 } from 'src/utils/si.utils';
 import styled from 'styled-components';
+import useActiveCoinNetworkFee from '@/hooks/useActiveCoinNetworkFee';
+import { isNil } from 'lodash';
 
 const NoFeeLimit = styled.div`
   color: var(--text-secondary);
@@ -58,40 +57,18 @@ export const MinerDetails: React.FC<{
 }> = ({ coin }) => {
   const minerDetailsState = useReduxState('minerDetails');
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
-  const activeCoinConverter = useLocalizedActiveCoinValueConverter();
   const settings = minerDetailsState.data;
   const activeCoinTicker = useActiveCoinTicker();
   const payoutLimit = activeCoinFormatter(settings?.payoutLimit);
-  const networkFeeValue = activeCoinConverter(settings?.currentNetworkFeePrice);
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
   const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const maxFeePrice = settings?.maxFeePrice;
   const currencyFormatter = useLocalizedCurrencyFormatter();
   const numberFormatter = useLocalizedNumberFormatter();
-
+  const currentNetworkFee = useActiveCoinNetworkFee();
   const counterValuePrice = currencyFormatter(
     minerHeaderStatsState.data?.countervaluePrice || 0
   );
-
-  const networkFee = React.useMemo(() => {
-    if (
-      typeof feeDetails?.multiplier !== 'undefined' &&
-      networkFeeValue !== null
-    ) {
-      const fee = numberFormatter(networkFeeValue * feeDetails?.multiplier, {
-        maximumFractionDigits: 0,
-      });
-
-      return `${fee} ${feeDetails.unit}`;
-    }
-
-    return undefined;
-  }, [
-    networkFeeValue,
-    feeDetails?.multiplier,
-    feeDetails?.unit,
-    numberFormatter,
-  ]);
 
   const feeTicker = currencyFormatter(
     ((Number(maxFeePrice) *
@@ -127,7 +104,7 @@ export const MinerDetails: React.FC<{
               <Item>
                 <div>{t('header.info_gas_limit')}:&nbsp;</div>
                 {typeof maxFeePrice === 'undefined' ||
-                typeof networkFee === 'undefined' ||
+                isNil(currentNetworkFee) ||
                 feeDetails === null ? (
                   <Skeleton width={40} />
                 ) : (
@@ -137,7 +114,9 @@ export const MinerDetails: React.FC<{
                     ) : (
                       <div>{maxFeePrice + ' ' + feeDetails?.unit}</div>
                     )}
-                    <NetworkFee>&nbsp;{`(${networkFee} now)`}</NetworkFee>
+                    <NetworkFee>
+                      &nbsp;{`(${currentNetworkFee} ${feeDetails.unit} now)`}
+                    </NetworkFee>
                   </>
                 )}
               </Item>

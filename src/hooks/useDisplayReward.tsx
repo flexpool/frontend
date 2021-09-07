@@ -46,7 +46,7 @@ export const useLocalizedActiveCoinValueConverter = () => {
   const activeCoin = useActiveCoin();
 
   const formatter = React.useCallback(
-    (value?: number, options?: Intl.NumberFormatOptions | undefined) => {
+    (value?: number) => {
       if (!activeCoin || typeof value !== 'number') {
         return null;
       }
