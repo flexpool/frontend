@@ -6,6 +6,8 @@ import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import styled from 'styled-components';
 import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
+import { useNetworkFeeLimit } from '@/rdx/minerDetails/minerDetails.selectors';
+import useActiveCoinNetworkFee from '@/hooks/useActiveCoinNetworkFee';
 import { StatItem } from 'src/components/StatItem';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { FaCalendar, FaCalendarDay, FaCalendarWeek } from 'react-icons/fa';
@@ -17,7 +19,7 @@ import {
   useLocalizedCurrencyFormatter,
   useLocalizedNumberFormatter,
 } from 'src/utils/si.utils';
-//
+import { isNil } from 'lodash';
 
 const EstimatedIntervalSwitch = styled.span`
   cursor: pointer;
@@ -38,13 +40,48 @@ const ProgressBarWrapper = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
+  overflow: hidden;
 `;
 
 const ProgressBar = styled.div`
   transition: 0.6s width cubic-bezier(0.35, 0.79, 0.37, 0.98);
-  border-radius: 0px 0px 5px 5px;
 
-  background-color: var(--primary);
+  width: ${(p) => `${p.width}%`};
+  background-color: ${(p) => `var(--${p.status})`};
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: ${(p) => `var(--${p.status})`};
+    width: ${(p) => `${p.width}%`};
+    background-image: linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.2) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.2) 75%,
+      transparent 75%,
+      transparent
+    );
+    z-index: 1;
+    background-size: 50px 50px;
+    animation: move 4s linear infinite;
+    overflow: hidden;
+
+    @keyframes move {
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: 50px 50px;
+      }
+    }
+  }
 `;
 
 const ErrorText = styled.span`
@@ -64,6 +101,10 @@ const PayoutNumber = styled.span`
   color: var(--success);
 `;
 
+const GasWarning = styled.span`
+  color: var(--warning);
+`;
+
 const BalanceProgressBar: React.FC<{
   value: number;
   payoutInSeconds: number;
@@ -74,9 +115,75 @@ const BalanceProgressBar: React.FC<{
       setProgress(value);
     }, 100);
   }, [value]);
+
   const { t } = useTranslation('dashboard');
   const numberFormatter = useLocalizedNumberFormatter();
   const dateFormatter = useLocalizedDateFormatter();
+
+  const currentNetworkFee = useActiveCoinNetworkFee();
+  const networkFeeLimit = useNetworkFeeLimit();
+
+  const status = React.useMemo(() => {
+    if (progress === 100) {
+      if (
+        !isNil(networkFeeLimit) &&
+        !isNil(currentNetworkFee) &&
+        currentNetworkFee > networkFeeLimit
+      ) {
+        return 'warning';
+      } else {
+        return 'success';
+      }
+    }
+    return 'primary';
+  }, [progress, networkFeeLimit, currentNetworkFee]);
+
+  const renderPayoutToolTip = React.useCallback(() => {
+    const delayedByNetworkFee =
+      !isNil(currentNetworkFee) &&
+      !isNil(networkFeeLimit) &&
+      currentNetworkFee > networkFeeLimit;
+
+    if (payoutInSeconds && payoutInSeconds > 0) {
+      return (
+        <PayoutText>
+          <Trans
+            i18nKey="header.stat_unpaid_balance_reach_est"
+            ns="dashboard"
+            values={{
+              value: dateFormatter.distanceFromNow(
+                addSeconds(new Date(), payoutInSeconds)
+              ),
+            }}
+            components={{
+              v: <PayoutNumber />,
+            }}
+          />
+        </PayoutText>
+      );
+    } else {
+      if (delayedByNetworkFee) {
+        return (
+          <PayoutText>
+            <Trans
+              i18nKey="header.stat_unpaid_balance_reach_delayed_by_gas_limit"
+              ns="dashboard"
+              values={{
+                gasLimit: networkFeeLimit,
+                currentGas: currentNetworkFee,
+              }}
+              components={{
+                v: <GasWarning />,
+              }}
+            />
+          </PayoutText>
+        );
+      }
+      return (
+        <PayoutText>{t('header.stat_unpaid_balance_reach_ok')}</PayoutText>
+      );
+    }
+  }, [payoutInSeconds, currentNetworkFee, networkFeeLimit, dateFormatter, t]);
 
   return (
     <Tooltip
@@ -84,14 +191,7 @@ const BalanceProgressBar: React.FC<{
       placement="bottom"
       icon={
         <ProgressBarWrapper>
-          <ProgressBar
-            style={{
-              width: `${progress}%`,
-              ...(progress === 100
-                ? { backgroundColor: 'var(--success)' }
-                : {}),
-            }}
-          />
+          <ProgressBar width={progress || 0} status={status} />
         </ProgressBarWrapper>
       }
     >
@@ -111,24 +211,7 @@ const BalanceProgressBar: React.FC<{
             }}
           />
         </PayoutText>
-        {payoutInSeconds && payoutInSeconds > 0 ? (
-          <PayoutText>
-            <Trans
-              i18nKey="header.stat_unpaid_balance_reach_est"
-              ns="dashboard"
-              values={{
-                value: dateFormatter.distanceFromNow(
-                  addSeconds(new Date(), payoutInSeconds)
-                ),
-              }}
-              components={{
-                v: <PayoutNumber />,
-              }}
-            />
-          </PayoutText>
-        ) : (
-          <PayoutText>{t('header.stat_unpaid_balance_reach_ok')}</PayoutText>
-        )}
+        {renderPayoutToolTip()}
       </TooltipContent>
     </Tooltip>
   );
