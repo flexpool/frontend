@@ -51,18 +51,21 @@ const App = ({ Component, pageProps, router }: AppProps) => {
     <>
       <DefaultSeo {...SEO} />
       <ReduxProvider store={store}>
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-PWS9985F4X" />
         <Script
-          onLoad={() => {
-            window.dataLayer = window.dataLayer || [];
-            function gtag(a: any, b: any) {
-              window.dataLayer.push(a, b);
-            }
-            gtag('js', new Date());
-            gtag('config', 'G-PWS9985F4X');
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-8XV7C3E2CB"
+        />
+        <Script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+            
+              gtag('config', 'G-8XV7C3E2CB');
+          `,
           }}
         />
-
         <Script src="https://xtwj9bs7n2j9.statuspage.io/embed/script.js" />
 
         <Script
