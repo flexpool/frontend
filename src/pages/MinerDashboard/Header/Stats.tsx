@@ -40,13 +40,48 @@ const ProgressBarWrapper = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
+  overflow: hidden;
 `;
 
 const ProgressBar = styled.div`
   transition: 0.6s width cubic-bezier(0.35, 0.79, 0.37, 0.98);
-  border-radius: 0px 0px 5px 5px;
 
-  background-color: var(--primary);
+  width: ${(p) => `${p.width}%`};
+  background-color: ${(p) => `var(--${p.status})`};
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: ${(p) => `var(--${p.status})`};
+    width: ${(p) => `${p.width}%`};
+    background-image: linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.2) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.2) 75%,
+      transparent 75%,
+      transparent
+    );
+    z-index: 1;
+    background-size: 50px 50px;
+    animation: move 4s linear infinite;
+    overflow: hidden;
+
+    @keyframes move {
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: 50px 50px;
+      }
+    }
+  }
 `;
 
 const ErrorText = styled.span`
@@ -80,6 +115,7 @@ const BalanceProgressBar: React.FC<{
       setProgress(value);
     }, 100);
   }, [value]);
+
   const { t } = useTranslation('dashboard');
   const numberFormatter = useLocalizedNumberFormatter();
   const dateFormatter = useLocalizedDateFormatter();
@@ -87,19 +123,19 @@ const BalanceProgressBar: React.FC<{
   const currentNetworkFee = useActiveCoinNetworkFee();
   const networkFeeLimit = useNetworkFeeLimit();
 
-  const backgroundColorStyle = React.useMemo(() => {
+  const status = React.useMemo(() => {
     if (progress === 100) {
       if (
         !isNil(networkFeeLimit) &&
         !isNil(currentNetworkFee) &&
         currentNetworkFee > networkFeeLimit
       ) {
-        return { backgroundColor: 'var(--warning)' };
+        return 'warning';
       } else {
-        return { backgroundColor: 'var(--success)' };
+        return 'success';
       }
     }
-    return {};
+    return 'primary';
   }, [progress, networkFeeLimit, currentNetworkFee]);
 
   const renderPayoutToolTip = React.useCallback(() => {
@@ -155,12 +191,7 @@ const BalanceProgressBar: React.FC<{
       placement="bottom"
       icon={
         <ProgressBarWrapper>
-          <ProgressBar
-            style={{
-              width: `${progress}%`,
-              ...backgroundColorStyle,
-            }}
-          />
+          <ProgressBar width={progress || 0} status={status} />
         </ProgressBarWrapper>
       }
     >
