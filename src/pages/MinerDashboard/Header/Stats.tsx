@@ -60,17 +60,17 @@ const ProgressBar = styled.div`
     width: ${(p) => `${p.width}%`};
     background-image: linear-gradient(
       -45deg,
-      rgba(255, 255, 255, 0.2) 25%,
+      rgba(255, 255, 255, 0.075) 25%,
       transparent 25%,
       transparent 50%,
-      rgba(255, 255, 255, 0.2) 50%,
-      rgba(255, 255, 255, 0.2) 75%,
+      rgba(255, 255, 255, 0.075) 50%,
+      rgba(255, 255, 255, 0.075) 75%,
       transparent 75%,
       transparent
     );
     z-index: 1;
     background-size: 50px 50px;
-    animation: move 4s linear infinite;
+    animation: move 5s linear infinite;
     overflow: hidden;
 
     @keyframes move {
