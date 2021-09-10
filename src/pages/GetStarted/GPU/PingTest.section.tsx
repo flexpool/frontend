@@ -34,11 +34,13 @@ const WarningIcon = styled(FaExclamationCircle)`
   margin-left: 0.5rem;
 `;
 
-const testConnection = (domain: string) => {
+const testConnection = (region: string) => {
   const latencyPromise = new Promise<number>((resolve, reject) => {
     const latencyData: number[] = [];
     let startTime = new Date();
-    const wsPingTestClient = new w3cwebsocket(`wss://${domain}:28246`);
+    const wsPingTestClient = new w3cwebsocket(
+      `wss://ws-ping-${region}.flexpool.io:28246`
+    );
 
     const TEST_COUNT = 6;
 
@@ -69,7 +71,7 @@ const testConnection = (domain: string) => {
 
     wsPingTestClient.onerror = () => {
       wsPingTestClient.close();
-      reject({ message: `Connection error ${domain}` });
+      reject({ message: `Connection error ${region}` });
     };
   });
 
@@ -210,7 +212,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
           const connectionState = useAsyncState<number>();
           const [isSet, setIsSet] = React.useState(false);
           React.useEffect(() => {
-            connectionState.start(testConnection(data.domain));
+            connectionState.start(testConnection(data.code));
             // eslint-disable-next-line
           }, [data.domain]);
 
