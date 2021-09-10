@@ -27,6 +27,10 @@ export const useActiveCoin = (ticker?: string | string[]) => {
   return coin;
 };
 
+/**
+ * useCounterTicker gets the current currency setting
+ * @returns {string} - currency ticker, e.g. usd
+ */
 export const useCounterTicker = () => {
   const localSettingsState = useReduxState('localSettings');
   return localSettingsState.counterTicker;

@@ -41,3 +41,19 @@ export const useLocalizedActiveCoinValueFormatter = (
 
   return formatter;
 };
+
+export const useLocalizedActiveCoinValueConverter = () => {
+  const activeCoin = useActiveCoin();
+
+  const formatter = React.useCallback(
+    (value?: number) => {
+      if (!activeCoin || typeof value !== 'number') {
+        return null;
+      }
+      return value / Math.pow(10, activeCoin?.decimalPlaces || 100);
+    },
+    [activeCoin]
+  );
+
+  return formatter;
+};
