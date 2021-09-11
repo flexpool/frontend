@@ -1,5 +1,3 @@
-// TODO: Remove this TS nocheck
-// @ts-nocheck
 import {
   UnknownCoin,
   CoinIcon,
@@ -297,7 +295,6 @@ const ComingSoonChia: React.FC = () => {
                   disabled={submissionSuccessful}
                 />
                 <Submit
-                  variant="success"
                   captchaDisableOverride={showCaptcha}
                   disableWhenFormNotDirty={submissionSuccessful}
                 >
