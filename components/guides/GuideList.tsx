@@ -10,7 +10,7 @@ function GuideList({ listItems }) {
         <li key={item.text}>
           <Trans
             components={{
-              a: <a />,
+              a: <a target="__blank" />,
             }}
           >
             {item.text}
