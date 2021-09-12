@@ -1,6 +1,5 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-// import { useHistory, useLocation, useRouteMatch } from 'react-router';
 import { Card } from 'src/components/layout/Card';
 import { Spacer } from 'src/components/layout/Spacer';
 import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
@@ -9,7 +8,6 @@ import { MinerStats } from './Stats.section';
 import { MinerWorkers } from './Workers.section';
 import styled from 'styled-components';
 import { Button } from 'src/components/Button';
-import qs from 'query-string';
 import { AverageEffectivePeriods } from './minerStats.types';
 import { useTranslation } from 'next-i18next';
 
@@ -59,9 +57,13 @@ export const MinerStatsPage: React.FC<{
   const handleResetActiveWorker = React.useCallback(() => {
     // just remove the worker
     // const { worker, ...restQuery } = qs.parse(window.location.search);
-    router.push(`/miner/${router.query.coin}/${router.query.address[0]}/`, undefined, {
-      shallow: true,
-    });
+    router.push(
+      `/miner/${router.query.coin}/${router.query.address[0]}/`,
+      undefined,
+      {
+        shallow: true,
+      }
+    );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

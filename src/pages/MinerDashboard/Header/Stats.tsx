@@ -312,7 +312,7 @@ export const HeaderStats: React.FC<{
       ? data.balance / settings.payoutLimit > 1
         ? 100
         : (data.balance / settings.payoutLimit) * 100
-      : 0;
+      : null;
 
   const estimatedEarningsPerSecond = estimatedDailyEarnings / 24 / 60 / 60;
   const amountToPayout =
@@ -347,10 +347,14 @@ export const HeaderStats: React.FC<{
           subValue={tickerBalance ? `≈ ${tickerBalance}` : null}
         />
         {/* TODO: Test 100% balances */}
-        <BalanceProgressBar
-          value={balanceProgress}
-          payoutInSeconds={amountToPayoutTimeInSeconds}
-        />
+        {balanceProgress !== null ? (
+          <BalanceProgressBar
+            value={balanceProgress}
+            payoutInSeconds={amountToPayoutTimeInSeconds}
+          />
+        ) : (
+          <ProgressBarWrapper />
+        )}
       </Card>
       <Card padding>
         <CardTitle>

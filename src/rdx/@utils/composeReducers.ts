@@ -28,6 +28,7 @@ export function composeReducers<
       if (!action || !action.type || !action.type.startsWith(`${startName}/`)) {
         return state;
       }
+      if (action.type.endsWith('RESET')) return initialState;
       return getState<S, A>(reducers, 0, state, action);
     };
   };

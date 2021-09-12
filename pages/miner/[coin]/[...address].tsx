@@ -13,10 +13,16 @@ import { Page, PageLoading } from 'src/components/layout/Page';
 import { useDispatch } from 'react-redux';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { minerRewardsGet } from 'src/rdx/minerRewards/minerRewards.actions';
-import { minerDetailsGet } from 'src/rdx/minerDetails/minerDetails.actions';
+import {
+  minerDetailsGet,
+  minerDetailsReset,
+} from 'src/rdx/minerDetails/minerDetails.actions';
 import { minerHeaderStatsGet } from 'src/rdx/minerHeaderStats/minerHeaderStats.actions';
 import { minerStatsGet } from 'src/rdx/minerStats/minerStats.actions';
-import { minerStatsChartGet } from 'src/rdx/minerStatsChart/minerStatsCharts.actions';
+import {
+  minerStatsChartGet,
+  minerStatsChartReset,
+} from 'src/rdx/minerStatsChart/minerStatsCharts.actions';
 import { minerWorkersGet } from 'src/rdx/minerWorkers/minerWorkers.actions';
 import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
 import { poolStatsGet } from 'src/rdx/poolStats/poolStats.actions';
@@ -166,7 +172,7 @@ export const MinerDashboardPageContent: React.FC<{
   }, [coinTicker, poolCoins?.data, worker, address]);
 
   useEffect(() => {
-    if (window !== typeof undefined) {
+    if (typeof window !== undefined) {
       if (window.location.hash) {
         loadSelectedTabFromHash(window.location.hash.replace(/#/g, ''));
       }
@@ -174,6 +180,11 @@ export const MinerDashboardPageContent: React.FC<{
     // useEffect only needs to fire on page load
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    d(minerDetailsReset());
+    d(minerStatsChartReset());
+  }, [address, d]);
 
   return (
     <>

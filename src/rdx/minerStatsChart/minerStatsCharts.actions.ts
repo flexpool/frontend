@@ -16,3 +16,9 @@ export const minerStatsChartGet = (
     }),
   };
 };
+
+export const minerStatsChartReset = () => {
+  return {
+    type: '@ApiMinerStatsChart/RESET',
+  };
+};
