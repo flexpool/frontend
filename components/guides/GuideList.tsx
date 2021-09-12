@@ -6,7 +6,7 @@ function GuideList({ listItems }) {
   return (
     <ul>
       {listItems.map((item) => (
-        <li key={item.text}>{item.text}</li>
+        <li key={item.text} dangerouslySetInnerHTML={{ __html: item.text }} />
       ))}
     </ul>
   );

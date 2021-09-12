@@ -11,7 +11,9 @@
       { "text": "At least 128MB available RAM." },
       { "text": "Initialized Plot NFT (Made via GUI or CLI)." },
       { "text": "Plots bound to that Plot NFT." },
-      { "text": "PlotNFT joined to Flexpool (see getting started for instructions)." }
+      {
+        "text": "PlotNFT joined to Flexpool (To manage your PlotNFT with the Chia client, see our <a href='https://www.flexpool.io/get-started/xch/XCH-CLI/' target='__blank'>CLI</a> and <a href='https://www.flexpool.io/get-started/xch/XCH-GUI/' target='__blank'>GUI</a> instructions)."
+      }
     ]
   },
   "download": "Download",
