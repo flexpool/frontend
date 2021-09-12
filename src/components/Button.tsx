@@ -17,7 +17,6 @@ export type ButtonProps = {
   shape?: 'square' | 'circle' | 'block';
   fill?: 'outline';
   shadowless?: boolean;
-  value?: string;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button = styled.button<ButtonProps>`

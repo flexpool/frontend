@@ -36,7 +36,7 @@ import { Img } from '../Img';
 import { useTranslation } from 'next-i18next';
 import { NewSelectLanguage, SelectLanguage } from '../SelectLanguage';
 
-const LogoSvg = require('../../../public/svg/logo.svg') as string;
+import LogoSvg from '../../../public/svg/logo.svg';
 
 const Logo = styled(LogoSvg)`
   height: 29px;

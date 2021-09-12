@@ -53,7 +53,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "tsc && next lint ",
     "prepare": "husky install"
   },
   "browserslist": {
