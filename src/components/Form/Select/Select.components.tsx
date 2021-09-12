@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
 import { AnchoredPop } from 'src/components/AnchoredPop';
-import { Button } from 'src/components/Button';
-import { PropsOf } from 'src/types/ReactHelp.types';
+import { Button, ButtonProps } from 'src/components/Button';
 import SVGArrow from './SVGArrow';
 
 const SelectArrowSvg = styled.div`
@@ -30,7 +29,7 @@ const Placeholder = styled.span`
   color: ${(p) => p.theme.text.secondary};
 `;
 
-export type SelectButtonProps = PropsOf<typeof Button> & {
+export type SelectButtonProps = ButtonProps & {
   placeholder: React.ReactNode;
 };
 
