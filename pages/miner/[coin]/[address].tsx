@@ -172,7 +172,7 @@ export const MinerDashboardPageContent: React.FC<{
   }, [coinTicker, poolCoins?.data, worker, address]);
 
   useEffect(() => {
-    if (typeof window !== undefined) {
+    if (typeof window !== 'undefined') {
       if (window.location.hash) {
         loadSelectedTabFromHash(window.location.hash.replace(/#/g, ''));
       }
