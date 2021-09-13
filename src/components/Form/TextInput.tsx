@@ -31,7 +31,11 @@ const Embelishment = styled.div`
   font-weight: 500;
 `;
 
-const Wrapper = styled.div`
+type WrapperProps = {
+  disabled?: boolean;
+};
+
+const Wrapper = styled.div<WrapperProps>`
   border-radius: 5px;
   overflow: hidden;
   border: 1px solid var(--bg-secondary);

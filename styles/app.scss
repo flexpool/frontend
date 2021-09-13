@@ -1,11 +1,25 @@
-@import 'src/pages/Docs/ApiDocs.scss';
-@import 'src/components/Tooltip.scss';
 @import 'styles/util.scss';
+@import '../src//components/Tooltip/Tooltip.scss';
+@import '../pages/docs/api.scss';
 
 html,
 body {
   width: 100%;
   overscroll-behavior-y: contain;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
 body {

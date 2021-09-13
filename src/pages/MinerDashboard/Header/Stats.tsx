@@ -43,7 +43,12 @@ const ProgressBarWrapper = styled.div`
   overflow: hidden;
 `;
 
-const ProgressBar = styled.div`
+type ProgressBarProps = {
+  width: number;
+  status: string;
+};
+
+const ProgressBar = styled.div<ProgressBarProps>`
   transition: 0.6s width cubic-bezier(0.35, 0.79, 0.37, 0.98);
 
   width: ${(p) => `${p.width}%`};

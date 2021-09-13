@@ -1,5 +1,3 @@
-// TODO: Remove this TS nocheck
-// @ts-nocheck
 import React from 'react';
 import { useTranslation } from 'next-i18next';
 import { BsArrowRight, BsArrowLeft } from 'react-icons/bs';
@@ -70,7 +68,7 @@ export const ListPagination: React.FC<{
     pagesShown = totalPages - 1;
   }
 
-  let selectionsAvailable = [];
+  let selectionsAvailable: JSX.Element[] = [];
   let firstSelectionShown: null | number = null;
   let lastSelectionShown: null | number = null;
 

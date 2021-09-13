@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button } from '@/components/Button';
+import { Button, ButtonProps } from '@/components/Button';
 
 export const SelectContainer = styled.div`
   position: relative;
@@ -30,7 +30,9 @@ export const SCSelectButton = styled(Button)`
   }
 `;
 
-export const SelectOptionButton = styled(Button)`
+export const SelectOptionButton = styled(Button)<
+  ButtonProps & { highlighted?: boolean; active?: boolean }
+>`
   background-color: var(--bg-secondary);
   border: none;
   font-weight: 600;
@@ -52,7 +54,7 @@ export const SelectOptionButton = styled(Button)`
 
   color: ${(p) => (p.highlighted ? 'white' : 'var(--text-primary)')};
 
-  ${(p: { active?: boolean; theme: any }) =>
+  ${(p) =>
     p.active &&
     `
     &:before {
@@ -70,7 +72,11 @@ export const SelectOptionButton = styled(Button)`
   `};
 `;
 
-export const DropdownList = styled.ul`
+type DropdownListProps = {
+  isOpen?: boolean;
+};
+
+export const DropdownList = styled.ul<DropdownListProps>`
   ${(p) =>
     !p.isOpen &&
     `

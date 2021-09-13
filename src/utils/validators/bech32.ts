@@ -1,5 +1,3 @@
-// TODO: Remove this TS nocheck
-// @ts-nocheck
 // https://github.com/bitcoinjs/bech32/blob/master/src/index.ts
 
 const ALPHABET = 'qpzry9x8gf2tvdw0s3jn54khce6mua7l';
@@ -167,7 +165,7 @@ function getLibraryFromEncoding(encoding: 'bech32' | 'bech32m'): BechLib {
     let chk = prefixChk(prefix);
     if (typeof chk === 'string') return chk;
 
-    const words = [];
+    const words: number[] = [];
     for (let i = 0; i < wordChars.length; ++i) {
       const c = wordChars.charAt(i);
       const v = ALPHABET_MAP[c];
