@@ -6,13 +6,13 @@
     "heading": "Requirements",
     "list": [
       {
-        "text": "Hardware compatible with FlexFarmer: A modern computer running 64-bit Linux or Windows. Raspberry Pi is also supported."
+        "text": "Hardware compatible with FlexFarmer: A modern computer running 64-bit Linux or Windows. Raspberry Pi is also supported with a 64-bit OS (Raspberry Pi 3b+ or newer) or 64-bit emulation with QEMU (some older Raspberry Pi models, not recommended)"
       },
       { "text": "At least 128MB available RAM." },
       { "text": "Initialized Plot NFT (Made via GUI or CLI)." },
       { "text": "Plots bound to that Plot NFT." },
       {
-        "text": "PlotNFT joined to Flexpool (To manage your PlotNFT with the Chia client, see our <a href='https://www.flexpool.io/get-started/xch/XCH-CLI/'>CLI</a> and <a href='https://www.flexpool.io/get-started/xch/XCH-GUI/'>GUI</a> instructions)."
+        "text": "PlotNFT joined to Flexpool (To manage your PlotNFT with the Chia client, see our <guilink>GUI</guilink> and <clilink>CLI</clilink> instructions)."
       }
     ]
   },
