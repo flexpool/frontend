@@ -28,7 +28,7 @@ export type AnchoredPopProps = PropsOf<typeof PopEl> & {
   visible?: boolean;
   position?: ['top' | 'bottom' | 'center', 'left' | 'right' | 'center'];
   style?: Object;
-  onOuterEvent?: Event;
+  onOuterEvent?: (e: Event) => void;
   /**
    * vertical, horizontal
    */
@@ -70,10 +70,8 @@ export const AnchoredPop: React.FC<AnchoredPopProps> = ({
       return {};
     }
 
-    const {
-      height: popHeight,
-      width: popWidth,
-    } = popElRef.current.getBoundingClientRect();
+    const { height: popHeight, width: popWidth } =
+      popElRef.current.getBoundingClientRect();
 
     let top = anchorRect.y;
     let left = anchorRect.x;

@@ -1,5 +1,3 @@
-// TODO: Remove this TS nocheck
-// @ts-nocheck
 import React from 'react';
 // import { useRouteMatch } from 'react-router';
 import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';
@@ -36,6 +34,7 @@ import {
 } from 'src/components/Chart/ChartContainer';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { useTranslation } from 'next-i18next';
+import { PPLNSChartDataItem } from './MinerRewards.types';
 
 const mapPplnsDataToChartData = (
   data: number[],
@@ -55,7 +54,7 @@ const mapPplnsDataToChartData = (
     }
   }
 
-  const mapped = [];
+  const mapped: PPLNSChartDataItem[] = [];
   for (let x = 0; x < totalShares / SIZE; x += 1) {
     mapped.push({
       number: siFormatter(x * SIZE),

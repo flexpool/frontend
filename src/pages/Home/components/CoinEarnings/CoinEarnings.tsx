@@ -1,5 +1,3 @@
-// TODO: Remove this TS nocheck
-// @ts-nocheck
 import {
   UnknownCoin,
   CoinIcon,

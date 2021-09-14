@@ -34,7 +34,12 @@ const Spinner = styled.svg`
   }
 `;
 
-const Container = styled.div<{ size?: 'xs' }>`
+type ContainerProps = {
+  size?: string;
+  center?: boolean;
+};
+
+const Container = styled.div<ContainerProps>`
   width: 50px;
   height: 50px;
 

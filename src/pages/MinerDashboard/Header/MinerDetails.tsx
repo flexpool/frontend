@@ -14,8 +14,14 @@ import {
   useLocalizedNumberFormatter,
 } from 'src/utils/si.utils';
 import styled from 'styled-components';
+import useActiveCoinNetworkFee from '@/hooks/useActiveCoinNetworkFee';
+import { isNil } from 'lodash';
 
 const NoFeeLimit = styled.div`
+  color: var(--text-secondary);
+`;
+
+const NetworkFee = styled.div`
   color: var(--text-secondary);
 `;
 
@@ -59,7 +65,7 @@ export const MinerDetails: React.FC<{
   const maxFeePrice = settings?.maxFeePrice;
   const currencyFormatter = useLocalizedCurrencyFormatter();
   const numberFormatter = useLocalizedNumberFormatter();
-
+  const currentNetworkFee = useActiveCoinNetworkFee();
   const counterValuePrice = currencyFormatter(
     minerHeaderStatsState.data?.countervaluePrice || 0
   );
@@ -97,16 +103,21 @@ export const MinerDetails: React.FC<{
             icon={
               <Item>
                 <div>{t('header.info_gas_limit')}:&nbsp;</div>
-                {maxFeePrice && feeDetails ? (
-                  <div>{maxFeePrice + ' ' + feeDetails?.unit}</div>
+                {typeof maxFeePrice === 'undefined' ||
+                isNil(currentNetworkFee) ||
+                feeDetails === null ? (
+                  <Skeleton width={40} />
                 ) : (
-                  <NoFeeLimit>
+                  <>
                     {maxFeePrice === 0 ? (
-                      t('header.info_gas_limit_none')
+                      <NoFeeLimit>{t('header.info_gas_limit_none')}</NoFeeLimit>
                     ) : (
-                      <Skeleton width={40} />
+                      <div>{maxFeePrice + ' ' + feeDetails?.unit}</div>
                     )}
-                  </NoFeeLimit>
+                    <NetworkFee>
+                      &nbsp;{`(${currentNetworkFee} ${feeDetails.unit} now)`}
+                    </NetworkFee>
+                  </>
                 )}
               </Item>
             }

@@ -1,5 +1,3 @@
-// TODO: Remove this TS nocheck
-// @ts-nocheck
 import React, { useRef } from 'react';
 
 import {
@@ -26,6 +24,12 @@ import {
   LineSeries,
 } from 'src/plugins/amcharts';
 import { useTranslation } from 'next-i18next';
+import { ApiPoolHashrateItem } from '@/types/PoolHashrate.types';
+
+type HashrateChartDataItem = {
+  date: Date;
+  total: number;
+} & ApiPoolHashrateItem['regions'];
 
 const PoolHashrateChart = () => {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -52,7 +56,7 @@ const PoolHashrateChart = () => {
 
       x.colors.list = [color(appTheme === 'dark' ? '#aaa' : '#000000')];
 
-      var data = [];
+      const data: HashrateChartDataItem[] = [];
 
       if (poolHasrateState.data.length > 0) {
         for (var key in poolHasrateState.data[0].regions) {

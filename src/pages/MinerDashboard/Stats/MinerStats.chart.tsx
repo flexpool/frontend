@@ -1,5 +1,3 @@
-// TODO: Remove this TS nocheck
-// @ts-nocheck
 import React, { useState, useEffect } from 'react';
 import { SectionNotAvailable } from 'src/components/SectionNotAvailable';
 import { Spacer } from 'src/components/layout/Spacer';
@@ -27,7 +25,11 @@ import {
 } from 'src/plugins/amcharts';
 import { isAfter, subHours } from 'date-fns';
 import { average } from 'src/utils/number.utils';
-import { AverageEffectivePeriods } from './minerStats.types';
+import {
+  AverageEffectivePeriods,
+  HashrateChartDataItem,
+  SharesChartDataItem,
+} from './minerStats.types';
 import { useTranslation } from 'next-i18next';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ProTip } from 'src/components/ProTip/ProTip';
@@ -229,10 +231,12 @@ export const StatsChart: React.FC<{
       return;
     }
     setNoDataAvailable(false);
-    const hashrateChartData = [];
-    const sharesChartData = [];
-    const averageSixHours = [];
-    const averageTwelveHours = [];
+
+    const hashrateChartData: HashrateChartDataItem[] = [];
+    const sharesChartData: SharesChartDataItem[] = [];
+
+    const averageSixHours: number[] = [];
+    const averageTwelveHours: number[] = [];
 
     const nowMinus12 = subHours(new Date(), 12);
     const nowMinus6 = subHours(new Date(), 6);

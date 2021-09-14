@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { SelectCoin } from '../SelectCoin';
+import { SelectCoin, NewSelectCoin } from '../SelectCoin';
 import { Content } from './Content';
 
 const Header = styled.div`
@@ -26,7 +26,8 @@ export const HeaderStat: React.FC<{ children: React.ReactNode }> = ({
       <Content>
         <Header>
           <HeaderContent>{children}</HeaderContent>
-          <SelectCoin />
+          {/* <SelectCoin /> */}
+          <NewSelectCoin />
         </Header>
       </Content>
     </Wrapper>

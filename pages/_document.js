@@ -1,8 +1,10 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import { resetIdCounter } from 'downshift';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
+    resetIdCounter();
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 

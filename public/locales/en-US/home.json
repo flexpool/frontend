@@ -4,7 +4,7 @@
   "description": "Innovative mining pool created for modern cryptocurrency mining.",
   "coin_earnings_cards": {
     "estimated": "Estimated earnings",
-    "estimated_tooltip": "Estimated earnings are based on performance of mining last 7 days on our pool.",
+    "estimated_tooltip": "Estimated earnings are based on the past 24 hours on our pool (luck excluded).",
     "daily": "daily",
     "monthly": "monthly",
     "cta_mine": "Start Mining",

@@ -22,7 +22,7 @@ export const minerHeaderStatsGet = (
         { query }
       ),
       fetchApi<number>('/miner/roundShare', { query }),
-      fetchApi<number>('/pool/averageBlockReward', { query }),
+      fetchApi<number>('/pool/averageBlockReward', { query: { coin } }),
       fetchApi<number>('/pool/dailyRewardPerGigahashSec', { query: { coin } }),
     ]).then((res) => {
       return {

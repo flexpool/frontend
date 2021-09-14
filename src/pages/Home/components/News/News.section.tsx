@@ -28,7 +28,7 @@ const HomeNewsItem: React.FC<{
     </>
   );
   return to ? (
-    <ItemWrapper as={Link} href={to} className="home-news-item">
+    <ItemWrapper as={Link as any} href={to} className="home-news-item">
       {innerContent}
     </ItemWrapper>
   ) : (

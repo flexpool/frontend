@@ -1,5 +1,3 @@
-// TODO: Remove this TS nocheck
-// @ts-nocheck
 import { Field, FieldProps } from 'formik';
 import React from 'react';
 import { Button } from 'src/components/Button';

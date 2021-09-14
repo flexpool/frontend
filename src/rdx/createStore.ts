@@ -1,6 +1,3 @@
-// TODO: Remove this TS nocheck
-// @ts-nocheck
-
 import { applyMiddleware, createStore, AnyAction, compose } from 'redux';
 
 import { rootReducer, defaultReduxState, AppState } from './rootReducer';
@@ -34,7 +31,7 @@ export const createReduxStore = (preloadedState?: Partial<AppState>) => {
 
   const composeEnhancers =
     (typeof window !== 'undefined' &&
-      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+      (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
     compose;
 
   const store = createStore(
