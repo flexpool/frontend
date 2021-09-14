@@ -13,16 +13,10 @@ function GuideList({ listItems }) {
             components={{
               a: <a href="" target="__blank" />,
               guilink: (
-                <LinkOut
-                  href="https://www.flexpool.io/get-started/xch/XCH-GUI/"
-                  target="__blank"
-                />
+                <LinkOut href="https://www.flexpool.io/get-started/xch/XCH-GUI/" />
               ),
               clilink: (
-                <LinkOut
-                  href="https://www.flexpool.io/get-started/xch/XCH-CLI/"
-                  target="__blank"
-                />
+                <LinkOut href="https://www.flexpool.io/get-started/xch/XCH-CLI/" />
               ),
             }}
           >
