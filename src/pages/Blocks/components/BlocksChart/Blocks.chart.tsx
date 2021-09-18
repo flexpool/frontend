@@ -47,12 +47,7 @@ export const BlocksChart = () => {
     if (blocksChartState.data.length > 1 && activeCoin) {
       let x = create('blocksChart', XYChart);
 
-      x.colors.list = [
-        color('#a6b0c1'),
-        color(
-          getComputedStyle(document.body).getPropertyValue('--success').trim()
-        ),
-      ];
+      x.colors.list = [color('#a6b0c1')];
 
       x.responsive.enabled = true;
       x.responsive.useDefault = false;
@@ -94,22 +89,6 @@ export const BlocksChart = () => {
 
       let dateAxis = x.xAxes.push(new DateAxis());
       dateAxis.renderer.grid.template.location = 0;
-
-      let difficultySeries = x.series.push(new LineSeries());
-      difficultySeries.dataFields.dateX = 'date';
-      difficultySeries.name = t('chart.difficulty');
-      difficultySeries.yAxis = difficultyAxis;
-      difficultySeries.dataFields.valueY = 'difficulty';
-      difficultySeries.tooltipText =
-        t('Difficulty') +
-        `: {valueY.value.formatNumber("#.00 a'` +
-        (String(activeCoin?.ticker) === 'xch'
-          ? 'PT'
-          : activeCoin?.hashrateUnit.split('/')[0]) +
-        `'")}`;
-      difficultySeries.strokeWidth = 2;
-      difficultySeries.tensionX = 0.9;
-      difficultySeries.tensionY = 0.9;
 
       let blockCountSeries = x.series.push(new ColumnSeries());
       blockCountSeries.dataFields.dateX = 'date';
@@ -162,6 +141,22 @@ export const BlocksChart = () => {
           );
         }
       );
+
+      let difficultySeries = x.series.push(new LineSeries());
+      difficultySeries.dataFields.dateX = 'date';
+      difficultySeries.name = t('chart.difficulty');
+      difficultySeries.yAxis = difficultyAxis;
+      difficultySeries.dataFields.valueY = 'difficulty';
+      difficultySeries.tooltipText =
+        t('Difficulty') +
+        `: {valueY.value.formatNumber("#.00 a'` +
+        (String(activeCoin?.ticker) === 'xch'
+          ? 'PT'
+          : activeCoin?.hashrateUnit.split('/')[0]) +
+        `'")}`;
+      difficultySeries.strokeWidth = 2;
+      difficultySeries.tensionX = 0.9;
+      difficultySeries.tensionY = 0.9;
 
       x.cursor = new XYCursor();
 
