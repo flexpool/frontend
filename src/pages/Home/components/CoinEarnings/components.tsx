@@ -57,6 +57,7 @@ export const HeadContent = styled.div`
 `;
 export const HeadSplit = styled.div`
   display: flex;
+  align-items: center;
   & > *:first-child {
     flex-shrink: 0;
   }
@@ -76,6 +77,7 @@ export const HeadSplit = styled.div`
 
 export const IntervalContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
   flex-wrap: wrap;
@@ -91,8 +93,12 @@ export const IntervalContainer = styled.div`
 export const FiatValue = styled.div`
   font-size: 2rem;
   font-weight: 700;
-  margin-top: 0.5rem;
 `;
+
+export const CryptoValue = styled.p`
+  margin: 0 0 0 0.25rem;
+`;
+
 export const IntervalItem = styled.div`
   p {
     margin-top: 0.25rem;
@@ -104,14 +110,31 @@ export const IntervalItem = styled.div`
   }
 `;
 
-export const StartMiningContainer = styled.div`
-  margin-top: 1rem;
+export const EstimatedNumbers = styled.div`
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  flex-grow: 1;
+  margin-top: 0.2rem;
+  align-items: center;
+
   @media screen and (max-width: 540px) {
     justify-content: center;
+  }
+`;
+
+export const StartMiningContainer = styled.div`
+  margin-top: 1.25rem;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+
+  & > button {
+    margin-left: auto;
+  }
+
+  @media screen and (max-width: 540px) {
+    justify-content: center;
+    & > button {
+      margin-left: 0;
+    }
   }
   & > *:not(:last-child) {
     margin-right: 0.5rem;
@@ -121,9 +144,6 @@ export const StartMiningContainer = styled.div`
 export const PoolDetails = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  flex-grow: 1;
-  text-align: right;
   @media screen and (max-width: 540px) {
     text-align: center;
   }
@@ -140,5 +160,5 @@ export const ButtonGroup = styled.div`
 `;
 export const Desc = styled.div`
   line-height: 1.4;
-  margin-top: 0.5rem;
+  margin-top: 0;
 `;
