@@ -17,8 +17,6 @@ const useLocateAddress = ({ address, coinTicker }: addressConfig) => {
         query: { address },
       }).then((res) => {
         if (res !== coinTicker) {
-          // not found
-          // router.push('/not-found');
           return Promise.reject({
             message: 'Address not found',
           });
