@@ -10,7 +10,6 @@ import {
   IntervalItem,
   StartMiningContainer,
   PoolDetails,
-  ButtonGroup,
   Desc,
 } from './components';
 import React from 'react';
@@ -92,6 +91,8 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
                   ? percentFormatter(5 / 1000)
                   : data?.ticker === 'xch'
                   ? percentFormatter(0 / 1000)
+                  : data?.ticker === 'btc'
+                  ? percentFormatter(1 / 1000)
                   : percentFormatter(10 / 1000),
             })}
             <br />
