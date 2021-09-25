@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import { NextSeo } from 'next-seo';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -43,9 +42,9 @@ import { InfoBox } from 'src/components/InfoBox';
 import styled from 'styled-components';
 import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
 import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
-import { useAsyncState } from 'src/hooks/useAsyncState';
 import useLocateAddress from 'src/hooks/useLocateAddress';
-import { fetchApi } from 'src/utils/fetchApi';
+import { validateETHAddress } from '@/utils/validators/ethWalletAddress.validator';
+import { validateXCHAddress } from '@/utils/validators/xchWalletAddress.validator';
 
 const TabContent = styled.div`
   box-shadow: inset -1px 18px 19px -13px var(--bg-secondary);
@@ -348,10 +347,7 @@ export const MinerDashboardPage: React.FC<{
   coinTicker: string;
 }> = (props) => {
   const { address, coinTicker } = props;
-  const router = useRouter();
-
   const locateAddressState = useLocateAddress({ coinTicker, address });
-
   /**
    * Still loading
    */
@@ -387,6 +383,21 @@ export const MinerDashboardPage: React.FC<{
 export default MinerDashboardPage;
 
 export async function getServerSideProps({ query, locale }) {
+  let isAddressValidate = true;
+  if (query.coin === 'eth')
+    isAddressValidate = validateETHAddress(query.address);
+  if (query.coin === 'xch')
+    isAddressValidate = validateXCHAddress(query.address);
+
+  if (!isAddressValidate) {
+    return {
+      redirect: {
+        destination: '/not-found',
+        permanent: false,
+      },
+    };
+  }
+
   return {
     props: {
       ...(await serverSideTranslations(locale, [
