@@ -38,11 +38,13 @@ import { MinerDetails } from 'src/pages/MinerDashboard/Header/MinerDetails';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import { PullToRefresh } from 'src/components/layout/PullToRefresh/PullToRefresh';
+import { InfoBox } from 'src/components/InfoBox';
 
 import styled from 'styled-components';
 import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
 import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
 import { useAsyncState } from 'src/hooks/useAsyncState';
+import useLocateAddress from 'src/hooks/useLocateAddress';
 import { fetchApi } from 'src/utils/fetchApi';
 
 const TabContent = styled.div`
@@ -87,6 +89,16 @@ const TabLink = styled(Tab)`
     background: rgba(128, 128, 128, 0.07);
   }
   text-decoration: none !important;
+`;
+
+const TopBannerContainer = styled.div`
+  margin: 1rem 0 -1rem;
+
+  & h3 {
+    font-size: 1.1rem;
+  }
+
+  box-shadow: 0 2px 10px 0 var(--warning-shadow);
 `;
 
 export const MinerDashboardPageContent: React.FC<{
@@ -337,31 +349,13 @@ export const MinerDashboardPage: React.FC<{
 }> = (props) => {
   const { address, coinTicker } = props;
   const router = useRouter();
-  const locateAddressState = useAsyncState<string | null>();
 
-  useEffect(() => {
-    locateAddressState.start(
-      fetchApi<string | null>('/miner/locateAddress', {
-        query: { address },
-      }).then((res) => {
-        if (res !== coinTicker) {
-          // not found
-          router.push('/not-found');
-          return Promise.reject({
-            message: 'Address not found',
-          });
-        }
-        localSettingsSet({ coin: res });
-        return res;
-      })
-    );
-    // eslint-disable-next-line
-  }, [coinTicker, address]);
+  const locateAddressState = useLocateAddress({ coinTicker, address });
 
   /**
    * Still loading
    */
-  if (locateAddressState.data !== coinTicker) {
+  if (locateAddressState.isLoading) {
     return (
       <PageLoading>
         <LoaderSpinner center />
@@ -369,7 +363,25 @@ export const MinerDashboardPage: React.FC<{
     );
   }
 
-  return <MinerDashboardPageContent {...props} />;
+  return (
+    <>
+      {locateAddressState.data === null && (
+        <Content>
+          <TopBannerContainer>
+            <InfoBox variant="warning">
+              <h3>It looks like your dashboard is not ready yet.</h3>
+              <div>
+                If you are new here, your dashboard will be ready within 20
+                minutes of your first submitted share to this address. Please
+                check back a little later.
+              </div>
+            </InfoBox>
+          </TopBannerContainer>
+        </Content>
+      )}
+      <MinerDashboardPageContent {...props} />
+    </>
+  );
 };
 
 export default MinerDashboardPage;
