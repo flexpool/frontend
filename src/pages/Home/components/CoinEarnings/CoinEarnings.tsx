@@ -9,8 +9,9 @@ import {
   FiatValue,
   IntervalItem,
   StartMiningContainer,
+  EstimatedNumbers,
+  CryptoValue,
   PoolDetails,
-  ButtonGroup,
   Desc,
 } from './components';
 import React from 'react';
@@ -84,25 +85,6 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
             </Tooltip>
           </Desc>
         </HeadContent>
-        <PoolDetails>
-          <p>
-            {t('coin_earnings_cards.pool_fee', {
-              value:
-                data?.ticker === 'eth'
-                  ? percentFormatter(5 / 1000)
-                  : data?.ticker === 'xch'
-                  ? percentFormatter(0 / 1000)
-                  : percentFormatter(10 / 1000),
-            })}
-            <br />
-            {data?.ticker === 'eth' &&
-              t('coin_earnings_cards.mev', { value: percentFormatter(0.9) })}
-            {data?.ticker === 'xch' &&
-              t('coin_earnings_cards.finder_reward', {
-                value: `0.25 ${data?.ticker.toUpperCase()}`,
-              })}
-          </p>
-        </PoolDetails>
       </HeadSplit>
       <IntervalContainer>
         <IntervalItem>
@@ -110,50 +92,93 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
             100 {data?.defaultHashrateSiPrefix}
             {data?.hashrateUnit} {t('coin_earnings_cards.daily')}
           </p>
-          <FiatValue>
-            {dailyCounterPrice ? (
-              currencyFormatter(dailyCounterPrice)
-            ) : (
-              <Skeleton style={{ height: 25 }} />
-            )}
-          </FiatValue>
-          <p>
-            {dailyPer100 ? (
-              <>
-                {numberFormatter(dailyPer100, { maximumFractionDigits: 6 })}{' '}
-                {data?.ticker.toUpperCase()}
-              </>
-            ) : (
-              <Skeleton style={{ height: 10 }} />
-            )}
-          </p>
+
+          <EstimatedNumbers>
+            <FiatValue>
+              {dailyCounterPrice ? (
+                currencyFormatter(dailyCounterPrice)
+              ) : (
+                <Skeleton style={{ height: 25 }} />
+              )}
+            </FiatValue>
+            <CryptoValue>
+              {dailyPer100 ? (
+                <>
+                  {'≈ '}
+                  {numberFormatter(dailyPer100, {
+                    maximumFractionDigits: 6,
+                  })}{' '}
+                  {data?.ticker.toUpperCase()}
+                </>
+              ) : (
+                <Skeleton style={{ height: 10 }} />
+              )}
+            </CryptoValue>
+          </EstimatedNumbers>
         </IntervalItem>
         <IntervalItem>
           <p>
             100 {data?.defaultHashrateSiPrefix}
             {data?.hashrateUnit} {t('coin_earnings_cards.monthly')}
           </p>
-          <FiatValue>
-            {monthlyCounterPrice ? (
-              currencyFormatter(monthlyCounterPrice)
-            ) : (
-              <Skeleton style={{ height: 25 }} />
-            )}
-          </FiatValue>
-          <Desc>
-            {monthlyPer100 ? (
-              <>
-                {numberFormatter(monthlyPer100, { maximumFractionDigits: 6 })}{' '}
-                {data?.ticker.toUpperCase()}
-              </>
-            ) : (
-              <Skeleton style={{ height: 10 }} />
-            )}
-          </Desc>
+
+          <EstimatedNumbers>
+            <FiatValue>
+              {monthlyCounterPrice ? (
+                currencyFormatter(monthlyCounterPrice)
+              ) : (
+                <Skeleton style={{ height: 25 }} />
+              )}
+            </FiatValue>
+            <CryptoValue>
+              {monthlyPer100 ? (
+                <>
+                  {'≈ '}
+                  {numberFormatter(monthlyPer100, {
+                    maximumFractionDigits: 6,
+                  })}{' '}
+                  {data?.ticker.toUpperCase()}
+                </>
+              ) : (
+                <Skeleton style={{ height: 10 }} />
+              )}
+            </CryptoValue>
+          </EstimatedNumbers>
         </IntervalItem>
       </IntervalContainer>
       {data?.ticker && (
         <StartMiningContainer>
+          <PoolDetails>
+            <p>
+              {t('coin_earnings_cards.pool_fee', {
+                value:
+                  data?.ticker === 'eth'
+                    ? percentFormatter(5 / 1000)
+                    : data?.ticker === 'xch'
+                    ? percentFormatter(0 / 1000)
+                    : percentFormatter(10 / 1000),
+              })}{' '}
+              {data?.ticker === 'eth' && (
+                <Tooltip>
+                  <TooltipContent>
+                    {t('coin_earnings_cards.mev', {
+                      value: percentFormatter(0.9),
+                    })}
+                  </TooltipContent>
+                </Tooltip>
+              )}
+              {data?.ticker === 'xch' && (
+                <Tooltip>
+                  <TooltipContent>
+                    {t('coin_earnings_cards.finder_reward', {
+                      value: `0.25 ${data?.ticker.toUpperCase()}`,
+                    })}
+                  </TooltipContent>
+                </Tooltip>
+              )}
+            </p>
+          </PoolDetails>
+
           <Link href={`/get-started/${data?.ticker}`} passHref>
             <Button variant="success">
               {data?.ticker === 'xch'
@@ -204,6 +229,7 @@ export const CoinEarnings = () => {
           data.map((item) => <CoinEarningsItem key={item.ticker} data={item} />)
         ) : (
           <>
+            <CoinEarningsItem />
             <CoinEarningsItem />
             <CoinEarningsItem />
           </>
