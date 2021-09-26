@@ -43,8 +43,8 @@ import styled from 'styled-components';
 import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
 import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
 import useLocateAddress from 'src/hooks/useLocateAddress';
-import { validateETHAddress } from '@/utils/validators/ethWalletAddress.validator';
-import { validateXCHAddress } from '@/utils/validators/xchWalletAddress.validator';
+import { getChecksumByTicker } from '@/utils/validators/checksum';
+import Warning from '@/assets/warning-icon.svg';
 
 const TabContent = styled.div`
   box-shadow: inset -1px 18px 19px -13px var(--bg-secondary);
@@ -98,6 +98,24 @@ const TopBannerContainer = styled.div`
   }
 
   box-shadow: 0 2px 10px 0 var(--warning-shadow);
+`;
+
+const MediaContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  & > svg {
+    width: 50px;
+  }
+`;
+
+const BannerText = styled.div`
+  margin-left: 1rem;
+  flex-grow: 1;
+
+  & > p {
+    margin-top: 0.5rem;
+  }
 `;
 
 export const MinerDashboardPageContent: React.FC<{
@@ -365,12 +383,17 @@ export const MinerDashboardPage: React.FC<{
         <Content>
           <TopBannerContainer>
             <InfoBox variant="warning">
-              <h3>It looks like your dashboard is not ready yet.</h3>
-              <div>
-                If you are new here, your dashboard will be ready within 20
-                minutes of your first submitted share to this address. Please
-                check back a little later.
-              </div>
+              <MediaContainer>
+                <Warning />
+                <BannerText>
+                  <h3>It looks like your dashboard is not ready yet.</h3>
+                  <p>
+                    If you are new here, your dashboard will be ready within 20
+                    minutes of your first submitted share to this address.
+                    Please check back a little later.
+                  </p>
+                </BannerText>
+              </MediaContainer>
             </InfoBox>
           </TopBannerContainer>
         </Content>
@@ -383,13 +406,9 @@ export const MinerDashboardPage: React.FC<{
 export default MinerDashboardPage;
 
 export async function getServerSideProps({ query, locale }) {
-  let isAddressValidate = true;
-  if (query.coin === 'eth')
-    isAddressValidate = validateETHAddress(query.address);
-  if (query.coin === 'xch')
-    isAddressValidate = validateXCHAddress(query.address);
+  const checkSum = getChecksumByTicker(query.coin)(query.address);
 
-  if (!isAddressValidate) {
+  if (checkSum === null) {
     return {
       redirect: {
         destination: '/not-found',

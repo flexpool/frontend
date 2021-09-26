@@ -8,6 +8,3 @@ export const checksumXCH = (input: string) => {
     return null;
   }
 };
-
-export const validateXCHAddress = (address: string) =>
-  /^xch[a-zA-Z0-9]{59}$/g.test(address);
