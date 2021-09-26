@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import { NextSeo } from 'next-seo';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -38,12 +37,14 @@ import { MinerDetails } from 'src/pages/MinerDashboard/Header/MinerDetails';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import { PullToRefresh } from 'src/components/layout/PullToRefresh/PullToRefresh';
+import { InfoBox } from 'src/components/InfoBox';
 
 import styled from 'styled-components';
 import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
 import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
-import { useAsyncState } from 'src/hooks/useAsyncState';
-import { fetchApi } from 'src/utils/fetchApi';
+import useLocateAddress from 'src/hooks/useLocateAddress';
+import { getChecksumByTicker } from '@/utils/validators/checksum';
+import Warning from '@/assets/warning-icon.svg';
 
 const TabContent = styled.div`
   box-shadow: inset -1px 18px 19px -13px var(--bg-secondary);
@@ -87,6 +88,34 @@ const TabLink = styled(Tab)`
     background: rgba(128, 128, 128, 0.07);
   }
   text-decoration: none !important;
+`;
+
+const TopBannerContainer = styled.div`
+  margin: 1rem 0 -1rem;
+
+  & h3 {
+    font-size: 1.1rem;
+  }
+
+  box-shadow: 0 2px 10px 0 var(--warning-shadow);
+`;
+
+const MediaContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  & > svg {
+    width: 50px;
+  }
+`;
+
+const BannerText = styled.div`
+  margin-left: 1rem;
+  flex-grow: 1;
+
+  & > p {
+    margin-top: 0.5rem;
+  }
 `;
 
 export const MinerDashboardPageContent: React.FC<{
@@ -336,32 +365,12 @@ export const MinerDashboardPage: React.FC<{
   coinTicker: string;
 }> = (props) => {
   const { address, coinTicker } = props;
-  const router = useRouter();
-  const locateAddressState = useAsyncState<string | null>();
-
-  useEffect(() => {
-    locateAddressState.start(
-      fetchApi<string | null>('/miner/locateAddress', {
-        query: { address },
-      }).then((res) => {
-        if (res !== coinTicker) {
-          // not found
-          router.push('/not-found');
-          return Promise.reject({
-            message: 'Address not found',
-          });
-        }
-        localSettingsSet({ coin: res });
-        return res;
-      })
-    );
-    // eslint-disable-next-line
-  }, [coinTicker, address]);
-
+  const { t } = useTranslation('dashboard');
+  const locateAddressState = useLocateAddress({ coinTicker, address });
   /**
    * Still loading
    */
-  if (locateAddressState.data !== coinTicker) {
+  if (locateAddressState.isLoading) {
     return (
       <PageLoading>
         <LoaderSpinner center />
@@ -369,12 +378,42 @@ export const MinerDashboardPage: React.FC<{
     );
   }
 
-  return <MinerDashboardPageContent {...props} />;
+  return (
+    <>
+      {locateAddressState.data === null && (
+        <Content>
+          <TopBannerContainer>
+            <InfoBox variant="warning">
+              <MediaContainer>
+                <Warning />
+                <BannerText>
+                  <h3>{t('warning_header')}</h3>
+                  <p>{t('warning_description')}</p>
+                </BannerText>
+              </MediaContainer>
+            </InfoBox>
+          </TopBannerContainer>
+        </Content>
+      )}
+      <MinerDashboardPageContent {...props} />
+    </>
+  );
 };
 
 export default MinerDashboardPage;
 
 export async function getServerSideProps({ query, locale }) {
+  const checkSum = getChecksumByTicker(query.coin)(query.address);
+
+  if (checkSum === null) {
+    return {
+      redirect: {
+        destination: '/not-found',
+        permanent: false,
+      },
+    };
+  }
+
   return {
     props: {
       ...(await serverSideTranslations(locale, [
