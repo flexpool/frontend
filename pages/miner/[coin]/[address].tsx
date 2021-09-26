@@ -365,6 +365,7 @@ export const MinerDashboardPage: React.FC<{
   coinTicker: string;
 }> = (props) => {
   const { address, coinTicker } = props;
+  const { t } = useTranslation('dashboard');
   const locateAddressState = useLocateAddress({ coinTicker, address });
   /**
    * Still loading
@@ -386,12 +387,8 @@ export const MinerDashboardPage: React.FC<{
               <MediaContainer>
                 <Warning />
                 <BannerText>
-                  <h3>It looks like your dashboard is not ready yet.</h3>
-                  <p>
-                    If you are new here, your dashboard will be ready within 20
-                    minutes of your first submitted share to this address.
-                    Please check back a little later.
-                  </p>
+                  <h3>{t('warning_header')}</h3>
+                  <p>{t('warning_description')}</p>
                 </BannerText>
               </MediaContainer>
             </InfoBox>

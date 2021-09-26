@@ -235,5 +235,7 @@
   },
   "status_pending_tooltip": "Awaiting transaction confirmation",
   "confirmation_duration_tooltip": "Confirmed in",
-  "confirmed_at_tooltip": "Confirmed at"
+  "confirmed_at_tooltip": "Confirmed at",
+  "warning_header": "It looks like your dashboard is not ready yet.",
+  "warning_description": "If you are new here, your dashboard will be ready within 20 minutes of your first submitted share to this address. Please check back a little later."
 }
