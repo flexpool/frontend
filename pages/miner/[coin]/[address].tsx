@@ -380,7 +380,7 @@ export const MinerDashboardPage: React.FC<{
 
   return (
     <>
-      {locateAddressState.data === null && (
+      {locateAddressState.error !== null && (
         <Content>
           <TopBannerContainer>
             <InfoBox variant="warning">
