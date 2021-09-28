@@ -91,7 +91,7 @@
     "hardware": [
       {
         "title": "显卡矿机",
-        "key": "显示卡",
+        "key": "GPU",
         "miners": [
           {
             "description": "AMD显卡推荐挖矿软件"
