@@ -1,5 +1,3 @@
-// TODO: Remove this TS nocheck
-// @ts-nocheck
 import React from 'react';
 import { Button } from 'src/components/Button';
 import styled from 'styled-components';
@@ -49,7 +47,7 @@ type ButtonGroupProps = {
 };
 
 export const ButtonGroup = (props: ButtonGroupProps) => {
-  var buttons = [];
+  var buttons: JSX.Element[] = [];
 
   for (const key in props.options) {
     buttons.push(

@@ -1,6 +1,5 @@
-import 'src/index.css';
-import 'src/App/normalize.scss';
-import 'src/App/App.scss';
+import 'styles/normalize.scss';
+import 'styles/app.scss';
 import { appWithTranslation } from 'next-i18next';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 

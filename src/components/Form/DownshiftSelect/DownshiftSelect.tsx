@@ -22,8 +22,8 @@ type SelectButtonProps = {
   toggleButtonProps: any;
 };
 
-const SelectButton = React.forwardRef(
-  ({ children, placeholder, ...rest }: SelectButtonProps, ref) => {
+const SelectButton = React.forwardRef<HTMLButtonElement, SelectButtonProps>(
+  ({ children, placeholder, ...rest }, ref) => {
     return (
       <SCSelectButton ref={ref} {...rest}>
         {children || <Placeholder>{placeholder}</Placeholder>}
@@ -57,7 +57,7 @@ const DownshiftSelect = (props: DownshiftSelectProps) => {
     ...rest,
   });
 
-  const selectContainerRef = useRef<HTMLElement>(null);
+  const selectContainerRef = useRef<HTMLDivElement>(null);
   const dropdownListRef = useRef<HTMLElement>(null);
 
   React.useEffect(() => {

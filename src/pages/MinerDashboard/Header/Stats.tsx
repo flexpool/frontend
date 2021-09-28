@@ -43,7 +43,12 @@ const ProgressBarWrapper = styled.div`
   overflow: hidden;
 `;
 
-const ProgressBar = styled.div`
+type ProgressBarProps = {
+  width: number;
+  status: string;
+};
+
+const ProgressBar = styled.div<ProgressBarProps>`
   transition: 0.6s width cubic-bezier(0.35, 0.79, 0.37, 0.98);
 
   width: ${(p) => `${p.width}%`};
@@ -312,7 +317,7 @@ export const HeaderStats: React.FC<{
       ? data.balance / settings.payoutLimit > 1
         ? 100
         : (data.balance / settings.payoutLimit) * 100
-      : 0;
+      : null;
 
   const estimatedEarningsPerSecond = estimatedDailyEarnings / 24 / 60 / 60;
   const amountToPayout =
@@ -347,10 +352,14 @@ export const HeaderStats: React.FC<{
           subValue={tickerBalance ? `≈ ${tickerBalance}` : null}
         />
         {/* TODO: Test 100% balances */}
-        <BalanceProgressBar
-          value={balanceProgress}
-          payoutInSeconds={amountToPayoutTimeInSeconds}
-        />
+        {balanceProgress !== null ? (
+          <BalanceProgressBar
+            value={balanceProgress}
+            payoutInSeconds={amountToPayoutTimeInSeconds}
+          />
+        ) : (
+          <ProgressBarWrapper />
+        )}
       </Card>
       <Card padding>
         <CardTitle>
