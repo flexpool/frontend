@@ -49,6 +49,13 @@ const Address = styled(LinkOut)`
   }
 `;
 
+const CoinIconSkeleton = styled.div`
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-secondary);
+`;
+
 const RefreshButton = styled(Button)`
   font-size: 1.5rem;
   margin-right: 10px;
@@ -65,8 +72,10 @@ export const AccountHeader: React.FC<{
   return (
     <Wrap paddingShort>
       <AddressContainer>
-        {coin && (
+        {coin ? (
           <Img src={getCoinIconUrl(coin.ticker)} alt={`${coin.name} logo`} />
+        ) : (
+          <CoinIconSkeleton />
         )}
         <Address href={getCoinLink('wallet', address, coin?.ticker)}>
           {addressText}

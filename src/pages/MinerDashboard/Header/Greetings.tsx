@@ -213,12 +213,12 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
           {activeCoin?.ticker === 'xch'
             ? t(`header.greet_desc_farm`, {
                 count: workersOnline,
-                hashrate,
+                hashrate: hashrate || '',
                 coin: activeCoin?.name,
               })
             : t(`header.greet_desc`, {
                 count: workersOnline,
-                hashrate,
+                hashrate: hashrate || '',
                 coin: activeCoin?.name,
               })}
         </span>
