@@ -4,7 +4,7 @@
   "description": "Innovative mining pool created for modern cryptocurrency mining.",
   "coin_earnings_cards": {
     "estimated": "Estimated earnings",
-    "estimated_tooltip": "Estimated earnings are based on performance of mining last 7 days on our pool.",
+    "estimated_tooltip": "Estimated earnings are based on the past 24 hours on our pool (luck excluded).",
     "daily": "daily",
     "monthly": "monthly",
     "cta_mine": "Start Mining",
@@ -34,7 +34,7 @@
   },
   "mined_coins_section": {
     "title": "Coins we mine",
-    "description": "Flexpool is a Multi-Coin mining pool, which means that you can mine multiple coins includnig Ethereum and Chia on Flexpool.",
+    "description": "Flexpool is a Multi-Coin mining pool, which means that you can mine multiple coins including Ethereum and Chia on Flexpool.",
     "table_head": {
       "name": "Name",
       "price": "Price",
@@ -73,7 +73,7 @@
     "title": "Why Flexpool",
     "item_1": {
       "title": "Lightning speed",
-      "description": "We use worldwide high-performance server clusters powered by superfast software designed to handle tremendous amount of miners concurrently mining on our pool."
+      "description": "We use worldwide high-performance server clusters powered by superfast software designed to handle a tremendous amount of miners concurrently mining on our pool."
     },
     "item_2": {
       "title": "Just Better",

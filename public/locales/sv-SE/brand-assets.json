@@ -1,0 +1,35 @@
+{
+  "head_title": "Varumärkets tillgångar",
+  "brand_name": {
+    "title": "Vårt varumärke",
+    "description": "Vårt varumärke är <b>Flexpool.io</b>. Orden \"Flex\" och \"pool\" kombineras med ett stort F och .io-slutet."
+  },
+  "colors": {
+    "title": "Färger",
+    "accent": "Färg på accent",
+    "blue": "Blå Färg",
+    "green": "Grön Färg",
+    "yellow": "Gul Färg",
+    "red": "Röd Färg"
+  },
+  "typo": {
+    "title": "Typografi",
+    "description": "Vi använder <font>{{fontName}}</font> på vår webbplats."
+  },
+  "guidelines": {
+    "title": "Riktlinjer för varumärke",
+    "description": "Genom att använda våra varumärkestillgångar måste du följa våra varumärkesriktlinjer:",
+    "item_one": "Du får inte ändra logotypen. Detta inkluderar form- och färgändringar.",
+    "item_two": "Du får inte använda Flexpool.io Brand för att antyda en relation och/eller en anknytning till något annat företag om vi inte har meddelat partnerskapet. Exempel: \"... i samarbete med Flexpool.io.\"",
+    "item_three": "Du får inte använda den Flexpool.io Branding i olagliga och marknadsföringssammanhang."
+  },
+  "downloads": {
+    "title": "Nedladdningar",
+    "description": "Vi har samlat ett paket som innehåller alla typer av Flexpool.io logotyper för både ljusa och mörka teman.",
+    "cta": "Ladda ner Branding Pack"
+  },
+  "legal": {
+    "title": "Juridiska meddelanden",
+    "description": "Genom att använda våra varumärkestillgångar godkänner du varumärkesriktlinjerna och våra <terms>Terms</terms>. Om du behöver få hjälp med användningen av Flexpool.io branding kan du kontakta oss på <email>{{email}}</email>"
+  }
+}

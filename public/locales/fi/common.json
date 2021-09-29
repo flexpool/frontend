@@ -40,7 +40,7 @@
     "preferences": {
       "title": "Asetukset"
     },
-    "bottom_message": "© 2020-{{currentYear}} Flexpool.io Technologies Inc., or its affiliates. All rights reserved.",
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io tai sen kumppanit. Kaikki oikeudet pidätetään.",
     "translation_help": "Auta meitä kääntämään sivusto sinun kielellesi"
   },
   "theme": {

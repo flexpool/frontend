@@ -6,7 +6,8 @@
   },
   "detail": {
     "title": "Mineração de {{coin}}",
-    "note": "Note:",
+    "note": "Nota:",
+    "invalid": "{{value}} is invalid",
     "wallet": {
       "title": "Obtenha seu endereço da carteira",
       "desc_one": "A maneira mais fácil de obter uma carteira é registrar-se em uma exchange de criptomoedas, como a <binance>Binance (Ref)</binance> ou <coinbase>Coinbase</coinbase>.",
@@ -240,7 +241,7 @@
     "step_one": {
       "title": "Abra seu painel de controle do mercado de hashrate",
       "description": [
-        "Once you've registered on NiceHash and activated the Hashrate Marketplace account, you can head to your rental dashboard and choose the {{algorithm}} mining algorithm.",
+        "Depois de se registrar no NiceHash e ativar a conta do Mercado de Hashrate, você pode acessar o painel de aluguel e escolher o algoritmo de mineração {{algorithm}}.",
         "Depois disso, você poderá ver esta janela, onde deverá clicar em \"Adicionar nova pool...\""
       ]
     },

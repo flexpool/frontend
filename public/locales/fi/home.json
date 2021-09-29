@@ -4,14 +4,14 @@
   "description": "Innovatiivinen louhintapooli modernien kryptovaluuttojen louhimiseen.",
   "coin_earnings_cards": {
     "estimated": "Arvioidut tulot",
-    "estimated_tooltip": "Arvio perustuu poolin suoritukseen edellisen 7 päivän aikana.",
+    "estimated_tooltip": "Estimated earnings are based on the past 24 hours on our pool (luck excluded).",
     "daily": "päivittäin",
     "monthly": "kuukausittain",
     "cta_mine": "Aloita louhinta",
-    "cta_farm": "Start Farming",
+    "cta_farm": "Aloita farmaaminen",
     "pool_fee": "{{value}} Poolin Kulut",
     "mev": "{{value}} MEV Bonuksesta",
-    "finder_reward": "{{value}} Block Finder Reward",
+    "finder_reward": "{{value}} Lohkon löytäjän palkkio",
     "more_title": "Lisää kryptovaluuttoja tulossa!",
     "more_description": "Rakennamme jatkuvasti uusia pooleja, jotka julkaistaan tulevaisuudessa. Pysy ajan tasalla liittymällä Discordiimme tai Telegram-ryhmäämme."
   },

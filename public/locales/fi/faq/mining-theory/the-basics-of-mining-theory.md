@@ -1,5 +1,5 @@
 ---
-title: The "Basics" of the Mining Theory
+title: Louhintateorian "perusteet"
 level: intermediate
 ---
 

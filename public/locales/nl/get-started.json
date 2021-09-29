@@ -7,6 +7,7 @@
   "detail": {
     "title": "{{coin}} mining",
     "note": "Note:",
+    "invalid": "{{value}} is invalid",
     "wallet": {
       "title": "Neem je wallet address",
       "desc_one": "De makkelijkste manier om een wallet te bekomen is door je te registreren op een cryptocurrency exchange zoals <binance>Binance (Ref)</binance> of <coinbase>Coinbase</coinbase>.",
@@ -253,7 +254,9 @@
     },
     "step_three": {
       "title": "Test de pool configuratie",
-      "description": ["Nu kan je op Test Pool klikken en zien of alles goed werkt."]
+      "description": [
+        "Nu kan je op Test Pool klikken en zien of alles goed werkt."
+      ]
     },
     "step_four": {
       "title": "Geniet van de voordelen van Flexpool terwijl je NiceHash gebruikt!",

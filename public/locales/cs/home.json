@@ -4,7 +4,7 @@
   "description": "Inovativní mining pool stvořený pro moderní těžbu kryptoměn.",
   "coin_earnings_cards": {
     "estimated": "Odhadovaná výtěžnost",
-    "estimated_tooltip": "Odhadovaná výtěžnost je kalkulována na základě výkonu našeho poolu za posledních 7 dní.",
+    "estimated_tooltip": "Estimated earnings are based on the past 24 hours on our pool (luck excluded).",
     "daily": "za den",
     "monthly": "za měsíc",
     "cta_mine": "Chci těžit",

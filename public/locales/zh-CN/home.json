@@ -4,7 +4,7 @@
   "description": "持续创新研发的加密货币采矿池。",
   "coin_earnings_cards": {
     "estimated": "预计收益",
-    "estimated_tooltip": "预计收益按过往七天矿池收入计算。",
+    "estimated_tooltip": "Estimated earnings are based on the past 24 hours on our pool (luck excluded).",
     "daily": "每日收益",
     "monthly": "每月收益",
     "cta_mine": "开始挖矿",
@@ -83,15 +83,5 @@
   "get_started_section": {
     "title": "准备好了吗？",
     "cta": "开始挖矿"
-  },
-  "chia": {
-    "email_submission_failure": "电子邮箱地址无法储存",
-    "chia_comming_soon_text": "我们正在准备启动奇亚币矿池，留下电子邮箱地址，接收最新资讯通知。",
-    "chia_coming_soon": "奇亚币即将来临！",
-    "subscribe": "订阅！",
-    "subscribed": "成功订阅！"
-  },
-  "top_notification": {
-    "welcome": "欢迎使用新推出的 Flexpool.io v2版网站！前往旧版网站请使用"
   }
 }

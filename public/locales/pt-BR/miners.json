@@ -6,7 +6,7 @@
     "table_head": {
       "miner": "Minerador",
       "hashrate": "Hashrate",
-      "space": "Space",
+      "space": "Espaço",
       "balance": "Saldo",
       "workers": "Workers",
       "joined": "Entrou"
