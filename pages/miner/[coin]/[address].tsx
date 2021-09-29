@@ -42,9 +42,9 @@ import { InfoBox } from 'src/components/InfoBox';
 import styled from 'styled-components';
 import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
 import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
-import useLocateAddress from 'src/hooks/useLocateAddress';
 import { getChecksumByTicker } from '@/utils/validators/checksum';
 import Warning from '@/assets/warning-icon.svg';
+import { fetchApi } from 'src/utils/fetchApi';
 
 const TabContent = styled.div`
   box-shadow: inset -1px 18px 19px -13px var(--bg-secondary);
@@ -363,24 +363,14 @@ const DynamicMinerBlocksPage = dynamic<{
 export const MinerDashboardPage: React.FC<{
   address: string;
   coinTicker: string;
+  isLocated: boolean;
 }> = (props) => {
-  const { address, coinTicker } = props;
+  const { isLocated } = props;
   const { t } = useTranslation('dashboard');
-  const locateAddressState = useLocateAddress({ coinTicker, address });
-  /**
-   * Still loading
-   */
-  if (locateAddressState.isLoading) {
-    return (
-      <PageLoading>
-        <LoaderSpinner center />
-      </PageLoading>
-    );
-  }
 
   return (
     <>
-      {locateAddressState.data === null && (
+      {!isLocated && (
         <Content>
           <TopBannerContainer>
             <InfoBox variant="warning">
@@ -403,6 +393,8 @@ export const MinerDashboardPage: React.FC<{
 export default MinerDashboardPage;
 
 export async function getServerSideProps({ query, locale }) {
+  const { coin, address } = query;
+
   const checkSum = getChecksumByTicker(query.coin)(query.address);
 
   if (checkSum === null) {
@@ -414,6 +406,10 @@ export async function getServerSideProps({ query, locale }) {
     };
   }
 
+  const res = await fetchApi<string | null>('/miner/locateAddress', {
+    query: { address },
+  });
+
   return {
     props: {
       ...(await serverSideTranslations(locale, [
@@ -422,8 +418,9 @@ export async function getServerSideProps({ query, locale }) {
         'blocks',
         'cookie-consent',
       ])),
-      coinTicker: query.coin,
-      address: query.address,
+      coinTicker: coin,
+      address,
+      isLocated: res !== null,
     },
   };
 }

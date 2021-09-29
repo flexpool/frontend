@@ -7,7 +7,13 @@ module.exports = withPWA(
     pwa: {
       dest: 'public',
       sw: 'service-worker.js',
-      publicExcludes: ['!locales', '!unused-locales', '!og', '!illustrations', '!svg'],
+      publicExcludes: [
+        '!locales',
+        '!unused-locales',
+        '!og',
+        '!illustrations',
+        '!svg',
+      ],
     },
     pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
     webpack: (config) => {
@@ -50,6 +56,12 @@ module.exports = withPWA(
         {
           source: '/get-started/xch',
           destination: '/get-started',
+          permanent: true,
+        },
+        // Some users use legacy URL: /miner/eth/0x8df8u../stats
+        {
+          source: '/miner/:coin/:address/:tab',
+          destination: '/miner/:coin/:address',
           permanent: true,
         },
         // Old Redirects from CRA app
