@@ -9,9 +9,5 @@
       "presets": ["next/babel"]
     }
   },
-  "plugins": [
-    ["styled-components", { "ssr": true }],
-    ["inline-react-svg"],
-    ["superjson-next"]
-  ]
+  "plugins": [["styled-components", { "ssr": true }], ["superjson-next"]]
 }

@@ -4,11 +4,10 @@ import { Page } from '../src/components/layout/Page';
 import { NextSeo } from 'next-seo';
 import { useTranslation } from 'next-i18next';
 
-const StarsSvg = require('../src/pages/NotFound/assets/stars.svg') as string;
-const EarthSvg = require('../src/pages/NotFound/assets/earth.svg') as string;
-const MoonSvg = require('../src/pages/NotFound/assets/moon.svg') as string;
-const AstronautSvg =
-  require('../src/pages/NotFound/assets/astronaut.svg') as string;
+import StarsSvg from '../src/pages/NotFound/assets/stars.svg';
+import EarthSvg from '../src/pages/NotFound/assets/earth.svg';
+import MoonSvg from '../src/pages/NotFound/assets/moon.svg';
+import AstronautSvg from '../src/pages/NotFound/assets/astronaut.svg';
 
 const Wrapper = styled.div`
   background-image: linear-gradient(80deg, #0e418a 0%, #2b2749 100%);

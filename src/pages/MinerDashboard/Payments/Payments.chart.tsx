@@ -19,6 +19,7 @@ import {
   responsiveRule,
 } from 'src/components/Chart/ChartContainer';
 import { useTranslation } from 'next-i18next';
+import { groupDataItemSum } from '@/utils/amchart.utils';
 
 type ChartData = {
   fee: number;
@@ -53,10 +54,7 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
       paymentsAxis.renderer.grid.template.disabled = true;
       let dateAxis = paymentsChart.xAxes.push(new DateAxis());
       dateAxis.renderer.grid.template.location = 0;
-      dateAxis.baseInterval = {
-        timeUnit: 'day',
-        count: 1,
-      };
+      dateAxis.groupData = true;
 
       let feeSeries = paymentsChart.series.push(new ColumnSeries());
       feeSeries.stacked = true;
@@ -68,8 +66,10 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
       feeSeries.dataFields.valueY = 'fee';
       feeSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.0000")}`;
       feeSeries.strokeWidth = 3;
-      let paymentSeries = paymentsChart.series.push(new ColumnSeries());
+      feeSeries.adapter.add('groupDataItem', groupDataItemSum);
 
+      let paymentSeries = paymentsChart.series.push(new ColumnSeries());
+      paymentSeries.adapter.add('groupDataItem', groupDataItemSum);
       paymentSeries.dataFields.dateX = 'date';
       paymentSeries.name = `${t(
         'payments.chart.net_value'
