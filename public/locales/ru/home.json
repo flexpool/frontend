@@ -4,7 +4,7 @@
   "description": "Инновационный майнинг-пул, созданный для продвинутой добычи криптовалют.",
   "coin_earnings_cards": {
     "estimated": "Расчетная прибыль",
-    "estimated_tooltip": "Расчетные доходы основаны на результатах добычи за последние 7 дней на нашем пуле.",
+    "estimated_tooltip": "Estimated earnings are based on the past 24 hours on our pool (luck excluded).",
     "daily": "daily",
     "monthly": "monthly",
     "cta_mine": "Начать майнить",
@@ -73,25 +73,15 @@
     "title": "Why Flexpool",
     "item_1": {
       "title": "Lightning speed",
-      "description": "We use specialized high-performance server clusters powered by superfast software designed to handle over 100 TH/s."
+      "description": "We use worldwide high-performance server clusters powered by superfast software designed to handle a tremendous amount of miners concurrently mining on our pool."
     },
     "item_2": {
       "title": "Just Better",
-      "description": "You can forget your poor mining experience. Flexpool is backed by high-quality support, and we are always happy to help!"
+      "description": "You can forget your poor mining experience. Flexpool is backed by an expert team and excellent support that is always happy to help!"
     }
   },
   "get_started_section": {
     "title": "Ready to get started?",
     "cta": "Start Mining"
-  },
-  "chia": {
-    "email_submission_failure": "Failed to submit email",
-    "chia_comming_soon_text": "We are getting ready to launch our Chia pool. Stay tuned for more details. Sign up for email updates or join us below to become one of the first Chia miners on Flexpool!",
-    "chia_coming_soon": "Chia Coming Soon!",
-    "subscribe": "Subscribe!",
-    "subscribed": "Subscribed!"
-  },
-  "top_notification": {
-    "welcome": "Welcome to the new revamped Flexpool.io v2 Website! If you wish to visit old website, please use"
   }
 }

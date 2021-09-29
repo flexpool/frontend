@@ -7,6 +7,7 @@
   "detail": {
     "title": "{{coin}} 挖矿教程",
     "note": "Note:",
+    "invalid": "{{value}} is invalid",
     "wallet": {
       "title": "创建钱包地址",
       "desc_one": "支持以太币的交易所一般会提供钱包充值，例如 <binance>币安 （推荐链接）</binance>、火币网、<coinbase>Coinbase</coinbase> 等。",
@@ -91,7 +92,7 @@
     "hardware": [
       {
         "title": "显卡矿机",
-        "key": "显示卡",
+        "key": "GPU",
         "miners": [
           {
             "description": "AMD显卡推荐挖矿软件"

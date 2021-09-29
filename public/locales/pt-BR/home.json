@@ -4,7 +4,7 @@
   "description": "Pool de mineração inovadora criada para minerar criptomoedas modernas.",
   "coin_earnings_cards": {
     "estimated": "Ganhos estimados",
-    "estimated_tooltip": "Ganhos estimados são baseados no desempenho da mineração nos últimos 7 dias na nossa pool.",
+    "estimated_tooltip": "Estimated earnings are based on the past 24 hours on our pool (luck excluded).",
     "daily": "diariamente",
     "monthly": "mensalmente",
     "cta_mine": "Comece a minerar",
@@ -51,8 +51,8 @@
       "description": "O Ethereum é um computador mundial criado para suportar Aplicativos Descentralizados conhecidos como Contratos Inteligentes."
     },
     "xch": {
-      "title": "About Chia",
-      "description": "Chia is a programmable cryptocurrency focused on the eco-friendly way of securing the blockchain."
+      "title": "Sobre a Chia",
+      "description": "Chia é uma criptomoeda programável focada em uma maneira sustentável de segurança da blockchain."
     },
     "resources": "Recursos",
     "website": "Website",
@@ -83,15 +83,5 @@
   "get_started_section": {
     "title": "Pronto para começar?",
     "cta": "Comece a Minerar"
-  },
-  "chia": {
-    "email_submission_failure": "Erro ao enviar e-mail",
-    "chia_comming_soon_text": "Estamos nos preparando para lançar nossa pool de Chia. Fique ligado para mais detalhes. Inscreva-se para receber atualizações por e-mail ou junte-se a nós abaixo para se tornar um dos primeiros mineradores de Chia da Flexpool!",
-    "chia_coming_soon": "Chia Chegará em Breve!",
-    "subscribe": "Inscreva-se!",
-    "subscribed": "Inscrito!"
-  },
-  "top_notification": {
-    "welcome": "Bem-vindo à versão v2 do website da Flexpool.io! Caso deseja usar o antigo website, por favor acesse"
   }
 }

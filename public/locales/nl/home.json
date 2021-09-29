@@ -4,7 +4,7 @@
   "description": "Innovatieve mining pool gemaakt voor hedendaagse cryptocurrency mining.",
   "coin_earnings_cards": {
     "estimated": "Geschatte inkomsten",
-    "estimated_tooltip": "Geschatte inkomsten zijn gebaseerd op mining prestaties op onze pool van de laatste 7 dagen.",
+    "estimated_tooltip": "Estimated earnings are based on the past 24 hours on our pool (luck excluded).",
     "daily": "dagelijks",
     "monthly": "maandelijks",
     "cta_mine": "Begin met minen",
@@ -83,15 +83,5 @@
   "get_started_section": {
     "title": "Klaar om te beginnen?",
     "cta": "Begin met minen"
-  },
-  "chia": {
-    "email_submission_failure": "E-mailadres invoeren mislukt",
-    "chia_comming_soon_text": "We maken ons klaar om onze Chia pool te lanceren. Check regelmatig voor meer details. Schrijf je in voor email updates of sluit je hieronder aan om één van de eerste Chia miners op Flexpool te worden!",
-    "chia_coming_soon": "Chia komt eraan!",
-    "subscribe": "Abonneer je!",
-    "subscribed": "Geabonneerd!"
-  },
-  "top_notification": {
-    "welcome": "Welkom op de nieuwe, herwerkte Flexpool.io v2 website! Als je naar de oude website wilt, gebruik dan"
   }
 }

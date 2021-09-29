@@ -7,6 +7,7 @@
   "detail": {
     "title": "{{coin}} těžba",
     "note": "Note:",
+    "invalid": "{{value}} is invalid",
     "wallet": {
       "title": "Získej adresu svojí peněženky",
       "desc_one": "Nejjednodušší způsob, jak získat vlastní adresu peněženky, je zaregistrovat se na burze kryptoměn, jako je <binance>Binance (Ref)</binance> nebo <coinbase>Coinbase</coinbase>.",
@@ -259,7 +260,9 @@
     },
     "step_four": {
       "title": "Užij si výhody používání NiceHash!",
-      "description": ["Hurá! Úspěšně jsi zprovoznil NiceHash s Flexpoolem! "]
+      "description": [
+        "Hurá! Úspěšně jsi zprovoznil NiceHash s Flexpoolem! "
+      ]
     }
   }
 }

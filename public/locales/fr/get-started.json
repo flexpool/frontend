@@ -7,6 +7,7 @@
   "detail": {
     "title": "Minage de {{coin}}",
     "note": "Note:",
+    "invalid": "{{value}} is invalid",
     "wallet": {
       "title": "Obtenir l'adresse de votre portefeuille",
       "desc_one": "Le moyen le plus simple d'obtenir un portefeuille est de s'inscrire sur une bourse de crypto-monnaies comme <binance>Binance (Ref)</binance> ou <coinbase>Coinbase</coinbase>.",

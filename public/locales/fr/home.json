@@ -4,7 +4,7 @@
   "description": "Pool minier innovant créé pour l'exploitation moderne des crypto-monnaies.",
   "coin_earnings_cards": {
     "estimated": "Gains estimés",
-    "estimated_tooltip": "Les gains estimés sont calculés en fonction de la performance de l'exploitation minière des 7 derniers jours sur notre pool.",
+    "estimated_tooltip": "Estimated earnings are based on the past 24 hours on our pool (luck excluded).",
     "daily": "tous les jours",
     "monthly": "mensuellement",
     "cta_mine": "Commencez à miner",

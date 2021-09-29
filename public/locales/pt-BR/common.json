@@ -40,7 +40,7 @@
     "preferences": {
       "title": "Preferências"
     },
-    "bottom_message": "© 2020-{{currentYear}} Flexpool.io Technologies Inc., or its affiliates. All rights reserved.",
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io ou seus afiliados. Todos os direitos reservados.",
     "translation_help": "Ajude-nos a traduzir o site para o seu idioma"
   },
   "theme": {
@@ -72,8 +72,8 @@
     }
   },
   "faq": {
-    "questionsAboutFlexpool": "Questions About Flexpool",
+    "questionsAboutFlexpool": "Perguntas Sobre a Flexpool",
     "miningBasics": "Mining Basics"
   },
-  "noDataAvailable": "No data available"
+  "noDataAvailable": "Sem dados disponíveis"
 }

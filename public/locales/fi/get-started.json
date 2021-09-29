@@ -6,7 +6,8 @@
   },
   "detail": {
     "title": "{{coin}} louhinta",
-    "note": "Note:",
+    "note": "Huomio:",
+    "invalid": "{{value}} is invalid",
     "wallet": {
       "title": "Hanki lompakon osoite",
       "desc_one": "Helpoin tapa saada kryptovaluutalle säilityspaikka on rekisteröitymällä kryptovaluutan vaihtopalveluihin kuten <binance>Binance</binance> tai <coinbase>Coinbase</coinbase>.",
@@ -17,7 +18,7 @@
     "region": {
       "title": "Valitse alueesi",
       "description": "Saavuttaaksesi parhaan suorituskyvyn, sinun tulisi valita palvelin, jossa on pienin vasteaika sinun laitteeseesi tai tietokoneeseesi. Alla oleva taulukko näyttää viiveet palvelinten välillä. Mitä pienempi alla oleva vasteaika on, sitä parempi.",
-      "description_chia": "For the best performance and connection reliability, you should choose the region with the lowest latency to your farming hardware. This table is displaying latency between regional servers and this device.",
+      "description_chia": "Saavuttaaksesi parhaan suorituskyvyn ja yhteyden luotettavuuden, sinun tulisi valita palvelin, jossa on pienin vasteaika sinun laitteeseesi tai tietokoneeseesi. Alla oleva taulukko näyttää viiveet palvelinten välillä. Mitä pienempi alla oleva vasteaika on, sitä parempi.",
       "table_head": {
         "location": "Alueen nimi",
         "domain": "Päätepiste",
@@ -113,103 +114,103 @@
     ]
   },
   "detail_xch": {
-    "title": "Chia farming",
-    "title_cli": "Chia farming using CLI Farmer",
-    "title_gui": "Chia farming using GUI Farmer",
+    "title": "Chia farmaus",
+    "title_cli": "Chia farmaus käyttämällä CLI Farmeria",
+    "title_gui": "Chia farmaus käyttämällä GUI Farmeria",
     "pool_details": [
       {
-        "key": "Reward Scheme",
-        "value": "PPLNS (Pay Per Last N Shares)"
+        "key": "Palkkiojärjestelmä",
+        "value": "PPLNS (Maksu jokaista osuutta kohden)"
       },
       {
-        "key": "Pool Fee",
+        "key": "Poolin Kulut",
         "value": "0%"
       },
       {
-        "key": "Payout Round",
-        "value": "Once an hour"
+        "key": "Ulosmaksukierros",
+        "value": "Kerran tunnissa"
       },
       {
-        "key": "Payouts",
-        "value": "from 0.01 XCH to 10 XCH"
+        "key": "Ulosmaksut",
+        "value": "alkaen 0.01 XCH aina 10 XCH asti"
       },
       {
-        "key": "Block confirmation time",
-        "value": "60 Blocks"
+        "key": "Lohkon vahvistusaika",
+        "value": "60 Lohkoa"
       },
       {
-        "key": "Relative Lock Height",
+        "key": "Suhteellinen lukituksen kesto",
         "value": "100"
       },
       {
-        "key": "Mining Algorithm",
+        "key": "Louhinta-algoritmi",
         "value": "Chia PoST"
       }
     ],
-    "new_farmer": "New Farmer",
-    "already_farmer": "Already Farmer",
+    "new_farmer": "Uusi farmaaja",
+    "already_farmer": "Vanha farmaaja",
     "plotnft_create": {
-      "title": "Create your Plot NFT",
-      "title_join": "Create your Plot NFT and point it to Flexpool",
-      "desc_one": "Plot NFT is a smart contract that allows the creation of plots with a possible further change of the reward destination address, which is used for pool switching.",
-      "desc_two": "Flexpool is using the official pool protocol, which means that you will need to create Plot NFT in order to join the pool. Please, note that plots made without Plot NFT (sometimes referenced as OG plots) cannot be used with the Flexpool Chia pool. You can continue to farm them as a solo farmer, but you will need to create new plots pointed to the Plot NFT to contribute to the pool and get rewarded.",
-      "create_command": "You can create the Plot NFT using this command:",
-      "mojo_note": "You will need to have at least 1 mojo (the minimum XCH unit, one trillionth of XCH) to create the Plot NFT contract. If you don't have any funds on your account, please use <chiafaucet>Official XCH Faucet</chiafaucet> to get 100 mojos.",
-      "create_gui_action": "You can create the PlotNFT by clicking on the \"Add a Plot NFT\" button in the \"Pool\" section.",
-      "create_gui_action_two": "Type the Flexpool farming URL to \"Connect to Pool\" input, and confirm Plot NFT creation."
+      "title": "Luo Plot NFT",
+      "title_join": "Luo Plot NFT:si ja liitä se Flexpooliin",
+      "desc_one": "Plot NFT on älysopimus, joka mahdollistaa plottien teon niin, että osoite, jonne palkinnot maksetaan, voidaan muuttaa tulevaisuudessa.",
+      "desc_two": "Flexpool käyttää virallista pool-protokollaa, jonka takia sinun on luotava Plot NFT liittyäksesi pooliin. Huomioithan, että plotteja, jotka tehdään ilman Plot NFT:tä (kutsutaan OG ploteiksi) ei voi käyttää Flexpoolissa. Voit jatkaa niiden farmaamista soolona, mutta liittyäksesi pooliin sinun täytyy luoda uusia plotteja Plot NFT:n kanssa.",
+      "create_command": "Voit luoda Plot NFT:n tällä komennolla:",
+      "mojo_note": "Sinulla on oltava vähintään 1 mojo (pienin XCH:n yksikkö, yksi triljoonasosa XCH:sta) luodaksesi Plot NFT sopimuksen. Jos sinulla ei ole ollenkaan varoja, voit käyttää <chiafaucet>virallista XCH-hanaa</chiafaucet> saadaksesi 100 mojoa ilmaiseksi.",
+      "create_gui_action": "Voit luoda Plot NFT:n klikkaamalla \"Add a plot NFT\" painiketta \"Pool\" osiossa.",
+      "create_gui_action_two": "Kirjoita Flexpoolin farmausosoite \"Connect to Pool\" kenttään ja vahvista Plot NFT:n luonti."
     },
     "plotnft_join": {
-      "title": "Assign your Plot NFT to Flexpool",
-      "desc_one": "To switch to Flexpool, you will need to initiate the Plot NFT pool switch. This will change your Plot NFT state to <b>Leaving The Pool</b> for 30 minutes as a security precaution. After that, your Plot NFT will change the state to <b>Farming To Pool</b>, which means that the pool switching has completed successfully.",
-      "assign_command": "You can assign your Plot NFT to Flexpool by using this command:",
-      "assign_gui_action": "You can assign your Plot NFT to Flexpool by clicking on the \"Change Pool\" button, and entering the Flexpool pool URL.",
-      "assign_gui_action_two": "Type the Flexpool farming URL to \"Connect to Pool\" input, and confirm the Pool Switch.",
-      "time_note": "The process may take up to 45 minutes to fully complete. Please be patient."
+      "title": "Liitä Plot NFT:si Flexpooliin",
+      "desc_one": "Vaihtaaksesi Flexpooliin, sinun on tehtävä Plot NFT:n vaihto-operaatio. Tämä muuttaa Plot NFT:si tilan <b>poistutaan poolista</b> -tilaan 30 minuutiksi tietoturvasyistä. Sen jälkeen Plot NFT:si tila muuttuu <b>farmataan poolille</b> -tilaan, joka tarkoittaa, että poolin vaihtaminen on suoritettu onnistuneesti.",
+      "assign_command": "Voit liittää Plot NFT:si Flexpooliin seuraavalla komennolla:",
+      "assign_gui_action": "Voit liittää Plot NFT:si Flexpooliin klikkaamalla \"Change Pool\" painiketta ja syöttämällä Flexpoolin osoitteen.",
+      "assign_gui_action_two": "Kirjoita Flexpoolin farmausosoite \"Connect to Pool\" kenttään ja vahvista poolin vaihto.",
+      "time_note": "Prosessin valmistumisessa voi kestää 45 minuuttia. Olethan kärsivällinen."
     },
     "plotnft_show": {
-      "title": "Get Plotting and Payout addresses",
-      "desc": "To create plots, you will need to grab the Plotting address, known as P2 Singleton Address. This address is later passed to plotter to create plots bound to your Plot NFT.",
-      "show_command": "To show the PlotNFT details including the required addresses, execute this command:",
-      "grab_addresses": "You will need to grab the following addresses:",
-      "plotting_address": "The address you will use for plotting.",
-      "payout_address": "The address the funds will be paid to. All your statistics will be associated with this wallet address."
+      "title": "Hanki plottaus- ja maksuosoitteet",
+      "desc": "Luodaksesi plotteja, tarvitset plottausosoitteen, jota kutsutaan myös P2 Singleton -osoitteeksi. Tämä osoite syötetään plotterille, jotta voit luoda Plot NFT:hesi liitettyjä plotteja.",
+      "show_command": "Nähdäksesi Plot NFT:n tietoja kuten vaaditut osoitteet, käytä seuraavaa komentoa:",
+      "grab_addresses": "Tarvitset seuraavat osoitteet:",
+      "plotting_address": "Osoite, jota käytät plottaukseen.",
+      "payout_address": "Osoite, jonne palkinnot maksetaan. Kaikki tilastosi ovat kytköksissä tähän lompakon osoitteeseen."
     },
     "plotters": {
-      "standard_plotter": "Standard Plotter",
-      "madmax_plotter": "madMAx Plotter"
+      "standard_plotter": "Oletus Plotteri",
+      "madmax_plotter": "madMAX Plotteri"
     },
     "create_plots": {
-      "title": "Create plots",
+      "title": "Luo plotteja",
       "standard": {
-        "desc": "In this section, we will show you how to use standard Chia plotter with your newly-created PlotNFT.",
-        "create_plots_command": "To create plots, do:"
+        "desc": "Tässä osiossa neuvomme Oletus Chia Plotterin käytössä uuden Plot NFT:si kanssa.",
+        "create_plots_command": "Voit luoda plotteja komennolla:"
       },
       "madmax": {
-        "desc": "In this section, we will show you how to use fast <plotter>chia-plotter</plotter> by <madmax>madMAx43v3r</madmax> with your newly-created PlotNFT.",
-        "install_dependencies_command": "Install plotter dependencies (command may vary across different distributions; example is shown for Ubuntu and Debian-like Distributions):",
-        "build_and_install_command": "Build and install the plotter by executing the following commands:",
-        "instructions_note": "Instructions for all platforms are available on <github>chia-plotter GitHub Repository</github>.",
-        "cmake_version_notice": "The build requires the minimum CMake version of 3.14. In older distributions like Ubuntu 18.04, you will be required to install the newer CMake manually.",
-        "create_plots_command": "Now, you can make some plots by doing:"
+        "desc": "Tässä osiossa neuvomme kuinka käytät nopeaa <plotter>chia-plotteria</plotter>, jonka on tehnyt <madmax>madMAx43v3r</madmax>, uuden Plot NFT:si kanssa.",
+        "install_dependencies_command": "Asenna plotterin riippuvuudet (komento voi vaihdella eri alustojen kanssa; esimerkki on Ubuntulle ja Debian-tyyppisille jakeluille):",
+        "build_and_install_command": "Rakenna ja asenna plotteri käyttämällä seuraavia komentoja:",
+        "instructions_note": "Ohjeet kaikille eri alustoille ovat saatavilla <github>chia-plotter GitHub-repositoryssä</github>.",
+        "cmake_version_notice": "Vaatii vähintään CMake version 3.14. Vanhemmissa jakeluissa kuten Ubuntu 18.04, sinun on asennettava uudempi CMake manuaalisesti.",
+        "create_plots_command": "Nyt voit luoda plotteja komennolla:"
       }
     },
     "monitor_farm": {
-      "title": "Monitor your farm in Flexpool.io Dashboard",
-      "desc": "To monitor the statistics of your farm, you should enter your Pool Payout Instructions wallet address that you have gathered from the Step #3 to the address search bar on our Home page.",
-      "desc_gui": "To monitor the statistics of your farm, you should enter your Payout Address that you have gathered from Step #2 into the address search bar on our Home page."
+      "title": "Tarkkaile farmiasi Flexpool.io:n Ohjausnäkymässä",
+      "desc": "Tarkkaillaksesi farmisi tilastoja, syötä kohdassa #3 hankkimasi maksuosoite sivustomme hakupalkkiin, jonka löydät etusivulta.",
+      "desc_gui": "Tarkkaillaksesi farmisi tilastoja, syötä kohdassa #2 hankkimasi maksuosoite sivustomme hakupalkkiin, jonka löydät etusivulta."
     },
     "gather_payout_address_gui": {
-      "title": "Gather your payout address",
-      "desc": "This address is your farm identifier on Flexpool. All payouts you receive will be targeted on that address, and you can monitor statistics by it on the Flexpool.io website.",
-      "not_found_note": "If the Payout Instructions address is missing, please find it in the Wallets tab. If you can't find it there either, please use <b>chia plotnft show</b> CLI command in order to get the Payout Instructions Address."
+      "title": "Löydä maksuosoitteesi",
+      "desc": "Tämä osoite on farmisi tunnisteena Flexpoolissa. Kaikki ulosmaksut maksetaan tähän osoitteeseen ja voit tarkkailla tilastojasi sen avulla Flexpool.io:n verkkosivuilla.",
+      "not_found_note": "Jos maksuosoite puuttuu, löydät sen Wallets-välilehdeltä. Jos et löydä sitä sieltäkään, käytä <b>chia plotnft show</b> komentoa komentorivillä saadaksesi osoitteen."
     },
     "hardware": [
       {
-        "title": "Chia Farmer (CLI)",
+        "title": "Chia Farmer (komentorivi)",
         "key": "XCH-CLI"
       },
       {
-        "title": "Chia Farmer (GUI)",
+        "title": "Chia Farmer (Graafinen käyttöliittymä)",
         "key": "XCH-GUI"
       },
       {
@@ -234,33 +235,33 @@
     "WORKER_NAME": "WORKER_NAME"
   },
   "nicehash": {
-    "head_title": "NiceHash guide for mining on Flexpool",
-    "title": "NiceHash guide for mining on Flexpool",
-    "description": "NiceHash is the world's largest hashrate marketplace where anyone can rent as much hashrate as needed. This guide is about how you can start renting hashpower on Flexpool using NiceHash.",
+    "head_title": "NiceHash-ohje louhintaan Flexpoolissa",
+    "title": "NiceHash-ohje louhintaan Flexpoolissa",
+    "description": "NiceHash on maailman suurin hashraten myyntipaikka, jossa kuka vain voi vuokrata hashratea käyttöönsä niin paljon kuin haluaa. Tässä ohjeessa neuvomme kuinka vuokraat hashpoweria NiceHashista ja louhit sillä Flexpoolissa.",
     "step_one": {
-      "title": "Open your hashrate marketplace dashboard",
+      "title": "Avaa hashrate-kauppapaikan ohjausnäkymä",
       "description": [
-        "Once you've registered on NiceHash and activated the Hashrate Marketplace account, you can head to your rental dashboard and choose the {{algorithm}} mining algorithm.",
-        "After that, you would be able to see this window, where you should click \"Add new pool...\""
+        "Kun olet rekisteröitynyt NiceHashiin ja aktivoinut käyttäjätilisi, voit siirtyä ohjausnäkymään ja valita {{algorithm}} algoritmin.",
+        "Sen jälkeen näet tämän ikkunan, jossa klikkaat \"Add new pool...\""
       ]
     },
     "step_two": {
-      "title": "Fill in Flexpool's pool settings and your wallet address",
+      "title": "Syötä Flexpoolin asetukset ja lompakkosi osoite",
       "description": [
-        "Good, now you need to fill the pool settings. In the Stratum hostname or IP, you should select server based on your market choice (e.g. German server for European market). Check the list below. As a port,  high-difficulty port <strong>14444</strong> is available for NiceHash rental.",
-        "Specify your wallet address as the username. Use \"x\" as a password."
+        "Hyvä, nyt sinun täytyy täyttää poolin asetukset. Stratum hostname tai IP -kohtaan sinun pitäisi valita palvelin alueen mukaisesti (esim. saksalainen palvelin Euroopan markkinoilla). Katso lista alhaalta. Portiksi korkean vaikeusasteen portti <strong>14444</strong> on varattuna NiceHashin vuokrauksille.",
+        "Syötä lompakkosi osoite käyttäjänimeksi. Syötä \"x\" salasanaksi."
       ]
     },
     "step_three": {
-      "title": "Test the pool configuration",
+      "title": "Testaa poolin konfiguraatio",
       "description": [
-        "Now you can click on Test Pool and check if everything is working properly."
+        "Nyt voit klikata \"Test Pool\" ja varmistaa, että kaikki toimii."
       ]
     },
     "step_four": {
-      "title": "Enjoy the benefits of Flexpool while using NiceHash!",
+      "title": "Nauti Flexpoolin eduista käyttäessäsi NiceHashia!",
       "description": [
-        "Hooray! You've got the NiceHash working with Flexpool, which means now you can use the best mining pool with the best hashpower marketplace! "
+        "Hurraa! Olet saanut NiceHashin toimimaan Flexpoolissa, joka tarkoittaa sitä, että käytät parasta louhintapoolia parhaan hashraten ostopaikan kanssa! "
       ]
     }
   }
