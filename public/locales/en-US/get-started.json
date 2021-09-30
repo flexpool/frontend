@@ -182,7 +182,8 @@
     "sg": "Singapore",
     "au": "Australia",
     "br": "Brazil",
-    "kr": "South Korea"
+    "kr": "South Korea",
+    "hk": "Hong Kong"
   },
   "cmd_keys": {
     "CLOSEST_SERVER": "CLOSEST_SERVER",
