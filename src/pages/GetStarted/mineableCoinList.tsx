@@ -94,6 +94,11 @@ export const mineableCoins: MineableCoin[] = [
         code: 'kr',
         imageCode: 'kr',
       },
+      {
+        domain: 'eth-hk.flexpool.io',
+        code: 'hk',
+        imageCode: 'hk',
+      },
     ],
     hardware: [
       {
@@ -108,8 +113,7 @@ export const mineableCoins: MineableCoin[] = [
             fee: [0.75, 1],
             compatibleGpus: ['AMD'],
             downloadLink: 'https://github.com/todxx/teamredminer/releases',
-            cmd:
-              'teamredminer.exe -a ethash -o stratum+ssl://CLOSEST_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME -o stratum+ssl://BACKUP_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME -p x --eth_stratum ethproxy',
+            cmd: 'teamredminer.exe -a ethash -o stratum+ssl://CLOSEST_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME -o stratum+ssl://BACKUP_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME -p x --eth_stratum ethproxy',
           },
           {
             os: ['windows', 'linux', 'hiveos'],
@@ -119,8 +123,7 @@ export const mineableCoins: MineableCoin[] = [
             fee: [1],
             compatibleGpus: ['NVIDIA'],
             downloadLink: 'https://trex-miner.com/',
-            cmd:
-              't-rex.exe -a ethash -o stratum+ssl://CLOSEST_SERVER:5555 -o stratum+ssl://BACKUP_SERVER:5555 -u WALLET_ADDRESS -p x -w WORKER_NAME',
+            cmd: 't-rex.exe -a ethash -o stratum+ssl://CLOSEST_SERVER:5555 -o stratum+ssl://BACKUP_SERVER:5555 -u WALLET_ADDRESS -p x -w WORKER_NAME',
           },
           {
             os: ['windows', 'linux', 'hiveos'],
@@ -131,8 +134,7 @@ export const mineableCoins: MineableCoin[] = [
             compatibleGpus: ['AMD', 'NVIDIA'],
             downloadLink:
               'https://github.com/Lolliedieb/lolMiner-releases/releases',
-            cmd:
-              'lolMiner.exe --algo ETHASH --pool stratum+ssl://CLOSEST_SERVER:5555 --user WALLET_ADDRESS.WORKER_NAME  --pool stratum+ssl://BACKUP_SERVER:5555 --user WALLET_ADDRESS.WORKER_NAME',
+            cmd: 'lolMiner.exe --algo ETHASH --pool stratum+ssl://CLOSEST_SERVER:5555 --user WALLET_ADDRESS.WORKER_NAME  --pool stratum+ssl://BACKUP_SERVER:5555 --user WALLET_ADDRESS.WORKER_NAME',
           },
           {
             os: ['windows', 'linux', 'hiveos'],
@@ -142,8 +144,7 @@ export const mineableCoins: MineableCoin[] = [
             fee: [0.65],
             compatibleGpus: ['AMD', 'NVIDIA'],
             downloadLink: 'https://phoenixminer.info/downloads/',
-            cmd:
-              'PhoenixMiner.exe -pool ssl://CLOSEST_SERVER:5555 -pool2 ssl://BACKUP_SERVER:5555 -wal WALLET_ADDRESS.WORKER_NAME',
+            cmd: 'PhoenixMiner.exe -pool ssl://CLOSEST_SERVER:5555 -pool2 ssl://BACKUP_SERVER:5555 -wal WALLET_ADDRESS.WORKER_NAME',
           },
           {
             os: ['windows', 'linux', 'hiveos'],
@@ -155,8 +156,7 @@ export const mineableCoins: MineableCoin[] = [
             fee: [0.65],
             downloadLink:
               'https://github.com/develsoftware/GMinerRelease/releases',
-            cmd:
-              'miner.exe -a eth --ssl 1 -s CLOSEST_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME --ssl 1 -s BACKUP_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME',
+            cmd: 'miner.exe -a eth --ssl 1 -s CLOSEST_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME --ssl 1 -s BACKUP_SERVER:5555 -u WALLET_ADDRESS.WORKER_NAME',
           },
         ],
       },
