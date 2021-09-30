@@ -28,6 +28,7 @@ import {
   MEDIUM_LINK,
   REDDIT_LINK,
   TELEGRAM_LINK,
+  TELEGRAM_LINK_CN,
   TWITTER_LINK,
 } from 'src/constants';
 
@@ -169,6 +170,7 @@ export const FooterSection = () => {
             <LinkOut href={DISCORD_LINK}>Discord</LinkOut>
             <LinkOut href={REDDIT_LINK}>Reddit</LinkOut>
             <LinkOut href={TELEGRAM_LINK}>Telegram</LinkOut>
+            <LinkOut href={TELEGRAM_LINK_CN}>Telegram (中文)</LinkOut>
           </Section>
           <Section>
             <FSectionTitle>{t('footer.contact.title')}</FSectionTitle>
