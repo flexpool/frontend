@@ -58,10 +58,25 @@ module.exports = withPWA(
           destination: '/get-started',
           permanent: true,
         },
-        // Some users use legacy URL: /miner/eth/0x8df8u../stats
+        // Redirect legacy URL, eg. /miner/eth/0x8df8u../stats
         {
-          source: '/miner/:coin/:address/:tab',
-          destination: '/miner/:coin/:address',
+          source: '/miner/:coin/:address/stats',
+          destination: '/miner/:coin/:address#stats',
+          permanent: true,
+        },
+        {
+          source: '/miner/:coin/:address/payments',
+          destination: '/miner/:coin/:address#payments',
+          permanent: true,
+        },
+        {
+          source: '/miner/:coin/:address/rewards',
+          destination: '/miner/:coin/:address#rewards',
+          permanent: true,
+        },
+        {
+          source: '/miner/:coin/:address/blocks',
+          destination: '/miner/:coin/:address#blocks',
           permanent: true,
         },
         // Old Redirects from CRA app
