@@ -62,22 +62,22 @@ module.exports = withPWA(
         {
           source: '/miner/:coin/:address/stats',
           destination: '/miner/:coin/:address#stats',
-          permanent: true,
+          permanent: false,
         },
         {
           source: '/miner/:coin/:address/payments',
           destination: '/miner/:coin/:address#payments',
-          permanent: true,
+          permanent: false,
         },
         {
           source: '/miner/:coin/:address/rewards',
           destination: '/miner/:coin/:address#rewards',
-          permanent: true,
+          permanent: false,
         },
         {
           source: '/miner/:coin/:address/blocks',
           destination: '/miner/:coin/:address#blocks',
-          permanent: true,
+          permanent: false,
         },
         // Old Redirects from CRA app
         // {
