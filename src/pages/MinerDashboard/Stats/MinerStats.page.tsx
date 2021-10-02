@@ -58,7 +58,7 @@ export const MinerStatsPage: React.FC<{
     // just remove the worker
     // const { worker, ...restQuery } = qs.parse(window.location.search);
     router.push(
-      `/miner/${router.query.coin}/${router.query.address[0]}/`,
+      `/miner/${router.query.coin}/${router.query.address}/`,
       undefined,
       {
         shallow: true,
