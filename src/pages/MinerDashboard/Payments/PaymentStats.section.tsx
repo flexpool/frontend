@@ -63,6 +63,15 @@ export const GeneralPaymentStatsSection: React.FC<{
     // eslint-disable-next-line
   }, [coin?.ticker, address, couterTicker]);
 
+  const averageCtaTooltip: string[] = React.useMemo(() => {
+    const tooltips = t('payments.transaction_fees.average_cta_tooltip', {
+      returnObjects: true,
+    });
+
+    if (typeof tooltips === 'string') return []; // return value of t() could be translation key when unmount
+    return tooltips;
+  }, [t]);
+
   const data = {
     ...asyncState.data,
     stats:
@@ -207,11 +216,7 @@ export const GeneralPaymentStatsSection: React.FC<{
                 icon={<span>{t('payments.transaction_fees.average_cta')}</span>}
               >
                 <TooltipContent>
-                  {(
-                    t('payments.transaction_fees.average_cta_tooltip', {
-                      returnObjects: true,
-                    }) as string[]
-                  ).map((item) => (
+                  {averageCtaTooltip.map((item) => (
                     <p key={item}>{item}</p>
                   ))}
                 </TooltipContent>
