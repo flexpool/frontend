@@ -113,10 +113,11 @@ export const SupportPage = () => {
           <Trans
             ns={'support'}
             i18nKey="section_five.description" // optional -> fallbacks to defaults if not provided
-            values={{ email: 'hq@flexpool.io' }}
+            values={{ email: 'hq+business-inquiries-only@flexpool.io' }}
             components={{
               // eslint-disable-next-line
-              email: <a href="mailto:hq@flexpool.io" />,
+              email: <a href="mailto:hq+business-inquiries-only@flexpool.io" />,
+              bold: <strong />,
             }}
           />
         </p>
