@@ -25,7 +25,7 @@ const downloads = {
       bits: '64',
     },
     {
-      arch: 'arm32',
+      arch: 'arm',
       link: 'https://static.flexpool.io/dl/flexfarmer/flexfarmer-linux-arm-{{version}}.tar.gz',
       name: 'ARM x32 (RPi eg. Pi Zero)',
       bits: '32',
@@ -103,7 +103,7 @@ const downloads = {
       bits: '32',
     },
     {
-      arch: 'arm32',
+      arch: 'arm',
       link: 'https://static.flexpool.io/dl/flexfarmer/flexfarmer-windows-arm-{{version}}.zip',
       name: 'Windows ARM (32-bit)',
       bits: '32',
@@ -127,7 +127,7 @@ const downloads = {
       bits: '64',
     },
     {
-      arch: 'arm32',
+      arch: 'arm',
       link: 'https://static.flexpool.io/dl/flexfarmer/flexfarmer-freebsd-arm-{{version}}.tar.gz',
       name: 'FreeBSD arm (32-bit)',
       bits: '32',
@@ -151,7 +151,7 @@ const downloads = {
       bits: '64',
     },
     {
-      arch: 'arm32',
+      arch: 'arm',
       link: 'https://static.flexpool.io/dl/flexfarmer/flexfarmer-openbsd-arm-{{version}}.tar.gz',
       name: 'OpenBSD arm (32-bit)',
       bits: '32',
@@ -181,7 +181,7 @@ const downloads = {
       bits: '64',
     },
     {
-      arch: 'arm32',
+      arch: 'arm',
       link: 'https://static.flexpool.io/dl/flexfarmer/flexfarmer-netbsd-arm-{{version}}.tar.gz',
       name: 'NetBSD arm (32-bit)',
       bits: '32',
