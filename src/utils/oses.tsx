@@ -9,7 +9,7 @@ export const osList = {
   },
   macOS: {
     label: 'macOS',
-    logoURL: 'https://static.flexpool.io/assets/os/macOS.png',
+    logoURL: 'https://static.flexpool.io/assets/os/macos.png',
   },
   others: {
     label: 'Others',

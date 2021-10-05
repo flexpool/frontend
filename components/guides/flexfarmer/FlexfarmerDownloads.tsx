@@ -48,13 +48,13 @@ const downloads = {
   macOS: [
     {
       arch: 'amd64',
-      link: 'https://static.flexpool.io/dl/flexfarmer/flexfarmer-darwin-amd64-{{version}}.zip',
+      link: 'https://static.flexpool.io/dl/flexfarmer/flexfarmer-darwin-amd64-{{version}}.tar.gz',
       name: 'Intel',
       bits: '64',
     },
     {
       arch: 'arm64',
-      link: 'https://static.flexpool.io/dl/flexfarmer/flexfarmer-darwin-arm64-{{version}}.zip',
+      link: 'https://static.flexpool.io/dl/flexfarmer/flexfarmer-darwin-arm64-{{version}}.tar.gz',
       name: 'Apple Silicon',
       bits: '64',
     },
@@ -191,6 +191,12 @@ const downloads = {
       link: 'https://static.flexpool.io/dl/flexfarmer/flexfarmer-solaris-amd64-{{version}}.tar.gz',
       name: 'Solaris amd64',
       bits: '64',
+    },
+    {
+      arch: 'docker',
+      link: 'https://hub.docker.com/r/flexpool/flexfarmer',
+      name: 'Docker Image',
+      bits: '',
     },
   ],
 };

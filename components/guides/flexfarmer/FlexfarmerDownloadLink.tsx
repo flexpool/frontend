@@ -73,14 +73,12 @@ export const FlexfarmerDownloadLink: React.FC<{
   const { t } = useTranslation('guide-flexfarmer');
 
   React.useEffect(() => {
-    if (version === null) return;
+    if (version === null || info.arch === 'docker') return;
     checksumState.start(fetch(link + '.sha256')).then((res) => {
       if (res.status === 200) {
         res.text().then((text) => {
           setChecksum(text);
         });
-      } else {
-        setChecksum('N/A');
       }
 
       return res;
@@ -99,7 +97,7 @@ export const FlexfarmerDownloadLink: React.FC<{
       >
         {os !== 'others' && (
           <Img
-            src={`https://static.flexpool.io/assets/os/${os}.png`}
+            src={`https://static.flexpool.io/assets/os/${os.toLowerCase()}.png`}
             alt={`${osName} logo`}
           />
         )}
