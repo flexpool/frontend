@@ -14,7 +14,7 @@ const downloads = {
     },
     {
       arch: 'amd32',
-      link: 'https://static.flexpool.io/dl/flexfarmer/flexfarmer-linux-amd32-{{version}}.tar.gz',
+      link: 'https://static.flexpool.io/dl/flexfarmer/flexfarmer-linux-386-{{version}}.tar.gz',
       name: 'x86_32',
       bits: '32',
     },
