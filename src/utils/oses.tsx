@@ -7,7 +7,7 @@ export const osList = {
     label: 'Windows',
     logoURL: 'https://static.flexpool.io/assets/os/windows.png',
   },
-  macOS: {
+  darwin: {
     label: 'macOS',
     logoURL: 'https://static.flexpool.io/assets/os/macos.png',
   },

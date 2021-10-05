@@ -69,7 +69,6 @@ export const FlexfarmerDownloadLink: React.FC<{
 }> = ({ os, osName, info, version, link }) => {
   const checksumState = useAsyncState<Response>();
   const [checksum, setChecksum] = React.useState('N/A');
-  const router = useRouter();
   const { t } = useTranslation('guide-flexfarmer');
 
   React.useEffect(() => {
@@ -104,7 +103,7 @@ export const FlexfarmerDownloadLink: React.FC<{
           />
         ) : (
           <Img
-            src={`https://static.flexpool.io/assets/os/${os.toLowerCase()}.png`}
+            src={`https://static.flexpool.io/assets/os/${osName.toLowerCase()}.png`}
             alt={`${osName} logo`}
           />
         )}

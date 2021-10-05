@@ -13,7 +13,7 @@ const downloads = {
       bits: '64',
     },
     {
-      arch: 'amd32',
+      arch: '386',
       link: 'https://static.flexpool.io/dl/flexfarmer/flexfarmer-linux-386-{{version}}.tar.gz',
       name: 'x86_32',
       bits: '32',
@@ -27,7 +27,7 @@ const downloads = {
     {
       arch: 'arm',
       link: 'https://static.flexpool.io/dl/flexfarmer/flexfarmer-linux-arm-{{version}}.tar.gz',
-      name: 'ARM x32 (RPi eg. Pi Zero)',
+      name: 'ARM x32 (RPi)',
       bits: '32',
     },
   ],
@@ -39,13 +39,13 @@ const downloads = {
       bits: '64',
     },
     {
-      arch: 'amd32',
+      arch: '386',
       link: 'https://static.flexpool.io/dl/flexfarmer/flexfarmer-windows-386-{{version}}.zip',
       name: 'x32',
       bits: '32',
     },
   ],
-  macOS: [
+  darwin: [
     {
       arch: 'amd64',
       link: 'https://static.flexpool.io/dl/flexfarmer/flexfarmer-darwin-amd64-{{version}}.tar.gz',
@@ -241,19 +241,11 @@ export const FlexfarmerDownloads: React.FC<{
           })}
         </DownloadsList>
       ) : null}
-
-      {osSelection === 'others' && (
-        <>
-          Docker image is available at{' '}
-          <a
-            href="https://hub.docker.com/r/flexpool/flexfarmer"
-            target="__blank"
-          >
-            flexpool/flexfarmer
-          </a>
-          .
-        </>
-      )}
+      Docker image is available at{' '}
+      <a href="https://hub.docker.com/r/flexpool/flexfarmer" target="__blank">
+        flexpool/flexfarmer
+      </a>
+      .
     </>
   );
 };
