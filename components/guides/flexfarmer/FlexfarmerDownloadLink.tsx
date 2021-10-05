@@ -84,9 +84,8 @@ export const FlexfarmerDownloadLink: React.FC<{
   return (
     <FlexfarmerDownloadLinkWrapper>
       <FlexfarmerDownloadButton
-        onClick={() => {
-          router.push(link);
-        }}
+        as="a"
+        href={link}
         title={`${t('download')} FlexFarmer ${version} (${osName} ${
           info.name
         })`}
