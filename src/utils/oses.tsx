@@ -9,8 +9,7 @@ export const osList = {
   },
   macOS: {
     label: 'macOS',
-    logoURL:
-      'https://cdn2.iconfinder.com/data/icons/metro-uinvert-dock/256/OS_Apple.png',
+    logoURL: 'https://static.flexpool.io/assets/os/macOS.png',
   },
   others: {
     label: 'Others',
