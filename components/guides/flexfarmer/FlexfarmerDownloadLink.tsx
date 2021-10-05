@@ -8,7 +8,8 @@ import { Img } from 'src/components/Img';
 
 const FlexfarmerDownloadLinkWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 2.5fr;
+  justify-items: stretch;
   width: 100%;
   padding: 20px 0px;
   border-bottom: 1px solid var(--border-color);
