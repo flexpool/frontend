@@ -95,7 +95,14 @@ export const FlexfarmerDownloadLink: React.FC<{
           info.name
         })`}
       >
-        {os !== 'others' && (
+        {os === 'others' ? (
+          <Img
+            src={`https://static.flexpool.io/assets/os/${info.name
+              .split(' ')[0]
+              .toLowerCase()}.png`}
+            alt={`${osName} logo`}
+          />
+        ) : (
           <Img
             src={`https://static.flexpool.io/assets/os/${os.toLowerCase()}.png`}
             alt={`${osName} logo`}
@@ -106,7 +113,8 @@ export const FlexfarmerDownloadLink: React.FC<{
       <FlexfarmerDownloadInfoBox>
         <div>
           Version {version}{' '}
-          <span style={{ color: 'var(--text-tertiary)' }}>|</span> {os}/
+          <span style={{ color: 'var(--text-tertiary)' }}>|</span>{' '}
+          {os !== 'others' && `${os}/`}
           {info.arch}
         </div>
       </FlexfarmerDownloadInfoBox>
