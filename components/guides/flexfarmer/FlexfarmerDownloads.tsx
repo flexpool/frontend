@@ -192,12 +192,6 @@ const downloads = {
       name: 'Solaris amd64',
       bits: '64',
     },
-    {
-      arch: 'docker',
-      link: 'https://hub.docker.com/r/flexpool/flexfarmer',
-      name: 'Docker Image',
-      bits: '',
-    },
   ],
 };
 
@@ -229,20 +223,37 @@ export const FlexfarmerDownloads: React.FC<{
     }
   }, []);
 
-  return downloads[osSelection] ? (
-    <DownloadsList className="nostyled">
-      {downloads[osSelection].map((item) => {
-        return (
-          <FlexfarmerDownloadLink
-            os={osSelection}
-            osName={osList[osSelection].label}
-            info={item}
-            link={item.link.replace('{{version}}', version)}
-            version={version}
-            key={item.link}
-          />
-        );
-      })}
-    </DownloadsList>
-  ) : null;
+  return (
+    <>
+      {downloads[osSelection] ? (
+        <DownloadsList className="nostyled">
+          {downloads[osSelection].map((item) => {
+            return (
+              <FlexfarmerDownloadLink
+                os={osSelection}
+                osName={osList[osSelection].label}
+                info={item}
+                link={item.link.replace('{{version}}', version)}
+                version={version}
+                key={item.link}
+              />
+            );
+          })}
+        </DownloadsList>
+      ) : null}
+
+      {osSelection === 'others' && (
+        <>
+          Docker image is available at{' '}
+          <a
+            href="https://hub.docker.com/r/flexpool/flexfarmer"
+            target="__blank"
+          >
+            flexpool/flexfarmer
+          </a>
+          .
+        </>
+      )}
+    </>
+  );
 };
