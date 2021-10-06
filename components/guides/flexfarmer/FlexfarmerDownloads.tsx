@@ -3,6 +3,7 @@ import qs from 'query-string';
 import { FlexfarmerDownloadLink } from './FlexfarmerDownloadLink';
 import { osList } from 'src/utils/oses';
 import styled from 'styled-components';
+import useIsMounted from '@/hooks/useIsMounted';
 
 const downloads = {
   linux: [
@@ -205,6 +206,7 @@ export const FlexfarmerDownloads: React.FC<{
 }> = ({ version }) => {
   let search;
   const [osState, setOSState] = useState(new Date());
+  const isMounted = useIsMounted();
 
   const osSelection = React.useMemo(() => {
     if (typeof window !== 'undefined') {
@@ -212,7 +214,7 @@ export const FlexfarmerDownloads: React.FC<{
       search = window.location.search;
     }
     const parsedSearch = qs.parse(search);
-    return parsedSearch.os as string;
+    return (parsedSearch.os as string) || 'linux';
   }, [osState]);
 
   useEffect(() => {
@@ -222,6 +224,8 @@ export const FlexfarmerDownloads: React.FC<{
       });
     }
   }, []);
+
+  if (!isMounted) return null;
 
   return (
     <>
