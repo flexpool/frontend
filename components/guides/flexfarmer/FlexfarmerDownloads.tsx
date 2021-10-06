@@ -212,7 +212,7 @@ export const FlexfarmerDownloads: React.FC<{
       search = window.location.search;
     }
     const parsedSearch = qs.parse(search);
-    return (parsedSearch.os as string) || 'linux';
+    return parsedSearch.os as string;
   }, [osState]);
 
   useEffect(() => {

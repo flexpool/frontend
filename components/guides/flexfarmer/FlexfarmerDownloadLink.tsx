@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import { Button } from 'src/components/Button';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import styled from 'styled-components';
@@ -72,7 +71,7 @@ export const FlexfarmerDownloadLink: React.FC<{
   const { t } = useTranslation('guide-flexfarmer');
 
   React.useEffect(() => {
-    if (version === null || info.arch === 'docker') return;
+    if (version === null) return;
     checksumState.start(fetch(link + '.sha256')).then((res) => {
       if (res.status === 200) {
         res.text().then((text) => {
