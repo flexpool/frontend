@@ -174,7 +174,7 @@
       "title": "Hashrate",
       "title_space": "Space",
       "current": "Current Effective",
-      "average": "Average Effective",
+      "average": "24h Avg Effective",
       "reported": "Reported"
     },
     "shares": {
