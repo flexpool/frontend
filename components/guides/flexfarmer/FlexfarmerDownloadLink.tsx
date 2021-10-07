@@ -112,7 +112,9 @@ export const FlexfarmerDownloadLink: React.FC<{
         <div>
           Version {version}{' '}
           <span style={{ color: 'var(--text-tertiary)' }}>|</span>{' '}
-          {os !== 'others' && `${os}/`}
+          {os !== 'others'
+            ? `${os}/`
+            : `${info.name.split(' ')[0].toLowerCase()}/`}
           {info.arch}
         </div>
       </FlexfarmerDownloadInfoBox>
