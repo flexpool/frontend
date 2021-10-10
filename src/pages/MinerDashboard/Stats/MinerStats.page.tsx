@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import { Button } from 'src/components/Button';
 import { AverageEffectivePeriods } from './minerStats.types';
 import { useTranslation } from 'next-i18next';
+import ExitIcon from 'src/assets/exit-icon.svg';
 
 const WorkerTitle = styled.div`
   text-transform: uppercase;
@@ -58,7 +59,7 @@ export const MinerStatsPage: React.FC<{
     // just remove the worker
     // const { worker, ...restQuery } = qs.parse(window.location.search);
     router.push(
-      `/miner/${router.query.coin}/${router.query.address[0]}/`,
+      `/miner/${router.query.coin}/${router.query.address}/`,
       undefined,
       {
         shallow: true,
@@ -79,7 +80,7 @@ export const MinerStatsPage: React.FC<{
             </div>
             <div>
               <Button onClick={handleResetActiveWorker} size="sm">
-                {t('stats.active_worker.reset')}
+                <ExitIcon style={{ width: 20 }} />
               </Button>
             </div>
           </WorkerCard>

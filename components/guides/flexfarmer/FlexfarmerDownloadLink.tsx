@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import { Button } from 'src/components/Button';
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import styled from 'styled-components';
@@ -8,7 +7,8 @@ import { Img } from 'src/components/Img';
 
 const FlexfarmerDownloadLinkWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 2.5fr;
+  justify-items: stretch;
   width: 100%;
   padding: 20px 0px;
   border-bottom: 1px solid var(--border-color);
@@ -46,6 +46,12 @@ const FlexfarmerDownloadInfoBox = styled.div`
   text-align: center;
 `;
 
+const Checksum = styled.span`
+  display: inline-block;
+  color: var(--primary);
+  word-break: break-all;
+`;
+
 interface DownloadInfo {
   arch: string;
   link: string;
@@ -62,15 +68,17 @@ export const FlexfarmerDownloadLink: React.FC<{
 }> = ({ os, osName, info, version, link }) => {
   const checksumState = useAsyncState<Response>();
   const [checksum, setChecksum] = React.useState('N/A');
-  const router = useRouter();
   const { t } = useTranslation('guide-flexfarmer');
 
   React.useEffect(() => {
     if (version === null) return;
     checksumState.start(fetch(link + '.sha256')).then((res) => {
-      res.text().then((text) => {
-        setChecksum(text);
-      });
+      if (res.status === 200) {
+        res.text().then((text) => {
+          setChecksum(text);
+        });
+      }
+
       return res;
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -79,27 +87,40 @@ export const FlexfarmerDownloadLink: React.FC<{
   return (
     <FlexfarmerDownloadLinkWrapper>
       <FlexfarmerDownloadButton
-        onClick={() => {
-          router.push(link);
-        }}
-        title={`${t('download')} FlexFarmer ${version} (${osName} ${info.name})`}
+        as="a"
+        href={link}
+        title={`${t('download')} FlexFarmer ${version} (${osName} ${
+          info.name
+        })`}
       >
-        <Img
-          src={`https://static.flexpool.io/assets/os/${os}.png`}
-          alt={`${osName} logo`}
-        />
-        {osName} {info.name}
+        {os === 'others' ? (
+          <Img
+            src={`https://static.flexpool.io/assets/os/${info.name
+              .split(' ')[0]
+              .toLowerCase()}.png`}
+            alt={`${osName} logo`}
+          />
+        ) : (
+          <Img
+            src={`https://static.flexpool.io/assets/os/${osName.toLowerCase()}.png`}
+            alt={`${osName} logo`}
+          />
+        )}
+        {os !== 'others' && `${osName}`} {info.name}
       </FlexfarmerDownloadButton>
       <FlexfarmerDownloadInfoBox>
         <div>
-          Version {version} <span style={{ color: 'var(--text-tertiary)' }}>|</span> {os}/
+          Version {version}{' '}
+          <span style={{ color: 'var(--text-tertiary)' }}>|</span>{' '}
+          {os !== 'others'
+            ? `${os}/`
+            : `${info.name.split(' ')[0].toLowerCase()}/`}
           {info.arch}
         </div>
       </FlexfarmerDownloadInfoBox>
       <FlexfarmerDownloadInfoBox>
-        <div>
-          SHA-256 Checksum: <span style={{ color: 'var(--primary)' }}>{checksum}</span>
-        </div>
+        <span>SHA-256 Checksum:</span>
+        <Checksum>{checksum}</Checksum>
       </FlexfarmerDownloadInfoBox>
     </FlexfarmerDownloadLinkWrapper>
   );
