@@ -9,8 +9,8 @@
     "high_fees_warning": "Limites de pagamentos abaixo de 0,05 ETH resultarão em altas taxas de transferência, elas serão deduzidas do seu pagamento. Por favor, defina um limite de pagamento mais alto, se possível.",
     "payout": {
       "title": "Configuração de Pagamento",
-      "limit": "Limite de pagamento (min: {{min}})",
-      "limit_desc": "Você só será pago depois que o seu saldo não pago chegar em {{value}}.",
+      "limit": "Payout threshold (min: {{min}})",
+      "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}. Your entire unpaid balance will be paid out, not just your threshold amount.",
       "limit_err_higher": "Deve ser maior que {{min}}",
       "gas_limit": "Limite de preço do gás",
       "gas_limit_desc": "O preço do gás da sua transação será limitado a {{value}} {{valueUnit}} ({{valueTicker}}, {delimiter} do limite de pagamento). Você não receberá nenhum pagamento se o preço do gás for mais alto.",
@@ -45,7 +45,7 @@
     "greet_desc_3": "",
     "greet_desc_4": "",
     "greet_desc_5": "",
-    "info_payout_limit": "Limite de Pagamento",
+    "info_payout_limit": "Payout Threshold",
     "info_gas_limit": "Limite do Valor do Gás",
     "info_gas_limit_none": "Nenhum",
     "info_gas_limit_detail": "{{percent}} do limite de pagamento.",
@@ -174,7 +174,7 @@
       "title": "Hashrate",
       "title_space": "Espaço",
       "current": "Atual",
-      "average": "Médio",
+      "average": "24h Avg Effective",
       "reported": "Reportado"
     },
     "shares": {
@@ -235,5 +235,7 @@
   },
   "status_pending_tooltip": "Aguardando confirmação da transação",
   "confirmation_duration_tooltip": "Confirmado em",
-  "confirmed_at_tooltip": "Confirmado na"
+  "confirmed_at_tooltip": "Confirmado na",
+  "warning_header": "It looks like your dashboard is not ready yet.",
+  "warning_description": "If you are new here, your dashboard will be ready within 20 minutes of your first submitted share to this address. Please check back a little later."
 }

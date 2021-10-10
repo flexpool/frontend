@@ -7,10 +7,10 @@
   "current_luck": "当前幸运值",
   "current_luck_tooltip": "下一个区块当前的幸运值，实时更新。",
   "network_hashrate": "全网算力",
-  "network_space": "Network Space",
+  "network_space": "网络空间",
   "network_difficulty": "全网难度",
   "network_difficulty_tooltip": "矿池挖出区块，平均需要多少运算次数。",
-  "network_difficulty_tooltip_points": "Average amount of how many points pool should produce to mine a block.",
+  "network_difficulty_tooltip_points": "矿池挖出区块，平均需要多少运算次数。",
   "table": {
     "title_zero": "无法获取矿池数据",
     "title": "Flexpool 总数已挖 {{count}} 个区块",
@@ -28,7 +28,7 @@
     "title_miner_4": "您个人挖过 {{count}} 个区块",
     "title_miner_5": "您个人挖过 {{count}} 个区块",
     "title_miner_plural": "您个人挖过 {{count}} 个区块",
-    "rewards_block_list_title": "Rewards Per Block",
+    "rewards_block_list_title": "每区块收益",
     "table_head": {
       "number": "区块高度",
       "type": "区块类型",
@@ -39,7 +39,7 @@
       "round_time": "运行时间",
       "hash": "矿工算力",
       "luck": "幸运值",
-      "share": "Share"
+      "share": "份额比"
     }
   },
   "type": {

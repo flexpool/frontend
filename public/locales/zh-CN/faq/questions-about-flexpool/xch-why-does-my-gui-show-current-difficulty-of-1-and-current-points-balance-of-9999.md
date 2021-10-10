@@ -1,10 +1,10 @@
 ---
-title: Why does my GUI show current difficulty of 1 and current points balance of 9999?
-coin: xch
+title: 为什么我的GUI显示当前难度为1，当前余额为9999？
+coin: XCH
 ---
 
-These are both normal for our pool.
+这对我们的游泳池来说都是正常的。
 
-Because of the way points and partials are handled on the back end, we use a static difficulty of 1. This enables more consistent estimated statistics, and does not adversely affect farmers' hard drives.
+由于在后端处理点和部分的方式，我们使用静态难度1。 这使得估计的统计数据更加一致，并且不会对矿工的硬盘造成负面影响。
 
-The points balance isn't used on our pool, so if you see 9999, that just says you have reached our pool successfully. The "Points Found in Last 24 Hours" number should equate to the numbers on our dashboard, and the "Points Successful in Last 24 Hours" number should be pretty close to the percentage of "Valid" points on the website.
+积分余额不用于我们的游泳池，因此如果您看到9999，则表示您已成功到达我们的游泳池。 “在过去24小时内找到的分数”数字应该与我们仪表板上的数字相等，“在过去24小时内成功获得的分数”数字应该非常接近网站上“有效”分数的百分比。

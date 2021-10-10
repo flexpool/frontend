@@ -1,6 +1,6 @@
 ---
-title: How long does it take for payouts to happen?
-coin: eth
+title: 多长时间打款？
+coin: ETH
 ---
 
-The payout process usually happens in a minute to an hour. This process is done automatically and no actions are required. If you have not received your payouts in 2-3 hours, please contact us.
+支付过程通常在一分钟到一小时内完成。 此过程自动完成，无需任何操作。 如果您在2-3小时内未收到付款，请与我们联系。

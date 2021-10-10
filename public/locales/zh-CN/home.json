@@ -4,14 +4,14 @@
   "description": "持续创新研发的加密货币采矿池。",
   "coin_earnings_cards": {
     "estimated": "预计收益",
-    "estimated_tooltip": "Estimated earnings are based on the past 24 hours on our pool (luck excluded).",
+    "estimated_tooltip": "预计收益按过往七天矿池收入计算。",
     "daily": "每日收益",
     "monthly": "每月收益",
     "cta_mine": "开始挖矿",
-    "cta_farm": "Start Farming",
+    "cta_farm": "开始挖矿",
     "pool_fee": "费率 {{value}} (PPLNS)",
     "mev": "额外加成 MEV（矿工可提取价值）{{value}} 收入",
-    "finder_reward": "{{value}} Block Finder Reward",
+    "finder_reward": "{{value}}区块查找器奖励",
     "more_title": "其他币种即將上線，敬請期待！",
     "more_description": "将来还会推出其他币种，加入社群留意最新公报。"
   },
@@ -51,8 +51,8 @@
       "description": "以太坊是一个以区块链为基础的公共平台，专用加密货币以太币。分布式的以太网络，支持多种去中心化应用，智能合约。"
     },
     "xch": {
-      "title": "About Chia",
-      "description": "Chia is a programmable cryptocurrency focused on the eco-friendly way of securing the blockchain."
+      "title": "关于 Chia",
+      "description": "Chia是一种可编程加密货币，专注于保护区块链的生态友好方式。"
     },
     "resources": "资源",
     "website": "官方网站",
