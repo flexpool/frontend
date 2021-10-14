@@ -492,6 +492,26 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
               </td>
             </tr>
             <tr>
+              <td>{t('detail.ports.tcp_port')} (HKE Only)</td>
+              <td>
+                <Sticker>8080</Sticker>
+                <Tooltip icon={<WarningIcon />}>
+                  <TooltipContent>
+                    <p>
+                      <Trans
+                        ns="get-started"
+                        i18nKey="detail.ports.tcp_port_tooltip"
+                        components={{
+                          more: <LinkText href="/faq#should-i-use-ssl" />,
+                          strong: <strong />,
+                        }}
+                      />
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </td>
+            </tr>
+            <tr>
               <td>{t('detail.ports.high_diff_port')}</td>
               <td>
                 <Sticker>14444</Sticker>{' '}
