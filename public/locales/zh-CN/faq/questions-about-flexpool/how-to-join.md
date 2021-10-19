@@ -1,5 +1,5 @@
 ---
-title: How to join Flexpool?
+title: 如何加入Flexpool?
 ---
 
-We have step-by-step instructions here: [Getting Started](/get-started)
+我们这里有一步一步的说明: [开始](/get-started)

@@ -1,10 +1,10 @@
 ---
-title: Why doesn't the pool show the exact space I have on my farm?
-coin: xch
+title: 为什么矿池没有显示我在矿池的准确空间？
+coin: XCH
 ---
 
-The Chia Network software, as of version 1.2.3 at least, does not report space to the pool. Therefore, we do not see your actual pooled space. The pool sees your number of partials submitted, and based on the Chia pooling guide's estimate of 10 points per plot per day, we estimate your space (and your share of the work, thus your share of the rewards) on your 24 hour point/partial count divided by 10.
+Chia网络软件（至少从1.2.3版开始）不向池报告空间。 因此，我们看不到您的实际池空间。 矿池可以看到您提交的部分数量，根据Chia池指南估计的每天每块地10分，我们根据您的24小时点/部分计数除以10来估计您的空间（以及您的工作份额，因此您的奖励份额）。
 
-Example: If you have 10 points per day for your farm, that is normal for having one plot on the pool, so we estimate 0.1 TB. If you have 15000 points per day, that is normal for having 1500 plots, so we estimate about 150 TB.
+示例：如果你的农场每天有10点积分，那么池中有一块地是正常的， 因此，我们估计为0.1 TB。 如果您每天有15000个点，这对于1500个绘图来说是正常的，因此我们估计大约有150 TB。
 
-If you use FlexFarmer software, it _does_ report your actual plot space, so Reported will have an accurate value. Your effective space is still calculated based on your points/partials though, so if you had 150TB reported but only submitted 5000 partials in 24 hours, we would estimate you at 500 plots or 50TB. As with Ethereum pools, you are paid based on your share of the work, not your amount of equipment, although normally they will be similar
+如果您使用FlexFarmer软件，它会报告您的实际绘图空间，因此报告的值将是准确的。 有效空间仍然是基于点/分计算的，因此如果 如果报告了150TB，但在24小时内仅提交了5000个部分，我们估计您将有500个地块或50TB。 与以太坊池一样，您的报酬基于您的工作份额，而不是您的收入 设备，尽管它们通常是相似的

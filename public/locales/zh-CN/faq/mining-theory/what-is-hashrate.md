@@ -1,26 +1,26 @@
 ---
-title: 'What is Hashrate?'
-level: beginner
+title: '什么是哈希率？'
+level: 初级
 ---
 
-Hashrate is a measure of the amount of Hashes your worker is processing per second - the higher your hashrate the more likely you are to find more Shares in a given amount of time.
+哈希率是你的计算机每秒处理的哈希量的度量——你的哈希率越高，你就越有可能在给定的时间内找到更多的哈希值。
 
-Hashrates are measured using SI (Metric International System of Units) prefixes:
+哈希率是用SI(国际公制单位) 前缀来测量的:
 
-| Unit | Description                                                                    |
-| ---- | ------------------------------------------------------------------------------ |
-| H/s  | Hashes per Second - Number of individual hashes each second                    |
-| KH/s | KiloHashes per Second - Thousands of hashes each second, equal to 1000 H/s     |
-| MH/s | MegaHashes per Second - Millions of hashes each second, equal to 1000 KH/s     |
-| GH/s | GigaHashes per Second - Billions of hashes each second, equal to 1000 MH/s     |
-| TH/s | TeraHashes per Second - Trillions of hashes each second, equal to 1000 GH/s    |
-| PH/s | PetaHashes per Second - Quadrillions of hashes each second, equal to 1000 TH/s |
-| ...  | And more                                                                       |
+| 单位   | 描述                           |
+| ---- | ---------------------------- |
+| H/s  | 每秒哈希数-每秒单个哈希数                |
+| KH/s | 每秒千哈希数——每秒千哈希数，等于1000 H/s    |
+| MH/s | 每秒百万哈希数——每秒百万哈希数，等于1000kh /s |
+| GH/s | 每秒百万哈希数——每秒百万哈希数，等于1000kh /s |
+| TH/s | 每秒百万哈希数——每秒百万哈希数，等于1000kh /s |
+| PH/s | 每秒百万哈希数——每秒百万哈希数，等于1000kh /s |
+| ...  | 以此类推                         |
 
-In your dashboard, you have three hashrates shown:
+在面板中，显示了三个哈希率:
 
-| Hashrate Type           | Description                                                                                                                                                               |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Effective               | The hashrate the pool thinks you have based on the amount of shares the pool is recieving from you, this can vary a lot over time due to Luck.                            |
-| Average \[Effective\] | The rolling 24 hour average of your Effective hashrate, this should be close to your Reported Hashrate                                                                    |
-| Reported                | The hashrate your mining software is reporting to the pool (this is not taken into account for calculating rewards but is shown for comparison to the Effective hashrate) |
+| 哈希值类型        | 描述                                            |
+| ------------ | --------------------------------------------- |
+| 有效           | 池根据从您处获得的共享数量认为您拥有的哈希率，由于运气的关系，这可能随时间变化很大。    |
+| 平均值 \[有效\] | 有效哈希率的24小时滚动平均值应该接近报告哈希率                      |
+| 上报           | 你的挖掘软件向池报告的哈希率(这在计算奖励时没有考虑在内，但在与有效哈希率比较时显示出来) |

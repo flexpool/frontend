@@ -1,5 +1,5 @@
 ---
-title: How can I cash out mined cryptocurrency?
+title: 我如何兑现挖出的加密货币?
 ---
 
-In your dashboard, you can see section with your unpaid balance. As mining happens in real-time, it would be silly to make transactions every time you receive any reward. That being said, the pool batches the transactions. You can see the payout limit on your dashboard, which essentially tells what balance you need to reach before the pool will send a transaction to you
+在您的控制面板中，您可以看到带有未支付余额的部分。 因为挖掘是实时发生的，所以在每次获得奖励时进行交易是很愚蠢的。 话虽如此，该池对交易进行批处理 您可以在仪表板上看到支付限制，它实际上告诉您在池向您发送事务之前需要达到的余额

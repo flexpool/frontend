@@ -1,76 +1,76 @@
 {
-  "head_title": "Farming with FlexFarmer",
-  "title": "Farming with FlexFarmer",
-  "description": "FlexFarmer aims to make farming Chia as easy as crypto mining through rewriting and optimizing the entire farming process in Golang replacing the standard harvester+farmer. It connects farmers to our hosted nodes over a blockchain bridge gateway which runs on powerful infrastructure hosted by us.",
+  "head_title": "在Flexpool挖矿",
+  "title": "在Flexpool挖矿",
+  "description": "Flexpool旨在通过重写和优化Golang的整个耕作过程，取代标准的收割机+农民，使耕作Chia像加密采矿一样简单。它通过区块链桥网关将农民连接到我们托管的节点，该网关运行在我们托管的强大基础设施上。",
   "requirements": {
-    "heading": "Requirements",
+    "heading": "要求",
     "list": [
       {
-        "text": "Hardware compatible with FlexFarmer: A modern computer running 64-bit Linux or Windows. Raspberry Pi is also supported."
+        "text": "与FlexFarmer兼容的硬件：运行64位Linux或Windows的现代计算机。树莓派也支持。"
       },
       {
-        "text": "At least 128MB available RAM."
+        "text": "至少128MB可用RAM。"
       },
       {
-        "text": "Initialized Plot NFT (Made via GUI or CLI)."
+        "text": "已初始化绘图NFT（通过GUI或CLI生成）。"
       },
       {
-        "text": "Plots bound to that Plot NFT."
+        "text": "绑定到该绘图NFT的绘图。"
       },
       {
-        "text": "PlotNFT joined to Flexpool (see getting started for instructions)."
+        "text": "PlotNFT已连接到Flexpool（有关说明，请参阅入门）。"
       }
     ]
   },
-  "download": "Download",
+  "download": "下载",
   "download_farmer": {
-    "heading": "Download FlexFarmer"
+    "heading": "下载FlexFarmer"
   },
   "select_os": {
-    "heading": "Select Your OS",
-    "button_text": "Download for"
+    "heading": "选择您的操作系统",
+    "button_text": "下载"
   },
   "farmer_secret_key": {
-    "heading": "Extract Farmer Secret Key",
+    "heading": "提取密钥",
     "extraction_methods": {
-      "browser": "In this Browser",
-      "local": "On your Machine"
+      "browser": "在此浏览器中",
+      "local": "在你的机器上"
     },
-    "description_extract": "To farm with FlexFarmer, you will need to extract your Farmer Secret Key from your primary mnemonic phrase. You can do it both locally on your machine, and in this browser.",
-    "description_mnemonic": "Enter your 24 word mnemonic phrase, and paste the secret key below.",
-    "input_label": "Farmer Secret Key",
-    "browser_security_notice": "<warning>Important Security Warning:</warning> Farmer secret key extraction is done locally in this Browser using JavaScript, and your mnemonic is never sent to our servers. To ensure the security of this procedure, please make sure that you are using a malware-free machine running without untrusted browser extensions. If you don't trust the browser, we strongly advise you to use the on-machine extraction method that utilizes the script bundled with the FlexFarmer download archive. We always recommend you to have a different mnemonic phrase for farming and storing funds. Flexpool is not responsible for the mnemonic phrase theft.",
-    "extractor_locked": "Accepted. Click on the lock to unlock the mnemonic entry",
-    "description_local_win": "To run the extraction script, ensure that you have installed Python from the <link>official Python download website</link>"
+    "description_extract": "要使用Flexpool进行挖矿，您需要从主要记忆短语中提取您的Farmer密钥。您既可以在本地计算机上执行此操作，也可以在此浏览器中执行此操作。",
+    "description_mnemonic": "输入24个单词的助记短语，然后将密钥粘贴到下面。",
+    "input_label": "挖矿密钥",
+    "browser_security_notice": "<warning>重要安全警告：</warning>Farmer密钥提取在此浏览器中使用JavaScript在本地完成，并且您的助记符永远不会发送到我们的服务器。为确保此过程的安全性，请确保您使用的是无恶意软件的计算机，运行时没有不受信任的浏览器扩展。如果您不信任浏览器，我们强烈建议您使用机器上提取方法，该方法利用与FlexFarmer下载存档捆绑的脚本。我们始终建议您在耕种和储存资金时使用不同的记忆短语。Flexpool不对记忆短语盗窃负责。",
+    "extractor_locked": "认可的。单击锁以解锁助记符条目",
+    "description_local_win": "要运行提取脚本，请确保您已从官方Python下载网站<link>安装了Python</link>"
   },
   "launcher_id": {
-    "heading": "Copy Launcher ID",
-    "description": "Your Launcher ID can be found in <command>chia plotnft show</command>, or in the GUI Pool Overview"
+    "heading": "复制启动ID",
+    "description": "您的启动器ID可以在<command>chia plotnft show</command>或GUI池概览中找到"
   },
   "worker_name": {
-    "heading": "Name your worker",
-    "description": "Select an arbitrary name for your FlexFarmer instance. This name will be used to identify a certain worker in the Flexpool dashboard.",
-    "input_label": "Worker Name"
+    "heading": "矿机定名",
+    "description": "为FlexFarmer实例选择任意名称。此名称将用于标识Flexpool仪表板中的某个工作人员。",
+    "input_label": "矿机名字"
   },
   "payout_address": {
-    "heading": "Specify your Payout Address",
-    "description": "Payout address is the wallet address where all your rewards (including the finder 0.25 XCH reward) will go. You will be able to view statistics on the Flexpool dashboard by entering this address.",
-    "input_label": "Payout Address"
+    "heading": "指定您的付款地址",
+    "description": "支付地址是您所有奖励（包括finder 0.25 XCH奖励）的钱包地址。通过输入此地址，您将能够在Flexpool仪表板上查看统计信息。",
+    "input_label": "您的钱包地址"
   },
   "plot_directories": {
-    "heading": "Specify where your plots are located",
-    "description": "You must tell FlexFarmer what plot directories it should use. Use the interactive directory selector below to configure them.",
-    "selected_dirs": "Selected Plot Directories: {{value}}",
-    "plot_dir": "Plot Directory #{{value}}"
+    "heading": "指定绘图的位置",
+    "description": "您必须告诉FlexFarmer它应该使用什么打印目录。使用下面的交互式目录选择器来配置它们。",
+    "selected_dirs": "所选打印目录：{value}",
+    "plot_dir": "打印目录#{{value}"
   },
   "config": {
-    "heading": "Configure FlexFarmer",
-    "description": "Create a new file named <config>config.yml</config>, and copy-paste the FlexFarmer configuration we have prefilled for you. Save it, and proceed to the next step.",
-    "license_note": "<b>IMPORTANT!</b> We have prefilled <b>license: true</b> to your FlexFarmer config, which agrees to the <license>FlexFarmer's software license</license> (the <b>\"License\"</b>) on your behalf. By using this config, you herein agree to the license."
+    "heading": "配置FlexFarmer",
+    "description": "创建一个名为<config>config.yml</config>的新文件，并复制粘贴我们为您预先填充的FlexFarmer配置。保存它，然后继续下一步。",
+    "license_note": "<b>重要</b> 我们已为您的FlexFarmer配置预先填写了<b>许可证：true</b>，该配置代表您同意FlexFarmer的软件许可证（<b>“许可证”</b>）。通过使用此配置，您在此同意许可。"
   },
   "run": {
-    "heading": "Run FlexFarmer",
-    "description": "After you have created the config file, you can run FlexFarmer by executing this command in the terminal:",
-    "description_windows": "After you have saved the config file as <file>config.yml</file> in the same directory where <file>flexfarmer.exe</file> is located, you can launch the <file>start</file> batch file (<file>start.bat</file>) to launch FlexFarmer."
+    "heading": "运行在FlexFarmer",
+    "description": "创建配置文件后，可以通过在终端中执行以下命令来运行FlexFarmer：",
+    "description_windows": "在<file>flexfarmer.exe</file>所在的同一目录中将配置文件保存为<file>config.yml</file>后，可以启动<file>start</file>批处理文件（<file>start.bat</file>）来启动flexfarmer。"
   }
 }
