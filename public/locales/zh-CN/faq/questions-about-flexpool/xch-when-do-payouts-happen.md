@@ -1,6 +1,6 @@
 ---
-title: When do payouts happen?
-coin: xch
+title: 什么时候支付？
+coin: XCH
 ---
 
-Payouts are hourly, and the results will appear on the Payments tab of your dashboard. Payouts are not at a specific minute of the hour, so you will usually not get paid out immediately when you reach your limit.
+每小时支付一次，结果将显示在仪表板的“支付”选项卡上。 支付不是在一个小时的某一分钟，所以当你达到限额时，你通常不会立即得到支付。

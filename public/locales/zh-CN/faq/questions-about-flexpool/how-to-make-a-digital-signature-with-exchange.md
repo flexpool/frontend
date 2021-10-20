@@ -1,5 +1,5 @@
 ---
-title: How can I make a Digital Signature with the Exchange wallet?
+title: 我如何对Exchange钱包进行数字签名?
 ---
 
-Unfortunately, there is no way to make a digital signature with the exchange since you are not the actual wallet owner.
+不幸的是，由于您不是钱包的实际所有者，因此无法与该交易所进行数字签名。

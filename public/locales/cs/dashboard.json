@@ -9,8 +9,8 @@
     "high_fees_warning": "A payout limit under 0.05 ETH will result in high gas fees that will be deducted from your payment. Please set up a higher payout limit if possible.",
     "payout": {
       "title": "Nastavení vyplácení",
-      "limit": "Limit vyplacení (min: {{min}})",
-      "limit_desc": "Vyplacení proběhne v okamžik, kdy zůstatek překročí {{value}}.",
+      "limit": "Payout threshold (min: {{min}})",
+      "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}. Your entire unpaid balance will be paid out, not just your threshold amount.",
       "limit_err_higher": "Musí být vyšší než {{min}}",
       "gas_limit": "Limit trans. poplatku",
       "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {delimiter} of payout limit). You will not receive any payouts if gas price is higher.",
@@ -45,7 +45,7 @@
     "greet_desc_3": "",
     "greet_desc_4": "",
     "greet_desc_5": "",
-    "info_payout_limit": "Limit vyplacení",
+    "info_payout_limit": "Payout Threshold",
     "info_gas_limit": "Limit transakčního poplatku",
     "info_gas_limit_none": "Žádný",
     "info_gas_limit_detail": "{{percent}} z hodnoty transakce.",
@@ -174,7 +174,7 @@
       "title": "Hashrate",
       "title_space": "Space",
       "current": "Aktuální efektivní",
-      "average": "Průměrný efektivní",
+      "average": "24h Avg Effective",
       "reported": "Nahlášený"
     },
     "shares": {
@@ -235,5 +235,7 @@
   },
   "status_pending_tooltip": "Awaiting transaction confirmation",
   "confirmation_duration_tooltip": "Confirmed in",
-  "confirmed_at_tooltip": "Confirmed at"
+  "confirmed_at_tooltip": "Confirmed at",
+  "warning_header": "It looks like your dashboard is not ready yet.",
+  "warning_description": "If you are new here, your dashboard will be ready within 20 minutes of your first submitted share to this address. Please check back a little later."
 }

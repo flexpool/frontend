@@ -9,8 +9,8 @@
     "high_fees_warning": "Jos ulosmaksurajasi on alle 0.05 ETH, gas-hinnasta tulee korkea ja se vähennetään maksustasi. Suosittelemme asettamaan korkeamman ulosmaksurajan.",
     "payout": {
       "title": "Ulosmaksun asetukset",
-      "limit": "Ulosmaksun raja (minimi: {{min}})",
-      "limit_desc": "Sinulle maksetaan sen jälkeen kun saldosi on {{value}}.",
+      "limit": "Payout threshold (min: {{min}})",
+      "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}. Your entire unpaid balance will be paid out, not just your threshold amount.",
       "limit_err_higher": "Täytyy olla suurempi kuin {{min}}",
       "gas_limit": "Gas-raja",
       "gas_limit_desc": "Transaktion Gas-hintasi olisi rajoitettu {{value}} {{valueUnit}} ({{valueTicker}}, {delimiter} ulosmaksun rajasta). Ulosmaksuja ei suoriteta jos Gas-hinta on suurempi.",
@@ -45,7 +45,7 @@
     "greet_desc_3": "",
     "greet_desc_4": "",
     "greet_desc_5": "",
-    "info_payout_limit": "Ulosmaksun raja",
+    "info_payout_limit": "Payout Threshold",
     "info_gas_limit": "Gas-hinnan raja",
     "info_gas_limit_none": "Ei mitään",
     "info_gas_limit_detail": "{{percent}} ulosmaksun rajasta.",
@@ -174,7 +174,7 @@
       "title": "Hashrate",
       "title_space": "Tila",
       "current": "Tällä hetkellä tuloksia tuottava",
-      "average": "Tuloksia tuottavan hashraten keskiarvo",
+      "average": "24h Avg Effective",
       "reported": "Raportoitu hashrate"
     },
     "shares": {
@@ -235,5 +235,7 @@
   },
   "status_pending_tooltip": "Odotetaan transaktion vahvistusta",
   "confirmation_duration_tooltip": "Vahvistettu ajassa",
-  "confirmed_at_tooltip": "Vahvistettu ajankohtana"
+  "confirmed_at_tooltip": "Vahvistettu ajankohtana",
+  "warning_header": "It looks like your dashboard is not ready yet.",
+  "warning_description": "If you are new here, your dashboard will be ready within 20 minutes of your first submitted share to this address. Please check back a little later."
 }
