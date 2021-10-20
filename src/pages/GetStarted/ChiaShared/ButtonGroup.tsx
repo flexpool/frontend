@@ -6,7 +6,8 @@ const ButtonGroupWrapper = styled.div`
   display: flex;
 
   button {
-    padding: 15px;
+    padding: 8px;
+    font-size: 0.85rem;
     color: var(--text-primary);
     font-weight: 600;
     position: relative;
@@ -31,13 +32,24 @@ const ButtonGroupWrapper = styled.div`
     border: 2px solid var(--border-color);
     border-left: 0px;
     background: var(--bg-primary);
+
+    @media (min-width: 640px) {
+      padding: 15px;
+      font-size: 1rem;
+    }
   }
 `;
 
 const OptionThumbnail = styled.img`
-  height: 2em;
-  width: 2em;
-  margin-right: 1em;
+  height: 1em;
+  width: 1em;
+  margin-right: 0.5em;
+
+  @media (min-width: 640px) {
+    height: 2em;
+    width: 2em;
+    margin-right: 1em;
+  }
 `;
 
 type ButtonGroupProps = {

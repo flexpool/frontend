@@ -9,8 +9,8 @@
     "high_fees_warning": "Вывод средств меньше 0,05 ETH будет обложена повышенной ценой за газ, который будет вычтан из суммы выплаты. Рекомендуется ставить минимальный порог выплаты выше 0,05 ETH.",
     "payout": {
       "title": "Настройки оплаты",
-      "limit": "Лимит выплат (минимум: {{min}})",
-      "limit_desc": "Вам оплатят только после того, как ваш невыплаченный баланс достигнет {{value}}.",
+      "limit": "Payout threshold (min: {{min}})",
+      "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}. Your entire unpaid balance will be paid out, not just your threshold amount.",
       "limit_err_higher": "Должно быть выше чем {{min}}",
       "gas_limit": "Gas price limit",
       "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {delimiter} of payout limit). You will not receive any payouts if gas price is higher.",
@@ -45,7 +45,7 @@
     "greet_desc_3": "",
     "greet_desc_4": "",
     "greet_desc_5": "",
-    "info_payout_limit": "Лимит выплаты",
+    "info_payout_limit": "Payout Threshold",
     "info_gas_limit": "Лимит цены на Gas",
     "info_gas_limit_none": "Пусто",
     "info_gas_limit_detail": "{{percent}} минимальной выплаты.",
@@ -174,7 +174,7 @@
       "title": "Hashrate",
       "title_space": "Space",
       "current": "Current Effective",
-      "average": "Average Effective",
+      "average": "24h Avg Effective",
       "reported": "Reported"
     },
     "shares": {
@@ -235,5 +235,7 @@
   },
   "status_pending_tooltip": "Ожидание подтверждения транзакции",
   "confirmation_duration_tooltip": "Подтверждено в",
-  "confirmed_at_tooltip": "Подтверждено на"
+  "confirmed_at_tooltip": "Подтверждено на",
+  "warning_header": "It looks like your dashboard is not ready yet.",
+  "warning_description": "If you are new here, your dashboard will be ready within 20 minutes of your first submitted share to this address. Please check back a little later."
 }

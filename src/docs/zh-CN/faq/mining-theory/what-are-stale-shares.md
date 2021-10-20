@@ -1,20 +1,20 @@
 ---
-title: What are Stale Shares? How they affect my profitability?
-level: beginner
+title: 什么是挖矿延迟? 它们如何影响我的盈利能力?
+level: 初级
 ---
 
-Stale shares are shares that were sent to the pool after they were expired. This directly affects your profitability, and it is recommended to keep them as low as possible.
+延迟的份额，是在过期后发送到池中的份额。 这直接影响到你的盈利能力，所以建议你尽可能保持低的延迟。
 
-Normal stale rate is the stale rate below 1%. Everything above in unacceptable unless you are located far away from the closest Flexpool region.
+正常延迟率是指过期率低于1%。 以上一切都是不可接受的，除非你的位置离最近的Flexpool地区很远。
 
-Tips for reducing the stale rate:
+减少延迟率的提示:
 
-* Use Ethernet instead of Wi-Fi.
-* Use Cable/Fiber connection (not mobile).
-* Make sure that you've disabled the Ethernet power save mode, if you have one enabled.
+* 用以太网代替Wi-Fi。
+* 使用电缆/光纤连接(不要松动)。
+* 如果启用了以太网省电模式，请确保已禁用该模式。
 
-Things that cause stale shares:
-* Latency between your worker and pool server
-* Poor miner software
-* Packet loss
-* Jitter
+导致矿币延时的原因:
+* 终端机和池服务器之间的延迟
+* 矿池服务器软件
+* 数据包丢失
+* 时间误差

@@ -9,8 +9,8 @@
     "high_fees_warning": "A payout limit under 0.05 ETH will result in high gas fees that will be deducted from your payment. Please set up a higher payout limit if possible.",
     "payout": {
       "title": "Uitbetalingsinstellingen",
-      "limit": "Uitbetalingslimiet (min: {{min}})",
-      "limit_desc": "Je wordt pas betaald wanneer je onbetaald saldo {{value}} bereikt.",
+      "limit": "Payout threshold (min: {{min}})",
+      "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}. Your entire unpaid balance will be paid out, not just your threshold amount.",
       "limit_err_higher": "Moet hoger zijn dan {{min}}",
       "gas_limit": "Prijslimiet gas",
       "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {delimiter} of payout limit). You will not receive any payouts if gas price is higher.",
@@ -45,7 +45,7 @@
     "greet_desc_3": "",
     "greet_desc_4": "",
     "greet_desc_5": "",
-    "info_payout_limit": "Uitbetalingslimiet",
+    "info_payout_limit": "Payout Threshold",
     "info_gas_limit": "Prijslimiet gas",
     "info_gas_limit_none": "Geen",
     "info_gas_limit_detail": "{{percent}} van uitbetalingslimiet.",
@@ -174,7 +174,7 @@
       "title": "Hashrate",
       "title_space": "Space",
       "current": "Huidig effectief",
-      "average": "Gemiddeld effectief",
+      "average": "24h Avg Effective",
       "reported": "Gerapporteerd"
     },
     "shares": {
@@ -235,5 +235,7 @@
   },
   "status_pending_tooltip": "Wachten op bevestiging transactie",
   "confirmation_duration_tooltip": "Bevestigd na",
-  "confirmed_at_tooltip": "Bevestigd om"
+  "confirmed_at_tooltip": "Bevestigd om",
+  "warning_header": "It looks like your dashboard is not ready yet.",
+  "warning_description": "If you are new here, your dashboard will be ready within 20 minutes of your first submitted share to this address. Please check back a little later."
 }

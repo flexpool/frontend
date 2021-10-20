@@ -9,8 +9,8 @@
     "high_fees_warning": "A payout limit under 0.05 ETH will result in high gas fees that will be deducted from your payment. Please set up a higher payout limit if possible.",
     "payout": {
       "title": "Paramètres de paiement",
-      "limit": "Limite de paiement (min: {{min}})",
-      "limit_desc": "Vous ne serez payé qu'après que votre solde impayé atteindra {{value}}.",
+      "limit": "Payout threshold (min: {{min}})",
+      "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}. Your entire unpaid balance will be paid out, not just your threshold amount.",
       "limit_err_higher": "Doit être supérieur à {{min}}",
       "gas_limit": "Frais du paiement",
       "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {delimiter} of payout limit). You will not receive any payouts if gas price is higher.",
@@ -45,7 +45,7 @@
     "greet_desc_3": "",
     "greet_desc_4": "",
     "greet_desc_5": "",
-    "info_payout_limit": "Limite de paiement",
+    "info_payout_limit": "Payout Threshold",
     "info_gas_limit": "Frais du paiement",
     "info_gas_limit_none": "Aucun",
     "info_gas_limit_detail": "{{percent}} de la limite de paiement.",
@@ -174,7 +174,7 @@
       "title": "Puissance de minage",
       "title_space": "Space",
       "current": "Efficacité actuelle",
-      "average": "Moyenne Effective",
+      "average": "24h Avg Effective",
       "reported": "Rapporté"
     },
     "shares": {
@@ -235,5 +235,7 @@
   },
   "status_pending_tooltip": "Awaiting transaction confirmation",
   "confirmation_duration_tooltip": "Confirmé dans",
-  "confirmed_at_tooltip": "Confirmé à"
+  "confirmed_at_tooltip": "Confirmé à",
+  "warning_header": "It looks like your dashboard is not ready yet.",
+  "warning_description": "If you are new here, your dashboard will be ready within 20 minutes of your first submitted share to this address. Please check back a little later."
 }

@@ -135,6 +135,16 @@ export const LinkText = (props: React.PropsWithChildren<LinkProps>) => {
   );
 };
 
+const WarningBox = styled.div`
+  font-size: 0.8rem;
+  border-radius: 8px;
+  padding: 0.5rem;
+  margin-left: -0.5rem;
+  background-color: var(--warning);
+  margin-top: 5px;
+  max-width: 200px;
+`;
+
 export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   data,
 }) => {
@@ -199,6 +209,13 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
           <Mono>
             <Ws>
               {data.domain} <CopyButton text={data.domain} />
+              {data.domain === 'eth-hke.flexpool.io' && (
+                <WarningBox>
+                  {t('detail.region.hke_warning_title')} <br />
+                  TCP: 8080 <br />
+                  SSL: 443
+                </WarningBox>
+              )}
             </Ws>
           </Mono>
         ),
@@ -444,7 +461,6 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
       <p className="mb-2">{t('detail.region.description')}</p>
       <DynamicList
         onRowClick={selectItem}
-        // renderRowTooltipContent={renderTooltipContent}
         config={colConfig}
         data={data}
         columns={cols}

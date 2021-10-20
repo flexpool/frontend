@@ -1,6 +1,6 @@
 ---
-title: How many Chia do I get for X TB of plots?
-coin: xch
+title: 对于X TB的地块，我可以得到多少Chia？
+coin: XCH
 ---
 
-There is an estimator on the front page of flexpool.io, and estimates are shown on your dashboard. These are estimates, not guarantees, and may change dramatically as pool luck and acreage change over time. Use them as a rule of thumb, not a commitment from the pool or the Chia blockchain.
+flexpool.io的首页上有一个图表，估算值显示在您的仪表板上。 这些只是估计，而不是保证，随着时间的推移，池运气和面积可能会发生巨大变化。 将其用作经验法则，而不是池或Chia区块链的承诺。

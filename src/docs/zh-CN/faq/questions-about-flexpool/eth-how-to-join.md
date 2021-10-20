@@ -1,6 +1,6 @@
 ---
-title: How to join Flexpool?
-coin: eth
+title: 如何在Flexpool进行挖矿？
+coin: ETH
 ---
 
-We have step-by-step instructions here: [Getting Started](/get-started)
+我们这里有一步一步的说明: [开始](/get-started)

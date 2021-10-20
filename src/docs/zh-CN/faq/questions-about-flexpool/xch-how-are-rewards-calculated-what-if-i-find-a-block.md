@@ -1,10 +1,10 @@
 ---
-title: How are rewards calculated? What if I find a block?
-coin: xch
+title: 如何计算奖励？ 如果我挖到一个块怎么办？
+coin: XCH
 ---
 
-We use the PPLNS (Pay Per Last N Shares) method, which takes your share of the most recent work submitted to the pool to determine your reward when the pool earns a reward. The current value of "N" is shown under "Share Log Wipeout Duration" on the dashboard under Reward, and at the time of this FAQ it is 500k shares.
+我们使用PPLNS（按最后N股支付）方法，该方法从提交给池的最新作品中获取您的份额，以确定当池获得奖励时您的奖励。 “N”的当前值显示在“奖励”下仪表板上的“共享日志清除持续时间”下，在本常见问题解答中为500k共享。
 
-So if you have submitted 5k of the last 500k shares when a block is found, you would get 1%, or .0175 XCH, as your reward.
+因此，如果你在发现区块时提交了最后500k股中的5k股，你将获得1%或.0175 XCH作为奖励。
 
-The farmer who "finds" a block for the pool is rewarded with 0.25 XCH "Farmer Reward" directly from the blockchain. This goes to your wallet automatically. The pool never touches that reward.
+矿池“找到”区块的矿工直接从区块链获得0.25 XCH“矿工奖励”。 这会自动进入你的钱包。 矿池不会拿取这些奖励。

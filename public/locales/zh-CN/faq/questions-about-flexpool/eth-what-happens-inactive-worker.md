@@ -1,6 +1,6 @@
 ---
-title: What happens if my worker is inactive?
-coin: eth
+title: 如果我的矿机处于非活动状态？
+coin: ETH
 ---
 
-Inactive workers fall off the dashboard after 24 hours. There's nothing you need to do to make this happen, other than not activate that worker name again.
+24小时后，非活跃矿机从仪表板上去除。 您无需执行任何操作即可实现此目的，只需不再激活该矿机。

@@ -1,35 +1,35 @@
 {
-  "head_title": "Brand assets",
+  "head_title": "品牌资源",
   "brand_name": {
-    "title": "Our brand name",
-    "description": "Our brand name is <b>Flexpool.io</b>. Words \"Flex\" and \"pool\" combined together with one capital F and the .io ending."
+    "title": "品牌介绍",
+    "description": "我们的品牌名称是<b>Flexpool.io</b>。单词“Flex”和“pool”用一个大写的F和io结尾组合在一起。"
   },
   "colors": {
-    "title": "Colors",
-    "accent": "Accent Color",
-    "blue": "Blue Color",
-    "green": "Green Color",
-    "yellow": "Yellow Color",
-    "red": "Red Color"
+    "title": "颜色",
+    "accent": "强调颜色",
+    "blue": "蓝色",
+    "green": "绿色",
+    "yellow": "换色",
+    "red": "红色"
   },
   "typo": {
-    "title": "Typography",
-    "description": "We use <font>{{fontName}}</font> across our website."
+    "title": "排版",
+    "description": "我们在网站上使用<font>{{fontName}}</font>。"
   },
   "guidelines": {
-    "title": "Branding Guidelines",
-    "description": "By using our Branding Assets, you must follow our branding guidelines:",
-    "item_one": "You are not allowed to alter the logo. This includes shape and color changes.",
-    "item_two": "You are not allowed to use Flexpool.io Brand to imply a relationship and/or an affiliation with any other business unless we have announced the partnership. Example: \"... in partnership with Flexpool.io.\"",
-    "item_three": "You are not allowed to use the Flexpool.io Branding in illegal and promotional context."
+    "title": "品牌参考",
+    "description": "通过使用我们的品牌资源，您必须遵循我们的品牌指南:",
+    "item_one": "您不允许更改标识。包括形状和颜色的变化。",
+    "item_two": "你不能使用Flexpool.io品牌暗示与任何其他业务有关系或合作关系，除非我们已宣布合作关系的。示例:“……与Flexpool.io合作。”",
+    "item_three": "你不能利用Flexpool.io品牌，使用在非法和传销等场所。"
   },
   "downloads": {
-    "title": "Downloads",
-    "description": "We have collected a package containing all types of Flexpool.io logos for both Light and Dark themes.",
-    "cta": "Download the Branding Pack"
+    "title": "下载",
+    "description": "我们已经收集了一个包含所有类型的Flexpool.io标志包，包括明亮和黑暗二个主题。",
+    "cta": "下载品牌推广包"
   },
   "legal": {
-    "title": "Legal Notices",
-    "description": "By using our Branding Assets, you agree with the Branding Guidelines and our <terms>Terms</terms>. If you need to get assistance about the usage of the Flexpool.io branding, you can contact us at <email>{{email}}</email>"
+    "title": "法律声明",
+    "description": "通过使用我们的品牌资源，即表示您同意品牌指导意见和我们的<terms> terms </terms>。如果您需要获得有关使用Flexpool.io品牌化的帮助，您可以通过<email>{{email}}</email>联系我们"
   }
 }

@@ -48,8 +48,8 @@ const FlexfarmerDownloadInfoBox = styled.div`
 
 const Checksum = styled.span`
   display: inline-block;
-  min-width: 590px;
   color: var(--primary);
+  word-break: break-all;
 `;
 
 interface DownloadInfo {
@@ -119,9 +119,8 @@ export const FlexfarmerDownloadLink: React.FC<{
         </div>
       </FlexfarmerDownloadInfoBox>
       <FlexfarmerDownloadInfoBox>
-        <div>
-          SHA-256 Checksum: <Checksum>{checksum}</Checksum>
-        </div>
+        <span>SHA-256 Checksum:</span>
+        <Checksum>{checksum}</Checksum>
       </FlexfarmerDownloadInfoBox>
     </FlexfarmerDownloadLinkWrapper>
   );
