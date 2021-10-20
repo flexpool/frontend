@@ -59,7 +59,7 @@
     "stat_unpaid_balance": "Unpaid Balance",
     "stat_unpaid_balance_reach": "<v>{{value}}</v> of the payout limit reached.",
     "stat_unpaid_balance_reach_est": "The limit will be reached <v>{{value}}</v>.",
-    "stat_unpaid_balance_reach_ok": "Your payout will be processed on the next hourly payment round if gas remains below your limit at that time.",
+    "stat_unpaid_balance_reach_ok": "Your payout will be processed on the next hourly payment round if fee preferences match.",
     "stat_unpaid_balance_reach_delayed_by_gas_limit": "However, your payout won't be processed because your gas price limit of <v>{{gasLimit}}</v> is lower than the current network gas price of <v>{{currentGas}}</v>.",
     "stat_estimate": "Estimated Earnings",
     "stat_estimate_daily": "daily",
