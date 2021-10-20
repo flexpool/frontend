@@ -1,5 +1,5 @@
 {
-  "proTip": "Pro Tip",
+  "proTip": "提示",
   "searchbar": {
     "placeholder": "输入钱包地址查看"
   },
@@ -40,7 +40,7 @@
     "preferences": {
       "title": "设置"
     },
-    "bottom_message": "© 2020-{{currentYear}} Flexpool.io Technologies Inc., or its affiliates. All rights reserved.",
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io 或附属机构。保留所有权利。",
     "translation_help": "帮我们翻译网页"
   },
   "theme": {
@@ -72,8 +72,8 @@
     }
   },
   "faq": {
-    "questionsAboutFlexpool": "Questions About Flexpool",
-    "miningBasics": "Mining Basics"
+    "questionsAboutFlexpool": "关于Flexpool的问题",
+    "miningBasics": "挖矿基础知识"
   },
-  "noDataAvailable": "No data available"
+  "noDataAvailable": "没有可用数据"
 }
