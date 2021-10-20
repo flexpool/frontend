@@ -1,14 +1,14 @@
 ---
-title: Sollte ich SSL verwenden?
+title: Should I use SSL?
 coin: eth
 ---
 
-**Ja**, verwenden Sie SSL, soweit dies möglich ist.
+**Yes**, use SSL where possible.
 
-Wir sind strikt dagegen, eine unverschlüsselte (TCP) Verbindung zu verwenden, während Sie unseren Pool benutzen. Diese Verbindung ist anfällig für MITM (Man-In-The-Middle) Angriffe was bedeutet, dass jemand böswillig zwischen deinem Arbeiter und Flexpool stehen könnte, um einen Teil deiner Gewinne zu stehlen.
+We are strongly against using unencrypted (TCP) connection while mining on our pool. This connection is vulnerable to MITM (Man-In-The-Middle) attacks, which means that if someone will maliciously stand in between of your worker and pool, some % of your hashrate may be stolen.
 
-#### NUTZEN SIE KEINE UNVERSCHLÜSSELTE-VERBINDUNG
+#### DO NOT USE UNENCRYPTED CONNECTION
 
-Denken Sie daran, dass die Nachricht ihres Mining Computers erst dutzende Router überwinden muss, bis sie bei Flexpool ankommt. Um dies zu verdeutlichen, können Sie den Befehlt `traceroute` verwenden.
+Keep in mind that before your worker's message reaches the pool, it passes through a dozen of routers (you can use `traceroute` command to see all of them).
 
-Die Verwendung von SSL wird von Flexpool empfohlen. Dieser Verbindungstyp stellt sicher, dass Ihr Mining Computer mit den eigentlichen Pool-Servern spricht.
+Using SSL is recommened by Flexpool. This connection type ensures that your worker talks to the actual pool servers.

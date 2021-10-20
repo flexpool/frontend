@@ -1,0 +1,87 @@
+{
+  "head_title": "Le pool minier le plus avancé",
+  "title": "Construire l'avenir des pools miniers",
+  "description": "Pool minier innovant créé pour l'exploitation moderne des crypto-monnaies.",
+  "coin_earnings_cards": {
+    "estimated": "Gains estimés",
+    "estimated_tooltip": "Estimated earnings are based on the past 24 hours on our pool (luck excluded).",
+    "daily": "tous les jours",
+    "monthly": "mensuellement",
+    "cta_mine": "Commencez à miner",
+    "cta_farm": "Start Farming",
+    "pool_fee": "Frais du pool de {{value}}",
+    "mev": "{{value}} du bonus MEV",
+    "finder_reward": "{{value}} Block Finder Reward",
+    "more_title": "Plus de cryptomonnaies à miner sont à venir!",
+    "more_description": "Nous travaillons au lancement de plusieurs pools dans un futur proche. Restez connecté en rejoignant notre discord ou telegram."
+  },
+  "news_section": {
+    "join_us": {
+      "pre_title": "Rejoignez-nous",
+      "title": "Se connecter à Flexpool",
+      "cta": "Commencer"
+    },
+    "learn": {
+      "pre_title": "Apprendre",
+      "title": "Lisez notre blog",
+      "cta": "Apprendre"
+    },
+    "support": {
+      "pre_title": "Support technique",
+      "title": "Obtenir de l’assistance",
+      "cta": "Contactez-nous"
+    }
+  },
+  "mined_coins_section": {
+    "title": "Cryptomonnaies que nous minons",
+    "description": "Flexpool est un pool de minage de cryptomonnaie multiples , ce qui signifie que vous pouvez miner vos cryptomonnaies préférées.",
+    "table_head": {
+      "name": "Nom",
+      "price": "Prix",
+      "market_cap": "Plafond du Marché",
+      "algorithm": "Algorithme",
+      "hashrate": "Puissance de minage",
+      "miners": "Mineurs"
+    },
+    "item_cta": "Miner"
+  },
+  "coin_news_item": {
+    "eth": {
+      "title": "À propos d'Ethereum",
+      "description": "Ethereum est un ordinateur mondial créé pour alimenter des applications décentralisées appelées Smart Contracts."
+    },
+    "xch": {
+      "title": "About Chia",
+      "description": "Chia is a programmable cryptocurrency focused on the eco-friendly way of securing the blockchain."
+    },
+    "resources": "Ressources",
+    "website": "Site Web",
+    "whitepaper": "Livre blanc",
+    "calculator": {
+      "title": "Calculateur de revenus",
+      "title_tooltip": "Le revenu estimé est calculé sur la base de la difficulté moyenne du réseau sur 24 heures et de la récompense moyenne du bloc sur 24 heures. Ce calcul ne tient pas compte des actions périmées et invalides.",
+      "per_day": "par jour",
+      "per_month": "par mois",
+      "per_year": "par an",
+      "cta": "Commencez à miner"
+    },
+    "featured": {
+      "title": "Histoires recommandées"
+    }
+  },
+  "why_section": {
+    "title": "Pourquoi Flexpool",
+    "item_1": {
+      "title": "Vitesse de minage",
+      "description": "Nous utilisons des grappes de serveurs spécialisées à haute performance grâce à des logiciels super rapides conçus pour gérer plus de 100 TH/s de puissance."
+    },
+    "item_2": {
+      "title": "Juste mieux",
+      "description": "Vous pouvez oublier votre mauvaise expérience minière. Flexpool est maintenu par un support de qualité, et nous sommes toujours heureux de vous aider !"
+    }
+  },
+  "get_started_section": {
+    "title": "Prêt à commencer?",
+    "cta": "Commencez à miner"
+  }
+}

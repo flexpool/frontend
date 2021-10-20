@@ -1,11 +1,11 @@
 ---
-title: Podstawy Teorii Miningu
-level: średni
+title: The "Basics" of the Mining Theory
+level: intermediate
 ---
 
-#### Hashe / Hashowanie
+#### Hashes/Hashing
 
-W Miningu, Hash jest wynikiem wykonywania operacji w Szablonie Bloku i spodziewanej liczby Identyfikatora Jednorazowego (Nonce) poprzez funkcję Hashowania Kryptograficznego (znaną również jako "message digest" lub "hash digest"). A cryptographic hashing function provides a completely different output for any given input and this can vary wildly by changing the Nonce.
+In mining, a Hash is the result of running a Block Template and a prospective Nonce through a cryptographic hashing function (also known as a "message digest" or "hash digest"). A cryptographic hashing function provides a completely different output for any given input and this can vary wildly by changing the Nonce.
 
 There are various different cryptographic hashing functions used in cryptocurrencies, examples include:
 

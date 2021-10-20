@@ -1,0 +1,24 @@
+{
+  "head_title": "Tuki",
+  "title": "Tuki",
+  "section_one": {
+    "title": "Ota yhtyettä Flexpoolin tukeen",
+    "description": "Hei! Ennen kuin olet meihin yhteydessä, muistuttaisimme, että emme avusta laitteistoihin liittyvissä ongelmissa. Tämä sisältää näytönohjaimien ylikellotuksen ja louhintasovellusten asetusten säätämisen. Tarjoamme ainoastaan pooliin liittyvää tukea. Jos tarvitset apua näytönohjaimen ylikellotuksessa, louhintasovelluksen optimoinnissa tmv. voit liittyä yhteisöömme ja jutella kokeneiden ihmisten kanssa."
+  },
+  "section_two": {
+    "title": "Ole yhteydessä verkkosivun chatin kautta",
+    "description": "Paras tapa olla meihin yhteydessä on käyttää verkkosivuillamme olevaa chattia. Löydät sen sivuston oikeasta alakulmasta."
+  },
+  "section_three": {
+    "title": "Liity yhteisöön",
+    "description": "Meillä on virallinen Discord-palvelin ja Telegram-ryhmä, joissa voit jutella muiden Flexpoolin louhijoiden kanssa ja saada tukea tiimiltämme myös näiden kautta."
+  },
+  "section_four": {
+    "title": "Ole yhteydessä sähköpostilla",
+    "description": "Tarjoamme tukea sähköpostin välityksellä, mutta emme takaa nopeaa vastausta tätä kautta. Voit olla yhteydessä osoitteeseen <email>{{email}}</email>."
+  },
+  "section_five": {
+    "title": "Muut yhteydenotot",
+    "description": "Yritystoimintaan liittyvissä kysymyksissä voit olla yhteydessä sähköpostilla osoitteeseen <email>hq@flexpool.io</email>. Huomioithan, että emme tarjoa tukea tämän sähköpostin kautta."
+  }
+}

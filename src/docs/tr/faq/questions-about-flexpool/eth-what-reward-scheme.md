@@ -1,6 +1,6 @@
 ---
-title: 'Flexpool hangi ödüllendirme şemasını kullanmakta?'
+title: 'What reward scheme Flexpool uses?'
 coin: eth
 ---
 
-Biz _N_ paylaşımının 6M paylaşım olduğu PPLNS(Her son N paylaşımı için ödeme) ödüllendirme şemasını kullanmaktayız.
+We use PPLNS (Pay-Per-Last-N-Shares) Reward Scheme.

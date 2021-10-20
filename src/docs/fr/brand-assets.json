@@ -1,0 +1,35 @@
+{
+  "head_title": "Actifs de la marque",
+  "brand_name": {
+    "title": "Notre nom de marque",
+    "description": "Notre nom de marque est <b>Flexpool.io</b>. Les mots \"Flex\" et \"pool\" combinés ensemble avec un F majuscule et la terminaison .io."
+  },
+  "colors": {
+    "title": "Couleurs",
+    "accent": "Couleur d'accentuation",
+    "blue": "Couleur Bleue",
+    "green": "Couleur Verte",
+    "yellow": "Couleur jaune",
+    "red": "Couleur Rouge"
+  },
+  "typo": {
+    "title": "Typographie",
+    "description": "Nous utilisons <font>{{fontName}}</font> sur notre site Web."
+  },
+  "guidelines": {
+    "title": "Lignes directrices de la marque",
+    "description": "En utilisant nos actifs de marque, vous devez suivre nos directives de marque:",
+    "item_one": "Vous n'êtes pas autorisé à modifier le logo. Cela inclut les changements de forme et de couleur.",
+    "item_two": "Vous n'êtes pas autorisé à utiliser la marque Flexpool.io pour impliquer une relation et/ou une affiliation avec toute autre entreprise à moins que nous ayons annoncé le partenariat. Exemple : \"... en partenariat avec Flexpool.io\"",
+    "item_three": "Vous n'êtes pas autorisé à utiliser la marque Flexpool.io dans le contexte illégal et promotionnel."
+  },
+  "downloads": {
+    "title": "Téléchargements",
+    "description": "Nous avons rassemblé un paquet contenant tous les types de logos Flexpool.io pour les thèmes Lumineux et Sombre.",
+    "cta": "Télécharger le Pack de Marque"
+  },
+  "legal": {
+    "title": "Mentions légales",
+    "description": "En utilisant nos actifs de marque, vous acceptez les directives de marque et nos <terms>Terms</terms>. Si vous avez besoin d'obtenir une assistance sur l'utilisation de la marque Flexpool.io, vous pouvez nous contacter à <email>{{email}}</email>"
+  }
+}

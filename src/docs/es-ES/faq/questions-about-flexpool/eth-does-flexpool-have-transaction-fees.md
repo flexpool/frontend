@@ -1,6 +1,6 @@
 ---
-title: '¿Cobra Flexpool una comisión por cada transacción?'
+title: Does Flexpool charge a fee for every transaction?
 coin: eth
 ---
 
-**No**. Nosotros no cobramos ninguna comisión adicional a las transacciones por nuestra parte. La única comisión que vas a pagar es la comisión de transacción de la red, que es una comisión fija sin importar el tamaño de la transacción.
+**No**. We don't charge any additional transaction fees from our side. The only fee you will pay is the network transaction fee, that is static regardless of the transaction value.

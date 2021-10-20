@@ -1,6 +1,6 @@
 ---
-title: Kaip galiu pervesti nesumokėtą likutį į kitą sąskaitą?
+title: How can I transfer the unpaid balance to another acccount?
 coin: eth
 ---
 
-Tam mums reikės skaitmeninio parašo. Galite susisiekti su mumis per svetainės messenger.
+We will require a digital signature to do this. You may contact us via the website messenger.

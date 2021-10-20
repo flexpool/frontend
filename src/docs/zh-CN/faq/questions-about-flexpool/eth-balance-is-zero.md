@@ -1,8 +1,8 @@
 ---
-title: My balance has frozen for a long time. Have I configured my mining software properly?
-coin: eth
+title: 为什么未支付余额没有变？ 我把挖矿软件设置对了吗？
+coin: 以太坊ETH
 ---
 
-Yes, everything is good unless you cannot see your workers on the dashboard page. As we are not the largest mining pool, we don't find blocks every minute. During unlucky periods, your balance may stall for some time.
+对的。一切数据看起来都正常，除非你无法在主面板中看到你的矿机。 因为我们不是最大的矿池，所以我们无法做到每分钟都发现新区块。 在运气值不好的期间，你的余额可能会停止增长一段时间。
 
-No need to worry in this case. The right explanation for this would be "The balance updates each time we mine a block," rather than "The rewards are given when we mine a block" since our reward system still holds your "pending" block share even though balance is not moving.
+不用担心在这种情况。 正确的解释应该是“您的余额会在我们每次挖到区块并确认后更新”。而不是“当我们挖到区块时我们就给你奖励”。这是因为在未确认区块前，我们的奖励系统仍然会持有你的“待确认”区块的份额。

@@ -1,8 +1,8 @@
 ---
-title: How is payout criteria calculated?
-coin: eth
+title: 如何计算支付标准？
+coin: ETH
 ---
 
-The payout criteria is calculated based on your payout limit, gas price limit and the current network status.
+根据您的付款限额、gas限额和当前网络状态计算付款标准。
 
-If your unpaid balance is above your payout limit, and your gas price limit is higher than the current high gas price on the network at the moment of the payout cycle beginning.
+如果您的未付余额高于您的支付限额，并且您的gas限额高于支付周期开始时网络上的当前高gas价格。

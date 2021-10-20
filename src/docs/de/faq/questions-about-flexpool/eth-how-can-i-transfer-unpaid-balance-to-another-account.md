@@ -1,6 +1,6 @@
 ---
-title: Wie kann ich unbezahltes Guthaben an einen anderen Account übertragen?
+title: How can I transfer the unpaid balance to another acccount?
 coin: eth
 ---
 
-Dazu brauchen wir eine digitale Unterschrift. Um diese Schritte durchzugehen kontaktiere uns bitte über den Chat auf unserer Webseite.
+We will require a digital signature to do this. You may contact us via the website messenger.

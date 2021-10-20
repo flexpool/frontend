@@ -1,6 +1,6 @@
 ---
-title: Hoe kan ik het onbetaald saldo naar een andere rekening overzetten?
+title: How can I transfer the unpaid balance to another acccount?
 coin: eth
 ---
 
-Hiervoor hebben we een digitale handtekening nodig. Je kan ons contacteren via de chat op de website.
+We will require a digital signature to do this. You may contact us via the website messenger.

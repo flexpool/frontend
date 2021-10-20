@@ -1,6 +1,6 @@
 ---
-title: Ar „Flexpool“ ima mokestį už kiekvieną operaciją?
+title: Does Flexpool charge a fee for every transaction?
 coin: eth
 ---
 
-** Ne **. Mes neimame jokių papildomų sandorių mokesčių iš mūsų pusės. Vienintelis mokestis, kurį mokėsite, yra tinklo operacijos mokestis, kuris yra static, neatsižvelgiant į operacijos vertę.
+**No**. We don't charge any additional transaction fees from our side. The only fee you will pay is the network transaction fee, that is static regardless of the transaction value.

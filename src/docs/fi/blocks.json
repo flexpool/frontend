@@ -1,0 +1,58 @@
+{
+  "head_title": "Louhitut Lohkot",
+  "title": "Lohkot",
+  "description": "Flexpoolin louhimien lohkojen historia",
+  "average_luck": "Keskiarvoinen onni",
+  "average_luck_tooltip": "Viimeisen 30 päivän keskiarvoinen lohko-onni.",
+  "current_luck": "Tämänhetkinen onni",
+  "current_luck_tooltip": "Nykyisen kierroksen lohko-onni. Tämä arvo päivittyy reaaliajassa.",
+  "network_hashrate": "Verkon Hashrate",
+  "network_space": "Verkon Tila",
+  "network_difficulty": "Verkon vaikeusaste",
+  "network_difficulty_tooltip": "Keskiarvo hashien määrästä, joita poolin on tuotettava louhiakseen yhden lohkon.",
+  "network_difficulty_tooltip_points": "Keskiarvo pisteiden määrästä, joita poolin on tuotettava louhiakseen yhden lohkon.",
+  "table": {
+    "title_zero": "Poolin dataa ei saatu haettua",
+    "title": "Flexpool on louhinut {{count}} lohkon",
+    "title_1": "Flexpool on louhinut {{count}} lohkoa",
+    "title_2": "Flexpool on louhinut {{count}} lohkoa",
+    "title_3": "Flexpool on louhinut {{count}} lohkoa",
+    "title_4": "Flexpool on louhinut {{count}} lohkoa",
+    "title_5": "Flexpool on louhinut {{count}} lohkoa",
+    "title_plural": "Flexpool on louhinut {{count}} lohkoa",
+    "title_miner_zero": "Et ole louhinut vielä yhtään lohkoa",
+    "title_miner": "Olet louhinut {{count}} lohkon",
+    "title_miner_1": "Olet louhinut {{count}} lohkoa",
+    "title_miner_2": "Olet louhinut {{count}} lohkoa",
+    "title_miner_3": "Olet louhinut {{count}} lohkoa",
+    "title_miner_4": "Olet louhinut {{count}} lohkoa",
+    "title_miner_5": "Olet louhinut {{count}} lohkoa",
+    "title_miner_plural": "Olet louhinut {{count}} lohkoa",
+    "rewards_block_list_title": "Palkkio Per Lohko",
+    "table_head": {
+      "number": "Numero",
+      "type": "Tyyppi",
+      "date": "Päiväys",
+      "region": "Alue",
+      "miner": "Louhija",
+      "reward": "Palkkio",
+      "round_time": "Kierroksen Aika",
+      "hash": "Hash",
+      "luck": "Onni",
+      "share": "Osuus"
+    }
+  },
+  "type": {
+    "block": "Lohko",
+    "orphan": "Orpo",
+    "uncle": "Setä"
+  },
+  "chart": {
+    "title": "Kuukauden lohkojen visualisointi",
+    "blocks_per_day": "Lohkoja per päivä",
+    "difficulty": "Vaikeusaste"
+  },
+  "waiting_confirmation_tooltip": "Odotetaan vahvistusta",
+  "orphan_tooltip": "Orpo-lohkot ovat niitä, joita ei ole sisällytetty kanoniseen ketjuun. Orpo-lohkoja ilmenee yleisesti todella harvinaisissa olosuhteissa esim. 2-lohkon ketjun uudelleenjärjestymisessä ennen kuin uusi työ on lähetetty louhijoille.",
+  "uncle_tooltip": "Setä-lohkoilla on sama vanhempi-hash ja numero. Setä-lohkot syntyvät poolien välisen suuren viiveen takia. Yleisimmin niitä ilmenee kun kaksi poolia saa kaksi blokkia valmiiksi samaan aikaan, jolloin molemmille tulee sama numero."
+}

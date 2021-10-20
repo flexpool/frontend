@@ -1,6 +1,6 @@
 ---
-title: Kas yra share?
-level: pradedantysis
+title: What is a Share?
+level: beginner
 ---
 
-Share yra dalis bloko, prie kurio poolas dirba. By hashing on the pool, jūsų įrenginys išsprendžia / iškasa šiuos galvosūkius ir pateikia juos prie baseino. Jūs gaunate atlyginimą už tuos.
+Share is a part of the block the pool is working on. By hashing on the pool, your rig solves/mines these puzzles, and submits them to the pool. You are getting paid for those.

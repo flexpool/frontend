@@ -1,20 +1,20 @@
 ---
-title: Kas yra Stale Shares? Kaip jie veikia mano pelningumą?
-level: pradedantysis
+title: What are Stale Shares? How they affect my profitability?
+level: beginner
 ---
 
-Stale shares yra shares, kurios buvo išsiųstos į poola pasibaigus jų galiojimo laikui. Tai tiesiogiai veikia jūsų pelningumą, todėl rekomenduojama juos išlaikyti kuo mažesnius.
+Stale shares are shares that were sent to the pool after they were expired. This directly affects your profitability, and it is recommended to keep them as low as possible.
 
-Įprastas stale rodiklis yra mažiau nei 1%. Viskas aukščiau nepriimtina, nebent esate toli nuo artimiausio „Flexpool“ regiono.
+Normal stale rate is the stale rate below 1%. Everything above in unacceptable unless you are located far away from the closest Flexpool region.
 
-Patarimai, kaip sumažinti stale rate:
+Tips for reducing the stale rate:
 
-* Vietoj „Wi-Fi“ naudokite „Ethernet“.
-* Naudokite kabelio / pluošto jungtį (ne mobilųjį).
-* Įsitikinkite, kad išjungėte „Ethernet“ energijos taupymo režimą, jei jį įgalinote.
+* Use Ethernet instead of Wi-Fi.
+* Use Cable/Fiber connection (not mobile).
+* Make sure that you've disabled the Ethernet power save mode, if you have one enabled.
 
-Dalykai, dėl kurių atsiranda stale shares:
-* Delsos laikas tarp jūsų darbuotojo ir poolo serverio
-* Prasta kasimo programinė įranga
+Things that cause stale shares:
+* Latency between your worker and pool server
+* Poor miner software
 * Packet loss
 * Jitter

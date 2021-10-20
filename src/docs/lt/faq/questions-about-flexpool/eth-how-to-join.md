@@ -1,6 +1,6 @@
 ---
-title: Kaip prisijungti prie „Flexpool“?
+title: How to join Flexpool?
 coin: eth
 ---
 
-Čia pateikiamos išsamios instrukcijos: [ darbo pradžia ](/get-started)
+We have step-by-step instructions here: [Getting Started](/get-started)

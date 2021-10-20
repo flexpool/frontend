@@ -1,6 +1,6 @@
 ---
-title: I am no longer mining, what do I do with my remaining balance?
-coin: eth
+title: 我不再挖矿了，我该如何处理我的剩余余额？
+coin: ETH
 ---
 
-If you have stopped mining and needed a payout, submit a request on the Flexpool website, confirming your coin and ETH address, and we can push a one-time payment out.
+如果您已停止挖矿并需要付款，请在Flexpool网站上提交请求，确认您的硬币和ETH地址，我们可以推出一次性付款。

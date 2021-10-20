@@ -1,6 +1,6 @@
 ---
-title: 'Welches Belohnungsschema verwendet Flexpool?'
+title: 'What reward scheme Flexpool uses?'
 coin: eth
 ---
 
-Wir verwenden das PPLNS (Pay-Per-Last-N-Shares) Belohnungsschema.
+We use PPLNS (Pay-Per-Last-N-Shares) Reward Scheme.

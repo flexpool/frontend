@@ -1,6 +1,6 @@
 ---
-title: سختی share چیست؟
-level: سطح متوسط
+title: What is Share Difficulty?
+level: intermediate
 ---
 
-از نظر فنی ، share همان block است ولی با سختی  اصلاح شده (کاهش یافته در این مورد). ریگ شما این share ها را ماین میکنند و برایشان مهم است که راحت پیدا شوند. در غیر این صورت ممکن است برای استخر ردیابی آمار ریگ(کارگر) غیر ممکن باشد و نتواند ثابت کند که واقعا در حال ماین کردن است، نه فقط ارسال گزارش هش ریت تایید تشده.
+Technically, shares are the same blocks, but just with modified (reduced in this case) difficulty. Your workers are mining those shares, and it is important for them to be easy to find. Otherwise, it would be impossible for pool to track worker statistics and verify that it is actually mining, not just sending unproven hashrate reports.

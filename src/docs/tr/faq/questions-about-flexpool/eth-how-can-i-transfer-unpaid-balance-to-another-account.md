@@ -1,6 +1,6 @@
 ---
-title: Ödenmemiş tutarı başka bir hesaba nasıl aktarabilirim?
+title: How can I transfer the unpaid balance to another acccount?
 coin: eth
 ---
 
-Bunun için bir dijital imza istiyoruz. Bizimle website mesajlaşma kısmını kullanarak iletişime geçebilirsiniz.
+We will require a digital signature to do this. You may contact us via the website messenger.

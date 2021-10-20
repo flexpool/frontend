@@ -1,6 +1,6 @@
 ---
-title: 未払い残高を別のアカウントに振り込むにはどうすればよいですか?
+title: How can I transfer the unpaid balance to another acccount?
 coin: eth
 ---
 
-デジタル署名が必要です。 ウェブサイトのメッセンジャー経由で私たちに連絡してください。
+We will require a digital signature to do this. You may contact us via the website messenger.

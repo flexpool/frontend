@@ -1,14 +1,14 @@
 ---
-title: Should I use SSL?
-coin: eth
+title: 我应该使用SSL吗？
+coin: ETH
 ---
 
-**Yes**, use SSL where possible.
+是的，你应该使用。
 
-We are strongly against using unencrypted (TCP) connection while mining on our pool. This connection is vulnerable to MITM (Man-In-The-Middle) attacks, which means that if someone will maliciously stand in between of your worker and pool, some % of your hashrate may be stolen.
+我们强烈反对使用未加密(TCP) 连接，同时挖掘我们的池。 这个连接容易受到MITM (man - in - middle) 攻击，这意味着如果有人恶意站在你的工人和池之间，你的哈希率的一些可能会被窃取。
 
-#### DO NOT USE UNENCRYPTED CONNECTION
+#### 不要使用未加密的连接
 
-Keep in mind that before your worker's message reaches the pool, it passes through a dozen of routers (you can use `traceroute` command to see all of them).
+请记住，在您的worker消息到达池之前，它要经过一打路由器(您可以使用`traceroute`命令全部查看)。
 
-Using SSL is recommened by Flexpool. This connection type ensures that your worker talks to the actual pool servers.
+Flexpool推荐使用SSL。 这种连接类型确保您的工作者与实际的池服务器进行对话。

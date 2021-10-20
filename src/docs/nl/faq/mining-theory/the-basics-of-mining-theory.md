@@ -9,7 +9,7 @@ Bij mining is een hash het resultaat van de uitvoering van een block template en
 
 Er worden verschillende cryptografische hashfuncties gebruikt in cryptocurrencies, voorbeelden zijn:
 
-| Naam hashfunctie                       | Cryptovaluta's die het gebruiken       |
+| Naam hashfunctie                       | Cryptocurrencies die het gebruiken     |
 | -------------------------------------- | -------------------------------------- |
 | SHA256                                 | Bitcoin, Litecoin, Bitcoin Cash...     |
 | Ethash (DaggerHashimoto) en afgeleiden | Ethereum, Ethereum Classic, Expanse... |
@@ -19,7 +19,7 @@ Er worden verschillende cryptografische hashfuncties gebruikt in cryptocurrencie
 
 #### Moeilijkheidsgraad
 
-Het aantal gokjes dat nodig is om een bepaald aantal nullen aan het begin van de hash te krijgen heet de moeilijkheidsgraad. Het is moeilijker om meer nullen te krijgen en daarom is het waarschijnlijk dat de miner veel nonces zou moeten hebben geprobeerd om dit te bereiken.
+Het aantal pogingen dat nodig is om een bepaald aantal nullen aan het begin van de hash te krijgen heet de moeilijkheidsgraad. Het is moeilijker om meer nullen te krijgen en daarom is het waarschijnlijk dat de miner veel nonces zou moeten hebben geprobeerd om dit te bereiken.
 
 Het is niet mogelijk om de invoer naar een hashfunctie te identificeren aan de hand van de uitvoer. Om die reden kan men enkel door vallen en opstaan een hash van een bepaalde moeilijkheidsgraad krijgen.
 
@@ -32,16 +32,16 @@ Voorbeeld:
 | ...                       | ...                                                                                           |
 | <code>Welkom bij Flexpool! (nonce=16105490)</code> | <span className="red">000000</span>4298495e8f9096c674f1197be8c6fb25f2012228374b7307cc66ae6200 |
 
-Zoals u ziet waren er meer dan 12 miljoen pogingen nodig om slechts 6 nullen te krijgen. Door zelf de block te hashen is het wel makkelijk om te bevestigen dat iemand vaak heeft gegokt! De nonce die een hash zoals deze levert, bewijst dat u waarschijnlijk hard heeft gewerkt. Daar komt de term "Proof of Work" vandaan voor munten die u kan minen. De nonce hoeft niet per se met 0 te beginnen. De enige vereiste is dat de nonce de limiet niet overschrijdt.
+Zoals u ziet waren er meer dan 12 miljoen pogingen nodig om slechts 6 nullen te krijgen. Door zelf de block te hashen is het wel makkelijk om te bevestigen dat iemand veel pogingen nodig had! De nonce die een hash zoals deze levert, bewijst dat u waarschijnlijk hard heeft gewerkt. Daar komt de term "Proof of Work" vandaan voor munten die u kan minen. De nonce hoeft niet per se met 0 te beginnen. De enige vereiste is dat de nonce de limiet niet overschrijdt.
 
-Munten passen hun moeilijkheidsvereiste aan zodat blokken gelijkmatig over de tijd worden verdeeld, Bitcoin probeert elke 10 minuten een blok te krijgen, Ethereum richt zich op 12,5 seconden, andere munten hebben andere doelen. Naarmate er meer hashrate wordt toegevoegd/verwijderd aan een munt netwerk zal de moeilijkheidsgraad stijgen of afnemen om te compenseren en de "bloktijd" dicht bij het doel voor die munt te houden.
+Munten passen hun moeilijkheidsvereiste aan zodat blokken gelijkmatig over de tijd worden verdeeld, Bitcoin probeert elke 10 minuten een blok te krijgen, Ethereum richt zich op 12,5 seconden, andere munten hebben andere doelen. Naarmate er meer hashrate wordt toegevoegd/verwijderd aan het netwerk van de munt, zal de moeilijkheidsgraad stijgen of afnemen om te compenseren en de "block time" dicht bij het doel voor die munt te houden.
 
-Hashes die niet voldoen aan de moeilijkheidsgraad die nodig is voor een Blok, voldoen nog steeds aan een lager moeilijkheidsniveau ingesteld door de pool en worden naar de pool gestuurd om te bewijzen dat je een blok probeert te vinden, deze aandelen worden gebruikt om te bepalen hoeveel van het volgende blok je ontvangt wanneer iemand in de pool een blok vindt.
+Hashes die niet voldoen aan de moeilijkheidsgraad die nodig is voor een Block, voldoen nog wellicht aan een lager moeilijkheidsniveau ingesteld door de pool en worden naar de pool gestuurd om te bewijzen dat je een Block probeert te vinden. Deze Shares worden gebruikt om te bepalen hoeveel van de volgende block je ontvangt wanneer iemand in de pool een block vindt.
 
-Met dat gezegd, Je kunt natuurlijk ook gewoon op een goede Nonce in minder raden stuiten dan verwacht, door goed geluk te hebben (of aanzienlijk meer gissingen als je Geluk slecht is!)
+Dat gezegd zijnde kan je natuurlijk ook gewoon sneller een goede Nonce vinden met minder pogingen door geluk te hebben (of aanzienlijk meer pogingen als je weinig geluk hebt!)
 
-#### Inspannen/Geluk
+#### Inspanning/Geluk
 
-De verhouding tussen hoeveel Hashes uitgevoerd werd en hoeveel Hashes er verwacht werden om een bepaalde moeilijkheidsgraad te bereiken, heet Effort, een lage inspanning van 50% betekende bijvoorbeeld een goede Nonce in de helft van de verwachte hoeveelheid gissingen.
+De verhouding tussen hoeveel Hashes uitgevoerd werden en hoeveel Hashes er verwacht werden om een bepaalde moeilijkheidsgraad te bereiken, heet Inspanning. Een lage inspanning van 50% betekent bijvoorbeeld dat een goede Nonce werd gevonden met de helft van het verwachte aantal pogingen.
 
-Het omgekeerde van Inspanning wordt geluk genoemd, een geluk van 200% betekent dat je een goede Nonce hebt gevonden in de helft van het verwachte aantal gissingen.
+Het omgekeerde van Inspanning wordt Geluk genoemd. 200% Geluk betekent dat je een goede Nonce hebt gevonden met de helft van het verwachte aantal pogingen.

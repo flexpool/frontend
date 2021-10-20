@@ -1,6 +1,6 @@
 ---
-title: What is the minimum payout amount?
-coin: xch
+title: 最低支付金额是多少？
+coin: XCH
 ---
 
-You may set your minimum payout to as low as 0.01 XCH, or as high as 10 XCH. The default is 0.1 XCH.
+您可以将最低支出设置为低至0.01 XCH，或高至10 XCH。 默认是 0.1 XCH。

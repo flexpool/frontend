@@ -1,6 +1,6 @@
 ---
-title: 'Kokią atlygio schemą naudoja „Flexpool“?'
+title: 'What reward scheme Flexpool uses?'
 coin: eth
 ---
 
-Mes naudojame PPLNS (Pay-Per-Last-N-Shares) atlygio schemą, kur _ N _ yra 6 mln.
+We use PPLNS (Pay-Per-Last-N-Shares) Reward Scheme.

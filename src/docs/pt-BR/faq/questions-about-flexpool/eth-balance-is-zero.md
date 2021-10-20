@@ -1,8 +1,8 @@
 ---
-title: Meu saldo está parado por muito tempo. Eu configurei meu software de mineração corretamente?
+title: My balance has frozen for a long time. Have I configured my mining software properly?
 coin: eth
 ---
 
-Sim, tudo está certo, a não ser que você não possa ver seus workers na página do painel. Como não somos a maior pool de mineração, não encontramos blocos a cada minuto. Durante períodos de baixa sorte, o seu saldo pode parar de crescer por algum tempo.
+Yes, everything is good unless you cannot see your workers on the dashboard page. As we are not the largest mining pool, we don't find blocks every minute. During unlucky periods, your balance may stall for some time.
 
-Neste caso, não há necessidade de se preocupar. A explicação correta para isso seria "O saldo é atualizado a cada vez que extraímos um bloco, ao invés de "As recompensas são dadas quando mineramos um bloco", já que o nosso sistema de recompensas ainda mantém seu compartilhamento de bloco "pendente" mesmo que o seu saldo não esteja em aumentando.
+No need to worry in this case. The right explanation for this would be "The balance updates each time we mine a block," rather than "The rewards are given when we mine a block" since our reward system still holds your "pending" block share even though balance is not moving.

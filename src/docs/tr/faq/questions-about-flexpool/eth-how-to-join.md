@@ -1,6 +1,6 @@
 ---
-title: Flexpool' a nasıl katılınır?
+title: How to join Flexpool?
 coin: eth
 ---
 
-Burada adım adım talimatlarımız var: [Başlayın](/get-started)
+We have step-by-step instructions here: [Getting Started](/get-started)

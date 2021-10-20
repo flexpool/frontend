@@ -1,0 +1,87 @@
+{
+  "head_title": "Самый Продвинутый Майнинг Пул",
+  "title": "Строим Будущее Майнинг-пулов",
+  "description": "Инновационный майнинг-пул, созданный для продвинутой добычи криптовалют.",
+  "coin_earnings_cards": {
+    "estimated": "Расчетная прибыль",
+    "estimated_tooltip": "Estimated earnings are based on the past 24 hours on our pool (luck excluded).",
+    "daily": "daily",
+    "monthly": "monthly",
+    "cta_mine": "Начать майнить",
+    "cta_farm": "Start Farming",
+    "pool_fee": "{{value}} Pool Fee",
+    "mev": "{{value}} бонуса MEV",
+    "finder_reward": "{{value}} Block Finder Reward",
+    "more_title": "Скоро Будет Больше Монет!",
+    "more_description": "В ближайшем будущем мы запустим несколько пулов. Следите за новостями в нашем discord или telegram."
+  },
+  "news_section": {
+    "join_us": {
+      "pre_title": "Присоединиться к нам",
+      "title": "Подключиться к Flexpool",
+      "cta": "Начать"
+    },
+    "learn": {
+      "pre_title": "Learn",
+      "title": "Читать наш Блог",
+      "cta": "Learn"
+    },
+    "support": {
+      "pre_title": "Support",
+      "title": "Получить Поддержку",
+      "cta": "Связаться с Нами"
+    }
+  },
+  "mined_coins_section": {
+    "title": "Доступные монеты",
+    "description": "Flexpool – это Multi-Coin пул, что означает, что вы можете майнить свои любимые монеты на Flexpool.",
+    "table_head": {
+      "name": "Имя",
+      "price": "Цена",
+      "market_cap": "Рыночная капитализация",
+      "algorithm": "Алгоритм",
+      "hashrate": "Hashrate",
+      "miners": "Майнеры"
+    },
+    "item_cta": "Майнить"
+  },
+  "coin_news_item": {
+    "eth": {
+      "title": "Об Ethereum",
+      "description": "Ethereum – это мировой компьютер, созданный для того, чтобы на нём работали Децентрализованные Приложения, известные как Смарт-Контракты."
+    },
+    "xch": {
+      "title": "About Chia",
+      "description": "Chia is a programmable cryptocurrency focused on the eco-friendly way of securing the blockchain."
+    },
+    "resources": "Ресурсы",
+    "website": "Вебсайт",
+    "whitepaper": "Whitepaper",
+    "calculator": {
+      "title": "Калькулятор дохода",
+      "title_tooltip": "The Estimated Income is calculated based on the 24-hour average network difficulty and the 24-hour average block reward. This calculation does not include Stale and Invalid shares.",
+      "per_day": "per day",
+      "per_month": "per month",
+      "per_year": "per year",
+      "cta": "Start Mining"
+    },
+    "featured": {
+      "title": "Featured Stories"
+    }
+  },
+  "why_section": {
+    "title": "Why Flexpool",
+    "item_1": {
+      "title": "Lightning speed",
+      "description": "We use worldwide high-performance server clusters powered by superfast software designed to handle a tremendous amount of miners concurrently mining on our pool."
+    },
+    "item_2": {
+      "title": "Just Better",
+      "description": "You can forget your poor mining experience. Flexpool is backed by an expert team and excellent support that is always happy to help!"
+    }
+  },
+  "get_started_section": {
+    "title": "Ready to get started?",
+    "cta": "Start Mining"
+  }
+}
