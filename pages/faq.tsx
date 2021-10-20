@@ -108,7 +108,8 @@ const FaqSection: React.FC<FaqDataSection> = ({ name, contents }) => {
         <h2>{t(name)}</h2>
         {contents
           .filter((item) => {
-            const markdownCoinAttribute = item.md.attributes.coin;
+            const markdownCoinAttribute =
+              item.md.attributes.coin?.toLowerCase();
             return (
               !markdownCoinAttribute ||
               markdownCoinAttribute === selectedCoinTicker

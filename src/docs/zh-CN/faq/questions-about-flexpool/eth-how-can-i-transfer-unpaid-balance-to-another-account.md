@@ -1,6 +1,6 @@
 ---
-title: How can I transfer the unpaid balance to another acccount?
-coin: eth
+title: 如何将未付余额转移到另一个帐户？
+coin: ETH
 ---
 
-We will require a digital signature to do this. You may contact us via the website messenger.
+请通过网站底部的联系， 由工作人员来更改。

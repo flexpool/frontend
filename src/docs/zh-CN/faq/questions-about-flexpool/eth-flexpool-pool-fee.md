@@ -1,6 +1,6 @@
 ---
-title: What is Flexpool's pool fee?
-coin: eth
+title: Flexpool矿池抽成是多少？
+coin: ETH
 ---
 
-Our Ethereum pool fee is fixed at 0.5%. We offer one of the lowest pool fees in the Ethereum mining industry. Your unpaid balance and payouts show the net reward after the pool fee is taken out.
+我们的以太坊矿池费用固定为0.5%。 我们是ETH矿池中抽成比例最低的。 您的未付余额和支出显示了扣除池费后的净奖励。

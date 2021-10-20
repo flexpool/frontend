@@ -1,6 +1,6 @@
 ---
-title: What is Flexpool's Chia pool fee?
-coin: xch
+title: Flexpool矿池抽成是多少？
+coin: XCH
 ---
 
-Our Chia pool has a 0% fee at this time. It may change in the future, and we will announce any changes when they are decided.
+我们的Chia手续费为0。 我们将在未来的决定中宣布任何变化。

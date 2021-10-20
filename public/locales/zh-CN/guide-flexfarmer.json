@@ -12,10 +12,10 @@
         "text": "至少128MB可用RAM。"
       },
       {
-        "text": "已初始化绘图NFT（通过GUI或CLI生成）。"
+        "text": "已初始化Plot NFT（通过GUI或CLI生成）。"
       },
       {
-        "text": "绑定到该绘图NFT的绘图。"
+        "text": "绑定到Plot NFT。"
       },
       {
         "text": "PlotNFT已连接到Flexpool（有关说明，请参阅入门）。"
@@ -58,7 +58,7 @@
     "input_label": "您的钱包地址"
   },
   "plot_directories": {
-    "heading": "指定绘图的位置",
+    "heading": "指定Plot的位置",
     "description": "您必须告诉FlexFarmer它应该使用什么打印目录。使用下面的交互式目录选择器来配置它们。",
     "selected_dirs": "所选打印目录：{value}",
     "plot_dir": "打印目录#{{value}"
