@@ -26,7 +26,8 @@
         "average_lat": "Latency"
       },
       "fastest": "Fastest",
-      "backup": "Backup"
+      "backup": "Backup",
+      "hke_warning_title": "Additional ports:"
     },
     "ports": {
       "title": "Ports",
