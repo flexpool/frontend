@@ -1,6 +1,6 @@
 ---
-title: Flexpool платит каждую неделю вне зависимости от текущего баланса?
+title: Does Flexpool make weekly payouts regardless of the balance?
 coin: eth
 ---
 
-**Нет**. Мы не производим выплаты, если ваш баланс находится ниже минимального баланса для вывода. Такая практика потребует траты некоторого места в наших блоках, что повлечёт за собой снижение прибыльности для майнеров. Прибыльность для майнеров – наша задача #1, поэтому никогда не будем производить выплаты до достижения минимального баланса.
+**No**. We don't do weekly payouts if your balance is below your payout limit. Doing this will require "wasting" some space in our blocks, and it is known to decrease miners' profits. We are not doing that, and will never do in the future because miners' earnings are in #1 priority for us.

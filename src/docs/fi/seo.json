@@ -1,0 +1,52 @@
+{
+  "title": {
+    "home": "Kehittynein Kryptolouhinnan Pool",
+    "faq": "Usein Kysytyt Kysymykset",
+    "miners": "Louhijoiden tulostaulu",
+    "not-found": "Sivua ei löytynyt",
+    "statistics": "Poolin tilastot",
+    "support": "Ota yhteyttä tukeen",
+    "contact": "Ota yhteyttä",
+    "business_development": "Yrityksen kehittäminen",
+    "brand_assets": "Tietoa brändistä",
+    "blocks": "Lohkot",
+    "api_documentation": "API Dokumentaatio",
+    "get_started_gpu": "Louhi {{coinName}} ({{coinTicker}}) käyttämällä näytönohjainta",
+    "get_started_nicehash": "Vuokraa NiceHashista {{coinName}} ({{coinTicker}})",
+    "get_started_chia_regular": "Farmaa {{coinName}} ({{coinTicker}}) käyttämällä {{client}}",
+    "get_started_home": "Aloita"
+  },
+  "website_description": {
+    "home": "Flexpool.io on maailman edistynein louhintapool, joka tarjoaa helpon tavan louhia lempikryptojasi. Tuemme Ethereumia ja Chiaa.",
+    "faq": "Usein kysyttyjä kysymyksiä on esitetty täällä. Täällä voit oppia louhintatermeistä ja kuinka selvittää yleisiä ongelmia.",
+    "miners": "Tällä sivulla näytetään top 10 suurimmat Flexpool.io:n louhijat, ja louhijoiden jakauma koon mukaan.",
+    "not-found": "Sivua ei löytynyt",
+    "statistics": "Tällä sivulla näytetään maailmanlaajuiset poolin tilastot. Näet poolin hashraten, louhijoiden määrän, keskimääräisen ja nykyisen onnen ja edellisen vuorokauden hashrate-kaavion.",
+    "support": "Flexpool.io tarjoaa tukea verkkosivuston kautta chatin välityksellä ja tuelle tarkoitetun sähköpostin kautta. Tältä sivulta löydät tietoja ja ohjeita tuen saamiseksi.",
+    "contact": "Tältä sivulta löydät tietoa kuinka olla yhteydessä Flexpool.io:n tiimiin. Huomioithan, että tämän sivun ohjeet ovat vain yritystoimintaan liittyviin tarkoituksiin. Tukea varten katso tuen sivu.",
+    "business_development": "Tällä sivulla on ohjeita Flexpool.io:n yrityksen kehittämiseen liittyvien yhteydenottojen tekemiseen.",
+    "brand_assets": "Tältä sivulta löydät Flexpool.io:n brändiin liittyviä ohjeita ja tietoja.",
+    "blocks": "Tällä sivulla on lohkojen tilastoihin liittyviä tietoja. Löydät täältä hyödyllisiä tietoja kuten keskiarvoinen ja nykyinen onni, verkon hashrate ja vaikeusaste, lohkojen visualisointi, lohkojen listaus ja monia muita.",
+    "api_documentation": "Kattava Flexpool APIv2 dokumentaatio löytyy tältä sivulta.",
+    "get_started_gpu": "Tältä sivulta löydät interaktiivisen ohjeen {{coinName}} ({{coinTicker}}) louhinnan aloittamiseen käyttäen {{coinAlgorithm}} algoritmia näytönohjaimella Flexpoolissa.",
+    "get_started_nicehash": "Tältä sivulta löydät interaktiivisen ohjeen {{coinName}} ({{coinTicker}}) louhintatehon vuokraamiseen NiceHashista käyttäen {{coinAlgorithm}} algoritmia ja sen liittämiseksi Flexpooliin.",
+    "get_started_chia_regular": "Tältä sivulta löydät interaktiivisen ohjeen {{coinName}} ({{coinTicker}}) farmaamisen aloittamiseen käyttäen {{client}} algoritmia Flexpoolissa.",
+    "get_started_home": "Tältä sivulta löydät kaikki interaktiiviset ohjeemme louhinnan aloittamiseen Flexpoolissa."
+  },
+  "keywords": {
+    "home": "ethereum pool,chia pool,paras ethereum pool,paras chia pool,ethereum louhinta,chia farmaus,louhinta pool,farmaus pool,paras louhinta pool,paras farmaus pool",
+    "faq": "ukk,usein kysytyt kysymykset,vianselvitys",
+    "miners": "parhaat louhijat,parhaat farmaajat,tulostaulu,louhijoiden jakauma,farmaajien jakauma",
+    "statistics": "poolin tilastot,poolin hashrate,poolin verkon koko,poolin koko,poolin tila,louhijoiden määrä,farmaajien määrä,keskiarvoinen onni,nykyinen onni,poolin hashrate kaavio,poolin verkon koon kaavio, poolin koon kaavio",
+    "support": "tuki,apu,vianselvitys,yhteydenotto",
+    "contact": "ota yhteyttä",
+    "business_development": "yrityksen kehittäminen",
+    "brand_assets": "flexpoolin logo,flexpoolin brändi,brändiohjeet",
+    "blocks": "louhitut lohkot,farmatut lohkot,lohkojen tilastot,lohkot",
+    "api_documentation": "api,api dokut,api dokumentaatio,flexpool api",
+    "get_started_gpu": "ohje,neuvot,{{coinName}} louhinta,{{coinTicker}} louhinta,{{coinAlgorithm}} louhinta,{{coinName}} ohjeet,{{coinTicker}} ohjeet,{{coinAlgorithm}} ohjeet",
+    "get_started_nicehash": "ohje,neuvot,nicehash {{coinName}} vuokraus,nicehash {{coinTicker}} vuokraus,nicehash {{coinName}} ohjeet,nicehash {{coinTicker}} ohjeet,nicehash {{coinName}} vuokra,nicehash {{coinTicker}} vuokra,nicehash flexpool,nicehash flexpool {{coinAlgorithm}}",
+    "get_started_chia_regular": "ohje,neuvot,{{coinName}} {{client}} farmaus,{{coinTicker}} {{client}} farmaus,{{coinName}} {{client}} ohjeet,{{coinTicker}} {{client}} ohjeet",
+    "get_started_home": "ohje,neuvot,aloita louhinta,aloita farmaus,louhinta-ohje,louhinta-neuvot,aloittaminen,ohjeet"
+  }
+}

@@ -1,47 +1,47 @@
 ---
-title: The "Basics" of the Mining Theory
-level: intermediate
+title: 挖矿详解
+level: 中级
 ---
 
-#### Hashes/Hashing
+#### 哈希表/哈希算法
 
-In mining, a Hash is the result of running a Block Template and a prospective Nonce through a cryptographic hashing function (also known as a "message digest" or "hash digest"). A cryptographic hashing function provides a completely different output for any given input and this can vary wildly by changing the Nonce.
+在挖掘中，哈希是通过加密散列函数，目前运行块模板和预期的结果。 通过更改目前密码散列函数为任何给定输入提供了完全不同的输出，这可能会有很大差异。
 
-There are various different cryptographic hashing functions used in cryptocurrencies, examples include:
+加密货币中有各种不同的加密散列函数，示例包括:
 
-| Hash Function Name                           | Cryptocurrencies that use it           |
-| -------------------------------------------- | -------------------------------------- |
-| SHA256                                       | Bitcoin, Litecoin, Bitcoin Cash...     |
-| Ethash (DaggerHashimoto) and its derivatives | Ethereum, Ethereum Classic, Expanse... |
-| RandomX                                      | Monero                                 |
-| CuckooCycle/Cuckaroo/Cuckatoo                | Grin                                   |
-| Equihash                                     | ZCash                                  |
+| 哈希函数                          | 使其他加密货币             |
+| ----------------------------- | ------------------- |
+| SHA256                        | 比特币、莱特币、比特币现金等……    |
+| 以太坊算法                         | 以太坊、以太坊经典、Expanse…… |
+| RandomX                       | 门罗币                 |
+| CuckooCycle/Cuckaroo/Cuckatoo | 古灵币                 |
+| Equihash                      | 零币                  |
 
-#### Difficulty
+#### 全网难度
 
-The amount of guesses which are needed to get a given number of zeroes at the start of the Hash is referred to as the Difficulty - it is harder to get more zeroes and therefore to have a lot of zeroes it is likely that the miner would have to have tried a lot of Nonces to achieve this.
+在散列开始时，获得给定数量的零所需的猜测量被称为难度-更难获得更多的零，因此要获得大量的零，矿工目前可能必须尝试大量的来实现这一点。
 
-It is not possible to identify the inputs to a hash function from its output, therefore the only way to get a Hash of a particular Difficulty is by trial and error.
+我们不可能从输出中识别出哈希函数的输入，因此获得特定难度的哈希的唯一方法就是尝试和错误。
 
-For Example:
-| Message                   | SHA256 Hash of the message                                                                    |
+例如:
+| 信息                        | SHA256 哈希信息序号                                                                                 |
 | ------------------------- | --------------------------------------------------------------------------------------------- |
-| <code>Welcome to Flexpool! (nonce=0)</code> | 58ecf42082e136722a706bd2b8d028b90c94f6e4ddfa60720fd470ff11cd875a                              |
-| <code>Welcome to Flexpool! (nonce=1)</code> | 9a605788b6d2f16b6f5c418a394965197d7e88a912afb275fde8735fa308971e                              |
-| <code>Welcome to Flexpool! (nonce=2)</code> | 37916e8263c7266b8ecfc878ab87d585a546c87a5d32d18658d066122bcc9037                              |
+| <code>欢迎到来 Flexpool! (nonce=0)</code> | 58ecf42082e136722a706bd2b8d028b90c94f6e4ddfa60720fd470ff11cd875a                              |
+| <code>欢迎到来 Flexpool! (nonce=1)</code> | 9a605788b6d2f16b6f5c418a394965197d7e88a912afb275fde8735fa308971e                              |
+| <code>欢迎到来 Flexpool! (nonce=2)</code> | 37916e8263c7266b8ecfc878ab87d585a546c87a5d32d18658d066122bcc9037                              |
 | ...                       | ...                                                                                           |
-| <code>Welcome to Flexpool! (nonce=16105490)</code> | <span className="red">000000</span>4298495e8f9096c674f1197be8c6fb25f2012228374b7307cc66ae6200 |
+| <code>欢迎到来 Flexpool! (nonce=16105490)</code> | <span className="red">000000</span>4298495e8f9096c674f1197be8c6fb25f2012228374b7307cc66ae6200 |
 
-As you can see it took over 12 million tries to get only 6 zeroes, however it is easy to confirm that someone has made a lot of guesses by just hashing the block yourself! The Nonce which provides a hash like this is proof that you have likely carried out a significant amount of work, hence the phrase "Proof of Work" being used for mining coins. Note that it is not neccessarily to start with 0. The only requirement is that the nonce is not beyond the limit.
+正如你所看到的，它花了超过1200万次尝试才得到6个0，然而，很容易确认有人做了很多猜测，只要你自己哈希块! 提供像这样的散列的前期证明您可能已经完成了大量的工作，因此短语“工作证明”被用于挖矿硬币。 注意，不一定要以0开头。 唯一的要求是现在不超过极限。
 
-Coins adjust their Difficulty requirement such that blocks are spaced evenly over time, Bitcoin tries to get a block every 10 minutes, Ethereum targets 12.5 seconds, other coins have other targets. As more Hashrate is added/removed to a coins network its required Difficulty increases/decreases to compensate and keep the "block time" close to the target for that coin.
+比特币调整其难度要求，使区块随着时间均匀间隔，比特币试图每10分钟获得一个区块，以太坊的目标是12.5秒，其他货币有其他目标。 随着更多的哈希率被添加/删除到货币网络中，其所需的难度将会增加/减少，并保持“阻塞时间”接近该货币的目标。
 
-Hashes which don't meet the Difficulty required for a Block may still meet a lower Difficulty level set by the pool and are sent to the pool to prove that you are trying to find a Block, these Shares are used to determine how much of the next Block you will recieve when someone on the pool finds a Block.
+散列, 不符合所需的困难一块可能仍然满足较低难度设定的池和发送到池中证明你正试图找到一块, 这些股票是用来确定下一个块中有多少你就会得到当有人在池中发现一块。
 
-With that said, obviously you can also just stumble upon a good Nonce in less guesses than expected by having good Luck (or significantly more guesses if your Luck is bad!)
+也就是说，很明显，你也可以用比预期更少的猜测(或者如果你的运气不好，你的猜测会明显更多!)
 
-#### Effort/Luck
+#### 努力/运气
 
-The ratio of how many Hashes were carried out vs how many were expected to meet a given Difficulty is called Effort, a low Effort of 50% for example meaning a good Nonce was found in half the amount of guesses expected.
+执行了多少哈希值与期望满足一个给定难度的期望值的比率被称为努力，例如，50%的努力意味着一个好的Nonce在预期的猜测量的一半被发现。
 
-The inverse of Effort is referred to as Luck, a Luck of 200% means you found a good Nonce in half the amount of guesses expected.
+与努力相反的是运气，200%的运气意味着你在预期的猜测量的一半就找到了。

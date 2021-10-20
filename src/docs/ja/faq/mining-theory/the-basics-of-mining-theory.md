@@ -1,30 +1,30 @@
 ---
-title: マイニングの「基本」
-level: 中級
+title: The "Basics" of the Mining Theory
+level: intermediate
 ---
 
-#### ハッシュ/ハッシュ化
+#### Hashes/Hashing
 
-マイニングにおけるハッシュとは、ブロックテンプレートと予期されるナンスを暗号化ハッシュ関数（「メッセージダイジェスト」または「ハッシュダイジェスト」とも呼ばれます）を通して実行した結果です。 暗号ハッシュ関数は、任意の入力に対して全く異なる出力を提供し、これはナンスを変更することによって大幅に変化する可能性があります。
+In mining, a Hash is the result of running a Block Template and a prospective Nonce through a cryptographic hashing function (also known as a "message digest" or "hash digest"). A cryptographic hashing function provides a completely different output for any given input and this can vary wildly by changing the Nonce.
 
-暗号通貨で使用されるさまざまな暗号化ハッシュ関数は、以下のようなものがあります。
+There are various different cryptographic hashing functions used in cryptocurrencies, examples include:
 
-| ハッシュ関数名                        | 使用している暗号通貨                            |
-| ------------------------------ | ------------------------------------- |
-| SHA256                         | Bitcoin, Litecoin, Bitcoin Cashなど     |
-| Ethash(DaggerHashimoto) とその派生物 | Ethereum, Ethereum Classic, Expanseなど |
-| RandomX                        | Monero                                |
-| CuckooCycle/Cuckaroo/Cuckatoo  | Grin                                  |
-| Equihash                       | ZCash                                 |
+| Hash Function Name                           | Cryptocurrencies that use it           |
+| -------------------------------------------- | -------------------------------------- |
+| SHA256                                       | Bitcoin, Litecoin, Bitcoin Cash...     |
+| Ethash (DaggerHashimoto) and its derivatives | Ethereum, Ethereum Classic, Expanse... |
+| RandomX                                      | Monero                                 |
+| CuckooCycle/Cuckaroo/Cuckatoo                | Grin                                   |
+| Equihash                                     | ZCash                                  |
 
-#### 難易度（Difficulty）:
+#### Difficulty
 
 The amount of guesses which are needed to get a given number of zeroes at the start of the Hash is referred to as the Difficulty - it is harder to get more zeroes and therefore to have a lot of zeroes it is likely that the miner would have to have tried a lot of Nonces to achieve this.
 
 It is not possible to identify the inputs to a hash function from its output, therefore the only way to get a Hash of a particular Difficulty is by trial and error.
 
 For Example:
-| メッセージ                     | SHA256 ハッシュのメッセージ                                                                             |
+| Message                   | SHA256 Hash of the message                                                                    |
 | ------------------------- | --------------------------------------------------------------------------------------------- |
 | <code>Welcome to Flexpool! (nonce=0)</code> | 58ecf42082e136722a706bd2b8d028b90c94f6e4ddfa60720fd470ff11cd875a                              |
 | <code>Welcome to Flexpool! (nonce=1)</code> | 9a605788b6d2f16b6f5c418a394965197d7e88a912afb275fde8735fa308971e                              |
@@ -40,7 +40,7 @@ Hashes which don't meet the Difficulty required for a Block may still meet a low
 
 With that said, obviously you can also just stumble upon a good Nonce in less guesses than expected by having good Luck (or significantly more guesses if your Luck is bad!)
 
-#### エフォート（Effort）/ラック（Luck）
+#### Effort/Luck
 
 The ratio of how many Hashes were carried out vs how many were expected to meet a given Difficulty is called Effort, a low Effort of 50% for example meaning a good Nonce was found in half the amount of guesses expected.
 

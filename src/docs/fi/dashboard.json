@@ -1,0 +1,241 @@
+{
+  "settings": {
+    "cta": "Asetukset",
+    "title": "Asetukset",
+    "ip": "IP-osoite varmistamiseen",
+    "ip_caption": "The IP required for verification is the one that has the highest number of shares submitted during the past 24 hours.",
+    "ip_hint": "Vinkki: Sinä olet tällä sivulla osoitteesta",
+    "ip_description": "Jos laitteesi käyttää proxy-välityspalvelinta, ts. laitteesi louhii tuplana ZIL-poolissa, käytä välityspalvelimen osoitetta.",
+    "high_fees_warning": "Jos ulosmaksurajasi on alle 0.05 ETH, gas-hinnasta tulee korkea ja se vähennetään maksustasi. Suosittelemme asettamaan korkeamman ulosmaksurajan.",
+    "payout": {
+      "title": "Ulosmaksun asetukset",
+      "limit": "Payout threshold (min: {{min}})",
+      "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}. Your entire unpaid balance will be paid out, not just your threshold amount.",
+      "limit_err_higher": "Täytyy olla suurempi kuin {{min}}",
+      "gas_limit": "Gas-raja",
+      "gas_limit_desc": "Transaktion Gas-hintasi olisi rajoitettu {{value}} {{valueUnit}} ({{valueTicker}}, {delimiter} ulosmaksun rajasta). Ulosmaksuja ei suoriteta jos Gas-hinta on suurempi.",
+      "gas_limit_zero": "Transaktiokulujasi ei ole rajattu.",
+      "submit": "Ota muutokset käyttöön"
+    },
+    "payout_warning": [
+      "Suosittelemme vahvasti suuremman ulosmaksurajan asettamista, jotta ulosmaksukertojen määrä on pienempi. Vähemmän ulosmaksukertoja tarkoittaa vähemmän verkon kuluja.",
+      "Sinä olet yksin vastuussa transaktiokulujen maksusta. Suosittelemme vahvasti transaktiokulun rajoituksen asettamisesta alhaiseksi välttääksesi tappion tekemisen."
+    ],
+    "notifications": {
+      "title": "Sähköposti-ilmoitukset",
+      "email_enabled": "Sähköposti-ilmoitukset käytössä",
+      "email_disabled": "Sähköposti-ilmoitukset pois käytöstä",
+      "send_to": "Lähetä ilmoitus sähköpostiin",
+      "send_to_placeholder": "sinun@sähköposti.fi",
+      "check_worker_down": "Ilmoita minulle, jos laitteeni lopettaa louhinnan",
+      "check_payout_sent": "Ilmoita minulle kun maksu lähetetään",
+      "submit": "Ota muutokset käyttöön"
+    }
+  },
+  "header": {
+    "greet_period_morning": "Hyvää huomenta",
+    "greet_period_afternoon": "Hyvää päivää",
+    "greet_period_evening": "Hyvää iltaa",
+    "greet_desc": "{{count}} laite louhii {{coin}} hashratella {{hashrate}}.",
+    "greet_desc_plural": "{{count}} laitetta louhii {{coin}} yhteenlasketulla hashratella {{hashrate}}.",
+    "greet_desc_farm": "{{count}} laite farmaa {{coin}} tilamäärällä {{hashrate}}.",
+    "greet_desc_farm_plural": "{{count}} laitetta farmaa {{coin}} tilamäärällä {{hashrate}}.",
+    "greet_desc_1": "",
+    "greet_desc_2": "",
+    "greet_desc_3": "",
+    "greet_desc_4": "",
+    "greet_desc_5": "",
+    "info_payout_limit": "Payout Threshold",
+    "info_gas_limit": "Gas-hinnan raja",
+    "info_gas_limit_none": "Ei mitään",
+    "info_gas_limit_detail": "{{percent}} ulosmaksun rajasta.",
+    "info_gas_limit_detail_none": "Gas-hinta ei ole rajoitettu.",
+    "info_gas_limit_detail_na": "Hintaa ei saatavilla.",
+    "info_joined": "Liittynyt",
+    "info_joined_tooltip": "Ensimmäinen osuutesi on saatu",
+    "info_joined_tooltip_empty": "Osuuksia ei ole vielä tallennettu",
+    "info_coin_price": "{{coin}} hinta",
+    "stat_workers": "Laitteita Käynnissä/Pois päältä",
+    "stat_unpaid_balance": "Maksamaton saldo",
+    "stat_unpaid_balance_reach": "<v>{{value}}</v> ulosmaksun rajasta saavutettu.",
+    "stat_unpaid_balance_reach_est": "Raja saavutetaan <v>{{value}}</v>.",
+    "stat_unpaid_balance_reach_ok": "Ulosmaksu käsitellään seuraavalla maksukierroksella, jos siirtokulut vastaavat asetuksiasi.",
+    "stat_unpaid_balance_reach_delayed_by_gas_limit": "However, your payout won't be processed because your gas price limit of <v>{{gasLimit}}</v> is lower than the current network gas price of <v>{{currentGas}}</v>.",
+    "stat_estimate": "Arvioidut tulot",
+    "stat_estimate_daily": "päivittäin",
+    "stat_estimate_weekly": "viikoittain",
+    "stat_estimate_monthly": "kuukausittain",
+    "stat_estimate_tooltip": "Paina vaihtaaksesi päivittäisen, viikoittaisen ja kuukausittaisen arvion välillä.",
+    "update_in": "Päivitys ajassa",
+    "auto_update": "Automaattinen päivitys"
+  },
+  "nav": {
+    "stats": "Tilastot",
+    "payments": "Maksut",
+    "rewards": "Palkkiot",
+    "blocks": "Lohkot"
+  },
+  "rewards": {
+    "head_title": "Louhijien palkkiot",
+    "earnings_chart": {
+      "title": "Tulot tässä kuussa",
+      "earnings": "Tulot",
+      "daily_income": "Päivittäiset tulot",
+      "download_csv": "Vie palkkiot CSV-muodossa"
+    },
+    "past_earnings": {
+      "title": "Vanhemmat tulot",
+      "yesterday": "Eilen",
+      "last_week": "Viime viikolla",
+      "last_month": "Viime kuussa"
+    },
+    "forecasted_earnings": {
+      "title": "Ennustetut tulot",
+      "daily": "Päivittäin",
+      "weekly": "Viikoittain",
+      "monthly": "Kuukausittain"
+    },
+    "pplns": {
+      "title": "Edistyneet PPLNS Tilastot",
+      "avp": {
+        "title": "Keskimääräinen hashrate",
+        "tooltip": "Perustuu nykyisen kierroksen osuuksien määrään ja poolin viimeisen 3 tunnin hashrate-tilastoon.",
+        "current": "Tämän hetkinen"
+      },
+      "crs": {
+        "title": "Nykyisen kierroksen osuus",
+        "aprox": "Arvioitu palkkio",
+        "tooltip": "Päätelty osuuslokista"
+      },
+      "log": {
+        "title": "Osuuslokin tyhjennysaika",
+        "tooltip": "Aika, jonka jälkeen kierroksen osuus putoaa nollaan.",
+        "size": "{{value}} osuutta lokissa"
+      }
+    },
+    "pplns_chart": {
+      "title": "Osuudet PPLNS Lokissa",
+      "valid_shares": "Hyväksyttyä osuutta"
+    }
+  },
+  "payments": {
+    "head_title": "Louhijan Maksut",
+    "chart": {
+      "title": "Maksut tänä vuonna",
+      "fee": "Kulu",
+      "value": "Arvo",
+      "net_value": "Nettoarvo"
+    },
+    "general": {
+      "title": "Yleiset Maksutilastot",
+      "total_paid": "Yhteensä maksettu",
+      "total_transactions": "Transaktioita yhteensä",
+      "paid_in_fees": "{{value}} maksettu kuluissa",
+      "average_payout_duration": "Keskimääräinen Ulosmaksuaika",
+      "average_payout_duration_desc": "Keskimääräinen aika ulosmaksujen välillä"
+    },
+    "transaction_fees": {
+      "title": "Transaktiokulut",
+      "last": "Viimeisin transaktio",
+      "fee": "{{value}} kuluja",
+      "average": "Keskivertainen transaktiokulu",
+      "average_percent": "Keskivertainen transaktiokulu %",
+      "average_cta": "Vihjeitä kulujen vähentämiseen",
+      "average_cta_tooltip": [
+        "1. Jos asetat suuremman ulosmaksun rajan, se vähentää transaktioiden määrää joista sinun täytyy maksaa kuluja.",
+        "2. Aseta transaktiokuluille raja välttääksesi isot kulut. Kun ulosmaksurajasi on täynnä, varmistamme että ulosmaksusi transaktio suoritetaan niin pian kuin mahdollista transaktiokulujesi rajoissa."
+      ]
+    },
+    "table": {
+      "title": "Maksut",
+      "download": "Lataa CSV-tiedosto",
+      "table_contents": {
+        "pending": "Odottaa",
+        "success": "Onnistunut"
+      },
+      "table_head": {
+        "date": "Päivämäärä",
+        "value": "Transaktion arvo",
+        "fee": "Kulu",
+        "duration": "Kesto",
+        "hash": "Hash",
+        "status": "Tila"
+      }
+    }
+  },
+  "stats": {
+    "not_enough_data": "Ei tarpeeksi dataa",
+    "not_enough_data_message": "Meillä ei ole tarpeeksi dataa kaavion näyttämiseksi. Jos laitteesi ovat jo louhimassa, datan prosessoinnissa voi kulua jopa 10 minuuttia.",
+    "active_worker": {
+      "title": "Laite",
+      "reset": "Nollaa"
+    },
+    "hashrate": {
+      "title": "Hashrate",
+      "title_space": "Tila",
+      "current": "Tällä hetkellä tuloksia tuottava",
+      "average": "24h Avg Effective",
+      "reported": "Raportoitu hashrate"
+    },
+    "shares": {
+      "title": "Osuudet",
+      "title_hint": "last 24 hours",
+      "title_points": "Pisteet",
+      "valid": "Hyväksytyt",
+      "stale": "Ristiriitaiset",
+      "invalid": "Virheelliset"
+    },
+    "hashrate_chart": {
+      "title": "Hashrate",
+      "title_space": "Tila",
+      "effective": "Tuloksia tuottava hashrate",
+      "average": "Tuloksia tuottavan hashraten keskiarvo",
+      "reported": "Raportoitu hashrate",
+      "effective_space": "Tuloksia tuottava tila",
+      "average_space": "Tuloksia tuottavan tilan keskiarvo",
+      "reported_space": "Raportoitu tila"
+    },
+    "shares_chart": {
+      "title": "Osuudet",
+      "title_points": "Pisteet",
+      "valid": "Hyväksytyt",
+      "stale": "Ristiriitaiset",
+      "invalid": "Virheelliset"
+    },
+    "table": {
+      "title_active": "Aktiiviset laitteet",
+      "title_inactive": "Poissa käytöstä olevat laitteet",
+      "search_placeholder": "Suodata laitteen perusteella",
+      "table_head": {
+        "name": "Nimi",
+        "reported_hashrate": "Raportoitu hashrate",
+        "reported_space": "Raportoitu tilan määrä",
+        "current_e_hashrate": "Tuloksia tuottava hashrate",
+        "current_e_space": "Tuloksia tuottava tilan määrä",
+        "average_e_hashrate": "Tuloksia tuottavan hashraten keskiarvo",
+        "average_e_space": "Tuloksia tuottavan tilan keskiarvo",
+        "valid": "Hyväksytyt osuudet",
+        "stale": "Ristiriitaiset osuudet",
+        "invalid": "Virheelliset osuudet",
+        "valid_points": "Hyväksytyt pisteet",
+        "stale_points": "Ristiriitaiset pisteet",
+        "invalid_points": "Virheelliset pisteet",
+        "last_seen": "Viimeksi nähty"
+      }
+    },
+    "proTips": {
+      "chartsProTip": "Klikkaa selitteitä lisätäksesi/poistaaksesi niitä kaaviolta",
+      "tablesProTip": "Voit järjestää laitteesi klikkaamalla otsikoita.",
+      "hoverHashrateProtip": "Voit viedä hiiren \"Tuloksia tuottavan hashraten keskiarvo\" päälle nähdäksesi viimeisen 6 ja 12 tunnin keskiarvot.",
+      "apiProTip": "Flexpoolin koko API on julkisesti saatavilla.",
+      "searchProTip": "Jos klikkaat hakupainiketta etusivulla, sinut viedään edelliseen tarkastelemaasi osoitteeseen.",
+      "payoutExportProTip": "Voit tallentaa kaikki transaktiosi CSV-tiedostoon \"Ulosmaksut\" välilehdeltä.",
+      "rewardsExportProTip": "Voit tallentaa kaikki palkkiosi CSV-tiedostoon \"Palkkiot\" välilehdeltä."
+    }
+  },
+  "status_pending_tooltip": "Odotetaan transaktion vahvistusta",
+  "confirmation_duration_tooltip": "Vahvistettu ajassa",
+  "confirmed_at_tooltip": "Vahvistettu ajankohtana",
+  "warning_header": "It looks like your dashboard is not ready yet.",
+  "warning_description": "If you are new here, your dashboard will be ready within 20 minutes of your first submitted share to this address. Please check back a little later."
+}

@@ -1,6 +1,6 @@
 ---
-title: What is Share Difficulty?
-level: intermediate
+title: 什么是共享Share？
+level: 中级
 ---
 
-Technically, shares are the same blocks, but just with modified (reduced in this case) difficulty. Your workers are mining those shares, and it is important for them to be easy to find. Otherwise, it would be impossible for pool to track worker statistics and verify that it is actually mining, not just sending unproven hashrate reports.
+从技术上讲，共享是相同的块，只是难度有所修改(在这种情况下降低了)。 你的计算机正在挖掘这些股份，很重要的一点是它们很容易被找到。 否则，池将不可能跟踪计算机统计数据并验证它实际上是挖掘，而不仅仅是发送未经验证的哈希率报告。

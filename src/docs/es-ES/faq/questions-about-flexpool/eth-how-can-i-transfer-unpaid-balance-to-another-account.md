@@ -1,6 +1,6 @@
 ---
-title: '¿Cómo puedo transferir el saldo no pagado a otra cuenta?'
+title: How can I transfer the unpaid balance to another acccount?
 coin: eth
 ---
 
-Para ello necesitaremos una firma digital. Puede ponerse en contacto con nosotros a través del servicio de mensajería del sitio web.
+We will require a digital signature to do this. You may contact us via the website messenger.

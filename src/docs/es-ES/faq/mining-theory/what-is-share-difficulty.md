@@ -1,6 +1,6 @@
 ---
-title: '¿Qué es la dificultad de una Share?'
-level: Intermedio
+title: What is Share Difficulty?
+level: intermediate
 ---
 
-Tecnicamente, las shares son lo mismo que los bloques, pero con una dificultad modificada (reducida en este caso). Tus equipos están minando esas shares, y es importante para ellos que sean fáciles de encontrar. De otra forma, nos sería imposible para la pool rastrear las estadísticas de tu equipo y verificar que esta minando, no enviando solo informes de hashrate sin comprobar.
+Technically, shares are the same blocks, but just with modified (reduced in this case) difficulty. Your workers are mining those shares, and it is important for them to be easy to find. Otherwise, it would be impossible for pool to track worker statistics and verify that it is actually mining, not just sending unproven hashrate reports.

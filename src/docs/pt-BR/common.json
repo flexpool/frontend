@@ -1,0 +1,79 @@
+{
+  "proTip": "Pro Tip",
+  "searchbar": {
+    "placeholder": "Busque pelo seu endereço de mineração"
+  },
+  "nav": {
+    "statistics": "Estatísticas",
+    "blocks": "Blocos",
+    "miners": "Mineradores",
+    "faq": "Perguntas Frequentes",
+    "support": "Suporte",
+    "get_started": "Primeiros Passos",
+    "community_title": "Junte-se à comunidade"
+  },
+  "footer": {
+    "company": {
+      "title": "Empresa",
+      "contact_us": "Fale Conosco",
+      "brand_assets": "Mídias da Marca",
+      "partners": "Parceiros",
+      "business_dev": "Oportunidade de Negócio",
+      "blog": "Blog",
+      "terms": "Termos",
+      "pp": "Política de Privacidade"
+    },
+    "resources": {
+      "title": "Recursos",
+      "get_started": "Primeiros Passos",
+      "faq": "Perguntas Frequentes",
+      "api_docs": "Documentação da API"
+    },
+    "community": {
+      "title": "Comunidade"
+    },
+    "contact": {
+      "title": "Fale Conosco",
+      "service_status": "Status do Serviço",
+      "support": "Suporte"
+    },
+    "preferences": {
+      "title": "Preferências"
+    },
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io ou seus afiliados. Todos os direitos reservados.",
+    "translation_help": "Ajude-nos a traduzir o site para o seu idioma"
+  },
+  "theme": {
+    "default": "Tema Padrão",
+    "dark": "Tema Escuro",
+    "light": "Tema Claro"
+  },
+  "list_navigation": {
+    "previous": "Anterior",
+    "next": "Próximo"
+  },
+  "errors": {
+    "higher_than": "Deve ser maior que {{value}}",
+    "required": "Obrigatório",
+    "Invalid IP Address": "Endereço IP inválido",
+    "email_invalid": "Endereço de e-mail inválido",
+    "email_required": "Por favor, digite seu endereço de e-mail",
+    "address_not_found": "O endereço especificado não foi encontrado em nosso sistema. Tente aguardar alguns minutos se você já estiver minerando."
+  },
+  "date_time": {
+    "now": "agora"
+  },
+  "snacks": {
+    "emailConfirmed": {
+      "title": "Seu e-mail foi confirmado"
+    },
+    "emailUnsubscribed": {
+      "title": "Você cancelou com sucesso a inscrição de notificações por e-mail"
+    }
+  },
+  "faq": {
+    "questionsAboutFlexpool": "Perguntas Sobre a Flexpool",
+    "miningBasics": "Mining Basics"
+  },
+  "noDataAvailable": "Sem dados disponíveis"
+}

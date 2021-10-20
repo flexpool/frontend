@@ -1,14 +1,14 @@
 ---
-title: Ar turėčiau naudoti SSL?
+title: Should I use SSL?
 coin: eth
 ---
 
-** Taip **, kur įmanoma, naudokite SSL.
+**Yes**, use SSL where possible.
 
-Mes griežtai prieš šifruotą (TCP) ryšį, kai kasame savo poole. Šis ryšys yra pažeidžiamas MITM (Man-In-The-Middle) atakoms, o tai reiškia, kad jei kas nors piktybiškai atsistos tarp jūsų darbuotojo ir poolo, gali būti pavogta dalis jūsų hashrate.
+We are strongly against using unencrypted (TCP) connection while mining on our pool. This connection is vulnerable to MITM (Man-In-The-Middle) attacks, which means that if someone will maliciously stand in between of your worker and pool, some % of your hashrate may be stolen.
 
-#### NENAUDOKITE NEKODUOTO JUNGIMO
+#### DO NOT USE UNENCRYPTED CONNECTION
 
-Atminkite, kad kol jūsų darbuotojo pranešimas pasiekia poola, jis praeina per keliolika maršrutizatorių (galite naudoti komandą `traceroute`, kad pamatytumėte juos visus).
+Keep in mind that before your worker's message reaches the pool, it passes through a dozen of routers (you can use `traceroute` command to see all of them).
 
-Naudoti SSL rekomenduoja „Flexpool“. Šis ryšio tipas užtikrina, kad jūsų darbuotojas kalbės su tikraisiais poolo serveriais.
+Using SSL is recommened by Flexpool. This connection type ensures that your worker talks to the actual pool servers.

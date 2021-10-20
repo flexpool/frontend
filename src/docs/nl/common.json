@@ -1,0 +1,79 @@
+{
+  "proTip": "Pro Tip",
+  "searchbar": {
+    "placeholder": "Zoek op uw mining address"
+  },
+  "nav": {
+    "statistics": "Statistieken",
+    "blocks": "Blocks",
+    "miners": "Miners",
+    "faq": "FAQ",
+    "support": "Ondersteuning",
+    "get_started": "Aan de slag",
+    "community_title": "Word lid van de gemeenschap"
+  },
+  "footer": {
+    "company": {
+      "title": "Bedrijf",
+      "contact_us": "Contacteer ons",
+      "brand_assets": "Merkactiva",
+      "partners": "Partners",
+      "business_dev": "Zakelijke ontwikkeling",
+      "blog": "Blog",
+      "terms": "Voorwaarden",
+      "pp": "Privacybeleid"
+    },
+    "resources": {
+      "title": "Bronnen",
+      "get_started": "Aan de slag",
+      "faq": "FAQ",
+      "api_docs": "API documentatie"
+    },
+    "community": {
+      "title": "Gemeenschap"
+    },
+    "contact": {
+      "title": "Contact",
+      "service_status": "Service Status",
+      "support": "Ondersteuning"
+    },
+    "preferences": {
+      "title": "Voorkeuren"
+    },
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io Technologies Inc., or its affiliates. All rights reserved.",
+    "translation_help": "Help ons de website te vertalen naar jouw taal"
+  },
+  "theme": {
+    "default": "Standaard thema",
+    "dark": "Donker thema",
+    "light": "Licht Thema"
+  },
+  "list_navigation": {
+    "previous": "Vorige",
+    "next": "Volgende"
+  },
+  "errors": {
+    "higher_than": "Moet hoger zijn dan {{value}}",
+    "required": "Verplicht",
+    "Invalid IP Address": "Ongeldig IP-adres",
+    "email_invalid": "Ongeldig e-mailadres",
+    "email_required": "Voer je e-mailadres in",
+    "address_not_found": "Het opgegeven adres werd niet teruggevonden in ons systeem. Wacht een ogenblikje als je al aan het minen bent."
+  },
+  "date_time": {
+    "now": "nu"
+  },
+  "snacks": {
+    "emailConfirmed": {
+      "title": "Je mailadres is bevestigd"
+    },
+    "emailUnsubscribed": {
+      "title": "Je bent nu uitgeschreven van e-mail meldingen"
+    }
+  },
+  "faq": {
+    "questionsAboutFlexpool": "Questions About Flexpool",
+    "miningBasics": "Mining Basics"
+  },
+  "noDataAvailable": "No data available"
+}

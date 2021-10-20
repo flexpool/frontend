@@ -1,6 +1,6 @@
 ---
-title: چگونه می توانم مانده پرداخت نشده را به اکانت دیگر منتقل کنم؟
+title: How can I transfer the unpaid balance to another acccount?
 coin: eth
 ---
 
-ما برای این کار نیاز به امضای الکترونیکی داریم. شما باید با ما از طریق مسنجر سایت  ارتباط بر قرار کنید.
+We will require a digital signature to do this. You may contact us via the website messenger.

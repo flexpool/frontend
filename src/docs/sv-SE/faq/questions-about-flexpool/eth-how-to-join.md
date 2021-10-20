@@ -1,6 +1,6 @@
 ---
-title: Hur går man med i Flexpool?
+title: How to join Flexpool?
 coin: eth
 ---
 
-Du finner steg-för-steg-instruktioner här: [Kom igång](/get-started)
+We have step-by-step instructions here: [Getting Started](/get-started)

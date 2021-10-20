@@ -1,14 +1,14 @@
 ---
-title: Надо ли использовать SSL-соединение?
+title: Should I use SSL?
 coin: eth
 ---
 
-**Да**, используйте SSL, где это возможно.
+**Yes**, use SSL where possible.
 
-Мы решительно против использования незашифрованное (TCP) подключения во время добычи на нашем пуле. Это соединение уязвимо к атакам MITM (Man-In-The-Middle), что означает, что если кто-то будет стоять между вашим майнером и пулом, некоторый % вашего хэшрейта может быть украден.
+We are strongly against using unencrypted (TCP) connection while mining on our pool. This connection is vulnerable to MITM (Man-In-The-Middle) attacks, which means that if someone will maliciously stand in between of your worker and pool, some % of your hashrate may be stolen.
 
-#### НЕ ИСПОЛЬЗУЙТЕ НЕЗАШИФРОВАННОЕ СОЕДИНЕНИЕ
+#### DO NOT USE UNENCRYPTED CONNECTION
 
-Имейте ввиду, что перед тем, как сообщение от вашего воркера достигает пула, оно проходит через множество роутеров (вы можете использовать команду `traceroute`, чтобы увидеть их все).
+Keep in mind that before your worker's message reaches the pool, it passes through a dozen of routers (you can use `traceroute` command to see all of them).
 
-Использование SSL-соединения рекомендуется Flexpool. Этот тип соединения гарантирует, что ваш майнер общается только с пул серверами.
+Using SSL is recommened by Flexpool. This connection type ensures that your worker talks to the actual pool servers.

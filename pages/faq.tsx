@@ -108,7 +108,8 @@ const FaqSection: React.FC<FaqDataSection> = ({ name, contents }) => {
         <h2>{t(name)}</h2>
         {contents
           .filter((item) => {
-            const markdownCoinAttribute = item.md.attributes.coin;
+            const markdownCoinAttribute =
+              item.md.attributes.coin?.toLowerCase();
             return (
               !markdownCoinAttribute ||
               markdownCoinAttribute === selectedCoinTicker
@@ -154,6 +155,8 @@ const FaqContent = styled.div`
 function FAQPage({ faq }) {
   const { i18n, t: seoT } = useTranslation('seo');
 
+  console.log({ faq });
+
   return (
     <Page>
       <NextSeo
@@ -188,11 +191,16 @@ function FAQPage({ faq }) {
 export default FAQPage;
 
 import { faqStructure } from '../src/docs/index';
+import { RiCoinsLine } from 'react-icons/ri';
 
 const loadFaqMarkdown = (locale: string, item: string): FaqMarkdown | {} => {
+  console.log('load md', locale, item);
+
   const isTranslationAvailable = !_.isError(
     _.attempt(() => require(`src/docs/${locale}/faq/${item}`))
   );
+
+  console.log('tranlsation available', isTranslationAvailable);
 
   if (isTranslationAvailable) return require(`src/docs/${locale}/faq/${item}`);
   const isEnglishAvailable = !_.isError(
@@ -210,6 +218,9 @@ export async function getStaticProps({ locale }) {
       contents: section.contents
         .map((item) => {
           const markdown = loadFaqMarkdown(locale, item);
+
+          console.log('MARKDOWN', markdown);
+
           if (_.isEmpty(markdown))
             console.log(`\x1b[91mERROR:\x1b[39m ${item} not found`);
 

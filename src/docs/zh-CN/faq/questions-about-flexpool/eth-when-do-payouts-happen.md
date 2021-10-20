@@ -1,6 +1,6 @@
 ---
-title: When do payouts happen?
-coin: eth
+title: 什么时候支付？
+coin: ETH
 ---
 
-Payouts are checked every hour and sent if you meet the payout criteria. However, it is not guaranteed to be the same minute of the hour.
+如果您符合付款标准，则每小时检查一次付款并发送。 单，它并不是每分钟都发送。

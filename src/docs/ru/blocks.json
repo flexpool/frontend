@@ -1,0 +1,58 @@
+{
+  "head_title": "Mined Blocks",
+  "title": "Блоки",
+  "description": "История добытых блоков от Flexpool",
+  "average_luck": "Средняя удача",
+  "average_luck_tooltip": "Средняя удача за последние 30 дней.",
+  "current_luck": "Текущая удача",
+  "current_luck_tooltip": "Текущая удача за раунд. Обновляется в реальном времени.",
+  "network_hashrate": "Хэшрейт сети",
+  "network_space": "Network Space",
+  "network_difficulty": "Сложность сети",
+  "network_difficulty_tooltip": "Среднее количество хэшей, которое должен произвести пул для добычи блока.",
+  "network_difficulty_tooltip_points": "Average amount of how many points pool should produce to mine a block.",
+  "table": {
+    "title_zero": "Не удается получить данные пула",
+    "title": "Flexpool добыл {{count}} блок",
+    "title_1": "Flexpool добыл {{count}} блок",
+    "title_2": "Flexpool добыл {{count}} блокa",
+    "title_3": "Flexpool добыл {{count}} блокa",
+    "title_4": "Flexpool добыл {{count}} блока",
+    "title_5": "Flexpool добыл {{count}} блоков",
+    "title_plural": "Flexpool добыл {{count}} блоков",
+    "title_miner_zero": "Вы еще не добыли ни одного блока",
+    "title_miner": "Вы добыли {{count}} блок",
+    "title_miner_1": "Вы добыли {{count}} блок",
+    "title_miner_2": "Вы добыли {{count}} блока",
+    "title_miner_3": "Вы добыли {{count}} блока",
+    "title_miner_4": "Вы добыли {{count}} блока",
+    "title_miner_5": "Вы добыли {{count}} блоков",
+    "title_miner_plural": "Вы добыли {{count}} блоков",
+    "rewards_block_list_title": "Rewards Per Block",
+    "table_head": {
+      "number": "Номер",
+      "type": "Тип",
+      "date": "Дата",
+      "region": "Регион",
+      "miner": "Майнер",
+      "reward": "Вознаграждение",
+      "round_time": "Время Раунда",
+      "hash": "Хэш",
+      "luck": "Удача",
+      "share": "Share"
+    }
+  },
+  "type": {
+    "block": "Блок",
+    "orphan": "Orphan",
+    "uncle": "Uncle"
+  },
+  "chart": {
+    "title": "Ежемесячная визуализация блоков",
+    "blocks_per_day": "Блоков в день",
+    "difficulty": "Сложность"
+  },
+  "waiting_confirmation_tooltip": "В ожидании подтверждения",
+  "orphan_tooltip": "Orphan блок - это блок, который не принят или не является частью самой длинной цепочки. Обычно, это происходит в очень редких случаях таких как реорганизация цепочки с глубиной в два блока.",
+  "uncle_tooltip": "Uncle blocks are blocks that have the same parent hash and number. They are caused because of the high latency between mining pools. Typically, they appear when two mining pools mine two blocks at the same time, both having the same block number."
+}

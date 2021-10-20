@@ -1,6 +1,6 @@
 ---
-title: Comment puis-je transférer le solde impayé sur un autre compte ?
+title: How can I transfer the unpaid balance to another acccount?
 coin: eth
 ---
 
-Pour ce faire, nous aurons besoin d'une signature numérique. Vous pouvez nous contacter via la messagerie du site web.
+We will require a digital signature to do this. You may contact us via the website messenger.

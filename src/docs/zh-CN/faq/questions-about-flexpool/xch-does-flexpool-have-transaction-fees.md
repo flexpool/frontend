@@ -1,6 +1,6 @@
 ---
-title: Does Flexpool charge a fee for every transaction?
-coin: xch
+title: Flexpool矿池会在每次支付时收费吗？
+coin: XCH
 ---
 
-**No**. There are no transaction fees paid by the farmer for XCH transactions.
+不会的。 付款是矿池不会收取您任何的费用。 唯一的费用是网络转账手续费。这个收付费是静态的，按次数收取的，无论转账额度多大都是一样的。
