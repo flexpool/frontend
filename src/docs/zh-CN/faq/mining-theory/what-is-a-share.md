@@ -1,6 +1,6 @@
 ---
-title: What is a Share?
-level: beginner
+title: 什么是share？
+level: 初级
 ---
 
-Share is a part of the block the pool is working on. By hashing on the pool, your rig solves/mines these puzzles, and submits them to the pool. You are getting paid for those.
+share是池正在处理的块的一部分。 通过在池中散列，你的矿机解决/挖掘这些谜题，并将它们提交到池中。 你因此会得到报酬的。

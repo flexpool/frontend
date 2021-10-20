@@ -1,6 +1,6 @@
 ---
-title: Why do I have a lot of stale partials on the dashboard?
-coin: xch
+title: 为什么我的仪表板上有很多过时的部件？
+coin: XCH
 ---
 
-This is almost always a farmer-side issue, and is often caused by a flaky network (wifi with high interference, for example), heavy load on the farmer (from plotting or moving plots around), or sometimes a suboptimal connection between you and the pool. Unlike ETH, Chia is not as susceptible to latency to the pool server, so while you can change servers to try to work around this, it's usually not an Internet path issue. Even 400ms latency to the pool server is usually acceptable.
+这几乎总是一个矿工方面的问题，通常是由于网络不稳定（例如，wifi干扰高）、矿工负担过重（绘图或移动绘图）或有时您与游泳池之间的连接不理想造成的。 与ETH不同，Chia不易受到池服务器延迟的影响，因此，虽然您可以更改服务器以尝试解决此问题，但这通常不是Internet路径问题。 即使到池服务器的400毫秒延迟通常也是可以接受的。

@@ -1,9 +1,8 @@
 ---
-title: It's been an hour and my unpaid balance hasn't changed?
-coin: xch
+title: 已经一个小时了，没有收到付款？
+coin: XCH
 ---
 
-Our pool only pays rewards when we earn rewards. If there are no blocks found for a period of time, there is no reward to share with farmers, so your rewards do not increase.
+我们的池只在我们获得奖励时支付奖励。 如果在一段时间内没有发现块，则没有奖励可与矿工分享，因此您的奖励不会增加。
 
-You can check the Blocks tab at the top of any of our pages to see when the last block was found. If there is a spinning wheel next to the block number, it is not yet confirmed and may not be finalized
-yet. Sometimes blocks may take an hour to confirm and have a final reward value on your Rewards tab.
+您可以查看我们任何页面顶部的“块”选项卡，查看最后一个块是何时找到的。 可能尚未最终确定。 有时区块可能需要一个小时来确认，并在您的奖励选项卡上显示最终奖励值。

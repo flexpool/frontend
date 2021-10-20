@@ -1,6 +1,6 @@
 ---
-title: Why is my effective hashrate not stable?
-coin: eth
+title: 为什么我的有效哈希率不稳定？
+coin: ETH
 ---
 
-Average Effective hashrate on the dashboard is a 24 hour average, and will be imprecise if you have mined inconsistently or have not mined for 24 hours straight. You can tap or mouse over the AEH to see your 6 and 12 hour averages, which will be more useful sooner.
+仪表板上的平均有效hashrate是24小时平均值，如果不一致地挖掘或连续24小时未挖掘，则该值将不精确。 您可以在上点有效算力点击或鼠标查看您的6小时和12小时平均值，这将更有用。

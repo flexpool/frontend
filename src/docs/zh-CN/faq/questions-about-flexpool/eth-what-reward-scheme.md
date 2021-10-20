@@ -1,6 +1,6 @@
 ---
-title: 'What reward scheme Flexpool uses?'
-coin: eth
+title: 'Flexpool使用什么奖励方案？'
+coin: ETH
 ---
 
-We use PPLNS (Pay-Per-Last-N-Shares) Reward Scheme.
+我们使用PPLNS（每股N股）奖励方案。
