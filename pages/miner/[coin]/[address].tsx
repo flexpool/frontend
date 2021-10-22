@@ -378,7 +378,7 @@ export const MinerDashboardPage: React.FC<{
   return (
     <>
       {isMounted && isChineseUser && (
-        <AnnouncementBar>
+        <AnnouncementBar id="hke-port-migrate">
           公告，我们对 香港(针对中国大陆优化) eth-hke.flexpool.io
           的服务器端口进行了优化和迁移
           <br />
