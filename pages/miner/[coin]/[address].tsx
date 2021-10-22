@@ -368,12 +368,14 @@ export const MinerDashboardPage: React.FC<{
   isLocated: boolean;
 }> = (props) => {
   const { isLocated } = props;
-  const { t } = useTranslation('dashboard');
+  const { t, i18n } = useTranslation('dashboard');
   const isMounted = useIsMounted();
   const isChineseUser =
     typeof window !== 'undefined'
-      ? /^zh\b/.test(window.navigator.language)
+      ? /^zh\b/.test(window.navigator.language) || /^zh\b/.test(i18n.language)
       : false;
+
+  console.log(i18n.language);
 
   return (
     <>
