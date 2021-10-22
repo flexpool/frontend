@@ -375,8 +375,6 @@ export const MinerDashboardPage: React.FC<{
       ? /^zh\b/.test(window.navigator.language) || /^zh\b/.test(i18n.language)
       : false;
 
-  console.log(i18n.language);
-
   return (
     <>
       {isMounted && isChineseUser && (
@@ -389,6 +387,8 @@ export const MinerDashboardPage: React.FC<{
           SSL: 从 443 到 22271
           <br />
           如果你仍在使用 8080 或 443 端口，请尽快完成迁移。
+          <br />
+          我们将于明天 (北京时间 十月24日) 停止对它们的支持。
         </AnnouncementBar>
       )}
       {!isLocated && (
