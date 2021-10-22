@@ -38,10 +38,12 @@ import { Spacer } from 'src/components/layout/Spacer';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import { PullToRefresh } from 'src/components/layout/PullToRefresh/PullToRefresh';
 import { InfoBox } from 'src/components/InfoBox';
+import AnnouncementBar from '@/components/AnnouncementBar';
 
 import styled from 'styled-components';
 import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
 import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
+import useIsMounted from '@/hooks/useIsMounted';
 import { getChecksumByTicker } from '@/utils/validators/checksum';
 import Warning from '@/assets/warning-icon.svg';
 import { fetchApi } from 'src/utils/fetchApi';
@@ -367,9 +369,26 @@ export const MinerDashboardPage: React.FC<{
 }> = (props) => {
   const { isLocated } = props;
   const { t } = useTranslation('dashboard');
+  const isMounted = useIsMounted();
+  const isChineseUser =
+    typeof window !== 'undefined'
+      ? /^zh\b/.test(window.navigator.language)
+      : false;
 
   return (
     <>
+      {isMounted && isChineseUser && (
+        <AnnouncementBar>
+          公告，我们对 香港(针对中国大陆优化) eth-hke.flexpool.io
+          的服务器端口进行了优化和迁移
+          <br />
+          TCP：从 8080 到 13271
+          <br />
+          SSL: 从 443 到 22271
+          <br />
+          如果你仍在使用 8080 或 443 端口，请尽快完成迁移。
+        </AnnouncementBar>
+      )}
       {!isLocated && (
         <Content>
           <TopBannerContainer>
