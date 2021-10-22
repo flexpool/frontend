@@ -212,8 +212,8 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
               {data.domain === 'eth-hke.flexpool.io' && (
                 <WarningBox>
                   {t('detail.region.hke_warning_title')} <br />
-                  TCP: 8080 <br />
-                  SSL: 443
+                  TCP: 13271 <br />
+                  SSL: 22271
                 </WarningBox>
               )}
             </Ws>

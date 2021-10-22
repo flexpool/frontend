@@ -98,6 +98,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
 
 export default appWithTranslation(App);
 
+// FIXME: Hmmmm, change this please
 const PoolCoins = () => {
   usePoolCoins();
   return <></>;
