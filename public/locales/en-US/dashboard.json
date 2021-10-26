@@ -86,8 +86,8 @@
     "past_earnings": {
       "title": "Past Earnings",
       "yesterday": "Yesterday",
-      "last_week": "Last Week",
-      "last_month": "Last Month"
+      "last_week": "Past 7 Days",
+      "last_month": "Past 30 Days"
     },
     "forecasted_earnings": {
       "title": "Forecasted Earnings",
