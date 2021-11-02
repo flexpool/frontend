@@ -11,7 +11,7 @@ import { Page, PageLoading } from 'src/components/layout/Page';
 
 import { useDispatch } from 'react-redux';
 import { useReduxState } from 'src/rdx/useReduxState';
-import { minerRewardsGet } from 'src/rdx/minerRewards/minerRewards.actions';
+import { useFetchMinerRewards } from '@/rdx/minerRewards/minerRewards.hooks';
 import {
   minerDetailsGet,
   minerDetailsReset,
@@ -22,12 +22,12 @@ import {
   minerStatsChartGet,
   minerStatsChartReset,
 } from 'src/rdx/minerStatsChart/minerStatsCharts.actions';
-import { minerWorkersGet } from 'src/rdx/minerWorkers/minerWorkers.actions';
-import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
-import { poolStatsGet } from 'src/rdx/poolStats/poolStats.actions';
+import { useFetchMinerWorkers } from 'src/rdx/minerWorkers/minerWorkers.hooks';
+import { useFetchPoolStats } from '@/rdx/poolStats/poolStats.hooks';
 import {
   useActiveCoin,
   useCounterTicker,
+  useCoinTicker,
 } from 'src/rdx/localSettings/localSettings.hooks';
 
 import { AccountHeader } from 'src/pages/MinerDashboard/Header/AccountHeader';
@@ -128,6 +128,10 @@ export const MinerDashboardPageContent: React.FC<{
   const counterTicker = useCounterTicker();
   const { t } = useTranslation('dashboard');
   const d = useDispatch();
+  const [, setCoinTicker] = useCoinTicker();
+  useFetchPoolStats(coinTicker);
+  useFetchMinerWorkers(coinTicker, address);
+  useFetchMinerRewards(coinTicker, address, counterTicker);
   const worker = useActiveSearchParamWorker();
   const [tabIndex, setTabIndex] = useState(0);
   const tabs = {
@@ -183,22 +187,21 @@ export const MinerDashboardPageContent: React.FC<{
     return Promise.all([loadMinerStats(), loadHeader(), loadMinerChartStats()]);
   }, [loadMinerStats, loadHeader, loadMinerChartStats]);
 
-  // globaly set active coin ticker
   useEffect(() => {
     if (
       poolCoins.data &&
       poolCoins.data.coins.find((item) => item.ticker === coinTicker)
     ) {
-      d(localSettingsSet({ coin: coinTicker }));
-      d(poolStatsGet(coinTicker));
-      loadHeader();
-      loadMinerStats();
-      loadMinerChartStats();
-      d(minerWorkersGet(coinTicker, address));
-      d(minerRewardsGet(coinTicker, address, counterTicker));
+      setCoinTicker(coinTicker);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [coinTicker, poolCoins?.data, worker, address]);
+  }, [poolCoins.data, setCoinTicker, coinTicker]);
+
+  // globaly set active coin ticker
+  useEffect(() => {
+    loadHeader();
+    loadMinerStats();
+    loadMinerChartStats();
+  }, [loadHeader, loadMinerStats, loadMinerChartStats]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
