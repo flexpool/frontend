@@ -107,6 +107,17 @@ export const PayoutSettings: React.FC<{
       if (values.payoutLimit < 0) {
         errors.payoutLimit = t('common:errors.required', { value: 0 });
       }
+
+      if (
+        values.payoutLimit &&
+        values.payoutLimit.toString().split('.')[1] &&
+        values.payoutLimit.toString().split('.')[1].length > 4
+      ) {
+        errors.payoutLimit = t('common:errors.decimal_places', {
+          value: 4,
+        });
+      }
+
       if (values.ip === '') {
         errors.ip = t('common:errors.required');
       }
