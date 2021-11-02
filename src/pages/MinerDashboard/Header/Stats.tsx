@@ -10,6 +10,7 @@ import { useNetworkFeeLimit } from '@/rdx/minerDetails/minerDetails.selectors';
 import useActiveCoinNetworkFee from '@/hooks/useActiveCoinNetworkFee';
 import { StatItem } from 'src/components/StatItem';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
+import { useFetchPoolStats } from '@/rdx/poolStats/poolStats.hooks';
 import { FaCalendar, FaCalendarDay, FaCalendarWeek } from 'react-icons/fa';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
@@ -226,11 +227,12 @@ type EstimateInterval = 1 | 7 | 30;
 
 export const HeaderStats: React.FC<{
   coin?: ApiPoolCoin;
-}> = () => {
+  coinTicker: string;
+}> = ({ coinTicker }) => {
   const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const minerDetailsState = useReduxState('minerDetails');
   const minerStatsState = useReduxState('minerStats');
-  const poolStatsState = useReduxState('poolStats');
+  const poolStatsState = useFetchPoolStats(coinTicker);
   const activeCoin = useActiveCoin();
   const data = minerHeaderStatsState.data;
   const settings = minerDetailsState.data;

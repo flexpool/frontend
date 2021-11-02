@@ -23,7 +23,6 @@ import {
   minerStatsChartReset,
 } from 'src/rdx/minerStatsChart/minerStatsCharts.actions';
 import { useFetchMinerWorkers } from 'src/rdx/minerWorkers/minerWorkers.hooks';
-import { useFetchPoolStats } from '@/rdx/poolStats/poolStats.hooks';
 import {
   useActiveCoin,
   useCounterTicker,
@@ -129,7 +128,6 @@ export const MinerDashboardPageContent: React.FC<{
   const { t } = useTranslation('dashboard');
   const d = useDispatch();
   const [, setCoinTicker] = useCoinTicker();
-  useFetchPoolStats(coinTicker);
   useFetchMinerWorkers(coinTicker, address);
   useFetchMinerRewards(coinTicker, address, counterTicker);
   const worker = useActiveSearchParamWorker();
@@ -242,7 +240,7 @@ export const MinerDashboardPageContent: React.FC<{
             />
             <Spacer />
             <MinerDetails coin={activeCoin} />
-            <HeaderStats coin={activeCoin} />
+            <HeaderStats coin={activeCoin} coinTicker={coinTicker} />
           </Content>
           <Tabs
             className="w-full"
@@ -277,7 +275,10 @@ export const MinerDashboardPageContent: React.FC<{
                   />
                 </TabPanel>
                 <TabPanel>
-                  <DynamicMinerRewardsPage address={address} />
+                  <DynamicMinerRewardsPage
+                    address={address}
+                    coinTicker={coinTicker}
+                  />
                 </TabPanel>
                 <TabPanel>
                   <DynamicMinerBlocksPage address={address} coin={coinTicker} />
@@ -327,6 +328,7 @@ const DynamicMinerPaymentsPage = dynamic<{
 
 const DynamicMinerRewardsPage = dynamic<{
   address: string;
+  coinTicker: string;
 }>(
   () =>
     import('src/pages/MinerDashboard/Rewards/MinerRewards.page').then(
