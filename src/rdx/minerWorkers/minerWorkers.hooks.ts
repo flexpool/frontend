@@ -11,20 +11,13 @@ export const useFetchMinerWorkers = (coinTicker: string, address: string) => {
     if (
       coinTicker &&
       address &&
-      !minerWorkers.data &&
+      !minerWorkers.lastGetStartAt &&
       !minerWorkers.isLoading &&
       !minerWorkers.error
     ) {
       dispatch(minerWorkersGet(coinTicker, address));
     }
-  }, [
-    dispatch,
-    coinTicker,
-    address,
-    minerWorkers.data,
-    minerWorkers.isLoading,
-    minerWorkers.error,
-  ]);
+  }, [dispatch, coinTicker, address, minerWorkers]);
 
   return minerWorkers;
 };
