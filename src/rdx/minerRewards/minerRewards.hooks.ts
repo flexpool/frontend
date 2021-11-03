@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useReduxState } from '../useReduxState';
 import { minerRewardsGet } from './minerRewards.actions';
 
+// Fetch data for dashboards' rewards section
 export const useFetchMinerRewards = (
   coinTicker: string,
   address: string,
@@ -10,6 +11,11 @@ export const useFetchMinerRewards = (
 ) => {
   const dispatch = useDispatch();
   const minerRewards = useReduxState('minerRewards');
+
+  const fetch = useCallback(
+    () => dispatch(minerRewardsGet(coinTicker, address, counterTicker)),
+    [coinTicker, address, counterTicker, dispatch]
+  );
 
   useEffect(() => {
     if (
@@ -20,9 +26,9 @@ export const useFetchMinerRewards = (
       !minerRewards.isLoading &&
       !minerRewards.error
     ) {
-      dispatch(minerRewardsGet(coinTicker, address, counterTicker));
+      fetch();
     }
-  }, [dispatch, minerRewards, coinTicker, address, counterTicker]);
+  }, [dispatch, minerRewards, address, coinTicker, counterTicker, fetch]);
 
-  return minerRewards;
+  return { ...minerRewards, refetch: fetch };
 };
