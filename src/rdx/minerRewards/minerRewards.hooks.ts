@@ -18,17 +18,10 @@ export const useFetchMinerRewards = (
   );
 
   useEffect(() => {
-    if (
-      coinTicker &&
-      address &&
-      counterTicker &&
-      !minerRewards.data &&
-      !minerRewards.isLoading &&
-      !minerRewards.error
-    ) {
+    if (coinTicker && address && counterTicker) {
       fetch();
     }
-  }, [dispatch, minerRewards, address, coinTicker, counterTicker, fetch]);
+  }, [dispatch, address, coinTicker, counterTicker, fetch]);
 
   return { ...minerRewards, refetch: fetch };
 };
