@@ -8,16 +8,10 @@ export const useFetchMinerWorkers = (coinTicker: string, address: string) => {
   const minerWorkers = useReduxState('minerWorkers');
 
   useEffect(() => {
-    if (
-      coinTicker &&
-      address &&
-      !minerWorkers.lastGetStartAt &&
-      !minerWorkers.isLoading &&
-      !minerWorkers.error
-    ) {
+    if (coinTicker && address) {
       dispatch(minerWorkersGet(coinTicker, address));
     }
-  }, [dispatch, coinTicker, address, minerWorkers]);
+  }, [dispatch, coinTicker, address]);
 
   return minerWorkers;
 };
