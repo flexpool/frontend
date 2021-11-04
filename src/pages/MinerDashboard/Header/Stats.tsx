@@ -230,7 +230,6 @@ export const HeaderStats: React.FC<{
   const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const minerDetailsState = useReduxState('minerDetails');
   const minerStatsState = useReduxState('minerStats');
-  const poolStatsState = useReduxState('poolStats');
   const activeCoin = useActiveCoin();
   const data = minerHeaderStatsState.data;
   const settings = minerDetailsState.data;
@@ -249,13 +248,12 @@ export const HeaderStats: React.FC<{
   const tickerBalance = currencyFormatter(data?.balanceCountervalue || 0);
 
   const estimatedDailyEarnings = React.useMemo(() => {
-    return poolStatsState.data?.averageHashrate &&
-      minerHeaderStatsState.data?.dailyRewardsPerGh &&
+    return minerHeaderStatsState.data?.dailyRewardsPerGh &&
       minerStatsState.data?.averageEffectiveHashrate
       ? minerHeaderStatsState.data?.dailyRewardsPerGh *
           (minerStatsState.data?.averageEffectiveHashrate / 1000000000)
       : 0;
-  }, [poolStatsState.data, minerHeaderStatsState.data, minerStatsState.data]);
+  }, [minerHeaderStatsState.data, minerStatsState.data]);
 
   const estimated = React.useMemo(() => {
     return {

@@ -1,4 +1,7 @@
+import { useCallback } from 'react';
 import { useReduxState } from 'src/rdx/useReduxState';
+import { useDispatch } from 'react-redux';
+import { localSettingsSet } from './localSettings.actions';
 
 /**
  * Get current selected coin from coin selector
@@ -45,4 +48,21 @@ export const useAppTheme = () => {
       : localSettingsState.systemColorMode;
 
   return colorMode;
+};
+
+export const useCoinTicker = (): [
+  coinTicker: string,
+  setCoinTicker: (coinTicker: string) => void
+] => {
+  const dispatch = useDispatch();
+  const localSettingsState = useReduxState('localSettings');
+
+  const setCoinTicker = useCallback(
+    (coinTicker: string) => {
+      dispatch(localSettingsSet({ coin: coinTicker }));
+    },
+    [dispatch]
+  );
+
+  return [localSettingsState.coin, setCoinTicker];
 };
