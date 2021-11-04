@@ -96,7 +96,7 @@
     "title_gui": "Chia farming using GUI Farmer",
     "pool_details": [
       { "key": "Reward Scheme", "value": "PPLNS (Pay Per Last N Shares)" },
-      { "key": "Pool Fee", "value": "0%" },
+      { "key": "Pool Fee", "value": "0.7%" },
       { "key": "Payout Round", "value": "Once an hour" },
       { "key": "Payouts", "value": "from 0.01 XCH to 10 XCH" },
       { "key": "Block confirmation time", "value": "60 Blocks" },
