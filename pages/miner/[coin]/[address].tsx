@@ -126,9 +126,10 @@ export const MinerDashboardPageContent: React.FC<{
     address
   );
   const { refetch: refetchMinerRewards } = useFetchMinerRewards(
-    coinTicker,
-    address,
-    counterTicker
+    { coinTicker, address, counterTicker },
+    {
+      enable: false,
+    }
   );
   const { refetch: refetchMinerStatsChart } = useFetchMinerStatsChart(
     coinTicker,
@@ -150,24 +151,6 @@ export const MinerDashboardPageContent: React.FC<{
     address
   );
 
-  const loadAll = React.useCallback(() => {
-    return Promise.all([
-      refetchMinerDetails(),
-      refetchMinerWorkers(),
-      refetchMinerRewards(),
-      refetchMinerStatsChart(),
-      refetchMinerStats(),
-      refetchMinerHeaderStats(),
-    ]);
-  }, [
-    refetchMinerDetails,
-    refetchMinerWorkers,
-    refetchMinerRewards,
-    refetchMinerStatsChart,
-    refetchMinerStats,
-    refetchMinerHeaderStats,
-  ]);
-
   const [tabIndex, setTabIndex] = useState(0);
   const tabs = {
     stats: 0,
@@ -175,6 +158,25 @@ export const MinerDashboardPageContent: React.FC<{
     rewards: 2,
     blocks: 3,
   };
+
+  const loadAll = React.useCallback(() => {
+    return Promise.all([
+      refetchMinerDetails(),
+      refetchMinerWorkers(),
+      tabIndex === 2 ? refetchMinerRewards() : null,
+      refetchMinerStatsChart(),
+      refetchMinerStats(),
+      refetchMinerHeaderStats(),
+    ]);
+  }, [
+    tabIndex,
+    refetchMinerDetails,
+    refetchMinerWorkers,
+    refetchMinerRewards,
+    refetchMinerStatsChart,
+    refetchMinerStats,
+    refetchMinerHeaderStats,
+  ]);
 
   const loadSelectedTabFromHash = (tabHash: string) => {
     setTabIndex(tabs[tabHash]);
@@ -269,6 +271,7 @@ export const MinerDashboardPageContent: React.FC<{
                   <DynamicMinerRewardsPage
                     address={address}
                     coinTicker={coinTicker}
+                    counterTicker={counterTicker}
                   />
                 </TabPanel>
                 <TabPanel>
@@ -320,6 +323,7 @@ const DynamicMinerPaymentsPage = dynamic<{
 const DynamicMinerRewardsPage = dynamic<{
   address: string;
   coinTicker: string;
+  counterTicker: string;
 }>(
   () =>
     import('src/pages/MinerDashboard/Rewards/MinerRewards.page').then(

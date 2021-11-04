@@ -3,12 +3,20 @@ import { useDispatch } from 'react-redux';
 import { useReduxState } from '../useReduxState';
 import { minerRewardsGet } from './minerRewards.actions';
 
+type Data = {
+  coinTicker: string;
+  address: string;
+  counterTicker: string;
+};
+
+type Config = {
+  enable?: boolean;
+};
+
 // Fetch data for dashboards' rewards section
-export const useFetchMinerRewards = (
-  coinTicker: string,
-  address: string,
-  counterTicker: string
-) => {
+export const useFetchMinerRewards = (data: Data, config: Config = {}) => {
+  const { coinTicker, address, counterTicker } = data;
+  const { enable = true } = config;
   const dispatch = useDispatch();
   const minerRewards = useReduxState('minerRewards');
 
@@ -18,10 +26,10 @@ export const useFetchMinerRewards = (
   );
 
   useEffect(() => {
-    if (coinTicker && address && counterTicker) {
+    if (coinTicker && address && counterTicker && enable) {
       fetch();
     }
-  }, [dispatch, address, coinTicker, counterTicker, fetch]);
+  }, [dispatch, address, coinTicker, counterTicker, fetch, enable]);
 
   return { ...minerRewards, refetch: fetch };
 };

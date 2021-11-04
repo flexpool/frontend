@@ -1,17 +1,23 @@
 import React from 'react';
-import { useReduxState } from 'src/rdx/useReduxState';
 import { MinerPplnsStats } from './MinerPplnsStats.section';
 import { MinerRewardStatsSection } from './MinerRewardStats.section';
 import { MinerRewardsBlocksSection } from './MinerReportBlocks.section';
 import { useFetchPoolStats } from '@/rdx/poolStats/poolStats.hooks';
+import { useFetchMinerRewards } from '@/rdx/minerRewards/minerRewards.hooks';
 import RewardsChart from './Rewards.chart';
 
 export const MinerRewardsPage: React.FC<{
   address: string;
   coinTicker: string;
-}> = ({ address, coinTicker }) => {
+  counterTicker: string;
+}> = ({ address, coinTicker, counterTicker }) => {
   const poolStatsState = useFetchPoolStats(coinTicker);
-  const minerRewardsState = useReduxState('minerRewards');
+
+  const minerRewardsState = useFetchMinerRewards({
+    coinTicker,
+    address,
+    counterTicker,
+  });
 
   return (
     <>
