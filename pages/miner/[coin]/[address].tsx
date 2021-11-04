@@ -9,25 +9,17 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Content } from 'src/components/layout/Content';
 import { Page, PageLoading } from 'src/components/layout/Page';
 
-import { useDispatch } from 'react-redux';
 import { useReduxState } from 'src/rdx/useReduxState';
-import { minerRewardsGet } from 'src/rdx/minerRewards/minerRewards.actions';
-import {
-  minerDetailsGet,
-  minerDetailsReset,
-} from 'src/rdx/minerDetails/minerDetails.actions';
-import { minerHeaderStatsGet } from 'src/rdx/minerHeaderStats/minerHeaderStats.actions';
-import { minerStatsGet } from 'src/rdx/minerStats/minerStats.actions';
-import {
-  minerStatsChartGet,
-  minerStatsChartReset,
-} from 'src/rdx/minerStatsChart/minerStatsCharts.actions';
-import { minerWorkersGet } from 'src/rdx/minerWorkers/minerWorkers.actions';
-import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
-import { poolStatsGet } from 'src/rdx/poolStats/poolStats.actions';
+import { useFetchMinerRewards } from '@/rdx/minerRewards/minerRewards.hooks';
+import { useFetchMinerDetails } from '@/rdx/minerDetails/minerDetails.hooks';
+import { useFetchMinerHeaderStats } from '@/rdx/minerHeaderStats/minerHeaderStats.hooks';
+import { useFetchMinerStats } from '@/rdx/minerStats/minerStats.hooks';
+import { useFetchMinerStatsChart } from '@/rdx/minerStatsChart/minerStatsChart.hooks';
+import { useFetchMinerWorkers } from 'src/rdx/minerWorkers/minerWorkers.hooks';
 import {
   useActiveCoin,
   useCounterTicker,
+  useCoinTicker,
 } from 'src/rdx/localSettings/localSettings.hooks';
 
 import { AccountHeader } from 'src/pages/MinerDashboard/Header/AccountHeader';
@@ -127,8 +119,38 @@ export const MinerDashboardPageContent: React.FC<{
   const activeCoin = useActiveCoin(coinTicker);
   const counterTicker = useCounterTicker();
   const { t } = useTranslation('dashboard');
-  const d = useDispatch();
+  const [, setCoinTicker] = useCoinTicker();
   const worker = useActiveSearchParamWorker();
+  const { refetch: refetchMinerWorkers } = useFetchMinerWorkers(
+    coinTicker,
+    address
+  );
+  const { refetch: refetchMinerRewards } = useFetchMinerRewards(
+    { coinTicker, address, counterTicker },
+    {
+      enable: false,
+    }
+  );
+  const { refetch: refetchMinerStatsChart } = useFetchMinerStatsChart(
+    coinTicker,
+    address,
+    worker
+  );
+  const { refetch: refetchMinerStats } = useFetchMinerStats(
+    coinTicker,
+    address,
+    worker
+  );
+  const { refetch: refetchMinerHeaderStats } = useFetchMinerHeaderStats(
+    coinTicker,
+    address,
+    counterTicker
+  );
+  const { refetch: refetchMinerDetails } = useFetchMinerDetails(
+    coinTicker,
+    address
+  );
+
   const [tabIndex, setTabIndex] = useState(0);
   const tabs = {
     stats: 0,
@@ -136,6 +158,25 @@ export const MinerDashboardPageContent: React.FC<{
     rewards: 2,
     blocks: 3,
   };
+
+  const loadAll = React.useCallback(() => {
+    return Promise.all([
+      refetchMinerDetails(),
+      refetchMinerWorkers(),
+      tabIndex === 2 ? refetchMinerRewards() : null,
+      refetchMinerStatsChart(),
+      refetchMinerStats(),
+      refetchMinerHeaderStats(),
+    ]);
+  }, [
+    tabIndex,
+    refetchMinerDetails,
+    refetchMinerWorkers,
+    refetchMinerRewards,
+    refetchMinerStatsChart,
+    refetchMinerStats,
+    refetchMinerHeaderStats,
+  ]);
 
   const loadSelectedTabFromHash = (tabHash: string) => {
     setTabIndex(tabs[tabHash]);
@@ -149,56 +190,14 @@ export const MinerDashboardPageContent: React.FC<{
     return selectedHash;
   };
 
-  const loadHeader = React.useCallback(() => {
-    return Promise.all([
-      d(minerHeaderStatsGet(coinTicker, address, counterTicker)),
-      d(minerDetailsGet(coinTicker, address)),
-    ]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [coinTicker, address, counterTicker]);
-
-  const loadMinerStats = React.useCallback(() => {
-    return d(
-      minerStatsGet(
-        coinTicker,
-        address,
-        typeof worker === 'string' ? worker : undefined
-      )
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [coinTicker, address, worker]);
-
-  const loadMinerChartStats = React.useCallback(() => {
-    return d(
-      minerStatsChartGet(
-        coinTicker,
-        address,
-        typeof worker === 'string' ? worker : undefined
-      )
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [coinTicker, address, worker]);
-
-  const loadAll = React.useCallback(() => {
-    return Promise.all([loadMinerStats(), loadHeader(), loadMinerChartStats()]);
-  }, [loadMinerStats, loadHeader, loadMinerChartStats]);
-
-  // globaly set active coin ticker
   useEffect(() => {
     if (
       poolCoins.data &&
       poolCoins.data.coins.find((item) => item.ticker === coinTicker)
     ) {
-      d(localSettingsSet({ coin: coinTicker }));
-      d(poolStatsGet(coinTicker));
-      loadHeader();
-      loadMinerStats();
-      loadMinerChartStats();
-      d(minerWorkersGet(coinTicker, address));
-      d(minerRewardsGet(coinTicker, address, counterTicker));
+      setCoinTicker(coinTicker);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [coinTicker, poolCoins?.data, worker, address]);
+  }, [poolCoins.data, setCoinTicker, coinTicker]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -209,11 +208,6 @@ export const MinerDashboardPageContent: React.FC<{
     // useEffect only needs to fire on page load
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    d(minerDetailsReset());
-    d(minerStatsChartReset());
-  }, [address, d]);
 
   return (
     <>
@@ -274,7 +268,11 @@ export const MinerDashboardPageContent: React.FC<{
                   />
                 </TabPanel>
                 <TabPanel>
-                  <DynamicMinerRewardsPage address={address} />
+                  <DynamicMinerRewardsPage
+                    address={address}
+                    coinTicker={coinTicker}
+                    counterTicker={counterTicker}
+                  />
                 </TabPanel>
                 <TabPanel>
                   <DynamicMinerBlocksPage address={address} coin={coinTicker} />
@@ -324,6 +322,8 @@ const DynamicMinerPaymentsPage = dynamic<{
 
 const DynamicMinerRewardsPage = dynamic<{
   address: string;
+  coinTicker: string;
+  counterTicker: string;
 }>(
   () =>
     import('src/pages/MinerDashboard/Rewards/MinerRewards.page').then(

@@ -1,6 +1,6 @@
 ---
-title: My reported hashrate is unstable, will this effect my payouts?
-coin: eth
+title: 我的哈希率不稳定，这会影响我的收益吗？
+coin: ETH
 ---
 
-Reported hashrate does not affect your mining or rewards. Some miners may not report hashrate, and sometimes if you fail over to a backup server or use different proxy settings. We graph it for your convenience but the pool does not use the reported hashrate for any meaningful purpose.
+提交的哈希率不会影响您的挖掘或奖励。 有些矿工可能不会报告哈希率，有时如果您故障转移到备份服务器或使用不同的代理设置，也会提交哈希率。 为了方便您，我们将其绘制为图表。

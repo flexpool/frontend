@@ -26,7 +26,8 @@
         "average_lat": "延迟"
       },
       "fastest": "最佳",
-      "backup": "备用"
+      "backup": "备用",
+      "hke_warning_title": "更多端口:"
     },
     "ports": {
       "title": "端口",
@@ -115,8 +116,8 @@
   },
   "detail_xch": {
     "title": "chia 农场",
-    "title_cli": "使用CLI农民的Chia矿场",
-    "title_gui": "使用CLI农民的Chia矿场",
+    "title_cli": "CLI挖Chia教程",
+    "title_gui": "GUI挖Chia教程",
     "pool_details": [
       {
         "key": "奖励计划",
@@ -150,39 +151,39 @@
     "new_farmer": "新建挖矿",
     "already_farmer": "正在挖矿",
     "plotnft_create": {
-      "title": "创建绘图NFT",
-      "title_join": "创建绘图NFT并将其指向Flexpool",
+      "title": "创建Plot NFT",
+      "title_join": "创建Plot NFT并将其指向Flexpool",
       "desc_one": "Plot NFT是一种智能合约，允许创建Plot，并可能进一步更改用于池交换的奖励目标地址。",
-      "desc_two": "Flexpool使用的是官方池协议，这意味着您需要创建Plot NFT才能加入池。请注意，没有Plot NFT的绘图（有时被称为OG绘图）不能与Flexpool Chia池一起使用。你可以继续作为一个单独的农场主来耕种它们，但是你需要创建指向地块NFT的新地块，以对池做出贡献并获得奖励。",
-      "create_command": "可以使用以下命令创建绘图NFT：",
-      "mojo_note": "创建绘图NFT合同至少需要1个mojo（最小XCH单位，XCH的万亿分之一）。如果您的账户上没有任何资金，请使用<chiafaucet>官方XCH水龙头</chiafaucet>获得100支Mojo。",
-      "create_gui_action": "通过单击“池”部分中的“添加绘图NFT”按钮，可以创建绘图NFT。",
-      "create_gui_action_two": "键入Flexpool农业URL以“连接到池”输入，并确认绘图NFT创建。"
+      "desc_two": "Flexpool使用的是官方池协议，这意味着您需要创建Plot NFT才能加入池。请注意，没有Plot NFT的绘图（有时被称为OG Plot）不能与Flexpool Chia池一起使用。你可以继续作为一个单独矿工挖矿，但是你需要创建指向地块NFT的新地块，以对池做出贡献并获得奖励。",
+      "create_command": "可以使用以下命令创建Plot NFT：",
+      "mojo_note": "创建Plot NFT合同至少需要1个mojo（最小XCH单位，XCH的万亿分之一）。如果您的账户上没有任何资金，请使用<chiafaucet>官方XCH水龙头</chiafaucet>获得100支Mojo。",
+      "create_gui_action": "通过单击“池”部分中的“添加Plot NFT”按钮，可以创建Plot NFT。",
+      "create_gui_action_two": "接入FlexpoolURL以“连接到池”，并创建Plot NFT。"
     },
     "plotnft_join": {
-      "title": "将绘图NFT分配给Flexpool",
-      "desc_one": "要切换到Flexpool，您需要启动Plot NFT pool开关。作为安全预防措施，这会将绘图NFT状态更改为离开池30分钟。之后，Plot NFT将状态更改为“耕作到池”，这意味着池切换已成功完成。",
-      "assign_command": "您可以使用以下命令将绘图NFT分配给Flexpool：",
-      "assign_gui_action": "通过单击“更改池”按钮并输入Flexpool池URL，可以将绘图NFT分配给Flexpool。",
-      "assign_gui_action_two": "键入Flexpool农业URL以“连接到池”输入，并确认绘图NFT创建。",
+      "title": "将Plot NFT分配给Flexpool",
+      "desc_one": "要切换到Flexpool，您需要启动Plot NFT pool开关。作为安全预防措施，这会将Plot NFT状态更改为离开池30分钟。之后，Plot NFT将状态更改为“耕作到池”，这意味着池切换已成功完成。",
+      "assign_command": "您可以使用以下命令将Plot NFT分配给Flexpool：",
+      "assign_gui_action": "通过单击“更改池”按钮并输入Flexpool池URL，可以将Plot NFT分配给Flexpool。",
+      "assign_gui_action_two": "接入FlexpoolURL以“连接到池”，并创建Plot NFT。",
       "time_note": "此过程可能需要45分钟才能完全完成。请耐心点。"
     },
     "plotnft_show": {
-      "title": "获取绘图和付款地址",
-      "desc": "要创建绘图，您需要获取绘图地址，称为P2单例地址。此地址稍后会传递给绘图仪，以创建绑定到绘图NFT的绘图。",
+      "title": "获取Plot和付款地址",
+      "desc": "要创建Plot，您需要获取Plot地址，称为P2单例地址。此地址稍后会传递给绘图仪，以创建绑定到Plot NFT。",
       "show_command": "要显示PlotNFT详细信息（包括所需地址），请执行以下命令：",
       "grab_addresses": "您需要获取以下地址：",
       "plotting_address": "将用于plot的地址。",
       "payout_address": "资金将支付到的地址。您的所有统计信息都将与此钱包地址关联。"
     },
     "plotters": {
-      "standard_plotter": "标准绘图仪",
-      "madmax_plotter": "madMAx绘图仪"
+      "standard_plotter": "plot标准",
+      "madmax_plotter": "madMAx Plotter"
     },
     "create_plots": {
       "title": "创建plots",
       "standard": {
-        "desc": "在本节中，我们将向您展示如何在新创建的PlotNFT中使用标准Chia绘图仪。",
+        "desc": "在本节中，我们将向您展示如何在新创建的PlotNFT中使用标准Chia plot。",
         "create_plots_command": "要创建plot，请执行以下操作："
       },
       "madmax": {
@@ -191,7 +192,7 @@
         "build_and_install_command": "通过执行以下命令构建和安装plotter：",
         "instructions_note": "所有平台的说明可在chia <github>chia-plotter GitHub仓库中</github>.",
         "cmake_version_notice": "该版本要求CMake的最低版本为3.14。在Ubuntu 18.04等较旧的发行版中，您需要手动安装较新的CMake。",
-        "create_plots_command": "现在，您可以通过执行以下操作进行一些绘图："
+        "create_plots_command": "现在，您可以通过执行以下操作进行一些plot："
       }
     },
     "monitor_farm": {
@@ -210,8 +211,8 @@
         "key": "XCH-CLI"
       },
       {
-        "title": "Chia 矿工（CLI）",
-        "key": "XCH-CLI"
+        "title": "Chia 矿工 (GUI)",
+        "key": "XCH-GUI"
       },
       {
         "title": "FlexFarmer",
@@ -229,7 +230,7 @@
     "br": "巴西",
     "kr": "南韩",
     "hk": "香港",
-    "hke": "香港（针对中国大陆优化）"
+    "hke": "香港 (针对中国大陆优化)"
   },
   "cmd_keys": {
     "CLOSEST_SERVER": "最近服务器地址",

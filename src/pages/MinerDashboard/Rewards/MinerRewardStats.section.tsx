@@ -59,7 +59,7 @@ export const MinerRewardStatsSection: React.FC<{
 
     const weeklySum = rewards
       .filter((item) =>
-        isBefore(subDays(new Date(), 7), new Date(item.timestamp * 1000))
+        isBefore(subDays(new Date(), 8), new Date(item.timestamp * 1000))
       )
       .reduce((res, next) => {
         return res + next.totalRewards;

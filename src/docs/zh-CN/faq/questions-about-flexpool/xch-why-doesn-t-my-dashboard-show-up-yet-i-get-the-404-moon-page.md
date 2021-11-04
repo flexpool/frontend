@@ -1,6 +1,6 @@
 ---
-title: Why doesn't my dashboard show up yet? I get the 404 Moon page.
-coin: xch
+title: 为什么我的仪表盘还没有出现？ 我得到了404页面。
+coin: XCH
 ---
 
-Our dashboards activate within 20 minutes of your first valid partial being submitted to the pool. For farmers with 150 or more plots, this should mean your dashboard shows up and your worker is consistently active on it within 20 minutes. For farmers with fewer plots, it will take longer, and you may appear offline. With one plot, you might wait 6 hours and you might only appear online 10 times a day.
+我们的仪表盘将在您的第一个有效部分提交到池后20分钟内激活。 对于拥有150块或更多地块的矿工，这意味着你的仪表盘将出现，并且你的矿机在20分钟内始终活跃在仪表盘上。 对于地块较少的矿工，这将花费更长的时间，并且您可能会显示为脱机。 对于一个绘图，您可能会等待6个小时，并且一天可能只在线显示10次。

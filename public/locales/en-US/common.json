@@ -58,7 +58,8 @@
     "Invalid IP Address": "Invalid IP Address",
     "email_invalid": "Invalid email address",
     "email_required": "Please enter your email address",
-    "address_not_found": "Specified address was not found in our system. Try waiting some time if you are already mining."
+    "address_not_found": "Specified address was not found in our system. Try waiting some time if you are already mining.",
+    "decimal_places": "Exceed maximum decimal place of {{value}}"
   },
   "date_time": {
     "now": "now"

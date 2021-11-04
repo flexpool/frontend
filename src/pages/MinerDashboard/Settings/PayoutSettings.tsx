@@ -22,6 +22,7 @@ import {
   useLocalizedCurrencyFormatter,
   useLocalizedNumberFormatter,
 } from 'src/utils/si.utils';
+import { getDecimalPlace } from '@/utils/number.utils';
 import { InfoBox } from 'src/components/InfoBox';
 import styled from 'styled-components';
 
@@ -107,6 +108,13 @@ export const PayoutSettings: React.FC<{
       if (values.payoutLimit < 0) {
         errors.payoutLimit = t('common:errors.required', { value: 0 });
       }
+
+      if (getDecimalPlace(values.payoutLimit) > 4) {
+        errors.payoutLimit = t('common:errors.decimal_places', {
+          value: 4,
+        });
+      }
+
       if (values.ip === '') {
         errors.ip = t('common:errors.required');
       }

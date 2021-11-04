@@ -1,6 +1,6 @@
 ---
-title: What does ZIL warning mean?
-coin: eth
+title: ZIL警告是什么意思？
+coin: ETH
 ---
 
-The ZIL warning on the settings screen does not apply to you unless you are split-mining ETH and ZIL to a proxy pool like Rustpool, or otherwise using a proxy. If you do not specifically set up a proxy or configure split-mining, it does not apply to you. Ignore it unless you are doing that.
+设置屏幕上的ZIL警告不适用于您，除非您将ETH和ZIL拆分到代理池（如Rustpool）或使用代理。 如果您没有专门设置代理或配置拆分挖掘，则它不适用于您。 忽略它，除非你正在这样做。
