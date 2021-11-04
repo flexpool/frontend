@@ -10,7 +10,6 @@ import { useNetworkFeeLimit } from '@/rdx/minerDetails/minerDetails.selectors';
 import useActiveCoinNetworkFee from '@/hooks/useActiveCoinNetworkFee';
 import { StatItem } from 'src/components/StatItem';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
-import { useFetchPoolStats } from '@/rdx/poolStats/poolStats.hooks';
 import { FaCalendar, FaCalendarDay, FaCalendarWeek } from 'react-icons/fa';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
@@ -227,12 +226,10 @@ type EstimateInterval = 1 | 7 | 30;
 
 export const HeaderStats: React.FC<{
   coin?: ApiPoolCoin;
-  coinTicker: string;
-}> = ({ coinTicker }) => {
+}> = () => {
   const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const minerDetailsState = useReduxState('minerDetails');
   const minerStatsState = useReduxState('minerStats');
-  const poolStatsState = useFetchPoolStats(coinTicker);
   const activeCoin = useActiveCoin();
   const data = minerHeaderStatsState.data;
   const settings = minerDetailsState.data;
@@ -251,13 +248,12 @@ export const HeaderStats: React.FC<{
   const tickerBalance = currencyFormatter(data?.balanceCountervalue || 0);
 
   const estimatedDailyEarnings = React.useMemo(() => {
-    return poolStatsState.data?.averageHashrate &&
-      minerHeaderStatsState.data?.dailyRewardsPerGh &&
+    return minerHeaderStatsState.data?.dailyRewardsPerGh &&
       minerStatsState.data?.averageEffectiveHashrate
       ? minerHeaderStatsState.data?.dailyRewardsPerGh *
           (minerStatsState.data?.averageEffectiveHashrate / 1000000000)
       : 0;
-  }, [poolStatsState.data, minerHeaderStatsState.data, minerStatsState.data]);
+  }, [minerHeaderStatsState.data, minerStatsState.data]);
 
   const estimated = React.useMemo(() => {
     return {

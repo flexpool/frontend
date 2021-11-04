@@ -177,7 +177,7 @@ export const MinerDashboardPageContent: React.FC<
             />
             <Spacer />
             <MinerDetails coin={activeCoin} />
-            <HeaderStats coin={activeCoin} coinTicker={coinTicker} />
+            <HeaderStats coin={activeCoin} />
           </Content>
           <TabLinkContainer>
             <TabLink
