@@ -124,7 +124,7 @@
       },
       {
         "key": "费率",
-        "value": "0%"
+        "value": "0.7%"
       },
       {
         "key": "支付周期",
@@ -215,7 +215,7 @@
       },
       {
         "title": "FlexFarmer",
-        "key": "FlexFarmer"
+        "key": "flexfarmer"
       }
     ]
   },
