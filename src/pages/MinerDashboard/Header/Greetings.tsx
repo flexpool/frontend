@@ -106,7 +106,7 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
   >('queued_counter_value', undefined);
 
   const [autoRefresh, setAutoRefresh] = useLocalStorageState<'auto' | 'manual'>(
-    'auto_refresh_status',
+    'auto_refresh_config',
     'manual'
   );
   const autoRefreshToggle = () => {
