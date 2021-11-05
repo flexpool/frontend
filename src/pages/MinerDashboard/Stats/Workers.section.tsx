@@ -4,13 +4,15 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 
 // Components
-import DynamicList, { DynamicListColumn } from 'src/components/layout/List/List';
+import DynamicList, {
+  DynamicListColumn,
+} from 'src/components/layout/List/List';
 import { Mono, Ws } from 'src/components/Typo/Typo';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 
 // Redux
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
-import { useReduxState } from 'src/rdx/useReduxState';
+import { useFetchMinerWorkers } from '@/rdx/minerWorkers/minerWorkers.hooks';
 import { ApiMinerWorker } from 'src/types/Miner.types';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import {
@@ -18,12 +20,21 @@ import {
   useLocalizedPercentFormatter,
   useLocalizedSiFormatter,
 } from 'src/utils/si.utils';
-import { FaSearch, FaSort, FaSortDown, FaSortUp, FaTimes } from 'react-icons/fa';
+import {
+  FaSearch,
+  FaSort,
+  FaSortDown,
+  FaSortUp,
+  FaTimes,
+} from 'react-icons/fa';
 
 const PercentageItem = styled.span`
   color: var(--text-tertiary);
 `;
-const Percentage: React.FC<{ total: number; value: number }> = ({ total, value }) => {
+const Percentage: React.FC<{ total: number; value: number }> = ({
+  total,
+  value,
+}) => {
   const percentFormatter = useLocalizedPercentFormatter();
   if (total === 0) {
     return null;
@@ -153,7 +164,9 @@ const MinerWorkersTable: React.FC<{
       });
     }
     if (search) {
-      res = res.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()));
+      res = res.filter((item) =>
+        item.name.toLowerCase().includes(search.toLowerCase())
+      );
     }
 
     return res;
@@ -191,7 +204,9 @@ const MinerWorkersTable: React.FC<{
   );
 
   const cols = React.useMemo(() => {
-    const columns: DynamicListColumn<ApiMinerWorker & { totalShares: number }>[] = [
+    const columns: DynamicListColumn<
+      ApiMinerWorker & { totalShares: number }
+    >[] = [
       {
         title: t('stats.table.table_head.name'),
         onClickValue: 'name',
@@ -332,7 +347,11 @@ const MinerWorkersTable: React.FC<{
 
     return columns.map((item) => {
       const Icon =
-        item.onClickValue !== sortKey ? FaSort : sortOrder === 1 ? FaSortUp : FaSortDown;
+        item.onClickValue !== sortKey
+          ? FaSort
+          : sortOrder === 1
+          ? FaSortUp
+          : FaSortDown;
       return {
         ...item,
         title: (
@@ -354,7 +373,8 @@ const MinerWorkersTable: React.FC<{
   ]);
 
   const onSearchChange = React.useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => setSearch(event.target.value),
+    (event: React.ChangeEvent<HTMLInputElement>) =>
+      setSearch(event.target.value),
     []
   );
 
@@ -397,10 +417,15 @@ const MinerWorkersTable: React.FC<{
 
 export const MinerWorkers: React.FC<{
   address: string;
-}> = ({ address }) => {
+  coin: string;
+}> = ({ address, coin }) => {
   const { t } = useTranslation('dashboard');
 
-  const minerWorkersState = useReduxState('minerWorkers');
+  // Disable fetching since it's already fetched in [address]
+  const minerWorkersState = useFetchMinerWorkers(
+    { address, coinTicker: coin },
+    { enable: false }
+  );
 
   const dataWithTotalShare = React.useMemo(() => {
     return (minerWorkersState.data || []).map((item) => ({

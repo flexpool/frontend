@@ -121,10 +121,10 @@ export const MinerDashboardPageContent: React.FC<{
   const { t } = useTranslation('dashboard');
   const [, setCoinTicker] = useCoinTicker();
   const worker = useActiveSearchParamWorker();
-  const { refetch: refetchMinerWorkers } = useFetchMinerWorkers(
+  const { refetch: refetchMinerWorkers } = useFetchMinerWorkers({
     coinTicker,
-    address
-  );
+    address,
+  });
   const { refetch: refetchMinerRewards } = useFetchMinerRewards(
     { coinTicker, address, counterTicker },
     {
