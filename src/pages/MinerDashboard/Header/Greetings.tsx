@@ -82,14 +82,12 @@ const ToggleWrapperButton = styled(Button)`
 export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
   onRefresh,
 }) => {
-  const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const minerStatsState = useReduxState('minerStats');
   const siFormatter = useLocalizedSiFormatter();
   const activeCoin = useActiveCoin();
   const workerStatus = useMinerWorkersStatus();
   const { t } = useTranslation('dashboard');
 
-  const data = minerHeaderStatsState.data;
   const [counter, setCounter] = useLocalStorageState<number>(
     'auto_refresh_ticker',
     60
