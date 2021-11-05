@@ -107,7 +107,7 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
 
   const [autoRefresh, setAutoRefresh] = useLocalStorageState<'auto' | 'manual'>(
     'auto_refresh_status',
-    'auto'
+    'manual'
   );
   const autoRefreshToggle = () => {
     setAutoRefresh(autoRefresh === 'auto' ? 'manual' : 'auto');
