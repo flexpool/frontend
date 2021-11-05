@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useMemo, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useReduxState } from '../useReduxState';
 import { minerWorkersGet } from '../minerPaymentsChart/minerPaymentsChart.actions';
@@ -32,4 +32,27 @@ export const useFetchMinerWorkers = (data: Data, config: Config = {}) => {
   }, [fetch, coinTicker, address, enable]);
 
   return { ...minerWorkers, refetch: fetch };
+};
+
+// Get online/offline workers count from redux state
+export const useMinerWorkersStatus = () => {
+  const minerWorkersState = useReduxState('minerWorkers');
+
+  const workerStatus = useMemo(() => {
+    if (!minerWorkersState.isLoading) {
+      return minerWorkersState.data.reduce(
+        (acc, curr) => {
+          if (curr.isOnline) {
+            return { ...acc, online: acc.online + 1 };
+          } else {
+            return { ...acc, offline: acc.offline + 1 };
+          }
+        },
+        { online: 0, offline: 0 }
+      );
+    }
+    return undefined;
+  }, [minerWorkersState]);
+
+  return workerStatus;
 };

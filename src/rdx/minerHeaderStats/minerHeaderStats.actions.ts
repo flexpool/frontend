@@ -13,10 +13,6 @@ export const minerHeaderStatsGet = (
   return {
     type: '@minerHeaderStats/GET',
     payload: Promise.all([
-      fetchApi<{ workersOnline: number; workersOffline: number }>(
-        '/miner/workerCount',
-        { query }
-      ),
       fetchApi<{ balance: number; balanceCountervalue: number; price: number }>(
         '/miner/balance',
         { query }
@@ -27,11 +23,10 @@ export const minerHeaderStatsGet = (
     ]).then((res) => {
       return {
         ...res[0],
-        ...res[1],
-        countervaluePrice: res[1].price,
-        roundShare: res[2],
-        averageBlockShare: res[3],
-        dailyRewardsPerGh: res[4],
+        countervaluePrice: res[0].price,
+        roundShare: res[1],
+        averageBlockShare: res[2],
+        dailyRewardsPerGh: res[3],
       };
     }),
   };

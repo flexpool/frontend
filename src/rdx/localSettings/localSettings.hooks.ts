@@ -19,6 +19,7 @@ export const useActiveCoinTicker = () => {
  */
 export const useActiveCoin = (ticker?: string | string[]) => {
   const activeCoinTicker = useActiveCoinTicker();
+  // poolCoins are fetched at _app level
   const poolCoinsState = useReduxState('poolCoins');
 
   const tickerToFind = ticker || activeCoinTicker;

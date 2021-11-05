@@ -233,7 +233,7 @@ export const MinerDashboardPageContent: React.FC<{
             />
             <Spacer />
             <MinerDetails coin={activeCoin} />
-            <HeaderStats coin={activeCoin} />
+            <HeaderStats />
           </Content>
           <Tabs
             className="w-full"

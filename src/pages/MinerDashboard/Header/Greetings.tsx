@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next';
 import { Button } from 'src/components/Button';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
+import { useMinerWorkersStatus } from '@/rdx/minerWorkers/minerWorkers.hooks';
 import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
@@ -85,6 +86,7 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
   const minerStatsState = useReduxState('minerStats');
   const siFormatter = useLocalizedSiFormatter();
   const activeCoin = useActiveCoin();
+  const workerStatus = useMinerWorkersStatus();
   const { t } = useTranslation('dashboard');
 
   const data = minerHeaderStatsState.data;
@@ -193,7 +195,7 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
     return getGreeting();
   }, []);
 
-  const workersOnline = data?.workersOnline || 0;
+  const workersOnline = workerStatus?.online || 0;
   const hashrate = minerStatsState.data
     ? minerStatsState.data.reportedHashrate > 0
       ? siFormatter(minerStatsState.data.reportedHashrate, {

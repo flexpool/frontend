@@ -421,7 +421,7 @@ export const MinerWorkers: React.FC<{
 }> = ({ address, coin }) => {
   const { t } = useTranslation('dashboard');
 
-  // Disable fetching since it's already fetched in [address]
+  // disabled because minerWorkers is already fetched in [address]
   const minerWorkersState = useFetchMinerWorkers(
     { address, coinTicker: coin },
     { enable: false }
