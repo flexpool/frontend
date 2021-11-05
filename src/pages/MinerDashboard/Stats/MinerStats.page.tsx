@@ -94,7 +94,7 @@ export const MinerStatsPage: React.FC<{
         address={address}
         coinTicker={coin}
       />
-      <MinerWorkers address={address} />
+      <MinerWorkers address={address} coin={coin} />
     </>
   );
 };

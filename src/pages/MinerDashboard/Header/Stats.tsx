@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-
+import React, { useState, useMemo } from 'react';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
@@ -8,6 +7,7 @@ import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { useNetworkFeeLimit } from '@/rdx/minerDetails/minerDetails.selectors';
 import useActiveCoinNetworkFee from '@/hooks/useActiveCoinNetworkFee';
+import { useMinerWorkersStatus } from '@/rdx/minerWorkers/minerWorkers.hooks';
 import { StatItem } from 'src/components/StatItem';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { FaCalendar, FaCalendarDay, FaCalendarWeek } from 'react-icons/fa';
@@ -224,13 +224,12 @@ const BalanceProgressBar: React.FC<{
 
 type EstimateInterval = 1 | 7 | 30;
 
-export const HeaderStats: React.FC<{
-  coin?: ApiPoolCoin;
-}> = () => {
+export const HeaderStats = () => {
   const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const minerDetailsState = useReduxState('minerDetails');
   const minerStatsState = useReduxState('minerStats');
   const activeCoin = useActiveCoin();
+  const workerStatus = useMinerWorkersStatus();
   const data = minerHeaderStatsState.data;
   const settings = minerDetailsState.data;
 
@@ -329,14 +328,14 @@ export const HeaderStats: React.FC<{
         <CardTitle>{t('header.stat_workers')}</CardTitle>
         <StatItem
           value={
-            data ? (
+            workerStatus ? (
               <>
-                {data.workersOnline}
+                {workerStatus.online}
                 {'/'}
-                {data.workersOffline > 0 ? (
-                  <ErrorText>{data.workersOffline}</ErrorText>
+                {workerStatus.offline > 0 ? (
+                  <ErrorText>{workerStatus.offline}</ErrorText>
                 ) : (
-                  <SecondaryText>{data.workersOffline}</SecondaryText>
+                  <SecondaryText>{workerStatus.offline}</SecondaryText>
                 )}
               </>
             ) : null

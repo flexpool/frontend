@@ -20,8 +20,6 @@ export type ApiMinerHeaderStats = {
   countervaluePrice: number;
   dailyRewardsPerGh: number;
   roundShare: number;
-  workersOffline: number;
-  workersOnline: number;
 };
 
 export type ApiMinerStats = {
