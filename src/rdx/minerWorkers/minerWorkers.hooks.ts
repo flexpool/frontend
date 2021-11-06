@@ -40,6 +40,14 @@ export const useMinerWorkersStatus = () => {
 
   const workerStatus = useMemo(() => {
     if (!minerWorkersState.isLoading) {
+      // Users who have not been mining for a while would have
+      // no data for minerWorkers
+      if (!minerWorkersState.data) {
+        return {
+          online: 0,
+          offline: 0,
+        };
+      }
       return minerWorkersState.data.reduce(
         (acc, curr) => {
           if (curr.isOnline) {
