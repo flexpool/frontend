@@ -8,7 +8,7 @@ import { filterUnique } from 'src/utils/array.utils';
 import styled from 'styled-components';
 import { Select, SelectOption } from './Form/Select/Select';
 import DownshiftSelect from './Form/DownshiftSelect';
-import { usePoolCoins } from '@/rdx/poolCoins/poolCoins.hooks';
+import usePoolCoinsQuery from '@/hooks/usePoolCoinsQuery';
 
 import { Img } from './Img';
 
@@ -76,14 +76,14 @@ export const SelectCounterTicker = () => {
 };
 
 export const NewSelectCounterTicker = () => {
-  const poolCoins = usePoolCoins();
+  const { data: poolCoins } = usePoolCoinsQuery();
   const counterTicker = useCounterTicker();
   const d = useDispatch();
   const [selected, setSelected] = React.useState<SelectOption | null>(null);
 
   const items = React.useMemo(() => {
-    const currencyOptions = poolCoins.data?.countervalues
-      ? [...poolCoins.data?.countervalues, 'sek', 'nzd', 'thb', 'pln']
+    const currencyOptions = poolCoins?.countervalues
+      ? [...poolCoins.countervalues, 'sek', 'nzd', 'thb', 'pln']
       : [];
 
     return currencyOptions.map((item) => ({
@@ -100,7 +100,7 @@ export const NewSelectCounterTicker = () => {
       ),
       value: item,
     }));
-  }, [poolCoins.data]);
+  }, [poolCoins]);
 
   React.useEffect(() => {
     if (items.length && counterTicker) {

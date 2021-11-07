@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { CoinLogo } from './CoinLogo';
 import { Select, SelectOption } from './Form/Select/Select';
 import DownshiftSelect from './Form/DownshiftSelect';
-import { usePoolCoins } from '@/rdx/poolCoins/poolCoins.hooks';
+import usePoolCoinsQuery from '@/hooks/usePoolCoinsQuery';
 
 const LabelWrap = styled.div`
   display: flex;
@@ -69,12 +69,12 @@ export const SelectCoin = () => {
 
 export const NewSelectCoin = () => {
   const localSettingsState = useReduxState('localSettings');
-  const poolCoinsState = usePoolCoins();
+  const { data: poolCoinsState } = usePoolCoinsQuery();
   const d = useDispatch();
   const [selected, setSelected] = React.useState<SelectOption | null>(null);
 
   const items = React.useMemo(() => {
-    return (poolCoinsState.data?.coins || []).map((item) => ({
+    return (poolCoinsState?.coins || []).map((item) => ({
       label: (
         <LabelWrap>
           <CoinLogo ticker={item.ticker} />
@@ -84,7 +84,7 @@ export const NewSelectCoin = () => {
       ),
       value: item.ticker,
     }));
-  }, [poolCoinsState.data]);
+  }, [poolCoinsState]);
 
   React.useEffect(() => {
     const selectedCoin = localSettingsState.coin || 'eth';

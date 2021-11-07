@@ -9,7 +9,6 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Content } from 'src/components/layout/Content';
 import { Page, PageLoading } from 'src/components/layout/Page';
 
-import { useReduxState } from 'src/rdx/useReduxState';
 import { useFetchMinerRewards } from '@/rdx/minerRewards/minerRewards.hooks';
 import { useFetchMinerDetails } from '@/rdx/minerDetails/minerDetails.hooks';
 import { useFetchMinerHeaderStats } from '@/rdx/minerHeaderStats/minerHeaderStats.hooks';
@@ -21,6 +20,8 @@ import {
   useCounterTicker,
   useCoinTicker,
 } from 'src/rdx/localSettings/localSettings.hooks';
+
+import usePoolCoinsQuery from '@/hooks/usePoolCoinsQuery';
 
 import { AccountHeader } from 'src/pages/MinerDashboard/Header/AccountHeader';
 import { HeaderGreetings } from 'src/pages/MinerDashboard/Header/Greetings';
@@ -115,7 +116,7 @@ export const MinerDashboardPageContent: React.FC<{
   address: string;
 }> = (props) => {
   const { coinTicker, address } = props;
-  const poolCoins = useReduxState('poolCoins');
+  const { data: poolCoins } = usePoolCoinsQuery();
   const activeCoin = useActiveCoin(coinTicker);
   const counterTicker = useCounterTicker();
   const { t } = useTranslation('dashboard');
@@ -192,12 +193,12 @@ export const MinerDashboardPageContent: React.FC<{
 
   useEffect(() => {
     if (
-      poolCoins.data &&
-      poolCoins.data.coins.find((item) => item.ticker === coinTicker)
+      poolCoins &&
+      poolCoins.coins.find((item) => item.ticker === coinTicker)
     ) {
       setCoinTicker(coinTicker);
     }
-  }, [poolCoins.data, setCoinTicker, coinTicker]);
+  }, [poolCoins, setCoinTicker, coinTicker]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
