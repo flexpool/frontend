@@ -1,7 +1,6 @@
 import { combineReducers, Reducer } from 'redux';
 
 import * as localSettings from 'src/rdx/localSettings/localSettings.reducer';
-import * as poolCoins from 'src/rdx/poolCoins/poolCoins.reducer';
 import * as topMiners from 'src/rdx/topMiners/topMiners.reducer';
 import * as poolHashrate from 'src/rdx/poolHashrate/poolHashrate.reducer';
 import * as minerHeaderStats from 'src/rdx/minerHeaderStats/minerHeaderStats.reducer';
@@ -20,7 +19,6 @@ import { localStorage } from 'src/utils/localStorage';
 
 export const defaultReduxState = {
   localSettings: localSettings.defaultState,
-  poolCoins: poolCoins.defaultState,
   topMiners: topMiners.defaultState,
   poolHashrate: poolHashrate.defaultState,
   minerHeaderStats: minerHeaderStats.defaultState,
@@ -39,7 +37,6 @@ export const defaultReduxState = {
 
 const combinedReducer = combineReducers({
   localSettings: localSettings.reducer,
-  poolCoins: poolCoins.reducer,
   topMiners: topMiners.reducer,
   poolHashrate: poolHashrate.reducer,
   minerHeaderStats: minerHeaderStats.reducer,

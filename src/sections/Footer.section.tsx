@@ -15,10 +15,7 @@ import {
 
 import React from 'react';
 
-import {
-  SelectCounterTicker,
-  NewSelectCounterTicker,
-} from 'src/components/SelectCounterTicker';
+import { NewSelectCounterTicker } from 'src/components/SelectCounterTicker';
 import { NewSelectTheme, SelectTheme } from 'src/components/SelectTheme';
 import { Spacer } from 'src/components/layout/Spacer';
 
@@ -181,13 +178,10 @@ export const FooterSection = () => {
           </Section>
           <Section>
             <FSectionTitle>{t('footer.preferences.title')}</FSectionTitle>
-            {/* <SelectCounterTicker /> */}
             <NewSelectCounterTicker />
             <Spacer />
-            {/* <SelectTheme /> */}
             <NewSelectTheme />
             <Spacer />
-            {/* <SelectLanguage /> */}
             <NewSelectLanguage />
             <HelpText>
               <LinkOut href="https://crowdin.com/project/flexpoolio-website">

@@ -25,55 +25,55 @@ const TickerWrapper = styled.div`
 /**
  * @deprecated A new implementation with Downshift is available.
  */
-export const SelectCounterTicker = () => {
-  const coinsState = useReduxState('poolCoins');
-  const counterTicker = useCounterTicker();
+// export const SelectCounterTicker = () => {
+//   const coinsState = useReduxState('poolCoins');
+//   const counterTicker = useCounterTicker();
 
-  const counterTickers = React.useMemo(() => {
-    const res = coinsState.data?.countervalues
-      ? [...coinsState.data?.countervalues]
-      : [];
-    // add some more regardless the API
-    res.push('sek');
-    res.push('nzd');
-    res.push('thb');
-    return res.filter(filterUnique);
-  }, [coinsState.data?.countervalues]);
+//   const counterTickers = React.useMemo(() => {
+//     const res = coinsState.data?.countervalues
+//       ? [...coinsState.data?.countervalues]
+//       : [];
+//     // add some more regardless the API
+//     res.push('sek');
+//     res.push('nzd');
+//     res.push('thb');
+//     return res.filter(filterUnique);
+//   }, [coinsState.data?.countervalues]);
 
-  const d = useDispatch();
+//   const d = useDispatch();
 
-  const handleTickerChange = React.useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      d(
-        localSettingsSet({
-          counterTicker: (e.target as HTMLButtonElement).value as Ticker,
-        })
-      );
-    },
-    [d]
-  );
+//   const handleTickerChange = React.useCallback(
+//     (e: React.MouseEvent<HTMLButtonElement>) => {
+//       d(
+//         localSettingsSet({
+//           counterTicker: (e.target as HTMLButtonElement).value as Ticker,
+//         })
+//       );
+//     },
+//     [d]
+//   );
 
-  return (
-    <Select
-      value={counterTicker}
-      onChange={handleTickerChange}
-      options={counterTickers.map((item) => ({
-        label: (
-          <TickerWrapper>
-            <TickerFlag
-              width="20"
-              height="20"
-              src={`https://static.flexpool.io/assets/countervalues/${item}.svg`}
-              alt={`${item.toUpperCase()} Currency Flag`}
-            />
-            {item.toUpperCase()}
-          </TickerWrapper>
-        ),
-        value: item,
-      }))}
-    />
-  );
-};
+//   return (
+//     <Select
+//       value={counterTicker}
+//       onChange={handleTickerChange}
+//       options={counterTickers.map((item) => ({
+//         label: (
+//           <TickerWrapper>
+//             <TickerFlag
+//               width="20"
+//               height="20"
+//               src={`https://static.flexpool.io/assets/countervalues/${item}.svg`}
+//               alt={`${item.toUpperCase()} Currency Flag`}
+//             />
+//             {item.toUpperCase()}
+//           </TickerWrapper>
+//         ),
+//         value: item,
+//       }))}
+//     />
+//   );
+// };
 
 export const NewSelectCounterTicker = () => {
   const { data: poolCoins } = usePoolCoinsQuery();

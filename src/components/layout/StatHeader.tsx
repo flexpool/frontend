@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { SelectCoin, NewSelectCoin } from '../SelectCoin';
+import { NewSelectCoin } from '../SelectCoin';
 import { Content } from './Content';
 
 const Header = styled.div`

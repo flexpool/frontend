@@ -31,41 +31,41 @@ const CoinName = styled.span`
 /**
  * @deprecated A new implementation with Downshift is available.
  */
-export const SelectCoin = () => {
-  const localSettingsState = useReduxState('localSettings');
-  const poolCoinsState = useReduxState('poolCoins');
-  const d = useDispatch();
+// export const SelectCoin = () => {
+//   const localSettingsState = useReduxState('localSettings');
+//   const poolCoinsState = useReduxState('poolCoins');
+//   const d = useDispatch();
 
-  const options = React.useMemo(() => {
-    return (poolCoinsState.data?.coins || []).map((item) => ({
-      label: (
-        <LabelWrap>
-          <CoinLogo ticker={item.ticker} />
-          <CoinName>{item.name}</CoinName>
-          <CoinNameShort>{item.ticker}</CoinNameShort>
-        </LabelWrap>
-      ),
-      value: item.ticker,
-    }));
-  }, [poolCoinsState.data]);
+//   const options = React.useMemo(() => {
+//     return (poolCoinsState.data?.coins || []).map((item) => ({
+//       label: (
+//         <LabelWrap>
+//           <CoinLogo ticker={item.ticker} />
+//           <CoinName>{item.name}</CoinName>
+//           <CoinNameShort>{item.ticker}</CoinNameShort>
+//         </LabelWrap>
+//       ),
+//       value: item.ticker,
+//     }));
+//   }, [poolCoinsState.data]);
 
-  const handleChange = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const value = (e.target as HTMLButtonElement).value;
-    d(
-      localSettingsSet({
-        coin: value,
-      })
-    );
-  };
+//   const handleChange = (e: React.MouseEvent<HTMLButtonElement>) => {
+//     const value = (e.target as HTMLButtonElement).value;
+//     d(
+//       localSettingsSet({
+//         coin: value,
+//       })
+//     );
+//   };
 
-  return (
-    <Select
-      onChange={handleChange}
-      value={localSettingsState.coin || 'eth'}
-      options={options}
-    />
-  );
-};
+//   return (
+//     <Select
+//       onChange={handleChange}
+//       value={localSettingsState.coin || 'eth'}
+//       options={options}
+//     />
+//   );
+// };
 
 export const NewSelectCoin = () => {
   const localSettingsState = useReduxState('localSettings');
