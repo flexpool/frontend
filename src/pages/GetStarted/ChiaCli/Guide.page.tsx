@@ -42,9 +42,12 @@ export const ChiaCliGuidePage: React.FC = () => {
 
   if (typeof window !== 'undefined') {
     search = window.location.search;
+  } else {
+    search = router.asPath.split('?')[1];
   }
 
-  const { primaryServer = 'POOL_URL', farmerOption = 'new-farmer' } = qs.parse(search);
+  const { primaryServer = 'POOL_URL', farmerOption = 'new-farmer' } =
+    qs.parse(search);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
