@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { useDispatch } from 'react-redux';
 import { localSettingsSet } from './localSettings.actions';
+import usePoolCoinsQuery from '@/hooks/usePoolCoinsQuery';
 
 /**
  * Get current selected coin from coin selector
@@ -19,14 +20,10 @@ export const useActiveCoinTicker = () => {
  */
 export const useActiveCoin = (ticker?: string | string[]) => {
   const activeCoinTicker = useActiveCoinTicker();
-  // poolCoins are fetched at _app level
-  const poolCoinsState = useReduxState('poolCoins');
+  const { data: poolCoins } = usePoolCoinsQuery();
 
   const tickerToFind = ticker || activeCoinTicker;
-
-  const coin = poolCoinsState.data?.coins.find(
-    (item) => item.ticker === tickerToFind
-  );
+  const coin = poolCoins?.coins.find((item) => item.ticker === tickerToFind);
 
   return coin;
 };
@@ -51,6 +48,9 @@ export const useAppTheme = () => {
   return colorMode;
 };
 
+/**
+ * read & set coin ticker in local settings
+ */
 export const useCoinTicker = (): [
   coinTicker: string,
   setCoinTicker: (coinTicker: string) => void

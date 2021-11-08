@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { CoinLogo } from './CoinLogo';
 import { Select, SelectOption } from './Form/Select/Select';
 import DownshiftSelect from './Form/DownshiftSelect';
-import { usePoolCoins } from '@/rdx/poolCoins/poolCoins.hooks';
+import usePoolCoinsQuery from '@/hooks/usePoolCoinsQuery';
 
 const LabelWrap = styled.div`
   display: flex;
@@ -31,50 +31,50 @@ const CoinName = styled.span`
 /**
  * @deprecated A new implementation with Downshift is available.
  */
-export const SelectCoin = () => {
-  const localSettingsState = useReduxState('localSettings');
-  const poolCoinsState = useReduxState('poolCoins');
-  const d = useDispatch();
+// export const SelectCoin = () => {
+//   const localSettingsState = useReduxState('localSettings');
+//   const poolCoinsState = useReduxState('poolCoins');
+//   const d = useDispatch();
 
-  const options = React.useMemo(() => {
-    return (poolCoinsState.data?.coins || []).map((item) => ({
-      label: (
-        <LabelWrap>
-          <CoinLogo ticker={item.ticker} />
-          <CoinName>{item.name}</CoinName>
-          <CoinNameShort>{item.ticker}</CoinNameShort>
-        </LabelWrap>
-      ),
-      value: item.ticker,
-    }));
-  }, [poolCoinsState.data]);
+//   const options = React.useMemo(() => {
+//     return (poolCoinsState.data?.coins || []).map((item) => ({
+//       label: (
+//         <LabelWrap>
+//           <CoinLogo ticker={item.ticker} />
+//           <CoinName>{item.name}</CoinName>
+//           <CoinNameShort>{item.ticker}</CoinNameShort>
+//         </LabelWrap>
+//       ),
+//       value: item.ticker,
+//     }));
+//   }, [poolCoinsState.data]);
 
-  const handleChange = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const value = (e.target as HTMLButtonElement).value;
-    d(
-      localSettingsSet({
-        coin: value,
-      })
-    );
-  };
+//   const handleChange = (e: React.MouseEvent<HTMLButtonElement>) => {
+//     const value = (e.target as HTMLButtonElement).value;
+//     d(
+//       localSettingsSet({
+//         coin: value,
+//       })
+//     );
+//   };
 
-  return (
-    <Select
-      onChange={handleChange}
-      value={localSettingsState.coin || 'eth'}
-      options={options}
-    />
-  );
-};
+//   return (
+//     <Select
+//       onChange={handleChange}
+//       value={localSettingsState.coin || 'eth'}
+//       options={options}
+//     />
+//   );
+// };
 
 export const NewSelectCoin = () => {
   const localSettingsState = useReduxState('localSettings');
-  const poolCoinsState = usePoolCoins();
+  const { data: poolCoinsState } = usePoolCoinsQuery();
   const d = useDispatch();
   const [selected, setSelected] = React.useState<SelectOption | null>(null);
 
   const items = React.useMemo(() => {
-    return (poolCoinsState.data?.coins || []).map((item) => ({
+    return (poolCoinsState?.coins || []).map((item) => ({
       label: (
         <LabelWrap>
           <CoinLogo ticker={item.ticker} />
@@ -84,7 +84,7 @@ export const NewSelectCoin = () => {
       ),
       value: item.ticker,
     }));
-  }, [poolCoinsState.data]);
+  }, [poolCoinsState]);
 
   React.useEffect(() => {
     const selectedCoin = localSettingsState.coin || 'eth';

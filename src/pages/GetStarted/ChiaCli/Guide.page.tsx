@@ -13,10 +13,13 @@ import { PingTestSection } from '../ChiaShared/PingTest.section';
 import { TerminalCommand } from './TerminalCommand';
 import { JoinSection } from './Join.section';
 import { CreatePlotsSection } from './CreatePlots.section';
+import useIsMounted from '@/hooks/useIsMounted';
 import merge from 'lodash.merge';
 import { NextSeo } from 'next-seo';
 
 export const ChiaCliGuidePage: React.FC = () => {
+  const isMounted = useIsMounted();
+
   const router = useRouter();
   const ticker = router.query.ticker;
   const { t, i18n } = useTranslation('get-started');
@@ -44,7 +47,8 @@ export const ChiaCliGuidePage: React.FC = () => {
     search = window.location.search;
   }
 
-  const { primaryServer = 'POOL_URL', farmerOption = 'new-farmer' } = qs.parse(search);
+  const { primaryServer = 'POOL_URL', farmerOption = 'new-farmer' } =
+    qs.parse(search);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -91,6 +95,8 @@ export const ChiaCliGuidePage: React.FC = () => {
     coinTicker: mineableCoin?.ticker.toUpperCase(),
     client: 'CLI',
   });
+
+  if (!isMounted) return null;
 
   return (
     <Page>
