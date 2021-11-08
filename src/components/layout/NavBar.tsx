@@ -25,10 +25,7 @@ import { clx } from 'src/utils/clx';
 
 import { SelectTheme, NewSelectTheme } from '../SelectTheme';
 import { Spacer } from './Spacer';
-import {
-  SelectCounterTicker,
-  NewSelectCounterTicker,
-} from '../SelectCounterTicker';
+import { NewSelectCounterTicker } from '../SelectCounterTicker';
 import { LinkOut } from '../LinkOut';
 import { DISCORD_LINK, REDDIT_LINK, TELEGRAM_LINK } from 'src/constants';
 import { useAppTheme } from 'src/rdx/localSettings/localSettings.hooks';
