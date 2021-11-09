@@ -16,11 +16,13 @@ import {
   F,
 } from './components';
 import { SearchAddressCachedResult } from './SearchAddressCachedResult';
+import useIsMounted from '@/hooks/useIsMounted';
 
 export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
   showResult = true,
 }) => {
   const router = useRouter();
+  const isMounted = useIsMounted();
 
   const searchData = useReduxState('addressSearch');
   const { t } = useTranslation(['common']);
@@ -90,7 +92,7 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
                 placeholder={t('searchbar.placeholder')}
                 onFocus={openState.handleOpen}
               />
-              {showResult && searchData && searchData.length > 0 && (
+              {isMounted && showResult && searchData && searchData.length > 0 && (
                 <ResultWrapper>
                   <SearchAddressCachedResult />
                 </ResultWrapper>
