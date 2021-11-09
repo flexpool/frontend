@@ -3,12 +3,9 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { FaSearch } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
-import { useAsyncState } from 'src/hooks/useAsyncState';
 import { useOpenState } from 'src/hooks/useOpenState';
-import { addressSearchSet } from 'src/rdx/addressSearch/addressSearch.actions';
+import useSearchAddress from '@/hooks/useSearchAddress';
 import { useReduxState } from 'src/rdx/useReduxState';
-import { fetchApi } from 'src/utils/fetchApi';
 import {
   SearchButton,
   Container,
@@ -23,13 +20,26 @@ import { SearchAddressCachedResult } from './SearchAddressCachedResult';
 export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
   showResult = true,
 }) => {
-  const searchState = useAsyncState<string | null>('addressSearch', null);
   const router = useRouter();
 
   const searchData = useReduxState('addressSearch');
   const { t } = useTranslation(['common']);
-  const d = useDispatch();
   const openState = useOpenState();
+
+  const search = useSearchAddress({
+    onSuccess: (coin, address) => {
+      if (coin) {
+        if (document.activeElement instanceof HTMLElement) {
+          document.activeElement?.blur();
+        }
+        openState.handleClose();
+        router.push(`/miner/${coin}/${address}`, undefined, {
+          // shallow routing is true if not on miner dashboard
+          shallow: !router.query.address,
+        });
+      }
+    },
+  });
 
   React.useEffect(() => {
     openState.handleClose();
@@ -51,33 +61,7 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
         }
       }
 
-      return searchState
-        .start(
-          fetchApi('/miner/locateAddress', {
-            query: { address: searchAddress },
-          })
-        )
-        .then((res) => {
-          if (res) {
-            d(
-              addressSearchSet({
-                coin: res,
-                address: searchAddress,
-              })
-            );
-            if (document.activeElement instanceof HTMLElement) {
-              document.activeElement?.blur();
-            }
-            openState.handleClose();
-            router.push(`/miner/${res}/${searchAddress}`, undefined, {
-              // shallow routing is true if not on miner dashboard
-              shallow: !router.query.address,
-            });
-          } else {
-            alert(t('errors.address_not_found'));
-          }
-          return res;
-        });
+      return search(searchAddress);
     },
     // eslint-disable-next-line
     [router.pathname, searchData[0]?.address, t]
@@ -89,9 +73,10 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
     >
       <Formik
         onSubmit={async (data, form) => {
-          await handleSearch(data.addrsearch);
-          form.setSubmitting(false);
-          form.resetForm();
+          handleSearch(data.addrsearch).then(() => {
+            form.setSubmitting(false);
+            form.resetForm();
+          });
         }}
         initialValues={{ addrsearch: '' }}
       >
