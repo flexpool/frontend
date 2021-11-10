@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import React from 'react';
+import React, { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { FaSearch } from 'react-icons/fa';
@@ -21,6 +21,7 @@ import useIsMounted from '@/hooks/useIsMounted';
 export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
   showResult = true,
 }) => {
+  const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const isMounted = useIsMounted();
 
@@ -28,20 +29,7 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
   const { t } = useTranslation(['common']);
   const openState = useOpenState();
 
-  const search = useSearchAddress({
-    onSuccess: (coin, address) => {
-      if (coin) {
-        if (document.activeElement instanceof HTMLElement) {
-          document.activeElement?.blur();
-        }
-        openState.handleClose();
-        router.push(`/miner/${coin}/${address}`, undefined, {
-          // shallow routing is true if not on miner dashboard
-          shallow: !router.query.address,
-        });
-      }
-    },
-  });
+  const search = useSearchAddress();
 
   React.useEffect(() => {
     openState.handleClose();
@@ -49,24 +37,20 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
   }, [router.pathname]);
 
   const handleSearch = React.useCallback(
-    async (address: string) => {
+    (address: string) => {
       let searchAddress: string = address.replaceAll(' ', '');
       if (/^[a-fA-F0-9]{40}$/.test(address)) {
         searchAddress = '0x' + searchAddress;
       }
 
-      if (!searchAddress) {
-        if (searchData.length > 0) {
-          searchAddress = searchData[0].address; // Fetch latest address from cache.
-        } else {
-          return;
-        }
+      if (!searchAddress && searchData.length > 0) {
+        searchAddress = searchData[0].address; // Fetch latest address from cache.
       }
 
+      inputRef.current?.blur();
       return search(searchAddress);
     },
-    // eslint-disable-next-line
-    [router.pathname, searchData[0]?.address, t]
+    [search, searchData]
   );
 
   return (
@@ -74,11 +58,11 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
       onOuterEvent={(openState.isOpen && openState.handleClose) || undefined}
     >
       <Formik
-        onSubmit={async (data, form) => {
-          handleSearch(data.addrsearch).then(() => {
+        onSubmit={(data, form) => {
+          if (handleSearch(data.addrsearch)) {
             form.setSubmitting(false);
             form.resetForm();
-          });
+          }
         }}
         initialValues={{ addrsearch: '' }}
       >
@@ -86,11 +70,13 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
           <Wrapper>
             <FieldWrapper isOpen={openState.isOpen}>
               <Input
+                innerRef={inputRef}
                 name="addrsearch"
                 spellCheck="false"
                 autoComplete="off"
                 placeholder={t('searchbar.placeholder')}
                 onFocus={openState.handleOpen}
+                onBlur={openState.handleClose}
               />
               {isMounted && showResult && searchData && searchData.length > 0 && (
                 <ResultWrapper>

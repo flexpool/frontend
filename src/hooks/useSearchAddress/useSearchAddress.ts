@@ -1,62 +1,40 @@
 import { useCallback } from 'react';
-import { useQueryClient } from 'react-query';
 import { useDispatch } from 'react-redux';
-import { fetchApi } from '@/utils/fetchApi';
+import { useRouter } from 'next/router';
 import { addressSearchSet } from 'src/rdx/addressSearch/addressSearch.actions';
 import { getChecksumByTicker } from '@/utils/validators/checksum';
 
-type LocateAddressResponse = string | null;
-
-type useSearchAddressProps = {
-  onSuccess: (coin: LocateAddressResponse, address: string) => void;
-};
-
-const useSearchAddress = ({ onSuccess }: useSearchAddressProps) => {
+const useSearchAddress = () => {
   const dispatch = useDispatch();
-  const queryClient = useQueryClient();
+  const router = useRouter();
 
   const search = useCallback(
-    async (address: string) => {
-      try {
-        let coin = await queryClient.fetchQuery(
-          ['/miner/locateAddress', { address }] as const,
-          ({ queryKey }) =>
-            fetchApi<LocateAddressResponse>(queryKey[0], {
-              query: queryKey[1],
-            }),
-          {
-            staleTime: 60 * 1000, // 1 minute
-          }
-        );
+    (address: string) => {
+      let coin;
+      if (getChecksumByTicker('eth')(address)) coin = 'eth';
+      if (getChecksumByTicker('xch')(address)) coin = 'xch';
 
-        if (!coin) {
-          // guess address type
-          if (getChecksumByTicker('eth')(address)) {
-            coin = 'eth';
-          } else if (getChecksumByTicker('xch')(address)) {
-            coin = 'xch';
-          }
-        }
+      if (!coin) {
+        alert('Please enter a valid Ethereum or Chia wallet address.');
+        return false;
+      }
 
-        if (!coin) {
-          alert('Please enter a valid address');
-          return;
-        }
+      // Add to search history
+      dispatch(
+        addressSearchSet({
+          coin,
+          address: address,
+        })
+      );
 
-        // Add to search history
-        if (coin && address) {
-          dispatch(
-            addressSearchSet({
-              coin,
-              address: address,
-            })
-          );
+      router.push(`/miner/${coin}/${address}`, undefined, {
+        // shallow routing is true if not on miner dashboard
+        shallow: !router.query.address,
+      });
 
-          onSuccess && onSuccess(coin, address);
-        }
-      } catch (error) {}
+      return true;
     },
-    [queryClient, dispatch, onSuccess]
+    [dispatch, router]
   );
 
   return search;
