@@ -9,12 +9,15 @@ const useSearchAddress = () => {
   const router = useRouter();
 
   const search = useCallback(
-    (address: string) => {
-      let coin;
-      if (getChecksumByTicker('eth')(address)) coin = 'eth';
-      if (getChecksumByTicker('xch')(address)) coin = 'xch';
+    (address: string, coin?: string) => {
+      let coinType = coin;
 
       if (!coin) {
+        if (getChecksumByTicker('eth')(address)) coinType = 'eth';
+        if (getChecksumByTicker('xch')(address)) coinType = 'xch';
+      }
+
+      if (!coinType) {
         alert('Please enter a valid Ethereum or Chia wallet address.');
         return false;
       }
@@ -22,12 +25,12 @@ const useSearchAddress = () => {
       // Add to search history
       dispatch(
         addressSearchSet({
-          coin,
+          coin: coinType,
           address: address,
         })
       );
 
-      router.push(`/miner/${coin}/${address}`, undefined, {
+      router.push(`/miner/${coinType}/${address}`, undefined, {
         // shallow routing is true if not on miner dashboard
         shallow: !router.query.address,
       });

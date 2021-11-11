@@ -1,12 +1,8 @@
 import { FaTimes } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
-
-import {
-  addressSearchRemove,
-  addressSearchSet,
-} from 'src/rdx/addressSearch/addressSearch.actions';
+import useSearchAddress from '@/hooks/useSearchAddress';
+import { addressSearchRemove } from 'src/rdx/addressSearch/addressSearch.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 
 const ItemWrap = styled.div`
@@ -83,29 +79,29 @@ const RemoveWrap = styled.button`
   }
 `;
 
-export const SearchAddressCachedResult: React.FC<{ isOpen?: boolean }> = ({
-  isOpen = true,
-}) => {
+export const SearchAddressCachedResult: React.FC<{
+  isOpen?: boolean;
+  callback?: () => void;
+}> = ({ isOpen = true, callback }) => {
   const data = useReduxState('addressSearch');
   const d = useDispatch();
-  const router = useRouter();
+  const search = useSearchAddress();
 
   if (!isOpen) {
     return null;
   }
 
-  const openMinerAddress = (item) => {
-    d(addressSearchSet(item));
-    router.push(`/miner/${item.coin}/${item.address}`, undefined, {
-      shallow: !router.query.address,
-    });
-  };
-
   return (
     <>
       {data.slice(0, 6).map((item) => (
         <ItemWrap key={item.address}>
-          <HistoryItem onClick={() => openMinerAddress(item)}>
+          <HistoryItem
+            onClick={() => {
+              search(item.address, item.coin);
+              callback && callback();
+            }}
+            onMouseDown={(e) => e.preventDefault()}
+          >
             <Address>{item.address}</Address>
             <ItemRight>
               <CoinLabel>{item.coin}</CoinLabel>

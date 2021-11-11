@@ -1,6 +1,5 @@
 import { Formik } from 'formik';
-import React, { useRef } from 'react';
-import { useRouter } from 'next/router';
+import React, { useRef, useMemo } from 'react';
 import { useTranslation } from 'next-i18next';
 import { FaSearch } from 'react-icons/fa';
 import { useOpenState } from 'src/hooks/useOpenState';
@@ -16,25 +15,16 @@ import {
   F,
 } from './components';
 import { SearchAddressCachedResult } from './SearchAddressCachedResult';
-import useIsMounted from '@/hooks/useIsMounted';
 
 export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
   showResult = true,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const router = useRouter();
-  const isMounted = useIsMounted();
 
   const searchData = useReduxState('addressSearch');
   const { t } = useTranslation(['common']);
   const openState = useOpenState();
-
   const search = useSearchAddress();
-
-  React.useEffect(() => {
-    openState.handleClose();
-    // eslint-disable-next-line
-  }, [router.pathname]);
 
   const handleSearch = React.useCallback(
     (address: string) => {
@@ -51,6 +41,11 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
       return search(searchAddress);
     },
     [search, searchData]
+  );
+
+  const shouldShowSearchHistory = useMemo(
+    () => openState.isOpen && showResult && searchData && searchData.length > 0,
+    [openState.isOpen, showResult, searchData]
   );
 
   return (
@@ -78,9 +73,11 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
                 onFocus={openState.handleOpen}
                 onBlur={openState.handleClose}
               />
-              {isMounted && showResult && searchData && searchData.length > 0 && (
+              {shouldShowSearchHistory && (
                 <ResultWrapper>
-                  <SearchAddressCachedResult />
+                  <SearchAddressCachedResult
+                    callback={() => inputRef.current?.blur()}
+                  />
                 </ResultWrapper>
               )}
             </FieldWrapper>

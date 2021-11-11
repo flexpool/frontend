@@ -58,8 +58,6 @@ export const ResultWrapper = styled.div`
   border: 1px solid var(--border-color);
   border-top: none;
   transition: 0.2s all;
-  opacity: 0;
-  visibility: hidden;
 
   box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.1);
   &:before {
@@ -90,10 +88,6 @@ export const FieldWrapper = styled.div<{ isOpen: boolean }>`
     p.isOpen &&
     `
     box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2) !important;
-    ${ResultWrapper} {
-      visibility: visible;
-      opacity: 1;
-    }
   `}
 `;
 
