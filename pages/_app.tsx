@@ -19,7 +19,7 @@ import { AppTheme } from 'src/App/AppTheme';
 import { mainTheme } from 'src/App/styledTheme';
 
 // Components
-import { NavBar } from '../src/components/layout/NavBar';
+import NavBar from '../src/components/layout/NavBar';
 import { FooterSection } from '../src/sections/Footer.section';
 import { searchAddressStorage } from '../src/components/SearchAddressBar/searchCache';
 import TermsConsent from '../src/components/TermsConsent';
