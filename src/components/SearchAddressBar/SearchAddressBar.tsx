@@ -16,9 +16,10 @@ import {
 } from './components';
 import { SearchAddressCachedResult } from './SearchAddressCachedResult';
 
-export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
-  showResult = true,
-}) => {
+export const SearchAddressBar: React.FC<{
+  showResult?: boolean;
+  callback?: () => void;
+}> = ({ showResult = true, callback }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const searchData = useReduxState('addressSearch');
@@ -55,6 +56,7 @@ export const SearchAddressBar: React.FC<{ showResult?: boolean }> = ({
       <Formik
         onSubmit={(data, form) => {
           if (handleSearch(data.addrsearch)) {
+            callback?.();
             form.setSubmitting(false);
             form.resetForm();
           }

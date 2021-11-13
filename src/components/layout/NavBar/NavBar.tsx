@@ -147,14 +147,14 @@ const NavBar: React.FC<NavBarType> = (props) => {
           <h2>Search miner</h2>
         </Modal.Header>
         <Modal.Body>
-          <SearchAddressBar showResult={false} />
+          <SearchAddressBar
+            showResult={false}
+            callback={modalSearchOpenState.handleClose}
+          />
         </Modal.Body>
         <ScrollArea>
           <SearchAddressCachedResult
-            callback={() => {
-              openState.handleFalse();
-              modalSearchOpenState.handleClose();
-            }}
+            callback={modalSearchOpenState.handleClose}
           />
         </ScrollArea>
       </Modal>
