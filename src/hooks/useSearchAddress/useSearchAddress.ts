@@ -30,10 +30,7 @@ const useSearchAddress = () => {
         })
       );
 
-      router.push(`/miner/${coinType}/${address}`, undefined, {
-        // shallow routing is true if not on miner dashboard
-        shallow: !router.query.address,
-      });
+      router.push(`/miner/${coinType}/${address}`, undefined);
 
       return true;
     },
