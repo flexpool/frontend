@@ -9,7 +9,7 @@ const useSearchAddress = () => {
   const router = useRouter();
 
   const search = useCallback(
-    (address: string, coin?: string) => {
+    (address: string, coin?: string, callback?: () => void) => {
       let coinType = coin;
 
       if (!coin) {
@@ -22,15 +22,20 @@ const useSearchAddress = () => {
         return false;
       }
 
-      // Add to search history
-      dispatch(
-        addressSearchSet({
-          coin: coinType,
-          address: address,
-        })
-      );
+      router.push(`/miner/${coinType}/${address}`, undefined).then(async () => {
+        callback?.();
 
-      router.push(`/miner/${coinType}/${address}`, undefined);
+        // delay for smoother UI
+        await new Promise((resolve) => setTimeout(resolve, 100));
+
+        // Add to search history
+        dispatch(
+          addressSearchSet({
+            coin: coinType as string,
+            address: address,
+          })
+        );
+      });
 
       return true;
     },

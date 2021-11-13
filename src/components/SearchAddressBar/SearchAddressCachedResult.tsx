@@ -97,8 +97,7 @@ export const SearchAddressCachedResult: React.FC<{
         <ItemWrap key={item.address}>
           <HistoryItem
             onClick={() => {
-              search(item.address, item.coin);
-              callback && callback();
+              search(item.address, item.coin, callback);
             }}
             onMouseDown={(e) => e.preventDefault()}
           >

@@ -13,7 +13,7 @@ const RouteLoaderStyles = createGlobalStyle`
     background: var(--primary);
 
     position: fixed;
-    z-index: 1031;
+    z-index: 100000000;
     top: 0;
     left: 0;
 

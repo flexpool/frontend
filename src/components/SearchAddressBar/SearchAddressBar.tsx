@@ -28,7 +28,7 @@ export const SearchAddressBar: React.FC<{
   const search = useSearchAddress();
 
   const handleSearch = React.useCallback(
-    (address: string) => {
+    (address: string, callback?: () => void) => {
       let searchAddress: string = address.replaceAll(' ', '');
       if (/^[a-fA-F0-9]{40}$/.test(address)) {
         searchAddress = '0x' + searchAddress;
@@ -39,7 +39,7 @@ export const SearchAddressBar: React.FC<{
       }
 
       inputRef.current?.blur();
-      return search(searchAddress);
+      return search(searchAddress, undefined, callback);
     },
     [search, searchData]
   );
@@ -55,11 +55,11 @@ export const SearchAddressBar: React.FC<{
     >
       <Formik
         onSubmit={(data, form) => {
-          if (handleSearch(data.addrsearch)) {
-            callback?.();
+          handleSearch(data.addrsearch, () => {
+            callback?.(); // handle component callback, such as closing modal
             form.setSubmitting(false);
             form.resetForm();
-          }
+          });
         }}
         initialValues={{ addrsearch: '' }}
       >
