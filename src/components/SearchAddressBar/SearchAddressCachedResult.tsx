@@ -112,6 +112,7 @@ export const SearchAddressCachedResult: React.FC<{
               e.stopPropagation();
               d(addressSearchRemove(item.address));
             }}
+            onMouseDown={(e) => e.preventDefault()}
           >
             <FaTimes />
           </RemoveWrap>
