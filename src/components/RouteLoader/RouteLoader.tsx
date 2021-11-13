@@ -92,11 +92,16 @@ const RouteLoader = () => {
   NProgress.configure({ showSpinner: false });
 
   useEffect(() => {
+    let timeout;
+
     const handleStart = () => {
-      NProgress.start();
+      timeout = setTimeout(() => {
+        NProgress.start();
+      }, 100);
     };
 
     const handleStop = () => {
+      clearTimeout(timeout);
       NProgress.done();
     };
 
@@ -105,6 +110,7 @@ const RouteLoader = () => {
     router.events.on('routeChangeError', handleStop);
 
     return () => {
+      clearTimeout(timeout);
       router.events.off('routeChangeStart', handleStart);
       router.events.off('routeChangeComplete', handleStop);
       router.events.off('routeChangeError', handleStop);
