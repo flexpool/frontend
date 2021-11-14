@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
 import { useAppTheme } from 'src/rdx/localSettings/localSettings.hooks';
+import useIsMounted from '@/hooks/useIsMounted';
 
 export const AppTheme = () => {
   const d = useDispatch();
@@ -32,6 +33,9 @@ export const AppTheme = () => {
   }, [d]);
 
   const colorMode = useAppTheme();
+  const isMounted = useIsMounted();
+
+  if (!isMounted) return null;
 
   // bu default, theme is light, we only add these items to make it dark
   if (colorMode === 'dark') {
