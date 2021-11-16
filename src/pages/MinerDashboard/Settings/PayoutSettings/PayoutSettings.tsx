@@ -24,6 +24,7 @@ import {
 import { getDecimalPlace } from '@/utils/number.utils';
 import styled from 'styled-components';
 import PayoutWarning from './PayoutWarning';
+import ThresholdInput from './ThresholdInput';
 
 export const GweiToggle = styled.button`
   height: 48px;
@@ -34,10 +35,6 @@ export const GweiToggle = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
-
-export const UnitContainer = styled.div`
-  padding: 0 1rem;
 `;
 
 export const ActiveToggleText = styled.span`
@@ -185,25 +182,8 @@ export const PayoutSettings: React.FC<{
 
                 {String(activeCoin?.ticker) === 'eth' && <PayoutWarning />}
                 <ErrorBox error={minerSettings.error} />
-                <TextField
-                  name="payoutLimit"
-                  label={t('dashboard:settings.payout.limit', {
-                    min: minPayoutLimit,
-                  })}
-                  embelishment={
-                    activeCoinTicker.toUpperCase() ? (
-                      <UnitContainer>
-                        {activeCoinTicker.toUpperCase()}
-                      </UnitContainer>
-                    ) : undefined
-                  }
-                  inputMode="decimal"
-                  desc={t('dashboard:settings.payout.limit_desc', {
-                    value: `${
-                      values.payoutLimit
-                    } ${activeCoin.ticker.toUpperCase()}`,
-                  })}
-                />
+
+                <ThresholdInput name="payoutLimit" />
 
                 {String(activeCoin?.ticker) === 'eth' ? (
                   gweiToggle ? (
