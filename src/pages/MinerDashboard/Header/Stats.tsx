@@ -247,20 +247,24 @@ export const HeaderStats = () => {
   const tickerBalance = currencyFormatter(data?.balanceCountervalue || 0);
 
   const estimatedDailyEarnings = React.useMemo(() => {
-    return minerHeaderStatsState.data?.dailyRewardsPerGh &&
-      minerStatsState.data?.averageEffectiveHashrate
-      ? minerHeaderStatsState.data?.dailyRewardsPerGh *
-          (minerStatsState.data?.averageEffectiveHashrate / 1000000000)
-      : 0;
+    const rewards = minerHeaderStatsState.data?.dailyRewardsPerGh;
+    const hashrate = minerStatsState.data?.averageEffectiveHashrate;
+
+    if (rewards === undefined || hashrate === undefined) {
+      return null;
+    }
+
+    return rewards * (hashrate / 1000000000);
   }, [minerHeaderStatsState.data, minerStatsState.data]);
 
   const estimated = React.useMemo(() => {
     return {
-      ticker: estimatedDailyEarnings
-        ? activeCoinFormatter(estimatedDailyEarnings * estimateInterval)
-        : null,
+      ticker:
+        estimatedDailyEarnings !== null
+          ? activeCoinFormatter(estimatedDailyEarnings * estimateInterval)
+          : null,
       counterTicker:
-        estimatedDailyEarnings && data?.countervaluePrice
+        estimatedDailyEarnings !== null && data?.countervaluePrice
           ? currencyFormatter(
               ((estimatedDailyEarnings * estimateInterval) /
                 Math.pow(10, activeCoin?.decimalPlaces || 9)) *
@@ -316,11 +320,17 @@ export const HeaderStats = () => {
         : (data.balance / settings.payoutLimit) * 100
       : null;
 
-  const estimatedEarningsPerSecond = estimatedDailyEarnings / 24 / 60 / 60;
+  const estimatedEarningsPerSecond =
+    estimatedDailyEarnings !== null
+      ? estimatedDailyEarnings / 24 / 60 / 60
+      : null;
+
   const amountToPayout =
     settings && data ? settings.payoutLimit - data.balance : 0;
   const amountToPayoutTimeInSeconds =
-    amountToPayout / estimatedEarningsPerSecond || 0;
+    estimatedEarningsPerSecond !== null
+      ? amountToPayout / estimatedEarningsPerSecond
+      : 0;
 
   return (
     <CardGrid>

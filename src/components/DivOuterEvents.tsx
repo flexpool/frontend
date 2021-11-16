@@ -1,5 +1,6 @@
 import React from 'react';
 
+// FIXME: Change this to a custom hook instead of a component
 export type OuterEventProps = JSX.IntrinsicElements['div'] & {
   onOuterEvent?: (e: Event) => void;
   allowedOuterEventEls?: (HTMLElement | null | undefined)[];

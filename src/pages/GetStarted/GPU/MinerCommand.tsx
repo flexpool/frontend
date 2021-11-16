@@ -133,8 +133,8 @@ export const MinerCommand: React.FC<{
         replaceWith: `${walletAddress}`,
       },
       {
-        replace: '.WORKER_NAME',
-        replaceWith: workerName ? `.${workerName}` : '',
+        replace: 'WORKER_NAME',
+        replaceWith: workerName ? `${workerName}` : '',
       },
     ]).join('');
     // eslint-disable-next-line react-hooks/exhaustive-deps
