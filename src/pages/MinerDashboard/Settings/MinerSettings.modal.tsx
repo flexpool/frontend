@@ -9,7 +9,7 @@ import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import styled from 'styled-components';
 import { NotificationSettings } from './NotificationSettings';
-import { PayoutSettings } from './PayoutSettings';
+import PayoutSettings from './PayoutSettings';
 
 const Split = styled.div`
   display: flex;

@@ -1,7 +1,6 @@
 import { Form, Formik } from 'formik';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-// import { useRouteMatch } from 'react-router';
 import { ErrorBox } from 'src/components/Form/ErrorBox';
 import { FieldGroup } from 'src/components/Form/FieldGroup';
 import { Submit } from 'src/components/Form/Submit';
@@ -23,8 +22,8 @@ import {
   useLocalizedNumberFormatter,
 } from 'src/utils/si.utils';
 import { getDecimalPlace } from '@/utils/number.utils';
-import { InfoBox } from 'src/components/InfoBox';
 import styled from 'styled-components';
+import PayoutWarning from './PayoutWarning';
 
 export const GweiToggle = styled.button`
   height: 48px;
@@ -184,20 +183,7 @@ export const PayoutSettings: React.FC<{
               <FieldGroup.V>
                 <h3>{t('dashboard:settings.payout.title')}</h3>
 
-                {String(activeCoin?.ticker) === 'eth' ? (
-                  <InfoBox variant="warning">
-                    <h3>Important note</h3>
-                    <div>
-                      {(
-                        t('dashboard:settings.payout_warning', {
-                          returnObjects: true,
-                        }) as string[]
-                      ).map((item) => (
-                        <p key={item}>{item}</p>
-                      ))}
-                    </div>
-                  </InfoBox>
-                ) : null}
+                {String(activeCoin?.ticker) === 'eth' && <PayoutWarning />}
                 <ErrorBox error={minerSettings.error} />
                 <TextField
                   name="payoutLimit"
@@ -570,3 +556,5 @@ export const PayoutSettings: React.FC<{
     </Formik>
   );
 };
+
+export default PayoutSettings;
