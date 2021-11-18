@@ -1,4 +1,3 @@
-import { useMemo, useState } from 'react';
 import { useFormikContext } from 'formik';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
@@ -58,7 +57,6 @@ const GasPricePercentInput = ({
 }: GasPricePercentInputProps) => {
   const { values } = useFormikContext();
   const currencyFormatter = useLocalizedCurrencyFormatter();
-  const numberFormatter = useLocalizedNumberFormatter();
   const { t } = useTranslation(['common']);
   const activeCoin = useActiveCoin();
   const activeCoinTicker = useActiveCoinTicker();

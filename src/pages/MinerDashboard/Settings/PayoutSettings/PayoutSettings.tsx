@@ -14,8 +14,6 @@ import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
 import { minerDetailsUpdatePayoutSettings } from 'src/rdx/minerDetails/minerDetails.actions';
 import { minerDetailsGet } from 'src/rdx/minerDetails/minerDetails.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
-import * as yup from 'yup';
-import { setLocale } from 'yup';
 import { useTranslation } from 'next-i18next';
 import {
   useLocalizedCurrencyFormatter,
@@ -28,36 +26,6 @@ import ThresholdInput from './ThresholdInput';
 import GasPriceInput from './GasPriceInput';
 import GasPricePercentInput from './GasPricePercentInput';
 
-export const GweiToggle = styled.button`
-  height: 48px;
-  width: 100%;
-  padding: 0 1rem;
-  border: none;
-  background: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const ActiveToggleText = styled.span`
-  color: var(--text-primary);
-`;
-export const InactiveToggleText = styled.span`
-  color: var(--text-tertiary);
-`;
-
-export const PercentageDisplaySpan = styled.span<{ color?: string }>`
-  ${(p) =>
-    p.color === 'yellow' &&
-    `
-          color: var(--warning);
-          `}
-  ${(p) =>
-    p.color === 'red' &&
-    `
-      color: var(--danger);
-      `}
-`;
 export const LowPayoutContainer = styled.div`
   color: var(--danger);
 `;
@@ -74,7 +42,6 @@ export const PayoutSettings: React.FC<{
   const d = useDispatch();
 
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
-  const currencyFormatter = useLocalizedCurrencyFormatter();
   const [gweiToggle, setGweiToggle] = React.useState(true);
   if (
     !minerSettings.data ||
@@ -84,10 +51,6 @@ export const PayoutSettings: React.FC<{
   ) {
     return null;
   }
-
-  const minPayoutLimit =
-    activeCoin.lowestMinPayoutThreshold /
-    Math.pow(10, activeCoin.decimalPlaces);
 
   const toggleGwei = () => {
     setGweiToggle(!gweiToggle);
