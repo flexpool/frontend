@@ -15,13 +15,11 @@ import { minerDetailsUpdatePayoutSettings } from 'src/rdx/minerDetails/minerDeta
 import { minerDetailsGet } from 'src/rdx/minerDetails/minerDetails.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { useTranslation } from 'next-i18next';
-import {
-  useLocalizedCurrencyFormatter,
-  useLocalizedNumberFormatter,
-} from 'src/utils/si.utils';
+import { useLocalizedNumberFormatter } from 'src/utils/si.utils';
 import { getDecimalPlace } from '@/utils/number.utils';
 import styled from 'styled-components';
 import PayoutWarning from './PayoutWarning';
+import NetworkSelect from './NetworkSelect';
 import ThresholdInput from './ThresholdInput';
 import GasPriceInput from './GasPriceInput';
 import GasPricePercentInput from './GasPricePercentInput';
@@ -107,6 +105,7 @@ export const PayoutSettings: React.FC<{
                       feeDetails.multiplier
                   ),
               ipAddress: data.ip,
+              network: data.network,
             })
           ),
         ]).then(() => {
@@ -133,6 +132,7 @@ export const PayoutSettings: React.FC<{
           minerSettings.data.payoutLimit /
           Math.pow(10, activeCoin.decimalPlaces)
         }`,
+        network: minerSettings.data.network,
       }}
       validateOnChange={true}
       validate={validate}
@@ -147,6 +147,8 @@ export const PayoutSettings: React.FC<{
 
                 {String(activeCoin?.ticker) === 'eth' && <PayoutWarning />}
                 <ErrorBox error={minerSettings.error} />
+
+                <NetworkSelect />
 
                 <ThresholdInput name="payoutLimit" />
 

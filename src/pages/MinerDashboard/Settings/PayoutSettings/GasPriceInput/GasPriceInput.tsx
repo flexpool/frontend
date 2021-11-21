@@ -44,8 +44,6 @@ const GasPriceInput = ({ onToggle }: GasPriceInputProps) => {
     [values]
   );
 
-  console.log({ values });
-
   if (!feeDetails || !minerHeaderStats || !minerSettings) return null;
 
   return (

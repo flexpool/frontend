@@ -11,6 +11,7 @@ export type ApiMinerSettings = {
   notifications: { email: string | null };
   payoutLimit: number;
   poolDonation: number;
+  network: string;
 };
 
 export type ApiMinerHeaderStats = {
