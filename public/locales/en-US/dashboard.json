@@ -10,7 +10,7 @@
     "payout": {
       "title": "Payout Settings",
       "eth_mainnet": "You payout will be sent via Ethereum Mainnet. This is the main Ethereum network, it is more decentralized and secure, but has a significant transaction fee.",
-      "eth_polygon": "You payout will be sent via Polygon (L2). L2 offers significant lower transaction fees and your payment will be processed in WETH(Wrapped ETH). Please make sure you understand how this is going to effect your payouts before switching networks.",
+      "eth_polygon": "You payout will be sent via Polygon (L2). L2 offers significant lower transaction fees and your payment will be processed in WETH (Wrapped ETH). Please make sure you understand how this is going to effect your payouts before switching networks.",
       "limit": "Payout threshold (min: {{min}})",
       "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}. Your entire unpaid balance will be paid out, not just your threshold amount.",
       "limit_err_higher": "Must be higher than {{min}}",
