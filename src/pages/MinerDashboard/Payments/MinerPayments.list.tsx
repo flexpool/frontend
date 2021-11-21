@@ -26,9 +26,7 @@ import { BiTransferAlt } from 'react-icons/bi';
 import { stringUtils } from '@/utils/string.utils';
 import NetworkLogo from '@/components/NetworkLogo';
 
-const { titleCase } = stringUtils;
-
-const StyledNetworkLabel = styled.div`
+const StyledHashLink = styled.div`
   display: flex;
   align-items: center;
 
@@ -41,17 +39,18 @@ const StyledNetworkLabel = styled.div`
   }
 `;
 
-type NetworkLabelProps = {
+type HashLinkProps = {
   ticker: string;
   network: string;
+  children: React.ReactNode;
 };
 
-const NetworkLabel = ({ ticker, network }: NetworkLabelProps) => {
+const HashLink = ({ ticker, network, children }: HashLinkProps) => {
   return (
-    <StyledNetworkLabel>
+    <StyledHashLink>
       <NetworkLogo ticker={ticker} network={network} />
-      <Mono>{titleCase(network)}</Mono>
-    </StyledNetworkLabel>
+      {children}
+    </StyledHashLink>
   );
 };
 
@@ -204,21 +203,6 @@ export const MinerPaymentsList: React.FC<{
               );
             },
           },
-          ...(coin?.ticker === 'eth'
-            ? [
-                {
-                  title: 'Network',
-                  Component: ({ data }) => {
-                    return (
-                      <NetworkLabel
-                        ticker={coin?.ticker}
-                        network={data.network}
-                      />
-                    );
-                  },
-                },
-              ]
-            : []),
           {
             title: t('payments.table.table_head.value'),
             alignRight: true,
@@ -331,15 +315,20 @@ export const MinerPaymentsList: React.FC<{
               }
 
               return (
-                <Ws>
-                  <Mono className="item-hover-higjlight">
-                    <LinkOutCoin
-                      type="transaction"
-                      hash={data.hash}
-                      coin={coinName}
-                    />
-                  </Mono>
-                </Ws>
+                <HashLink
+                  ticker={coin?.ticker as string}
+                  network={data.network}
+                >
+                  <Ws>
+                    <Mono className="item-hover-higjlight">
+                      <LinkOutCoin
+                        type="transaction"
+                        hash={data.hash}
+                        coin={coinName}
+                      />
+                    </Mono>
+                  </Ws>
+                </HashLink>
               );
             },
           },

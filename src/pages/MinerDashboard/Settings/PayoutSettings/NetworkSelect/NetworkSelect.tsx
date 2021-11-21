@@ -24,10 +24,13 @@ type OptionLabelProps = {
 };
 
 const OptionLabel = ({ ticker, network }: OptionLabelProps) => {
+  let name = titleCase(network);
+  if (network !== 'mainnet') name = `${titleCase(network)} L2`;
+
   return (
     <LabelWrap>
       <NetworkLogo ticker={ticker} network={network.toLowerCase()} />
-      <NetworkName>{titleCase(network)}</NetworkName>
+      <NetworkName>{name}</NetworkName>
     </LabelWrap>
   );
 };
