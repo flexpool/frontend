@@ -97,7 +97,8 @@ export const MinerDetails: React.FC<{
           <div>{t('header.info_payout_limit')}:&nbsp;</div>
           <div>{settings && coin ? payoutLimit : <Skeleton width={40} />}</div>
         </Item>
-        {activeCoinTicker === 'eth' ? (
+        {activeCoinTicker === 'eth' &&
+        minerDetailsState.data?.network === 'mainnet' ? (
           <Tooltip
             wrapIcon={false}
             icon={

@@ -173,6 +173,19 @@ export const MinerPaymentsList: React.FC<{
               );
             },
           },
+          ...(coin?.ticker === 'eth'
+            ? [
+                {
+                  title: 'Network',
+                  Component: ({ data }) => {
+                    if (data.network === 'polygon') {
+                      return <Mono>Polygon</Mono>;
+                    }
+                    return <Mono>Mainnet</Mono>;
+                  },
+                },
+              ]
+            : []),
           {
             title: t('payments.table.table_head.value'),
             alignRight: true,
@@ -278,13 +291,19 @@ export const MinerPaymentsList: React.FC<{
             title: t('payments.table.table_head.hash'),
             alignRight: true,
             Component: ({ data }) => {
+              let coinName = coin?.ticker as string;
+
+              if (data.network === 'polygon') {
+                coinName = 'eth_polygon';
+              }
+
               return (
                 <Ws>
                   <Mono className="item-hover-higjlight">
                     <LinkOutCoin
                       type="transaction"
                       hash={data.hash}
-                      coin={coin?.ticker}
+                      coin={coinName}
                     />
                   </Mono>
                 </Ws>

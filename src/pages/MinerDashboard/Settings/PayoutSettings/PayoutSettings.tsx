@@ -148,11 +148,12 @@ export const PayoutSettings: React.FC<{
                 {String(activeCoin?.ticker) === 'eth' && <PayoutWarning />}
                 <ErrorBox error={minerSettings.error} />
 
-                <NetworkSelect />
+                {String(activeCoin?.ticker) === 'eth' && <NetworkSelect />}
 
                 <ThresholdInput name="payoutLimit" />
 
                 {String(activeCoin?.ticker) === 'eth' &&
+                  values.network === 'mainnet' &&
                   (gweiToggle ? (
                     <GasPriceInput onToggle={toggleGwei} />
                   ) : (

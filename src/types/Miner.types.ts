@@ -64,6 +64,7 @@ export type ApiMinerPayment = {
   value: number;
   confirmed: boolean;
   confirmedTimestamp: number;
+  network: string;
 };
 export type ApiMinerPayments = {
   countervalue: number;

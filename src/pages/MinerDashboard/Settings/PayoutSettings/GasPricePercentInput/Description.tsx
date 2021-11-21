@@ -76,8 +76,8 @@ const Description = () => {
   });
 
   let percentColor = '';
-  if (maxFeePricePercent >= 0.05) percentColor = 'yellow';
-  if (maxFeePricePercent >= 0.1) percentColor = 'red';
+  if (maxFeePricePercent >= 5) percentColor = 'yellow';
+  if (maxFeePricePercent >= 10) percentColor = 'red';
 
   return (
     <>
