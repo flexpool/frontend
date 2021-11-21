@@ -16,6 +16,10 @@ import {
 import styled from 'styled-components';
 import useActiveCoinNetworkFee from '@/hooks/useActiveCoinNetworkFee';
 import { isNil } from 'lodash';
+import { stringUtils } from '@/utils/string.utils';
+import NetworkLogo from '@/components/NetworkLogo';
+
+const { titleCase } = stringUtils;
 
 const NoFeeLimit = styled.div`
   color: var(--text-secondary);
@@ -97,7 +101,8 @@ export const MinerDetails: React.FC<{
           <div>{t('header.info_payout_limit')}:&nbsp;</div>
           <div>{settings && coin ? payoutLimit : <Skeleton width={40} />}</div>
         </Item>
-        {activeCoinTicker === 'eth' ? (
+        {activeCoinTicker === 'eth' &&
+        minerDetailsState.data?.network === 'mainnet' ? (
           <Tooltip
             wrapIcon={false}
             icon={
@@ -178,6 +183,23 @@ export const MinerDetails: React.FC<{
             </p>
           </TooltipContent>
         </Tooltip>
+
+        {minerDetailsState.data &&
+          minerDetailsState.data.network !== 'mainnet' && (
+            <Item>
+              <div>{t('header.network')}:&nbsp;</div>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <NetworkLogo
+                  network={minerDetailsState.data.network}
+                  ticker={activeCoinTicker}
+                />
+                <div style={{ marginLeft: '0.25rem' }}>
+                  {titleCase(minerDetailsState.data.network)}
+                </div>
+              </div>
+            </Item>
+          )}
+
         <Item>
           <div>{t('header.info_coin_price', { coin: coin?.name })}:&nbsp;</div>
           <div>{counterValuePrice || <Skeleton width={40} />}</div>

@@ -5,7 +5,7 @@ import { minerDetailsGet } from './minerDetails.actions';
 
 export const useFetchMinerDetails = (coinTicker: string, address: string) => {
   const dispatch = useDispatch();
-  const minerHeaderStats = useReduxState('minerHeaderStats');
+  const minerDetails = useReduxState('minerDetails');
 
   const fetch = useCallback(
     () => dispatch(minerDetailsGet(coinTicker, address)),
@@ -18,5 +18,5 @@ export const useFetchMinerDetails = (coinTicker: string, address: string) => {
     }
   }, [fetch, coinTicker, address]);
 
-  return { ...minerHeaderStats, refetch: fetch };
+  return { ...minerDetails, refetch: fetch };
 };

@@ -23,6 +23,36 @@ import {
 } from 'src/utils/si.utils';
 import styled from 'styled-components';
 import { BiTransferAlt } from 'react-icons/bi';
+import { stringUtils } from '@/utils/string.utils';
+import NetworkLogo from '@/components/NetworkLogo';
+
+const StyledHashLink = styled.div`
+  display: flex;
+  align-items: center;
+
+  div:first-child {
+    flex-shrink: 0;
+  }
+
+  span {
+    margin-left: 0.25rem;
+  }
+`;
+
+type HashLinkProps = {
+  ticker: string;
+  network: string;
+  children: React.ReactNode;
+};
+
+const HashLink = ({ ticker, network, children }: HashLinkProps) => {
+  return (
+    <StyledHashLink>
+      <NetworkLogo ticker={ticker} network={network} />
+      {children}
+    </StyledHashLink>
+  );
+};
 
 const HeaderSplit = styled.div`
   display: flex;
@@ -278,16 +308,27 @@ export const MinerPaymentsList: React.FC<{
             title: t('payments.table.table_head.hash'),
             alignRight: true,
             Component: ({ data }) => {
+              let coinName = coin?.ticker as string;
+
+              if (data.network === 'polygon') {
+                coinName = 'eth_polygon';
+              }
+
               return (
-                <Ws>
-                  <Mono className="item-hover-higjlight">
-                    <LinkOutCoin
-                      type="transaction"
-                      hash={data.hash}
-                      coin={coin?.ticker}
-                    />
-                  </Mono>
-                </Ws>
+                <HashLink
+                  ticker={coin?.ticker as string}
+                  network={data.network}
+                >
+                  <Ws>
+                    <Mono className="item-hover-higjlight">
+                      <LinkOutCoin
+                        type="transaction"
+                        hash={data.hash}
+                        coin={coinName}
+                      />
+                    </Mono>
+                  </Ws>
+                </HashLink>
               );
             },
           },

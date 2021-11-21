@@ -24,6 +24,7 @@ export const SCSelectButton = styled(Button)`
   position: relative;
   padding-right: 2.5rem;
   width: 100%;
+  color: var(--text-primary);
   background: var(--bg-secondary);
   &:hover {
     border-color: var(--primary);
