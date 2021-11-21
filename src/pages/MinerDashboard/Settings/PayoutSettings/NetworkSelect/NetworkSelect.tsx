@@ -1,16 +1,44 @@
 import React, { useMemo } from 'react';
+import styled from 'styled-components';
+import { stringUtils } from '@/utils/string.utils';
 import { useFormikContext } from 'formik';
 import { useTranslation } from 'next-i18next';
 import { get } from 'lodash';
+import NetworkLogo from '@/components/NetworkLogo';
 import { DownshiftSelectField as Select } from '@/components/Form/DownshiftSelect';
+
+const { titleCase } = stringUtils;
+
+const LabelWrap = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const NetworkName = styled.span`
+  margin-left: 10px;
+`;
+
+type OptionLabelProps = {
+  ticker: string;
+  network: string;
+};
+
+const OptionLabel = ({ ticker, network }: OptionLabelProps) => {
+  return (
+    <LabelWrap>
+      <NetworkLogo ticker={ticker} network={network.toLowerCase()} />
+      <NetworkName>{titleCase(network)}</NetworkName>
+    </LabelWrap>
+  );
+};
 
 const NetworkOptions = [
   {
-    label: 'Mainnet',
+    label: <OptionLabel ticker="eth" network="mainnet" />,
     value: 'mainnet',
   },
   {
-    label: 'Polygon',
+    label: <OptionLabel ticker="eth" network="polygon" />,
     value: 'polygon',
   },
 ];

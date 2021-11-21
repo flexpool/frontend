@@ -46,6 +46,10 @@ module.exports = withPWA(
 
     i18n,
 
+    images: {
+      domains: ['static.flexpool.io'],
+    },
+
     async redirects() {
       return [
         {

@@ -23,6 +23,37 @@ import {
 } from 'src/utils/si.utils';
 import styled from 'styled-components';
 import { BiTransferAlt } from 'react-icons/bi';
+import { stringUtils } from '@/utils/string.utils';
+import NetworkLogo from '@/components/NetworkLogo';
+
+const { titleCase } = stringUtils;
+
+const StyledNetworkLabel = styled.div`
+  display: flex;
+  align-items: center;
+
+  div:first-child {
+    flex-shrink: 0;
+  }
+
+  span {
+    margin-left: 0.25rem;
+  }
+`;
+
+type NetworkLabelProps = {
+  ticker: string;
+  network: string;
+};
+
+const NetworkLabel = ({ ticker, network }: NetworkLabelProps) => {
+  return (
+    <StyledNetworkLabel>
+      <NetworkLogo ticker={ticker} network={network} />
+      <Mono>{titleCase(network)}</Mono>
+    </StyledNetworkLabel>
+  );
+};
 
 const HeaderSplit = styled.div`
   display: flex;
@@ -178,10 +209,12 @@ export const MinerPaymentsList: React.FC<{
                 {
                   title: 'Network',
                   Component: ({ data }) => {
-                    if (data.network === 'polygon') {
-                      return <Mono>Polygon</Mono>;
-                    }
-                    return <Mono>Mainnet</Mono>;
+                    return (
+                      <NetworkLabel
+                        ticker={coin?.ticker}
+                        network={data.network}
+                      />
+                    );
                   },
                 },
               ]
