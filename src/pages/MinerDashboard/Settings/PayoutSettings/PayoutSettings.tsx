@@ -152,12 +152,9 @@ export const PayoutSettings: React.FC<{
 
                 {String(activeCoin?.ticker) === 'eth' &&
                   (gweiToggle ? (
-                    <GasPriceInput name="maxFeePrice" onToggle={toggleGwei} />
+                    <GasPriceInput onToggle={toggleGwei} />
                   ) : (
-                    <GasPricePercentInput
-                      name="maxFeePricePercent"
-                      onToggle={toggleGwei}
-                    />
+                    <GasPricePercentInput onToggle={toggleGwei} />
                   ))}
 
                 <Spacer />
