@@ -19,10 +19,12 @@ import { useLocalizedNumberFormatter } from 'src/utils/si.utils';
 import { getDecimalPlace } from '@/utils/number.utils';
 import styled from 'styled-components';
 import PayoutWarning from './PayoutWarning';
+import L2Warning from './L2Warning';
 import NetworkSelect from './NetworkSelect';
 import ThresholdInput from './ThresholdInput';
 import GasPriceInput from './GasPriceInput';
 import GasPricePercentInput from './GasPricePercentInput';
+import L2AcknowledgeCheckbox from './L2AcknowledgeCheckbox';
 
 export const LowPayoutContainer = styled.div`
   color: var(--danger);
@@ -133,20 +135,33 @@ export const PayoutSettings: React.FC<{
           Math.pow(10, activeCoin.decimalPlaces)
         }`,
         network: minerSettings.data.network,
+        acknowledge: false,
       }}
       validateOnChange={true}
       validate={validate}
       // validationSchema={validationSchema}
     >
       {({ values }) => {
+        let isAcknowledged = values.acknowledge;
+
+        // No need to verify acknowledgement if the user is using mainnet
+        if (values.network === 'mainnet') {
+          isAcknowledged = true;
+        }
+
         return (
           <>
             <Form>
               <FieldGroup.V>
                 <h3>{t('dashboard:settings.payout.title')}</h3>
 
-                {String(activeCoin?.ticker) === 'eth' && <PayoutWarning />}
+                {String(activeCoin?.ticker) === 'eth' &&
+                  values.network === 'mainnet' && <PayoutWarning />}
                 <ErrorBox error={minerSettings.error} />
+
+                {values.network !== 'mainnet' && (
+                  <L2Warning network={values.network} />
+                )}
 
                 {String(activeCoin?.ticker) === 'eth' && <NetworkSelect />}
 
@@ -178,6 +193,7 @@ export const PayoutSettings: React.FC<{
                 </div>
 
                 {activeCoin.ticker === 'eth' &&
+                values.network === 'mainnet' &&
                 Number(values.payoutLimit) < 0.05 ? (
                   <LowPayoutContainer>
                     {t('dashboard:settings.high_fees_warning')}
@@ -185,7 +201,12 @@ export const PayoutSettings: React.FC<{
                 ) : (
                   ''
                 )}
-                <Submit shape="block">
+
+                {values.network !== 'mainnet' && (
+                  <L2AcknowledgeCheckbox network={values.network} />
+                )}
+
+                <Submit shape="block" disableWhenFormNotDirty={!isAcknowledged}>
                   {t('dashboard:settings.payout.submit')}
                 </Submit>
               </FieldGroup.V>

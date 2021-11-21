@@ -17,7 +17,9 @@
       "gas_limit": "Gas price limit",
       "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {delimiter} of payout limit). You will not receive any payouts if gas price is higher.",
       "gas_limit_zero": "Your transaction fee will not be limited.",
-      "submit": "Apply changes"
+      "submit": "Apply changes",
+      "l2_warning": "Please make sure your wallet support <bold>{{network_name}}</bold> network. Otherwise, your funds will be lost forever.",
+      "l2_acknowledge": "I acknowledge that my wallet supports L2 network, that the funds will be irreversibly lost otherwise, and that I know how to deal with payouts made in the <bold>{{network_name}}</bold> network."
     },
     "payout_warning": [
       "We highly recommend setting a higher payout limit to reduce total number of payout transactions. Less transactions means less paid in network fees.",
