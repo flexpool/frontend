@@ -9,13 +9,17 @@
     "high_fees_warning": "A payout limit under 0.05 ETH will result in high gas fees that will be deducted from your payment. Please set up a higher payout limit if possible.",
     "payout": {
       "title": "Payout Settings",
+      "eth_mainnet": "You payout will be sent via Ethereum Mainnet. This is the main Ethereum network, it is more decentralized and secure, but has a significant transaction fee.",
+      "eth_polygon": "You payout will be sent via Polygon (L2). L2 offers significant lower transaction fees and your payment will be processed in WETH (Wrapped ETH). Please make sure you understand how this is going to affect your payouts before switching networks.",
       "limit": "Payout threshold (min: {{min}})",
       "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}. Your entire unpaid balance will be paid out, not just your threshold amount.",
       "limit_err_higher": "Must be higher than {{min}}",
       "gas_limit": "Gas price limit",
       "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {delimiter} of payout limit). You will not receive any payouts if gas price is higher.",
       "gas_limit_zero": "Your transaction fee will not be limited.",
-      "submit": "Apply changes"
+      "submit": "Apply changes",
+      "l2_warning": "Please make sure your wallet support <bold>{{network_name}}</bold> WETH deposits. Otherwise, your funds will be lost forever.",
+      "l2_acknowledge": "I acknowledge that my wallet supports <bold>{{network_name}}</bold> L2 network, that the funds will be irreversibly lost otherwise, and that I know how to deal with payouts made in the <bold>{{network_name}}</bold> network."
     },
     "payout_warning": [
       "We highly recommend setting a higher payout limit to reduce total number of payout transactions. Less transactions means less paid in network fees.",
@@ -55,6 +59,7 @@
     "info_joined_tooltip": "Your first share has been recorded on",
     "info_joined_tooltip_empty": "No share has been recorded yet",
     "info_coin_price": "{{coin}} Price",
+    "network": "Network",
     "stat_workers": "Workers Online/Offline",
     "stat_unpaid_balance": "Unpaid Balance",
     "stat_unpaid_balance_reach": "<v>{{value}}</v> of the payout limit reached.",

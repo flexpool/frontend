@@ -6,6 +6,7 @@ import { FieldWrap } from './FormWrap';
 const LabelWrap = styled.label<{ disabled?: boolean }>`
   position: relative;
   cursor: pointer;
+  display: flex;
   ${(p) =>
     p.disabled &&
     `
@@ -26,6 +27,7 @@ const Check = styled.div`
 
 const TickBox = styled.span`
   display: inline-flex;
+  flex-shrink: 0;
   justify-content: center;
   align-items: center;
   width: 1.25rem;
@@ -58,9 +60,8 @@ const Label = styled.span`
 export const Checkbox = (
   props: BaseFormFieldProps & JSX.IntrinsicElements['input']
 ) => {
-  const { placeholder, name, value, onChange, onBlur, label } = getInputProps(
-    props
-  );
+  const { placeholder, name, value, onChange, onBlur, label } =
+    getInputProps(props);
 
   return (
     <FieldWrap>

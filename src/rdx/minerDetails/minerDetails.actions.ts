@@ -25,6 +25,7 @@ export const minerDetailsUpdatePayoutSettings = (
     payoutLimit: number;
     maxFeePrice: number;
     ipAddress: string;
+    network: string;
   }>
 ) => ({
   type: '@minerDetails/UPDATE',
