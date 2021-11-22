@@ -1,5 +1,4 @@
-import React, { useState, useMemo } from 'react';
-import { ApiPoolCoin } from 'src/types/PoolCoin.types';
+import React, { useState } from 'react';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import styled from 'styled-components';
@@ -128,27 +127,30 @@ const BalanceProgressBar: React.FC<{
   const currentNetworkFee = useActiveCoinNetworkFee();
   const networkFeeLimit = useNetworkFeeLimit();
 
+  const minerDetails = useReduxState('minerDetails');
+
+  const isPayoutDelayedByNetworkFee = React.useMemo(() => {
+    return (
+      // Gas fee is only considered for mainnet
+      minerDetails.data?.network === 'mainnet' &&
+      !isNil(currentNetworkFee) &&
+      !isNil(networkFeeLimit) &&
+      currentNetworkFee > networkFeeLimit
+    );
+  }, [minerDetails.data?.network, currentNetworkFee, networkFeeLimit]);
+
   const status = React.useMemo(() => {
     if (progress === 100) {
-      if (
-        !isNil(networkFeeLimit) &&
-        !isNil(currentNetworkFee) &&
-        currentNetworkFee > networkFeeLimit
-      ) {
+      if (isPayoutDelayedByNetworkFee) {
         return 'warning';
       } else {
         return 'success';
       }
     }
     return 'primary';
-  }, [progress, networkFeeLimit, currentNetworkFee]);
+  }, [progress, isPayoutDelayedByNetworkFee]);
 
   const renderPayoutToolTip = React.useCallback(() => {
-    const delayedByNetworkFee =
-      !isNil(currentNetworkFee) &&
-      !isNil(networkFeeLimit) &&
-      currentNetworkFee > networkFeeLimit;
-
     if (payoutInSeconds && payoutInSeconds > 0) {
       return (
         <PayoutText>
@@ -167,7 +169,7 @@ const BalanceProgressBar: React.FC<{
         </PayoutText>
       );
     } else {
-      if (delayedByNetworkFee) {
+      if (isPayoutDelayedByNetworkFee) {
         return (
           <PayoutText>
             <Trans
@@ -184,11 +186,26 @@ const BalanceProgressBar: React.FC<{
           </PayoutText>
         );
       }
+
+      if (minerDetails.data?.network == 'mainnet') {
+        return (
+          <PayoutText>{t('header.stat_unpaid_balance_reach_ok')}</PayoutText>
+        );
+      }
+
       return (
-        <PayoutText>{t('header.stat_unpaid_balance_reach_ok')}</PayoutText>
+        <PayoutText>{t('header.stat_unpaid_balance_reach_ok_l2')}</PayoutText>
       );
     }
-  }, [payoutInSeconds, currentNetworkFee, networkFeeLimit, dateFormatter, t]);
+  }, [
+    isPayoutDelayedByNetworkFee,
+    payoutInSeconds,
+    currentNetworkFee,
+    networkFeeLimit,
+    dateFormatter,
+    t,
+    minerDetails.data?.network,
+  ]);
 
   return (
     <Tooltip
