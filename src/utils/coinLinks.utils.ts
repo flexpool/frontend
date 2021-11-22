@@ -9,7 +9,7 @@ const uncleUrlMap = {
 
 const transactionUrlMap = {
   eth: 'https://etherscan.io/tx/%v',
-  eth_polygon: 'https://polygonscan.com/tx/%v',
+  polygon: 'https://polygonscan.com/tx/%v',
   xch: 'https://www.chiaexplorer.com/blockchain/coin/%v',
 };
 
