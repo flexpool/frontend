@@ -38,7 +38,11 @@ export const LinkOutCoin: React.FC<{
   const childContent = children || stringUtils.shortenString(hash, hashLength);
 
   if (href) {
-    return <LinkOut href={href}>{childContent}</LinkOut>;
+    return (
+      <LinkOut onClick={(e) => e.stopPropagation()} href={href}>
+        {childContent}
+      </LinkOut>
+    );
   }
   return <>{childContent}</>;
 };

@@ -23,7 +23,6 @@ import {
 } from 'src/utils/si.utils';
 import styled from 'styled-components';
 import { BiTransferAlt } from 'react-icons/bi';
-import { stringUtils } from '@/utils/string.utils';
 import NetworkLogo from '@/components/NetworkLogo';
 
 const StyledHashLink = styled.div`
@@ -137,10 +136,13 @@ export const MinerPaymentsList: React.FC<{
   const dateFormatter = useLocalizedDateFormatter();
   const handleRowClick = React.useCallback(
     (data: ApiMinerPayment) => {
-      window.open(
-        getCoinLink('transaction', data.hash, coin?.ticker),
-        '_blank'
-      );
+      let coinName = coin?.ticker as string;
+
+      if (data.network !== 'mainnet') {
+        coinName = data.network;
+      }
+
+      window.open(getCoinLink('transaction', data.hash, coinName), '_blank');
     },
     [coin?.ticker]
   );
@@ -310,8 +312,8 @@ export const MinerPaymentsList: React.FC<{
             Component: ({ data }) => {
               let coinName = coin?.ticker as string;
 
-              if (data.network === 'polygon') {
-                coinName = 'eth_polygon';
+              if (data.network !== 'mainnet') {
+                coinName = data.network;
               }
 
               return (
