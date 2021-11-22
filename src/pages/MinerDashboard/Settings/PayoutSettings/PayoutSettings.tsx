@@ -25,6 +25,7 @@ import ThresholdInput from './ThresholdInput';
 import GasPriceInput from './GasPriceInput';
 import GasPricePercentInput from './GasPricePercentInput';
 import L2AcknowledgeCheckbox from './L2AcknowledgeCheckbox';
+import ScrollIntoView from '@/components/ScrollIntoView';
 
 export const LowPayoutContainer = styled.div`
   color: var(--danger);
@@ -85,8 +86,8 @@ export const PayoutSettings: React.FC<{
 
   return (
     <Formik
-      onSubmit={async (data, { setSubmitting }) => {
-        Promise.all([
+      onSubmit={async (data) => {
+        return Promise.all([
           d(
             minerDetailsUpdatePayoutSettings(activeCoin.ticker, address, {
               payoutLimit:
@@ -113,7 +114,6 @@ export const PayoutSettings: React.FC<{
         ]).then(() => {
           d(minerDetailsGet(activeCoin.ticker, address));
         });
-        setSubmitting(false);
       }}
       initialValues={{
         maxFeePrice: `${minerSettings.data.maxFeePrice}`,
@@ -157,7 +157,12 @@ export const PayoutSettings: React.FC<{
 
                 {String(activeCoin?.ticker) === 'eth' &&
                   values.network === 'mainnet' && <PayoutWarning />}
-                <ErrorBox error={minerSettings.error} />
+
+                {minerSettings.error && (
+                  <ScrollIntoView>
+                    <ErrorBox error={minerSettings.error} />
+                  </ScrollIntoView>
+                )}
 
                 {values.network !== 'mainnet' && (
                   <L2Warning network={values.network} />

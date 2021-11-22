@@ -25,6 +25,8 @@ import { searchAddressStorage } from '../src/components/SearchAddressBar/searchC
 import TermsConsent from '../src/components/TermsConsent';
 import RouteLoader from '@/components/RouteLoader';
 
+import { SnackViewControl } from '@/components/Snacks/SnackViewControl';
+
 import SEO from '../next-seo.config';
 import Script from 'next/script';
 
@@ -75,7 +77,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
             src="https://static.zdassets.com/ekr/snippet.js?key=d3afb9ee-8238-4043-b961-08e6c726a8f0"
           />
           <ThemeProvider theme={mainTheme}>
-            {/* <SnackViewControl /> */}
+            <SnackViewControl />
             <RouteLoader />
             <NavBar />
             <AppTheme />
