@@ -2,7 +2,6 @@ import { Form, Formik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'next-i18next';
 import { useDispatch } from 'react-redux';
-// import { useRouteMatch } from 'react-router';
 import { CheckboxField } from 'src/components/Form/Checkbox';
 import { ErrorBox } from 'src/components/Form/ErrorBox';
 import { FieldGroup } from 'src/components/Form/FieldGroup';
@@ -12,8 +11,6 @@ import { Spacer } from 'src/components/layout/Spacer';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import { minerDetailsUpdateNotificationSettings } from 'src/rdx/minerDetails/minerDetails.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
-import * as yup from 'yup';
-import { useRouter } from 'next/router';
 
 export const NotificationSettings: React.FC<{
   address: string;
@@ -21,15 +18,11 @@ export const NotificationSettings: React.FC<{
   const activeCoin = useActiveCoin();
   const minerSettings = useReduxState('minerDetails');
   const d = useDispatch();
-  const router = useRouter();
-  // const {
-  //   params: { address },
-  // } = useRouteMatch<{ address: string; coin: string }>();
-
   const { t } = useTranslation(['common', 'dashboard']);
 
   function validateEmail(email) {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   }
 
@@ -37,7 +30,7 @@ export const NotificationSettings: React.FC<{
     return null;
   }
 
-  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const validate = (values) => {
     return sleep(100).then(() => {
@@ -58,19 +51,7 @@ export const NotificationSettings: React.FC<{
 
       return errors;
     });
-  }
-
-//   validationSchema={yup.object().shape({
-//   ipAddress: yup.string().required('Required'),
-//   emailEnabled: yup.boolean(),
-//   email: yup
-//     .string()
-//     .email(t('common:errors.email_invalid'))
-//     .when('emailEnabled', {
-//       is: true,
-//       then: yup.string().required(t('common:errors.email_required')),
-//     }),
-// })}
+  };
 
   return (
     <Formik
@@ -84,14 +65,14 @@ export const NotificationSettings: React.FC<{
               emailEnabled: false as false,
               ipAddress: data.ipAddress,
             };
-        await d(
+
+        return d(
           minerDetailsUpdateNotificationSettings(
             activeCoin.ticker,
             address,
             payload
           )
         );
-        setSubmitting(false);
       }}
       initialValues={{
         ipAddress: '',
