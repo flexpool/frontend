@@ -9,13 +9,17 @@
     "high_fees_warning": "起付额度低于0.05ETH，Gas费用（转账手续费）占比会相对地高。这笔费用将会从您的余额中扣除。建议调高起付额度，比较划算，也减少交费用的次数。",
     "payout": {
       "title": "支付设置",
+      "eth_mainnet": "您的付款将通过以太坊主网支付。以太坊主网是以太坊主要网络，他更加的分布式和安全，但拥有更高的交易手续费。",
+      "eth_polygon": "您的付款将通过 Polygon (L2) 支付。L2 网络提供了非常低的交易手续费，您将收到 WETH (Wrapper Ethereum)。在切换网络之前，请确保您了解这将如何影响您的支出。",
       "limit": "起付额度（最低：{{min}}）",
-      "limit_desc": "只有在您的未付余额达到{{value}后，您才能获得付款。您的全部未付余额将被支付，而不仅仅是您的阈值金额。",
+      "limit_desc": "只有在您的未付余额达到{{value}}后，您才能获得付款。您的全部未付余额将被支付，而不仅仅是您的阈值金额。",
       "limit_err_higher": "数目必须大于 {{min}}",
       "gas_limit": "Gas 费用上限（转账手续费上限）",
       "gas_limit_desc": "Gas费用会限于 {{value}} {{valueUnit}} ({{valueTicker}}, 当前起付额度的 {delimiter})。Gas费用低于上限，才会转账。",
       "gas_limit_zero": "Gas费用没定上限。",
-      "submit": "确认更改"
+      "submit": "确认更改",
+      "l2_warning": "请确保您的钱包支持转入<bold>{{network_name}}</bold>WETH。否则，你的资金将永远丢失。",
+      "l2_acknowledge": "我承认我的钱包支持<bold>{{network_name}}</bold>网络，否则资金将不可逆转地流失， 并且知道如何处理<bold>{{network_name}}</bold>网络中的支出。"
     },
     "payout_warning": [
       "我们强烈建议把起付额度提高，从而减少转账次数和Gas费用占比。",
@@ -55,11 +59,13 @@
     "info_joined_tooltip": "首个份额：",
     "info_joined_tooltip_empty": "记录中没有收到份额",
     "info_coin_price": "{{coin}} 价格",
+    "network": "网络",
     "stat_workers": "在线/离线矿机",
     "stat_unpaid_balance": "余额",
     "stat_unpaid_balance_reach": "已达到起付额度的 <v>{{value}}</v> 。",
     "stat_unpaid_balance_reach_est": "预计还需 <v>{{value}}</v> 才到起付额度。",
-    "stat_unpaid_balance_reach_ok": "Gas费用如果低于上限就会转账。（每小时结算）",
+    "stat_unpaid_balance_reach_ok": "您的付款将在下一个支付窗口(每小时)，按照您的手续费设置进行相应处理。",
+    "stat_unpaid_balance_reach_ok_l2": "你的付款将在下一个L2支付窗口被处理。L2支付窗口为每24小时1次，并可能发生在一天的任意时间。",
     "stat_unpaid_balance_reach_delayed_by_gas_limit": "目前的Gas费用(<v>{{currentGas}}</v>) 高于你设置的上限 (<v>{{gasLimit}}</v>)，不会进行转账。",
     "stat_estimate": "预计收益",
     "stat_estimate_daily": "每天收益",
@@ -86,8 +92,8 @@
     "past_earnings": {
       "title": "过往收益",
       "yesterday": "昨天收益",
-      "last_week": "上周收益",
-      "last_month": "上月收益"
+      "last_week": "过去7天",
+      "last_month": "过去30天"
     },
     "forecasted_earnings": {
       "title": "预计收益",
@@ -189,8 +195,8 @@
       "title": "矿机算力",
       "title_space": "存储",
       "effective": "当前有效算力",
-      "average": "平均有效算力",
-      "reported": "名义算力",
+      "average": "三小时平均",
+      "reported": "本地算力",
       "effective_space": "有效存储",
       "average_space": "平均有效存储",
       "reported_space": "报告存储"
