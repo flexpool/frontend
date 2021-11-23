@@ -41,53 +41,51 @@ export const getSnackBodyByKey = (
  * ?snack=[key&snackAutoHide=[time in ms]&snackVariant=['success' | 'start' | 'error' | 'default']
  */
 export const useDisplaySnackOnSearchParams = () => {
-  // const { search } = useLocation();
-  // const { replace } = useHistory();
   const d = useDispatch();
   const { t } = useTranslation('common');
   const router = useRouter();
 
-  React.useEffect(
-    () => {
-      // console.log(router.query);
-      // const params = qs.parse(router.query);
-      // const { snack, snackAutoHide, snackVariant, ...rest } = params;
-      // const snacksToDisplay = typeof snack === 'string' ? [snack] : snack;
-      // // default autoHide is 5s
-      // const autoHide = Number(snackAutoHide) || 5000;
-      // // default variant is success (green)
-      // const variant: SnackVariant =
-      //   typeof snackVariant === 'string'
-      //     ? (snackVariant as SnackVariant)
-      //     : 'success';
-      // if (snacksToDisplay) {
-      //   const snacksToPush = snacksToDisplay.map((key) => {
-      //     const title = t(`snacks.${key}.title`);
-      //     const description = t(`snacks.${key}.description`);
-      //     const snack = createSnack({
-      //       title,
-      //       ...(description !== `snacks.${key}.description`
-      //         ? { description }
-      //         : {}),
-      //       id: key,
-      //       autoHide,
-      //       variant,
-      //     });
-      //     return snack;
-      //   });
-      //   snacksToPush.forEach((snack) => d(snackActions.create(snack)));
-      // }
-      /**
-       * remove snack info from the URL
-       */
-      // replace({
-      //   search: qs.stringify(rest),
-      // });
-    },
-    [
-      /* search, d, replace, t */
-    ]
-  );
+  React.useEffect(() => {
+    const { snack, snackAutoHide, snackVariant, ...rest } = router.query;
+    const snacksToDisplay = typeof snack === 'string' ? [snack] : snack;
+    // default autoHide is 5s
+    const autoHide = Number(snackAutoHide) || 5000;
+    // default variant is success (green)
+    const variant: SnackVariant =
+      typeof snackVariant === 'string'
+        ? (snackVariant as SnackVariant)
+        : 'success';
+    if (snacksToDisplay) {
+      const snacksToPush = snacksToDisplay.map((key) => {
+        const title = t(`snacks.${key}.title`);
+        const description = t(`snacks.${key}.description`);
+        const snack = createSnack({
+          title,
+          ...(description !== `snacks.${key}.description`
+            ? { description }
+            : {}),
+          id: key,
+          autoHide,
+          variant,
+        });
+        return snack;
+      });
+      snacksToPush.forEach((snack) => d(snackActions.create(snack)));
+    }
+    /**
+     * remove snack info from the URL
+     */
+    router.replace(
+      {
+        search: qs.stringify(rest),
+      },
+      undefined,
+      {
+        shallow: true,
+      }
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [d]);
 
   return null;
 };
