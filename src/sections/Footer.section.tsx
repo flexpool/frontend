@@ -1,9 +1,8 @@
+import React from 'react';
 import Link from 'next/link';
-
+import Image from 'next/image';
 import { Content } from 'src/components/layout/Content';
-
 import styled from 'styled-components';
-
 import {
   FaDiscord,
   FaTelegram,
@@ -12,9 +11,6 @@ import {
   FaMedium,
   FaGithub,
 } from 'react-icons/fa';
-
-import React from 'react';
-
 import { NewSelectCounterTicker } from 'src/components/SelectCounterTicker';
 import { NewSelectTheme, SelectTheme } from 'src/components/SelectTheme';
 import { Spacer } from 'src/components/layout/Spacer';
@@ -161,6 +157,7 @@ export const FooterSection = () => {
             <Link href="/faq">{t('footer.resources.faq')}</Link>
             <Link href="/open-data-reports">Open Data Reports</Link>
             <Link href="/docs/api">{t('footer.resources.api_docs')}</Link>
+            <LinkOut href="https://www.gasprice.io/">Gasprice.io</LinkOut>
           </Section>
           <Section>
             <FSectionTitle>{t('footer.community.title')}</FSectionTitle>
@@ -190,6 +187,19 @@ export const FooterSection = () => {
             </HelpText>
           </Section>
         </SectionContainer>
+
+        <LinkOut
+          href="https://apps.apple.com/app/flexpool-io/id1594014411"
+          style={{ display: 'inline-block' }}
+        >
+          <Image
+            src="/svg/download-on-the-app-store.svg"
+            width={123}
+            height={41}
+            alt="Download on the app store"
+          />
+        </LinkOut>
+
         <FooterEnd>
           <FooterCompany>
             <FooterLogo
