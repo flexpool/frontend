@@ -9,6 +9,7 @@ import createReduxStore from 'src/rdx/createStore';
 import { Provider as ReduxProvider } from 'react-redux';
 import { localStorage } from 'src/utils/localStorage';
 import { AppState } from 'src/rdx/rootReducer';
+import { useTranslation } from 'next-i18next';
 
 import type { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
@@ -24,8 +25,9 @@ import { FooterSection } from '../src/sections/Footer.section';
 import { searchAddressStorage } from '../src/components/SearchAddressBar/searchCache';
 import TermsConsent from '../src/components/TermsConsent';
 import RouteLoader from '@/components/RouteLoader';
-
+import useIsMounted from '@/hooks/useIsMounted';
 import { SnackViewControl } from '@/components/Snacks/SnackViewControl';
+import AnnouncementBar from '@/components/AnnouncementBar';
 
 import SEO from '../next-seo.config';
 import Script from 'next/script';
@@ -50,6 +52,13 @@ declare global {
 }
 
 const App = ({ Component, pageProps, router }: AppProps) => {
+  const { t, i18n } = useTranslation('dashboard');
+  const isMounted = useIsMounted();
+  const isChineseUser =
+    typeof window !== 'undefined'
+      ? /^zh\b/.test(window.navigator.language) || /^zh\b/.test(i18n.language)
+      : false;
+
   return (
     <>
       <DefaultSeo {...SEO} />
@@ -80,6 +89,16 @@ const App = ({ Component, pageProps, router }: AppProps) => {
             <SnackViewControl />
             <RouteLoader />
             <NavBar />
+            {isMounted && isChineseUser && (
+              <AnnouncementBar id="doh-mode">
+                公告，请中国大陆的用户使用 DoH (DNS over HTTPS) 模式进行挖矿。
+                <br />
+                中国政府正在对 Flexpool.io 进行限制，如果您无法连接矿池，请使用
+                DoH 模式。
+                <br />
+                DoH 模式通过防止DNS被劫持，提高您服务的稳定性和安全性。
+              </AnnouncementBar>
+            )}
             <AppTheme />
             <SwitchTransition>
               <CSSTransition
