@@ -91,12 +91,15 @@ const App = ({ Component, pageProps, router }: AppProps) => {
             <NavBar />
             {isMounted && isChineseUser && (
               <AnnouncementBar id="doh-mode">
-                公告，请中国大陆的用户使用 DoH (DNS over HTTPS) 模式进行挖矿。
+                中国政府通过污染DNS在某些地区禁止了eth-hke.flexpool.io。
+                此问题的解决方法：
                 <br />
-                中国政府正在对 Flexpool.io 进行限制，如果您无法连接矿池，请使用
-                DoH 模式。
+                1. 使用 hke.fpmirror.com 而不是 eth-hke.flexpool.io（SSL 端口
+                5555 22271。TCP 端口 4444 13271）
                 <br />
-                DoH 模式通过防止DNS被劫持，提高您服务的稳定性和安全性。
+                2. 使用 DNS over HTTPS (DoH)
+                <br />
+                如果您无法连接到该网站，请使用替代链接： web.fpmirror.com
               </AnnouncementBar>
             )}
             <AppTheme />
