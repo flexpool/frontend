@@ -15,6 +15,7 @@ const buildUri = (url = '', query?: object, api?: string) => {
     resUrl = new URL(url);
   } else {
     const apiURLToUse =
+      typeof window !== 'undefined' &&
       window.location.hostname === 'web.fpmirror.com'
         ? 'https://api.fpmirror.com/v2'
         : apiURL;
