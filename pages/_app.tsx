@@ -91,15 +91,16 @@ const App = ({ Component, pageProps, router }: AppProps) => {
             <NavBar />
             {isMounted && isChineseUser && (
               <AnnouncementBar id="doh-mode">
-                中国政府通过污染DNS在某些地区禁止了eth-hke.flexpool.io。
-                此问题的解决方法：
+                亚洲直連挖礦連接：
                 <br />
-                1. 使用 hke.fpmirror.com 而不是 eth-hke.flexpool.io（SSL 端口
-                5555 22271。TCP 端口 4444 13271）
+                TCP端口：hke.fpmirror.com:13271
                 <br />
-                2. 使用 DNS over HTTPS (DoH)
+                SSL端口：hke.fpmirror.com:5555
                 <br />
-                如果您无法连接到该网站，请使用替代链接： web.fpmirror.com
+                亚洲备用地址： web.fpmirror.com
+                <br />
+                請注意，挖掘連接可能會更改。
+                如果您想永久避免所有限制，請通過HTTPS（DoH）配寘DNS並使用eth-hke.flexpool.io
               </AnnouncementBar>
             )}
             <AppTheme />
