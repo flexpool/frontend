@@ -3,6 +3,8 @@ import qs from 'query-string';
 export const apiURL = process.env.NEXT_PUBLIC_REACT_APP_API_URL;
 export const chiaURL = process.env.NEXT_PUBLIC_REACT_APP_CHIA_API_URL;
 
+// TODO: Chia API is no longer used, and it is safe to remove it
+
 const transformQuery = (query?: object) => {
   return (query && qs.stringify(query)) || '';
 };
@@ -12,14 +14,20 @@ const buildUri = (url = '', query?: object, api?: string) => {
   if (url.startsWith('http')) {
     resUrl = new URL(url);
   } else {
-    resUrl = new URL(`${api === 'chia' ? chiaURL : apiURL}${url}`);
+    const apiURLToUse =
+      window.location.hostname === 'web.fpmirror.com'
+        ? 'https://api.fpmirror.com/v2'
+        : apiURL;
+    resUrl = new URL(`${api === 'chia' ? chiaURL : apiURLToUse}${url}`);
   }
   resUrl.search = (query && transformQuery(query)) || '';
 
   return resUrl.toString();
 };
 
-const transformBody = (body?: object): FormData | ArrayBuffer | string | null => {
+const transformBody = (
+  body?: object
+): FormData | ArrayBuffer | string | null => {
   if (!body) {
     return null;
   }
