@@ -161,6 +161,14 @@ export const MinerPplnsStats: React.FC<{
     }
   }, [shareLogState.data, t, siFormatter]);
 
+  console.log(
+    averagePoolHashrate &&
+      headerStatsData &&
+      siFormatter(averagePoolHashrate * headerStatsData.roundShare, {
+        unit: activeCoin?.hashrateUnit,
+      })
+  );
+
   return (
     <>
       <h2>{t('rewards.pplns.title')}</h2>

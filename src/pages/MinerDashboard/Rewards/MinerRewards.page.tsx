@@ -33,6 +33,8 @@ export const MinerRewardsPage: React.FC<{
         address={address}
       />
       <MinerRewardStatsSection
+        coin={coinTicker}
+        address={address}
         counterPrice={minerRewardsState?.price || 0}
         rewards={minerRewardsState?.data || []}
       />

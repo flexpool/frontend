@@ -11,7 +11,6 @@ import { Page, PageLoading } from 'src/components/layout/Page';
 
 import { useFetchMinerDetails } from '@/rdx/minerDetails/minerDetails.hooks';
 import { useFetchMinerHeaderStats } from '@/rdx/minerHeaderStats/minerHeaderStats.hooks';
-import { useFetchMinerStats } from '@/rdx/minerStats/minerStats.hooks';
 import { useFetchMinerStatsChart } from '@/rdx/minerStatsChart/minerStatsChart.hooks';
 import { useFetchMinerWorkers } from 'src/rdx/minerWorkers/minerWorkers.hooks';
 import {
@@ -132,11 +131,6 @@ export const MinerDashboardPageContent: React.FC<{
     address,
     worker
   );
-  const { refetch: refetchMinerStats } = useFetchMinerStats(
-    coinTicker,
-    address,
-    worker
-  );
   const { refetch: refetchMinerHeaderStats } = useFetchMinerHeaderStats(
     coinTicker,
     address,
@@ -161,7 +155,7 @@ export const MinerDashboardPageContent: React.FC<{
       refetchMinerWorkers(),
       tabIndex === 2 ? queryClient.invalidateQueries('/miner/rewards') : null,
       refetchMinerStatsChart(),
-      refetchMinerStats(),
+      queryClient.invalidateQueries('/miner/stats'),
       refetchMinerHeaderStats(),
     ]);
   }, [
@@ -169,7 +163,6 @@ export const MinerDashboardPageContent: React.FC<{
     refetchMinerDetails,
     refetchMinerWorkers,
     refetchMinerStatsChart,
-    refetchMinerStats,
     refetchMinerHeaderStats,
     queryClient,
   ]);
@@ -221,7 +214,11 @@ export const MinerDashboardPageContent: React.FC<{
             }}
           />
           <Content>
-            <HeaderGreetings onRefresh={loadAll} />
+            <HeaderGreetings
+              coin={coinTicker}
+              address={address}
+              onRefresh={loadAll}
+            />
             <AccountHeader
               coin={activeCoin}
               address={address}
@@ -229,7 +226,7 @@ export const MinerDashboardPageContent: React.FC<{
             />
             <Spacer />
             <MinerDetails coin={activeCoin} />
-            <HeaderStats />
+            <HeaderStats coin={coinTicker} address={address} />
           </Content>
           <Tabs
             className="w-full"

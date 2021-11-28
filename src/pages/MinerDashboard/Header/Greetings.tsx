@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'next-i18next';
 import { Button } from 'src/components/Button';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
-import { useReduxState } from 'src/rdx/useReduxState';
+import useMinerStatsQuery from '@/hooks/useMinerStatsQuery';
 import { useMinerWorkersStatus } from '@/rdx/minerWorkers/minerWorkers.hooks';
 import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components';
@@ -80,10 +80,22 @@ const ToggleWrapperButton = styled(Button)`
   justify-content: center;
 `;
 
-export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
+type HeaderGreetingsProps = {
+  coin: string;
+  address: string;
+  onRefresh: () => void;
+};
+
+export const HeaderGreetings = ({
+  coin,
+  address,
   onRefresh,
-}) => {
-  const minerStatsState = useReduxState('minerStats');
+}: HeaderGreetingsProps) => {
+  const { data: minerStatsState } = useMinerStatsQuery({
+    coin,
+    address,
+  });
+
   const siFormatter = useLocalizedSiFormatter();
   const activeCoin = useActiveCoin();
   const workerStatus = useMinerWorkersStatus();
@@ -196,12 +208,12 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
   }, []);
 
   const workersOnline = workerStatus?.online || 0;
-  const hashrate = minerStatsState.data
-    ? minerStatsState.data.reportedHashrate > 0
-      ? siFormatter(minerStatsState.data.reportedHashrate, {
+  const hashrate = minerStatsState
+    ? minerStatsState.reportedHashrate > 0
+      ? siFormatter(minerStatsState.reportedHashrate, {
           unit: activeCoin?.hashrateUnit,
         })
-      : siFormatter(minerStatsState.data.currentEffectiveHashrate, {
+      : siFormatter(minerStatsState.currentEffectiveHashrate, {
           unit: activeCoin?.hashrateUnit,
         })
     : '- ' + activeCoin?.hashrateUnit;

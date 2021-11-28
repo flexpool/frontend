@@ -7,6 +7,7 @@ import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components';
 import { AverageEffectivePeriods } from './minerStats.types';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
+import useMinerStatsQuery from '@/hooks/useMinerStatsQuery';
 
 const StatItemGrid = styled.div`
   display: grid;
@@ -57,11 +58,22 @@ const FlexFarmerLink = styled.a`
 
 export const MinerStats: React.FC<{
   averageEffectivePeriods: AverageEffectivePeriods;
-}> = ({ averageEffectivePeriods }) => {
-  const minerStatsState = useReduxState('minerStats');
-  const data = minerStatsState.data;
+  coin: string;
+  address: string;
+  worker?: string;
+}> = ({ averageEffectivePeriods, coin, address, worker }) => {
+  const { data: minerStatsState, isLoading } = useMinerStatsQuery({
+    coin,
+    address,
+    worker,
+  });
+
   const totalShares =
-    (data && data.invalidShares + data.staleShares + data.validShares) || 0;
+    (minerStatsState &&
+      minerStatsState.invalidShares +
+        minerStatsState.staleShares +
+        minerStatsState.validShares) ||
+    0;
   const siFormatter = useLocalizedSiFormatter();
   const { t } = useTranslation('dashboard');
   const activeCoin = useActiveCoin();
@@ -77,7 +89,7 @@ export const MinerStats: React.FC<{
         <StatItemGrid>
           <StatItem
             title={t('stats.hashrate.current')}
-            value={siFormatter(data?.currentEffectiveHashrate, {
+            value={siFormatter(minerStatsState?.currentEffectiveHashrate, {
               unit: activeCoin?.hashrateUnit,
             })}
           />
@@ -85,7 +97,7 @@ export const MinerStats: React.FC<{
             icon={
               <StatItem
                 title={t('stats.hashrate.average')}
-                value={siFormatter(data?.averageEffectiveHashrate, {
+                value={siFormatter(minerStatsState?.averageEffectiveHashrate, {
                   unit: activeCoin?.hashrateUnit,
                 })}
               />
@@ -114,13 +126,13 @@ export const MinerStats: React.FC<{
           <StatItem
             title={t('stats.hashrate.reported')}
             value={
-              minerStatsState.isLoading || !data ? undefined : (
+              isLoading || !minerStatsState ? undefined : (
                 <ReportedHashrateWrapper>
-                  {siFormatter(data?.reportedHashrate, {
+                  {siFormatter(minerStatsState?.reportedHashrate, {
                     unit: activeCoin?.hashrateUnit,
                   })}{' '}
                   {String(activeCoin?.ticker) === 'xch' &&
-                    data?.reportedHashrate === 0 && (
+                    minerStatsState?.reportedHashrate === 0 && (
                       <Tooltip>
                         <TooltipContent>
                           Only available with{' '}
@@ -152,25 +164,29 @@ export const MinerStats: React.FC<{
             title={getDisplayPercentage(
               t('stats.shares.valid'),
               totalShares,
-              data?.validShares
+              minerStatsState?.validShares
             )}
-            value={siFormatter(data?.validShares, { shortenAbove: 100000 })}
+            value={siFormatter(minerStatsState?.validShares, {
+              shortenAbove: 100000,
+            })}
           />
           <StatItem
             title={getDisplayPercentage(
               t('stats.shares.stale'),
               totalShares,
-              data?.staleShares
+              minerStatsState?.staleShares
             )}
-            value={siFormatter(data?.staleShares, { shortenAbove: 100000 })}
+            value={siFormatter(minerStatsState?.staleShares, {
+              shortenAbove: 100000,
+            })}
           />
           <StatItem
             title={getDisplayPercentage(
               t('stats.shares.invalid'),
               totalShares,
-              data?.invalidShares
+              minerStatsState?.invalidShares
             )}
-            value={siFormatter(data?.invalidShares, {
+            value={siFormatter(minerStatsState?.invalidShares, {
               shortenAbove: 100000,
             })}
           />
