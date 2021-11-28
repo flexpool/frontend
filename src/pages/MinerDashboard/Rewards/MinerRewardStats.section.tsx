@@ -15,6 +15,7 @@ import {
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiMinerReward } from 'src/types/Miner.types';
 import { useLocalizedCurrencyFormatter } from 'src/utils/si.utils';
+import useMinerStatsQuery from '@/hooks/useMinerStatsQuery';
 
 const getIndexPastInterval = (index: number) => {
   switch (index) {
@@ -42,17 +43,19 @@ const getIndexInterval = (index: number) => {
 };
 
 export const MinerRewardStatsSection: React.FC<{
+  coin: string;
+  address: string;
   rewards: ApiMinerReward[];
   counterPrice: number;
-}> = ({ rewards, counterPrice = 0 }) => {
-  // const dailyRewardPerGhState = useAsyncState('dailyRewGh', 0);
+}> = ({ coin, address, rewards, counterPrice = 0 }) => {
+  // const dailyRewardPerGhState = useAsyncState('dailyRewGh', 0)
   const coinTicker = useActiveCoinTicker();
   const counterTicker = useCounterTicker();
   const activeCoin = useActiveCoin();
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const { t } = useTranslation('dashboard');
   const currencyFormatter = useLocalizedCurrencyFormatter();
-  const minerStatsState = useReduxState('minerStats');
+  const { data: minerStatsState } = useMinerStatsQuery({ coin, address });
 
   const summary: [number, number, number] = React.useMemo(() => {
     const dailySum = rewards[0] ? rewards[0].totalRewards : 0;
@@ -94,8 +97,8 @@ export const MinerRewardStatsSection: React.FC<{
   const futureData = React.useMemo(() => {
     const daily =
       minerHeaderStats.data?.dailyRewardsPerGh &&
-      minerStatsState.data?.averageEffectiveHashrate
-        ? (minerStatsState.data?.averageEffectiveHashrate / 1000000000) *
+      minerStatsState?.averageEffectiveHashrate
+        ? (minerStatsState?.averageEffectiveHashrate / 1000000000) *
           minerHeaderStats.data?.dailyRewardsPerGh
         : 0;
 
@@ -112,7 +115,7 @@ export const MinerRewardStatsSection: React.FC<{
   }, [
     minerHeaderStats.data?.dailyRewardsPerGh,
     activeCoin,
-    minerStatsState.data?.averageEffectiveHashrate,
+    minerStatsState,
     counterPrice,
     activeCoinFormatter,
     currencyFormatter,
