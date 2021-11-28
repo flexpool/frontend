@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import { useQueryClient } from 'react-query';
 import { NextSeo } from 'next-seo';
 import dynamic from 'next/dynamic';
 import { useTranslation } from 'next-i18next';
@@ -9,7 +9,6 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Content } from 'src/components/layout/Content';
 import { Page, PageLoading } from 'src/components/layout/Page';
 
-import { useFetchMinerRewards } from '@/rdx/minerRewards/minerRewards.hooks';
 import { useFetchMinerDetails } from '@/rdx/minerDetails/minerDetails.hooks';
 import { useFetchMinerHeaderStats } from '@/rdx/minerHeaderStats/minerHeaderStats.hooks';
 import { useFetchMinerStats } from '@/rdx/minerStats/minerStats.hooks';
@@ -117,6 +116,7 @@ export const MinerDashboardPageContent: React.FC<{
 }> = (props) => {
   const { coinTicker, address } = props;
   const { data: poolCoins } = usePoolCoinsQuery();
+  const queryClient = useQueryClient();
   const activeCoin = useActiveCoin(coinTicker);
   const counterTicker = useCounterTicker();
   const { t } = useTranslation('dashboard');
@@ -126,12 +126,7 @@ export const MinerDashboardPageContent: React.FC<{
     coinTicker,
     address,
   });
-  const { refetch: refetchMinerRewards } = useFetchMinerRewards(
-    { coinTicker, address, counterTicker },
-    {
-      enable: false,
-    }
-  );
+
   const { refetch: refetchMinerStatsChart } = useFetchMinerStatsChart(
     coinTicker,
     address,
@@ -164,7 +159,7 @@ export const MinerDashboardPageContent: React.FC<{
     return Promise.all([
       refetchMinerDetails(),
       refetchMinerWorkers(),
-      tabIndex === 2 ? refetchMinerRewards() : null,
+      tabIndex === 2 ? queryClient.invalidateQueries('/miner/rewards') : null,
       refetchMinerStatsChart(),
       refetchMinerStats(),
       refetchMinerHeaderStats(),
@@ -173,10 +168,10 @@ export const MinerDashboardPageContent: React.FC<{
     tabIndex,
     refetchMinerDetails,
     refetchMinerWorkers,
-    refetchMinerRewards,
     refetchMinerStatsChart,
     refetchMinerStats,
     refetchMinerHeaderStats,
+    queryClient,
   ]);
 
   const loadSelectedTabFromHash = (tabHash: string) => {
