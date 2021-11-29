@@ -2,9 +2,16 @@ const { i18n } = require('./next-i18next.config');
 const withPWA = require('next-pwa');
 const withTM = require('next-transpile-modules')(['@amcharts/amcharts4/']);
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 module.exports = withPWA(
   withTM({
+    experimental: {
+      // Enables the styled-components SWC transform
+      styledComponents: true,
+    },
     pwa: {
+      disable: !isProduction,
       dest: 'public',
       sw: 'service-worker.js',
       publicExcludes: [
