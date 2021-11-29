@@ -11,6 +11,7 @@ import {
   useActiveCoinTicker,
 } from 'src/rdx/localSettings/localSettings.hooks';
 import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
+import useClientIPQuery from '@/hooks/useClientIPQuery';
 import { minerDetailsUpdatePayoutSettings } from 'src/rdx/minerDetails/minerDetails.actions';
 import { minerDetailsGet } from 'src/rdx/minerDetails/minerDetails.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
@@ -41,6 +42,8 @@ export const PayoutSettings: React.FC<{
   const { t } = useTranslation(['common']);
   const numberFormatter = useLocalizedNumberFormatter();
   const d = useDispatch();
+
+  const { data: clientIP } = useClientIPQuery();
 
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
   const [gweiToggle, setGweiToggle] = React.useState(true);
@@ -191,8 +194,7 @@ export const PayoutSettings: React.FC<{
                     <i>*{t('dashboard:settings.ip_caption')}</i>
                   </p>
                   <p>
-                    {t('dashboard:settings.ip_hint')}{' '}
-                    <b>{minerSettings.data!.clientIPAddress}</b>.
+                    {t('dashboard:settings.ip_hint')} <b>{clientIP || ''}</b>.
                   </p>
                   <p>{t('dashboard:settings.ip_description')} </p>
                 </div>
