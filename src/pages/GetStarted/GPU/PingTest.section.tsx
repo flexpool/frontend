@@ -229,7 +229,9 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
           const connectionState = useAsyncState<number>();
           const [isSet, setIsSet] = React.useState(false);
           React.useEffect(() => {
-            connectionState.start(testConnection(data.code));
+            connectionState.start(
+              testConnection(data.code.replace('-mirror', ''))
+            );
             // eslint-disable-next-line
           }, [data.domain]);
 

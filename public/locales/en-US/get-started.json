@@ -185,7 +185,8 @@
     "br": "Brazil",
     "kr": "South Korea",
     "hk": "Hong Kong",
-    "hke": "Hong Kong (Optimized for China)"
+    "hke": "Hong Kong (Proxy required)",
+    "hke-mirror": "Hong Kong (Direct connection from China)"
   },
   "cmd_keys": {
     "CLOSEST_SERVER": "CLOSEST_SERVER",
