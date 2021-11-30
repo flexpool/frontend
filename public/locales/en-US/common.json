@@ -55,7 +55,7 @@
   "errors": {
     "higher_than": "Must be higher than {{value}}",
     "required": "Required",
-    "Invalid IP Address": "Invalid IP Address",
+    "invalid_ip": "Invalid ip address",
     "email_invalid": "Invalid email address",
     "email_required": "Please enter your email address",
     "address_not_found": "Specified address was not found in our system. Try waiting some time if you are already mining.",

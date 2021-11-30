@@ -80,9 +80,21 @@ export const PayoutSettings: React.FC<{
         });
       }
 
+      const ipv4Regex = /^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$/;
+      const ipv6Regex =
+        /(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/gi;
+      const specialRegex = /^([^:]+):([^:]+)$/;
+
       if (values.ip === '') {
         errors.ip = t('common:errors.required');
+      } else if (
+        !ipv4Regex.test(values.ip) &&
+        !ipv6Regex.test(values.ip) &&
+        !specialRegex.test(values.ip)
+      ) {
+        errors.ip = t('common:errors.invalid_ip');
       }
+
       return errors;
     });
   };
@@ -173,17 +185,25 @@ export const PayoutSettings: React.FC<{
 
                 {String(activeCoin?.ticker) === 'eth' && <NetworkSelect />}
 
+                <Spacer size="sm" />
+
                 <ThresholdInput name="payoutLimit" />
 
-                {String(activeCoin?.ticker) === 'eth' &&
-                  values.network === 'mainnet' &&
-                  (gweiToggle ? (
-                    <GasPriceInput onToggle={toggleGwei} />
-                  ) : (
-                    <GasPricePercentInput onToggle={toggleGwei} />
-                  ))}
+                <Spacer size="sm" />
 
-                <Spacer />
+                {String(activeCoin?.ticker) === 'eth' &&
+                  values.network === 'mainnet' && (
+                    <>
+                      {gweiToggle ? (
+                        <GasPriceInput onToggle={toggleGwei} />
+                      ) : (
+                        <GasPricePercentInput onToggle={toggleGwei} />
+                      )}
+
+                      <Spacer size="sm" />
+                    </>
+                  )}
+
                 <TextField
                   name="ip"
                   label={`${t('dashboard:settings.ip')}*`}
@@ -194,7 +214,7 @@ export const PayoutSettings: React.FC<{
                     <i>*{t('dashboard:settings.ip_caption')}</i>
                   </p>
                   <p>
-                    {t('dashboard:settings.ip_hint')} <b>{clientIP || ''}</b>.
+                    {t('dashboard:settings.ip_hint')} <b>{clientIP || ''}</b>
                   </p>
                   <p>{t('dashboard:settings.ip_description')} </p>
                 </div>
@@ -208,6 +228,8 @@ export const PayoutSettings: React.FC<{
                 ) : (
                   ''
                 )}
+
+                <Spacer size="sm" />
 
                 {values.network !== 'mainnet' && (
                   <L2AcknowledgeCheckbox network={values.network} />
