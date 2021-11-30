@@ -10,7 +10,11 @@ import { Divider } from '../src/components/layout/Divider';
 import { HeroBlue } from '../src/components/layout/Hero/HeroBlue';
 import { Page } from '../src/components/layout/Page';
 import { FaDiscord, FaTelegram } from 'react-icons/fa';
-import { DISCORD_LINK, TELEGRAM_LINK } from '../src/constants';
+import {
+  DISCORD_LINK,
+  TELEGRAM_LINK,
+  TELEGRAM_LINK_CN,
+} from '../src/constants';
 
 const SupportChannelWrapper = styled.a`
   border: 1px solid var(--border-color);
@@ -92,6 +96,11 @@ export const SupportPage = () => {
             name={'Telegram'}
             icon={<FaTelegram />}
             href={TELEGRAM_LINK}
+          />
+          <SupportChannel
+            name={'Telegram (中文)'}
+            icon={<FaTelegram />}
+            href={TELEGRAM_LINK_CN}
           />
         </div>
         <Divider margin />
