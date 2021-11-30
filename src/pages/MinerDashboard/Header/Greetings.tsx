@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { FaToggleOff, FaToggleOn } from 'react-icons/fa';
 import LoaderDots from 'src/components/Loader/LoaderDots';
+import useIsMounted from '@/hooks/useIsMounted';
 
 export function getGreeting() {
   const hours = new Date().getHours();
@@ -87,6 +88,7 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
   const activeCoin = useActiveCoin();
   const workerStatus = useMinerWorkersStatus();
   const { t } = useTranslation('dashboard');
+  const isMounted = useIsMounted();
 
   const [counter, setCounter] = useLocalStorageState<number>(
     'auto_refresh_ticker',
@@ -245,7 +247,12 @@ export const HeaderGreetings: React.FC<{ onRefresh: () => void }> = ({
                     <span>{t('header.auto_update')}</span>
                   )}
                 </AutoUpdateText>
-                {autoRefresh === 'auto' ? <ActiveToggle /> : <InactiveToggle />}
+                {isMounted &&
+                  (autoRefresh === 'auto' ? (
+                    <ActiveToggle />
+                  ) : (
+                    <InactiveToggle />
+                  ))}
               </>
             )}
           </ToggleWrapperButton>
