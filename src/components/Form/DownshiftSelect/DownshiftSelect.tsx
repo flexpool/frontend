@@ -92,7 +92,7 @@ const DownshiftSelect = (props: DownshiftSelectProps) => {
   return (
     <SelectContainer ref={selectContainerRef}>
       <FieldWrap {...props} {...getLabelProps()}>
-        <SelectButton {...getToggleButtonProps()}>
+        <SelectButton type="button" {...getToggleButtonProps()}>
           {selectedItem?.label}
         </SelectButton>
 
