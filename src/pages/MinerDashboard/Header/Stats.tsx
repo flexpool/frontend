@@ -7,7 +7,7 @@ import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward
 import { useNetworkFeeLimit } from '@/rdx/minerDetails/minerDetails.selectors';
 import useActiveCoinNetworkFee from '@/hooks/useActiveCoinNetworkFee';
 import useMinerStatsQuery from '@/hooks/useMinerStatsQuery';
-import { useMinerWorkersStatus } from '@/rdx/minerWorkers/minerWorkers.hooks';
+import useWorkerStatus from '@/hooks/useWorkerStatus';
 import { StatItem } from 'src/components/StatItem';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { FaCalendar, FaCalendarDay, FaCalendarWeek } from 'react-icons/fa';
@@ -252,7 +252,7 @@ export const HeaderStats = ({ coin, address }: HeaderStatsProps) => {
   const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const minerDetailsState = useReduxState('minerDetails');
   const activeCoin = useActiveCoin();
-  const workerStatus = useMinerWorkersStatus();
+  const { data: workerStatus } = useWorkerStatus({ coin, address });
   const data = minerHeaderStatsState.data;
   const settings = minerDetailsState.data;
 

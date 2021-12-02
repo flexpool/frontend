@@ -3,13 +3,13 @@ import { useTranslation } from 'next-i18next';
 import { Button } from 'src/components/Button';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import useMinerStatsQuery from '@/hooks/useMinerStatsQuery';
-import { useMinerWorkersStatus } from '@/rdx/minerWorkers/minerWorkers.hooks';
 import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { FaToggleOff, FaToggleOn } from 'react-icons/fa';
 import LoaderDots from 'src/components/Loader/LoaderDots';
 import useIsMounted from '@/hooks/useIsMounted';
+import useWorkerStatus from '@/hooks/useWorkerStatus';
 
 export function getGreeting() {
   const hours = new Date().getHours();
@@ -98,7 +98,11 @@ export const HeaderGreetings = ({
 
   const siFormatter = useLocalizedSiFormatter();
   const activeCoin = useActiveCoin();
-  const workerStatus = useMinerWorkersStatus();
+  const { data: workerStatus } = useWorkerStatus({
+    coin,
+    address,
+  });
+
   const { t } = useTranslation('dashboard');
   const isMounted = useIsMounted();
 

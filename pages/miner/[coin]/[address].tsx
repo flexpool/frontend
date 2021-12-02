@@ -12,7 +12,6 @@ import { Page, PageLoading } from 'src/components/layout/Page';
 import { useFetchMinerDetails } from '@/rdx/minerDetails/minerDetails.hooks';
 import { useFetchMinerHeaderStats } from '@/rdx/minerHeaderStats/minerHeaderStats.hooks';
 import { useFetchMinerStatsChart } from '@/rdx/minerStatsChart/minerStatsChart.hooks';
-import { useFetchMinerWorkers } from 'src/rdx/minerWorkers/minerWorkers.hooks';
 import {
   useActiveCoin,
   useCounterTicker,
@@ -121,10 +120,6 @@ export const MinerDashboardPageContent: React.FC<{
   const { t } = useTranslation('dashboard');
   const [, setCoinTicker] = useCoinTicker();
   const worker = useActiveSearchParamWorker();
-  const { refetch: refetchMinerWorkers } = useFetchMinerWorkers({
-    coinTicker,
-    address,
-  });
 
   const { refetch: refetchMinerStatsChart } = useFetchMinerStatsChart(
     coinTicker,
@@ -152,7 +147,7 @@ export const MinerDashboardPageContent: React.FC<{
   const loadAll = React.useCallback(() => {
     return Promise.all([
       refetchMinerDetails(),
-      refetchMinerWorkers(),
+      queryClient.invalidateQueries('/miner/workers'),
       tabIndex === 2 ? queryClient.invalidateQueries('/miner/rewards') : null,
       refetchMinerStatsChart(),
       queryClient.invalidateQueries('/miner/stats'),
@@ -161,7 +156,6 @@ export const MinerDashboardPageContent: React.FC<{
   }, [
     tabIndex,
     refetchMinerDetails,
-    refetchMinerWorkers,
     refetchMinerStatsChart,
     refetchMinerHeaderStats,
     queryClient,
