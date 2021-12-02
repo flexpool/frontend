@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { CopyButton } from 'src/components/CopyButton';
 import { Img } from 'src/components/Img';
 import { Card } from 'src/components/layout/Card';
@@ -6,10 +7,25 @@ import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { getCoinLink } from 'src/utils/coinLinks.utils';
 import { getCoinIconUrl } from 'src/utils/staticImage.utils';
 import { getChecksumByTicker } from 'src/utils/validators/checksum';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { MinerSettingsModal } from '../Settings/MinerSettings.modal';
 import { Button } from 'src/components/Button';
-import { BiRefresh } from 'react-icons/bi';
+import { BiRefresh, BiLoaderAlt } from 'react-icons/bi';
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const LoaderIcon = styled(BiLoaderAlt)`
+  animation: ${rotate} 1s linear infinite;
+  opacity: 0.5;
+`;
 
 const Wrap = styled(Card)`
   display: flex;
@@ -61,6 +77,10 @@ const RefreshButton = styled(Button)`
   margin-right: 10px;
   height: 42px;
   width: 42px;
+
+  &:disabled {
+    opacity: 1;
+  }
 `;
 
 export const AccountHeader: React.FC<{
@@ -68,6 +88,7 @@ export const AccountHeader: React.FC<{
   address: string;
   onRefresh: any;
 }> = ({ coin, address, onRefresh }) => {
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const addressText = getChecksumByTicker(coin?.ticker)(address);
   return (
     <Wrap paddingShort>
@@ -82,8 +103,16 @@ export const AccountHeader: React.FC<{
         </Address>
         <CopyButton text={addressText || ''} />
       </AddressContainer>
-      <RefreshButton size="sm" shape="square" onClick={onRefresh}>
-        <BiRefresh />
+      <RefreshButton
+        size="sm"
+        shape="square"
+        disabled={isRefreshing}
+        onClick={() => {
+          setIsRefreshing(true);
+          onRefresh().finally(() => setIsRefreshing(false));
+        }}
+      >
+        {isRefreshing ? <LoaderIcon /> : <BiRefresh />}
       </RefreshButton>
       <MinerSettingsModal address={address} />
     </Wrap>
