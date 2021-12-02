@@ -5,7 +5,6 @@ import * as topMiners from 'src/rdx/topMiners/topMiners.reducer';
 import * as poolHashrate from 'src/rdx/poolHashrate/poolHashrate.reducer';
 import * as minerHeaderStats from 'src/rdx/minerHeaderStats/minerHeaderStats.reducer';
 import * as minerDetails from 'src/rdx/minerDetails/minerDetails.reducer';
-import * as minerWorkers from 'src/rdx/minerWorkers/minerWorkers.reducer';
 import * as minerPayments from 'src/rdx/minerPayments/minerPayments.reducer';
 import * as snacks from 'src/rdx/snacks/snacks.reducer';
 import * as poolStats from 'src/rdx/poolStats/poolStats.reducer';
@@ -21,7 +20,6 @@ export const defaultReduxState = {
   poolHashrate: poolHashrate.defaultState,
   minerHeaderStats: minerHeaderStats.defaultState,
   minerDetails: minerDetails.defaultState,
-  minerWorkers: minerWorkers.defaultState,
   minerPayments: minerPayments.defaultState,
   snacks: snacks.defaultState,
   poolStats: poolStats.defaultState,
@@ -37,7 +35,6 @@ const combinedReducer = combineReducers({
   poolHashrate: poolHashrate.reducer,
   minerHeaderStats: minerHeaderStats.reducer,
   minerDetails: minerDetails.reducer,
-  minerWorkers: minerWorkers.reducer,
   minerPayments: minerPayments.reducer,
   snacks: snacks.reducer,
   poolStats: poolStats.reducer,
