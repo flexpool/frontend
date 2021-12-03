@@ -29,7 +29,6 @@ import { LinkOut } from 'src/components/LinkOut';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { DISCORD_LINK, REDDIT_LINK, TELEGRAM_LINK } from 'src/constants';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
-import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoinFull } from 'src/types/PoolCoin.types';
 import * as yup from 'yup';
 import {
@@ -43,6 +42,7 @@ import styled from 'styled-components';
 import chiaImage from './assets/chia_logo.svg';
 import { fetchApi } from 'src/utils/fetchApi';
 import { useAsyncState } from 'src/hooks/useAsyncState';
+import usePoolCoinsFullQuery from '@/hooks/usePoolCoinsFullQuery';
 import ReCAPTCHA from 'react-google-recaptcha';
 export const recaptchaKey = process.env.REACT_APP_RECAPTCHA_KEY;
 
@@ -328,23 +328,22 @@ const ComingSoonChia: React.FC = () => {
 };
 
 export const CoinEarnings = () => {
-  const coinsFull = useReduxState('poolCoinsFull');
+  const { data: coinsFull } = usePoolCoinsFullQuery();
 
-  const data = coinsFull.data || [];
   return (
     <Content>
       <Spacer size="xl" />
       <Container>
-        {data.length > 0 ? (
-          data.map((item) => <CoinEarningsItem key={item.ticker} data={item} />)
+        {coinsFull ? (
+          coinsFull.map((item) => (
+            <CoinEarningsItem key={item.ticker} data={item} />
+          ))
         ) : (
           <>
             <CoinEarningsItem />
             <CoinEarningsItem />
           </>
         )}
-        {/* TODO: Get rid of ComingSoonChia completely after Chia is out */}
-        {data.length === 1 ? <ComingSoonChia /> : null}
       </Container>
     </Content>
   );

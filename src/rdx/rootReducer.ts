@@ -8,7 +8,6 @@ import * as minerDetails from 'src/rdx/minerDetails/minerDetails.reducer';
 import * as minerPayments from 'src/rdx/minerPayments/minerPayments.reducer';
 import * as snacks from 'src/rdx/snacks/snacks.reducer';
 import * as poolStats from 'src/rdx/poolStats/poolStats.reducer';
-import * as poolCoinsFull from 'src/rdx/poolCoinsFull/poolCoinsFull.reducer';
 import * as addressSearch from 'src/rdx/addressSearch/addressSearch.reducer';
 import * as blocksChart from 'src/rdx/blocksChart/blocksChart.reducer';
 import * as minerStatsChart from 'src/rdx/minerStatsChart/minerStatsChart.reduxer';
@@ -23,7 +22,6 @@ export const defaultReduxState = {
   minerPayments: minerPayments.defaultState,
   snacks: snacks.defaultState,
   poolStats: poolStats.defaultState,
-  poolCoinsFull: poolCoinsFull.defaultState,
   addressSearch: addressSearch.initialState,
   blocksChart: blocksChart.defaultState,
   minerStatsChart: minerStatsChart.defaultState,
@@ -38,7 +36,6 @@ const combinedReducer = combineReducers({
   minerPayments: minerPayments.reducer,
   snacks: snacks.reducer,
   poolStats: poolStats.reducer,
-  poolCoinsFull: poolCoinsFull.reducer,
   addressSearch: addressSearch.reducer,
   blocksChart: blocksChart.reducer,
   minerStatsChart: minerStatsChart.reducer,
