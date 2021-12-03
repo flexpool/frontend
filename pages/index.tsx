@@ -18,18 +18,10 @@ import {
   PageContainer,
 } from '../src/pages/Home/components';
 
-import { poolCoinsFullGet } from '../src/rdx/poolCoinsFull/poolCoinsFull.actions';
-
 export const HomePage = () => {
   const d = useDispatch();
   const { t, i18n } = useTranslation('home');
   const { t: seoT } = useTranslation('seo');
-
-  React.useEffect(() => {
-    d(poolCoinsFullGet());
-    // useEffect only needs to fire on page load
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <PageContainer>

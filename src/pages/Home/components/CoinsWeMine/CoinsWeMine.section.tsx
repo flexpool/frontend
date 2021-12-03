@@ -1,13 +1,9 @@
 /* eslint-disable react/display-name */
-import {
-  ActionIconContainer,
-  ActionIcon,
-  Wrapper,
-  CoinName,
-  TickerName,
-  PriceChange,
-} from './components';
 import React from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
+import qs from 'query-string';
 import {
   FaArrowDown,
   FaArrowUp,
@@ -19,6 +15,14 @@ import { Content } from 'src/components/layout/Content';
 import DynamicList, {
   DynamicListColumn,
 } from 'src/components/layout/List/List';
+import {
+  ActionIconContainer,
+  ActionIcon,
+  Wrapper,
+  CoinName,
+  TickerName,
+  PriceChange,
+} from './components';
 import Modal from 'src/components/Modal/Modal';
 import { Mono, Ws } from 'src/components/Typo/Typo';
 import { CoinNews } from 'src/sections/CoinNews';
@@ -28,18 +32,13 @@ import {
   useLocalizedNumberFormatter,
   useLocalizedSiFormatter,
 } from 'src/utils/si.utils';
-import Link from 'next/link';
-// import { Link, useHistory, useLocation } from 'react-router-dom';
-import qs from 'query-string';
 import { CoinAbout } from 'src/sections/CoinAbout';
 import { ScrollArea } from 'src/components/layout/ScrollArea';
 import { CoinCalculator } from 'src/sections/CoinCalculator';
 import { CardGrid } from 'src/components/layout/Card';
 import { CoinLogo } from 'src/components/CoinLogo';
-import { useReduxState } from 'src/rdx/useReduxState';
-import { useTranslation } from 'next-i18next';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
-import { useRouter } from 'next/router';
+import usePoolCoinsFullQuery from '@/hooks/usePoolCoinsFullQuery';
 
 const ModalNews: React.FC<{ data?: ApiPoolCoinFull[] | null }> = ({ data }) => {
   const router = useRouter();
@@ -73,7 +72,7 @@ const ModalNews: React.FC<{ data?: ApiPoolCoinFull[] | null }> = ({ data }) => {
 };
 
 export const CoinsWeMineSection = () => {
-  const poolCoinsFullState = useReduxState('poolCoinsFull');
+  const { data: poolCoinsFull, isLoading } = usePoolCoinsFullQuery();
   const { t } = useTranslation('home');
   const siFormatter = useLocalizedSiFormatter();
   const currencyFormatter = useLocalizedCurrencyFormatter();
@@ -208,16 +207,16 @@ export const CoinsWeMineSection = () => {
 
   return (
     <Wrapper>
-      <ModalNews data={poolCoinsFullState.data} />
+      <ModalNews data={poolCoinsFull} />
       <Content contentCenter>
         <h2>{t('mined_coins_section.title')}</h2>
         <p>{t('mined_coins_section.description')}</p>
         <br />
         <DynamicList
           onRowClick={handleRowClick}
-          isLoading={poolCoinsFullState.isLoading}
+          isLoading={isLoading}
           loadingRowsCount={1}
-          data={poolCoinsFullState.data || []}
+          data={poolCoinsFull || []}
           columns={columns}
         />
       </Content>
