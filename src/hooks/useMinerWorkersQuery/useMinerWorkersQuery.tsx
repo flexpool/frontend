@@ -17,7 +17,6 @@ const useMinerWorkersQuery = <T extends any = ApiMinerWorker[]>(
     () => fetchApi<ApiMinerWorker[]>('/miner/workers', { query }),
     {
       enabled: !!query.coin && !!query.address,
-      staleTime: 5 * 60 * 1000, // 5 minutes
       ...options,
     }
   );
