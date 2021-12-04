@@ -13,7 +13,6 @@ const usePoolCoinsQuery = () => {
     ({ queryKey }) => fetchApi<PoolCoinsResponse>(queryKey[0]),
     {
       staleTime: 30 * 60 * 1000, // 30 minutes
-      keepPreviousData: true,
     }
   );
 };

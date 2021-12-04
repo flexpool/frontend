@@ -4,9 +4,7 @@ import {
   useActiveCoin,
   useAppTheme,
 } from 'src/rdx/localSettings/localSettings.hooks';
-import { useDispatch } from 'react-redux';
-import { poolHashrateGet } from 'src/rdx/poolHashrate/poolHashrate.actions';
-import { useReduxState } from 'src/rdx/useReduxState';
+import usePoolHashrateChartQuery from '@/hooks/usePoolHashrateChartQuery';
 import {
   ChartContainer,
   responsiveRule,
@@ -34,20 +32,20 @@ type HashrateChartDataItem = {
 const PoolHashrateChart = () => {
   const chartRef = useRef<HTMLDivElement>(null);
   const activeCoin = useActiveCoin();
-  const poolHasrateState = useReduxState('poolHashrate');
   const { t } = useTranslation('statistics');
-  const d = useDispatch();
 
-  React.useEffect(() => {
-    if (activeCoin?.ticker) {
-      d(poolHashrateGet(String(activeCoin?.ticker)));
-    }
-  }, [activeCoin, d]);
+  const {
+    data: poolHashrateChart,
+    isLoading,
+    error,
+  } = usePoolHashrateChartQuery({
+    coin: activeCoin?.ticker,
+  });
 
   const appTheme = useAppTheme();
 
   React.useLayoutEffect(() => {
-    if (poolHasrateState.data.length > 1) {
+    if (poolHashrateChart) {
       let x = create('chartdiv', XYChart);
 
       x.responsive.enabled = true;
@@ -58,8 +56,8 @@ const PoolHashrateChart = () => {
 
       const data: HashrateChartDataItem[] = [];
 
-      if (poolHasrateState.data.length > 0) {
-        for (var key in poolHasrateState.data[0].regions) {
+      if (poolHashrateChart.length > 0) {
+        for (var key in poolHashrateChart[0].regions) {
           switch (key) {
             case 'eu':
               x.colors.list.push(color('#15cd72'));
@@ -83,8 +81,8 @@ const PoolHashrateChart = () => {
         }
       }
 
-      for (var i = 0; i < poolHasrateState.data.length; i++) {
-        const item = poolHasrateState.data[i];
+      for (var i = 0; i < poolHashrateChart.length; i++) {
+        const item = poolHashrateChart[i];
         data.push({
           date: new Date(item.timestamp * 1000),
           total: item.total,
@@ -125,7 +123,7 @@ const PoolHashrateChart = () => {
       // totalHashrateSeries.monotoneX = 0.9;
       // totalHashrateSeries.monotoneY = 0.9;
 
-      for (const region in poolHasrateState.data[0].regions) {
+      for (const region in poolHashrateChart[0].regions) {
         let hashrateSeries = x.series.push(new LineSeries());
         hashrateSeries.dataFields.dateX = 'date';
         hashrateSeries.name = t(`chart.${region}`);
@@ -153,11 +151,11 @@ const PoolHashrateChart = () => {
         x.dispose();
       };
     }
-  }, [poolHasrateState.data, appTheme, t, activeCoin]);
+  }, [poolHashrateChart, appTheme, t, activeCoin]);
 
   return (
     <ChartContainer
-      dataState={poolHasrateState}
+      dataState={{ data: poolHashrateChart, isLoading, error }}
       title={t(
         activeCoin?.hashrateUnit === 'B' ? 'chart.title_space' : 'chart.title'
       )}
