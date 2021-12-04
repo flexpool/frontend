@@ -8,12 +8,8 @@ type PoolCoinsResponse = {
 };
 
 const usePoolCoinsQuery = () => {
-  return useQuery(
-    ['/pool/coins'],
-    ({ queryKey }) => fetchApi<PoolCoinsResponse>(queryKey[0]),
-    {
-      staleTime: 30 * 60 * 1000, // 30 minutes
-    }
+  return useQuery(['/pool/coins'], ({ queryKey }) =>
+    fetchApi<PoolCoinsResponse>(queryKey[0])
   );
 };
 

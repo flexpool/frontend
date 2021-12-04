@@ -23,10 +23,7 @@ const useMinerRewardsQuery = <TData extends any = ApiMinerRewards>(
     () =>
       fetchApi<TData>('/miner/rewards', {
         query,
-      }),
-    {
-      staleTime: 30 * 60 * 1000, // 30 minutes
-    }
+      })
   );
 };
 

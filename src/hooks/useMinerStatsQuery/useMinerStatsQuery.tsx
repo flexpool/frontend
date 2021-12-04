@@ -23,7 +23,6 @@ const useMinerStatsQuery = (query: MinerStatsQuery) => {
       }),
     {
       enabled: Boolean(query.coin) && Boolean(query.address),
-      staleTime: 1 * 60 * 1000, // 1 minute
     }
   );
 };
