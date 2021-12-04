@@ -194,13 +194,15 @@ const MinerWorkersTable: React.FC<{
   const onRowClick = React.useCallback(
     (data: ApiMinerWorker) => {
       router.push(
-        `/miner/${router.query.coin}/${router.query.address}/?worker=${data.name}`,
+        {
+          pathname: window.location.pathname,
+          search: `worker=${encodeURIComponent(data.name)}`,
+        },
         undefined,
         { shallow: true }
       );
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [router]
   );
 
   const cols = React.useMemo(() => {
