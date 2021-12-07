@@ -1,5 +1,4 @@
 import React from 'react';
-// import { useRouteMatch } from 'react-router';
 import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';
 import { Spacer } from 'src/components/layout/Spacer';
 import { StatItem } from 'src/components/StatItem';
@@ -160,14 +159,6 @@ export const MinerPplnsStats: React.FC<{
       };
     }
   }, [shareLogState.data, t, siFormatter]);
-
-  console.log(
-    averagePoolHashrate &&
-      headerStatsData &&
-      siFormatter(averagePoolHashrate * headerStatsData.roundShare, {
-        unit: activeCoin?.hashrateUnit,
-      })
-  );
 
   return (
     <>

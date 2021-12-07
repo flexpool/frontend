@@ -47,3 +47,5 @@ export const MinerRewardsPage: React.FC<{
     </>
   );
 };
+
+export default React.memo(MinerRewardsPage);

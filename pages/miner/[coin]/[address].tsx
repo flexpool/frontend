@@ -314,7 +314,7 @@ const DynamicMinerRewardsPage = dynamic<{
 }>(
   () =>
     import('src/pages/MinerDashboard/Rewards/MinerRewards.page').then(
-      (module) => module.MinerRewardsPage
+      (module) => module.default
     ),
   {
     loading: () => (
