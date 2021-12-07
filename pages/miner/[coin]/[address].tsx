@@ -20,7 +20,7 @@ import {
 
 import usePoolCoinsQuery from '@/hooks/usePoolCoinsQuery';
 
-import { AccountHeader } from 'src/pages/MinerDashboard/Header/AccountHeader';
+import AccountHeader from 'src/pages/MinerDashboard/Header/AccountHeader';
 import { HeaderGreetings } from 'src/pages/MinerDashboard/Header/Greetings';
 import { HeaderStats } from 'src/pages/MinerDashboard/Header/Stats';
 import { MinerDetails } from 'src/pages/MinerDashboard/Header/MinerDetails';

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { CopyButton } from 'src/components/CopyButton';
 import { Img } from 'src/components/Img';
 import { Card } from 'src/components/layout/Card';
@@ -22,7 +22,12 @@ const rotate = keyframes`
   }
 `;
 
-const LoaderIcon = styled(BiLoaderAlt)`
+const Spinner = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   animation: ${rotate} 1s linear infinite;
   opacity: 0.5;
 `;
@@ -109,12 +114,22 @@ export const AccountHeader: React.FC<{
         disabled={isRefreshing}
         onClick={() => {
           setIsRefreshing(true);
-          onRefresh().finally(() => setIsRefreshing(false));
+          onRefresh().finally(async () => {
+            setIsRefreshing(false);
+          });
         }}
       >
-        {isRefreshing ? <LoaderIcon /> : <BiRefresh />}
+        {isRefreshing ? (
+          <Spinner>
+            <BiLoaderAlt />
+          </Spinner>
+        ) : (
+          <BiRefresh />
+        )}
       </RefreshButton>
       <MinerSettingsModal address={address} />
     </Wrap>
   );
 };
+
+export default React.memo(AccountHeader);
