@@ -148,10 +148,16 @@ const WarningBox = styled.div`
 export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   data,
 }) => {
-  const { t } = useTranslation('get-started');
+  const { t, i18n } = useTranslation('get-started');
   const router = useRouter();
   const isAutoSetOnce = useBoolState();
   const [latencies, dispatch] = React.useReducer(reducer, {});
+
+  const isChineseUser =
+    typeof window !== 'undefined'
+      ? /^zh\b/.test(window.navigator.language) || /^zh\b/.test(i18n.language)
+      : false;
+
   const ticker = router.query.ticker;
   let search;
 
