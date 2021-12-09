@@ -14,11 +14,19 @@ const buildUri = (url = '', query?: object, api?: string) => {
   if (url.startsWith('http')) {
     resUrl = new URL(url);
   } else {
-    const apiURLToUse =
-      typeof window !== 'undefined' &&
-      window.location.hostname === 'web.fpmirror.com'
-        ? 'https://api.fpmirror.com/v2'
-        : apiURL;
+    var apiURLToUse = apiURL;
+
+    if (typeof window !== undefined) {
+      switch (window.location.hostname) {
+        case 'web.fpmirror.com':
+          apiURLToUse = 'https://api.fpmirror.com/v2';
+          break;
+        case 'flexpool.ca':
+          apiURLToUse = 'https://api.flexpool.ca/v2';
+          break;
+      }
+    }
+
     resUrl = new URL(`${api === 'chia' ? chiaURL : apiURLToUse}${url}`);
   }
   resUrl.search = (query && transformQuery(query)) || '';
