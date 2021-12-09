@@ -27,7 +27,8 @@
       },
       "fastest": "Fastest",
       "backup": "Backup",
-      "hke_warning_title": "Additional ports:"
+      "hke_warning_title": "Additional ports:",
+      "warning_1": "To avoid service interruptions, please DO NOT connect the pool with direct IPs. Always use desired domain name since IP connections are unreliable."
     },
     "ports": {
       "title": "Ports",

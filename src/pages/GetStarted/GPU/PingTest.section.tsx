@@ -465,6 +465,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
         data={data}
         columns={cols}
       />
+      <p style={{ color: 'var(--danger)' }}>{t('detail.region.warning_1')}</p>
       <h3>{t('detail.ports.title')}</h3>
       <p className="mb-2">
         <Trans
