@@ -104,11 +104,6 @@ export const mineableCoins: MineableCoin[] = [
         code: 'hke',
         imageCode: 'cn',
       },
-      {
-        domain: 'hke.fpmirror.com',
-        code: 'hke-mirror',
-        imageCode: 'cn',
-      },
     ],
     hardware: [
       {
