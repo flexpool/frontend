@@ -6,7 +6,8 @@ import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { useNetworkFeeLimit } from '@/rdx/minerDetails/minerDetails.selectors';
 import useActiveCoinNetworkFee from '@/hooks/useActiveCoinNetworkFee';
-import { useMinerWorkersStatus } from '@/rdx/minerWorkers/minerWorkers.hooks';
+import useMinerStatsQuery from '@/hooks/useMinerStatsQuery';
+import useWorkerStatus from '@/hooks/useWorkerStatus';
 import { StatItem } from 'src/components/StatItem';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { FaCalendar, FaCalendarDay, FaCalendarWeek } from 'react-icons/fa';
@@ -241,12 +242,17 @@ const BalanceProgressBar: React.FC<{
 
 type EstimateInterval = 1 | 7 | 30;
 
-export const HeaderStats = () => {
+type HeaderStatsProps = {
+  coin: string;
+  address: string;
+};
+
+export const HeaderStats = ({ coin, address }: HeaderStatsProps) => {
+  const { data: minerStatsState } = useMinerStatsQuery({ coin, address });
   const minerHeaderStatsState = useReduxState('minerHeaderStats');
   const minerDetailsState = useReduxState('minerDetails');
-  const minerStatsState = useReduxState('minerStats');
   const activeCoin = useActiveCoin();
-  const workerStatus = useMinerWorkersStatus();
+  const { data: workerStatus } = useWorkerStatus({ coin, address });
   const data = minerHeaderStatsState.data;
   const settings = minerDetailsState.data;
 
@@ -265,14 +271,14 @@ export const HeaderStats = () => {
 
   const estimatedDailyEarnings = React.useMemo(() => {
     const rewards = minerHeaderStatsState.data?.dailyRewardsPerGh;
-    const hashrate = minerStatsState.data?.averageEffectiveHashrate;
+    const hashrate = minerStatsState?.averageEffectiveHashrate;
 
     if (rewards === undefined || hashrate === undefined) {
       return null;
     }
 
     return rewards * (hashrate / 1000000000);
-  }, [minerHeaderStatsState.data, minerStatsState.data]);
+  }, [minerHeaderStatsState.data, minerStatsState]);
 
   const estimated = React.useMemo(() => {
     return {

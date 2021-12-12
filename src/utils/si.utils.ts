@@ -39,6 +39,7 @@ export const useLocalizedPercentFormatter = () => {
   });
 };
 
+// FIXME: defaultOptions will break useCallback
 export const useLocalizedNumberFormatter = (
   defaultOptions?: Intl.NumberFormatOptions | undefined
 ) => {

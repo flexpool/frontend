@@ -3,7 +3,7 @@ import { MinerPplnsStats } from './MinerPplnsStats.section';
 import { MinerRewardStatsSection } from './MinerRewardStats.section';
 import { MinerRewardsBlocksSection } from './MinerReportBlocks.section';
 import { useFetchPoolStats } from '@/rdx/poolStats/poolStats.hooks';
-import { useFetchMinerRewards } from '@/rdx/minerRewards/minerRewards.hooks';
+import useMinerRewardsQuery from '@/hooks/useMinerRewardsQuery';
 import RewardsChart from './Rewards.chart';
 
 export const MinerRewardsPage: React.FC<{
@@ -13,24 +13,30 @@ export const MinerRewardsPage: React.FC<{
 }> = ({ address, coinTicker, counterTicker }) => {
   const poolStatsState = useFetchPoolStats(coinTicker);
 
-  const minerRewardsState = useFetchMinerRewards({
-    coinTicker,
+  const {
+    data: minerRewardsState,
+    error,
+    isLoading,
+  } = useMinerRewardsQuery({
+    coin: coinTicker,
     address,
-    counterTicker,
+    countervalue: counterTicker,
   });
 
   return (
     <>
       <RewardsChart
-        counterPrice={minerRewardsState.data?.price || 0}
-        rewards={minerRewardsState.data?.data || []}
-        error={minerRewardsState.error}
-        isLoading={minerRewardsState.isLoading}
+        counterPrice={minerRewardsState?.price || 0}
+        rewards={minerRewardsState?.data || []}
+        error={error?.error}
+        isLoading={isLoading}
         address={address}
       />
       <MinerRewardStatsSection
-        counterPrice={minerRewardsState.data?.price || 0}
-        rewards={minerRewardsState.data?.data || []}
+        coin={coinTicker}
+        address={address}
+        counterPrice={minerRewardsState?.price || 0}
+        rewards={minerRewardsState?.data || []}
       />
       <MinerPplnsStats
         averagePoolHashrate={poolStatsState.data?.averageHashrate}
@@ -41,3 +47,5 @@ export const MinerRewardsPage: React.FC<{
     </>
   );
 };
+
+export default React.memo(MinerRewardsPage);

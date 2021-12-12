@@ -12,7 +12,6 @@ import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 
 // Redux
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
-import { useFetchMinerWorkers } from '@/rdx/minerWorkers/minerWorkers.hooks';
 import { ApiMinerWorker } from 'src/types/Miner.types';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import {
@@ -20,6 +19,7 @@ import {
   useLocalizedPercentFormatter,
   useLocalizedSiFormatter,
 } from 'src/utils/si.utils';
+import useMinerWorkersQuery from '@/hooks/useMinerWorkersQuery';
 import {
   FaSearch,
   FaSort,
@@ -423,18 +423,17 @@ export const MinerWorkers: React.FC<{
 }> = ({ address, coin }) => {
   const { t } = useTranslation('dashboard');
 
-  // disabled because minerWorkers is already fetched in [address]
-  const minerWorkersState = useFetchMinerWorkers(
-    { address, coinTicker: coin },
-    { enable: false }
-  );
+  const { data: minerWorkers, isLoading } = useMinerWorkersQuery({
+    coin,
+    address,
+  });
 
   const dataWithTotalShare = React.useMemo(() => {
-    return (minerWorkersState.data || []).map((item) => ({
+    return (minerWorkers || []).map((item) => ({
       ...item,
       totalShares: item.invalidShares + item.staleShares + item.validShares,
     }));
-  }, [minerWorkersState.data]);
+  }, [minerWorkers]);
 
   const activeWorkersData = React.useMemo(() => {
     return dataWithTotalShare.filter((item) => item.isOnline);
@@ -448,12 +447,12 @@ export const MinerWorkers: React.FC<{
     <div>
       <MinerWorkersTable
         hideIfEmpty
-        isLoading={minerWorkersState.isLoading}
+        isLoading={isLoading}
         data={offlineWorkersData}
         title={t('stats.table.title_inactive')}
       />
       <MinerWorkersTable
-        isLoading={minerWorkersState.isLoading}
+        isLoading={isLoading}
         data={activeWorkersData}
         title={t('stats.table.title_active')}
       />

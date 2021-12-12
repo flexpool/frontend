@@ -105,8 +105,8 @@ const RewardsChart: React.FC<{
     return () => {
       rewardsChart.dispose();
     };
-    // eslint-disable-next-line
-  }, [coin, rewards, counterPrice, t, currencyFormatter]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [coin, rewards, counterPrice, t]);
 
   return (
     <>
@@ -135,4 +135,4 @@ const RewardsChart: React.FC<{
   );
 };
 
-export default RewardsChart;
+export default React.memo(RewardsChart);

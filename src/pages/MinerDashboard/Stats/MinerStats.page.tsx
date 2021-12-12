@@ -87,7 +87,12 @@ export const MinerStatsPage: React.FC<{
           <Spacer />
         </>
       )}
-      <MinerStats averageEffectivePeriods={averageEffectivePeriods} />
+      <MinerStats
+        coin={coin}
+        address={address}
+        worker={worker}
+        averageEffectivePeriods={averageEffectivePeriods}
+      />
       <Spacer />
       <StatsChart
         setAverageEffectivePeriods={setAverageEffectivePeriods}

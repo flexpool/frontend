@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import { useQueryClient } from 'react-query';
 import { NextSeo } from 'next-seo';
 import dynamic from 'next/dynamic';
 import { useTranslation } from 'next-i18next';
@@ -9,12 +9,9 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Content } from 'src/components/layout/Content';
 import { Page, PageLoading } from 'src/components/layout/Page';
 
-import { useFetchMinerRewards } from '@/rdx/minerRewards/minerRewards.hooks';
 import { useFetchMinerDetails } from '@/rdx/minerDetails/minerDetails.hooks';
 import { useFetchMinerHeaderStats } from '@/rdx/minerHeaderStats/minerHeaderStats.hooks';
-import { useFetchMinerStats } from '@/rdx/minerStats/minerStats.hooks';
 import { useFetchMinerStatsChart } from '@/rdx/minerStatsChart/minerStatsChart.hooks';
-import { useFetchMinerWorkers } from 'src/rdx/minerWorkers/minerWorkers.hooks';
 import {
   useActiveCoin,
   useCounterTicker,
@@ -23,7 +20,7 @@ import {
 
 import usePoolCoinsQuery from '@/hooks/usePoolCoinsQuery';
 
-import { AccountHeader } from 'src/pages/MinerDashboard/Header/AccountHeader';
+import AccountHeader from 'src/pages/MinerDashboard/Header/AccountHeader';
 import { HeaderGreetings } from 'src/pages/MinerDashboard/Header/Greetings';
 import { HeaderStats } from 'src/pages/MinerDashboard/Header/Stats';
 import { MinerDetails } from 'src/pages/MinerDashboard/Header/MinerDetails';
@@ -117,27 +114,14 @@ export const MinerDashboardPageContent: React.FC<{
 }> = (props) => {
   const { coinTicker, address } = props;
   const { data: poolCoins } = usePoolCoinsQuery();
+  const queryClient = useQueryClient();
   const activeCoin = useActiveCoin(coinTicker);
   const counterTicker = useCounterTicker();
   const { t } = useTranslation('dashboard');
   const [, setCoinTicker] = useCoinTicker();
   const worker = useActiveSearchParamWorker();
-  const { refetch: refetchMinerWorkers } = useFetchMinerWorkers({
-    coinTicker,
-    address,
-  });
-  const { refetch: refetchMinerRewards } = useFetchMinerRewards(
-    { coinTicker, address, counterTicker },
-    {
-      enable: false,
-    }
-  );
+
   const { refetch: refetchMinerStatsChart } = useFetchMinerStatsChart(
-    coinTicker,
-    address,
-    worker
-  );
-  const { refetch: refetchMinerStats } = useFetchMinerStats(
     coinTicker,
     address,
     worker
@@ -163,20 +147,18 @@ export const MinerDashboardPageContent: React.FC<{
   const loadAll = React.useCallback(() => {
     return Promise.all([
       refetchMinerDetails(),
-      refetchMinerWorkers(),
-      tabIndex === 2 ? refetchMinerRewards() : null,
+      queryClient.invalidateQueries('/miner/workers'),
+      tabIndex === 2 ? queryClient.invalidateQueries('/miner/rewards') : null,
       refetchMinerStatsChart(),
-      refetchMinerStats(),
+      queryClient.invalidateQueries('/miner/stats'),
       refetchMinerHeaderStats(),
     ]);
   }, [
     tabIndex,
     refetchMinerDetails,
-    refetchMinerWorkers,
-    refetchMinerRewards,
     refetchMinerStatsChart,
-    refetchMinerStats,
     refetchMinerHeaderStats,
+    queryClient,
   ]);
 
   const loadSelectedTabFromHash = (tabHash: string) => {
@@ -226,7 +208,11 @@ export const MinerDashboardPageContent: React.FC<{
             }}
           />
           <Content>
-            <HeaderGreetings onRefresh={loadAll} />
+            <HeaderGreetings
+              coin={coinTicker}
+              address={address}
+              onRefresh={loadAll}
+            />
             <AccountHeader
               coin={activeCoin}
               address={address}
@@ -234,7 +220,7 @@ export const MinerDashboardPageContent: React.FC<{
             />
             <Spacer />
             <MinerDetails coin={activeCoin} />
-            <HeaderStats />
+            <HeaderStats coin={coinTicker} address={address} />
           </Content>
           <Tabs
             className="w-full"
@@ -328,7 +314,7 @@ const DynamicMinerRewardsPage = dynamic<{
 }>(
   () =>
     import('src/pages/MinerDashboard/Rewards/MinerRewards.page').then(
-      (module) => module.MinerRewardsPage
+      (module) => module.default
     ),
   {
     loading: () => (
