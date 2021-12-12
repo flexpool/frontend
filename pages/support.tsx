@@ -116,7 +116,7 @@ export const SupportPage = () => {
             }}
           />
         </p>
-        <Divider margin />
+        {/* <Divider margin />
         <h2>{t('section_five.title')}</h2>
         <p>
           <Trans
@@ -129,7 +129,7 @@ export const SupportPage = () => {
               bold: <strong />,
             }}
           />
-        </p>
+        </p> */}
       </Content>
     </Page>
   );
