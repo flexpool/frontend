@@ -187,7 +187,10 @@ export const PayoutSettings: React.FC<{
 
                 <Spacer size="sm" />
 
-                <ThresholdInput name="payoutLimit" />
+                <ThresholdInput
+                  name="payoutLimit"
+                  isMainnet={values.network === 'mainnet'}
+                />
 
                 <Spacer size="sm" />
 

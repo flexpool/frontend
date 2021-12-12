@@ -15,9 +15,10 @@ export const UnitContainer = styled.div`
 
 type ThresholdInputProps = {
   name: string;
+  isMainnet: boolean;
 };
 
-const ThresholdInput = ({ name }: ThresholdInputProps) => {
+const ThresholdInput = ({ name, isMainnet }: ThresholdInputProps) => {
   const { t } = useTranslation(['common']);
   const activeCoin = useActiveCoin();
   const activeCoinTicker = useActiveCoinTicker();
@@ -25,12 +26,13 @@ const ThresholdInput = ({ name }: ThresholdInputProps) => {
 
   const minPayoutLimit = useMemo(() => {
     if (!activeCoin) return 0;
-
-    return (
+    const mainnetLimit =
       activeCoin.lowestMinPayoutThreshold /
-      Math.pow(10, activeCoin.decimalPlaces)
-    );
-  }, [activeCoin]);
+      Math.pow(10, activeCoin.decimalPlaces);
+
+    if (!isMainnet) return mainnetLimit / 2;
+    return mainnetLimit;
+  }, [activeCoin, isMainnet]);
 
   if (!activeCoin) return null;
 
