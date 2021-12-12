@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import qs from 'query-string';
 import { AnyAction } from 'redux';
 import Link, { LinkProps } from 'next/link';
+import DescriptionList from '@/components/DescriptionList';
 
 // Components
 import DynamicList, {
@@ -209,13 +210,6 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
           <Mono>
             <Ws>
               {data.domain} <CopyButton text={data.domain} />
-              {data.domain === 'eth-hke.flexpool.io' && (
-                <WarningBox>
-                  {t('detail.region.hke_warning_title')} <br />
-                  TCP: 13271 <br />
-                  SSL: 22271
-                </WarningBox>
-              )}
             </Ws>
           </Mono>
         ),
@@ -464,6 +458,47 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
         config={colConfig}
         data={data}
         columns={cols}
+        additionalRowRender={(item) => {
+          if (item.domain === 'eth-hke.flexpool.io') {
+            return (
+              <DescriptionList
+                items={[
+                  {
+                    term: (
+                      <span style={{ fontSize: '0.85rem' }}>
+                        {t('regions.additional_ports')}
+                      </span>
+                    ),
+                    description: (
+                      <div style={{ fontSize: '0.85rem' }}>
+                        <div>
+                          TCP: <Sticker>13271</Sticker>
+                        </div>
+                        <div style={{ marginTop: '0.25rem' }}>
+                          SSL: <Sticker>22271</Sticker>
+                        </div>
+                      </div>
+                    ),
+                  },
+                  {
+                    term: (
+                      <span style={{ fontSize: '0.85rem' }}>
+                        {t('regions.additional_domains')}
+                      </span>
+                    ),
+
+                    description: (
+                      <span style={{ fontSize: '0.85rem' }}>
+                        hke.fpmirror.com
+                      </span>
+                    ),
+                  },
+                ]}
+              />
+            );
+          }
+          return null;
+        }}
       />
       <h3>{t('detail.ports.title')}</h3>
       <p className="mb-2">

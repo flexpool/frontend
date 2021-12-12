@@ -38,7 +38,7 @@ export type DynamicListProps<
   inContainer?: boolean;
   tBodyChildren?: React.ReactNode;
   tFooterChildren?: React.ReactNode;
-
+  additionalRowRender?: (item: D, index: number) => React.ReactNode;
   hideHead?: boolean;
   isLoading?: boolean;
   loadingRowsCount?: number;
@@ -139,6 +139,7 @@ export const DynamicList = <D extends {}, CP extends {}>(
     onRowClickAllowed,
     wrapperProps,
     renderRowTooltipContent,
+    additionalRowRender,
   } = props;
 
   const [lastMouseOver, setLastMouseOver] = React.useState<number | null>();
@@ -202,19 +203,32 @@ export const DynamicList = <D extends {}, CP extends {}>(
                 data &&
                 data.length > 0 &&
                 data.map((item, index) => {
+                  const additionalRow = additionalRowRender
+                    ? additionalRowRender(item, index)
+                    : null;
+
                   return (
-                    <ListRow
-                      item={item}
-                      onRowClick={onRowClick as any}
-                      onRowClickAllowed={onRowClickAllowed as any}
-                      index={index}
-                      key={(item as any).name || index}
-                      isHighlighted={index === lastMouseOver}
-                      handleActiveHover={setLastMouseOver}
-                      columns={columns as any}
-                      config={config}
-                      renderRowTooltipContent={renderRowTooltipContent as any}
-                    />
+                    <>
+                      <ListRow
+                        item={item}
+                        onRowClick={onRowClick as any}
+                        onRowClickAllowed={onRowClickAllowed as any}
+                        index={index}
+                        key={(item as any).name || index}
+                        isHighlighted={index === lastMouseOver}
+                        handleActiveHover={setLastMouseOver}
+                        columns={columns as any}
+                        config={config}
+                        renderRowTooltipContent={renderRowTooltipContent as any}
+                      />
+                      {additionalRow && (
+                        <Table.Tr>
+                          <Table.AdditionalTd colSpan={columns.length}>
+                            {additionalRow}
+                          </Table.AdditionalTd>
+                        </Table.Tr>
+                      )}
+                    </>
                   );
                 })}
               {tBodyChildren}

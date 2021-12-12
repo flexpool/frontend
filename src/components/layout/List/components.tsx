@@ -41,6 +41,32 @@ const Td = styled.td<{ alignRight?: boolean }>`
   ${(p) => p.alignRight && `text-align: right;`};
 `;
 
+const StyledAdditionalTd = styled.td`
+  border: none;
+  padding-top: 0;
+  padding-bottom: 0;
+`;
+
+const AdditionalTdContainer = styled.div`
+  border-top: 1px solid var(--border-color);
+`;
+
+const AdditionalTd = ({
+  children,
+  ...props
+}: {
+  children: React.ReactNode;
+  [x: string]: any;
+}) => {
+  return (
+    <StyledAdditionalTd {...props}>
+      <AdditionalTdContainer>{children}</AdditionalTdContainer>
+    </StyledAdditionalTd>
+  );
+};
+
+export { Container, Th, Td, AdditionalTd, AdditionalTdContainer };
+
 const Tr = styled.tr<{ clickable?: boolean }>`
   &.highlighted {
     background: rgba(128, 128, 128, 0.06);
@@ -70,6 +96,7 @@ export const Table = {
   Th,
   Tr,
   TBody,
+  AdditionalTd,
 };
 
 export const HorizontalScrollWrapepr = styled.div`

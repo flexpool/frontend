@@ -185,7 +185,9 @@
     "br": "Brazil",
     "kr": "South Korea",
     "hk": "Hong Kong",
-    "hke": "Hong Kong (Optimized for China)"
+    "hke": "Hong Kong (Optimized for China)",
+    "additional_ports": "Additional Ports",
+    "additional_domains": "Additional Domains"
   },
   "cmd_keys": {
     "CLOSEST_SERVER": "CLOSEST_SERVER",
