@@ -9,7 +9,6 @@ import createReduxStore from 'src/rdx/createStore';
 import { Provider as ReduxProvider } from 'react-redux';
 import { localStorage } from 'src/utils/localStorage';
 import { AppState } from 'src/rdx/rootReducer';
-import { useTranslation } from 'next-i18next';
 
 import type { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
@@ -25,7 +24,7 @@ import { FooterSection } from '../src/sections/Footer.section';
 import { searchAddressStorage } from '../src/components/SearchAddressBar/searchCache';
 import TermsConsent from '../src/components/TermsConsent';
 import RouteLoader from '@/components/RouteLoader';
-import useIsMounted from '@/hooks/useIsMounted';
+import useCheckUserRegion from '@/hooks/useCheckUserRegion';
 import { SnackViewControl } from '@/components/Snacks/SnackViewControl';
 import AnnouncementBar from '@/components/AnnouncementBar';
 
@@ -52,12 +51,7 @@ declare global {
 }
 
 const App = ({ Component, pageProps, router }: AppProps) => {
-  const { t, i18n } = useTranslation('dashboard');
-  const isMounted = useIsMounted();
-  const isChineseUser =
-    typeof window !== 'undefined'
-      ? /^zh\b/.test(window.navigator.language) || /^zh\b/.test(i18n.language)
-      : false;
+  const isChinaRegion = useCheckUserRegion('zh');
 
   return (
     <>
@@ -89,19 +83,25 @@ const App = ({ Component, pageProps, router }: AppProps) => {
             <SnackViewControl />
             <RouteLoader />
             <NavBar />
-            {isMounted && isChineseUser && (
-              <AnnouncementBar id="doh-mode">
-                亚洲直連挖礦連接：
-                <br />
-                TCP端口：hke.fpmirror.com:13271
-                <br />
-                SSL端口：hke.fpmirror.com:5555
-                <br />
-                亚洲备用地址： web.fpmirror.com
-                <br />
-                請注意，挖掘連接可能會更改。
-                如果您想永久避免所有限制，請通過HTTPS（DoH）配寘DNS並使用eth-hke.flexpool.io
-              </AnnouncementBar>
+            {isChinaRegion && (
+              <>
+                <AnnouncementBar id="doh-mode">
+                  亚洲直連挖礦連接：
+                  <br />
+                  TCP端口：hke.fpmirror.com:13271
+                  <br />
+                  SSL端口：hke.fpmirror.com:5555
+                  <br />
+                  亚洲备用地址： web.fpmirror.com
+                  <br />
+                  請注意，挖掘連接可能會更改。
+                  如果您想永久避免所有限制，請通過HTTPS（DoH）配寘DNS並使用eth-hke.flexpool.io
+                </AnnouncementBar>
+                <AnnouncementBar variant="warning" id="stale-rate-warning">
+                  注意：我们近期发现部分中国大陆用户的Stale
+                  Rate(过期率)有增高。我们正在努力解决该问题，谢谢您的理解。
+                </AnnouncementBar>
+              </>
             )}
             <AppTheme />
             <SwitchTransition>

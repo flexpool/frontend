@@ -3,13 +3,16 @@ import { FaTimes } from 'react-icons/fa';
 import styled from 'styled-components';
 import { Content } from '../layout/Content';
 import { useLocalStorageState } from '@/hooks/useLocalStorageState';
+import { UIVariant } from '@/App/styledTheme';
 
-const StyledAnnouncementBar = styled.div`
+const StyledAnnouncementBar = styled.div<{
+  variant?: 'danger' | UIVariant;
+}>`
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 50px;
-  background-color: var(--danger);
+  background-color: ${(p) => `var(--${p.variant})`};
   color: white;
   font-weight: 600;
   padding: 1rem;
@@ -33,9 +36,14 @@ const Close = styled.button`
 type AnnouncementBarProps = {
   children: React.ReactNode;
   id: string;
+  variant?: UIVariant;
 };
 
-const AnnouncementBar = ({ children, id }: AnnouncementBarProps) => {
+const AnnouncementBar = ({
+  children,
+  id,
+  variant = 'danger',
+}: AnnouncementBarProps) => {
   const [closed, setClosed] = useLocalStorageState(
     `announcement-bar-${id}`,
     'false'
@@ -44,7 +52,7 @@ const AnnouncementBar = ({ children, id }: AnnouncementBarProps) => {
   if (closed === 'true') return null;
 
   return (
-    <StyledAnnouncementBar>
+    <StyledAnnouncementBar variant={variant}>
       <StyledContent>
         <Close onClick={() => setClosed('true')}>
           <FaTimes />

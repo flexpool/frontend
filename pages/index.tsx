@@ -1,6 +1,5 @@
 import React from 'react';
 import { NextSeo } from 'next-seo';
-import { useDispatch } from 'react-redux';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -19,7 +18,6 @@ import {
 } from '../src/pages/Home/components';
 
 export const HomePage = () => {
-  const d = useDispatch();
   const { t, i18n } = useTranslation('home');
   const { t: seoT } = useTranslation('seo');
 
