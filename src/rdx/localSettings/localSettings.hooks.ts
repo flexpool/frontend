@@ -6,6 +6,7 @@ import usePoolCoinsQuery from '@/hooks/usePoolCoinsQuery';
 
 /**
  * Get current selected coin from coin selector
+ * Coin ticker is always available from redux because of default state
  * @returns {string} coin ticker name
  */
 export const useActiveCoinTicker = () => {

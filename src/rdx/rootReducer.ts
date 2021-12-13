@@ -1,7 +1,6 @@
 import { combineReducers, Reducer } from 'redux';
 
 import * as localSettings from 'src/rdx/localSettings/localSettings.reducer';
-import * as topMiners from 'src/rdx/topMiners/topMiners.reducer';
 import * as minerHeaderStats from 'src/rdx/minerHeaderStats/minerHeaderStats.reducer';
 import * as minerDetails from 'src/rdx/minerDetails/minerDetails.reducer';
 import * as minerPayments from 'src/rdx/minerPayments/minerPayments.reducer';
@@ -14,7 +13,6 @@ import { localStorage } from 'src/utils/localStorage';
 
 export const defaultReduxState = {
   localSettings: localSettings.defaultState,
-  topMiners: topMiners.defaultState,
   minerHeaderStats: minerHeaderStats.defaultState,
   minerDetails: minerDetails.defaultState,
   minerPayments: minerPayments.defaultState,
@@ -27,7 +25,6 @@ export const defaultReduxState = {
 
 const combinedReducer = combineReducers({
   localSettings: localSettings.reducer,
-  topMiners: topMiners.reducer,
   minerHeaderStats: minerHeaderStats.reducer,
   minerDetails: minerDetails.reducer,
   minerPayments: minerPayments.reducer,
