@@ -153,6 +153,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
   const router = useRouter();
   const isAutoSetOnce = useBoolState();
   const [latencies, dispatch] = React.useReducer(reducer, {});
+
   const ticker = router.query.ticker;
   let search;
 
@@ -500,6 +501,7 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
           return null;
         }}
       />
+      <p style={{ color: 'var(--danger)' }}>{t('detail.region.warning_1')}</p>
       <h3>{t('detail.ports.title')}</h3>
       <p className="mb-2">
         <Trans
