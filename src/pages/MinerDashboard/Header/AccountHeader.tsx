@@ -22,14 +22,9 @@ const rotate = keyframes`
   }
 `;
 
-const Spinner = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: ${rotate} 1s linear infinite;
+const Spinner = styled(BiLoaderAlt)`
   opacity: 0.5;
+  animation: ${rotate} 1s linear infinite;
 `;
 
 const Wrap = styled(Card)`
@@ -119,15 +114,9 @@ export const AccountHeader: React.FC<{
           });
         }}
       >
-        {isRefreshing ? (
-          <Spinner>
-            <BiLoaderAlt />
-          </Spinner>
-        ) : (
-          <BiRefresh />
-        )}
+        {isRefreshing ? <Spinner /> : <BiRefresh />}
       </RefreshButton>
-      <MinerSettingsModal address={address} />
+      <MinerSettingsModal address={address} isRefreshing={isRefreshing} />
     </Wrap>
   );
 };

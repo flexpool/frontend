@@ -90,7 +90,8 @@ const SettingsBtn = styled(Button)`
 
 export const MinerSettingsModal: React.FC<{
   address: string;
-}> = ({ address }) => {
+  isRefreshing: boolean;
+}> = ({ address, isRefreshing }) => {
   const openState = useOpenState();
   const [page, setPage] = React.useState<SettingsPageKey>('payouts');
 
@@ -100,7 +101,11 @@ export const MinerSettingsModal: React.FC<{
   const { t } = useTranslation('dashboard');
 
   // disable opening when data is not loaded
-  const disabled = !activeCoin || !minerSettings.data || !minerHeaderStats.data;
+  const disabled =
+    !activeCoin ||
+    !minerSettings.data ||
+    !minerHeaderStats.data ||
+    isRefreshing;
 
   const handleChangePage = React.useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {

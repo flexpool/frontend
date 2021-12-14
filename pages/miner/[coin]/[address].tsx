@@ -11,7 +11,6 @@ import { Page, PageLoading } from 'src/components/layout/Page';
 
 import { useFetchMinerDetails } from '@/rdx/minerDetails/minerDetails.hooks';
 import { useFetchMinerHeaderStats } from '@/rdx/minerHeaderStats/minerHeaderStats.hooks';
-import { useFetchMinerStatsChart } from '@/rdx/minerStatsChart/minerStatsChart.hooks';
 import {
   useActiveCoin,
   useCounterTicker,
@@ -31,7 +30,6 @@ import { InfoBox } from 'src/components/InfoBox';
 
 import styled from 'styled-components';
 import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
-import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
 import { getChecksumByTicker } from '@/utils/validators/checksum';
 import Warning from '@/assets/warning-icon.svg';
 import { fetchApi } from 'src/utils/fetchApi';
@@ -119,13 +117,7 @@ export const MinerDashboardPageContent: React.FC<{
   const counterTicker = useCounterTicker();
   const { t } = useTranslation('dashboard');
   const [, setCoinTicker] = useCoinTicker();
-  const worker = useActiveSearchParamWorker();
 
-  const { refetch: refetchMinerStatsChart } = useFetchMinerStatsChart(
-    coinTicker,
-    address,
-    worker
-  );
   const { refetch: refetchMinerHeaderStats } = useFetchMinerHeaderStats(
     coinTicker,
     address,
@@ -148,18 +140,13 @@ export const MinerDashboardPageContent: React.FC<{
     return Promise.all([
       refetchMinerDetails(),
       queryClient.invalidateQueries('/miner/workers'),
-      tabIndex === 2 ? queryClient.invalidateQueries('/miner/rewards') : null,
-      refetchMinerStatsChart(),
+      queryClient.invalidateQueries('/miner/rewards'),
+      queryClient.invalidateQueries(['/miner/chart', { address }]),
       queryClient.invalidateQueries('/miner/stats'),
       refetchMinerHeaderStats(),
+      new Promise((resolve) => setTimeout(() => resolve(true), 1500)),
     ]);
-  }, [
-    tabIndex,
-    refetchMinerDetails,
-    refetchMinerStatsChart,
-    refetchMinerHeaderStats,
-    queryClient,
-  ]);
+  }, [refetchMinerDetails, refetchMinerHeaderStats, queryClient, address]);
 
   const loadSelectedTabFromHash = (tabHash: string) => {
     setTabIndex(tabs[tabHash]);
