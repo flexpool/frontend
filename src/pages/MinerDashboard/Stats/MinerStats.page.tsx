@@ -8,7 +8,6 @@ import { MinerStats } from './Stats.section';
 import { MinerWorkers } from './Workers.section';
 import styled from 'styled-components';
 import { Button } from 'src/components/Button';
-import { AverageEffectivePeriods } from './minerStats.types';
 import { useTranslation } from 'next-i18next';
 import ExitIcon from 'src/assets/exit-icon.svg';
 
@@ -35,9 +34,6 @@ export const MinerStatsPage: React.FC<{
   coin: string;
 }> = ({ address, coin }) => {
   const router = useRouter();
-
-  const [averageEffectivePeriods, setAverageEffectivePeriods] =
-    React.useState<AverageEffectivePeriods>({ 6: 0, 12: 0 });
 
   const worker = useActiveSearchParamWorker();
   const { t } = useTranslation('dashboard');
@@ -87,18 +83,9 @@ export const MinerStatsPage: React.FC<{
           <Spacer />
         </>
       )}
-      <MinerStats
-        coin={coin}
-        address={address}
-        worker={worker}
-        averageEffectivePeriods={averageEffectivePeriods}
-      />
+      <MinerStats coin={coin} address={address} worker={worker} />
       <Spacer />
-      <StatsChart
-        setAverageEffectivePeriods={setAverageEffectivePeriods}
-        address={address}
-        coinTicker={coin}
-      />
+      <StatsChart address={address} coinTicker={coin} />
       <MinerWorkers address={address} coin={coin} />
     </>
   );

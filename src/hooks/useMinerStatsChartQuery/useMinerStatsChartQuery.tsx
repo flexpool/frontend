@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery, UseQueryOptions } from 'react-query';
 import { fetchApi } from '@/utils/fetchApi';
 import { ApiMinerStatsChartDataPoint } from '@/types/Miner.types';
 import { Error } from '@/types/query.types';
@@ -9,16 +9,22 @@ type MinerStatsChartQuery = {
   worker?: string;
 };
 
-const useMinerStatsChartQuery = (query: MinerStatsChartQuery) => {
+const useMinerStatsChartQuery = <
+  T extends any = ApiMinerStatsChartDataPoint[] | null
+>(
+  query: MinerStatsChartQuery,
+  options?: UseQueryOptions<ApiMinerStatsChartDataPoint[] | null, Error, T, any>
+) => {
   // Response is null when miner has no stats data
-  return useQuery<ApiMinerStatsChartDataPoint[] | null, Error>(
+  return useQuery(
     ['/miner/chart', query],
     () =>
-      fetchApi('/miner/chart', {
+      fetchApi<ApiMinerStatsChartDataPoint[] | null>('/miner/chart', {
         query,
       }),
     {
       enabled: !!query.coin && !!query.address,
+      ...options,
     }
   );
 };
