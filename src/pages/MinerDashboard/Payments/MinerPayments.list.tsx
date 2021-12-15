@@ -1,15 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
-import { useDispatch } from 'react-redux';
 import { Button } from 'src/components/Button';
 import DynamicList from 'src/components/layout/List/List';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOutCoin } from 'src/components/LinkOut';
 import { Mono, Ws } from 'src/components/Typo/Typo';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
+import useMinerPaymentsQuery from '@/hooks/useMinerPaymentsQuery';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
-import { minerPaymentsGet } from 'src/rdx/minerPayments/minerPayments.actions';
-import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiMinerPayment } from 'src/types/Miner.types';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { getCoinLink } from 'src/utils/coinLinks.utils';
@@ -102,34 +100,29 @@ export const MinerPaymentsList: React.FC<{
   coin?: ApiPoolCoin;
 }> = ({ coin, address }) => {
   const [currentPage, setCurrentPage] = React.useState(0);
-  const d = useDispatch();
-  const minerPayments = useReduxState('minerPayments');
   const counterTicker = useCounterTicker();
+
+  const { data: minerPayments, isLoading } = useMinerPaymentsQuery({
+    address,
+    coin: coin?.ticker as string,
+    countervalue: counterTicker,
+    page: currentPage,
+  });
+
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const numberFormatter = useLocalizedNumberFormatter();
   const [dateView, setDateView] = useLocalStorageState<
     'full_date' | 'distance'
   >('blockDateView', 'distance');
 
-  React.useEffect(() => {
-    if (coin?.ticker) {
-      d(minerPaymentsGet(coin.ticker, address, counterTicker, currentPage));
-    }
-  }, [coin?.ticker, address, counterTicker, currentPage, d]);
-
-  const paymentsData = React.useMemo(() => {
-    return minerPayments.data?.data || [];
-  }, [minerPayments.data]);
-
   const { totalItems, totalPages } = React.useMemo(() => {
     return {
-      totalItems: 0,
-      totalPages: 0,
-      ...minerPayments.data,
+      totalItems: minerPayments?.totalItems || 0,
+      totalPages: minerPayments?.totalPages || 0,
     };
-  }, [minerPayments.data]);
+  }, [minerPayments]);
 
-  const counterValuePrice = minerPayments.data?.countervalue || 1;
+  const counterValuePrice = minerPayments?.countervalue || 1;
 
   const { t } = useTranslation('dashboard');
   const currencyFormatter = useLocalizedCurrencyFormatter();
@@ -164,13 +157,14 @@ export const MinerPaymentsList: React.FC<{
         </Button>
       </HeaderSplit>
       <DynamicList
+        isLoading={isLoading}
         onRowClick={handleRowClick}
         pagination={{
           currentPage,
           setCurrentPage,
           totalPages,
         }}
-        data={paymentsData}
+        data={minerPayments?.data || []}
         columns={[
           {
             title: '#',

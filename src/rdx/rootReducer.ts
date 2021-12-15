@@ -3,7 +3,6 @@ import { combineReducers, Reducer } from 'redux';
 import * as localSettings from 'src/rdx/localSettings/localSettings.reducer';
 import * as minerHeaderStats from 'src/rdx/minerHeaderStats/minerHeaderStats.reducer';
 import * as minerDetails from 'src/rdx/minerDetails/minerDetails.reducer';
-import * as minerPayments from 'src/rdx/minerPayments/minerPayments.reducer';
 import * as snacks from 'src/rdx/snacks/snacks.reducer';
 import * as poolStats from 'src/rdx/poolStats/poolStats.reducer';
 import * as addressSearch from 'src/rdx/addressSearch/addressSearch.reducer';
@@ -13,7 +12,6 @@ export const defaultReduxState = {
   localSettings: localSettings.defaultState,
   minerHeaderStats: minerHeaderStats.defaultState,
   minerDetails: minerDetails.defaultState,
-  minerPayments: minerPayments.defaultState,
   snacks: snacks.defaultState,
   poolStats: poolStats.defaultState,
   addressSearch: addressSearch.initialState,
@@ -23,7 +21,6 @@ const combinedReducer = combineReducers({
   localSettings: localSettings.reducer,
   minerHeaderStats: minerHeaderStats.reducer,
   minerDetails: minerDetails.reducer,
-  minerPayments: minerPayments.reducer,
   snacks: snacks.reducer,
   poolStats: poolStats.reducer,
   addressSearch: addressSearch.reducer,
