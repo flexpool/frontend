@@ -18,23 +18,13 @@ import { clx } from 'src/utils/clx';
 import { useTranslation } from 'next-i18next';
 import MobileDrawer from './MobileDrawer';
 
-import LogoSvg from '../../../../public/svg/logo.svg';
-import LogoDarkSvg from '../../../../public/svg/logo-dark.svg';
 import { useAppTheme } from '@/rdx/localSettings/localSettings.hooks';
 
-const Logo = styled(LogoSvg)`
+const Logo = styled.div`
   width: 165px;
 `;
 
-const LogoMobile = styled(LogoSvg)`
-  width: 141px;
-`;
-
-const LogoDark = styled(LogoDarkSvg)`
-  width: 165px;
-`;
-
-const LogoDarkMobile = styled(LogoDarkSvg)`
+const LogoMobile = styled.div`
   width: 141px;
 `;
 
@@ -142,9 +132,6 @@ const NavBar: React.FC<NavBarType> = (props) => {
   const { t } = useTranslation(['home', 'common']);
   const appTheme = useAppTheme();
 
-  const SelectedLogo = appTheme === 'dark' ? LogoDark : Logo;
-  const SelectedLogoMobile = appTheme === 'dark' ? LogoDarkMobile : LogoMobile;
-
   return (
     <>
       <Modal
@@ -174,7 +161,7 @@ const NavBar: React.FC<NavBarType> = (props) => {
           <NavSection>
             <Link href="/" passHref>
               <NLink style={{ marginLeft: '-0.5rem' }}>
-                <SelectedLogo />
+                <Logo className="logo-img" />
               </NLink>
             </Link>
             <Link href="/statistics" passHref>
@@ -212,7 +199,7 @@ const NavBar: React.FC<NavBarType> = (props) => {
         <NavContainer>
           <Link href="/" aria-label="Home page">
             <a>
-              <SelectedLogoMobile />
+              <LogoMobile className="logo-img" />
             </a>
           </Link>
           <NavSection>

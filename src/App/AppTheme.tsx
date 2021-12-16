@@ -50,6 +50,8 @@ export const AppTheme = () => {
     --code-constant: #79c0ff;
     --code-string: #a5d6ff;
     --code-number: #79c0ff;
+
+    --logo-url: url('/svg/logo-dark.svg');
     }
 
     svg tspan {
