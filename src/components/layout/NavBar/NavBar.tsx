@@ -18,18 +18,14 @@ import { clx } from 'src/utils/clx';
 import { useTranslation } from 'next-i18next';
 import MobileDrawer from './MobileDrawer';
 
-import LogoSvg from '../../../../public/svg/logo.svg';
+import { useAppTheme } from '@/rdx/localSettings/localSettings.hooks';
 
-const Logo = styled(LogoSvg)`
-  height: 29px;
+const Logo = styled.div`
   width: 165px;
-  fill: var(--text-primary);
 `;
 
-const LogoMobile = styled(LogoSvg)`
-  height: 25px;
+const LogoMobile = styled.div`
   width: 141px;
-  fill: var(--text-primary);
 `;
 
 const NLink = styled.a`
@@ -134,6 +130,7 @@ const NavBar: React.FC<NavBarType> = (props) => {
   const openState = useBoolState();
   const modalSearchOpenState = useOpenState();
   const { t } = useTranslation(['home', 'common']);
+  const appTheme = useAppTheme();
 
   return (
     <>
@@ -164,7 +161,7 @@ const NavBar: React.FC<NavBarType> = (props) => {
           <NavSection>
             <Link href="/" passHref>
               <NLink style={{ marginLeft: '-0.5rem' }}>
-                <Logo />
+                <Logo className="logo-img" />
               </NLink>
             </Link>
             <Link href="/statistics" passHref>
@@ -201,9 +198,7 @@ const NavBar: React.FC<NavBarType> = (props) => {
       <ContainerMobile>
         <NavContainer>
           <Link href="/" aria-label="Home page">
-            <a>
-              <LogoMobile />
-            </a>
+            <LogoMobile className="logo-img" />
           </Link>
           <NavSection>
             <Link href="/statistics" passHref>
