@@ -198,9 +198,7 @@ const NavBar: React.FC<NavBarType> = (props) => {
       <ContainerMobile>
         <NavContainer>
           <Link href="/" aria-label="Home page">
-            <a>
-              <LogoMobile className="logo-img" />
-            </a>
+            <LogoMobile className="logo-img" />
           </Link>
           <NavSection>
             <Link href="/statistics" passHref>
