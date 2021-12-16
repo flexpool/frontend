@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'next-i18next';
 import { FaDownload } from 'react-icons/fa';
 import { Button } from 'src/components/Button';
@@ -10,6 +10,7 @@ import { getOsLogoUrl } from 'src/utils/staticImage.utils';
 import styled from 'styled-components';
 import { GpuHardwareDetails } from '../mineableCoinList';
 import { MinerCommand } from './MinerCommand';
+import useCheckUserRegion from '@/hooks/useCheckUserRegion';
 
 const MinerHeader = styled.div`
   display: flex;
@@ -79,8 +80,35 @@ export const MinerCommandSection: React.FC<{
   data: GpuHardwareDetails[] | null;
 }> = ({ data }) => {
   const { t } = useTranslation('get-started');
+  const isChinaRegion = useCheckUserRegion('zh');
 
-  if (data === null) {
+  const minerMeta = useMemo(() => {
+    if (data === null) return null;
+
+    // Region specific commands
+    if (isChinaRegion)
+      return data.map((item) => {
+        if (item.title === 'TeamRedMiner') {
+          return {
+            ...item,
+            cmd: `${item.cmd} --dns_https=https://1.1.1.1/dns-query --dns_https_sni flexpool.ca`,
+          };
+        }
+
+        if (item.title === 'T-Rex Miner') {
+          return {
+            ...item,
+            cmd: `${item.cmd} --dns-https-server 1.1.1.1 --no-sni`,
+          };
+        }
+
+        return item;
+      });
+
+    return data;
+  }, [isChinaRegion, data]);
+
+  if (minerMeta === null) {
     return null;
   }
 
@@ -90,7 +118,7 @@ export const MinerCommandSection: React.FC<{
         <Highlight>#4</Highlight> {t('detail.software.title')}
       </h2>
       <SoftwareWrapper>
-        {data.map((miner) => (
+        {minerMeta.map((miner) => (
           <Card key={miner.key}>
             <CardBody>
               <MinerHeader>
