@@ -1,9 +1,7 @@
 import React, { useRef } from 'react';
 
-import {
-  useActiveCoin,
-  useAppTheme,
-} from 'src/rdx/localSettings/localSettings.hooks';
+import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
+import { useThemeMode } from '@/context/ThemeModeProvider';
 import usePoolHashrateChartQuery from '@/hooks/usePoolHashrateChartQuery';
 import {
   ChartContainer,
@@ -42,7 +40,7 @@ const PoolHashrateChart = () => {
     coin: activeCoin?.ticker,
   });
 
-  const appTheme = useAppTheme();
+  const { color: themeColor } = useThemeMode();
 
   React.useLayoutEffect(() => {
     if (poolHashrateChart) {
@@ -52,7 +50,7 @@ const PoolHashrateChart = () => {
       x.responsive.useDefault = false;
       x.responsive.rules.push(responsiveRule);
 
-      x.colors.list = [color(appTheme === 'dark' ? '#aaa' : '#000000')];
+      x.colors.list = [color(themeColor === 'dark' ? '#aaa' : '#000000')];
 
       const data: HashrateChartDataItem[] = [];
 
@@ -151,7 +149,7 @@ const PoolHashrateChart = () => {
         x.dispose();
       };
     }
-  }, [poolHashrateChart, appTheme, t, activeCoin]);
+  }, [poolHashrateChart, themeColor, t, activeCoin]);
 
   return (
     <ChartContainer

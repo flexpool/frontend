@@ -79,10 +79,74 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#ffffff" />
         </Head>
         <body>
+          <ThemeControlScript />
           <Main />
           <NextScript />
         </body>
       </Html>
     );
   }
+}
+
+const themeControlScript = () => {
+  const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function setMode(mode) {
+    window.__mode = mode;
+
+    if (mode !== 'system') {
+      setColor(mode);
+    } else {
+      setColor(darkQuery.matches ? 'dark' : 'light');
+    }
+
+    window.__onThemeChange(mode);
+  }
+
+  function setColor(color) {
+    document.body.className = color; // "dark" or "light"
+    window.__color = color;
+    window.__onColorChange(color);
+  }
+
+  // this will be overwritten in our React component
+  window.__onThemeChange = function () {};
+
+  window.__onColorChange = function () {};
+
+  window.__setPreferredMode = function (mode) {
+    setMode(mode);
+    try {
+      localStorage.setItem('mode', JSON.stringify(window.__mode));
+    } catch (err) {}
+  };
+
+  let preferredMode;
+
+  try {
+    preferredMode = JSON.parse(localStorage.getItem('mode'));
+
+    if (!preferredMode) {
+      // Add backward compatibility for legacy theme mode logic
+      const appState = JSON.parse(localStorage.getItem('app_state'));
+
+      if (appState) {
+        preferredMode = appState?.localSettings?.colorMode;
+      }
+    }
+  } catch (err) {}
+
+  setMode(preferredMode || 'system');
+
+  darkQuery.addEventListener('change', function (event) {
+    if (window.__mode === 'system') {
+      setColor(event.matches ? 'dark' : 'light');
+    }
+  });
+};
+
+function ThemeControlScript() {
+  const scriptFn = `(${String(themeControlScript)})()`;
+
+  return <script dangerouslySetInnerHTML={{ __html: scriptFn }} />;
 }

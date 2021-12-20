@@ -1,12 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
-import { useDispatch } from 'react-redux';
-import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
-import { LocalSettingsState } from 'src/rdx/localSettings/localSettings.reducer';
-import { useReduxState } from 'src/rdx/useReduxState';
 import styled from 'styled-components';
-import { Select } from './Form/Select/Select';
 import DownshiftSelect from '@/components/Form/DownshiftSelect';
+import { useThemeMode } from '@/context/ThemeModeProvider';
 
 const Circle = styled.div`
   height: 20px;
@@ -21,7 +17,7 @@ const CircleLight = styled(Circle)`
   background: #ccc;
 `;
 const CircleDark = styled(Circle)`
-  background: #444;
+  background: #444 !important;
 `;
 const CircleSystem = styled(Circle)`
   background: #444;
@@ -33,64 +29,9 @@ const OptionWrapper = styled.div`
   align-items: center;
 `;
 
-/**
- * @deprecated A new implementation with Downshift is available
- */
-export const SelectTheme = () => {
-  const localSettings = useReduxState('localSettings');
-  const d = useDispatch();
-  const { t } = useTranslation('common');
-
-  const handleTickerChange = React.useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
-      d(
-        localSettingsSet({
-          colorMode: (e.target as HTMLButtonElement)
-            .value as LocalSettingsState['colorMode'],
-        })
-      );
-    },
-    [d]
-  );
-
-  return (
-    <Select
-      value={localSettings.colorMode}
-      onChange={handleTickerChange}
-      options={[
-        {
-          label: (
-            <OptionWrapper>
-              <CircleSystem /> {t('theme.default')}
-            </OptionWrapper>
-          ),
-          value: 'system',
-        },
-        {
-          label: (
-            <OptionWrapper>
-              <CircleDark /> {t('theme.dark')}
-            </OptionWrapper>
-          ),
-          value: 'dark',
-        },
-        {
-          label: (
-            <OptionWrapper>
-              <CircleLight /> {t('theme.light')}
-            </OptionWrapper>
-          ),
-          value: 'light',
-        },
-      ]}
-    />
-  );
-};
-
 export const NewSelectTheme = () => {
   const { t } = useTranslation('common');
-  const localSettings = useReduxState('localSettings');
-  const d = useDispatch();
+  const { mode, change, color } = useThemeMode();
 
   const items = React.useMemo(
     () => [
@@ -122,19 +63,16 @@ export const NewSelectTheme = () => {
     [t]
   );
 
+  if (typeof mode === 'undefined') return null;
+
   return (
     <DownshiftSelect
       initialSelectedItem={
-        items.find((item) => item.value === localSettings.colorMode) || items[0]
+        items.find((item) => item.value === mode) || items[0]
       }
-      onSelectedItemChange={(changes) => {
-        d(
-          localSettingsSet({
-            colorMode: changes.selectedItem
-              ?.value as LocalSettingsState['colorMode'],
-          })
-        );
-      }}
+      onSelectedItemChange={(changes) =>
+        change((changes.selectedItem?.value as any) || 'light')
+      }
       items={items}
     />
   );

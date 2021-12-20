@@ -18,8 +18,6 @@ import { clx } from 'src/utils/clx';
 import { useTranslation } from 'next-i18next';
 import MobileDrawer from './MobileDrawer';
 
-import { useAppTheme } from '@/rdx/localSettings/localSettings.hooks';
-
 const Logo = styled.div`
   width: 165px;
 `;
@@ -130,7 +128,6 @@ const NavBar: React.FC<NavBarType> = (props) => {
   const openState = useBoolState();
   const modalSearchOpenState = useOpenState();
   const { t } = useTranslation(['home', 'common']);
-  const appTheme = useAppTheme();
 
   return (
     <>
