@@ -54,7 +54,7 @@ body {
 
   --logo-url: url('/svg/logo.svg');
 
-  @media (prefers-color-scheme: dark) {
+  &.dark {
     --bg-primary: #151519;
     --bg-secondary: #1c1c1f;
     --border-color: #333;
@@ -62,9 +62,6 @@ body {
     --text-primary: #eee;
     --overlay: rgba(0, 0, 0, 0.5);
     --bad-luck-color: #bbb;
-
-    // ! Don't forget to edit the values in src/App/AppTheme.tsx
-    // ! too for the dark theme to work
 
     --code-comment: #8b949e;
     --code-keyword: #ff7b72;

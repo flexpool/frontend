@@ -37,6 +37,9 @@ export const useCounterTicker = () => {
   return localSettingsState.counterTicker;
 };
 
+/**
+ * @deprecated This method is deprecated and will be removed in the future.
+ */
 export const useAppTheme = () => {
   const localSettingsState = useReduxState('localSettings');
 

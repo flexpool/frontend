@@ -20,3 +20,13 @@ declare module 'styled-components' {
 }
 
 declare module '*.jpg';
+
+export declare global {
+  interface Window {
+    __setPreferredMode: (theme: 'dark' | 'light' | 'system') => void;
+    __onThemeChange: any;
+    __onColorChange: any;
+    __color: string;
+    __mode: string;
+  }
+}

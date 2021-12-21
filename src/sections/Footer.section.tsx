@@ -12,7 +12,7 @@ import {
   FaGithub,
 } from 'react-icons/fa';
 import { NewSelectCounterTicker } from 'src/components/SelectCounterTicker';
-import { NewSelectTheme, SelectTheme } from 'src/components/SelectTheme';
+import { NewSelectTheme } from 'src/components/SelectTheme';
 import { Spacer } from 'src/components/layout/Spacer';
 
 import {

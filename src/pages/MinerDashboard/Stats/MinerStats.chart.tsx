@@ -6,10 +6,8 @@ import {
   ChartContainer,
   responsiveRule,
 } from 'src/components/Chart/ChartContainer';
-import {
-  useActiveCoin,
-  useAppTheme,
-} from 'src/rdx/localSettings/localSettings.hooks';
+import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
+import { useThemeMode } from '@/context/ThemeModeProvider';
 
 import {
   color,
@@ -67,7 +65,9 @@ export const StatsChart: React.FC<{
   const activeCoin = useActiveCoin();
 
   const worker = useActiveSearchParamWorker();
-  const appTheme = useAppTheme();
+
+  const { color: themeColor } = useThemeMode();
+
   useEffect(() => {
     if (sharesData && hashrateData) {
       let hashrateChart = create('hashrate-chart', XYChart);
@@ -77,7 +77,7 @@ export const StatsChart: React.FC<{
       hashrateChart.responsive.rules.push(responsiveRule);
 
       hashrateChart.colors.list = [
-        color(appTheme === 'dark' ? '#aaa' : '#000000'),
+        color(themeColor === 'dark' ? '#aaa' : '#000000'),
         color('#0069ff'),
         color('#15cd72'),
       ];
@@ -206,7 +206,7 @@ export const StatsChart: React.FC<{
         sharesChart.dispose();
       };
     }
-  }, [appTheme, sharesData, hashrateData, t, activeCoin]);
+  }, [themeColor, sharesData, hashrateData, t, activeCoin]);
 
   useEffect(() => {
     if (props.coinTicker === null) return;

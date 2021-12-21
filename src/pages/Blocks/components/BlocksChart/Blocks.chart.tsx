@@ -3,8 +3,8 @@ import React from 'react';
 import {
   useActiveCoin,
   useActiveCoinTicker,
-  useAppTheme,
 } from 'src/rdx/localSettings/localSettings.hooks';
+import { useThemeMode } from '@/context/ThemeModeProvider';
 import { useDispatch } from 'react-redux';
 import { useReduxState } from 'src/rdx/useReduxState';
 import {
@@ -38,7 +38,7 @@ export const BlocksChart = () => {
     d(blocksChartGet(activeCoinTicker));
   }, [activeCoinTicker, d]);
 
-  const appTheme = useAppTheme();
+  const { color: themeColor } = useThemeMode();
 
   React.useEffect(() => {
     if (blocksChartState.data == null) {
@@ -164,7 +164,7 @@ export const BlocksChart = () => {
       scrollbarX.series.push(difficultySeries);
       scrollbarX.strokeWidth = 0;
       scrollbarX.marginBottom = 40;
-      if (appTheme === 'dark') {
+      if (themeColor === 'dark') {
         scrollbarX.background.fill = color('rgba(255,255,255,0.15)');
         scrollbarX.unselectedOverlay.fill = color('rgba(0,0,0,0.5)');
       } else {
@@ -198,7 +198,7 @@ export const BlocksChart = () => {
         x.dispose();
       };
     }
-  }, [blocksChartState.data, appTheme, t, activeCoin]);
+  }, [blocksChartState.data, themeColor, t, activeCoin]);
 
   return (
     <ChartContainer dataState={blocksChartState} title={t('chart.title')}>

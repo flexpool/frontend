@@ -4,8 +4,8 @@ import { fetchApi } from 'src/utils/fetchApi';
 import {
   useActiveCoin,
   useActiveCoinTicker,
-  useAppTheme,
 } from 'src/rdx/localSettings/localSettings.hooks';
+import { useThemeMode } from '@/context/ThemeModeProvider';
 import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import { ChartContainer } from 'src/components/Chart/ChartContainer';
 import { useAsyncState } from 'src/hooks/useAsyncState';
@@ -38,7 +38,7 @@ type Distribution = {
 export const MinersDistributionChart = () => {
   const coinTicker = useActiveCoinTicker();
   const dataState = useAsyncState<Distribution>('distrubutionState', []);
-  const appTheme = useAppTheme();
+  const { color: themeColor } = useThemeMode();
   const siFormatter = useLocalizedSiFormatter();
   const { t } = useTranslation('miners');
   const activeCoin = useActiveCoin();
@@ -84,7 +84,7 @@ export const MinersDistributionChart = () => {
 
       var pieSeries = chartDistribution.series.push(new PieSeries());
       pieSeries.colors.list =
-        appTheme === 'light' ? colorListLight : colorListDark;
+        themeColor === 'light' ? colorListLight : colorListDark;
       pieSeries.dataFields.value = 'hashrate';
       pieSeries.dataFields.category = 'name';
       pieSeries.slices.template.tooltipText =
@@ -92,7 +92,7 @@ export const MinersDistributionChart = () => {
         activeCoin?.hashrateUnit +
         `")}`;
       pieSeries.slices.template.stroke = color(
-        appTheme === 'light' ? '#fff' : '#151519'
+        themeColor === 'light' ? '#fff' : '#151519'
       );
       pieSeries.slices.template.strokeWidth = 2;
       pieSeries.slices.template.strokeOpacity = 1;
@@ -105,7 +105,7 @@ export const MinersDistributionChart = () => {
         chartDistribution.dispose();
       };
     }
-  }, [data, appTheme, activeCoin]);
+  }, [data, themeColor, activeCoin]);
 
   return (
     <>
