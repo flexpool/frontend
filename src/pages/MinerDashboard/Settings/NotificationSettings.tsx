@@ -10,6 +10,7 @@ import { TextField } from 'src/components/Form/TextInput';
 import { Spacer } from 'src/components/layout/Spacer';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import { minerDetailsUpdateNotificationSettings } from 'src/rdx/minerDetails/minerDetails.actions';
+import useClientIPQuery from '@/hooks/useClientIPQuery';
 import { useReduxState } from 'src/rdx/useReduxState';
 
 export const NotificationSettings: React.FC<{
@@ -19,6 +20,8 @@ export const NotificationSettings: React.FC<{
   const minerSettings = useReduxState('minerDetails');
   const d = useDispatch();
   const { t } = useTranslation(['common', 'dashboard']);
+
+  const { data: clientIP } = useClientIPQuery();
 
   function validateEmail(email) {
     const re =
@@ -130,8 +133,7 @@ export const NotificationSettings: React.FC<{
                 placeholder={minerSettings.data!.ipAddress}
                 desc={
                   <p>
-                    {t('dashboard:settings.ip_hint')}{' '}
-                    <b>{minerSettings.data!.clientIPAddress}</b>.
+                    {t('dashboard:settings.ip_hint')} <b>{clientIP}</b>.
                   </p>
                 }
               />
