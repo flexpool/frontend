@@ -9,7 +9,6 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Content } from 'src/components/layout/Content';
 import { Page, PageLoading } from 'src/components/layout/Page';
 
-import { useFetchMinerDetails } from '@/rdx/minerDetails/minerDetails.hooks';
 import { useFetchMinerHeaderStats } from '@/rdx/minerHeaderStats/minerHeaderStats.hooks';
 import {
   useActiveCoin,
@@ -123,10 +122,6 @@ export const MinerDashboardPageContent: React.FC<{
     address,
     counterTicker
   );
-  const { refetch: refetchMinerDetails } = useFetchMinerDetails(
-    coinTicker,
-    address
-  );
 
   const [tabIndex, setTabIndex] = useState(0);
   const tabs = {
@@ -138,15 +133,15 @@ export const MinerDashboardPageContent: React.FC<{
 
   const loadAll = React.useCallback(() => {
     return Promise.all([
-      refetchMinerDetails(),
+      queryClient.invalidateQueries(['/miner/details', { address }]),
       queryClient.invalidateQueries('/miner/workers'),
       queryClient.invalidateQueries('/miner/rewards'),
       queryClient.invalidateQueries(['/miner/chart', { address }]),
       queryClient.invalidateQueries('/miner/stats'),
       refetchMinerHeaderStats(),
-      new Promise((resolve) => setTimeout(() => resolve(true), 1500)),
+      new Promise((resolve) => setTimeout(() => resolve(true), 1500)), // keep the loader animation to at least 1.5s
     ]);
-  }, [refetchMinerDetails, refetchMinerHeaderStats, queryClient, address]);
+  }, [refetchMinerHeaderStats, queryClient, address]);
 
   const loadSelectedTabFromHash = (tabHash: string) => {
     setTabIndex(tabs[tabHash]);
@@ -160,6 +155,9 @@ export const MinerDashboardPageContent: React.FC<{
     return selectedHash;
   };
 
+  // This forces local setting of active coin to be updated,
+  // active coin ticker is then being used in various places within
+  // the dashboard
   useEffect(() => {
     if (
       poolCoins &&
@@ -206,7 +204,7 @@ export const MinerDashboardPageContent: React.FC<{
               onRefresh={loadAll}
             />
             <Spacer />
-            <MinerDetails coin={activeCoin} />
+            <MinerDetails coin={activeCoin} address={address} />
             <HeaderStats coin={coinTicker} address={address} />
           </Content>
           <Tabs

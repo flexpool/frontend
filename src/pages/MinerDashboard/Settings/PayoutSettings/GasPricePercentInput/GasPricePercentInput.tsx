@@ -2,7 +2,6 @@ import { useFormikContext } from 'formik';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 import { TextField } from '@/components/Form/TextInput';
-import { useReduxState } from '@/rdx/useReduxState';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { useFeePayoutLimitDetails } from '@/hooks/useFeePayoutDetails';
 import { get } from 'lodash';
@@ -41,18 +40,20 @@ export const PercentageDisplaySpan = styled.span<{ color?: string }>`
 `;
 
 type GasPricePercentInputProps = {
+  address: string;
   onToggle: () => void;
 };
 
-const GasPricePercentInput = ({ onToggle }: GasPricePercentInputProps) => {
+const GasPricePercentInput = ({
+  onToggle,
+  address,
+}: GasPricePercentInputProps) => {
   const { values } = useFormikContext();
   const { t } = useTranslation(['common']);
   const activeCoinTicker = useActiveCoinTicker();
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
-  const minerHeaderStats = useReduxState('minerHeaderStats');
-  const minerSettings = useReduxState('minerDetails');
 
-  if (!feeDetails || !minerHeaderStats || !minerSettings) return null;
+  if (!feeDetails) return null;
 
   return (
     <TextField
@@ -72,7 +73,7 @@ const GasPricePercentInput = ({ onToggle }: GasPricePercentInputProps) => {
       desc={
         <p>
           {Number(get(values, 'maxFeePricePercent')) > 0 ? (
-            <Description />
+            <Description address={address} />
           ) : (
             t('dashboard:settings.payout.gas_limit_zero')
           )}

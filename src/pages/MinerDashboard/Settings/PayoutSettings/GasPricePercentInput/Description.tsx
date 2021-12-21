@@ -3,6 +3,7 @@ import { useFormikContext } from 'formik';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 import { useReduxState } from '@/rdx/useReduxState';
+import useMinerDetailsQuery from '@/hooks/useMinerDetailsQuery';
 import {
   useActiveCoin,
   useActiveCoinTicker,
@@ -24,7 +25,7 @@ export const PercentageDisplaySpan = styled.span<{ color?: string }>`
       `}
 `;
 
-const Description = () => {
+const Description = ({ address }: { address: string }) => {
   const { t } = useTranslation(['common']);
   const { values } = useFormikContext();
   const activeCoin = useActiveCoin();
@@ -32,24 +33,21 @@ const Description = () => {
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
   const currencyFormatter = useLocalizedCurrencyFormatter();
   const minerHeaderStats = useReduxState('minerHeaderStats');
-  const minerSettings = useReduxState('minerDetails');
+  const { data: minerDetails } = useMinerDetailsQuery({ coin: 'eth', address });
 
   const maxFeePricePercent = useMemo(
     () => Number(get(values, 'maxFeePricePercent')),
     [values]
   );
 
-  if (!activeCoin || !feeDetails || !minerSettings) return null;
+  if (!activeCoin || !feeDetails || !minerDetails) return null;
 
   const description = t('dashboard:settings.payout.gas_limit_desc', {
     value: Math.round(
       ((maxFeePricePercent / 100) *
         Math.pow(10, activeCoin.decimalPlaces) *
         Number(
-          minerSettings &&
-            minerSettings.data &&
-            minerSettings.data.payoutLimit /
-              Math.pow(10, activeCoin.decimalPlaces)
+          minerDetails.payoutLimit / Math.pow(10, activeCoin.decimalPlaces)
         )) /
         activeCoin.transactionSize /
         feeDetails.multiplier
@@ -60,10 +58,7 @@ const Description = () => {
         ((maxFeePricePercent / 100) *
           Math.pow(10, activeCoin.decimalPlaces) *
           Number(
-            minerSettings &&
-              minerSettings.data &&
-              minerSettings.data.payoutLimit /
-                Math.pow(10, activeCoin.decimalPlaces)
+            minerDetails.payoutLimit / Math.pow(10, activeCoin.decimalPlaces)
           )) /
           activeCoin.transactionSize /
           feeDetails.multiplier

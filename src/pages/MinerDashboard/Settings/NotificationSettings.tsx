@@ -1,7 +1,6 @@
 import { Form, Formik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'next-i18next';
-import { useDispatch } from 'react-redux';
 import { CheckboxField } from 'src/components/Form/Checkbox';
 import { ErrorBox } from 'src/components/Form/ErrorBox';
 import { FieldGroup } from 'src/components/Form/FieldGroup';
@@ -9,17 +8,22 @@ import { Submit } from 'src/components/Form/Submit';
 import { TextField } from 'src/components/Form/TextInput';
 import { Spacer } from 'src/components/layout/Spacer';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
-import { minerDetailsUpdateNotificationSettings } from 'src/rdx/minerDetails/minerDetails.actions';
 import useClientIPQuery from '@/hooks/useClientIPQuery';
-import { useReduxState } from 'src/rdx/useReduxState';
+import useMinerDetailsQuery from '@/hooks/useMinerDetailsQuery';
+import useUpdateNotificationSettings from '@/hooks/useUpdateNotificationSettings';
 
 export const NotificationSettings: React.FC<{
   address: string;
 }> = ({ address }) => {
   const activeCoin = useActiveCoin();
-  const minerSettings = useReduxState('minerDetails');
-  const d = useDispatch();
   const { t } = useTranslation(['common', 'dashboard']);
+  const { data: minerDetails } = useMinerDetailsQuery({
+    coin: activeCoin?.ticker,
+    address,
+  });
+
+  const { mutateAsync, error: notificationSettingsError } =
+    useUpdateNotificationSettings();
 
   const { data: clientIP } = useClientIPQuery();
 
@@ -29,7 +33,7 @@ export const NotificationSettings: React.FC<{
     return re.test(String(email).toLowerCase());
   }
 
-  if (!minerSettings.data || !activeCoin) {
+  if (!minerDetails || !activeCoin) {
     return null;
   }
 
@@ -69,24 +73,21 @@ export const NotificationSettings: React.FC<{
               ipAddress: data.ipAddress,
             };
 
-        return d(
-          minerDetailsUpdateNotificationSettings(
-            activeCoin.ticker,
-            address,
-            payload
-          )
-        );
+        return mutateAsync({
+          coin: activeCoin.ticker,
+          address,
+          ...payload,
+        });
       }}
       initialValues={{
         ipAddress: '',
-        emailEnabled: !!minerSettings.data.notifications?.email,
+        emailEnabled: !!minerDetails.notifications?.email,
         email: '',
         paymentNotifications:
-          minerSettings.data.notificationPreferences?.payoutNotifications ||
-          true,
+          minerDetails.notificationPreferences?.payoutNotifications || true,
         workersOfflineNotifications:
-          minerSettings.data.notificationPreferences
-            ?.workersOfflineNotifications || true,
+          minerDetails.notificationPreferences?.workersOfflineNotifications ||
+          true,
       }}
       validateOnChange={true}
       validate={validate}
@@ -96,7 +97,7 @@ export const NotificationSettings: React.FC<{
           <Form>
             <FieldGroup.V>
               <h3>Email notifications</h3>
-              <ErrorBox error={minerSettings.error} />
+              <ErrorBox error={notificationSettingsError} />
               <CheckboxField
                 label={
                   values.emailEnabled
@@ -110,7 +111,7 @@ export const NotificationSettings: React.FC<{
                 label={t('dashboard:settings.notifications.send_to')}
                 type="email"
                 placeholder={
-                  minerSettings.data?.notifications?.email ||
+                  minerDetails.notifications?.email ||
                   t('dashboard:settings.notifications.send_to_placeholder')
                 }
                 disabled={!values.emailEnabled}
@@ -130,7 +131,7 @@ export const NotificationSettings: React.FC<{
               <TextField
                 name="ipAddress"
                 label={t('dashboard:settings.ip')}
-                placeholder={minerSettings.data!.ipAddress}
+                placeholder={minerDetails.ipAddress}
                 desc={
                   <p>
                     {t('dashboard:settings.ip_hint')} <b>{clientIP}</b>.

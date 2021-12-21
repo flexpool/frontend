@@ -12,8 +12,8 @@ import {
 } from 'src/rdx/localSettings/localSettings.hooks';
 import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
 import useClientIPQuery from '@/hooks/useClientIPQuery';
-import { minerDetailsUpdatePayoutSettings } from 'src/rdx/minerDetails/minerDetails.actions';
-import { minerDetailsGet } from 'src/rdx/minerDetails/minerDetails.actions';
+import useMinerDetailsQuery from '@/hooks/useMinerDetailsQuery';
+import useUpdatePayoutSettings from '@/hooks/useUpdatePayoutSettings';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { useTranslation } from 'next-i18next';
 import { useLocalizedNumberFormatter } from 'src/utils/si.utils';
@@ -37,22 +37,22 @@ export const PayoutSettings: React.FC<{
 }> = ({ address }) => {
   const activeCoinTicker = useActiveCoinTicker();
   const activeCoin = useActiveCoin();
-  const minerSettings = useReduxState('minerDetails');
   const minerHeaderStats = useReduxState('minerHeaderStats');
   const { t } = useTranslation(['common']);
   const numberFormatter = useLocalizedNumberFormatter();
-  const d = useDispatch();
+
+  const { data: minerDetails } = useMinerDetailsQuery({
+    coin: activeCoinTicker,
+    address,
+  });
+
+  const { mutateAsync, error } = useUpdatePayoutSettings();
 
   const { data: clientIP } = useClientIPQuery();
 
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
   const [gweiToggle, setGweiToggle] = React.useState(true);
-  if (
-    !minerSettings.data ||
-    !activeCoin ||
-    !feeDetails ||
-    !minerHeaderStats.data
-  ) {
+  if (!minerDetails || !activeCoin || !feeDetails || !minerHeaderStats.data) {
     return null;
   }
 
@@ -102,58 +102,50 @@ export const PayoutSettings: React.FC<{
   return (
     <Formik
       onSubmit={async (data) => {
-        return Promise.all([
-          d(
-            minerDetailsUpdatePayoutSettings(activeCoin.ticker, address, {
-              payoutLimit:
-                Number(data.payoutLimit) *
-                Math.pow(10, activeCoin.decimalPlaces),
-              maxFeePrice: gweiToggle
-                ? Number(data.maxFeePrice)
-                : Math.round(
-                    ((Number(data.maxFeePricePercent) / 100) *
-                      Math.pow(10, activeCoin.decimalPlaces) *
-                      Number(
-                        minerSettings &&
-                          minerSettings.data &&
-                          minerSettings.data.payoutLimit /
-                            Math.pow(10, activeCoin.decimalPlaces)
-                      )) /
-                      activeCoin.transactionSize /
-                      feeDetails.multiplier
-                  ),
-              ipAddress: data.ip,
-              network: data.network,
-            })
-          ),
-        ]).then(() => {
-          d(minerDetailsGet(activeCoin.ticker, address));
+        return mutateAsync({
+          address: address,
+          coin: activeCoin.ticker,
+          payoutLimit:
+            Number(data.payoutLimit) * Math.pow(10, activeCoin.decimalPlaces),
+          maxFeePrice: gweiToggle
+            ? Number(data.maxFeePrice)
+            : Math.round(
+                ((Number(data.maxFeePricePercent) / 100) *
+                  Math.pow(10, activeCoin.decimalPlaces) *
+                  Number(
+                    minerDetails.payoutLimit /
+                      Math.pow(10, activeCoin.decimalPlaces)
+                  )) /
+                  activeCoin.transactionSize /
+                  feeDetails.multiplier
+              ),
+          ipAddress: data.ip,
+          network: data.network,
         });
       }}
       initialValues={{
-        maxFeePrice: `${minerSettings.data.maxFeePrice}`,
+        maxFeePrice: `${minerDetails.maxFeePrice}`,
         maxFeePricePercent: numberFormatter(
-          ((Number(minerSettings.data.maxFeePrice) *
+          ((Number(minerDetails.maxFeePrice) *
             activeCoin.transactionSize *
             feeDetails.multiplier) /
             Math.pow(10, activeCoin.decimalPlaces) /
             Number(
-              minerSettings.data.payoutLimit /
-                Math.pow(10, activeCoin.decimalPlaces)
+              minerDetails.payoutLimit / Math.pow(10, activeCoin.decimalPlaces)
             )) *
             100,
           { style: 'decimal', maximumFractionDigits: 6 }
         ),
         ip: '',
         payoutLimit: `${
-          minerSettings.data.payoutLimit /
-          Math.pow(10, activeCoin.decimalPlaces)
+          minerDetails.payoutLimit / Math.pow(10, activeCoin.decimalPlaces)
         }`,
-        network: minerSettings.data.network,
+        network: minerDetails.network,
         acknowledge: false,
       }}
       validateOnChange={true}
       validate={validate}
+      enableReinitialize
       // validationSchema={validationSchema}
     >
       {({ values }) => {
@@ -173,9 +165,9 @@ export const PayoutSettings: React.FC<{
                 {String(activeCoin?.ticker) === 'eth' &&
                   values.network === 'mainnet' && <PayoutWarning />}
 
-                {minerSettings.error && (
+                {error && (
                   <ScrollIntoView>
-                    <ErrorBox error={minerSettings.error} />
+                    <ErrorBox error={error} />
                   </ScrollIntoView>
                 )}
 
@@ -200,7 +192,10 @@ export const PayoutSettings: React.FC<{
                       {gweiToggle ? (
                         <GasPriceInput onToggle={toggleGwei} />
                       ) : (
-                        <GasPricePercentInput onToggle={toggleGwei} />
+                        <GasPricePercentInput
+                          onToggle={toggleGwei}
+                          address={address}
+                        />
                       )}
 
                       <Spacer size="sm" />
@@ -210,7 +205,7 @@ export const PayoutSettings: React.FC<{
                 <TextField
                   name="ip"
                   label={`${t('dashboard:settings.ip')}*`}
-                  placeholder={minerSettings.data!.ipAddress}
+                  placeholder={minerDetails.ipAddress}
                 />
                 <div>
                   <p>

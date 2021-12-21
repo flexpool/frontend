@@ -4,9 +4,9 @@ import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import styled from 'styled-components';
 import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
-import { useNetworkFeeLimit } from '@/rdx/minerDetails/minerDetails.selectors';
 import useActiveCoinNetworkFee from '@/hooks/useActiveCoinNetworkFee';
 import useMinerStatsQuery from '@/hooks/useMinerStatsQuery';
+import useMinerDetailsQuery from '@/hooks/useMinerDetailsQuery';
 import useWorkerStatus from '@/hooks/useWorkerStatus';
 import { StatItem } from 'src/components/StatItem';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
@@ -112,8 +112,19 @@ const GasWarning = styled.span`
 
 const BalanceProgressBar: React.FC<{
   value: number;
+  coin: string;
+  address: string;
   payoutInSeconds: number;
-}> = ({ value, payoutInSeconds }) => {
+  isMainnet: boolean;
+  networkFeeLimit?: number;
+}> = ({
+  value,
+  coin,
+  address,
+  payoutInSeconds,
+  isMainnet,
+  networkFeeLimit,
+}) => {
   const [progress, setProgress] = useState(0);
   React.useEffect(() => {
     setTimeout(() => {
@@ -124,21 +135,16 @@ const BalanceProgressBar: React.FC<{
   const { t } = useTranslation('dashboard');
   const numberFormatter = useLocalizedNumberFormatter();
   const dateFormatter = useLocalizedDateFormatter();
-
-  const currentNetworkFee = useActiveCoinNetworkFee();
-  const networkFeeLimit = useNetworkFeeLimit();
-
-  const minerDetails = useReduxState('minerDetails');
-
+  const currentNetworkFee = useActiveCoinNetworkFee(coin, address);
   const isPayoutDelayedByNetworkFee = React.useMemo(() => {
     return (
       // Gas fee is only considered for mainnet
-      minerDetails.data?.network === 'mainnet' &&
+      isMainnet &&
       !isNil(currentNetworkFee) &&
       !isNil(networkFeeLimit) &&
       currentNetworkFee > networkFeeLimit
     );
-  }, [minerDetails.data?.network, currentNetworkFee, networkFeeLimit]);
+  }, [isMainnet, currentNetworkFee, networkFeeLimit]);
 
   const status = React.useMemo(() => {
     if (progress === 100) {
@@ -188,7 +194,7 @@ const BalanceProgressBar: React.FC<{
         );
       }
 
-      if (minerDetails.data?.network == 'mainnet') {
+      if (isMainnet) {
         return (
           <PayoutText>{t('header.stat_unpaid_balance_reach_ok')}</PayoutText>
         );
@@ -199,13 +205,13 @@ const BalanceProgressBar: React.FC<{
       );
     }
   }, [
+    isMainnet,
     isPayoutDelayedByNetworkFee,
     payoutInSeconds,
     currentNetworkFee,
     networkFeeLimit,
     dateFormatter,
     t,
-    minerDetails.data?.network,
   ]);
 
   return (
@@ -250,11 +256,13 @@ type HeaderStatsProps = {
 export const HeaderStats = ({ coin, address }: HeaderStatsProps) => {
   const { data: minerStatsState } = useMinerStatsQuery({ coin, address });
   const minerHeaderStatsState = useReduxState('minerHeaderStats');
-  const minerDetailsState = useReduxState('minerDetails');
+  const { data: minerDetails } = useMinerDetailsQuery({
+    coin,
+    address,
+  });
   const activeCoin = useActiveCoin();
   const { data: workerStatus } = useWorkerStatus({ coin, address });
   const data = minerHeaderStatsState.data;
-  const settings = minerDetailsState.data;
 
   const { t } = useTranslation('dashboard');
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
@@ -337,10 +345,10 @@ export const HeaderStats = ({ coin, address }: HeaderStatsProps) => {
   }, [estimateInterval, setEstimateInterval]);
 
   const balanceProgress =
-    settings && data
-      ? data.balance / settings.payoutLimit > 1
+    minerDetails && data
+      ? data.balance / minerDetails.payoutLimit > 1
         ? 100
-        : (data.balance / settings.payoutLimit) * 100
+        : (data.balance / minerDetails.payoutLimit) * 100
       : null;
 
   const estimatedEarningsPerSecond =
@@ -349,7 +357,7 @@ export const HeaderStats = ({ coin, address }: HeaderStatsProps) => {
       : null;
 
   const amountToPayout =
-    settings && data ? settings.payoutLimit - data.balance : 0;
+    minerDetails && data ? minerDetails.payoutLimit - data.balance : 0;
   const amountToPayoutTimeInSeconds =
     estimatedEarningsPerSecond !== null
       ? amountToPayout / estimatedEarningsPerSecond
@@ -385,7 +393,11 @@ export const HeaderStats = ({ coin, address }: HeaderStatsProps) => {
         {balanceProgress !== null ? (
           <BalanceProgressBar
             value={balanceProgress}
+            networkFeeLimit={minerDetails?.maxFeePrice}
+            coin={coin}
+            address={address}
             payoutInSeconds={amountToPayoutTimeInSeconds}
+            isMainnet={minerDetails?.network === 'mainnet'}
           />
         ) : (
           <ProgressBarWrapper />

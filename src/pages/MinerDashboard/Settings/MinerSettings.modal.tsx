@@ -5,6 +5,8 @@ import { Button } from 'src/components/Button';
 import { ScrollArea } from 'src/components/layout/ScrollArea';
 import Modal from 'src/components/Modal/Modal';
 import { useOpenState } from 'src/hooks/useOpenState';
+import useMinerDetailsQuery from '@/hooks/useMinerDetailsQuery';
+import { ApiPoolCoin } from '@/types/PoolCoin.types';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import styled from 'styled-components';
@@ -89,23 +91,23 @@ const SettingsBtn = styled(Button)`
 `;
 
 export const MinerSettingsModal: React.FC<{
+  coin?: ApiPoolCoin;
   address: string;
   isRefreshing: boolean;
-}> = ({ address, isRefreshing }) => {
+}> = ({ address, isRefreshing, coin }) => {
   const openState = useOpenState();
   const [page, setPage] = React.useState<SettingsPageKey>('payouts');
-
   const activeCoin = useActiveCoin();
-  const minerSettings = useReduxState('minerDetails');
+  const { data: minerDetails } = useMinerDetailsQuery({
+    coin: coin?.ticker,
+    address,
+  });
   const minerHeaderStats = useReduxState('minerHeaderStats');
   const { t } = useTranslation('dashboard');
 
   // disable opening when data is not loaded
   const disabled =
-    !activeCoin ||
-    !minerSettings.data ||
-    !minerHeaderStats.data ||
-    isRefreshing;
+    !activeCoin || !minerDetails || !minerHeaderStats.data || isRefreshing;
 
   const handleChangePage = React.useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {

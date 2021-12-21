@@ -42,6 +42,10 @@ export const useLocalizedActiveCoinValueFormatter = (
   return formatter;
 };
 
+/**
+ * Returns a converter function that converts a number (coin related) to
+ * human readable format
+ */
 export const useLocalizedActiveCoinValueConverter = () => {
   const activeCoin = useActiveCoin();
 

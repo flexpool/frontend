@@ -3,7 +3,6 @@ import { useFormikContext } from 'formik';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 import { TextField } from '@/components/Form/TextInput';
-import { useReduxState } from '@/rdx/useReduxState';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { useFeePayoutLimitDetails } from '@/hooks/useFeePayoutDetails';
 import { get } from 'lodash';
@@ -37,14 +36,12 @@ const GasPriceInput = ({ onToggle }: GasPriceInputProps) => {
   const { t } = useTranslation(['common']);
   const activeCoinTicker = useActiveCoinTicker();
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
-  const minerHeaderStats = useReduxState('minerHeaderStats');
-  const minerSettings = useReduxState('minerDetails');
   const inputValue = useMemo(
     () => Number(get(values, 'maxFeePrice')),
     [values]
   );
 
-  if (!feeDetails || !minerHeaderStats || !minerSettings) return null;
+  if (!feeDetails) return null;
 
   return (
     <TextField
