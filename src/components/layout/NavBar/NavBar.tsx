@@ -14,15 +14,17 @@ import { SearchAddressCachedResult } from '@/components/SearchAddressBar/SearchA
 import { SearchAddressBar } from '@/components/SearchAddressBar/SearchAddressBar';
 import { Burger } from '@/components/Burger/Burger';
 import { clx } from 'src/utils/clx';
-
+import LogoSvg from 'public/svg/logo.svg';
 import { useTranslation } from 'next-i18next';
 import MobileDrawer from './MobileDrawer';
 
-const Logo = styled.div`
+const Logo = styled(LogoSvg)`
   width: 165px;
+  fill: var(--text-primary);
+  margin-bottom: 5px; // Remove when christmas logo is retired
 `;
 
-const LogoMobile = styled.div`
+const LogoMobile = styled(Logo)`
   width: 141px;
 `;
 
@@ -158,7 +160,7 @@ const NavBar: React.FC<NavBarType> = (props) => {
           <NavSection>
             <Link href="/" passHref>
               <NLink style={{ marginLeft: '-0.5rem' }}>
-                <Logo className="logo-img" />
+                <Logo />
               </NLink>
             </Link>
             <Link href="/statistics" passHref>
@@ -194,8 +196,8 @@ const NavBar: React.FC<NavBarType> = (props) => {
 
       <ContainerMobile>
         <NavContainer>
-          <Link href="/" aria-label="Home page">
-            <LogoMobile className="logo-img" />
+          <Link href="/" aria-label="Home page" passHref>
+            <LogoMobile />
           </Link>
           <NavSection>
             <Link href="/statistics" passHref>
