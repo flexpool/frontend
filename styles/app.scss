@@ -52,8 +52,6 @@ body {
   --code-string: #032f62;
   --code-number: #005cc5;
 
-  --logo-url: url('/svg/logo.svg');
-
   &.dark {
     --bg-primary: #151519;
     --bg-secondary: #1c1c1f;
@@ -73,8 +71,6 @@ body {
     svg tspan {
       fill: var(--text-primary);
     }
-
-    --logo-url: url('/svg/logo-dark.svg');
   }
 
   background: var(--bg-primary);
@@ -387,13 +383,4 @@ input {
 .fade-enter-active,
 .fade-exit-active {
   transition: opacity 1000ms;
-}
-
-.logo-img {
-  background-image: var(--logo-url);
-  background-image: var(--logo-url);
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 100%;
-  margin-bottom: 5px; // ! This is for Christmas logo only. Please remove when Christmas logo is retired.
 }
