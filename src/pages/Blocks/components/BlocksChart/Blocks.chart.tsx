@@ -23,7 +23,7 @@ import {
   XYChartScrollbar,
 } from 'src/plugins/amcharts';
 import { useTranslation } from 'next-i18next';
-import useBlocksChartQuery from '@/hooks/useBlocksChartQuery';
+import useBlocksChartQuery from '@/hooks/api/useBlocksChartQuery';
 
 export const BlocksChart = () => {
   const activeCoin = useActiveCoin();

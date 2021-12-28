@@ -2,7 +2,7 @@ import { useActiveCoinTicker } from '@/rdx/localSettings/localSettings.hooks';
 import { round } from 'lodash';
 import { useLocalizedActiveCoinValueConverter } from './useDisplayReward';
 import { useFeePayoutLimitDetails } from './useFeePayoutDetails';
-import useMinerDetailsQuery from './useMinerDetailsQuery';
+import useMinerDetailsQuery from '@/hooks/api/useMinerDetailsQuery';
 
 const useActiveCoinNetworkFee = (
   coin: string | undefined = undefined,

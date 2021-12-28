@@ -7,8 +7,8 @@ import { Tooltip, TooltipContent } from '@/components/Tooltip';
 import { useLocalizedSiFormatter } from '@/utils/si.utils';
 import { AverageEffectivePeriods } from './minerStats.types';
 import { useActiveCoin } from '@/rdx/localSettings/localSettings.hooks';
-import useMinerStatsQuery from '@/hooks/useMinerStatsQuery';
-import useMinerStatsChartQuery from '@/hooks/useMinerStatsChartQuery';
+import useMinerStatsQuery from '@/hooks/api/useMinerStatsQuery';
+import useMinerStatsChartQuery from '@/hooks/api/useMinerStatsChartQuery';
 import { average } from '@/utils/number.utils';
 
 const StatItemGrid = styled.div`

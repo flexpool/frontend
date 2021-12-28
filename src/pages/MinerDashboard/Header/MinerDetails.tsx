@@ -5,7 +5,7 @@ import { Skeleton } from 'src/components/layout/Skeleton';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
-import useMinerDetailsQuery from '@/hooks/useMinerDetailsQuery';
+import useMinerDetailsQuery from '@/hooks/api/useMinerDetailsQuery';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';

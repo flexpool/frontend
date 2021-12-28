@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'next-i18next';
 import { Button } from 'src/components/Button';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
-import useMinerStatsQuery from '@/hooks/useMinerStatsQuery';
+import useMinerStatsQuery from '@/hooks/api/useMinerStatsQuery';
 import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';

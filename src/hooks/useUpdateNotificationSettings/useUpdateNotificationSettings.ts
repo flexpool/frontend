@@ -1,7 +1,7 @@
 import { useQueryClient } from 'react-query';
 import { useDispatch } from 'react-redux';
 import { snackActions } from '@/rdx/snacks/snack.actions';
-import useMinerNotificationSettingsMutation from '../useMinerNotificationSettingsMutation';
+import useMinerNotificationSettingsMutation from '@/hooks/api/useMinerNotificationSettingsMutation';
 
 const { create } = snackActions;
 

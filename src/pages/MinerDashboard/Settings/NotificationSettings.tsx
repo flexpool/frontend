@@ -8,8 +8,8 @@ import { Submit } from 'src/components/Form/Submit';
 import { TextField } from 'src/components/Form/TextInput';
 import { Spacer } from 'src/components/layout/Spacer';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
-import useClientIPQuery from '@/hooks/useClientIPQuery';
-import useMinerDetailsQuery from '@/hooks/useMinerDetailsQuery';
+import useClientIPQuery from '@/hooks/api/useClientIPQuery';
+import useMinerDetailsQuery from '@/hooks/api/useMinerDetailsQuery';
 import useUpdateNotificationSettings from '@/hooks/useUpdateNotificationSettings';
 
 export const NotificationSettings: React.FC<{

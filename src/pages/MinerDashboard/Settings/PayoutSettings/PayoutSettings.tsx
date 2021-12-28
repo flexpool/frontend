@@ -11,8 +11,8 @@ import {
   useActiveCoinTicker,
 } from 'src/rdx/localSettings/localSettings.hooks';
 import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
-import useClientIPQuery from '@/hooks/useClientIPQuery';
-import useMinerDetailsQuery from '@/hooks/useMinerDetailsQuery';
+import useClientIPQuery from '@/hooks/api/useClientIPQuery';
+import useMinerDetailsQuery from '@/hooks/api/useMinerDetailsQuery';
 import useUpdatePayoutSettings from '@/hooks/useUpdatePayoutSettings';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { useTranslation } from 'next-i18next';

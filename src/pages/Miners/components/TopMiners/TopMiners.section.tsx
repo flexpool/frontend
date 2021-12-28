@@ -9,7 +9,7 @@ import {
 } from 'src/rdx/localSettings/localSettings.hooks';
 import { useLocalizedSiFormatter } from 'src/utils/si.utils';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
-import useTopMinersQuery from '@/hooks/useTopMinersQuery';
+import useTopMinersQuery from '@/hooks/api/useTopMinersQuery';
 import { Mono, Ws } from 'src/components/Typo/Typo';
 import { ApiTopMiner } from 'src/types/TopMiner.types';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';

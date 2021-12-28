@@ -16,7 +16,7 @@ import {
   useCoinTicker,
 } from 'src/rdx/localSettings/localSettings.hooks';
 
-import usePoolCoinsQuery from '@/hooks/usePoolCoinsQuery';
+import usePoolCoinsQuery from '@/hooks/api/usePoolCoinsQuery';
 
 import AccountHeader from 'src/pages/MinerDashboard/Header/AccountHeader';
 import { HeaderGreetings } from 'src/pages/MinerDashboard/Header/Greetings';

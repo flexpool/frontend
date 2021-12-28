@@ -1,4 +1,4 @@
-import useMinerWorkersQuery from '../useMinerWorkersQuery';
+import useMinerWorkersQuery from '@/hooks/api/useMinerWorkersQuery';
 
 /**
  * Returns the online/offline status of workers given an address

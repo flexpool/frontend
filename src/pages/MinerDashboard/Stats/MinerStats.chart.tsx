@@ -8,7 +8,7 @@ import {
 } from 'src/components/Chart/ChartContainer';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import { useThemeMode } from '@/context/ThemeModeProvider';
-import useMinerStatsChartQuery from '@/hooks/useMinerStatsChartQuery';
+import useMinerStatsChartQuery from '@/hooks/api/useMinerStatsChartQuery';
 import {
   color,
   NumberFormatter,

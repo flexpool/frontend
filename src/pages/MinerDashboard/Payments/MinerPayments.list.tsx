@@ -6,7 +6,7 @@ import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOutCoin } from 'src/components/LinkOut';
 import { Mono, Ws } from 'src/components/Typo/Typo';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
-import useMinerPaymentsQuery from '@/hooks/useMinerPaymentsQuery';
+import useMinerPaymentsQuery from '@/hooks/api/useMinerPaymentsQuery';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import { ApiMinerPayment } from 'src/types/Miner.types';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';

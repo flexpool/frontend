@@ -15,7 +15,7 @@ import {
 import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiMinerReward } from 'src/types/Miner.types';
 import { useLocalizedCurrencyFormatter } from 'src/utils/si.utils';
-import useMinerStatsQuery from '@/hooks/useMinerStatsQuery';
+import useMinerStatsQuery from '@/hooks/api/useMinerStatsQuery';
 
 const getIndexPastInterval = (index: number) => {
   switch (index) {

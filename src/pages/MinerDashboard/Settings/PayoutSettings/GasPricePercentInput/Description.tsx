@@ -3,7 +3,7 @@ import { useFormikContext } from 'formik';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 import { useReduxState } from '@/rdx/useReduxState';
-import useMinerDetailsQuery from '@/hooks/useMinerDetailsQuery';
+import useMinerDetailsQuery from '@/hooks/api/useMinerDetailsQuery';
 import {
   useActiveCoin,
   useActiveCoinTicker,

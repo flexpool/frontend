@@ -3,7 +3,7 @@ import { MinerPplnsStats } from './MinerPplnsStats.section';
 import { MinerRewardStatsSection } from './MinerRewardStats.section';
 import { MinerRewardsBlocksSection } from './MinerReportBlocks.section';
 import { useFetchPoolStats } from '@/rdx/poolStats/poolStats.hooks';
-import useMinerRewardsQuery from '@/hooks/useMinerRewardsQuery';
+import useMinerRewardsQuery from '@/hooks/api/useMinerRewardsQuery';
 import RewardsChart from './Rewards.chart';
 
 export const MinerRewardsPage: React.FC<{

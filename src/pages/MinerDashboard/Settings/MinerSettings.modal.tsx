@@ -5,7 +5,7 @@ import { Button } from 'src/components/Button';
 import { ScrollArea } from 'src/components/layout/ScrollArea';
 import Modal from 'src/components/Modal/Modal';
 import { useOpenState } from 'src/hooks/useOpenState';
-import useMinerDetailsQuery from '@/hooks/useMinerDetailsQuery';
+import useMinerDetailsQuery from '@/hooks/api/useMinerDetailsQuery';
 import { ApiPoolCoin } from '@/types/PoolCoin.types';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import { useReduxState } from 'src/rdx/useReduxState';
