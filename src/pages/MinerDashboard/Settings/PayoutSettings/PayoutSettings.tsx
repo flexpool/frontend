@@ -14,7 +14,6 @@ import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
 import useClientIPQuery from '@/hooks/api/useClientIPQuery';
 import useMinerDetailsQuery from '@/hooks/api/useMinerDetailsQuery';
 import useUpdatePayoutSettings from '@/hooks/useUpdatePayoutSettings';
-import { useReduxState } from 'src/rdx/useReduxState';
 import { useTranslation } from 'next-i18next';
 import { useLocalizedNumberFormatter } from 'src/utils/si.utils';
 import { getDecimalPlace } from '@/utils/number.utils';
@@ -37,7 +36,6 @@ export const PayoutSettings: React.FC<{
 }> = ({ address }) => {
   const activeCoinTicker = useActiveCoinTicker();
   const activeCoin = useActiveCoin();
-  const minerHeaderStats = useReduxState('minerHeaderStats');
   const { t } = useTranslation(['common']);
   const numberFormatter = useLocalizedNumberFormatter();
 
@@ -52,7 +50,7 @@ export const PayoutSettings: React.FC<{
 
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
   const [gweiToggle, setGweiToggle] = React.useState(true);
-  if (!minerDetails || !activeCoin || !feeDetails || !minerHeaderStats.data) {
+  if (!minerDetails || !activeCoin || !feeDetails) {
     return null;
   }
 
@@ -190,7 +188,10 @@ export const PayoutSettings: React.FC<{
                   values.network === 'mainnet' && (
                     <>
                       {gweiToggle ? (
-                        <GasPriceInput onToggle={toggleGwei} />
+                        <GasPriceInput
+                          onToggle={toggleGwei}
+                          address={address}
+                        />
                       ) : (
                         <GasPricePercentInput
                           onToggle={toggleGwei}

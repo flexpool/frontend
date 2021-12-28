@@ -102,12 +102,10 @@ export const MinerSettingsModal: React.FC<{
     coin: coin?.ticker,
     address,
   });
-  const minerHeaderStats = useReduxState('minerHeaderStats');
   const { t } = useTranslation('dashboard');
 
   // disable opening when data is not loaded
-  const disabled =
-    !activeCoin || !minerDetails || !minerHeaderStats.data || isRefreshing;
+  const disabled = !activeCoin || !minerDetails || isRefreshing;
 
   const handleChangePage = React.useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {

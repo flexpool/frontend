@@ -7,7 +7,6 @@ import {
   useActiveCoin,
   useActiveCoinTicker,
 } from 'src/rdx/localSettings/localSettings.hooks';
-import { useReduxState } from 'src/rdx/useReduxState';
 import { fetchApi } from 'src/utils/fetchApi';
 import {
   useLocalizedNumberFormatter,
@@ -27,6 +26,8 @@ import {
 } from 'src/plugins/amcharts';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import { useAsyncState } from 'src/hooks/useAsyncState';
+import useMinerRoundShareQuery from '@/hooks/api/useMinerRoundShareQuery';
+import usePoolAverageBlockRewardQuery from '@/hooks/api/usePoolAverageBlockRewardQuery';
 import {
   ChartContainer,
   responsiveRule,
@@ -69,18 +70,18 @@ const mapPplnsDataToChartData = (
 };
 
 export const MinerPplnsStats: React.FC<{
+  coin: string;
   averagePoolHashrate: number | null | undefined;
   poolHashrate: number | null | undefined;
   address: string;
-}> = ({ averagePoolHashrate = 0, poolHashrate = 0, address }) => {
-  const { data: headerStatsData } = useReduxState('minerHeaderStats');
+}> = ({ coin, averagePoolHashrate = 0, poolHashrate = 0, address }) => {
+  const { data: roundShare } = useMinerRoundShareQuery({ coin, address });
+  const { data: averageBlockReward } = usePoolAverageBlockRewardQuery({ coin });
+
   const siFormatter = useLocalizedSiFormatter();
   const { t } = useTranslation('dashboard');
 
   const [shareLogLength, setShareLogLength] = React.useState(0);
-  // const {
-  //   params: { address },
-  // } = useRouteMatch<{ address: string }>();
   const activeCoinTicker = useActiveCoinTicker();
   const activeCoin = useActiveCoin();
   const numberFormatter = useLocalizedNumberFormatter();
@@ -89,14 +90,13 @@ export const MinerPplnsStats: React.FC<{
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
 
   const averageBlockShare = React.useMemo(() => {
-    if (headerStatsData) {
-      return activeCoinFormatter(
-        headerStatsData.averageBlockShare * headerStatsData.roundShare,
-        { maximumFractionDigits: 8 }
-      );
+    if (averageBlockReward && roundShare) {
+      return activeCoinFormatter(averageBlockReward * roundShare, {
+        maximumFractionDigits: 8,
+      });
     }
     return null;
-  }, [headerStatsData, activeCoinFormatter]);
+  }, [activeCoinFormatter, roundShare, averageBlockReward]);
 
   const dateFormatter = useLocalizedDateFormatter();
 
@@ -174,16 +174,16 @@ export const MinerPplnsStats: React.FC<{
           <StatItem
             value={
               averagePoolHashrate &&
-              headerStatsData &&
-              siFormatter(averagePoolHashrate * headerStatsData.roundShare, {
+              roundShare &&
+              siFormatter(averagePoolHashrate * roundShare, {
                 unit: activeCoin?.hashrateUnit,
               })
             }
             subValue={
               poolHashrate &&
-              headerStatsData &&
+              roundShare &&
               `${t('rewards.pplns.avp.current')}: ${siFormatter(
-                poolHashrate * headerStatsData.roundShare,
+                poolHashrate * roundShare,
                 { unit: activeCoin?.hashrateUnit }
               )}`
             }
@@ -198,8 +198,8 @@ export const MinerPplnsStats: React.FC<{
           </CardTitle>
           <StatItem
             value={
-              headerStatsData &&
-              numberFormatter(headerStatsData.roundShare, {
+              roundShare &&
+              numberFormatter(roundShare, {
                 style: 'percent',
                 maximumFractionDigits: 8,
               })

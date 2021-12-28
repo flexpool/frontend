@@ -23,6 +23,14 @@ export type ApiMinerHeaderStats = {
   roundShare: number;
 };
 
+export type ApiMinerBalance = {
+  balance: number;
+  balanceCountervalue: number;
+  price: number;
+};
+
+export type ApiMinerRoundShare = number;
+
 export type ApiMinerStats = {
   averageEffectiveHashrate: number;
   currentEffectiveHashrate: number;

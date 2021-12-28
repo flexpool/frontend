@@ -39,6 +39,7 @@ export const MinerRewardsPage: React.FC<{
         rewards={minerRewardsState?.data || []}
       />
       <MinerPplnsStats
+        coin={coinTicker}
         averagePoolHashrate={poolStatsState.data?.averageHashrate}
         poolHashrate={poolStatsState.data?.hashrate.total}
         address={address}

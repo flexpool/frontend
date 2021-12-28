@@ -28,10 +28,11 @@ export const InactiveToggleText = styled.span`
 `;
 
 type GasPriceInputProps = {
+  address: string;
   onToggle: () => void;
 };
 
-const GasPriceInput = ({ onToggle }: GasPriceInputProps) => {
+const GasPriceInput = ({ address, onToggle }: GasPriceInputProps) => {
   const { values } = useFormikContext();
   const { t } = useTranslation(['common']);
   const activeCoinTicker = useActiveCoinTicker();
@@ -61,7 +62,7 @@ const GasPriceInput = ({ onToggle }: GasPriceInputProps) => {
       desc={
         <p>
           {inputValue > 0 ? (
-            <Description />
+            <Description address={address} />
           ) : (
             t('dashboard:settings.payout.gas_limit_zero')
           )}

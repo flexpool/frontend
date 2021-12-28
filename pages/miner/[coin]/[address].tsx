@@ -9,7 +9,6 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Content } from 'src/components/layout/Content';
 import { Page, PageLoading } from 'src/components/layout/Page';
 
-import { useFetchMinerHeaderStats } from '@/rdx/minerHeaderStats/minerHeaderStats.hooks';
 import {
   useActiveCoin,
   useCounterTicker,
@@ -117,12 +116,6 @@ export const MinerDashboardPageContent: React.FC<{
   const { t } = useTranslation('dashboard');
   const [, setCoinTicker] = useCoinTicker();
 
-  const { refetch: refetchMinerHeaderStats } = useFetchMinerHeaderStats(
-    coinTicker,
-    address,
-    counterTicker
-  );
-
   const [tabIndex, setTabIndex] = useState(0);
   const tabs = {
     stats: 0,
@@ -133,15 +126,24 @@ export const MinerDashboardPageContent: React.FC<{
 
   const loadAll = React.useCallback(() => {
     return Promise.all([
+      queryClient.invalidateQueries(['/miner/balance', { address }]),
+      queryClient.invalidateQueries(['/miner/roundShare', { address }]),
+      queryClient.invalidateQueries([
+        '/pool/averageBlockReward',
+        { coin: coinTicker },
+      ]),
+      queryClient.invalidateQueries([
+        '/pool/dailyRewardPerGigahashSec',
+        { coin: coinTicker },
+      ]),
       queryClient.invalidateQueries(['/miner/details', { address }]),
       queryClient.invalidateQueries('/miner/workers'),
       queryClient.invalidateQueries('/miner/rewards'),
       queryClient.invalidateQueries(['/miner/chart', { address }]),
       queryClient.invalidateQueries('/miner/stats'),
-      refetchMinerHeaderStats(),
-      new Promise((resolve) => setTimeout(() => resolve(true), 1500)), // keep the loader animation to at least 1.5s
+      new Promise((resolve) => setTimeout(() => resolve(true), 1200)), // keep the loader animation to at least 1.2s
     ]);
-  }, [refetchMinerHeaderStats, queryClient, address]);
+  }, [queryClient, address, coinTicker]);
 
   const loadSelectedTabFromHash = (tabHash: string) => {
     setTabIndex(tabs[tabHash]);

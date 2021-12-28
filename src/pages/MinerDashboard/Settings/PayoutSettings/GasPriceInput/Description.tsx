@@ -2,7 +2,6 @@ import { useMemo } from 'react';
 import { useFormikContext } from 'formik';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
-import { useReduxState } from '@/rdx/useReduxState';
 import {
   useActiveCoin,
   useActiveCoinTicker,
@@ -13,6 +12,7 @@ import {
   useLocalizedCurrencyFormatter,
   useLocalizedNumberFormatter,
 } from 'src/utils/si.utils';
+import useMinerBalance from '@/hooks/useMinerBalance';
 
 export const PercentageDisplaySpan = styled.span<{ color?: string }>`
   ${(p) =>
@@ -27,7 +27,7 @@ export const PercentageDisplaySpan = styled.span<{ color?: string }>`
       `}
 `;
 
-const Description = () => {
+const Description = ({ address }: { address: string }) => {
   const { t } = useTranslation(['common']);
   const { values } = useFormikContext();
   const activeCoin = useActiveCoin();
@@ -35,7 +35,7 @@ const Description = () => {
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
   const currencyFormatter = useLocalizedCurrencyFormatter();
   const numberFormatter = useLocalizedNumberFormatter();
-  const minerHeaderStats = useReduxState('minerHeaderStats');
+  const { data: minerBalance } = useMinerBalance(address, 'eth');
 
   const maxFeePrice = useMemo(
     () => Number(get(values, 'maxFeePrice')),
@@ -61,11 +61,13 @@ const Description = () => {
   const description = t('dashboard:settings.payout.gas_limit_desc', {
     value: maxFeePrice,
     valueUnit: feeDetails?.unit,
-    valueTicker: currencyFormatter(
-      ((maxFeePrice * activeCoin.transactionSize * feeDetails.multiplier) /
-        Math.pow(10, activeCoin.decimalPlaces)) *
-        minerHeaderStats.data!.countervaluePrice
-    ),
+    valueTicker: minerBalance
+      ? currencyFormatter(
+          ((maxFeePrice * activeCoin.transactionSize * feeDetails.multiplier) /
+            Math.pow(10, activeCoin.decimalPlaces)) *
+            minerBalance.price
+        )
+      : '-',
   });
 
   let percentColor = '';

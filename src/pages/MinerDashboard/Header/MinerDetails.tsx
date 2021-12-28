@@ -6,8 +6,8 @@ import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
 import useMinerDetailsQuery from '@/hooks/api/useMinerDetailsQuery';
+import useMinerBalance from '@/hooks/useMinerBalance';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
-import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import {
@@ -70,21 +70,19 @@ export const MinerDetails: React.FC<{
   const activeCoinTicker = useActiveCoinTicker();
   const payoutLimit = activeCoinFormatter(minerDetails?.payoutLimit);
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
-  const minerHeaderStatsState = useReduxState('minerHeaderStats');
+  const { data: minerBalance } = useMinerBalance(address, coin?.ticker);
   const maxFeePrice = minerDetails?.maxFeePrice;
   const currencyFormatter = useLocalizedCurrencyFormatter();
   const numberFormatter = useLocalizedNumberFormatter();
   const currentNetworkFee = useActiveCoinNetworkFee(coin?.ticker, address);
-  const counterValuePrice = currencyFormatter(
-    minerHeaderStatsState.data?.countervaluePrice || 0
-  );
+  const counterValuePrice = currencyFormatter(minerBalance?.price || 0);
 
   const feeTicker = currencyFormatter(
     ((Number(maxFeePrice) *
       Number(coin?.transactionSize) *
       Number(feeDetails?.multiplier)) /
       Math.pow(10, Number(coin?.decimalPlaces))) *
-      Number(minerHeaderStatsState.data?.countervaluePrice)
+      Number(minerBalance?.price)
   );
   const feeTickerPercentage = numberFormatter(
     (Number(maxFeePrice) *
