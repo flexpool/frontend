@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import NProgress from 'nprogress';
 import { CopyButton } from 'src/components/CopyButton';
 import { Img } from 'src/components/Img';
 import { Card } from 'src/components/layout/Card';
@@ -89,6 +90,15 @@ export const AccountHeader: React.FC<{
   onRefresh: any;
 }> = ({ coin, address, onRefresh }) => {
   const [isRefreshing, setIsRefreshing] = useState(false);
+
+  useEffect(() => {
+    if (isRefreshing) {
+      NProgress.start();
+    } else {
+      NProgress.done();
+    }
+  }, [isRefreshing]);
+
   const addressText = getChecksumByTicker(coin?.ticker)(address);
   return (
     <Wrap paddingShort>
