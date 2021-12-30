@@ -98,10 +98,6 @@ const App = ({ Component, pageProps, router }: AppProps) => {
                     請注意，挖掘連接可能會更改。
                     如果您想永久避免所有限制，請通過HTTPS（DoH）配寘DNS並使用eth-hke.flexpool.io
                   </AnnouncementBar>
-                  <AnnouncementBar variant="warning" id="stale-rate-warning">
-                    注意：我们近期发现部分亚洲用户的Stale
-                    Rate(过期率)有增高。我们正在努力解决该问题，谢谢您的理解。
-                  </AnnouncementBar>
                 </>
               )}
               <SwitchTransition>
