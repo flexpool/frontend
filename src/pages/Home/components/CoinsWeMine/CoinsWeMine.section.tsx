@@ -38,7 +38,7 @@ import { CoinCalculator } from 'src/sections/CoinCalculator';
 import { CardGrid } from 'src/components/layout/Card';
 import { CoinLogo } from 'src/components/CoinLogo';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
-import usePoolCoinsFullQuery from '@/hooks/usePoolCoinsFullQuery';
+import usePoolCoinsFullQuery from '@/hooks/api/usePoolCoinsFullQuery';
 
 const ModalNews: React.FC<{ data?: ApiPoolCoinFull[] | null }> = ({ data }) => {
   const router = useRouter();

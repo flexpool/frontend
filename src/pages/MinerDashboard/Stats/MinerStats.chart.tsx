@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { SectionNotAvailable } from 'src/components/SectionNotAvailable';
-import { Spacer } from 'src/components/layout/Spacer';
-import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
+import React, { useEffect, useMemo } from 'react';
+import { SectionNotAvailable } from '@/components/SectionNotAvailable';
+import { Spacer } from '@/components/layout/Spacer';
+import { useActiveSearchParamWorker } from '@/hooks/useActiveQueryWorker';
 import {
   ChartContainer,
   responsiveRule,
 } from 'src/components/Chart/ChartContainer';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import { useThemeMode } from '@/context/ThemeModeProvider';
-
+import useMinerStatsChartQuery from '@/hooks/api/useMinerStatsChartQuery';
 import {
   color,
   NumberFormatter,
@@ -20,53 +20,49 @@ import {
   ValueAxis,
   ColumnSeries,
   LineSeries,
-} from 'src/plugins/amcharts';
-import { isAfter, subHours } from 'date-fns';
-import { average } from 'src/utils/number.utils';
-import {
-  AverageEffectivePeriods,
-  HashrateChartDataItem,
-  SharesChartDataItem,
-} from './minerStats.types';
+} from '@/plugins/amcharts';
 import { useTranslation } from 'next-i18next';
-import { useReduxState } from 'src/rdx/useReduxState';
-import { ProTip } from 'src/components/ProTip/ProTip';
+import { ProTip } from '@/components/ProTip/ProTip';
 
 export const StatsChart: React.FC<{
   coinTicker: string;
   address: string;
-  setAverageEffectivePeriods: (data: AverageEffectivePeriods) => void;
 }> = (props) => {
-  const { setAverageEffectivePeriods } = props;
-  const [noDataAvailable, setNoDataAvailable] = useState(false);
   const { t } = useTranslation('dashboard');
-  const minerStatChartDataPointsState = useReduxState('minerStatsChart');
-  const data = minerStatChartDataPointsState.data;
-
-  const [sharesData, setSharesData] = React.useState<
-    | {
-        date: Date;
-        validShares: number;
-        staleShares: number;
-        invalidShares: number;
-      }[]
-    | null
-  >();
-  const [hashrateData, setHashrateData] = React.useState<
-    | {
-        date: Date;
-        effectiveHashrate: number;
-        averageEffectiveHashrate: number;
-        reportedHashrate: number;
-      }[]
-    | null
-  >();
-
   const activeCoin = useActiveCoin();
-
   const worker = useActiveSearchParamWorker();
 
   const { color: themeColor } = useThemeMode();
+
+  const minerStatsChartQuery = useMinerStatsChartQuery({
+    coin: props.coinTicker,
+    address: props.address,
+    worker,
+  });
+
+  const hashrateData = useMemo(() => {
+    if (minerStatsChartQuery.data) {
+      return minerStatsChartQuery.data.map((item) => ({
+        date: new Date(item.timestamp * 1000),
+        effectiveHashrate: item.effectiveHashrate,
+        averageEffectiveHashrate: item.averageEffectiveHashrate,
+        reportedHashrate: item.reportedHashrate,
+      }));
+    }
+    return null;
+  }, [minerStatsChartQuery.data]);
+
+  const sharesData = useMemo(() => {
+    if (minerStatsChartQuery.data) {
+      return minerStatsChartQuery.data.map((item) => ({
+        date: new Date(item.timestamp * 1000),
+        validShares: item.validShares,
+        staleShares: item.staleShares,
+        invalidShares: item.invalidShares,
+      }));
+    }
+    return null;
+  }, [minerStatsChartQuery.data]);
 
   useEffect(() => {
     if (sharesData && hashrateData) {
@@ -208,65 +204,6 @@ export const StatsChart: React.FC<{
     }
   }, [themeColor, sharesData, hashrateData, t, activeCoin]);
 
-  useEffect(() => {
-    if (props.coinTicker === null) return;
-    if (data === null || data === undefined) {
-      setNoDataAvailable(true);
-      setSharesData(null);
-      setHashrateData(null);
-      return;
-    }
-    setNoDataAvailable(false);
-
-    const hashrateChartData: HashrateChartDataItem[] = [];
-    const sharesChartData: SharesChartDataItem[] = [];
-
-    const averageSixHours: number[] = [];
-    const averageTwelveHours: number[] = [];
-
-    const nowMinus12 = subHours(new Date(), 12);
-    const nowMinus6 = subHours(new Date(), 6);
-    for (let i = 0; i < data.length; i++) {
-      const item = data[i];
-
-      const itemTimestamp = new Date(item.timestamp * 1000);
-
-      hashrateChartData.push({
-        date: itemTimestamp,
-        effectiveHashrate: item.effectiveHashrate,
-        averageEffectiveHashrate: item.averageEffectiveHashrate,
-        reportedHashrate: item.reportedHashrate,
-      });
-
-      sharesChartData.push({
-        date: itemTimestamp,
-        validShares: item.validShares,
-        staleShares: item.staleShares,
-        invalidShares: item.invalidShares,
-      });
-
-      if (isAfter(itemTimestamp, nowMinus12)) {
-        averageTwelveHours.push(item.effectiveHashrate);
-        if (isAfter(itemTimestamp, nowMinus6)) {
-          averageSixHours.push(item.effectiveHashrate);
-        }
-      }
-    }
-
-    setAverageEffectivePeriods({
-      '6': average(averageSixHours),
-      '12': average(averageTwelveHours),
-    });
-
-    setSharesData(sharesChartData);
-    setHashrateData(hashrateChartData);
-  }, [
-    props.coinTicker,
-    props.address,
-    worker,
-    setAverageEffectivePeriods,
-    data,
-  ]);
   const proTips = [
     'stats.proTips.chartsProTip',
     'stats.proTips.apiProTip',
@@ -278,9 +215,10 @@ export const StatsChart: React.FC<{
   ];
   return (
     <>
-      {!noDataAvailable ? (
+      {minerStatsChartQuery.data !== null ? (
         <>
           <ChartContainer
+            dataState={minerStatsChartQuery}
             title={
               activeCoin?.hashrateUnit === 'B'
                 ? t('stats.hashrate_chart.title_space')
@@ -294,6 +232,7 @@ export const StatsChart: React.FC<{
           </ChartContainer>
           <Spacer />
           <ChartContainer
+            dataState={minerStatsChartQuery}
             title={t(
               String(activeCoin?.ticker) === 'xch'
                 ? 'stats.shares_chart.title_points'

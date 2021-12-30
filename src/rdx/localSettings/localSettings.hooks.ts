@@ -2,10 +2,13 @@ import { useCallback } from 'react';
 import { useReduxState } from 'src/rdx/useReduxState';
 import { useDispatch } from 'react-redux';
 import { localSettingsSet } from './localSettings.actions';
-import usePoolCoinsQuery from '@/hooks/usePoolCoinsQuery';
+import usePoolCoinsQuery from '@/hooks/api/usePoolCoinsQuery';
 
+// FIXME: This hook isn't reliable for retrieving the current active coin ticker,
+// since the redux state can be updated many re-renders later
 /**
  * Get current selected coin from coin selector
+ * Coin ticker is always available from redux because of default state
  * @returns {string} coin ticker name
  */
 export const useActiveCoinTicker = () => {

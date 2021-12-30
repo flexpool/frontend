@@ -19,7 +19,7 @@ import {
   useLocalizedPercentFormatter,
   useLocalizedSiFormatter,
 } from 'src/utils/si.utils';
-import useMinerWorkersQuery from '@/hooks/useMinerWorkersQuery';
+import useMinerWorkersQuery from '@/hooks/api/useMinerWorkersQuery';
 import {
   FaSearch,
   FaSort,

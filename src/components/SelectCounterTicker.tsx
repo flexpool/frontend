@@ -8,7 +8,7 @@ import { filterUnique } from 'src/utils/array.utils';
 import styled from 'styled-components';
 import { Select, SelectOption } from './Form/Select/Select';
 import DownshiftSelect from './Form/DownshiftSelect';
-import usePoolCoinsQuery from '@/hooks/usePoolCoinsQuery';
+import usePoolCoinsQuery from '@/hooks/api/usePoolCoinsQuery';
 
 import { Img } from './Img';
 

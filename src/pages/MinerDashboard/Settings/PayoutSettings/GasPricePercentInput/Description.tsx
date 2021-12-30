@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useFormikContext } from 'formik';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
-import { useReduxState } from '@/rdx/useReduxState';
+import useMinerDetailsQuery from '@/hooks/api/useMinerDetailsQuery';
 import {
   useActiveCoin,
   useActiveCoinTicker,
@@ -10,6 +10,7 @@ import {
 import { useFeePayoutLimitDetails } from '@/hooks/useFeePayoutDetails';
 import { get } from 'lodash';
 import { useLocalizedCurrencyFormatter } from 'src/utils/si.utils';
+import useMinerBalance from '@/hooks/useMinerBalance';
 
 export const PercentageDisplaySpan = styled.span<{ color?: string }>`
   ${(p) =>
@@ -24,55 +25,52 @@ export const PercentageDisplaySpan = styled.span<{ color?: string }>`
       `}
 `;
 
-const Description = () => {
+const Description = ({ address }: { address: string }) => {
   const { t } = useTranslation(['common']);
   const { values } = useFormikContext();
   const activeCoin = useActiveCoin();
   const activeCoinTicker = useActiveCoinTicker();
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
   const currencyFormatter = useLocalizedCurrencyFormatter();
-  const minerHeaderStats = useReduxState('minerHeaderStats');
-  const minerSettings = useReduxState('minerDetails');
+  const { data: minerDetails } = useMinerDetailsQuery({ coin: 'eth', address });
+  const { data: minerBalance } = useMinerBalance(address, 'eth');
 
   const maxFeePricePercent = useMemo(
     () => Number(get(values, 'maxFeePricePercent')),
     [values]
   );
 
-  if (!activeCoin || !feeDetails || !minerSettings) return null;
+  if (!activeCoin || !feeDetails || !minerDetails) return null;
 
   const description = t('dashboard:settings.payout.gas_limit_desc', {
     value: Math.round(
       ((maxFeePricePercent / 100) *
         Math.pow(10, activeCoin.decimalPlaces) *
         Number(
-          minerSettings &&
-            minerSettings.data &&
-            minerSettings.data.payoutLimit /
-              Math.pow(10, activeCoin.decimalPlaces)
+          minerDetails.payoutLimit / Math.pow(10, activeCoin.decimalPlaces)
         )) /
         activeCoin.transactionSize /
         feeDetails.multiplier
     ),
     valueUnit: feeDetails?.unit,
-    valueTicker: currencyFormatter(
-      ((Math.round(
-        ((maxFeePricePercent / 100) *
-          Math.pow(10, activeCoin.decimalPlaces) *
-          Number(
-            minerSettings &&
-              minerSettings.data &&
-              minerSettings.data.payoutLimit /
-                Math.pow(10, activeCoin.decimalPlaces)
-          )) /
-          activeCoin.transactionSize /
-          feeDetails.multiplier
-      ) *
-        activeCoin.transactionSize *
-        feeDetails.multiplier) /
-        Math.pow(10, activeCoin.decimalPlaces)) *
-        minerHeaderStats.data!.countervaluePrice
-    ),
+    valueTicker: minerBalance
+      ? currencyFormatter(
+          ((Math.round(
+            ((maxFeePricePercent / 100) *
+              Math.pow(10, activeCoin.decimalPlaces) *
+              Number(
+                minerDetails.payoutLimit /
+                  Math.pow(10, activeCoin.decimalPlaces)
+              )) /
+              activeCoin.transactionSize /
+              feeDetails.multiplier
+          ) *
+            activeCoin.transactionSize *
+            feeDetails.multiplier) /
+            Math.pow(10, activeCoin.decimalPlaces)) *
+            minerBalance?.price
+        )
+      : '-',
   });
 
   let percentColor = '';

@@ -5,8 +5,6 @@ import {
   useActiveCoinTicker,
 } from 'src/rdx/localSettings/localSettings.hooks';
 import { useThemeMode } from '@/context/ThemeModeProvider';
-import { useDispatch } from 'react-redux';
-import { useReduxState } from 'src/rdx/useReduxState';
 import {
   ChartContainer,
   responsiveRule,
@@ -25,26 +23,21 @@ import {
   XYChartScrollbar,
 } from 'src/plugins/amcharts';
 import { useTranslation } from 'next-i18next';
-import { blocksChartGet } from 'src/rdx/blocksChart/blocksChart.actions';
+import useBlocksChartQuery from '@/hooks/api/useBlocksChartQuery';
 
 export const BlocksChart = () => {
   const activeCoin = useActiveCoin();
   const activeCoinTicker = useActiveCoinTicker();
-  const blocksChartState = useReduxState('blocksChart');
+  const blocksChartQuery = useBlocksChartQuery({ coin: activeCoinTicker });
   const { t } = useTranslation('blocks');
-  const d = useDispatch();
-
-  React.useEffect(() => {
-    d(blocksChartGet(activeCoinTicker));
-  }, [activeCoinTicker, d]);
 
   const { color: themeColor } = useThemeMode();
 
   React.useEffect(() => {
-    if (blocksChartState.data == null) {
+    if (blocksChartQuery.data == null) {
       return;
     }
-    if (blocksChartState.data.length > 1 && activeCoin) {
+    if (blocksChartQuery.data.length > 1 && activeCoin) {
       let x = create('blocksChart', XYChart);
 
       x.colors.list = [color('#a6b0c1')];
@@ -55,7 +48,7 @@ export const BlocksChart = () => {
 
       //account for local timezone offset to utc date
       var userTimezoneOffset = new Date().getTimezoneOffset() * 60000;
-      const data = blocksChartState.data.map((item) => ({
+      const data = blocksChartQuery.data.map((item) => ({
         //needs to be end of day for chart to work properly
         date: new Date(item.timestamp * 1000 + userTimezoneOffset),
         difficulty: item.difficulty,
@@ -198,10 +191,10 @@ export const BlocksChart = () => {
         x.dispose();
       };
     }
-  }, [blocksChartState.data, themeColor, t, activeCoin]);
+  }, [blocksChartQuery.data, themeColor, t, activeCoin]);
 
   return (
-    <ChartContainer dataState={blocksChartState} title={t('chart.title')}>
+    <ChartContainer dataState={blocksChartQuery} title={t('chart.title')}>
       <div id="blocksChart" style={{ width: '100%', height: '400px' }}></div>
     </ChartContainer>
   );

@@ -5,8 +5,9 @@ import { Skeleton } from 'src/components/layout/Skeleton';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { useFeePayoutLimitDetails } from 'src/hooks/useFeePayoutDetails';
+import useMinerDetailsQuery from '@/hooks/api/useMinerDetailsQuery';
+import useMinerBalance from '@/hooks/useMinerBalance';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
-import { useReduxState } from 'src/rdx/useReduxState';
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import {
@@ -58,35 +59,37 @@ const Content = styled.div`
 `;
 export const MinerDetails: React.FC<{
   coin?: ApiPoolCoin;
-}> = ({ coin }) => {
-  const minerDetailsState = useReduxState('minerDetails');
+  address: string;
+}> = ({ coin, address }) => {
+  const { data: minerDetails, isLoading: isMinerDetailsLoading } =
+    useMinerDetailsQuery({
+      coin: coin?.ticker,
+      address,
+    });
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
-  const settings = minerDetailsState.data;
   const activeCoinTicker = useActiveCoinTicker();
-  const payoutLimit = activeCoinFormatter(settings?.payoutLimit);
+  const payoutLimit = activeCoinFormatter(minerDetails?.payoutLimit);
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
-  const minerHeaderStatsState = useReduxState('minerHeaderStats');
-  const maxFeePrice = settings?.maxFeePrice;
+  const { data: minerBalance } = useMinerBalance(address, coin?.ticker);
+  const maxFeePrice = minerDetails?.maxFeePrice;
   const currencyFormatter = useLocalizedCurrencyFormatter();
   const numberFormatter = useLocalizedNumberFormatter();
-  const currentNetworkFee = useActiveCoinNetworkFee();
-  const counterValuePrice = currencyFormatter(
-    minerHeaderStatsState.data?.countervaluePrice || 0
-  );
+  const currentNetworkFee = useActiveCoinNetworkFee(coin?.ticker, address);
+  const counterValuePrice = currencyFormatter(minerBalance?.price || 0);
 
   const feeTicker = currencyFormatter(
     ((Number(maxFeePrice) *
       Number(coin?.transactionSize) *
       Number(feeDetails?.multiplier)) /
       Math.pow(10, Number(coin?.decimalPlaces))) *
-      Number(minerHeaderStatsState.data?.countervaluePrice)
+      Number(minerBalance?.price)
   );
   const feeTickerPercentage = numberFormatter(
     (Number(maxFeePrice) *
       Number(coin?.transactionSize) *
       Number(feeDetails?.multiplier)) /
       Math.pow(10, Number(coin?.decimalPlaces)) /
-      (Number(settings?.payoutLimit) /
+      (Number(minerDetails?.payoutLimit) /
         Math.pow(10, Number(coin?.decimalPlaces))),
     { style: 'percent', maximumFractionDigits: 3 }
   );
@@ -99,10 +102,11 @@ export const MinerDetails: React.FC<{
       <Content>
         <Item>
           <div>{t('header.info_payout_limit')}:&nbsp;</div>
-          <div>{settings && coin ? payoutLimit : <Skeleton width={40} />}</div>
+          <div>
+            {minerDetails && coin ? payoutLimit : <Skeleton width={40} />}
+          </div>
         </Item>
-        {activeCoinTicker === 'eth' &&
-        minerDetailsState.data?.network === 'mainnet' ? (
+        {activeCoinTicker === 'eth' && minerDetails?.network === 'mainnet' ? (
           <Tooltip
             wrapIcon={false}
             icon={
@@ -153,13 +157,13 @@ export const MinerDetails: React.FC<{
             <Item>
               <div>{t('header.info_joined')}:&nbsp;</div>
               <div>
-                {settings ? (
-                  settings.firstJoined === 0 ? (
+                {minerDetails && !isMinerDetailsLoading ? (
+                  minerDetails.firstJoined === 0 ? (
                     'Recently'
                   ) : (
                     <>
                       {dateFormatter.distanceFromNow(
-                        settings.firstJoined * 1000
+                        minerDetails.firstJoined * 1000
                       )}
                     </>
                   )
@@ -172,33 +176,32 @@ export const MinerDetails: React.FC<{
         >
           <TooltipContent>
             <p>
-              {!settings?.firstJoined ? (
+              {!minerDetails?.firstJoined ? (
                 t('header.info_joined_tooltip_empty')
               ) : (
                 <strong>
                   {t('header.info_joined_tooltip')}{' '}
-                  {dateFormatter.dateAndTime(settings.firstJoined * 1000)}
+                  {dateFormatter.dateAndTime(minerDetails.firstJoined * 1000)}
                 </strong>
               )}
             </p>
           </TooltipContent>
         </Tooltip>
 
-        {minerDetailsState.data &&
-          minerDetailsState.data.network !== 'mainnet' && (
-            <Item>
-              <div>{t('header.network')}:&nbsp;</div>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <NetworkLogo
-                  network={minerDetailsState.data.network}
-                  ticker={activeCoinTicker}
-                />
-                <div style={{ marginLeft: '0.25rem' }}>
-                  {titleCase(minerDetailsState.data.network)}
-                </div>
+        {minerDetails && minerDetails.network !== 'mainnet' && (
+          <Item>
+            <div>{t('header.network')}:&nbsp;</div>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <NetworkLogo
+                network={minerDetails.network}
+                ticker={activeCoinTicker}
+              />
+              <div style={{ marginLeft: '0.25rem' }}>
+                {titleCase(minerDetails.network)}
               </div>
-            </Item>
-          )}
+            </div>
+          </Item>
+        )}
 
         <Item>
           <div>{t('header.info_coin_price', { coin: coin?.name })}:&nbsp;</div>

@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { CoinLogo } from './CoinLogo';
 import { Select, SelectOption } from './Form/Select/Select';
 import DownshiftSelect from './Form/DownshiftSelect';
-import usePoolCoinsQuery from '@/hooks/usePoolCoinsQuery';
+import usePoolCoinsQuery from '@/hooks/api/usePoolCoinsQuery';
 
 const LabelWrap = styled.div`
   display: flex;

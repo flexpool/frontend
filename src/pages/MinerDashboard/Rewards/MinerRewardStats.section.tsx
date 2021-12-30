@@ -12,10 +12,10 @@ import {
   useActiveCoinTicker,
   useCounterTicker,
 } from 'src/rdx/localSettings/localSettings.hooks';
-import { useReduxState } from 'src/rdx/useReduxState';
+import usePoolDailyRewardPerGigahashSecQuery from '@/hooks/api/usePoolDailyRewardPerGigahashSecQuery';
 import { ApiMinerReward } from 'src/types/Miner.types';
 import { useLocalizedCurrencyFormatter } from 'src/utils/si.utils';
-import useMinerStatsQuery from '@/hooks/useMinerStatsQuery';
+import useMinerStatsQuery from '@/hooks/api/useMinerStatsQuery';
 
 const getIndexPastInterval = (index: number) => {
   switch (index) {
@@ -53,6 +53,9 @@ export const MinerRewardStatsSection: React.FC<{
   const counterTicker = useCounterTicker();
   const activeCoin = useActiveCoin();
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
+  const { data: dailyRewardsPerGh } = usePoolDailyRewardPerGigahashSecQuery({
+    coin,
+  });
   const { t } = useTranslation('dashboard');
   const currencyFormatter = useLocalizedCurrencyFormatter();
   const { data: minerStatsState } = useMinerStatsQuery({ coin, address });
@@ -92,14 +95,11 @@ export const MinerRewardStatsSection: React.FC<{
     currencyFormatter,
   ]);
 
-  const minerHeaderStats = useReduxState('minerHeaderStats');
-
   const futureData = React.useMemo(() => {
     const daily =
-      minerHeaderStats.data?.dailyRewardsPerGh &&
-      minerStatsState?.averageEffectiveHashrate
+      dailyRewardsPerGh && minerStatsState?.averageEffectiveHashrate
         ? (minerStatsState?.averageEffectiveHashrate / 1000000000) *
-          minerHeaderStats.data?.dailyRewardsPerGh
+          dailyRewardsPerGh
         : 0;
 
     return [1, 7, 30.5].map((item) => ({
@@ -113,7 +113,7 @@ export const MinerRewardStatsSection: React.FC<{
         : '-',
     }));
   }, [
-    minerHeaderStats.data?.dailyRewardsPerGh,
+    dailyRewardsPerGh,
     activeCoin,
     minerStatsState,
     counterPrice,

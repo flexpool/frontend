@@ -9,16 +9,13 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Content } from 'src/components/layout/Content';
 import { Page, PageLoading } from 'src/components/layout/Page';
 
-import { useFetchMinerDetails } from '@/rdx/minerDetails/minerDetails.hooks';
-import { useFetchMinerHeaderStats } from '@/rdx/minerHeaderStats/minerHeaderStats.hooks';
-import { useFetchMinerStatsChart } from '@/rdx/minerStatsChart/minerStatsChart.hooks';
 import {
   useActiveCoin,
   useCounterTicker,
   useCoinTicker,
 } from 'src/rdx/localSettings/localSettings.hooks';
 
-import usePoolCoinsQuery from '@/hooks/usePoolCoinsQuery';
+import usePoolCoinsQuery from '@/hooks/api/usePoolCoinsQuery';
 
 import AccountHeader from 'src/pages/MinerDashboard/Header/AccountHeader';
 import { HeaderGreetings } from 'src/pages/MinerDashboard/Header/Greetings';
@@ -31,7 +28,6 @@ import { InfoBox } from 'src/components/InfoBox';
 
 import styled from 'styled-components';
 import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
-import { useActiveSearchParamWorker } from 'src/hooks/useActiveQueryWorker';
 import { getChecksumByTicker } from '@/utils/validators/checksum';
 import Warning from '@/assets/warning-icon.svg';
 import { fetchApi } from 'src/utils/fetchApi';
@@ -119,22 +115,6 @@ export const MinerDashboardPageContent: React.FC<{
   const counterTicker = useCounterTicker();
   const { t } = useTranslation('dashboard');
   const [, setCoinTicker] = useCoinTicker();
-  const worker = useActiveSearchParamWorker();
-
-  const { refetch: refetchMinerStatsChart } = useFetchMinerStatsChart(
-    coinTicker,
-    address,
-    worker
-  );
-  const { refetch: refetchMinerHeaderStats } = useFetchMinerHeaderStats(
-    coinTicker,
-    address,
-    counterTicker
-  );
-  const { refetch: refetchMinerDetails } = useFetchMinerDetails(
-    coinTicker,
-    address
-  );
 
   const [tabIndex, setTabIndex] = useState(0);
   const tabs = {
@@ -146,20 +126,24 @@ export const MinerDashboardPageContent: React.FC<{
 
   const loadAll = React.useCallback(() => {
     return Promise.all([
-      refetchMinerDetails(),
+      queryClient.invalidateQueries(['/miner/balance', { address }]),
+      queryClient.invalidateQueries(['/miner/roundShare', { address }]),
+      queryClient.invalidateQueries([
+        '/pool/averageBlockReward',
+        { coin: coinTicker },
+      ]),
+      queryClient.invalidateQueries([
+        '/pool/dailyRewardPerGigahashSec',
+        { coin: coinTicker },
+      ]),
+      queryClient.invalidateQueries(['/miner/details', { address }]),
       queryClient.invalidateQueries('/miner/workers'),
-      tabIndex === 2 ? queryClient.invalidateQueries('/miner/rewards') : null,
-      refetchMinerStatsChart(),
+      queryClient.invalidateQueries('/miner/rewards'),
+      queryClient.invalidateQueries(['/miner/chart', { address }]),
       queryClient.invalidateQueries('/miner/stats'),
-      refetchMinerHeaderStats(),
+      new Promise((resolve) => setTimeout(() => resolve(true), 1200)), // keep the loader animation to at least 1.2s
     ]);
-  }, [
-    tabIndex,
-    refetchMinerDetails,
-    refetchMinerStatsChart,
-    refetchMinerHeaderStats,
-    queryClient,
-  ]);
+  }, [queryClient, address, coinTicker]);
 
   const loadSelectedTabFromHash = (tabHash: string) => {
     setTabIndex(tabs[tabHash]);
@@ -173,6 +157,9 @@ export const MinerDashboardPageContent: React.FC<{
     return selectedHash;
   };
 
+  // This forces local setting of active coin to be updated,
+  // active coin ticker is then being used in various places within
+  // the dashboard
   useEffect(() => {
     if (
       poolCoins &&
@@ -219,7 +206,7 @@ export const MinerDashboardPageContent: React.FC<{
               onRefresh={loadAll}
             />
             <Spacer />
-            <MinerDetails coin={activeCoin} />
+            <MinerDetails coin={activeCoin} address={address} />
             <HeaderStats coin={coinTicker} address={address} />
           </Content>
           <Tabs

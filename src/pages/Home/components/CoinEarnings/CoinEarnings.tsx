@@ -42,7 +42,7 @@ import styled from 'styled-components';
 import chiaImage from './assets/chia_logo.svg';
 import { fetchApi } from 'src/utils/fetchApi';
 import { useAsyncState } from 'src/hooks/useAsyncState';
-import usePoolCoinsFullQuery from '@/hooks/usePoolCoinsFullQuery';
+import usePoolCoinsFullQuery from '@/hooks/api/usePoolCoinsFullQuery';
 import ReCAPTCHA from 'react-google-recaptcha';
 export const recaptchaKey = process.env.REACT_APP_RECAPTCHA_KEY;
 

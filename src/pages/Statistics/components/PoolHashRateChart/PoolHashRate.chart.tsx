@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import { useThemeMode } from '@/context/ThemeModeProvider';
-import usePoolHashrateChartQuery from '@/hooks/usePoolHashrateChartQuery';
+import usePoolHashrateChartQuery from '@/hooks/api/usePoolHashrateChartQuery';
 import {
   ChartContainer,
   responsiveRule,

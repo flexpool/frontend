@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import NProgress from 'nprogress';
 import { CopyButton } from 'src/components/CopyButton';
 import { Img } from 'src/components/Img';
 import { Card } from 'src/components/layout/Card';
@@ -22,14 +23,9 @@ const rotate = keyframes`
   }
 `;
 
-const Spinner = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: ${rotate} 1s linear infinite;
+const Spinner = styled(BiLoaderAlt)`
   opacity: 0.5;
+  animation: ${rotate} 1s linear infinite;
 `;
 
 const Wrap = styled(Card)`
@@ -94,6 +90,15 @@ export const AccountHeader: React.FC<{
   onRefresh: any;
 }> = ({ coin, address, onRefresh }) => {
   const [isRefreshing, setIsRefreshing] = useState(false);
+
+  useEffect(() => {
+    if (isRefreshing) {
+      NProgress.start();
+    } else {
+      NProgress.done();
+    }
+  }, [isRefreshing]);
+
   const addressText = getChecksumByTicker(coin?.ticker)(address);
   return (
     <Wrap paddingShort>
@@ -119,15 +124,13 @@ export const AccountHeader: React.FC<{
           });
         }}
       >
-        {isRefreshing ? (
-          <Spinner>
-            <BiLoaderAlt />
-          </Spinner>
-        ) : (
-          <BiRefresh />
-        )}
+        {isRefreshing ? <Spinner /> : <BiRefresh />}
       </RefreshButton>
-      <MinerSettingsModal address={address} />
+      <MinerSettingsModal
+        coin={coin}
+        address={address}
+        isRefreshing={isRefreshing}
+      />
     </Wrap>
   );
 };

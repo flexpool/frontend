@@ -1,13 +1,15 @@
 import { useTranslation } from 'next-i18next';
-import { Card, CardTitle } from 'src/components/layout/Card';
-import { StatItem } from 'src/components/StatItem';
-import { Tooltip, TooltipContent } from 'src/components/Tooltip';
-import { useReduxState } from 'src/rdx/useReduxState';
-import { useLocalizedSiFormatter } from 'src/utils/si.utils';
+import { isAfter, subHours } from 'date-fns';
 import styled from 'styled-components';
+import { Card, CardTitle } from '@/components/layout/Card';
+import { StatItem } from '@/components/StatItem';
+import { Tooltip, TooltipContent } from '@/components/Tooltip';
+import { useLocalizedSiFormatter } from '@/utils/si.utils';
 import { AverageEffectivePeriods } from './minerStats.types';
-import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
-import useMinerStatsQuery from '@/hooks/useMinerStatsQuery';
+import { useActiveCoin } from '@/rdx/localSettings/localSettings.hooks';
+import useMinerStatsQuery from '@/hooks/api/useMinerStatsQuery';
+import useMinerStatsChartQuery from '@/hooks/api/useMinerStatsChartQuery';
+import { average } from '@/utils/number.utils';
 
 const StatItemGrid = styled.div`
   display: grid;
@@ -57,16 +59,48 @@ const FlexFarmerLink = styled.a`
 `;
 
 export const MinerStats: React.FC<{
-  averageEffectivePeriods: AverageEffectivePeriods;
   coin: string;
   address: string;
   worker?: string;
-}> = ({ averageEffectivePeriods, coin, address, worker }) => {
+}> = ({ coin, address, worker }) => {
   const { data: minerStatsState, isLoading } = useMinerStatsQuery({
     coin,
     address,
     worker,
   });
+
+  const { data: averageEffectivePeriods } = useMinerStatsChartQuery(
+    {
+      coin,
+      address,
+      worker,
+    },
+    {
+      select: (data): AverageEffectivePeriods => {
+        const nowMinus12 = subHours(new Date(), 12);
+        const nowMinus6 = subHours(new Date(), 6);
+
+        const pastSixHours = data?.reduce((acc, curr) => {
+          if (isAfter(new Date(curr.timestamp * 1000), nowMinus6)) {
+            acc.push(curr.effectiveHashrate);
+          }
+          return acc;
+        }, [] as number[]);
+
+        const pastTwelveHours = data?.reduce((acc, curr) => {
+          if (isAfter(new Date(curr.timestamp * 1000), nowMinus12)) {
+            acc.push(curr.effectiveHashrate);
+          }
+          return acc;
+        }, [] as number[]);
+
+        return {
+          '6': pastSixHours ? average(pastSixHours) : 0,
+          '12': pastTwelveHours ? average(pastTwelveHours) : 0,
+        };
+      },
+    }
+  );
 
   const totalShares =
     (minerStatsState &&
@@ -108,7 +142,7 @@ export const MinerStats: React.FC<{
               <AverageTooltipItem>
                 12h Average:{' '}
                 <strong>
-                  {siFormatter(averageEffectivePeriods[12], {
+                  {siFormatter(averageEffectivePeriods?.[12], {
                     unit: activeCoin?.hashrateUnit,
                   })}
                 </strong>
@@ -116,7 +150,7 @@ export const MinerStats: React.FC<{
               <AverageTooltipItem>
                 6h Average:{' '}
                 <strong>
-                  {siFormatter(averageEffectivePeriods[6], {
+                  {siFormatter(averageEffectivePeriods?.[6], {
                     unit: activeCoin?.hashrateUnit,
                   })}
                 </strong>

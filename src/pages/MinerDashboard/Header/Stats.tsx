@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { useReduxState } from 'src/rdx/useReduxState';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import styled from 'styled-components';
 import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
-import { useNetworkFeeLimit } from '@/rdx/minerDetails/minerDetails.selectors';
 import useActiveCoinNetworkFee from '@/hooks/useActiveCoinNetworkFee';
-import useMinerStatsQuery from '@/hooks/useMinerStatsQuery';
+import useMinerStatsQuery from '@/hooks/api/useMinerStatsQuery';
+import useMinerDetailsQuery from '@/hooks/api/useMinerDetailsQuery';
 import useWorkerStatus from '@/hooks/useWorkerStatus';
 import { StatItem } from 'src/components/StatItem';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
+import useMinerBalance from '@/hooks/useMinerBalance';
+import usePoolDailyRewardPerGigahashSecQuery from '@/hooks/api/usePoolDailyRewardPerGigahashSecQuery';
 import { FaCalendar, FaCalendarDay, FaCalendarWeek } from 'react-icons/fa';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
@@ -112,8 +113,19 @@ const GasWarning = styled.span`
 
 const BalanceProgressBar: React.FC<{
   value: number;
+  coin: string;
+  address: string;
   payoutInSeconds: number;
-}> = ({ value, payoutInSeconds }) => {
+  isMainnet: boolean;
+  networkFeeLimit?: number;
+}> = ({
+  value,
+  coin,
+  address,
+  payoutInSeconds,
+  isMainnet,
+  networkFeeLimit,
+}) => {
   const [progress, setProgress] = useState(0);
   React.useEffect(() => {
     setTimeout(() => {
@@ -124,21 +136,16 @@ const BalanceProgressBar: React.FC<{
   const { t } = useTranslation('dashboard');
   const numberFormatter = useLocalizedNumberFormatter();
   const dateFormatter = useLocalizedDateFormatter();
-
-  const currentNetworkFee = useActiveCoinNetworkFee();
-  const networkFeeLimit = useNetworkFeeLimit();
-
-  const minerDetails = useReduxState('minerDetails');
-
+  const currentNetworkFee = useActiveCoinNetworkFee(coin, address);
   const isPayoutDelayedByNetworkFee = React.useMemo(() => {
     return (
       // Gas fee is only considered for mainnet
-      minerDetails.data?.network === 'mainnet' &&
+      isMainnet &&
       !isNil(currentNetworkFee) &&
       !isNil(networkFeeLimit) &&
       currentNetworkFee > networkFeeLimit
     );
-  }, [minerDetails.data?.network, currentNetworkFee, networkFeeLimit]);
+  }, [isMainnet, currentNetworkFee, networkFeeLimit]);
 
   const status = React.useMemo(() => {
     if (progress === 100) {
@@ -188,7 +195,7 @@ const BalanceProgressBar: React.FC<{
         );
       }
 
-      if (minerDetails.data?.network == 'mainnet') {
+      if (isMainnet) {
         return (
           <PayoutText>{t('header.stat_unpaid_balance_reach_ok')}</PayoutText>
         );
@@ -199,13 +206,13 @@ const BalanceProgressBar: React.FC<{
       );
     }
   }, [
+    isMainnet,
     isPayoutDelayedByNetworkFee,
     payoutInSeconds,
     currentNetworkFee,
     networkFeeLimit,
     dateFormatter,
     t,
-    minerDetails.data?.network,
   ]);
 
   return (
@@ -249,12 +256,16 @@ type HeaderStatsProps = {
 
 export const HeaderStats = ({ coin, address }: HeaderStatsProps) => {
   const { data: minerStatsState } = useMinerStatsQuery({ coin, address });
-  const minerHeaderStatsState = useReduxState('minerHeaderStats');
-  const minerDetailsState = useReduxState('minerDetails');
+  const { data: dailyRewardsPerGh } = usePoolDailyRewardPerGigahashSecQuery({
+    coin,
+  });
+  const { data: minerBalance } = useMinerBalance(address, coin);
+  const { data: minerDetails } = useMinerDetailsQuery({
+    coin,
+    address,
+  });
   const activeCoin = useActiveCoin();
   const { data: workerStatus } = useWorkerStatus({ coin, address });
-  const data = minerHeaderStatsState.data;
-  const settings = minerDetailsState.data;
 
   const { t } = useTranslation('dashboard');
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
@@ -263,14 +274,16 @@ export const HeaderStats = ({ coin, address }: HeaderStatsProps) => {
   const [estimateInterval, setEstimateInterval] =
     useLocalStorageState<EstimateInterval>('estimateInterval', 1);
 
-  const balance = activeCoinFormatter(data?.balance, {
+  const balance = activeCoinFormatter(minerBalance?.balance, {
     maximumFractionDigits: 6,
   });
 
-  const tickerBalance = currencyFormatter(data?.balanceCountervalue || 0);
+  const tickerBalance = currencyFormatter(
+    minerBalance?.balanceCountervalue || 0
+  );
 
   const estimatedDailyEarnings = React.useMemo(() => {
-    const rewards = minerHeaderStatsState.data?.dailyRewardsPerGh;
+    const rewards = dailyRewardsPerGh;
     const hashrate = minerStatsState?.averageEffectiveHashrate;
 
     if (rewards === undefined || hashrate === undefined) {
@@ -278,7 +291,7 @@ export const HeaderStats = ({ coin, address }: HeaderStatsProps) => {
     }
 
     return rewards * (hashrate / 1000000000);
-  }, [minerHeaderStatsState.data, minerStatsState]);
+  }, [dailyRewardsPerGh, minerStatsState]);
 
   const estimated = React.useMemo(() => {
     return {
@@ -287,11 +300,11 @@ export const HeaderStats = ({ coin, address }: HeaderStatsProps) => {
           ? activeCoinFormatter(estimatedDailyEarnings * estimateInterval)
           : null,
       counterTicker:
-        estimatedDailyEarnings !== null && data?.countervaluePrice
+        estimatedDailyEarnings !== null && minerBalance?.price
           ? currencyFormatter(
               ((estimatedDailyEarnings * estimateInterval) /
                 Math.pow(10, activeCoin?.decimalPlaces || 9)) *
-                data.countervaluePrice
+                minerBalance.price
             )
           : null,
     };
@@ -300,8 +313,8 @@ export const HeaderStats = ({ coin, address }: HeaderStatsProps) => {
     activeCoin?.decimalPlaces,
     currencyFormatter,
     estimateInterval,
-    data?.countervaluePrice,
     estimatedDailyEarnings,
+    minerBalance,
   ]);
 
   const CalendarIcon = React.useMemo(() => {
@@ -337,10 +350,10 @@ export const HeaderStats = ({ coin, address }: HeaderStatsProps) => {
   }, [estimateInterval, setEstimateInterval]);
 
   const balanceProgress =
-    settings && data
-      ? data.balance / settings.payoutLimit > 1
+    minerDetails && minerBalance
+      ? minerBalance.balance / minerDetails.payoutLimit > 1
         ? 100
-        : (data.balance / settings.payoutLimit) * 100
+        : (minerBalance.balance / minerDetails.payoutLimit) * 100
       : null;
 
   const estimatedEarningsPerSecond =
@@ -349,7 +362,9 @@ export const HeaderStats = ({ coin, address }: HeaderStatsProps) => {
       : null;
 
   const amountToPayout =
-    settings && data ? settings.payoutLimit - data.balance : 0;
+    minerDetails && minerBalance
+      ? minerDetails.payoutLimit - minerBalance.balance
+      : 0;
   const amountToPayoutTimeInSeconds =
     estimatedEarningsPerSecond !== null
       ? amountToPayout / estimatedEarningsPerSecond
@@ -385,7 +400,11 @@ export const HeaderStats = ({ coin, address }: HeaderStatsProps) => {
         {balanceProgress !== null ? (
           <BalanceProgressBar
             value={balanceProgress}
+            networkFeeLimit={minerDetails?.maxFeePrice}
+            coin={coin}
+            address={address}
             payoutInSeconds={amountToPayoutTimeInSeconds}
+            isMainnet={minerDetails?.network === 'mainnet'}
           />
         ) : (
           <ProgressBarWrapper />
