@@ -124,10 +124,16 @@ export const MinerDashboardPageContent: React.FC<{
     blocks: 3,
   };
 
+  // TODO: Provide a miner address oriented query key handler
   const loadAll = React.useCallback(() => {
     return Promise.all([
       queryClient.invalidateQueries(['/miner/balance', { address }]),
       queryClient.invalidateQueries(['/miner/roundShare', { address }]),
+      queryClient.invalidateQueries(['/miner/details', { address }]),
+      queryClient.invalidateQueries('/miner/workers'),
+      queryClient.invalidateQueries('/miner/rewards'),
+      queryClient.invalidateQueries(['/miner/chart', { address }]),
+      queryClient.invalidateQueries('/miner/stats'),
       queryClient.invalidateQueries([
         '/pool/averageBlockReward',
         { coin: coinTicker },
@@ -136,11 +142,8 @@ export const MinerDashboardPageContent: React.FC<{
         '/pool/dailyRewardPerGigahashSec',
         { coin: coinTicker },
       ]),
-      queryClient.invalidateQueries(['/miner/details', { address }]),
-      queryClient.invalidateQueries('/miner/workers'),
-      queryClient.invalidateQueries('/miner/rewards'),
-      queryClient.invalidateQueries(['/miner/chart', { address }]),
-      queryClient.invalidateQueries('/miner/stats'),
+      queryClient.invalidateQueries(['/pool/averageHashrate']),
+      queryClient.invalidateQueries(['/pool/hashrate']),
       new Promise((resolve) => setTimeout(() => resolve(true), 1200)), // keep the loader animation to at least 1.2s
     ]);
   }, [queryClient, address, coinTicker]);
