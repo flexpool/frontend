@@ -2,8 +2,9 @@ import React from 'react';
 import { MinerPplnsStats } from './MinerPplnsStats.section';
 import { MinerRewardStatsSection } from './MinerRewardStats.section';
 import { MinerRewardsBlocksSection } from './MinerReportBlocks.section';
-import { useFetchPoolStats } from '@/rdx/poolStats/poolStats.hooks';
 import useMinerRewardsQuery from '@/hooks/api/useMinerRewardsQuery';
+import usePoolAverageHashrateQuery from '@/hooks/api/usePoolAverageHashrateQuery';
+import usePoolHashrateQuery from '@/hooks/api/usePoolHashrateQuery';
 import RewardsChart from './Rewards.chart';
 
 export const MinerRewardsPage: React.FC<{
@@ -11,7 +12,13 @@ export const MinerRewardsPage: React.FC<{
   coinTicker: string;
   counterTicker: string;
 }> = ({ address, coinTicker, counterTicker }) => {
-  const poolStatsState = useFetchPoolStats(coinTicker);
+  const { data: poolHashrate } = usePoolHashrateQuery({
+    coin: coinTicker,
+  });
+
+  const { data: poolAverageHashrate } = usePoolAverageHashrateQuery({
+    coin: coinTicker,
+  });
 
   const {
     data: minerRewardsState,
@@ -40,8 +47,8 @@ export const MinerRewardsPage: React.FC<{
       />
       <MinerPplnsStats
         coin={coinTicker}
-        averagePoolHashrate={poolStatsState.data?.averageHashrate}
-        poolHashrate={poolStatsState.data?.hashrate.total}
+        averagePoolHashrate={poolAverageHashrate}
+        poolHashrate={poolHashrate?.total}
         address={address}
       />
       <MinerRewardsBlocksSection address={address}></MinerRewardsBlocksSection>
