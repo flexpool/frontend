@@ -18,14 +18,21 @@ import LogoSvg from 'public/svg/logo.svg';
 import { useTranslation } from 'next-i18next';
 import MobileDrawer from './MobileDrawer';
 
-const Logo = styled(LogoSvg)`
+const Logo = styled.div`
   width: 165px;
-  fill: var(--text-primary);
   margin-bottom: 5px; // Remove when christmas logo is retired
+
+  svg {
+    fill: var(--text-primary);
+  }
 `;
 
-const LogoMobile = styled(Logo)`
+const LogoMobile = styled.div`
   width: 141px;
+  margin-bottom: 5px; // Remove when christmas logo is retired
+  svg {
+    fill: var(--text-primary);
+  }
 `;
 
 const NLink = styled.a`
@@ -160,7 +167,9 @@ const NavBar: React.FC<NavBarType> = (props) => {
           <NavSection>
             <Link href="/" passHref>
               <NLink style={{ marginLeft: '-0.5rem' }}>
-                <Logo />
+                <Logo>
+                  <LogoSvg />
+                </Logo>
               </NLink>
             </Link>
             <Link href="/statistics" passHref>
@@ -197,7 +206,9 @@ const NavBar: React.FC<NavBarType> = (props) => {
       <ContainerMobile>
         <NavContainer>
           <Link href="/" aria-label="Home page" passHref>
-            <LogoMobile />
+            <LogoMobile>
+              <LogoSvg />
+            </LogoMobile>
           </Link>
           <NavSection>
             <Link href="/statistics" passHref>

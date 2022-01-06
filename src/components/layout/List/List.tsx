@@ -208,13 +208,12 @@ export const DynamicList = <D extends {}, CP extends {}>(
                     : null;
 
                   return (
-                    <>
+                    <React.Fragment key={(item as any).name || index}>
                       <ListRow
                         item={item}
                         onRowClick={onRowClick as any}
                         onRowClickAllowed={onRowClickAllowed as any}
                         index={index}
-                        key={(item as any).name || index}
                         isHighlighted={index === lastMouseOver}
                         handleActiveHover={setLastMouseOver}
                         columns={columns as any}
@@ -228,7 +227,7 @@ export const DynamicList = <D extends {}, CP extends {}>(
                           </Table.AdditionalTd>
                         </Table.Tr>
                       )}
-                    </>
+                    </React.Fragment>
                   );
                 })}
               {tBodyChildren}
