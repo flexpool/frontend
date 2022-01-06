@@ -1,11 +1,6 @@
 import { useMutation, UseMutationOptions } from 'react-query';
 import { fetchApi } from '@/utils/fetchApi';
-
-type Error = {
-  code: number;
-  message: string;
-  status: number;
-};
+import { ErrorWithMessage } from '@/types/query.types';
 
 type Response = boolean;
 
@@ -28,7 +23,7 @@ type Query =
     };
 
 const useMinerNotificationSettingsMutation = (
-  options?: UseMutationOptions<Response, Error, BaseQuery & Query>
+  options?: UseMutationOptions<Response, ErrorWithMessage, BaseQuery & Query>
 ) => {
   return useMutation(
     (query) =>

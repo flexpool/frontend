@@ -7,6 +7,7 @@ import { FieldGroup } from 'src/components/Form/FieldGroup';
 import { Submit } from 'src/components/Form/Submit';
 import { TextField } from 'src/components/Form/TextInput';
 import { Spacer } from 'src/components/layout/Spacer';
+import ScrollIntoView from '@/components/ScrollIntoView';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import useClientIPQuery from '@/hooks/api/useClientIPQuery';
 import useMinerDetailsQuery from '@/hooks/api/useMinerDetailsQuery';
@@ -97,7 +98,13 @@ export const NotificationSettings: React.FC<{
           <Form>
             <FieldGroup.V>
               <h3>Email notifications</h3>
-              <ErrorBox error={notificationSettingsError} />
+
+              {notificationSettingsError && (
+                <ScrollIntoView>
+                  <ErrorBox error={notificationSettingsError} />
+                </ScrollIntoView>
+              )}
+
               <CheckboxField
                 label={
                   values.emailEnabled
