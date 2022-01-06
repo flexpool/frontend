@@ -1,11 +1,6 @@
 import { useMutation, UseMutationOptions } from 'react-query';
 import { fetchApi } from '@/utils/fetchApi';
-
-type Error = {
-  code: number;
-  message: string;
-  status: number;
-};
+import { ErrorWithMessage } from '@/types/query.types';
 
 type Response = boolean;
 
@@ -19,7 +14,7 @@ export type Query = {
 };
 
 const useMinerPayoutSettingsMutation = (
-  options?: UseMutationOptions<Response, Error, Query>
+  options?: UseMutationOptions<Response, ErrorWithMessage, Query>
 ) => {
   return useMutation(
     (query) =>

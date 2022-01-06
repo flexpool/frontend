@@ -3,3 +3,9 @@ export type Error = {
   results: null;
   error: string;
 };
+
+export type ErrorWithMessage = {
+  code: number;
+  message: string;
+  status: number;
+};
