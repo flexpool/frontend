@@ -1,10 +1,12 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import { resetIdCounter } from 'downshift';
+import { resetIdCounter as resetTabsId } from 'react-tabs';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     resetIdCounter();
+    resetTabsId();
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 
