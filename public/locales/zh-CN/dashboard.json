@@ -188,7 +188,7 @@
       "title_hint": "过去24小时",
       "title_points": "份额",
       "valid": "有效",
-      "stale": "延迟",
+      "stale": "过期",
       "invalid": "无效"
     },
     "hashrate_chart": {
@@ -205,7 +205,7 @@
       "title": "份额总数",
       "title_points": "份额",
       "valid": "有效",
-      "stale": "延迟",
+      "stale": "过期",
       "invalid": "无效"
     },
     "table": {
@@ -221,10 +221,10 @@
         "average_e_hashrate": "平均有效算力",
         "average_e_space": "平均有效存储",
         "valid": "有效份额",
-        "stale": "延迟份额",
+        "stale": "过期份额",
         "invalid": "无效份额",
         "valid_points": "有效份额",
-        "stale_points": "延迟份额",
+        "stale_points": "过期点数",
         "invalid_points": "无效份额",
         "last_seen": "最后上线时间"
       }
