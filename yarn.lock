@@ -2770,6 +2770,13 @@ coa@^2.0.2:
     chalk "^2.4.1"
     q "^1.1.2"
 
+cobe@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/cobe/-/cobe-0.4.1.tgz#d79846e05700c4da2915dd9ce3ef3b9f282f9328"
+  integrity sha512-hXVsSFXUisSQONxkBD5YC+z73ucBCbI/0Jw1h7OOwjo001X93HpSSGkYfoidCruxbNYYss/tpT40RZ8N1VIwhw==
+  dependencies:
+    phenomenon "^1.6.0"
+
 codepage@~1.14.0:
   version "1.14.0"
   resolved "https://registry.npmjs.org/codepage/-/codepage-1.14.0.tgz"
@@ -6145,6 +6152,11 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/performance-now/-/performance-now-2.1.0.tgz"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
+
+phenomenon@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/phenomenon/-/phenomenon-1.6.0.tgz#7b5b7647d0b48152cc0846994da3d92e8f6da677"
+  integrity sha512-7h9/fjPD3qNlgggzm88cY58l9sudZ6Ey+UmZsizfhtawO6E3srZQXywaNm2lBwT72TbpHYRPy7ytIHeBUD/G0A==
 
 picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.2, picomatch@^2.2.3:
   version "2.3.0"

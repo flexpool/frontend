@@ -11,14 +11,15 @@ export const Content = styled.div<{
   max-width: 1200px;
   padding-left: 1rem;
   padding-right: 1rem;
+  /* margin-bottom: 4rem; */
   ${(p) =>
     p.contentCenter &&
     `
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    text-align: center;
+    align-items: left;
+    text-align: left;
   `}
   ${(p) =>
     p.padding &&

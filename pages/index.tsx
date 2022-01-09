@@ -41,13 +41,18 @@ export const HomePage = () => {
 
       <Hero>
         <Content contentCenter style={{ position: 'relative', zIndex: 100 }}>
-          <h1>{t('title')}</h1>
+          <h1 style={{ margin: '0 0 0.35rem' }}>Building the Future</h1>
+          <h1 style={{ margin: '0 0 0.35rem' }}>of Mining Pools</h1>
+          <h1 style={{ margin: '0 0 0.35rem' }}>
+            for <span style={{ color: '#71759e' }}>Ethereum</span>
+          </h1>
           <p>{t('description')}</p>
           <SearchWrapper>
             <SearchAddressBar />
           </SearchWrapper>
         </Content>
-        <Spacer />
+        <Spacer size="xl" />
+        <Spacer size="xl" />
         <CoinEarnings />
         <Spacer />
         <NewsSection />
