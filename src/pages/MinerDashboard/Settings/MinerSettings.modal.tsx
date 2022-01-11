@@ -12,6 +12,7 @@ import { useReduxState } from 'src/rdx/useReduxState';
 import styled from 'styled-components';
 import { NotificationSettings } from './NotificationSettings';
 import PayoutSettings from './PayoutSettings';
+import DifficultySettings from './DifficultySettings';
 
 const Split = styled.div`
   display: flex;
@@ -72,6 +73,7 @@ const navItems = [
 const pageComponents = {
   payouts: PayoutSettings,
   notifications: NotificationSettings,
+  difficulty: DifficultySettings,
 };
 
 type SettingsPageKey = keyof typeof pageComponents;
@@ -143,6 +145,16 @@ export const MinerSettingsModal: React.FC<{
                 {item.title}
               </NavItem>
             ))}
+            {coin?.ticker === 'xch' && (
+              <NavItem
+                onClick={handleChangePage}
+                value="difficulty"
+                size="sm"
+                variant={page === 'difficulty' ? 'primary' : undefined}
+              >
+                Difficulty
+              </NavItem>
+            )}
           </Nav>
           <PageWrapper>
             <PageComponent address={address} />
