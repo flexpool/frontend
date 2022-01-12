@@ -12,11 +12,21 @@ import { Page } from '../src/components/layout/Page';
 import { Spacer } from '../src/components/layout/Spacer';
 import { Sticker } from '../src/components/Sticker';
 import { LatestReport } from '../src/pages/Reports/components/LatestReport/LatestReport';
-import { ReportArchiveItem, ReportTitle } from '../src/pages/Reports/components';
+import {
+  ReportArchiveItem,
+  ReportTitle,
+} from '../src/pages/Reports/components';
 import { useLocalizedDateFormatter } from '../src/utils/date.utils';
 
+const getTransparencyReportUrlByYear = (year: string) => {
+  return `https://static.flexpool.io/opendata/fp-transparency-report-${year}.pdf`;
+};
+
 const getReportUrlByDate = (date: Date) =>
-  `https://static.flexpool.io/opendata/opendata_report_${format(date, 'y_MM')}.pdf`;
+  `https://static.flexpool.io/opendata/opendata_report_${format(
+    date,
+    'y_MM'
+  )}.pdf`;
 
 /**
  * tries to get the latest report date (month)
@@ -62,8 +72,7 @@ const getDates = async () => {
   return dates;
 };
 
-export const OpenDataReportsPage = ({ dates }) => {
-  const latestDate: Date | undefined = (dates || [])[0];
+export const OpenDataReportsPage = ({ dates, lastReportYear }) => {
   const { t } = useTranslation('reports');
   const dateFormatter = useLocalizedDateFormatter();
 
@@ -79,9 +88,10 @@ export const OpenDataReportsPage = ({ dates }) => {
       <Content md paddingLg>
         <h1>{t('title')}</h1>
         <p>{t('description')}</p>
-        {latestDate && (
-          <LatestReport date={latestDate} src={getReportUrlByDate(latestDate)} />
-        )}
+        <LatestReport
+          date={new Date(`${lastReportYear}`)}
+          src={getTransparencyReportUrlByYear(lastReportYear)}
+        />
         <Spacer />
         <h2>{t('archive')}</h2>
         {(dates || []).map((item) => (
@@ -107,10 +117,20 @@ export default OpenDataReportsPage;
 
 export async function getStaticProps({ locale }) {
   const dates = await getDates();
+
+  const lastReportYear = await fetch(
+    'https://static.flexpool.io/opendata/last-report'
+  ).then((res) => res.text());
+
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'reports', 'cookie-consent'])),
+      ...(await serverSideTranslations(locale, [
+        'common',
+        'reports',
+        'cookie-consent',
+      ])),
       dates: dates,
+      lastReportYear,
     },
   };
 }
