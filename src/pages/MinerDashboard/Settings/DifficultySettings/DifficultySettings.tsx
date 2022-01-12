@@ -75,7 +75,11 @@ const LauncherIDInput = () => {
           <CheckDifficulty
             type="button"
             onClick={() => {
-              setLauncherId(input);
+              if (input === launcherId) {
+                farmerDifficultyQuery.refetch();
+              } else {
+                setLauncherId(input);
+              }
             }}
           >
             {farmerDifficultyQuery.isFetching ? <Loader /> : 'Check Difficulty'}
