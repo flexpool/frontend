@@ -1,25 +1,40 @@
 import React, { useState } from 'react';
 import { isNumber } from 'lodash';
-import { Form, Formik, useField } from 'formik';
+import { Form, Formik } from 'formik';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 import ScrollIntoView from '@/components/ScrollIntoView';
 import { InfoBox } from '@/components/InfoBox';
 import { FieldGroup } from 'src/components/Form/FieldGroup';
+import { LoaderSpinner } from '@/components/Loader/LoaderSpinner';
 import { Submit } from 'src/components/Form/Submit';
-import { TextField } from 'src/components/Form/TextInput';
+import { TextField, TextInput } from 'src/components/Form/TextInput';
 import { Spacer } from 'src/components/layout/Spacer';
+import { Divider } from '@/components/layout/Divider';
 import DifficultyWarning from './components/DifficultyWarning';
 import AcknowledgeCheckbox from './components/AcknowledgeCheckbox';
 import useMinerFarmerDifficultyQuery from '@/hooks/api/useMinerFarmerDifficultyQuery';
 import useUpdateFarmerDifficulty from '@/hooks/useUpdateFarmerDifficulty';
 
+const Loader = styled(LoaderSpinner)`
+  width: 32px;
+  height: 32px;
+
+  svg {
+    circle {
+      stroke: var(--text-secondary);
+    }
+  }
+`;
+
 export const CheckDifficulty = styled.button`
   height: 48px;
-  width: 100%;
+  width: 120px;
   padding: 0 1rem;
   border: none;
   background: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,18 +43,10 @@ export const CheckDifficulty = styled.button`
 
 const LauncherIDInput = () => {
   const [launcherId, setLauncherId] = useState<string | undefined>(undefined);
-  const [, , newDifficultyHelpers] = useField('newDifficulty');
-  const [launcherIDField, , launcherIDHelpers] = useField('launcherID');
+  const [input, setInput] = useState('');
   const farmerDifficultyQuery = useMinerFarmerDifficultyQuery(
     { launcherID: launcherId },
     {
-      onSuccess: (data) => {
-        newDifficultyHelpers.setValue(data.difficulty);
-        launcherIDHelpers.setError(undefined);
-      },
-      onError: () => {
-        launcherIDHelpers.setError('Your launcher ID is invalid');
-      },
       retry: false,
     }
   );
@@ -54,26 +61,33 @@ const LauncherIDInput = () => {
         </InfoBox>
       )}
 
-      <TextField
-        name="launcherID"
+      <TextInput
         label="Launcher ID"
         desc="Use the Launcher ID to check your current PlotNFT difficulty."
-        errorMessage="The launcher ID is invalid, please try again."
+        errorMessage={
+          farmerDifficultyQuery.error
+            ? 'The launcher ID is invalid, please try again.'
+            : undefined
+        }
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
         embelishment={
           <CheckDifficulty
             type="button"
             onClick={() => {
-              if (launcherIDField.value === launcherId) {
-                farmerDifficultyQuery.refetch();
-              } else {
-                setLauncherId(launcherIDField.value);
-              }
+              setLauncherId(input);
             }}
           >
-            Check Difficulty
+            {farmerDifficultyQuery.isFetching ? <Loader /> : 'Check Difficulty'}
           </CheckDifficulty>
         }
       />
+
+      {farmerDifficultyQuery.data && farmerDifficultyQuery.isSuccess && (
+        <p>
+          Your current difficulty is: {farmerDifficultyQuery.data.difficulty}
+        </p>
+      )}
     </>
   );
 };
@@ -133,21 +147,40 @@ const DifficultySettings = () => {
           <Form>
             <FieldGroup.V>
               <h3>Difficulty Settings</h3>
+
               <DifficultyWarning />
               {error && (
                 <ScrollIntoView>
                   <InfoBox variant="error">{error.error}</InfoBox>
                 </ScrollIntoView>
               )}
+
+              <h4>Check current difficulty</h4>
+
               <LauncherIDInput />
+
+              <Divider />
+
+              <h4>Update difficulty</h4>
+
+              <TextField
+                name="launcherID"
+                label="Launcher ID"
+                desc=""
+                placeholder=""
+              />
+
               <Spacer size="sm" />
+
               <TextField
                 name="newDifficulty"
                 label="Difficulty"
                 desc="Difficulty determines the frequency of partials. The lower the difficulty is, the more partials you will get. More partials will result in more precise stats."
-                placeholder="Check your difficulty with launcher ID"
+                placeholder=""
               />
+
               <Spacer size="sm" />
+
               <TextField
                 name="loginLink"
                 label="Login Link"
