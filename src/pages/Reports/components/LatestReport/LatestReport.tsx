@@ -36,7 +36,7 @@ export const LatestReport: React.FC<{ src: string; date: Date }> = ({
   return (
     <>
       <h2>
-        {t('latest')} ({dateFormatter.format(date, 'LLLL y')})
+        {t('latest')} ({dateFormatter.format(date, 'y')})
       </h2>
       <Container ref={wrapperRef}>
         {isLoading && <LoaderOverlayWithin />}
