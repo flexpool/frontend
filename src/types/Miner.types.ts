@@ -90,3 +90,8 @@ export type ApiMinerRewards = {
   price: number;
   data: ApiMinerReward[];
 };
+
+export type ApiMinerFarmerDifficulty = {
+  difficulty: number;
+  pendingDifficulty: number | null;
+};

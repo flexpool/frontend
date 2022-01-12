@@ -1,6 +1,5 @@
 export type Error = {
-  status: number;
-  results: null;
+  result: null;
   error: string;
 };
 

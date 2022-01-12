@@ -38,8 +38,18 @@ type WrapperProps = {
 const Wrapper = styled.div<WrapperProps>`
   border-radius: 5px;
   overflow: hidden;
-  border: 1px solid var(--bg-secondary);
   display: flex;
+`;
+
+type FocusRingProps = {
+  disabled?: boolean;
+  hasEmbelishment?: boolean;
+};
+
+const FocusRing = styled.div<FocusRingProps>`
+  width: 100%;
+  border: 1px solid var(--bg-secondary);
+  border-radius: ${(p) => (p.hasEmbelishment ? '5px 0px 0px 5px' : '5px')};
   &:focus-within,
   &:hover {
     border-color: ${(p) => (p.disabled ? `none` : `var(--primary)`)};
@@ -67,20 +77,24 @@ export const TextInput: React.FC<
   return (
     <FieldWrap {...props}>
       <Wrapper disabled={props.disabled}>
-        <SText
-          min={min}
-          type={type}
-          inputMode={inputMode}
-          value={props.value}
-          onChange={props.onChange}
-          onBlur={props.onBlur}
-          name={props.name}
-          pattern={pattern}
-          placeholder={props.placeholder}
-          disabled={props.disabled}
-          autoComplete={autoComplete}
-          spellCheck={spellCheck}
-        />
+        <FocusRing disabled={props.disabled} hasEmbelishment={!!embelishment}>
+          <SText
+            min={min}
+            type={type}
+            inputMode={inputMode}
+            value={props.value}
+            onChange={props.onChange}
+            onBlur={props.onBlur}
+            name={props.name}
+            pattern={pattern}
+            placeholder={props.placeholder}
+            disabled={props.disabled}
+            autoComplete={autoComplete}
+            spellCheck={spellCheck}
+            style={{ borderRadius: embelishment ? '5px 0 0 5px' : '5px' }}
+          />
+        </FocusRing>
+
         {embelishment && <Embelishment>{embelishment}</Embelishment>}
       </Wrapper>
     </FieldWrap>
