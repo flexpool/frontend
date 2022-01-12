@@ -15,6 +15,7 @@ import DifficultyWarning from './components/DifficultyWarning';
 import AcknowledgeCheckbox from './components/AcknowledgeCheckbox';
 import useMinerFarmerDifficultyQuery from '@/hooks/api/useMinerFarmerDifficultyQuery';
 import useUpdateFarmerDifficulty from '@/hooks/useUpdateFarmerDifficulty';
+import { Button } from '@/components/Button';
 
 const Loader = styled(LoaderSpinner)`
   width: 32px;
@@ -27,18 +28,16 @@ const Loader = styled(LoaderSpinner)`
   }
 `;
 
-export const CheckDifficulty = styled.button`
-  height: 48px;
+const CheckButton = styled(Button)`
+  border-radius: 0px;
   width: 120px;
-  padding: 0 1rem;
+  justify-content: center;
+  color: var(--text-primary);
   border: none;
   background: none;
   font-family: 'Inter', sans-serif;
   font-weight: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-primary);
+  font-size: 0.85rem;
 `;
 
 const LauncherIDInput = () => {
@@ -72,7 +71,7 @@ const LauncherIDInput = () => {
         value={input}
         onChange={(e) => setInput(e.target.value)}
         embelishment={
-          <CheckDifficulty
+          <CheckButton
             type="button"
             onClick={() => {
               if (input === launcherId) {
@@ -83,7 +82,7 @@ const LauncherIDInput = () => {
             }}
           >
             {farmerDifficultyQuery.isFetching ? <Loader /> : 'Check Difficulty'}
-          </CheckDifficulty>
+          </CheckButton>
         }
       />
 
