@@ -21,6 +21,21 @@
       "l2_warning": "Please make sure your wallet support <bold>{{network_name}}</bold> WETH deposits. Otherwise, your funds will be lost forever.",
       "l2_acknowledge": "I acknowledge that my wallet supports <bold>{{network_name}}</bold> L2 network, that the funds will be irreversibly lost otherwise, and that I know how to deal with payouts made in the <bold>{{network_name}}</bold> network."
     },
+    "difficulty": {
+      "title": "Difficulty Settings",
+      "warning": "The adjustable difficulty is a feature for advanced users only. We strongly recommend keeping 1 unless you have specific requirements. Please do not change the difficulty unless you know what you are doing.",
+      "check_difficulty": "Check current difficulty",
+      "update_difficulty": "Update difficulty",
+      "acknowledge": "I acknowledge that higher difficulty will make the effective space calculations less precise.",
+      "check_difficulty_button": "Check Difficulty",
+      "pending_difficulty": "You have a pending difficulty change of {{difficulty}}. Please wait up to 10 minutes for the changes to be applied.",
+      "current_difficulty": "Your current difficulty is: {{difficulty}}",
+      "launcher_id_desc": "Use the Launcher ID to check your current PlotNFT difficulty.",
+      "launcher_id_error": "The launcher ID is invalid, please try again.",
+      "difficulty_desc": "Difficulty determines the frequency of partials. The lower the difficulty is, the more partials you will get. More partials will result in more precise stats.",
+      "login_link_desc": "Login Link is required to prove the ownership of your PlotNFT.",
+      "submit": "Apply Changes"
+    },
     "payout_warning": [
       "We highly recommend setting a higher payout limit to reduce total number of payout transactions. Less transactions means less paid in network fees.",
       "You are the only one responsible for paying the transaction fees. We are strongly in favour of setting a transaction fee limit lower to avoid total loss on network fees. This will also help you partially mitigate losses when sudden fee spikes happen."
