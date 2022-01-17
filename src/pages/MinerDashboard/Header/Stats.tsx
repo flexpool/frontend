@@ -143,6 +143,7 @@ const BalanceProgressBar: React.FC<{
       isMainnet &&
       !isNil(currentNetworkFee) &&
       !isNil(networkFeeLimit) &&
+      networkFeeLimit > 0 &&
       currentNetworkFee > networkFeeLimit
     );
   }, [isMainnet, currentNetworkFee, networkFeeLimit]);
