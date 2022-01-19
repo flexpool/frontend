@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { isNumber } from 'lodash';
 import { Form, Formik } from 'formik';
-import { useTranslation } from 'next-i18next';
+import { useTranslation, Trans } from 'next-i18next';
 import styled from 'styled-components';
 import ScrollIntoView from '@/components/ScrollIntoView';
 import { InfoBox } from '@/components/InfoBox';
@@ -43,6 +43,7 @@ const CheckButton = styled(Button)`
 const LauncherIDInput = () => {
   const [launcherId, setLauncherId] = useState<string | undefined>(undefined);
   const [input, setInput] = useState('');
+  const { t } = useTranslation('dashboard');
   const farmerDifficultyQuery = useMinerFarmerDifficultyQuery(
     { launcherID: launcherId },
     {
@@ -54,18 +55,22 @@ const LauncherIDInput = () => {
     <>
       {isNumber(farmerDifficultyQuery.data?.pendingDifficulty) && (
         <InfoBox variant="primary">
-          You have a pending difficulty change of{' '}
-          {farmerDifficultyQuery.data?.pendingDifficulty}. Please wait up to 10
-          minutes for the changes to be applied.
+          <Trans
+            ns="dashboard"
+            i18nKey="settings.difficulty.pending_difficulty"
+            values={{
+              difficulty: farmerDifficultyQuery.data?.pendingDifficulty,
+            }}
+          />
         </InfoBox>
       )}
 
       <TextInput
         label="Launcher ID"
-        desc="Use the Launcher ID to check your current PlotNFT difficulty."
+        desc={t('dashboard:settings.difficulty.launcher_id_desc')}
         errorMessage={
           farmerDifficultyQuery.error
-            ? 'The launcher ID is invalid, please try again.'
+            ? t('dashboard:settings.difficulty.launcher_id_error')
             : undefined
         }
         value={input}
@@ -81,14 +86,24 @@ const LauncherIDInput = () => {
               }
             }}
           >
-            {farmerDifficultyQuery.isFetching ? <Loader /> : 'Check Difficulty'}
+            {farmerDifficultyQuery.isFetching ? (
+              <Loader />
+            ) : (
+              t('dashboard:settings.difficulty.check_difficulty_button')
+            )}
           </CheckButton>
         }
       />
 
       {farmerDifficultyQuery.data && farmerDifficultyQuery.isSuccess && (
         <p>
-          Your current difficulty is: {farmerDifficultyQuery.data.difficulty}
+          <Trans
+            ns="dashboard"
+            i18nKey="settings.difficulty.current_difficulty"
+            values={{
+              difficulty: farmerDifficultyQuery.data.difficulty,
+            }}
+          />
         </p>
       )}
     </>
@@ -99,7 +114,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const DifficultySettings = () => {
   const { mutateAsync, error } = useUpdateFarmerDifficulty();
-  const { t } = useTranslation(['common']);
+  const { t } = useTranslation(['common', 'dashboard']);
 
   const validate = (values) => {
     return sleep(100).then(() => {
@@ -149,7 +164,7 @@ const DifficultySettings = () => {
         return (
           <Form>
             <FieldGroup.V>
-              <h3>Difficulty Settings</h3>
+              <h3>{t('dashboard:settings.difficulty.title')}</h3>
 
               <DifficultyWarning />
               {error && (
@@ -158,13 +173,13 @@ const DifficultySettings = () => {
                 </ScrollIntoView>
               )}
 
-              <h4>Check current difficulty</h4>
+              <h4>{t('dashboard:settings.difficulty.check_difficulty')}</h4>
 
               <LauncherIDInput />
 
               <Divider />
 
-              <h4>Update difficulty</h4>
+              <h4>{t('dashboard:settings.difficulty.update_difficulty')}</h4>
 
               <TextField
                 name="launcherID"
@@ -178,7 +193,7 @@ const DifficultySettings = () => {
               <TextField
                 name="newDifficulty"
                 label="Difficulty"
-                desc="Difficulty determines the frequency of partials. The lower the difficulty is, the more partials you will get. More partials will result in more precise stats."
+                desc={t('dashboard:settings.difficulty.difficulty_desc')}
                 placeholder=""
               />
 
@@ -187,14 +202,14 @@ const DifficultySettings = () => {
               <TextField
                 name="loginLink"
                 label="Login Link"
-                desc="Login Link is required to prove the ownership of your PlotNFT."
+                desc={t('dashboard:settings.difficulty.login_link_desc')}
               />
               <Spacer size="sm" />
 
               {Number(values.newDifficulty) > 1 && <AcknowledgeCheckbox />}
 
               <Submit shape="block" disableWhenFormNotDirty={!isAcknowledged}>
-                Apply Changes
+                {t('dashboard:settings.difficulty.submit')}
               </Submit>
             </FieldGroup.V>
           </Form>

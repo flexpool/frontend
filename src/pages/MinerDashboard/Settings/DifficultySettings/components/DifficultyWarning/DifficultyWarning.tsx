@@ -8,12 +8,7 @@ const DifficultyWarning = () => {
     <InfoBox variant="warning">
       <h3>Important note</h3>
       <div>
-        <p>
-          The adjustable difficulty is a feature for advanced users only. We
-          strongly recommend keeping 1 unless you have specific requirements.
-          Please do not change the difficulty unless you know what you are
-          doing.
-        </p>
+        <p>{t('dashboard:settings.difficulty.warning')}</p>
       </div>
     </InfoBox>
   );
