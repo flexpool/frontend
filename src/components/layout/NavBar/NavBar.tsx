@@ -20,7 +20,6 @@ import MobileDrawer from './MobileDrawer';
 
 const Logo = styled.div`
   width: 165px;
-  margin-bottom: 5px; // Remove when christmas logo is retired
 
   svg {
     fill: var(--text-primary);
@@ -29,7 +28,6 @@ const Logo = styled.div`
 
 const LogoMobile = styled.div`
   width: 141px;
-  margin-bottom: 5px; // Remove when christmas logo is retired
   svg {
     fill: var(--text-primary);
   }
