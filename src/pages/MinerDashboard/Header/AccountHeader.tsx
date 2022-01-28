@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import styled, { keyframes } from 'styled-components';
 import NProgress from 'nprogress';
+import { BiRefresh, BiLoaderAlt } from 'react-icons/bi';
 import { CopyButton } from 'src/components/CopyButton';
 import { Img } from 'src/components/Img';
 import { Card } from 'src/components/layout/Card';
@@ -8,10 +10,9 @@ import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { getCoinLink } from 'src/utils/coinLinks.utils';
 import { getCoinIconUrl } from 'src/utils/staticImage.utils';
 import { getChecksumByTicker } from 'src/utils/validators/checksum';
-import styled, { keyframes } from 'styled-components';
 import { MinerSettingsModal } from '../Settings/MinerSettings.modal';
 import { Button } from 'src/components/Button';
-import { BiRefresh, BiLoaderAlt } from 'react-icons/bi';
+import useMinerDetailsQuery from '@/hooks/api/useMinerDetailsQuery';
 
 const rotate = keyframes`
   from {
@@ -91,6 +92,15 @@ export const AccountHeader: React.FC<{
 }> = ({ coin, address, onRefresh }) => {
   const [isRefreshing, setIsRefreshing] = useState(false);
 
+  const { data: minerDetails } = useMinerDetailsQuery({
+    coin: coin?.ticker,
+    address,
+  });
+
+  const coinName =
+    minerDetails &&
+    (minerDetails.network === 'mainnet' ? coin?.ticker : minerDetails.network);
+
   useEffect(() => {
     if (isRefreshing) {
       NProgress.start();
@@ -108,7 +118,7 @@ export const AccountHeader: React.FC<{
         ) : (
           <CoinIconSkeleton />
         )}
-        <Address href={getCoinLink('wallet', address, coin?.ticker)}>
+        <Address href={getCoinLink('wallet', address, coinName)}>
           {addressText}
         </Address>
         <CopyButton text={addressText || ''} />
