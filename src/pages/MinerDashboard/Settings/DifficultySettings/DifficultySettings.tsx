@@ -128,8 +128,23 @@ const DifficultySettings = () => {
         errors.launcherID = t('common:errors.required');
       }
 
-      if (values.newDifficulty === '') {
-        errors.newDifficulty = t('common:errors.required');
+      switch (true) {
+        case values.newDifficulty === '':
+          errors.newDifficulty = t('common:errors.required');
+          break;
+        case isNaN(values.newDifficulty):
+          errors.newDifficulty = t('common:errors.invalid_number');
+          break;
+        case Math.floor(values.newDifficulty) < 1:
+          errors.newDifficulty = t('common:errors.number_min', {
+            value: 1,
+          });
+          break;
+        case Math.ceil(values.newDifficulty) > 1024:
+          errors.newDifficulty = t('common:errors.number_max', {
+            value: 1024,
+          });
+          break;
       }
 
       if (values.loginLink === '') {
