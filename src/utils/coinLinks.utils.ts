@@ -15,6 +15,7 @@ const transactionUrlMap = {
 
 const walletAddressUrlMap = {
   eth: 'https://etherscan.io/address/%v',
+  polygon: 'https://polygonscan.com/address/%v',
   xch: 'https://www.chiaexplorer.com/blockchain/address/%v',
 };
 
