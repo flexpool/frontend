@@ -1,6 +1,5 @@
 import React from 'react';
 import { Img } from 'src/components/Img';
-import SnowFall from 'react-snowfall';
 import styled from 'styled-components';
 
 const Hero = styled.div`
@@ -44,7 +43,6 @@ export const HeroBlue: React.FC<{
   return (
     <Hero className={className}>
       {children}
-      <SnowFall style={{ zIndex: 0 }} />
       <WorldMap src="/illustrations/world_map_dots.svg" alt="World map" />
     </Hero>
   );
