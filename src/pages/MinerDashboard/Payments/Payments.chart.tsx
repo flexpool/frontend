@@ -70,6 +70,7 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
         { timeUnit: 'week', count: 1 },
       ]);
 
+      dateAxis.dateFormats.setKey('minute', 'MMM dd HH:mm');
       dateAxis.dateFormats.setKey('hour', 'MMM dd HH:mm');
 
       dateAxis.adapter.add('getTooltipText', (text, target) => {
