@@ -62,14 +62,13 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
       };
 
       dateAxis.groupData = true;
-      dateAxis.groupCount = 100;
 
       dateAxis.groupIntervals.setAll([
         { timeUnit: 'minute', count: 1 },
         { timeUnit: 'day', count: 1 },
-        { timeUnit: 'week', count: 1 },
       ]);
 
+      dateAxis.dateFormats.setKey('minute', 'MMM dd HH:mm');
       dateAxis.dateFormats.setKey('hour', 'MMM dd HH:mm');
 
       dateAxis.adapter.add('getTooltipText', (text, target) => {
