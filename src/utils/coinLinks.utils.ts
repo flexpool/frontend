@@ -1,20 +1,24 @@
 const blockUrlMap = {
   eth: 'https://etherscan.io/block/%v',
+  etc: 'https://blockscout.com/etc/mainnet/block/%v',
   xch: 'https://www.chiaexplorer.com/blockchain/block/%v',
 };
 
 const uncleUrlMap = {
   eth: 'https://etherscan.io/uncle/%v',
+  etc: 'https://blockscout.com/etc/mainnet/block/%v',
 };
 
 const transactionUrlMap = {
   eth: 'https://etherscan.io/tx/%v',
+  etc: 'https://blockscout.com/etc/mainnet/tx/%v',
   polygon: 'https://polygonscan.com/tx/%v',
   xch: 'https://www.chiaexplorer.com/blockchain/coin/%v',
 };
 
 const walletAddressUrlMap = {
   eth: 'https://etherscan.io/address/%v',
+  etc: 'https://blockscout.com/etc/mainnet/address/%v',
   polygon: 'https://polygonscan.com/address/%v',
   xch: 'https://www.chiaexplorer.com/blockchain/address/%v',
 };
