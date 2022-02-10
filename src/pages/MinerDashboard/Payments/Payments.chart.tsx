@@ -32,6 +32,7 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
   address,
 }) => {
   const { t } = useTranslation('dashboard');
+  // FIXME: migrate to react query
   const asyncState = useAsyncState<
     {
       fee: number;
@@ -54,7 +55,40 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
       paymentsAxis.renderer.grid.template.disabled = true;
       let dateAxis = paymentsChart.xAxes.push(new DateAxis());
       dateAxis.renderer.grid.template.location = 0;
+
+      dateAxis.baseInterval = {
+        timeUnit: 'minute',
+        count: 1,
+      };
+
       dateAxis.groupData = true;
+
+      dateAxis.groupIntervals.setAll([
+        { timeUnit: 'minute', count: 1 },
+        { timeUnit: 'day', count: 1 },
+      ]);
+
+      dateAxis.dateFormats.setKey('minute', 'MMM dd HH:mm');
+      dateAxis.dateFormats.setKey('hour', 'MMM dd HH:mm');
+
+      dateAxis.adapter.add('getTooltipText', (text, target) => {
+        if (target.baseInterval.timeUnit === 'week') {
+          const start = target.tooltipDate.toLocaleString('en-US', {
+            month: 'short',
+            day: 'numeric',
+          });
+
+          let endDate = new Date(target.tooltipDate);
+          endDate.setDate(target.tooltipDate.getDate() + 6);
+          let end = endDate.toLocaleString('en-US', {
+            month: 'short',
+            day: 'numeric',
+          });
+
+          return `${start} - ${end}`;
+        }
+        return text;
+      });
 
       let feeSeries = paymentsChart.series.push(new ColumnSeries());
       feeSeries.stacked = true;
