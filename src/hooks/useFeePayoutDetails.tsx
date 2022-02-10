@@ -11,6 +11,11 @@ const feePayoutLimitDetails = {
     title: 'Cost Unit Price',
     multiplier: 1,
   },
+  btc: {
+    unit: 'sat/b',
+    title: 'Sats per Byte',
+    multiplier: 1,
+  },
 };
 
 export const useFeePayoutLimitDetails = (coin?: string) => {

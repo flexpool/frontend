@@ -1,6 +1,7 @@
 export type Ticker =
   | 'eth'
   | 'xch'
+  | 'btc'
   | 'usd'
   | 'cad'
   | 'eur'
