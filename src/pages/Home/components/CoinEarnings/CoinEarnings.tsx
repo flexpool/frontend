@@ -225,13 +225,13 @@ export const CoinEarnings = () => {
   const { data: coinsFull } = usePoolCoinsFullQuery();
 
   return (
-    <Content>
+    <Content style={{ maxWidth: '1300px' }}>
       <Spacer size="xl" />
       <Container>
         {coinsFull ? (
-          coinsFull.map((item) => (
-            <CoinEarningsItem key={item.ticker} data={item} />
-          ))
+          coinsFull
+            .filter((item) => item.ticker !== 'btc')
+            .map((item) => <CoinEarningsItem key={item.ticker} data={item} />)
         ) : (
           <>
             <CoinEarningsItem />
