@@ -98,6 +98,9 @@ const DownshiftSelect = (props: DownshiftSelectProps) => {
 
         <DropdownList
           {...getMenuProps({ ref: dropdownListRef })}
+          style={{
+            width: 'auto',
+          }}
           isOpen={isOpen}
         >
           {isOpen &&
