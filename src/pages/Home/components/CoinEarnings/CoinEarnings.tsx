@@ -154,7 +154,7 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
             <p>
               {t('coin_earnings_cards.pool_fee', {
                 value:
-                  data?.ticker === 'eth'
+                  data?.ticker === 'eth' || data?.ticker === 'etc'
                     ? percentFormatter(5 / 1000)
                     : data?.ticker === 'xch'
                     ? percentFormatter(0 / 1000)
@@ -162,7 +162,7 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
                     ? percentFormatter(1 / 1000)
                     : percentFormatter(10 / 1000),
               })}{' '}
-              {data?.ticker === 'eth' && (
+              {(data?.ticker === 'eth' || data?.ticker === 'etc') && (
                 <Tooltip>
                   <TooltipContent>
                     {t('coin_earnings_cards.mev', {

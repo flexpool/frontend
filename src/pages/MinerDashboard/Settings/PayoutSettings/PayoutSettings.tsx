@@ -159,7 +159,8 @@ export const PayoutSettings: React.FC<{
               <FieldGroup.V>
                 <h3>{t('dashboard:settings.payout.title')}</h3>
 
-                {String(activeCoin?.ticker) === 'eth' &&
+                {(String(activeCoin?.ticker) === 'eth' ||
+                  String(activeCoin?.ticker) === 'etc') &&
                   values.network === 'mainnet' && <PayoutWarning />}
 
                 {error && (
@@ -183,7 +184,8 @@ export const PayoutSettings: React.FC<{
 
                 <Spacer size="sm" />
 
-                {String(activeCoin?.ticker) === 'eth' &&
+                {(String(activeCoin?.ticker) === 'eth' ||
+                  String(activeCoin?.ticker) === 'etc') &&
                   values.network === 'mainnet' && (
                     <>
                       {gweiToggle ? (
@@ -217,7 +219,8 @@ export const PayoutSettings: React.FC<{
                   <p>{t('dashboard:settings.ip_description')} </p>
                 </div>
 
-                {activeCoin.ticker === 'eth' &&
+                {(String(activeCoin?.ticker) === 'eth' ||
+                  String(activeCoin?.ticker) === 'etc') &&
                 values.network === 'mainnet' &&
                 Number(values.payoutLimit) < 0.05 ? (
                   <LowPayoutContainer>

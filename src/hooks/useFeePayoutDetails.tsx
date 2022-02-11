@@ -6,6 +6,11 @@ const feePayoutLimitDetails = {
     title: 'Gas Price',
     multiplier: 1000000000,
   },
+  etc: {
+    unit: 'Gwei',
+    title: 'Gas Price',
+    multiplier: 1000000000,
+  },
   xch: {
     unit: 'mojo/CU',
     title: 'Cost Unit Price',

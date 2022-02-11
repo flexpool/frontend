@@ -106,7 +106,8 @@ export const MinerDetails: React.FC<{
             {minerDetails && coin ? payoutLimit : <Skeleton width={40} />}
           </div>
         </Item>
-        {activeCoinTicker === 'eth' && minerDetails?.network === 'mainnet' ? (
+        {(activeCoinTicker === 'eth' || activeCoinTicker === 'etc') &&
+        minerDetails?.network === 'mainnet' ? (
           <Tooltip
             wrapIcon={false}
             icon={
@@ -123,9 +124,11 @@ export const MinerDetails: React.FC<{
                     ) : (
                       <div>{maxFeePrice + ' ' + feeDetails?.unit}</div>
                     )}
-                    <NetworkFee>
-                      &nbsp;{`(${currentNetworkFee} ${feeDetails.unit} now)`}
-                    </NetworkFee>
+                    {currentNetworkFee > 0 && (
+                      <NetworkFee>
+                        &nbsp;{`(${currentNetworkFee} ${feeDetails.unit} now)`}
+                      </NetworkFee>
+                    )}
                   </>
                 )}
               </Item>

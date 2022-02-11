@@ -123,7 +123,7 @@ export const MinerRewardsBlocksSection: React.FC<{
     () => ({
       number: {
         title:
-          coinTicker === 'eth'
+          coinTicker === 'eth' || coinTicker === 'etc'
             ? t('table.table_head.number')
             : t('table.table_head.height'),
         skeletonWidth: 80,

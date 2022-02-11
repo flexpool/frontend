@@ -132,7 +132,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
       },
       number: {
         title:
-          activeCoinTicker === 'eth'
+          activeCoinTicker === 'eth' || activeCoinTicker === 'etc'
             ? t('table.table_head.number')
             : t('table.table_head.height'),
         skeletonWidth: 80,
