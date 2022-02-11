@@ -3,13 +3,14 @@ import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { addressSearchSet } from 'src/rdx/addressSearch/addressSearch.actions';
 import { getChecksumByTicker } from '@/utils/validators/checksum';
+import { fetchApi } from '@/utils/fetchApi';
 
 const useSearchAddress = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
   const search = useCallback(
-    (address: string, coin?: string, callback?: () => void) => {
+    async (address: string, coin?: string, callback?: () => void) => {
       let coinType = coin;
 
       if (!coin) {
@@ -20,6 +21,15 @@ const useSearchAddress = () => {
       if (!coinType) {
         alert('Please enter a valid Ethereum or Chia wallet address.');
         return false;
+      }
+
+      if (coinType === 'eth') {
+        const res = await fetchApi<string | null>('/miner/locateAddress', {
+          query: {
+            address,
+          },
+        });
+        if (res) coinType = res;
       }
 
       router.push(`/miner/${coinType}/${address}`, undefined).then(async () => {
