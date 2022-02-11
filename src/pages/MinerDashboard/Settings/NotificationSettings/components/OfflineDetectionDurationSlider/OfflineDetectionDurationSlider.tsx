@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Formik, useField } from 'formik';
+import { useField } from 'formik';
 import styled from 'styled-components';
 import * as Slider from '@radix-ui/react-slider';
 
