@@ -28,7 +28,7 @@ const Title = styled.h3``;
 const MineableCoinGrid = styled.div`
   display: grid;
   margin-top: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 370px));
   gap: 1rem;
   width: 100%;
 
@@ -65,9 +65,12 @@ export const MineableCoinList: React.FC = () => {
       {t && (
         <MineableCoinGrid>
           {mineableCoins.map((item) => {
-            const poolDetails = t(`detail_${item.ticker.toLowerCase()}.pool_details`, {
-              returnObjects: true,
-            }) as { key: string; value: string }[];
+            const poolDetails = t(
+              `detail_${item.ticker.toLowerCase()}.pool_details`,
+              {
+                returnObjects: true,
+              }
+            ) as { key: string; value: string }[];
 
             const poolHw = t(`detail_${item.ticker.toLowerCase()}.hardware`, {
               returnObjects: true,
@@ -93,7 +96,9 @@ export const MineableCoinList: React.FC = () => {
                       <Button
                         shape="block"
                         size="sm"
-                        variant={itemHw.key === 'flexfarmer' ? 'success' : 'primary'}
+                        variant={
+                          itemHw.key === 'flexfarmer' ? 'success' : 'primary'
+                        }
                       >
                         {itemHw.key === 'flexfarmer' ? (
                           <>
@@ -106,7 +111,10 @@ export const MineableCoinList: React.FC = () => {
                     </Link>
                   ))}
                   {item.nicehashAvailable ? (
-                    <Link href={`/get-started/${item.ticker}/nicehash`} passHref>
+                    <Link
+                      href={`/get-started/${item.ticker}/nicehash`}
+                      passHref
+                    >
                       <Button shape="block" size="sm" variant="warning">
                         {t('list.nicehash_rental_button')}
                       </Button>
