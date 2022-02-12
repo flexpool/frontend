@@ -229,9 +229,9 @@ export const CoinEarnings = () => {
       <Spacer size="xl" />
       <Container>
         {coinsFull ? (
-          coinsFull
-            .filter((item) => item.ticker !== 'btc')
-            .map((item) => <CoinEarningsItem key={item.ticker} data={item} />)
+          coinsFull.map((item) => (
+            <CoinEarningsItem key={item.ticker} data={item} />
+          ))
         ) : (
           <>
             <CoinEarningsItem />

@@ -52,42 +52,52 @@ const StyledThumb = styled(Slider.Thumb)`
 const durationOptions = [
   {
     key: '5m',
+    description: '5 minutes',
     value: 300,
   },
   {
     key: '10m',
+    description: '10 minutes',
     value: 600,
   },
   {
     key: '20m',
+    description: '20 minutes',
     value: 1200,
   },
   {
     key: '30m',
+    description: '30 minutes',
     value: 1800,
   },
   {
     key: '1h',
+    description: '1 hour',
     value: 3600,
   },
   {
     key: '2h',
+    description: '2 hours',
     value: 7200,
   },
   {
     key: '4h',
+    description: '4 hours',
     value: 14400,
   },
   {
     key: '8h',
+    description: '8 hours',
     value: 28800,
   },
   {
     key: '16h',
+    description: '16 hours',
     value: 57600,
   },
   {
     key: '24h',
+    description: '24 hours',
     value: 86400,
   },
 ];
@@ -165,7 +175,7 @@ const OfflineDetectionDurationSlider = ({ disabled = false }) => {
           <StepLabels />
           <SliderHint>
             {t('dashboard:settings.notifications.offline_duration', {
-              duration: durationOptions[optionIndex].key,
+              duration: durationOptions[optionIndex].description,
             })}
           </SliderHint>
         </StyledTrack>
