@@ -2,6 +2,7 @@ import React from 'react';
 import { useField } from 'formik';
 import styled from 'styled-components';
 import * as Slider from '@radix-ui/react-slider';
+import { useTranslation } from 'next-i18next';
 
 const StyledSlider = styled(Slider.Root)`
   position: relative;
@@ -10,6 +11,7 @@ const StyledSlider = styled(Slider.Root)`
   user-select: none;
   touch-action: none;
   height: 20px;
+  margin-bottom: 94px;
 
   &[data-disabled] {
     opacity: 0.6;
@@ -132,8 +134,14 @@ const SliderLabel = styled.label`
   margin-bottom: 0.5rem;
 `;
 
+const SliderHint = styled.div`
+  margin-top: 46px;
+  max-width: 480px;
+`;
+
 const OfflineDetectionDurationSlider = ({ disabled = false }) => {
   const [field, , { setValue }] = useField('workerOfflineDetectionDuration');
+  const { t } = useTranslation(['dashboard']);
 
   const optionIndex = durationOptions.findIndex(
     (option) => option.value === field.value
@@ -155,6 +163,11 @@ const OfflineDetectionDurationSlider = ({ disabled = false }) => {
         <StyledTrack>
           <StyledRange />
           <StepLabels />
+          <SliderHint>
+            {t('dashboard:settings.notifications.offline_duration', {
+              duration: durationOptions[optionIndex].key,
+            })}
+          </SliderHint>
         </StyledTrack>
         <StyledThumb />
       </StyledSlider>

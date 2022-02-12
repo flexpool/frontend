@@ -102,13 +102,11 @@ const NotificationSettings: React.FC<{
           <Form>
             <FieldGroup.V>
               <h3>Email notifications</h3>
-
               {notificationSettingsError && (
                 <ScrollIntoView>
                   <ErrorBox error={notificationSettingsError} />
                 </ScrollIntoView>
               )}
-
               <CheckboxField
                 label={
                   values.emailEnabled
@@ -127,10 +125,8 @@ const NotificationSettings: React.FC<{
                 }
                 disabled={!values.emailEnabled}
               />
-
               <OfflineDetectionDurationSlider disabled={!values.emailEnabled} />
-              <Spacer size="sm" />
-
+              {/* <Spacer size="sm" /> */}
               <CheckboxField
                 label={t('dashboard:settings.notifications.check_worker_down')}
                 name="workersOfflineNotifications"
@@ -148,7 +144,7 @@ const NotificationSettings: React.FC<{
                 placeholder={minerDetails.ipAddress}
                 desc={
                   <p>
-                    {t('dashboard:settings.ip_hint')} <b>{clientIP}</b>.
+                    {t('dashboard:settings.ip_hint')} <b>{clientIP}</b>
                   </p>
                 }
               />
