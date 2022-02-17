@@ -11,11 +11,54 @@ import { SearchAddressBar } from '../src/components/SearchAddressBar/SearchAddre
 import { Spacer } from '../src/components/layout/Spacer';
 import { CoinEarnings } from '../src/pages/Home/components/CoinEarnings/CoinEarnings';
 import { WhyFlexpool } from '../src/pages/Home/components/WhyFlexpool/WhyFlexpool';
-import {
-  Hero,
-  SearchWrapper,
-  PageContainer,
-} from '../src/pages/Home/components';
+import { SearchWrapper, PageContainer } from '../src/pages/Home/components';
+import HeroHeadline from '@/pages/Home/components/HeroHeadline';
+import Globe from '@/components/Globe';
+import styled from 'styled-components';
+
+const Hero = styled.div`
+  min-height: 40vh;
+  position: relative;
+  z-index: 100;
+  background-color: #151519;
+  overflow: hidden;
+  padding-bottom: 3rem;
+
+  @media screen and (min-width: 800px) {
+    overflow: inherit;
+    padding-bottom: 8rem;
+  }
+`;
+
+const HeroLayout = styled.div`
+  display: flex;
+  position: relative;
+`;
+
+const HeroLeft = styled.div`
+  flex-basis: 100%;
+  flex-shrink: 0;
+  z-index: 200;
+  padding: 4rem 0 0;
+
+  @media screen and (min-width: 800px) {
+    flex-basis: 55%;
+    padding: 7rem 0 0;
+  }
+`;
+
+const HeroSubHeadline = styled.div`
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #ccc;
+  line-height: 1.4;
+  max-width: 80%;
+
+  @media screen and (min-width: 800px) {
+    font-size: 1.5rem;
+    max-width: 80%;
+  }
+`;
 
 export const HomePage = () => {
   const { t, i18n } = useTranslation('home');
@@ -40,16 +83,21 @@ export const HomePage = () => {
       />
 
       <Hero>
-        <Content contentCenter style={{ position: 'relative', zIndex: 100 }}>
-          <h1>{t('title')}</h1>
-          <p>{t('description')}</p>
-          <SearchWrapper>
-            <SearchAddressBar />
-          </SearchWrapper>
+        <Content>
+          <HeroLayout>
+            <HeroLeft>
+              <HeroHeadline />
+              <Spacer size="lg" />
+              <HeroSubHeadline>{t('description')}</HeroSubHeadline>
+              <Spacer size="sm" />
+              <SearchWrapper>
+                <SearchAddressBar />
+              </SearchWrapper>
+            </HeroLeft>
+            <Globe />
+          </HeroLayout>
         </Content>
-        <Spacer />
         <CoinEarnings />
-        <Spacer />
         <NewsSection />
       </Hero>
 
