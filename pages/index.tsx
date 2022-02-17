@@ -11,11 +11,57 @@ import { SearchAddressBar } from '../src/components/SearchAddressBar/SearchAddre
 import { Spacer } from '../src/components/layout/Spacer';
 import { CoinEarnings } from '../src/pages/Home/components/CoinEarnings/CoinEarnings';
 import { WhyFlexpool } from '../src/pages/Home/components/WhyFlexpool/WhyFlexpool';
-import {
-  Hero,
-  SearchWrapper,
-  PageContainer,
-} from '../src/pages/Home/components';
+import { SearchWrapper, PageContainer } from '../src/pages/Home/components';
+import HeroHeadline from '@/pages/Home/components/HeroHeadline';
+import Globe from '@/components/Globe';
+import styled from 'styled-components';
+import Image from 'next/image';
+
+const Hero = styled.div`
+  min-height: 40vh;
+  position: relative;
+  z-index: 100;
+  background-color: #151519;
+  overflow: hidden;
+  padding-bottom: 8rem;
+`;
+
+const HeroLayout = styled.div`
+  display: flex;
+  position: relative;
+`;
+
+const HeroLeft = styled.div`
+  flex-basis: 100%;
+  flex-shrink: 0;
+  z-index: 200;
+  padding: 4rem 0 0;
+
+  @media screen and (min-width: 800px) {
+    flex-basis: 55%;
+    padding: 7rem 0 0;
+  }
+`;
+
+const HeroGlow = styled.div`
+  position: absolute;
+  top: -1200px;
+  left: -1000px;
+  width: 2000px;
+  z-index: -1000;
+`;
+
+const HeroSubHeadline = styled.div`
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #ccc;
+  line-height: 1.4;
+
+  @media screen and (min-width: 800px) {
+    font-size: 1.5rem;
+    max-width: 80%;
+  }
+`;
 
 export const HomePage = () => {
   const { t, i18n } = useTranslation('home');
@@ -40,17 +86,25 @@ export const HomePage = () => {
       />
 
       <Hero>
-        <Content contentCenter style={{ position: 'relative', zIndex: 100 }}>
-          <h1>{t('title')}</h1>
-          <p>{t('description')}</p>
-          <SearchWrapper>
-            <SearchAddressBar />
-          </SearchWrapper>
+        <Content>
+          <HeroLayout>
+            <HeroLeft>
+              <HeroHeadline />
+              <Spacer size="lg" />
+              <HeroSubHeadline>{t('description')}</HeroSubHeadline>
+              <Spacer size="md" />
+              <SearchWrapper>
+                <SearchAddressBar />
+              </SearchWrapper>
+            </HeroLeft>
+            <Globe />
+          </HeroLayout>
         </Content>
-        <Spacer />
         <CoinEarnings />
-        <Spacer />
         <NewsSection />
+        {/* <HeroGlow>
+          <Image src="/svg/glow.svg" alt="Glow 1" width={2000} height={2000} />
+        </HeroGlow> */}
       </Hero>
 
       <CoinsWeMineSection />

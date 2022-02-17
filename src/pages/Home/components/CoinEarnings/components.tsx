@@ -39,6 +39,7 @@ export const EarningBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  backdrop-filter: blur(5px);
 `;
 
 export const Container = styled.div`
