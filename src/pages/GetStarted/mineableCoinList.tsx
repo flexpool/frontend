@@ -176,7 +176,7 @@ export const mineableCoins: MineableCoin[] = [
     regex: /^0x[a-fA-F0-9]{40}$/g,
     validator: checksumETH,
     walletAddressExample: '0xBf08F613ccE234c96e0e889a0B660bD819D23795',
-    nicehashAvailable: true,
+    nicehashAvailable: false,
     regions: [
       {
         domain: 'etc-us-east.flexpool.io',
