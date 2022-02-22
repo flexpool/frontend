@@ -87,6 +87,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   >('blockDateView', 'distance');
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const dateFormatter = useLocalizedDateFormatter();
+  const activeCoinTicker = useActiveCoinTicker();
 
   React.useEffect(() => {
     blockState.start(
@@ -130,7 +131,10 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         },
       },
       number: {
-        title: t('table.table_head.number'),
+        title:
+          activeCoinTicker === 'eth' || activeCoinTicker === 'etc'
+            ? t('table.table_head.number')
+            : t('table.table_head.height'),
         skeletonWidth: 80,
         Component: ({ data, config }) => {
           const url =

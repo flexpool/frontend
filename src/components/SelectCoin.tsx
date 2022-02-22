@@ -11,6 +11,7 @@ import usePoolCoinsQuery from '@/hooks/api/usePoolCoinsQuery';
 const LabelWrap = styled.div`
   display: flex;
   align-items: center;
+  white-space: nowrap;
 `;
 
 const CoinNameShort = styled.span`

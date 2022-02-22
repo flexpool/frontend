@@ -8,9 +8,8 @@ import { useOpenState } from 'src/hooks/useOpenState';
 import useMinerDetailsQuery from '@/hooks/api/useMinerDetailsQuery';
 import { ApiPoolCoin } from '@/types/PoolCoin.types';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
-import { useReduxState } from 'src/rdx/useReduxState';
 import styled from 'styled-components';
-import { NotificationSettings } from './NotificationSettings';
+import NotificationSettings from './NotificationSettings';
 import PayoutSettings from './PayoutSettings';
 import DifficultySettings from './DifficultySettings';
 

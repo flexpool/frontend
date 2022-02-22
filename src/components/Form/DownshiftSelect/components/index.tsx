@@ -64,7 +64,7 @@ export const SelectOptionButton = styled(Button)<
       display: block;
       top: 50%;
       transform: translateY(-50%);
-      right: 8px;
+      right: 4px;
       width: 6px;
       height: 6px;
       border-radius: 3px;

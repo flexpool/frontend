@@ -48,6 +48,7 @@
       "send_to_placeholder": "your@email.com",
       "check_worker_down": "Warn me when one of my workers goes down",
       "check_payout_sent": "Notify me when a payout has been sent",
+      "offline_duration": "We will notify you if we haven't received any shares from your rig in {{duration}}.",
       "submit": "Apply changes"
     }
   },

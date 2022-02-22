@@ -102,7 +102,7 @@ export const CoinsWeMineSection = () => {
             >
               <CoinName aria-label={`${data.ticker} news`}>
                 <CoinLogo size="lg" ticker={data.ticker} />
-                <span>{data.name}</span>
+                <span style={{ whiteSpace: 'nowrap' }}>{data.name}</span>
                 <TickerName>{data.ticker.toUpperCase()}</TickerName>
               </CoinName>
             </Link>

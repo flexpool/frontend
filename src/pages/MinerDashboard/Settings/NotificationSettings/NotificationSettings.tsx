@@ -12,8 +12,9 @@ import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import useClientIPQuery from '@/hooks/api/useClientIPQuery';
 import useMinerDetailsQuery from '@/hooks/api/useMinerDetailsQuery';
 import useUpdateNotificationSettings from '@/hooks/useUpdateNotificationSettings';
+import OfflineDetectionDurationSlider from './components/OfflineDetectionDurationSlider';
 
-export const NotificationSettings: React.FC<{
+const NotificationSettings: React.FC<{
   address: string;
 }> = ({ address }) => {
   const activeCoin = useActiveCoin();
@@ -89,6 +90,9 @@ export const NotificationSettings: React.FC<{
         workersOfflineNotifications:
           minerDetails.notificationPreferences?.workersOfflineNotifications ||
           true,
+        workerOfflineDetectionDuration:
+          minerDetails.notificationPreferences
+            ?.workerOfflineDetectionDuration || 1200,
       }}
       validateOnChange={true}
       validate={validate}
@@ -98,13 +102,11 @@ export const NotificationSettings: React.FC<{
           <Form>
             <FieldGroup.V>
               <h3>Email notifications</h3>
-
               {notificationSettingsError && (
                 <ScrollIntoView>
                   <ErrorBox error={notificationSettingsError} />
                 </ScrollIntoView>
               )}
-
               <CheckboxField
                 label={
                   values.emailEnabled
@@ -123,7 +125,8 @@ export const NotificationSettings: React.FC<{
                 }
                 disabled={!values.emailEnabled}
               />
-
+              <OfflineDetectionDurationSlider disabled={!values.emailEnabled} />
+              {/* <Spacer size="sm" /> */}
               <CheckboxField
                 label={t('dashboard:settings.notifications.check_worker_down')}
                 name="workersOfflineNotifications"
@@ -141,7 +144,7 @@ export const NotificationSettings: React.FC<{
                 placeholder={minerDetails.ipAddress}
                 desc={
                   <p>
-                    {t('dashboard:settings.ip_hint')} <b>{clientIP}</b>.
+                    {t('dashboard:settings.ip_hint')} <b>{clientIP}</b>
                   </p>
                 }
               />
@@ -155,3 +158,5 @@ export const NotificationSettings: React.FC<{
     </Formik>
   );
 };
+
+export default NotificationSettings;

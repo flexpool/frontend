@@ -7,6 +7,7 @@ export type ApiMinerSettings = {
   notificationPreferences: null | {
     payoutNotifications: boolean;
     workersOfflineNotifications: boolean;
+    workerOfflineDetectionDuration: number;
   };
   notifications: { email: string | null };
   payoutLimit: number;

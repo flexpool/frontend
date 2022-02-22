@@ -100,15 +100,15 @@ export const Button = styled.button<ButtonProps>`
     } else if (p.variant && p.fill === 'outline') {
       // __todo
       return `
-      background-color: var(--${p.variant});
-      color: ${p.theme.color.onBg};
-      border-color: rgba(0,0,0,0.05);
+      background-color: transparent;
+      color: var(--${p.variant});
+      border-color: var(--${p.variant});
         ${
           !p.shadowless &&
           `box-shadow: 0 2px 10px 0 var(--${p.variant}-shadow);`
         }
       &:hover, &:active, &:focus {
-        border-color: rgba(0,0,0,0.05);
+        border-color: var(--${p.variant});
         background-color: var(--${p.variant});
         box-shadow: 0 5px 15px 0 var(--${p.variant}-shadow);
       }

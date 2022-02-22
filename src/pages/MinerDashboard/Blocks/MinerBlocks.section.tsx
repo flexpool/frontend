@@ -144,7 +144,10 @@ export const BlocksSection: React.FC<{
         },
       },
       number: {
-        title: t('table.table_head.number'),
+        title:
+          coinTicker === 'eth' || coinTicker === 'etc'
+            ? t('table.table_head.number')
+            : t('table.table_head.height'),
         skeletonWidth: 80,
         Component: ({ data, config }) => {
           const url =
