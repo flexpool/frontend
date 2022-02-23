@@ -35,7 +35,7 @@ const Description = ({ address }: { address: string }) => {
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
   const currencyFormatter = useLocalizedCurrencyFormatter();
   const numberFormatter = useLocalizedNumberFormatter();
-  const { data: minerBalance } = useMinerBalance(address, 'eth');
+  const { data: minerBalance } = useMinerBalance(address, activeCoinTicker);
 
   const maxFeePrice = useMemo(
     () => Number(get(values, 'maxFeePrice')),

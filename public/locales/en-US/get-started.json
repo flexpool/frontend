@@ -95,8 +95,7 @@
     "title": "Ethereum Classic mining",
     "pool_details": [
       { "key": "Reward Scheme", "value": "PPLNS (Pay Per Last N Shares)" },
-      { "key": "Pool Fee", "value": "0.5%" },
-      { "key": "Bonuses", "value": "90% of MEV bonus" },
+      { "key": "Pool Fee", "value": "0.9%" },
       { "key": "Payout Round", "value": "Once an hour" },
       { "key": "Payouts", "value": "from 0.01 ETC up to 100 ETC" },
       { "key": "Block confirmation time", "value": "120 Blocks" },
