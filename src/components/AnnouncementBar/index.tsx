@@ -37,12 +37,16 @@ type AnnouncementBarProps = {
   children: React.ReactNode;
   id: string;
   variant?: UIVariant;
+  className?: string;
+  removable?: boolean;
 };
 
 const AnnouncementBar = ({
   children,
   id,
   variant = 'danger',
+  className,
+  removable = true,
 }: AnnouncementBarProps) => {
   const [closed, setClosed] = useLocalStorageState(
     `announcement-bar-${id}`,
@@ -52,11 +56,14 @@ const AnnouncementBar = ({
   if (closed === 'true') return null;
 
   return (
-    <StyledAnnouncementBar variant={variant}>
+    <StyledAnnouncementBar className={className} variant={variant}>
       <StyledContent>
-        <Close onClick={() => setClosed('true')}>
-          <FaTimes />
-        </Close>
+        {removable && (
+          <Close onClick={() => setClosed('true')}>
+            <FaTimes />
+          </Close>
+        )}
+
         {children}
       </StyledContent>
     </StyledAnnouncementBar>
