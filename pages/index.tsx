@@ -88,7 +88,9 @@ export const HomePage = () => {
             <HeroLeft>
               <HeroHeadline />
               <Spacer size="lg" />
-              <HeroSubHeadline>{t('description')}</HeroSubHeadline>
+              <HeroSubHeadline>
+                Providing the highest profitability worldwide.
+              </HeroSubHeadline>
               <Spacer size="sm" />
               <SearchWrapper>
                 <SearchAddressBar />
