@@ -36,8 +36,6 @@ const Sphere = ({ worldmap }: any) => {
   const mousePos = useRef<{
     x: number;
     y: number;
-    realX: number;
-    realY: number;
   } | null>(null);
 
   useEffect(() => {
@@ -124,11 +122,14 @@ const Sphere = ({ worldmap }: any) => {
           const x = (event.offsetX / size.width) * 2 - 1;
           const y = -(event.offsetY / size.height) * 2 + 1;
 
+          console.log({
+            offsetX: event.offsetX,
+            offsetY: event.offsetY,
+          });
+
           mousePos.current = {
             x: x,
             y: y,
-            realX: event.offsetX,
-            realY: event.offsetY,
           };
         }}
         onPointerLeave={() => {

@@ -85,11 +85,12 @@ const SERVERS = [
 
 const REGION_MAP = {
   na: 'North America',
-  sa: 'Latin America',
-  eu: 'Eurasia',
+  sa: 'South America',
+  eu: 'Europe',
   ap: 'Asia Pacific',
   au: 'Australia',
   af: 'Africa',
+  me: 'Middle East',
   ru: 'Russia (Not Available)',
 };
 
@@ -124,19 +125,12 @@ const Scene = () => {
 
   useFrame((_, delta) => {
     if (mapIns && globeGroupRef.current) {
-      if (globeGroupRef.current.scale.x < 1) {
-        globeGroupRef.current.scale.x = Math.min(
-          1,
-          globeGroupRef.current.scale.x + 0.625 * delta
-        );
-        globeGroupRef.current.scale.y = Math.min(
-          1,
-          globeGroupRef.current.scale.y + 0.625 * delta
-        );
-        globeGroupRef.current.scale.z = Math.min(
-          1,
-          globeGroupRef.current.scale.z + 0.625 * delta
-        );
+      const { scale } = globeGroupRef.current;
+
+      if (scale.x < 1) {
+        scale.x = Math.min(1, scale.x + 0.625 * delta);
+        scale.y = Math.min(1, scale.y + 0.625 * delta);
+        scale.z = Math.min(1, scale.z + 0.625 * delta);
       }
     }
   });
@@ -240,7 +234,7 @@ const Globe = () => {
     <StyledGlobe>
       <Leva collapsed hidden />
       <Canvas
-        dpr={1}
+        dpr={2}
         gl={{
           antialias: true,
         }}

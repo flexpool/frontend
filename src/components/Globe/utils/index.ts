@@ -57,6 +57,13 @@ const regionColors = {
   ap: [{ r: 237, g: 180, b: 50 }],
   af: [{ r: 118, g: 42, b: 131 }],
   ru: [{ r: 185, g: 160, b: 135 }],
+  me: [
+    {
+      r: 247,
+      g: 129,
+      b: 191,
+    },
+  ],
   'n/a': [{ r: 209, g: 219, b: 221 }],
 };
 
@@ -82,6 +89,9 @@ export const getRegionFromColor = (r: number, g: number, b: number) => {
     }
     case regionColors.au.some((color) => isSimilarColor({ r, g, b }, color)): {
       return 'au';
+    }
+    case regionColors.me.some((color) => isSimilarColor({ r, g, b }, color)): {
+      return 'me';
     }
     case regionColors['n/a'].some((color) =>
       isSimilarColor({ r, g, b }, color)

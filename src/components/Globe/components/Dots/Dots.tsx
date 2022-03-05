@@ -23,6 +23,7 @@ const REGION_COLOR = {
   au: '#5d42f5',
   af: '#321e79',
   ru: '#151b37',
+  me: '#751d42',
   'n/a': '#151b37',
 };
 
