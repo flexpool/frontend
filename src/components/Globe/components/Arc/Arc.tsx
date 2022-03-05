@@ -66,6 +66,7 @@ const Arc = ({
       const forwardArcProgress = tubeRef.current.geometry.drawRange;
       const reverseArcProgress = tube2Ref.current.geometry.drawRange;
       const target = tubeRef.current.geometry.index.count;
+      const velocity = (target / 2) * delta;
 
       switch (state.current) {
         case 'forward': {
@@ -93,13 +94,13 @@ const Arc = ({
       }
 
       if (state.current === 'forward') {
-        tubeRef.current.geometry.drawRange.count += 20;
+        tubeRef.current.geometry.drawRange.count += velocity;
         tube2Ref.current.geometry.drawRange.count = 0;
       }
 
       if (state.current === 'reverse') {
         tubeRef.current.geometry.drawRange.count = 0;
-        tube2Ref.current.geometry.drawRange.count -= 20;
+        tube2Ref.current.geometry.drawRange.count -= velocity;
       }
     }
   });

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, Suspense } from 'react';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls, Stats } from '@react-three/drei';
 import { Vector3 } from 'three';
 import styled from 'styled-components';
 import { Leva } from 'leva';
@@ -248,7 +248,7 @@ const Globe = () => {
           {/* <axesHelper args={[1000]} /> */}
           <ambientLight intensity={1} />
           <Scene />
-          {/* <Stats /> */}
+          <Stats />
         </Suspense>
       </Canvas>
       <div
