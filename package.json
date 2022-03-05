@@ -55,7 +55,8 @@
     "three-stdlib": "^2.8.6",
     "web-vitals": "^1.0.1",
     "websocket": "^1.0.33",
-    "yup": "0.32.9"
+    "yup": "0.32.9",
+    "zustand": "^3.7.1"
   },
   "scripts": {
     "dev": "next dev",

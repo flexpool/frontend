@@ -11,10 +11,11 @@ import Sphere from './components/Sphere';
 import Dots from './components/Dots';
 import Marker from './components/Marker';
 import Arc from './components/Arc';
+import { useStore } from './store';
 import useInterval from '@/hooks/useInterval';
 
-const CANVAS_HEIGHT = 500 / 2;
-const CANVAS_WIDTH = CANVAS_HEIGHT * 2;
+const CANVAS_WIDTH = 1000;
+const CANVAS_HEIGHT = CANVAS_WIDTH / 2;
 
 const SERVERS = [
   {
@@ -82,6 +83,16 @@ const SERVERS = [
   },
 ];
 
+const REGION_MAP = {
+  na: 'North America',
+  sa: 'Latin America',
+  eu: 'Eurasia',
+  ap: 'Asia Pacific',
+  au: 'Australia',
+  af: 'Africa',
+  ru: 'Russia (Not Available)',
+};
+
 const Scene = () => {
   const [mapIns, setMapIns] = useState<any>();
   const oc = useRef<any>(null);
@@ -138,8 +149,8 @@ const Scene = () => {
     <>
       <OrbitControls
         ref={oc}
-        autoRotate
-        enableZoom={false}
+        // autoRotate
+        // enableZoom={false}
         enablePan={false}
         autoRotateSpeed={0.1}
         enableDamping={false}
@@ -148,7 +159,7 @@ const Scene = () => {
         {mapIns && (
           <>
             <Glow />
-            <Sphere />
+            <Sphere worldmap={mapIns} />
             <Dots worldmap={mapIns} />
             <CanadaFlag />
 
@@ -195,6 +206,23 @@ const StyledGlobe = styled.div`
 `;
 
 const Globe = () => {
+  const region = useStore((state) => state.region);
+  const overlayRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const saveMousePos = (e: any) => {
+      if (overlayRef.current) {
+        overlayRef.current.style.left = `${e.clientX + 10}px`;
+        overlayRef.current.style.top = `${e.clientY + 10}px`;
+      }
+    };
+
+    window.addEventListener('mousemove', saveMousePos);
+    return () => {
+      window.removeEventListener('mousemove', saveMousePos);
+    };
+  }, []);
+
   return (
     <StyledGlobe>
       <Leva collapsed hidden />
@@ -216,6 +244,31 @@ const Globe = () => {
           {/* <Stats /> */}
         </Suspense>
       </Canvas>
+      <div
+        ref={overlayRef}
+        style={{
+          display: region && region !== 'n/a' ? 'block' : 'none',
+          borderRadius: '4px',
+          fontFamily: "'Inter', sans-serif",
+          padding: '1rem',
+          color: 'white',
+          backgroundColor: 'rgba(0, 0, 0, 0.4)',
+          backdropFilter: 'blur(10px)',
+          minWidth: '200px',
+          minHeight: '45px',
+          position: 'fixed',
+        }}
+      >
+        <div>{REGION_MAP[region]}</div>
+        <div
+          style={{
+            color: '#a3a2a2',
+            marginTop: '10px',
+          }}
+        >
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        </div>
+      </div>
     </StyledGlobe>
   );
 };

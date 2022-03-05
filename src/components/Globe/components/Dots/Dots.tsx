@@ -1,11 +1,22 @@
 import React, { useEffect, useRef, useCallback } from 'react';
 import * as THREE from 'three';
 import { Vector3 } from 'three';
-import { degree2Radian, geo2CanvasXY } from '../../utils';
+import { degree2Radian, geo2CanvasXY, getRegionFromColor } from '../../utils';
 
 const COUNT = 21430;
-const CANVAS_HEIGHT = 500 / 2;
-const CANVAS_WIDTH = CANVAS_HEIGHT * 2;
+const CANVAS_WIDTH = 1000;
+const CANVAS_HEIGHT = CANVAS_WIDTH / 2;
+
+const REGION_COLOR = {
+  na: '#0269ff',
+  sa: '#ed4f33',
+  eu: '#17cd72',
+  ap: '#edb432',
+  au: '#5d42f5',
+  af: '#321e79',
+  ru: '#151b37',
+  'n/a': '#151b37',
+};
 
 const geometry = new THREE.CircleBufferGeometry(2, 5);
 const material = new THREE.MeshStandardMaterial();
@@ -57,7 +68,9 @@ const Dots = ({ worldmap }) => {
             temp.updateMatrix();
             ref.current.setMatrixAt(i, temp.matrix);
 
-            ref.current.setColorAt(i, color.set('#151b37'));
+            const [r, g, b] = pixel;
+            let region = getRegionFromColor(r, g, b) || 'n/a';
+            ref.current.setColorAt(i, color.set(REGION_COLOR[region]));
 
             i++;
           }
