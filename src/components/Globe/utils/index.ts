@@ -29,80 +29,63 @@ export const isSimilarColor = ({ r, g, b }, { r: r2, g: g2, b: b2 }) => {
   );
 };
 
+// Compensating colors are added due to image resolution
+const regionColors = {
+  na: [
+    { r: 89, g: 100, b: 209 },
+    { r: 112, g: 96, b: 195 },
+    { r: 2, g: 105, b: 255 },
+  ],
+  eu: [
+    { r: 23, g: 205, b: 114 },
+    { r: 118, g: 199, b: 103 },
+    { r: 56, g: 204, b: 122 },
+    { r: 202, g: 187, b: 73 },
+    { r: 164, g: 193, b: 91 },
+    { r: 87, g: 202, b: 108 },
+  ],
+  sa: [
+    { r: 237, g: 79, b: 51 },
+    { r: 94, g: 101, b: 235 },
+    { r: 153, g: 95, b: 202 },
+    { r: 183, g: 91, b: 173 },
+    { r: 228, g: 81, b: 83 },
+    { r: 67, g: 103, b: 245 },
+    { r: 191, g: 89, b: 162 },
+  ],
+  au: [{ r: 93, g: 66, b: 245 }],
+  ap: [{ r: 237, g: 180, b: 50 }],
+  af: [{ r: 118, g: 42, b: 131 }],
+  ru: [{ r: 185, g: 160, b: 135 }],
+  'n/a': [{ r: 209, g: 219, b: 221 }],
+};
+
 export const getRegionFromColor = (r: number, g: number, b: number) => {
   switch (true) {
-    case isSimilarColor({ r, g, b }, { r: 93, g: 66, b: 245 }): {
-      return 'au';
-    }
-    // Compensating color due to resolution
-    case isSimilarColor({ r, g, b }, { r: 89, g: 100, b: 209 }): {
+    case regionColors.na.some((color) => isSimilarColor({ r, g, b }, color)): {
       return 'na';
     }
-    // Compensating color due to resolution
-    case isSimilarColor({ r, g, b }, { r: 112, g: 96, b: 195 }): {
-      return 'na';
-    }
-    case isSimilarColor({ r, g, b }, { r: 2, g: 105, b: 255 }): {
-      return 'na';
-    }
-    case isSimilarColor({ r, g, b }, { r: 23, g: 205, b: 114 }): {
+    case regionColors.eu.some((color) => isSimilarColor({ r, g, b }, color)): {
       return 'eu';
     }
-    // Compensating color due to resolution
-    case isSimilarColor({ r, g, b }, { r: 178, g: 187, b: 67 }): {
-      return 'eu';
-    }
-    // Compensating color due to resolution
-    case isSimilarColor({ r, g, b }, { r: 118, g: 199, b: 103 }): {
-      return 'eu';
-    }
-    // Compensating color due to resolution
-    case isSimilarColor({ r, g, b }, { r: 56, g: 204, b: 122 }): {
-      return 'eu';
-    }
-    // Compensating color due to resolution
-    case isSimilarColor({ r, g, b }, { r: 202, g: 187, b: 73 }): {
-      return 'eu';
-    }
-    // Compensating color due to resolution
-    case isSimilarColor({ r, g, b }, { r: 87, g: 202, b: 108 }): {
-      return 'eu';
-    }
-    // Compensating color due to resolution
-    case isSimilarColor({ r, g, b }, { r: 164, g: 193, b: 91 }): {
-      return 'eu';
-    }
-    case isSimilarColor({ r, g, b }, { r: 237, g: 79, b: 51 }): {
+    case regionColors.sa.some((color) => isSimilarColor({ r, g, b }, color)): {
       return 'sa';
     }
-    case isSimilarColor({ r, g, b }, { r: 94, g: 101, b: 235 }): {
-      return 'sa';
-    }
-    case isSimilarColor({ r, g, b }, { r: 153, g: 95, b: 202 }): {
-      return 'sa';
-    }
-    case isSimilarColor({ r, g, b }, { r: 183, g: 91, b: 173 }): {
-      return 'sa';
-    }
-    case isSimilarColor({ r, g, b }, { r: 228, g: 81, b: 83 }): {
-      return 'sa';
-    }
-    case isSimilarColor({ r, g, b }, { r: 67, g: 103, b: 245 }): {
-      return 'sa';
-    }
-    case isSimilarColor({ r, g, b }, { r: 191, g: 89, b: 162 }): {
-      return 'sa';
-    }
-    case isSimilarColor({ r, g, b }, { r: 237, g: 180, b: 50 }): {
-      return 'ap';
-    }
-    case isSimilarColor({ r, g, b }, { r: 118, g: 42, b: 131 }): {
+    case regionColors.af.some((color) => isSimilarColor({ r, g, b }, color)): {
       return 'af';
     }
-    case isSimilarColor({ r, g, b }, { r: 185, g: 160, b: 135 }): {
+    case regionColors.ru.some((color) => isSimilarColor({ r, g, b }, color)): {
       return 'ru';
     }
-    case isSimilarColor({ r, g, b }, { r: 209, g: 219, b: 221 }): {
+    case regionColors.ap.some((color) => isSimilarColor({ r, g, b }, color)): {
+      return 'ap';
+    }
+    case regionColors.au.some((color) => isSimilarColor({ r, g, b }, color)): {
+      return 'au';
+    }
+    case regionColors['n/a'].some((color) =>
+      isSimilarColor({ r, g, b }, color)
+    ): {
       return 'n/a';
     }
     default: {

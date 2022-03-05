@@ -122,12 +122,21 @@ const Scene = () => {
 
   const globeGroupRef = useRef<any>(null);
 
-  useFrame(() => {
+  useFrame((_, delta) => {
     if (mapIns && globeGroupRef.current) {
       if (globeGroupRef.current.scale.x < 1) {
-        globeGroupRef.current.scale.x += 0.0625;
-        globeGroupRef.current.scale.y += 0.0625;
-        globeGroupRef.current.scale.z += 0.0625;
+        globeGroupRef.current.scale.x = Math.min(
+          1,
+          globeGroupRef.current.scale.x + 0.625 * delta
+        );
+        globeGroupRef.current.scale.y = Math.min(
+          1,
+          globeGroupRef.current.scale.y + 0.625 * delta
+        );
+        globeGroupRef.current.scale.z = Math.min(
+          1,
+          globeGroupRef.current.scale.z + 0.625 * delta
+        );
       }
     }
   });
@@ -149,13 +158,13 @@ const Scene = () => {
     <>
       <OrbitControls
         ref={oc}
-        // autoRotate
-        // enableZoom={false}
+        autoRotate
+        enableZoom={false}
         enablePan={false}
         autoRotateSpeed={0.1}
         enableDamping={false}
       />
-      <group ref={globeGroupRef} scale={[0.25, 0.25, 0.25]}>
+      <group ref={globeGroupRef} scale={[0.5, 0.5, 0.5]}>
         {mapIns && (
           <>
             <Glow />
@@ -195,7 +204,11 @@ const StyledGlobe = styled.div`
   height: 320px;
   right: -160px;
   user-select: none;
-  cursor: grab;
+  cursor: pointer;
+
+  &:active {
+    cursor: grab;
+  }
 
   @media screen and (min-width: 800px) {
     width: 600px;

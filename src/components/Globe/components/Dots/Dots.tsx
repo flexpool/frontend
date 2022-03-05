@@ -2,10 +2,18 @@ import React, { useEffect, useRef, useCallback } from 'react';
 import * as THREE from 'three';
 import { Vector3 } from 'three';
 import { degree2Radian, geo2CanvasXY, getRegionFromColor } from '../../utils';
+import { useStore } from '../../store';
 
 const COUNT = 21430;
 const CANVAS_WIDTH = 1000;
 const CANVAS_HEIGHT = CANVAS_WIDTH / 2;
+
+const geometry = new THREE.CircleBufferGeometry(2, 5);
+const material = new THREE.MeshStandardMaterial();
+material.metalness = 0;
+material.roughness = 0;
+material.side = THREE.BackSide;
+material.transparent = true;
 
 const REGION_COLOR = {
   na: '#0269ff',
@@ -18,14 +26,9 @@ const REGION_COLOR = {
   'n/a': '#151b37',
 };
 
-const geometry = new THREE.CircleBufferGeometry(2, 5);
-const material = new THREE.MeshStandardMaterial();
-material.metalness = 0;
-material.roughness = 0;
-material.side = THREE.BackSide;
-material.transparent = true;
-
 const Dots = ({ worldmap }) => {
+  const selectedRegion = useStore((state) => state.region);
+
   const getPixelData = useCallback(
     (x: number, y: number) => {
       const i = Math.floor(y - 1) * CANVAS_WIDTH * 4 + Math.floor(x) * 4;
@@ -69,8 +72,14 @@ const Dots = ({ worldmap }) => {
             ref.current.setMatrixAt(i, temp.matrix);
 
             const [r, g, b] = pixel;
+
             let region = getRegionFromColor(r, g, b) || 'n/a';
-            ref.current.setColorAt(i, color.set(REGION_COLOR[region]));
+
+            if (region === selectedRegion) {
+              ref.current.setColorAt(i, color.set(REGION_COLOR[region]));
+            } else {
+              ref.current.setColorAt(i, color.set(REGION_COLOR['n/a']));
+            }
 
             i++;
           }
@@ -81,7 +90,7 @@ const Dots = ({ worldmap }) => {
       ref.current.instanceColor.needsUpdate = true;
       ref.current.instanceMatrix.needsUpdate = true;
     }
-  }, [ref, getPixelData]);
+  }, [ref, getPixelData, selectedRegion]);
 
   return <instancedMesh ref={ref} args={[geometry, material, COUNT]} />;
 };
