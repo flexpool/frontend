@@ -110,7 +110,7 @@ const Arc = ({
       <mesh position={[0, 0, 0]} ref={tubeRef}>
         <tubeBufferGeometry
           attach="geometry"
-          args={[curve, 44, 1.4, 8, false]}
+          args={[curve, 100, 1.4, 20, false]}
           drawRange={{ start: 0, count: 1 }}
         />
 
@@ -126,7 +126,7 @@ const Arc = ({
       <mesh position={[0, 0, 0]} ref={tube2Ref}>
         <tubeBufferGeometry
           attach="geometry"
-          args={[curve2, 44, 1.4, 8, false]}
+          args={[curve2, 100, 1.4, 20, false]}
           drawRange={{ start: 0, count: 1 }}
         />
 
