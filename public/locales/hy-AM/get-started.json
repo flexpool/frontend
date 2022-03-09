@@ -62,11 +62,11 @@
       },
       {
         "key": "Pool Fee",
-        "value": "0.5%"
+        "value": "0.9%"
       },
       {
         "key": "Bonuses",
-        "value": "90% of MEV bonus"
+        "value": "95% of Supercharged MEV"
       },
       {
         "key": "Payout Round",

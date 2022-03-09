@@ -10,7 +10,7 @@
     "cta_mine": "Start Mining",
     "cta_farm": "Start Farming",
     "pool_fee": "{{value}} Pool Fee",
-    "mev": "{{value}} of MEV Bonus",
+    "mev": "{{value}} of Supercharged MEV Bonus",
     "finder_reward": "{{value}} Block Finder Reward",
     "more_title": "More Coins Coming Soon!",
     "more_description": "We are working to launch multiple pools in the near future. Stay connected by joining our discord or telegram."

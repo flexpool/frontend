@@ -59,8 +59,8 @@
     "title": "Ethereum mining",
     "pool_details": [
       { "key": "Reward Scheme", "value": "PPLNS (Pay Per Last N Shares)" },
-      { "key": "Pool Fee", "value": "0.5%" },
-      { "key": "Bonuses", "value": "90% of MEV bonus" },
+      { "key": "Pool Fee", "value": "0.9%" },
+      { "key": "Bonuses", "value": "95% of Supercharged MEV" },
       { "key": "Payout Round", "value": "Once an hour" },
       { "key": "Payouts", "value": "from 0.01 ETH up to 100 ETH" },
       { "key": "Block confirmation time", "value": "120 Blocks" },
