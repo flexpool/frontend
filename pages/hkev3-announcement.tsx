@@ -6,13 +6,13 @@ export const Announcement = () => {
   return (
     <Page>
       <Content md paddingLg>
-        <h1>HKE V3 Announcement</h1>
+        <h1>HKE v3 Announcement</h1>
         <p style={{ marginTop: '30px' }}>
           如果您无法连接到 hke.fpmirror.com， 请尝试我们提供的最新HKE地址。
           <br />
           新的地址为：fmc.fp-gfw.net
         </p>
-        <h1>HKE V3 Announcement</h1>
+        <h1>HKE v3 Announcement</h1>
         <p style={{ marginTop: '30px' }}>
           If you are having trouble connect to hke.fpmirror.com, please try our
           latest HKE address.
