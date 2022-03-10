@@ -21,7 +21,7 @@ const buildUri = (url = '', query?: object, api?: string) => {
         case 'web.fpmirror.com':
           apiURLToUse = 'https://api.fpmirror.com/v2';
           break;
-        case 'flexpool.ca':
+        case 'www.flexpool.ca':
           apiURLToUse = 'https://api.flexpool.ca/v2';
           break;
       }
