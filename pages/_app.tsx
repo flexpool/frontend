@@ -84,6 +84,9 @@ const App = ({ Component, pageProps, router }: AppProps) => {
               <SnackViewControl />
               <RouteLoader />
               <NavBar />
+              <AnnouncementBar variant="success" id="etc">
+                🎉 Flexpool now supports Ethereum Classic (ETC)!
+              </AnnouncementBar>
               {isChinaRegion && (
                 <>
                   <AnnouncementBar id="doh-mode">
