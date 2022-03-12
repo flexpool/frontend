@@ -158,6 +158,12 @@ export const FooterSection = () => {
             <Link href="/transparency">Transparency Reports</Link>
             <Link href="/docs/api">{t('footer.resources.api_docs')}</Link>
             <LinkOut href="https://www.gasprice.io/">Gasprice.io</LinkOut>
+            <LinkOut
+              download
+              href="https://static.flexpool.io/dl/android-app/flexpool-android-v1.0.0.apk"
+            >
+              Android APK
+            </LinkOut>
           </Section>
           <Section>
             <FSectionTitle>{t('footer.community.title')}</FSectionTitle>
