@@ -113,6 +113,24 @@ const DonationAnnouncement = styled(AnnouncementBar)`
   border-bottom: 8px solid #ffd302;
 `;
 
+const ETCAnnouncement = styled(AnnouncementBar)`
+  padding: 1rem 0;
+`;
+
+const ETCCallToAction = styled.a`
+  border: 1px solid white;
+  text-decoration: none;
+  padding: 0.25rem 0.4rem;
+  border-radius: 4px;
+  color: white;
+  font-size: 0.85rem;
+  margin-left: 0.25rem;
+
+  &:hover {
+    text-decoration: none;
+  }
+`;
+
 export const MinerDashboardPageContent: React.FC<{
   coinTicker: string;
   address: string;
@@ -206,6 +224,12 @@ export const MinerDashboardPageContent: React.FC<{
               title: `${address}`,
             }}
           />
+          <ETCAnnouncement variant="success" id="etc">
+            🎉 Flexpool now supports Ethereum Classic (ETC)!{' '}
+            <ETCCallToAction href={'/get-started/etc/GPU'}>
+              Get Started
+            </ETCCallToAction>
+          </ETCAnnouncement>
           {address === DONATION_ADDRESS && (
             <DonationAnnouncement
               id="donation-dashboard"

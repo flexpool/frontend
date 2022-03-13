@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Content } from '../layout/Content';
 import { useLocalStorageState } from '@/hooks/useLocalStorageState';
 import { UIVariant } from '@/App/styledTheme';
+import useIsMounted from '@/hooks/useIsMounted';
 
 const StyledAnnouncementBar = styled.div<{
   variant?: 'danger' | UIVariant;
@@ -52,8 +53,8 @@ const AnnouncementBar = ({
     `announcement-bar-${id}`,
     'false'
   );
-
-  if (closed === 'true') return null;
+  const isMounted = useIsMounted();
+  if (!isMounted || closed === 'true') return null;
 
   return (
     <StyledAnnouncementBar className={className} variant={variant}>
