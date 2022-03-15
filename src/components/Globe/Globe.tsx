@@ -14,6 +14,7 @@ import Halo from './components/Halo';
 import Arc from './components/Arc';
 import { useStore } from './store';
 import useInterval from '@/hooks/useInterval';
+import useIsMounted from '@/hooks/useIsMounted';
 
 const CANVAS_WIDTH = 1000;
 const CANVAS_HEIGHT = CANVAS_WIDTH / 2;
@@ -217,6 +218,8 @@ const Globe = () => {
   const region = useStore((state) => state.region);
   const overlayRef = useRef<HTMLDivElement | null>(null);
 
+  const isMounted = useIsMounted();
+
   useEffect(() => {
     const saveMousePos = (e: any) => {
       if (overlayRef.current) {
@@ -235,7 +238,10 @@ const Globe = () => {
     <StyledGlobe>
       <Leva collapsed />
       <Canvas
-        dpr={2}
+        dpr={Math.min(
+          2,
+          typeof window !== 'undefined' ? window.devicePixelRatio : 1
+        )}
         gl={{
           antialias: true,
         }}
