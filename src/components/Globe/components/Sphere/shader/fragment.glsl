@@ -7,5 +7,5 @@ varying vec3 v_position;
 varying float v_fresnel;
 
 void main() {
-  gl_FragColor = vec4(fresnel_color * v_fresnel, 1.0);
+  gl_FragColor = vec4(fresnel_color * v_fresnel, v_fresnel);
 }

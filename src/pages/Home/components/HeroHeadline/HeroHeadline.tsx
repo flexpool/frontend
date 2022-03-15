@@ -6,13 +6,14 @@ const ScrollTextContainer = styled.div`
   display: inline-block;
   position: relative;
   overflow: hidden;
-  width: 80%;
+  width: 83%;
   font-size: inherit;
   vertical-align: top;
   min-width: 230px;
+  white-space: nowrap;
 
   @media screen and (min-width: 800px) {
-    min-width: 530px;
+    min-width: 510px;
   }
 `;
 
@@ -30,12 +31,12 @@ const appear = keyframes`
   }
 `;
 
-const TextAppear = styled.span<{ color: string }>`
+const TextAppear = styled.span`
   position: relative;
   display: block;
   top: 0;
-  color: ${(props) => props.color};
   animation: ${appear} 2.5s ease-in-out;
+  color: var(--primary);
 `;
 
 const disappear = keyframes`
@@ -59,37 +60,37 @@ const disappear = keyframes`
   }  
 `;
 
-const TextDisappear = styled.span<{ color: string }>`
+const TextDisappear = styled.span`
   position: absolute;
   display: block;
   top: 0;
   animation: ${disappear} 2.5s ease-in-out;
-  color: ${(props) => props.color};
+  color: var(--primary);
 `;
 
 const list = [
   {
     name: 'Ethereum',
-    color: '#868ead',
   },
   {
     name: 'Ethereum Classic',
-    color: '#38b239',
   },
   {
     name: 'Chia',
-    color: '#3AAB59',
   },
 ];
 
 const HeroHeadLineContainer = styled.div`
   font-size: 2rem;
   line-height: 1.4;
-  font-weight: 400;
+  font-weight: 700;
   color: white;
+  line-height: 2.75rem;
+  letter-spacing: 0.05em;
 
   @media screen and (min-width: 800px) {
-    font-size: 3.5rem;
+    font-size: 3rem;
+    line-height: 4rem;
   }
 `;
 
@@ -104,18 +105,14 @@ const HeroHeadline = () => {
 
   return (
     <HeroHeadLineContainer>
-      Building the future of mining pools <br />
+      Building the future of mining pools
+      <br />
       for{' '}
       <ScrollTextContainer>
-        <TextDisappear
-          key={count - 1}
-          color={list[(3 + (count - 1)) % 3].color}
-        >
+        <TextDisappear key={count - 1}>
           {list[(3 + (count - 1)) % 3].name}
         </TextDisappear>
-        <TextAppear key={count} color={list[count].color}>
-          {list[count].name}
-        </TextAppear>
+        <TextAppear key={count}>{list[count].name}</TextAppear>
       </ScrollTextContainer>
     </HeroHeadLineContainer>
   );

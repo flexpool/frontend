@@ -43,7 +43,7 @@ const HeroLeft = styled.div`
 
   @media screen and (min-width: 800px) {
     flex-basis: 55%;
-    padding: 7rem 0 0;
+    padding: 6.5rem 0 0;
   }
 `;
 
@@ -88,11 +88,14 @@ export const HomePage = () => {
             <HeroLeft>
               <HeroHeadline />
               <Spacer size="lg" />
-              <HeroSubHeadline>{t('description')}</HeroSubHeadline>
+              <HeroSubHeadline>
+                Providing the highest profitability worldwide.
+              </HeroSubHeadline>
               <Spacer size="sm" />
               <SearchWrapper>
                 <SearchAddressBar />
               </SearchWrapper>
+              <Spacer size="md" />
             </HeroLeft>
             <Globe />
           </HeroLayout>

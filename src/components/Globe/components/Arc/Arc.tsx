@@ -31,7 +31,7 @@ const Arc = ({
   const tube2Ref = useRef<THREE.Mesh>();
 
   const { height, color } = useControls({
-    color: '#4f53de',
+    color: '#de4fcb',
     height: {
       value: 500,
       max: 1200,

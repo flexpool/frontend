@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { useThree, useFrame } from '@react-three/fiber';
+import { useThree, useFrame, useLoader } from '@react-three/fiber';
 import { useControls } from 'leva';
 import * as THREE from 'three';
 import { useStore } from '../../store';
@@ -23,8 +23,10 @@ const MyFirstShader = {
 
 const Sphere = ({ worldmap }: any) => {
   const { fresnel_color } = useControls({
-    fresnel_color: '#20196f',
+    fresnel_color: '#c0c5d4',
   });
+
+  const matcap = useLoader(THREE.TextureLoader, 'matcap11.png');
 
   const getPixelData = (x, y) => {
     const i = Math.floor(y - 1) * CANVAS_WIDTH * 4 + Math.floor(x) * 4;
@@ -115,17 +117,16 @@ const Sphere = ({ worldmap }: any) => {
 
   return (
     <>
+      <mesh>
+        <sphereGeometry attach="geometry" args={[600, 32 * 2, 32 * 2]} />
+        <meshMatcapMaterial transparent attach="material" matcap={matcap} />
+      </mesh>
       <mesh
         ref={sphereRef}
         position={[0, 0, 0]}
         onPointerMove={(event: any) => {
           const x = (event.offsetX / size.width) * 2 - 1;
           const y = -(event.offsetY / size.height) * 2 + 1;
-
-          console.log({
-            offsetX: event.offsetX,
-            offsetY: event.offsetY,
-          });
 
           mousePos.current = {
             x: x,
@@ -137,8 +138,14 @@ const Sphere = ({ worldmap }: any) => {
         }}
       >
         <sphereGeometry attach="geometry" args={[600, 32 * 2, 32 * 2]} />
-        <shaderMaterial transparent attach="material" args={[MyFirstShader]} />
+        <shaderMaterial
+          transparent
+          blending={2}
+          attach="material"
+          args={[MyFirstShader]}
+        />
       </mesh>
+
       <raycaster ref={raycasterRef} />
     </>
   );

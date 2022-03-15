@@ -10,6 +10,7 @@ import CanadaFlag from './components/CanadaFlag';
 import Sphere from './components/Sphere';
 import Dots from './components/Dots';
 import Marker from './components/Marker';
+import Halo from './components/Halo';
 import Arc from './components/Arc';
 import { useStore } from './store';
 import useInterval from '@/hooks/useInterval';
@@ -164,8 +165,8 @@ const Scene = () => {
             <Glow />
             <Sphere worldmap={mapIns} />
             <Dots worldmap={mapIns} />
-            <CanadaFlag />
-
+            {/* <CanadaFlag /> */}
+            {/* <Halo /> */}
             {arcs.map((arc, index) => (
               <Arc
                 key={`${arc.from}-${arc.to}-${index}`}
@@ -205,9 +206,9 @@ const StyledGlobe = styled.div`
   }
 
   @media screen and (min-width: 800px) {
-    width: 600px;
-    height: 600px;
-    top: 14px;
+    width: 580px;
+    height: 580px;
+    top: -15px;
     left: calc(60% - 94px);
   }
 `;
@@ -232,14 +233,14 @@ const Globe = () => {
 
   return (
     <StyledGlobe>
-      <Leva collapsed hidden />
+      <Leva collapsed />
       <Canvas
         dpr={2}
         gl={{
           antialias: true,
         }}
         camera={{
-          position: new Vector3(0, 0, 1200),
+          position: new Vector3(0, 0, 1250),
           far: 20000,
         }}
         id="globe-canvas"

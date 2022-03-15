@@ -11,7 +11,7 @@ void main() {
   vec3 worldNormal = normalize(mat3(modelMatrix[0].xyz, modelMatrix[1].xyz, modelMatrix[2].xyz) * normal);
 
   float fresnel = 0.9 * (1.0 + dot(viewDirection, worldNormal));
-  fresnel = pow(fresnel, 2.0);
+  fresnel = pow(fresnel, 4.0);
 
   v_fresnel = fresnel;
   v_uv = uv;

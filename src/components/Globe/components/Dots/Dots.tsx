@@ -4,6 +4,15 @@ import { Vector3 } from 'three';
 import { degree2Radian, geo2CanvasXY, getRegionFromColor } from '../../utils';
 import { useStore } from '../../store';
 
+import fragmentShader from './shader/fragment.glsl';
+import vertexShader from './shader/vertex.glsl';
+
+const DotShader = {
+  uniforms: {},
+  vertexShader,
+  fragmentShader,
+};
+
 const COUNT = 21430;
 const CANVAS_WIDTH = 1000;
 const CANVAS_HEIGHT = CANVAS_WIDTH / 2;
@@ -12,6 +21,7 @@ const geometry = new THREE.CircleBufferGeometry(2, 5);
 const material = new THREE.MeshStandardMaterial();
 material.metalness = 0;
 material.roughness = 0;
+material.opacity = 0.8;
 material.side = THREE.BackSide;
 material.transparent = true;
 
@@ -24,7 +34,7 @@ const REGION_COLOR = {
   af: '#321e79',
   ru: '#151b37',
   me: '#751d42',
-  'n/a': '#151b37',
+  'n/a': '#4d536d',
 };
 
 const Dots = ({ worldmap }) => {
@@ -93,7 +103,11 @@ const Dots = ({ worldmap }) => {
     }
   }, [ref, getPixelData, selectedRegion]);
 
-  return <instancedMesh ref={ref} args={[geometry, material, COUNT]} />;
+  return (
+    <instancedMesh ref={ref} args={[geometry, material, COUNT]}>
+      {/* <shaderMaterial attach="material" args={[DotShader]} /> */}
+    </instancedMesh>
+  );
 };
 
 export default Dots;
