@@ -2,7 +2,8 @@ import React from 'react';
 import { NextSeo } from 'next-seo';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-
+import styled from 'styled-components';
+import Image from 'next/image';
 import { Content } from '../src/components/layout/Content';
 import { CoinsWeMineSection } from '../src/pages/Home/components/CoinsWeMine/CoinsWeMine.section';
 import { GetStartedSection } from '../src/pages/Home/components/GetStarted/GetStarted.section';
@@ -14,7 +15,29 @@ import { WhyFlexpool } from '../src/pages/Home/components/WhyFlexpool/WhyFlexpoo
 import { SearchWrapper, PageContainer } from '../src/pages/Home/components';
 import HeroHeadline from '@/pages/Home/components/HeroHeadline';
 import Globe from '@/components/Globe';
-import styled from 'styled-components';
+
+const HeroGlow1 = styled.img`
+  display: none;
+  position: absolute;
+  right: -400px;
+  bottom: 130px;
+  z-index: -100;
+  width: 800px;
+  height: 800px;
+
+  @media screen and (min-width: 800px) {
+    display: block;
+  }
+`;
+
+const HeroGlow2 = styled.img`
+  position: absolute;
+  left: -400px;
+  top: -400px;
+  z-index: -100;
+  width: 800px;
+  height: 800px;
+`;
 
 const Hero = styled.div`
   min-height: 40vh;
@@ -102,6 +125,8 @@ export const HomePage = () => {
         </Content>
         <CoinEarnings />
         <NewsSection />
+        <HeroGlow1 src="/glow3.png" />
+        <HeroGlow2 src="/glow4.png" />
       </Hero>
 
       <CoinsWeMineSection />

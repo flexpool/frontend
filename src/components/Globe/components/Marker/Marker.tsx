@@ -92,7 +92,7 @@ const Marker = ({
         degree2Radian(90 - lat),
         degree2Radian(long + 180)
       )}
-      scale={[34, 34, 34]}
+      scale={[38, 38, 38]}
       ref={markerGroupRef}
     >
       <mesh>

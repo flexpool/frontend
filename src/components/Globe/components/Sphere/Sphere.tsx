@@ -11,7 +11,7 @@ import fragmentShader from './shader/fragment.glsl';
 const CANVAS_WIDTH = 1000;
 const CANVAS_HEIGHT = CANVAS_WIDTH / 2;
 
-const MyFirstShader = {
+const FresnelShader = {
   uniforms: {
     fresnel_color: {
       value: new THREE.Color('#20196f'),
@@ -142,7 +142,7 @@ const Sphere = ({ worldmap }: any) => {
           transparent
           blending={2}
           attach="material"
-          args={[MyFirstShader]}
+          args={[FresnelShader]}
         />
       </mesh>
 

@@ -206,8 +206,8 @@ const StyledGlobe = styled.div`
   }
 
   @media screen and (min-width: 800px) {
-    width: 580px;
-    height: 580px;
+    width: 600px;
+    height: 600px;
     top: -15px;
     left: calc(60% - 94px);
   }

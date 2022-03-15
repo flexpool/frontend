@@ -12,6 +12,5 @@ void main() {
 
   vec3 actual_normal = normalize(mat3(modelMatrix[0].xyz, modelMatrix[1].xyz, modelMatrix[2].xyz) * normal);
 
-
-  intensity = pow( 0.45 - dot(normalize(u_viewDirection), wx), 13.0);
+  intensity = pow( 0.5 - dot(normalize(u_viewDirection), wx), 12.0);
 }

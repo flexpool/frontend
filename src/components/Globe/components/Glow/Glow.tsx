@@ -26,7 +26,7 @@ const Glow = () => {
       min: -10.0,
       max: 10.0,
       step: 0.01,
-      value: 1.37,
+      value: 0.9,
     },
     posY: {
       min: -10.0,
@@ -38,10 +38,10 @@ const Glow = () => {
       min: -10.0,
       max: 10.0,
       step: 0.01,
-      value: -9.9,
+      value: -9.5,
     },
     size: {
-      value: 630,
+      value: 640,
       min: 600,
       max: 1200,
       step: 1,
@@ -65,7 +65,7 @@ const Glow = () => {
 
   return (
     <mesh>
-      <sphereBufferGeometry attach="geometry" args={[size, 32 * 4, 32 * 4]} />
+      <sphereBufferGeometry attach="geometry" args={[size, 64, 64]} />
       <shaderMaterial
         ref={glowMaterialRef}
         attach="material"

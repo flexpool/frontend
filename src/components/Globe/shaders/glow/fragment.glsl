@@ -6,5 +6,5 @@ void main() {
 
   float d = distance(glow, vec3(0.0));
 
-  gl_FragColor = vec4(glow, d);
+  gl_FragColor = vec4(glow , pow(d, 3.0));
 }

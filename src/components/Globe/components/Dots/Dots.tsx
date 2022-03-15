@@ -7,17 +7,11 @@ import { useStore } from '../../store';
 import fragmentShader from './shader/fragment.glsl';
 import vertexShader from './shader/vertex.glsl';
 
-const DotShader = {
-  uniforms: {},
-  vertexShader,
-  fragmentShader,
-};
-
 const COUNT = 21430;
 const CANVAS_WIDTH = 1000;
 const CANVAS_HEIGHT = CANVAS_WIDTH / 2;
 
-const geometry = new THREE.CircleBufferGeometry(2, 5);
+const geometry = new THREE.CircleBufferGeometry(2.2, 5);
 const material = new THREE.MeshStandardMaterial();
 material.metalness = 0;
 material.roughness = 0;
@@ -26,14 +20,14 @@ material.side = THREE.BackSide;
 material.transparent = true;
 
 const REGION_COLOR = {
-  na: '#0269ff',
-  sa: '#ed4f33',
-  eu: '#17cd72',
-  ap: '#edb432',
-  au: '#5d42f5',
-  af: '#321e79',
-  ru: '#151b37',
-  me: '#751d42',
+  na: '#007bff',
+  sa: '#007bff',
+  eu: '#007bff',
+  ap: '#007bff',
+  au: '#007bff',
+  af: '#007bff',
+  ru: '#007bff',
+  me: '#007bff',
   'n/a': '#4d536d',
 };
 
@@ -89,7 +83,7 @@ const Dots = ({ worldmap }) => {
             if (region === selectedRegion) {
               ref.current.setColorAt(i, color.set(REGION_COLOR[region]));
             } else {
-              ref.current.setColorAt(i, color.set(REGION_COLOR['n/a']));
+              ref.current.setColorAt(i, color.set('#3d414f'));
             }
 
             i++;
@@ -103,11 +97,7 @@ const Dots = ({ worldmap }) => {
     }
   }, [ref, getPixelData, selectedRegion]);
 
-  return (
-    <instancedMesh ref={ref} args={[geometry, material, COUNT]}>
-      {/* <shaderMaterial attach="material" args={[DotShader]} /> */}
-    </instancedMesh>
-  );
+  return <instancedMesh ref={ref} args={[geometry, material, COUNT]} />;
 };
 
 export default Dots;
