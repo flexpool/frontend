@@ -14,6 +14,7 @@ import {
 import { NewSelectCounterTicker } from 'src/components/SelectCounterTicker';
 import { NewSelectTheme } from 'src/components/SelectTheme';
 import { Spacer } from 'src/components/layout/Spacer';
+import Stack from '@/components/Stack';
 
 import {
   DISCORD_LINK,
@@ -188,17 +189,32 @@ export const FooterSection = () => {
           </Section>
         </SectionContainer>
 
-        <LinkOut
-          href="https://apps.apple.com/app/flexpool-io/id1594014411"
-          style={{ display: 'inline-block' }}
-        >
-          <Image
-            src="/svg/download-on-the-app-store.svg"
-            width={123}
-            height={41}
-            alt="Download on the app store"
-          />
-        </LinkOut>
+        <Stack>
+          <LinkOut
+            href="https://apps.apple.com/app/flexpool-io/id1594014411"
+            style={{ display: 'inline-block' }}
+          >
+            <Image
+              src="/svg/download-on-the-app-store.svg"
+              width={123}
+              height={41}
+              alt="Download on the app store"
+            />
+          </LinkOut>
+
+          <LinkOut
+            href="https://play.google.com/store/apps/details?id=io.flexpool.android&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
+            style={{ display: 'inline-block' }}
+          >
+            <Image
+              alt="Get it on Google Play"
+              src="/images/google-play-badge.png"
+              width={137.64}
+              height={41}
+              quality={100}
+            />
+          </LinkOut>
+        </Stack>
 
         <FooterEnd>
           <FooterCompany>
