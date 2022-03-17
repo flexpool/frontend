@@ -61,7 +61,6 @@ const regionColors = {
       b: 191,
     },
   ],
-  'n/a': [{ r: 209, g: 219, b: 221 }],
 };
 
 export const getRegionFromColor = (r: number, g: number, b: number) => {
@@ -89,11 +88,6 @@ export const getRegionFromColor = (r: number, g: number, b: number) => {
     }
     case regionColors.me.some((color) => isSimilarColor({ r, g, b }, color)): {
       return 'me';
-    }
-    case regionColors['n/a'].some((color) =>
-      isSimilarColor({ r, g, b }, color)
-    ): {
-      return 'n/a';
     }
     default: {
       return null;

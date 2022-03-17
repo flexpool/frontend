@@ -28,7 +28,7 @@ const REGION_COLOR = {
   af: '#00a6ff',
   ru: '#00a6ff',
   me: '#00a6ff',
-  'n/a': '#4d536d',
+  'n/a': '#a1a4b1',
 };
 
 const Dots = ({ worldmap }) => {
