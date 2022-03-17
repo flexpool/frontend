@@ -25,7 +25,7 @@ export function lerp(a, b, t) {
 
 export const isSimilarColor = ({ r, g, b }, { r: r2, g: g2, b: b2 }) => {
   return (
-    Math.abs(r - r2) <= 20 && Math.abs(g - g2) <= 20 && Math.abs(b - b2) <= 20
+    Math.abs(r - r2) <= 10 && Math.abs(g - g2) <= 10 && Math.abs(b - b2) <= 10
   );
 };
 
@@ -51,16 +51,24 @@ const regionColors = {
     { r: 191, g: 89, b: 162 },
   ],
   au: [{ r: 93, g: 66, b: 245 }],
-  ap: [{ r: 237, g: 180, b: 50 }],
+  ap: [
+    { r: 237, g: 180, b: 50 },
+    { r: 219, g: 146, b: 73 },
+  ],
   af: [{ r: 118, g: 42, b: 131 }],
-  ru: [{ r: 185, g: 160, b: 135 }],
   me: [
     {
       r: 247,
       g: 129,
       b: 191,
     },
+    {
+      r: 219,
+      g: 146,
+      b: 173,
+    },
   ],
+  ru: [{ r: 185, g: 160, b: 135 }],
 };
 
 export const getRegionFromColor = (r: number, g: number, b: number) => {

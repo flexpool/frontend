@@ -156,7 +156,7 @@ const Scene = () => {
         autoRotate
         enableZoom={false}
         enablePan={false}
-        autoRotateSpeed={0.1}
+        autoRotateSpeed={0.2}
         enableDamping={false}
       />
       <group ref={globeGroupRef} scale={[0.5, 0.5, 0.5]}>

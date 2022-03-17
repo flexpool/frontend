@@ -20,14 +20,14 @@ const CANVAS_HEIGHT = CANVAS_WIDTH / 2;
 const geometry = new THREE.CircleBufferGeometry(2, 5);
 
 const REGION_COLOR = {
-  na: '#00a6ff',
-  sa: '#00a6ff',
-  eu: '#00a6ff',
-  ap: '#00a6ff',
-  au: '#00a6ff',
-  af: '#00a6ff',
-  ru: '#00a6ff',
-  me: '#00a6ff',
+  na: '#00ffee',
+  sa: '#00ffee',
+  eu: '#00ffee',
+  ap: '#00ffee',
+  au: '#00ffee',
+  af: '#00ffee',
+  ru: '#00ffee',
+  me: '#00ffee',
   'n/a': '#a1a4b1',
 };
 
