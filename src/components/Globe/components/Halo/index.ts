@@ -1,1 +1,1 @@
-export { default } from "./Glow";
+export { default } from './Halo';

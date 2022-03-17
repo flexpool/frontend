@@ -11,7 +11,7 @@ const COUNT = 21430;
 const CANVAS_WIDTH = 1000;
 const CANVAS_HEIGHT = CANVAS_WIDTH / 2;
 
-const geometry = new THREE.CircleBufferGeometry(2.2, 5);
+const geometry = new THREE.CircleBufferGeometry(2, 5);
 const material = new THREE.MeshStandardMaterial();
 material.metalness = 0;
 material.roughness = 0;
@@ -83,7 +83,7 @@ const Dots = ({ worldmap }) => {
             if (region === selectedRegion) {
               ref.current.setColorAt(i, color.set(REGION_COLOR[region]));
             } else {
-              ref.current.setColorAt(i, color.set('#3d414f'));
+              ref.current.setColorAt(i, color.set('#5e616d'));
             }
 
             i++;

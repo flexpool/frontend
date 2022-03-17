@@ -2,10 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import { useControls } from 'leva';
 import * as THREE from 'three';
 
-import glowVertexShader from '../../shaders/glow/vertex.glsl';
-import glowFragmentShader from '../../shaders/glow/fragment.glsl';
+import haloVertexShader from '../../shaders/halo/vertex.glsl';
+import haloFragmentShader from '../../shaders/halo/fragment.glsl';
 
-const GlowShader = {
+const HaloShader = {
   uniforms: {
     u_color: { value: new THREE.Color('#0215be') },
     u_dot_intensity: { value: 6.0 },
@@ -13,8 +13,8 @@ const GlowShader = {
       value: new THREE.Vector3(0, 0, 1),
     },
   },
-  vertexShader: glowVertexShader,
-  fragmentShader: glowFragmentShader,
+  vertexShader: haloVertexShader,
+  fragmentShader: haloFragmentShader,
 };
 
 const Glow = () => {
@@ -41,7 +41,7 @@ const Glow = () => {
       value: -9.5,
     },
     size: {
-      value: 640,
+      value: 635,
       min: 600,
       max: 1200,
       step: 1,
@@ -70,8 +70,7 @@ const Glow = () => {
         ref={glowMaterialRef}
         attach="material"
         depthWrite={false}
-        args={[GlowShader]}
-        // blending={THREE.NoBlending}
+        args={[HaloShader]}
         transparent
         side={THREE.FrontSide}
       />

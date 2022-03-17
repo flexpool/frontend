@@ -1,28 +1,10 @@
-// varying vec2 v_uv;
-// varying vec3 v_normal;
-// varying float v_intensity;
-// varying vec3 v_worldPosition;
-// varying vec3 v_position;
-// varying float v_frontShadow;
+uniform vec3 u_color;
 
-// void main() {
-
-//   vec3 glow = vec3(1.0, 1.0, 1.0);
-
-//   float intensity = smoothstep(0.1, 1.0, v_intensity);
-
-  
-
-//   gl_FragColor = vec4(vec3(intensity) , intensity);
-// }
-
-#define GLSLIFY 1
-uniform vec3 glowColor;
 varying float intensity;
-varying float intensityA;
-void main()
-{
-  
+void main() {
+  vec3 glow = u_color * intensity;
 
-  gl_FragColor = vec4( vec3(1.0, 0.0, 0.0) * intensity, 1.0 * intensityA );
+  float d = distance(glow, vec3(0.0));
+
+  gl_FragColor = vec4(glow , pow(d, 3.0));
 }

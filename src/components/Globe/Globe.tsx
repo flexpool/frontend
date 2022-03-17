@@ -5,12 +5,11 @@ import { OrbitControls, Stats } from '@react-three/drei';
 import { Vector3 } from 'three';
 import styled from 'styled-components';
 import { Leva } from 'leva';
-import Glow from './components/Glow';
+import Halo from './components/Halo';
 import CanadaFlag from './components/CanadaFlag';
 import Sphere from './components/Sphere';
 import Dots from './components/Dots';
 import Marker from './components/Marker';
-import Halo from './components/Halo';
 import Arc from './components/Arc';
 import { useStore } from './store';
 import useInterval from '@/hooks/useInterval';
@@ -163,12 +162,11 @@ const Scene = () => {
       <group ref={globeGroupRef} scale={[0.5, 0.5, 0.5]}>
         {mapIns && (
           <>
-            <Glow />
+            <Halo />
             <Sphere worldmap={mapIns} />
             <Dots worldmap={mapIns} />
             {/* <CanadaFlag /> */}
-            {/* <Halo /> */}
-            {arcs.map((arc, index) => (
+            {/* {arcs.map((arc, index) => (
               <Arc
                 key={`${arc.from}-${arc.to}-${index}`}
                 fromLatitude={SERVERS[arc.from].latitude}
@@ -176,7 +174,7 @@ const Scene = () => {
                 toLatitude={SERVERS[arc.to].latitude}
                 toLongitude={SERVERS[arc.to].longitude}
               />
-            ))}
+            ))} */}
 
             {SERVERS.map((server, index) => (
               <Marker
