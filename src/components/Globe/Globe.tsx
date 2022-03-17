@@ -166,7 +166,7 @@ const Scene = () => {
             <Sphere worldmap={mapIns} />
             <Dots worldmap={mapIns} />
             {/* <CanadaFlag /> */}
-            {/* {arcs.map((arc, index) => (
+            {arcs.map((arc, index) => (
               <Arc
                 key={`${arc.from}-${arc.to}-${index}`}
                 fromLatitude={SERVERS[arc.from].latitude}
@@ -174,7 +174,7 @@ const Scene = () => {
                 toLatitude={SERVERS[arc.to].latitude}
                 toLongitude={SERVERS[arc.to].longitude}
               />
-            ))} */}
+            ))}
 
             {SERVERS.map((server, index) => (
               <Marker
