@@ -255,7 +255,7 @@ const Globe = () => {
           {/* <axesHelper args={[1000]} /> */}
           <ambientLight intensity={1} />
           <Scene />
-          <Stats />
+          {/* <Stats /> */}
         </Suspense>
       </Canvas>
       <StyledRegionOverlay
@@ -317,6 +317,7 @@ const StyledRegionOverlay = styled.div`
   width: 280px;
   min-height: 45px;
   position: fixed;
+  pointer-events: none;
 `;
 
 const Item = styled.div`

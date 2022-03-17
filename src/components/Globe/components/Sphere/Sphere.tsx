@@ -135,6 +135,15 @@ const Sphere = ({ worldmap }: any) => {
         }}
         onPointerLeave={() => {
           mousePos.current = null;
+          setRegion(null);
+        }}
+        onPointerOut={() => {
+          mousePos.current = null;
+          setRegion(null);
+        }}
+        onWheel={() => {
+          mousePos.current = null;
+          setRegion(null);
         }}
       >
         <sphereGeometry attach="geometry" args={[600, 32 * 2, 32 * 2]} />
