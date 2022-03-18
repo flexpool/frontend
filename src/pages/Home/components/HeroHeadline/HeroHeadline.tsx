@@ -86,11 +86,11 @@ const HeroHeadLineContainer = styled.div`
   font-weight: 700;
   color: white;
   line-height: 2.75rem;
-  letter-spacing: 0.05em;
+  letter-spacing: -0.02em;
 
   @media screen and (min-width: 800px) {
-    font-size: 3.25rem;
-    line-height: 4rem;
+    font-size: 3.5rem;
+    line-height: 4.2rem;
   }
 `;
 
