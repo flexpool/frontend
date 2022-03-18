@@ -199,12 +199,14 @@ const StyledGlobe = styled.div`
   right: -160px;
   user-select: none;
   cursor: pointer;
+  display: none;
 
   &:active {
     cursor: grab;
   }
 
   @media screen and (min-width: 800px) {
+    display: block;
     width: 600px;
     height: 600px;
     top: -15px;
