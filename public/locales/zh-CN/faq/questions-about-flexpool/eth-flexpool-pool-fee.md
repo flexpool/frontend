@@ -3,4 +3,4 @@ title: Flexpool矿池抽成是多少？
 coin: ETH
 ---
 
-我们的以太坊矿池费用固定为0.5%。 我们是ETH矿池中抽成比例最低的。 您的未付余额和支出显示了扣除池费后的净奖励。
+Our Ethereum pool fee is fixed at 0.9%. 我们是ETH矿池中抽成比例最低的。 您的未付余额和支出显示了扣除池费后的净奖励。

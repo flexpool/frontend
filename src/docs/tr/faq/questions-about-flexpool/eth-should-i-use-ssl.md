@@ -1,14 +1,14 @@
 ---
-title: SSL bağlantısı kullanmalı mıyım?
+title: Should I use SSL?
 coin: eth
 ---
 
-**Evet**, mümkünse SSL bağlantı şeklini tercih edin.
+**Yes**, use SSL where possible.
 
-Havuzlarımızda madencilik yapılırken tipik şifrelenmemiş (TCP) bağlantılara şiddetle karşıyız. Bu bağlantı, MITM (Ortadaki Adam) saldırılarına karşı savunmasızdır; bu, eğer birisi çalışanın ve havuzun arasında kötü niyetle durursa, hashrate'inizin bir kısmının çalınabileceği anlamına gelir.
+We are strongly against using unencrypted (TCP) connection while mining on our pool. This connection is vulnerable to MITM (Man-In-The-Middle) attacks, which means that if someone will maliciously stand in between of your worker and pool, some % of your hashrate may be stolen.
 
-#### ŞİFRELENMEMİŞ BAĞLANTI KULLANMAYINIZ
+#### DO NOT USE UNENCRYPTED CONNECTION
 
-İşçinizin havuz ile mesajlaşması ulaşana kadar bir çok router(yönlendirici) üzerinden geçişi sağlanmaktadır. (Dilerseniz `traceroute` komutunu kullanarak bunları görebilirsiniz).
+Keep in mind that before your worker's message reaches the pool, it passes through a dozen of routers (you can use `traceroute` command to see all of them).
 
-SSL bağlantısı kullanımı Flexpool tarafından özellikle tavsiye edilmektedir. Bu bağlantı türü, çalışanınızın gerçek havuz sunucularıyla konuşmasını sağlar.
+Using SSL is recommened by Flexpool. This connection type ensures that your worker talks to the actual pool servers.

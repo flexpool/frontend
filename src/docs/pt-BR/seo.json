@@ -1,0 +1,52 @@
+{
+  "title": {
+    "home": "A Pool de Mineração Mais Avançada",
+    "faq": "Perguntas Frequentes",
+    "miners": "Top Mineradores",
+    "not-found": "Página não encontrada",
+    "statistics": "Estatísticas da Pool",
+    "support": "Contate o Suporte",
+    "contact": "Fale Conosco",
+    "business_development": "Oportunidade de Negócio",
+    "brand_assets": "Mídias da Marca",
+    "blocks": "Blocos",
+    "api_documentation": "Documentação da API",
+    "get_started_gpu": "Minera {{coinName}} ({{coinTicker}}) usando uma rig de GPU",
+    "get_started_nicehash": "Arrendar NiceHash para {{coinName}} ({{coinTicker}})",
+    "get_started_chia_regular": "Farmar {{coinName}} ({{coinTicker}}) usando {{client}}",
+    "get_started_home": "Primeiros Passos"
+  },
+  "website_description": {
+    "home": "Flexpool.io é a pool de mineração mais avançada do mundo que permite minerar as tuas moedas favoritas de forma fácil. Suportamos Ethereum and Chia.",
+    "faq": "As Perguntas Frequentes de um utilizador típico da Flexpool.io estão descritas aqui. Aqui podes aprender o significado de termos usados em pools e como solucionar problemas comuns.",
+    "miners": "O Top 10 dos maiores mineradores da Flexpool.io e a distribuição dos mineradores por tamanho estão apresentados nesta página.",
+    "not-found": "Página não encontrada",
+    "statistics": "As estatísticas globais da pool são apresentadas nesta página. Podes ver o hashrate da pool, quantidade de mineradores, a sorte média e atual e o gráfico de hashrate global das últimas 24h.",
+    "support": "A Flexpool.io oferece suporte através do bate-papo no website e através de um email dedicado ao suporte. Nesta página podes encontrar detalhes e instruções de como obter suporte.",
+    "contact": "Nesta página mostramos como falar com da equipa Flexpool.io. Por favor tem em conta que as instruções nesta página são apenas para assuntos relacionados com negócios. Para obter suporte por favor verifica a página de suporte.",
+    "business_development": "Esta página contem instruções de como contactar a Flexpool.io para desenvolvimento de negócios",
+    "brand_assets": "Nesta página podes encontrar a imagem e diretrizes da marca Flexpool.io.",
+    "blocks": "Estatísticas dos blocos estão localizadas nesta página. Aqui podes encontrar métricas úteis tais como a sorte média e atual, o hashrate da rede, dificuldade, visualização dos blocos, lista de blocos entre outros.",
+    "api_documentation": "Documentação extensiva da Flexpool APIv2 encontra-se nesta página.",
+    "get_started_gpu": "Nesta página podes encontrar um guia interativo de como começar a minerar {{coinName}} ({{coinTicker}}) com {{coinAlgorithm}} usando uma rig de GPU na Flexpool.",
+    "get_started_nicehash": "Nesta página podes encontrar um guia interativo de como começar a arrendar NiceHash para {{coinName}} ({{coinTicker}}) com {{coinAlgorithm}} na Flexpool.",
+    "get_started_chia_regular": "Nesta página podes encontrar um guia interativo de como começar a farmar {{coinName}} ({{coinTicker}}) com {{client}} na Flexpool.",
+    "get_started_home": "Nesta página podes encontrar todos os nossos guias interativos de como começar a minerar na Flexpool."
+  },
+  "keywords": {
+    "home": "pool de ethereum, pool de chia, a melhor pool de ethereum, a melhor pool de chia, minerar ethereum, farmar chia, pool de mineração, a melhor pool de mineração, a melhor pool para farmar",
+    "faq": "faq,questões frequentes,solução de problemas",
+    "miners": "top de mineiros,top de fazendeiros,distribuição dos mineradores,distribuição dos fazendeiros",
+    "statistics": "estatísticas da pool,hashrate da pool,espaço de rede da pool,tamanho da pool,quantidade de mineradores,quantidade de fazendeiros,sorte média,sorte atual,gráfico de hashrate da pool,gráfico do espaço de rede da pool,gráfico do espaço da pool",
+    "support": "suporte,ajuda,solução de problemas,contactos",
+    "contact": "contactar a equipa",
+    "business_development": "desenvolvimento de negócios",
+    "brand_assets": "logo da flexpol,marca da flexpool,imagem da marca",
+    "blocks": "blocos minados,blocos farmados,estatísticas dos blocos,blocos",
+    "api_documentation": "api,api docs,documentação api,api da flexpool",
+    "get_started_gpu": "guia,tutorial,mineração de {{coinName}}, mineração de {{coinTicker}}, mineração de {{coinAlgorithm}},instruções de{{coinName}}, instruções de {{coinTicker}},instruções de {{coinAlgorithm}}",
+    "get_started_nicehash": "guia,tutorial,arrendar nicehash para {{coinName}},arrendar nicehash para {{coinTicker}},instruções de nicehash para {{coinName}},instruções de nicehash para {{coinTicker}},arrendar nicehash para {{coinName}},arrendar nicehash para {{coinTicker}},nicehash flexpool,nicehash flexpool {{coinAlgorithm}}",
+    "get_started_chia_regular": "guia, tutorial,farmar {{coinName}}{{client}},farmar {{coinTicker}}{{client}},instruções para {{coinName}}{{client}},instruções para {{coinTicker}}{{client}}",
+    "get_started_home": "guia,tutorial,começar a minerar,começar a farmar,guia de mineiro,primeiros passos,instruções"
+  }
+}

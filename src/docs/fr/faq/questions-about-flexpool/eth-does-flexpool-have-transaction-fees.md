@@ -1,6 +1,6 @@
 ---
-title: Flexpool facture-t-il des frais pour chaque transaction ?
+title: Does Flexpool charge a fee for every transaction?
 coin: eth
 ---
 
-**Non**. Nous ne facturons pas de frais de transaction supplémentaires de notre côté. Les seuls frais que vous paierez sont les frais de transaction du réseau, qui sont statiques quelle que soit la valeur de la transaction.
+**No**. We don't charge any additional transaction fees from our side. The only fee you will pay is the network transaction fee, that is static regardless of the transaction value.

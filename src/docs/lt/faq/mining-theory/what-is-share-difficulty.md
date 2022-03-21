@@ -1,6 +1,6 @@
 ---
-title: Kas yra share sunkumas?
+title: What is Share Difficulty?
 level: intermediate
 ---
 
-Techniškai shares yra tie patys blokai, tačiau tik su modifikuotais (šiuo atveju sumažintais) sunkumais. Jūsų darbuotojai kasa tas shares, todėl svarbu, kad juos būtų lengva rasti. Priešingu atveju būtų neįmanoma sutelkti darbuotojų statistikos ir patikrinti, ar ji iš tikrųjų yra kasyba, ne tik siųsti nepatvirtintas hashrate ataskaitas.
+Technically, shares are the same blocks, but just with modified (reduced in this case) difficulty. Your workers are mining those shares, and it is important for them to be easy to find. Otherwise, it would be impossible for pool to track worker statistics and verify that it is actually mining, not just sending unproven hashrate reports.

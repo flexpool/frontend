@@ -1,8 +1,8 @@
 ---
-title: Mon solde est gelé depuis longtemps. Ai-je configuré mon logiciel de minage correctement ?
+title: My balance has frozen for a long time. Have I configured my mining software properly?
 coin: eth
 ---
 
-Oui, tout est bon, sauf si vous ne pouvez pas voir votre rig de minage sur la page du tableau de bord. Comme nous ne sommes pas le plus grand pool minier, nous ne trouvons pas de blocs toutes les minutes. Pendant les périodes malchanceuses, votre solde peut stagner pendant un certain temps.
+Yes, everything is good unless you cannot see your workers on the dashboard page. As we are not the largest mining pool, we don't find blocks every minute. During unlucky periods, your balance may stall for some time.
 
-Il n'y a pas lieu de s'inquiéter dans ce cas. La bonne explication serait "Le solde est mis à jour à chaque fois que nous exploitons un bloc", plutôt que "Les récompenses sont données lorsque nous exploitons un bloc", car notre système de récompense conserve votre part de bloc "en attente" même si le solde ne bouge pas.
+No need to worry in this case. The right explanation for this would be "The balance updates each time we mine a block," rather than "The rewards are given when we mine a block" since our reward system still holds your "pending" block share even though balance is not moving.

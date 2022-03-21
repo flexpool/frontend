@@ -1,8 +1,8 @@
 ---
-title: Mein Guthaben hat sich lange nicht verändert. Habe ich meine Mining-Software richtig konfiguriert?
+title: My balance has frozen for a long time. Have I configured my mining software properly?
 coin: eth
 ---
 
-Ja, alles ist gut, es sei denn, Sie sehen ihren Mining Computer nicht auf der Dashboard-Seite. Da wir nicht der größte Minenpool sind, finden wir nicht jede Minute einen Block. Während schlechter Phasen kann dein Guthaben einige Zeit lang stehenbleiben.
+Yes, everything is good unless you cannot see your workers on the dashboard page. As we are not the largest mining pool, we don't find blocks every minute. During unlucky periods, your balance may stall for some time.
 
-Kein Grund zur Sorge. Die richtige Erklärung dafür wäre "Ihr Guthaben wird jedes Mal aktualisiert, wenn wir einen Block minen" und nicht "Die Belohnungen werden vergeben, wenn wir einen Block minen", da unser Belohnungssystem immer noch Ihren "ausstehenden" Blockanteil hält, auch wenn sich Ihr Guthaben nicht bewegt.
+No need to worry in this case. The right explanation for this would be "The balance updates each time we mine a block," rather than "The rewards are given when we mine a block" since our reward system still holds your "pending" block share even though balance is not moving.

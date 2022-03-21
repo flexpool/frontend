@@ -1,5 +1,5 @@
 ---
-title: 对于X TB的地块，我可以得到多少Chia？
+title: 我可以挖到多少Chia？
 coin: XCH
 ---
 

@@ -1,26 +1,26 @@
 ---
-title: 'Kas yra Hashrate?'
-level: pradedantysis
+title: 'What is Hashrate?'
+level: beginner
 ---
 
-„Hashrate“ yra jūsų darbuotojo per sekundę apdorojamų „hashash“ kiekių matas - kuo didesnis jūsų hashratas, tuo didesnė tikimybė, kad per tam tikrą laiką rasite daugiau shares.
+Hashrate is a measure of the amount of Hashes your worker is processing per second - the higher your hashrate the more likely you are to find more Shares in a given amount of time.
 
-Hashrate matuojami naudojant SI (metrinės tarptautinės vienetų sistemos) priešdėlius:
+Hashrates are measured using SI (Metric International System of Units) prefixes:
 
-| Vienetas | Aprašymas                                                                           |
-| -------- | ----------------------------------------------------------------------------------- |
-| H/s      | Hashes per sekundę - atskirų hashes skaičius per sekundę                            |
-| KH/s     | „KiloHashes“ per sekundę - tūkstančiai hashes kiekvieną sekundę, lygi 1000 H / s    |
-| MH/s     | „MegaHashes“ per sekundę - milijonai hashes kiekvieną sekundę, lygi 1000 KH / s     |
-| GH/s     | „GigaHashes“ per sekundę - milijardai hashes kiekvieną sekundę, lygi 1000 MH / s    |
-| TH/s     | „TeraHashes“ per sekundę - trilijonai hashes kiekvieną sekundę, lygi 1000 GH / s    |
-| PH/s     | „PetaHashes“ per sekundę - kvadrilijonai hashes kiekvieną sekundę, lygi 1000 TH / s |
-| ...      | Ir dar                                                                              |
+| Unit | Description                                                                    |
+| ---- | ------------------------------------------------------------------------------ |
+| H/s  | Hashes per Second - Number of individual hashes each second                    |
+| KH/s | KiloHashes per Second - Thousands of hashes each second, equal to 1000 H/s     |
+| MH/s | MegaHashes per Second - Millions of hashes each second, equal to 1000 KH/s     |
+| GH/s | GigaHashes per Second - Billions of hashes each second, equal to 1000 MH/s     |
+| TH/s | TeraHashes per Second - Trillions of hashes each second, equal to 1000 GH/s    |
+| PH/s | PetaHashes per Second - Quadrillions of hashes each second, equal to 1000 TH/s |
+| ...  | And more                                                                       |
 
-Informacijos suvestinėje turite tris rodomus hashrates:
+In your dashboard, you have three hashrates shown:
 
-| Hashrate Tipas              | Aprašymas                                                                                                                                                            |
-| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Veiksminga                  | „Hashrate“ poolas mano, kad turites shares, kurias jūs gaunate iš fondo, kiekio. Laikui bėgant tai gali labai skirtis dėl Sėkmės.                                    |
-| Vidutinis \ [efektyvus \] | Efektyvaus hashrato 24 valandų vidurkis turėtų būti artimas jūsų praneštam hashratui                                                                                 |
-| Pranešta                    | Tavo kasybos programinės įrangos hashrate ataskaitas teikia grupei (į tai neatsižvelgiama apskaičiuojant atlygį, tačiau ji rodoma palyginimui su efektyviu hashrate) |
+| Hashrate Type           | Description                                                                                                                                                               |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Effective               | The hashrate the pool thinks you have based on the amount of shares the pool is recieving from you, this can vary a lot over time due to Luck.                            |
+| Average \[Effective\] | The rolling 24 hour average of your Effective hashrate, this should be close to your Reported Hashrate                                                                    |
+| Reported                | The hashrate your mining software is reporting to the pool (this is not taken into account for calculating rewards but is shown for comparison to the Effective hashrate) |

@@ -1,6 +1,6 @@
 ---
-title: Como te juntares à Flexpool?
+title: How to join Flexpool?
 coin: eth
 ---
 
-Temos aqui instruções passo-a-passo: [Primeiros passos](/get-started)
+We have step-by-step instructions here: [Getting Started](/get-started)

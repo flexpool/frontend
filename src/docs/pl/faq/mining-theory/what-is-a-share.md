@@ -1,6 +1,6 @@
 ---
-title: Czym jest Share?
-level: początkujący
+title: What is a Share?
+level: beginner
 ---
 
-Share, czyli Udział jest to część bloku, nad którym pracuje kopalnia. Poprzez hashowanie w kopalni, Twoja koparka rozwiązuje / wykopuje te łamigłówki, a następnie przekazuje je do kopalni. Otrzymujesz za nie wynagrodzenie.
+Share is a part of the block the pool is working on. By hashing on the pool, your rig solves/mines these puzzles, and submits them to the pool. You are getting paid for those.

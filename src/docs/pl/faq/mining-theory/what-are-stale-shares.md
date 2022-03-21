@@ -1,20 +1,20 @@
 ---
-title: Czym są Stale Shares? Jak wpływają na moją rentowność?
-level: początkujący
+title: What are Stale Shares? How they affect my profitability?
+level: beginner
 ---
 
-Stale Shares (tłumacząc dosłownie "przedawnione udziały") to udziały, które zostały zostały wysłane do kopalni po ich wygaśnięciu. Ma to bezpośrednio wpływ na Twoją rentowność i zalecane jest, aby ich udział był jak najniższy.
+Stale shares are shares that were sent to the pool after they were expired. This directly affects your profitability, and it is recommended to keep them as low as possible.
 
-Zwykle udział Stale Shares wynosi poniżej 1%. Większy udział jest niedopuszczalny, chyba że znajdujesz się daleko od najbliższego regionu Flexpool.
+Normal stale rate is the stale rate below 1%. Everything above in unacceptable unless you are located far away from the closest Flexpool region.
 
-Porady dotyczące zredukowania wskaźnika przedawnionych udziałów:
+Tips for reducing the stale rate:
 
-* Używaj połączenia przez Ethernet zamiast bezprzewodowego Wi-Fi.
-* Używaj połączenia kablowego / światłowodowego (nie mobilnego).
-* Upewnij się, że wyłączyłeś tryb oszczędzania energii dla połączenia Ethernet, jeśli masz ten tryb włączony.
+* Use Ethernet instead of Wi-Fi.
+* Use Cable/Fiber connection (not mobile).
+* Make sure that you've disabled the Ethernet power save mode, if you have one enabled.
 
-Rzeczy, które powodują przedawnienie udziałów:
-* Opóźnienia pomiędzy Twoim pracownikiem, a serwerem Flexpool
-* Słabe oprogramowanie do miningu (kopania)
-* Utrata pakietów
-* Zakłócenia łącza
+Things that cause stale shares:
+* Latency between your worker and pool server
+* Poor miner software
+* Packet loss
+* Jitter

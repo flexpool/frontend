@@ -1,0 +1,58 @@
+{
+  "head_title": "Blocos Minerados",
+  "title": "Blocos",
+  "description": "Histórico de blocos minerados pela Flexpool",
+  "average_luck": "Média de sorte",
+  "average_luck_tooltip": "Média de sorte de bloco dos últimos 30 dias.",
+  "current_luck": "Sorte atual",
+  "current_luck_tooltip": "Sorte de bloco da rodada atual. Este valor é atualizado em tempo real.",
+  "network_hashrate": "Hashrate da Rede",
+  "network_space": "Espaço da Rede",
+  "network_difficulty": "Dificuldade da rede",
+  "network_difficulty_tooltip": "Quantidade média de quantos hashes a pool deve produzir para minerar um bloco.",
+  "network_difficulty_tooltip_points": "Quantidade média de pontos que a pool deveria produzir na mineração de um bloco.",
+  "table": {
+    "title_zero": "Não foi possível obter os dados da pool",
+    "title": "A Flexpool minerou {{count}} bloco",
+    "title_1": "A Flexpool minerou {{count}} blocos",
+    "title_2": "A Flexpool minerou {{count}} blocos",
+    "title_3": "A Flexpool minerou {{count}} blocos",
+    "title_4": "A Flexpool minerou {{count}} blocos",
+    "title_5": "A Flexpool minerou {{count}} blocos",
+    "title_plural": "A Flexpool minerou {{count}} blocos",
+    "title_miner_zero": "Você ainda não minerou nenhum bloco",
+    "title_miner": "Você minerou {{count}} bloco",
+    "title_miner_1": "Você minerou {{count}} blocos",
+    "title_miner_2": "Você minerou {{count}} blocos",
+    "title_miner_3": "Você minerou {{count}} blocos",
+    "title_miner_4": "Você minerou {{count}} blocos",
+    "title_miner_5": "Você minerou {{count}} blocos",
+    "title_miner_plural": "Você minerou {{count}} blocos",
+    "rewards_block_list_title": "Recompensas Por Bloco",
+    "table_head": {
+      "number": "Número",
+      "type": "Tipo",
+      "date": "Data",
+      "region": "Região",
+      "miner": "Minerador",
+      "reward": "Recompensa",
+      "round_time": "Tempo da Rodada",
+      "hash": "Hash",
+      "luck": "Sorte",
+      "share": "Share"
+    }
+  },
+  "type": {
+    "block": "Bloco",
+    "orphan": "Órfão",
+    "uncle": "Uncle"
+  },
+  "chart": {
+    "title": "Visualização de Blocos por Mês",
+    "blocks_per_day": "Blocos por dia",
+    "difficulty": "Dificuldade"
+  },
+  "waiting_confirmation_tooltip": "Aguardando confirmação",
+  "orphan_tooltip": "Blocos Órfãos são os blocos não incluídos na cadeia original. Normalmente eles aparecem sob raras circunstâncias, como a reorganização de dois blocos antes dos mineradores receberem novos trabalhos.",
+  "uncle_tooltip": "Os blocos Uncle são os blocos que têm o mesmo hash e número de origem. Eles são causados pela alta latência entre as pools de mineração. Normalmente, eles aparecem quando duas pools de mineração mineram dois blocos ao mesmo tempo, ambas tendo o mesmo número de bloco."
+}

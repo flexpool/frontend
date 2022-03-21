@@ -1,6 +1,6 @@
 ---
-title: Che cosa è una Quota?
-level: principiante
+title: What is a Share?
+level: beginner
 ---
 
-La quota è una parte del blocco che la pool sta lavorando. Producendo hash sulla pool, il tuo rig risolve/mina questi puzzles, e li invia alla pool. Vieni pagato per quelle.
+Share is a part of the block the pool is working on. By hashing on the pool, your rig solves/mines these puzzles, and submits them to the pool. You are getting paid for those.

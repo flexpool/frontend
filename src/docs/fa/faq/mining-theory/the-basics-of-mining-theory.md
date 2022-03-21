@@ -1,11 +1,11 @@
 ---
-title: اصول اولیه تعوری ماینینگ
-level: سطح متوسط
+title: The "Basics" of the Mining Theory
+level: intermediate
 ---
 
-#### هش / هشینگ
+#### Hashes/Hashing
 
-در ماینینگ، یک هش نتیجه ران شدن قالب یک بلاک و غیر منتظره از طریق عملکرد هشینگ رمزنگاری شده ( هضم پیام یا هضم هش نیز شناخته می شود. A cryptographic hashing function provides a completely different output for any given input and this can vary wildly by changing the Nonce.
+In mining, a Hash is the result of running a Block Template and a prospective Nonce through a cryptographic hashing function (also known as a "message digest" or "hash digest"). A cryptographic hashing function provides a completely different output for any given input and this can vary wildly by changing the Nonce.
 
 There are various different cryptographic hashing functions used in cryptocurrencies, examples include:
 

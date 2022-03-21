@@ -1,20 +1,20 @@
 ---
-title: '¿Qué son las acciones obsoletas? ¿Cómo afectan a mi rentabilidad?'
-level: principiante
+title: What are Stale Shares? How they affect my profitability?
+level: beginner
 ---
 
-Las acciones obsoletas son acciones que fueron enviadas a la pool después de su caducidad. Esto afecta directamente a tu rentabilidad, y es recomendable mantenerlas tan bajas como sea posible.
+Stale shares are shares that were sent to the pool after they were expired. This directly affects your profitability, and it is recommended to keep them as low as possible.
 
-La tasa normal de caducidad es inferior al 1%. Todo por encima es inaceptable a menos que se encuentre lejos de la región mas cercana de Flexpool.
+Normal stale rate is the stale rate below 1%. Everything above in unacceptable unless you are located far away from the closest Flexpool region.
 
-Consejos para reducir la tasa de caducidad:
+Tips for reducing the stale rate:
 
-* Usar cable Ethernet en lugar de Wi-Fi.
-* Usar conexión de Cable/Fibra (no móvil).
-* Asegúrese de que has deshabilitado el modo ahorra de energía Ethernet, si tiene uno habilitado.
+* Use Ethernet instead of Wi-Fi.
+* Use Cable/Fiber connection (not mobile).
+* Make sure that you've disabled the Ethernet power save mode, if you have one enabled.
 
-Cosas que causan acciones obsoletas:
-* Latencia entre tu trabajador y el servidor de la pool
-* Software minero pobre
-* Perdida de paquetes
-* Fluctuación del retardo
+Things that cause stale shares:
+* Latency between your worker and pool server
+* Poor miner software
+* Packet loss
+* Jitter

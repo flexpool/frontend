@@ -1,0 +1,21 @@
+{
+  "head_title": "Tilastot",
+  "title": "Tilastot",
+  "pool_hashrate": "Poolin hashrate",
+  "pool_space": "Poolin tila",
+  "average_luck": "Keskiarvoinen onni",
+  "average_luck_tooltip": "Viimeisen 30 päivän keskiarvoinen lohko-onni.",
+  "miners": "Louhijoita",
+  "workers": "Laitteita",
+  "chart": {
+    "title": "Poolin hashrate",
+    "title_space": "Poolin tila",
+    "total_hashrate": "Hashrate yhteensä",
+    "total_space": "Tila yhteensä",
+    "as": "Aasian ja Tyynenmeren alue (AS)",
+    "au": "Australia (AU)",
+    "eu": "Eurooppa (EU)",
+    "sa": "Etelä-Amerikka (SA)",
+    "us": "Yhdysvallat (US)"
+  }
+}

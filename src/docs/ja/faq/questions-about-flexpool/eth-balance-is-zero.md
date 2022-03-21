@@ -1,8 +1,8 @@
 ---
-title: 私の口座残高に長い間動きがありません。 私のマイニング用ソフトウェアは適切に設定されていますでしょうか。
+title: My balance has frozen for a long time. Have I configured my mining software properly?
 coin: eth
 ---
 
-はい。 私たちは規模の大きなマイニングプールではありませんので、ブロックを分毎に見つけることが出来ません。 運が良くない間は、あなたの口座残高の動きがなくなることがあります。
+Yes, everything is good unless you cannot see your workers on the dashboard page. As we are not the largest mining pool, we don't find blocks every minute. During unlucky periods, your balance may stall for some time.
 
-心配することはありません。 あなたの口座残高に動きがなかったとしても、私たちの報酬システムはあなたの「保留中」となっているブロックシェアを保持しているため、「私たちがブロックを採掘した時に報酬が与えられる」というよりは、「私たちがブロックを採掘する度に口座残高が更新される」が、より適切な説明になります。
+No need to worry in this case. The right explanation for this would be "The balance updates each time we mine a block," rather than "The rewards are given when we mine a block" since our reward system still holds your "pending" block share even though balance is not moving.

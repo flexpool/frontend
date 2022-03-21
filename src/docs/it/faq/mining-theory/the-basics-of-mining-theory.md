@@ -1,15 +1,15 @@
 ---
-title: Le basi del mining
-level: intermedio
+title: The "Basics" of the Mining Theory
+level: intermediate
 ---
 
-#### Le hash e come produrle
+#### Hashes/Hashing
 
-Nel mining un'hash è il risultato dell'esecuzione di un Block Template e un potenziale Nonce ottenuto da una funzione di hash (anche detto "message digest" o "hash digest"). Una funzione crittografica di hash fornisce un output completamente diverso per ogni input dato, e ciò può varaire notevolmente cambiando il Nonce.
+In mining, a Hash is the result of running a Block Template and a prospective Nonce through a cryptographic hashing function (also known as a "message digest" or "hash digest"). A cryptographic hashing function provides a completely different output for any given input and this can vary wildly by changing the Nonce.
 
-Esistono diverse funzioni crittografiche di hash usate nelle criptovalute, per esempio:
+There are various different cryptographic hashing functions used in cryptocurrencies, examples include:
 
-| Nome della funzione di hash                  | Crpyovalute che la usano               |
+| Hash Function Name                           | Cryptocurrencies that use it           |
 | -------------------------------------------- | -------------------------------------- |
 | SHA256                                       | Bitcoin, Litecoin, Bitcoin Cash...     |
 | Ethash (DaggerHashimoto) and its derivatives | Ethereum, Ethereum Classic, Expanse... |
@@ -17,7 +17,7 @@ Esistono diverse funzioni crittografiche di hash usate nelle criptovalute, per e
 | CuckooCycle/Cuckaroo/Cuckatoo                | Grin                                   |
 | Equihash                                     | ZCash                                  |
 
-#### Difficoltà
+#### Difficulty
 
 The amount of guesses which are needed to get a given number of zeroes at the start of the Hash is referred to as the Difficulty - it is harder to get more zeroes and therefore to have a lot of zeroes it is likely that the miner would have to have tried a lot of Nonces to achieve this.
 
@@ -40,8 +40,8 @@ Hashes which don't meet the Difficulty required for a Block may still meet a low
 
 With that said, obviously you can also just stumble upon a good Nonce in less guesses than expected by having good Luck (or significantly more guesses if your Luck is bad!)
 
-#### Sforzo/Fortuna
+#### Effort/Luck
 
-Il rapporto tra quante hash sono servite e quante ne servono in media a seconda della difficoltà prende il nome di Sforzo. Uno Sforzo del 50% è basso, cioè un Nonce valido è stato trovato nella metà dei tentativi medi.
+The ratio of how many Hashes were carried out vs how many were expected to meet a given Difficulty is called Effort, a low Effort of 50% for example meaning a good Nonce was found in half the amount of guesses expected.
 
-L'inverso dello Sforzo viene chiamato Fortuna. Una Fortuna del 200% significa che è stato trovato un Nonce valido nella metà dei tentativi medi.
+The inverse of Effort is referred to as Luck, a Luck of 200% means you found a good Nonce in half the amount of guesses expected.

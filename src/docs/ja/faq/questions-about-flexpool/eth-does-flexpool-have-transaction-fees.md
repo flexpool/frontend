@@ -1,6 +1,6 @@
 ---
-title: Flexpoolは取引から手数料を取りますか？
+title: Does Flexpool charge a fee for every transaction?
 coin: eth
 ---
 
-**いいえ**. 弊社側から追加の取引手数料は請求されません。 あなたが支払う唯一の手数料は、トランザクションの値に左右されないネットワーク取引手数料です。
+**No**. We don't charge any additional transaction fees from our side. The only fee you will pay is the network transaction fee, that is static regardless of the transaction value.

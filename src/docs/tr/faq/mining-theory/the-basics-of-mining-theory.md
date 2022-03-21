@@ -1,47 +1,47 @@
 ---
-title: Madencilik Teorisinin "Temelleri"
-level: orta düzey
+title: The "Basics" of the Mining Theory
+level: intermediate
 ---
 
-#### Hashler/Hashlemek
+#### Hashes/Hashing
 
-Madencilikte, bir Hash, bir Blok Şablonu ve olası bir Nonce'nin kriptografik bir hashing fonksiyonu ("mesaj özeti" veya "hash özeti" olarak da bilinir) aracılığıyla çalıştırılmasının sonucudur. Kriptografik bir hashing işlevi, herhangi bir girdi için tamamen farklı bir çıktı sağlar ve bu, Nonce'yi değiştirerek çılgınca değişebilir.
+In mining, a Hash is the result of running a Block Template and a prospective Nonce through a cryptographic hashing function (also known as a "message digest" or "hash digest"). A cryptographic hashing function provides a completely different output for any given input and this can vary wildly by changing the Nonce.
 
-Kripto para birimlerinde kullanılan çeşitli farklı kriptografik hashing işlevleri vardır, örnekler şunları içerir:
+There are various different cryptographic hashing functions used in cryptocurrencies, examples include:
 
-| Hash Fonksiyon Adı                    | Onu kullanan kripto para birimleri     |
-| ------------------------------------- | -------------------------------------- |
-| SHA256                                | Bitcoin, Litecoin, Bitcoin Cash...     |
-| Ethash (DaggerHashimoto) ve türevleri | Ethereum, Ethereum Classic, Expanse... |
-| RandomX                               | Monero                                 |
-| CuckooCycle/Cuckaroo/Cuckatoo         | Grin                                   |
-| Equihash                              | ZCash                                  |
+| Hash Function Name                           | Cryptocurrencies that use it           |
+| -------------------------------------------- | -------------------------------------- |
+| SHA256                                       | Bitcoin, Litecoin, Bitcoin Cash...     |
+| Ethash (DaggerHashimoto) and its derivatives | Ethereum, Ethereum Classic, Expanse... |
+| RandomX                                      | Monero                                 |
+| CuckooCycle/Cuckaroo/Cuckatoo                | Grin                                   |
+| Equihash                                     | ZCash                                  |
 
-#### Zorluk
+#### Difficulty
 
-Hash'in başlangıcında belirli sayıda sıfır elde etmek için gereken tahmin miktarı, Zorluk olarak adlandırılır - daha fazla sıfır elde etmek daha zordur ve bu nedenle çok fazla sıfıra sahip olmak, madencinin sahip olması muhtemeldir. bunu başarmak için birçok Nonces denemiş olmak.
+The amount of guesses which are needed to get a given number of zeroes at the start of the Hash is referred to as the Difficulty - it is harder to get more zeroes and therefore to have a lot of zeroes it is likely that the miner would have to have tried a lot of Nonces to achieve this.
 
-Bir hash fonksiyonunun girdilerini çıktısından tanımlamak mümkün değildir, bu nedenle belirli bir Zorluğun Hash'ini elde etmenin tek yolu deneme yanılmadır.
+It is not possible to identify the inputs to a hash function from its output, therefore the only way to get a Hash of a particular Difficulty is by trial and error.
 
-Örneğin:
-| Mesaj                     | SHA256 Mesajın özeti                                                                          |
+For Example:
+| Message                   | SHA256 Hash of the message                                                                    |
 | ------------------------- | --------------------------------------------------------------------------------------------- |
-| <code>Flexpool'a hoş geldiniz! (nonce=0)</code> | 58ecf42082e136722a706bd2b8d028b90c94f6e4ddfa60720fd470ff11cd875a                              |
-| <code>Flexpool'a hoş geldiniz! (nonce=1)</code> | 9a605788b6d2f16b6f5c418a394965197d7e88a912afb275fde8735fa308971e                              |
-| <code>Flexpool'a hoş geldiniz! (nonce=2)</code> | 37916e8263c7266b8ecfc878ab87d585a546c87a5d32d18658d066122bcc9037                              |
+| <code>Welcome to Flexpool! (nonce=0)</code> | 58ecf42082e136722a706bd2b8d028b90c94f6e4ddfa60720fd470ff11cd875a                              |
+| <code>Welcome to Flexpool! (nonce=1)</code> | 9a605788b6d2f16b6f5c418a394965197d7e88a912afb275fde8735fa308971e                              |
+| <code>Welcome to Flexpool! (nonce=2)</code> | 37916e8263c7266b8ecfc878ab87d585a546c87a5d32d18658d066122bcc9037                              |
 | ...                       | ...                                                                                           |
-| <code>Flexpool'a hoş geldiniz! (nonce=16105490)</code> | <span className="red">000000</span>4298495e8f9096c674f1197be8c6fb25f2012228374b7307cc66ae6200 |
+| <code>Welcome to Flexpool! (nonce=16105490)</code> | <span className="red">000000</span>4298495e8f9096c674f1197be8c6fb25f2012228374b7307cc66ae6200 |
 
-Gördüğünüz gibi, sadece 6 sıfır elde etmek için 12 milyondan fazla deneme yapıldı, ancak bloğu kendiniz hashleyerek birisinin birçok tahmin yaptığını doğrulamak kolaydır! Bunun gibi bir hash sağlayan Nonce, büyük olasılıkla önemli miktarda iş yaptığınızın kanıtıdır, dolayısıyla madeni paralar için "Proof of Work" ifadesi kullanılmaktadır. 0 ile başlamanın zorunlu olmadığını unutmayın. Tek şart, nonce'nin sınırın ötesinde olmamasıdır.
+As you can see it took over 12 million tries to get only 6 zeroes, however it is easy to confirm that someone has made a lot of guesses by just hashing the block yourself! The Nonce which provides a hash like this is proof that you have likely carried out a significant amount of work, hence the phrase "Proof of Work" being used for mining coins. Note that it is not neccessarily to start with 0. The only requirement is that the nonce is not beyond the limit.
 
-Madeni paralar, Zorluk gereksinimlerini bloklar zaman içinde eşit aralıklarla olacak şekilde ayarlar, Bitcoin her 10 dakikada bir blok almaya çalışır, Ethereum 12,5 saniyeyi hedefler, diğer kripto paraların başka hedefleri vardır. Bir madeni para ağına daha fazla Hashrate eklendiğinde / kaldırıldıkça, gerekli Zorluk telafi etmek ve "blok süresini" o madeni para için hedefe yakın tutmak için artar / azalır.
+Coins adjust their Difficulty requirement such that blocks are spaced evenly over time, Bitcoin tries to get a block every 10 minutes, Ethereum targets 12.5 seconds, other coins have other targets. As more Hashrate is added/removed to a coins network its required Difficulty increases/decreases to compensate and keep the "block time" close to the target for that coin.
 
-Bir Blok için gerekli Zorluğu karşılamayan Hashler, havuz tarafından belirlenen daha düşük bir Zorluk seviyesini karşılamaya devam edebilir ve bir Blok bulmaya çalıştığınızı kanıtlamak için havuza gönderilir, bu paylaşımlar havuzdaki biri bir Blok bulduğunda alacağınız sonraki blok ödülünün ne kadar olduğunu belirlemek için kullanılır.
+Hashes which don't meet the Difficulty required for a Block may still meet a lower Difficulty level set by the pool and are sent to the pool to prove that you are trying to find a Block, these Shares are used to determine how much of the next Block you will recieve when someone on the pool finds a Block.
 
-Bununla birlikte, açıkçası, iyi Şanslar elde ederek beklenenden daha az tahminle (veya Şansınız kötüyse önemli ölçüde daha fazla tahminde bulunarak) iyi bir Nonce'a rastlayabilirsiniz!
+With that said, obviously you can also just stumble upon a good Nonce in less guesses than expected by having good Luck (or significantly more guesses if your Luck is bad!)
 
-#### Çaba / Şans
+#### Effort/Luck
 
-Kaç Hash'ın gerçekleştirildiği ve kaçının belirli bir Zorluğu karşılaması beklendiğinin oranına Çaba denir, örneğin% 50'lik düşük bir Çaba, beklenen tahminlerin yarısında iyi bir Nonce bulunduğu anlamına gelir.
+The ratio of how many Hashes were carried out vs how many were expected to meet a given Difficulty is called Effort, a low Effort of 50% for example meaning a good Nonce was found in half the amount of guesses expected.
 
-Çaba'nın tersine Şans denir,% 200 Şans, beklenen tahminlerin yarısı kadar iyi bir Nonce bulduğunuz anlamına gelir.
+The inverse of Effort is referred to as Luck, a Luck of 200% means you found a good Nonce in half the amount of guesses expected.

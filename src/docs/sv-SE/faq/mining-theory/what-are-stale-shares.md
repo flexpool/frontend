@@ -1,20 +1,20 @@
 ---
-title: What are Stale Shares? How they affect my profitability?
-level: beginner
+title: Vad är Stale Shares? Hur påverkar de min lönsamhet?
+level: nybörjare
 ---
 
-Stale shares are shares that were sent to the pool after they were expired. This directly affects your profitability, and it is recommended to keep them as low as possible.
+Stale shares är shares som skickades till poolen efter att de löpt ut. Detta påverkar direkt din lönsamhet, och det rekommenderas att hålla dem så låga som möjligt.
 
-Normal stale rate is the stale rate below 1%. Everything above in unacceptable unless you are located far away from the closest Flexpool region.
+Normal stale rate är ett värde under 1%. Allt ovan är oacceptabelt om du inte ligger långt bort från din närmaste Flexpool-region.
 
-Tips for reducing the stale rate:
+Tips för att minska den inaktuella takten:
 
-* Use Ethernet instead of Wi-Fi.
-* Use Cable/Fiber connection (not mobile).
-* Make sure that you've disabled the Ethernet power save mode, if you have one enabled.
+* Använd Ethernet istället för Wi-Fi.
+* Använd kabel/fiberanslutning (ej mobil).
+* Se till att du har inaktiverat Ethernet-energisparläget, om du har en aktiverad.
 
-Things that cause stale shares:
-* Latency between your worker and pool server
-* Poor miner software
-* Packet loss
-* Jitter
+Saker som orsakar inaktuell delning:
+* Latens mellan din arbetare och poolserver
+* Dålig mining programvara
+* Paketförlust (packet loss)
+* Glapp i anslutning (Jitter)
