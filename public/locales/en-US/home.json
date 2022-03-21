@@ -50,6 +50,10 @@
       "title": "About Ethereum",
       "description": "Ethereum is a worldwide computer created to power Decentralized Applications known as Smart Contracts."
     },
+    "etc": {
+      "title": "About Ethereum Classic",
+      "description": "Ethereum Classic maintains the original, unaltered history of the Ethereum network."
+    },
     "xch": {
       "title": "About Chia",
       "description": "Chia is a programmable cryptocurrency focused on the eco-friendly way of securing the blockchain."
