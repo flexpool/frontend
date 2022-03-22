@@ -498,6 +498,33 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
               />
             );
           }
+
+          if (item.domain === 'sgeetc.gfwroute.co') {
+            return (
+              <DescriptionList
+                items={[
+                  {
+                    term: (
+                      <span style={{ fontSize: '0.85rem' }}>
+                        {t('detail.ports.title')}
+                      </span>
+                    ),
+                    description: (
+                      <div style={{ fontSize: '0.85rem' }}>
+                        <div>
+                          TCP: <Sticker>48607</Sticker>
+                        </div>
+                        <div style={{ marginTop: '0.25rem' }}>
+                          SSL: <Sticker>58607</Sticker>
+                        </div>
+                      </div>
+                    ),
+                  },
+                ]}
+              />
+            );
+          }
+
           return null;
         }}
       />
