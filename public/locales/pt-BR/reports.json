@@ -1,8 +1,8 @@
 {
-  "head_title": "Relatório de Dados Aberto",
-  "title": "Relatório de Dados Aberto",
+  "head_title": "Transparency Reports",
+  "title": "Transparency Reports",
   "description": "A nossa iniciativa é apresentar relatórios de progresso claros e transparentes sobre o que estamos fazendo na Flexpool.",
-  "latest": "Último relatório",
-  "archive": "Arquivo de relatórios",
+  "latest": "Latest Transparency Report",
+  "archive": "Legacy open data report archive",
   "report_item": "Relatório de Progresso Flexpool"
 }

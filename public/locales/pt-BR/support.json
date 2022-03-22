@@ -19,6 +19,6 @@
   },
   "section_five": {
     "title": "Outras perguntas",
-    "description": "Para questões relacionadas à negócios, por favor, entre em contato conosco pelo e-mail <email>hq@flexpool.io</email>. Por favor, note que não fornecemos suporte através deste e-mail."
+    "description": "For business-related questions, please, contact us at <email>{{email}}</email>  <bold>(English only)</bold>. Please, note that <bold>we do not provide support via this Email</bold>."
   }
 }

@@ -1,0 +1,59 @@
+{
+  "head_title": "Blocs Minés",
+  "title": "Blocs",
+  "description": "Historique des blocs minés par Flexpool",
+  "average_luck": "Average luck",
+  "average_luck_tooltip": "La chance moyenne de bloc des 30 derniers jours.",
+  "current_luck": "Chance actuelle",
+  "current_luck_tooltip": "La chance du bloc du tour actuel. Cette valeur est mise à jour en temps réel.",
+  "network_hashrate": "Puissance du Réseau",
+  "network_space": "Network Space",
+  "network_difficulty": "Difficulté du réseau",
+  "network_difficulty_tooltip": "Average amount of how many hashes pool should produce to mine a block.",
+  "network_difficulty_tooltip_points": "Average amount of how many points pool should produce to mine a block.",
+  "table": {
+    "title_zero": "Impossible de récupérer les données du pool",
+    "title": "Flexpool a miné {{count}} bloc",
+    "title_1": "Flexpool a miné {{count}} blocs",
+    "title_2": "Flexpool a miné {{count}} blocs",
+    "title_3": "Flexpool a miné {{count}} blocs",
+    "title_4": "Flexpool a miné {{count}} blocs",
+    "title_5": "Flexpool a miné {{count}} blocs",
+    "title_plural": "Flexpool a miné {{count}} blocs",
+    "title_miner_zero": "Vous n'avez pas encore miné de blocs",
+    "title_miner": "Vous avez miné {{count}} bloc",
+    "title_miner_1": "Vous avez miné {{count}} blocs",
+    "title_miner_2": "Vous avez miné {{count}} blocs",
+    "title_miner_3": "Vous avez miné {{count}} blocs",
+    "title_miner_4": "Vous avez miné {{count}} blocs",
+    "title_miner_5": "Vous avez miné {{count}} blocs",
+    "title_miner_plural": "Vous avez miné {{count}} blocs",
+    "rewards_block_list_title": "Rewards Per Block",
+    "table_head": {
+      "number": "Nombre",
+      "height": "Height",
+      "type": "Type",
+      "date": "Date",
+      "region": "Région",
+      "miner": "Mineur",
+      "reward": "Récompense",
+      "round_time": "Temps du tour",
+      "hash": "Hash",
+      "luck": "Chance",
+      "share": "Share"
+    }
+  },
+  "type": {
+    "block": "Bloc",
+    "orphan": "Orphelin",
+    "uncle": "\"Uncle\""
+  },
+  "chart": {
+    "title": "Statistiques des blocs minés au cours du mois",
+    "blocks_per_day": "Blocs par jours",
+    "difficulty": "Difficulté"
+  },
+  "waiting_confirmation_tooltip": "En attente de confirmation",
+  "orphan_tooltip": "Les blocs appelés \"Uncle\" sont les blocs qui n'ont pas été inclus dans la chaîne canonique. Ils apparaissent généralement dans des circonstances très rares, comme une réorganisation profonde de la chaîne de 2 blocs avant que le nouveau travail ne soit envoyé aux mineurs.",
+  "uncle_tooltip": "Les blocs \"Uncles\" sont des blocs qui ont le même hashage et le même nombre parent. Ils sont causés par la forte latence entre les groupes de pools. Typiquement, ils apparaissent lorsque deux pools de minage minent deux blocs en même temps, les deux ayant le même numéro de bloc."
+}

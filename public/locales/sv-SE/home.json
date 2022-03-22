@@ -10,7 +10,7 @@
     "cta_mine": "Börja mina",
     "cta_farm": "Start Farming",
     "pool_fee": "{{value}} Pool Avgift",
-    "mev": "{{value}} av MEV Bonus",
+    "mev": "{{value}} of Supercharged MEV Bonus",
     "finder_reward": "{{value}} Block Finder Reward",
     "more_title": "Mer Coins Kommer Snart!",
     "more_description": "Vi jobbar på att lansera mer pools inom kort. Håll dig uppdaterad genom att joina våran discord eller telegram."
@@ -50,9 +50,17 @@
       "title": "Om Ethereum",
       "description": "Ethereum är en global dator skapad för att ge kraft åt Decentraliserade Applikationer som Smarta Kontrakt."
     },
+    "etc": {
+      "title": "About Ethereum Classic",
+      "description": "Ethereum Classic maintains the original, unaltered history of the Ethereum network."
+    },
     "xch": {
       "title": "About Chia",
       "description": "Chia is a programmable cryptocurrency focused on the eco-friendly way of securing the blockchain."
+    },
+    "btc": {
+      "title": "About Bitcoin",
+      "description": "Bitcoin is the world's first cryptocurrency that has introduced the concept of blockchain and peer to peer internet money."
     },
     "resources": "Resurser",
     "website": "Webbsida",
