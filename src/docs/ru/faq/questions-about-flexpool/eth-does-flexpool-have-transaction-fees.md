@@ -1,6 +1,6 @@
 ---
-title: Flexpool берёт комиссию с каждой транзакции?
+title: Does Flexpool charge a fee for every transaction?
 coin: eth
 ---
 
-**Нет**. Никаких дополнительных комиссий с нашей стороны мы не берём. Единственная комиссия, что вы оплачиваете – это комиссия внутри сети, которая устанавливается независимо от размера транзакции.
+**No**. We don't charge any additional transaction fees from our side. The only fee you will pay is the network transaction fee, that is static regardless of the transaction value.

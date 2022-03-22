@@ -1,20 +1,20 @@
 ---
-title: Gecikmiş Paylar nedir? Kazancı nasıl etkiler?
-level: başlangıç
+title: What are Stale Shares? How they affect my profitability?
+level: beginner
 ---
 
-Gecikmiş paylar süre dolduktan sonra havuza gönderilen paylardır. Bu, kazancınızı doğrudan etkiler ve bunu mümkün olduğunca düşük tutmanız önerilir.
+Stale shares are shares that were sent to the pool after they were expired. This directly affects your profitability, and it is recommended to keep them as low as possible.
 
-Normal gecikmiş pay oranı 1%' in altıdır. Bundan yüksek bütün oranlar eğer en yakın Flexpool bölgesine çok uzakta değilseniz kabul edilemezdir.
+Normal stale rate is the stale rate below 1%. Everything above in unacceptable unless you are located far away from the closest Flexpool region.
 
-Gecikmiş pay oranını azaltmak için tavsiyeler:
+Tips for reducing the stale rate:
 
-* Kablosuz internet yerine kablolu internet kullanmak.
-* Kablolu/Fiber internet kullanmak (mobil değil).
-* Eğer kablolu internet aktif ise Ethernet güç tasarruf modunun kapalı olduğundan emin olun.
+* Use Ethernet instead of Wi-Fi.
+* Use Cable/Fiber connection (not mobile).
+* Make sure that you've disabled the Ethernet power save mode, if you have one enabled.
 
-Gecikmiş paylara neden olan şeyler:
-* Maden işçiniz ile havuz sunucusu arasındaki gecikme
-* Kötü madencilik yazılımı
-* Paket kaybı
-* Bozuk sinyal
+Things that cause stale shares:
+* Latency between your worker and pool server
+* Poor miner software
+* Packet loss
+* Jitter

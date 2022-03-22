@@ -1,0 +1,76 @@
+{
+  "head_title": "Farming with FlexFarmer",
+  "title": "Farming with FlexFarmer",
+  "description": "FlexFarmer aims to make farming Chia as easy as crypto mining through rewriting and optimizing the entire farming process in Golang replacing the standard harvester+farmer. It connects farmers to our hosted nodes over a blockchain bridge gateway which runs on powerful infrastructure hosted by us.",
+  "requirements": {
+    "heading": "Requirements",
+    "list": [
+      {
+        "text": "Hardware compatible with FlexFarmer: A modern computer running 64-bit Linux or Windows. Raspberry Pi is also supported."
+      },
+      {
+        "text": "At least 128MB available RAM."
+      },
+      {
+        "text": "Initialized Plot NFT (Made via GUI or CLI)."
+      },
+      {
+        "text": "Plots bound to that Plot NFT."
+      },
+      {
+        "text": "PlotNFT joined to Flexpool (see getting started for instructions)."
+      }
+    ]
+  },
+  "download": "Download",
+  "download_farmer": {
+    "heading": "Download FlexFarmer"
+  },
+  "select_os": {
+    "heading": "Select Your OS",
+    "button_text": "Download for"
+  },
+  "farmer_secret_key": {
+    "heading": "Extract Farmer Secret Key",
+    "extraction_methods": {
+      "browser": "In this Browser",
+      "local": "On your Machine"
+    },
+    "description_extract": "To farm with FlexFarmer, you will need to extract your Farmer Secret Key from your primary mnemonic phrase. You can do it both locally on your machine, and in this browser.",
+    "description_mnemonic": "Enter your 24 word mnemonic phrase, and paste the secret key below.",
+    "input_label": "Farmer Secret Key",
+    "browser_security_notice": "<warning>Important Security Warning:</warning> Farmer secret key extraction is done locally in this Browser using JavaScript, and your mnemonic is never sent to our servers. To ensure the security of this procedure, please make sure that you are using a malware-free machine running without untrusted browser extensions. If you don't trust the browser, we strongly advise you to use the on-machine extraction method that utilizes the script bundled with the FlexFarmer download archive. We always recommend you to have a different mnemonic phrase for farming and storing funds. Flexpool is not responsible for the mnemonic phrase theft.",
+    "extractor_locked": "Accepted. Click on the lock to unlock the mnemonic entry",
+    "description_local_win": "To run the extraction script, ensure that you have installed Python from the <link>official Python download website</link>"
+  },
+  "launcher_id": {
+    "heading": "Copy Launcher ID",
+    "description": "Your Launcher ID can be found in <command>chia plotnft show</command>, or in the GUI Pool Overview"
+  },
+  "worker_name": {
+    "heading": "Name your worker",
+    "description": "Select an arbitrary name for your FlexFarmer instance. This name will be used to identify a certain worker in the Flexpool dashboard.",
+    "input_label": "Worker Name"
+  },
+  "payout_address": {
+    "heading": "Specify your Payout Address",
+    "description": "Payout address is the wallet address where all your rewards (including the finder 0.25 XCH reward) will go. You will be able to view statistics on the Flexpool dashboard by entering this address.",
+    "input_label": "Payout Address"
+  },
+  "plot_directories": {
+    "heading": "Specify where your plots are located",
+    "description": "You must tell FlexFarmer what plot directories it should use. Use the interactive directory selector below to configure them.",
+    "selected_dirs": "Selected Plot Directories: {{value}}",
+    "plot_dir": "Plot Directory #{{value}}"
+  },
+  "config": {
+    "heading": "Configure FlexFarmer",
+    "description": "Create a new file named <config>config.yml</config>, and copy-paste the FlexFarmer configuration we have prefilled for you. Save it, and proceed to the next step.",
+    "license_note": "<b>IMPORTANT!</b> We have prefilled <b>license: true</b> to your FlexFarmer config, which agrees to the <license>FlexFarmer's software license</license> (the <b>\"License\"</b>) on your behalf. By using this config, you herein agree to the license."
+  },
+  "run": {
+    "heading": "Run FlexFarmer",
+    "description": "After you have created the config file, you can run FlexFarmer by executing this command in the terminal:",
+    "description_windows": "After you have saved the config file as <file>config.yml</file> in the same directory where <file>flexfarmer.exe</file> is located, you can launch the <file>start</file> batch file (<file>start.bat</file>) to launch FlexFarmer."
+  }
+}

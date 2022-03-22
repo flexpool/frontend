@@ -1,26 +1,26 @@
 ---
-title: 'Czym jest Hashrate?'
-level: początkujący
+title: 'What is Hashrate?'
+level: beginner
 ---
 
-Hashrate to miara ilości Hashy, którą Twój pracownik przetwarza na sekundę - im wyższy hashrate, tym jest większe prawdopodobieństwo, że znajdziesz więcej Udziałów (Shares) w danym czasie.
+Hashrate is a measure of the amount of Hashes your worker is processing per second - the higher your hashrate the more likely you are to find more Shares in a given amount of time.
 
-Hashrate mierzy się przy użyciu prefiksów SI (metryczny międzynarodowy system jednostek):
+Hashrates are measured using SI (Metric International System of Units) prefixes:
 
-| Jednostka | Opis                                                                 |
-| --------- | -------------------------------------------------------------------- |
-| H/s       | Hashy na sekundę - Liczba poszczególnych hashów na sekundę           |
-| KH/s      | KiloHashe na sekundę - Tysiąc hashów na sekundę, równe 1000 H/s      |
-| MH/s      | MegaHashe na sekundę - milion hashów na sekundę, równe 1000 KH/s     |
-| GH/s      | GigaHashe na sekundę - miliard hashów na sekundę, równe 1000 MH/s    |
-| TH/s      | TeraHashe na sekundę - tryliard hashów na sekundę, równe 1000 GH/s   |
-| PH/s      | PetaHashe na sekundę - kwadrylion hashów na sekundę, równe 1000 TH/s |
-| ...       | I jeszcze więcej                                                     |
+| Unit | Description                                                                    |
+| ---- | ------------------------------------------------------------------------------ |
+| H/s  | Hashes per Second - Number of individual hashes each second                    |
+| KH/s | KiloHashes per Second - Thousands of hashes each second, equal to 1000 H/s     |
+| MH/s | MegaHashes per Second - Millions of hashes each second, equal to 1000 KH/s     |
+| GH/s | GigaHashes per Second - Billions of hashes each second, equal to 1000 MH/s     |
+| TH/s | TeraHashes per Second - Trillions of hashes each second, equal to 1000 GH/s    |
+| PH/s | PetaHashes per Second - Quadrillions of hashes each second, equal to 1000 TH/s |
+| ...  | And more                                                                       |
 
-W panelu nawigacyjnym wyświetlane są trzy hashraty:
+In your dashboard, you have three hashrates shown:
 
-| Typ Hashrate           | Opis                                                                                                                                                                                       |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Efektywny              | To hashrate, który kopalnia raportuje, bazując na ilości udziałów (shares), które od Ciebie otrzymuje i może się on bardzo różnić z zależności od czasu i szczęścia.                       |
-| Średni \[Efektywny\] | Średnia krocząca Twojego efektywnego hashratu z ostatnich 24 godzin, powinna być zbliżona do Twojego zgłoszonego hashratu                                                                  |
-| Zgłoszony              | To hashrate raportowany do kopalni przez Twoje oprogramowanie do miningu (nie jest brany pod uwagę przy wyliczaniu wynagrodzenia, ale pokazywany jest dla porównania efektywnego hashratu) |
+| Hashrate Type           | Description                                                                                                                                                               |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Effective               | The hashrate the pool thinks you have based on the amount of shares the pool is recieving from you, this can vary a lot over time due to Luck.                            |
+| Average \[Effective\] | The rolling 24 hour average of your Effective hashrate, this should be close to your Reported Hashrate                                                                    |
+| Reported                | The hashrate your mining software is reporting to the pool (this is not taken into account for calculating rewards but is shown for comparison to the Effective hashrate) |

@@ -1,8 +1,8 @@
 ---
-title: Mano balansas ilgą laiką sustingo. Ar tinkamai sukonfigūravau savo kasybos programinę įrangą?
+title: My balance has frozen for a long time. Have I configured my mining software properly?
 coin: eth
 ---
 
-Taip, viskas gerai, nebent negalite matyti savo darbuotojų informacijos suvestinės puslapyje. Kadangi nesame didžiausias kasybos poolas, blokų nerandame kiekvieną minutę. Nepasisekusiais laikotarpiais jūsų balansas tam tikrą laiką gali sustingti.
+Yes, everything is good unless you cannot see your workers on the dashboard page. As we are not the largest mining pool, we don't find blocks every minute. During unlucky periods, your balance may stall for some time.
 
-Šiuo atveju nereikia jaudintis. Teisingas to paaiškinimas būtų „balansas atnaujinamas kiekvieną kartą, kai mes iškasame bloką“, o ne „atlygiai skiriami, kai mes iškasame bloką“, nes mūsų atlygio sistema vis tiek laiko jūsų „laukiančią“ blokų dalį, nors likutis nejuda.
+No need to worry in this case. The right explanation for this would be "The balance updates each time we mine a block," rather than "The rewards are given when we mine a block" since our reward system still holds your "pending" block share even though balance is not moving.

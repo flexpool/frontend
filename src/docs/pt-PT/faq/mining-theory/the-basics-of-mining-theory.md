@@ -1,23 +1,23 @@
 ---
-title: Os "básicos" da Teoria de Mineração
-level: intermédio
+title: The "Basics" of the Mining Theory
+level: intermediate
 ---
 
-#### Minerar/Mineração
+#### Hashes/Hashing
 
-Na mineração, um Hash é o resultado da execução de um modelo de bloco e de um potencial Nonce através de uma função de hashing criptografado (também conhecido como "digest de mensagens" ou "digest de hash"). Uma função de hashing criptográfico fornece um resultado completamente diferente para qualquer entrada e isso pode variar enormemente mudando o Nonce.
+In mining, a Hash is the result of running a Block Template and a prospective Nonce through a cryptographic hashing function (also known as a "message digest" or "hash digest"). A cryptographic hashing function provides a completely different output for any given input and this can vary wildly by changing the Nonce.
 
-Existem várias funções de hashing criptográfico diferentes usadas em criptomoedas, os exemplos incluem:
+There are various different cryptographic hashing functions used in cryptocurrencies, examples include:
 
-| Nome da função Hash                       | Criptomoedas que a utilizam            |
-| ----------------------------------------- | -------------------------------------- |
-| SHA256                                    | Bitcoin, Litecoin, Bitcoin Cash...     |
-| Ethash (DaggerHashimoto) e seus derivados | Ethereum, Ethereum Classic, Expanse... |
-| RandomX                                   | Monero                                 |
-| CuckooCycle/Cuckaroo/Cuckatoo             | Grin                                   |
-| Equihash                                  | ZCash                                  |
+| Hash Function Name                           | Cryptocurrencies that use it           |
+| -------------------------------------------- | -------------------------------------- |
+| SHA256                                       | Bitcoin, Litecoin, Bitcoin Cash...     |
+| Ethash (DaggerHashimoto) and its derivatives | Ethereum, Ethereum Classic, Expanse... |
+| RandomX                                      | Monero                                 |
+| CuckooCycle/Cuckaroo/Cuckatoo                | Grin                                   |
+| Equihash                                     | ZCash                                  |
 
-#### Dificuldade
+#### Difficulty
 
 The amount of guesses which are needed to get a given number of zeroes at the start of the Hash is referred to as the Difficulty - it is harder to get more zeroes and therefore to have a lot of zeroes it is likely that the miner would have to have tried a lot of Nonces to achieve this.
 

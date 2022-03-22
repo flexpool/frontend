@@ -1,6 +1,6 @@
 ---
-title: Tar Flexpool ut en avgift för varje transaktion?
+title: Does Flexpool charge a fee for every transaction?
 coin: eth
 ---
 
-**Nej**. Vi tar inte ut några ytterligare transaktionsavgifter från vår sida. Den enda avgiften du betalar är nätverkstransaktionsavgiften, som är statisk oavsett transaktionens värde.
+**No**. We don't charge any additional transaction fees from our side. The only fee you will pay is the network transaction fee, that is static regardless of the transaction value.

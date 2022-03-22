@@ -1,6 +1,6 @@
 ---
-title: Che cos'è la difficoltà della quota?
-level: intermedio
+title: What is Share Difficulty?
+level: intermediate
 ---
 
-Tecnicamente, le quote sono gli stessi blocchi, ma solo con difficoltà modificata (ridotta in questo caso). I tuoi lavoratori stanno minando quelle quote, ed è importante per loro essere trovate facilmente. Altrimenti, sarebbe impossibile per la pool di tracciare le statistiche del lavoratore e verificare che sta effettivamente minando, non solo inviando reports di hashrate non provato.
+Technically, shares are the same blocks, but just with modified (reduced in this case) difficulty. Your workers are mining those shares, and it is important for them to be easy to find. Otherwise, it would be impossible for pool to track worker statistics and verify that it is actually mining, not just sending unproven hashrate reports.

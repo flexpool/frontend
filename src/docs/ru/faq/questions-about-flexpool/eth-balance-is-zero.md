@@ -1,8 +1,8 @@
 ---
-title: Мой баланс не изменяется долгое время. Правильно ли я настроил ПО для майнинга?
+title: My balance has frozen for a long time. Have I configured my mining software properly?
 coin: eth
 ---
 
-Да, всё в порядке, если вы видите ваших воркеров на странице вашего кошелька. Так как мы не самый крупный пул, блоки мы находим не каждую минуту. В неудачные периоды ваш баланс может не меняться некоторое время.
+Yes, everything is good unless you cannot see your workers on the dashboard page. As we are not the largest mining pool, we don't find blocks every minute. During unlucky periods, your balance may stall for some time.
 
-Не стоит беспокоиться. Правильное объяснение этого феномена будет: "баланс обновляется каждый раз, когда мы находим блок", а не "награда за блок даётся тогда, когда мы добываем блок". Наша система наград по-прежнему учитывает вашу долю в участии в добыче каждого блока, даже тогда, когда баланс не двигается некоторое время.
+No need to worry in this case. The right explanation for this would be "The balance updates each time we mine a block," rather than "The rewards are given when we mine a block" since our reward system still holds your "pending" block share even though balance is not moving.

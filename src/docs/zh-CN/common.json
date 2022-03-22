@@ -1,0 +1,92 @@
+{
+  "proTip": "提示",
+  "searchbar": {
+    "placeholder": "输入钱包地址查看"
+  },
+  "nav": {
+    "statistics": "矿池统计",
+    "blocks": "出块记录",
+    "miners": "矿工数据",
+    "faq": "常见问题",
+    "support": "联系客服",
+    "get_started": "开始挖矿",
+    "community_title": "加入社区"
+  },
+  "footer": {
+    "company": {
+      "title": "关于我们",
+      "contact_us": "联系我们",
+      "brand_assets": "品牌",
+      "partners": "合作伙伴",
+      "business_dev": "商务合作",
+      "blog": "博客文章",
+      "terms": "服务协议",
+      "pp": "隐私条款"
+    },
+    "resources": {
+      "title": "帮助中心",
+      "get_started": "开始挖矿",
+      "faq": "常见问题",
+      "api_docs": "API 文档"
+    },
+    "community": {
+      "title": "Flexpool 社群"
+    },
+    "contact": {
+      "title": "联系我们",
+      "service_status": "服务状态",
+      "support": "联系客服"
+    },
+    "preferences": {
+      "title": "设置"
+    },
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io 或附属机构。保留所有权利。",
+    "translation_help": "帮我们翻译网页"
+  },
+  "theme": {
+    "default": "默认主题",
+    "dark": "深色主题",
+    "light": "浅色主题"
+  },
+  "list_navigation": {
+    "previous": "上一页",
+    "next": "下一页"
+  },
+  "errors": {
+    "999": "支付限额过高",
+    "1000": "支付限额过低",
+    "1001": "金额数字输入不合法",
+    "1003": "IP地址无效",
+    "1004": "支付限额无效",
+    "1005": "IP地址无效(没有在线矿工)",
+    "1006": "由于您的余额超过 0.01 {{coin}}, 当前无法改变支付网络。在改变网络前，请确保您的余额小于 0.01 {{coin}}",
+    "4000": "邮箱地址错误",
+    "4001": "无法找到邮箱地址",
+    "4002": "邮件确认时发生错误",
+    "4003": "邮箱未被注册",
+    "4004": "Token无效",
+    "higher_than": "数目必须大于 {{value}}",
+    "required": "必填项",
+    "invalid_ip": "IP地址无效",
+    "email_invalid": "电邮地址无效",
+    "email_required": "请输入您的电子邮件地址",
+    "address_not_found": "当前地址找不到数据。如果刚开始挖矿，请稍等一下。",
+    "decimal_places": "小数点位数超过 {{value}}"
+  },
+  "date_time": {
+    "now": "现在"
+  },
+  "snacks": {
+    "emailConfirmed": {
+      "title": "电子邮件地址已更改。"
+    },
+    "emailUnsubscribed": {
+      "title": "电子邮件通知已停用"
+    }
+  },
+  "faq": {
+    "questionsAboutFlexpool": "关于Flexpool的问题",
+    "miningBasics": "挖矿基础知识"
+  },
+  "noDataAvailable": "没有可用数据"
+}

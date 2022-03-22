@@ -1,6 +1,6 @@
 ---
-title: چگونه عضو flexpool بشویم؟
+title: How to join Flexpool?
 coin: eth
 ---
 
-ما در اینجا راهنمای قدم به قدم داریم برای [ شروع](/get-started)
+We have step-by-step instructions here: [Getting Started](/get-started)

@@ -1,36 +1,36 @@
 ---
-title: Базовые вещи в криптомайнинге
-level: Продвинутый
+title: The "Basics" of the Mining Theory
+level: intermediate
 ---
 
-#### Хэш и хэширование
+#### Hashes/Hashing
 
-В майнинге хэш является результатом нахождения Блока и потенциального Nonce-числа, через алгоритмы криптографического хэширования. Криптографическая функция предоставляет совершенно разный вывод для любых входных значений и изменение Nonce напрямую влияет на конечный результат.
+In mining, a Hash is the result of running a Block Template and a prospective Nonce through a cryptographic hashing function (also known as a "message digest" or "hash digest"). A cryptographic hashing function provides a completely different output for any given input and this can vary wildly by changing the Nonce.
 
-Вот несколько разных криптографических алгоритмов, используемые криптовалютами, примеры ниже:
+There are various different cryptographic hashing functions used in cryptocurrencies, examples include:
 
-| Название алгоритма                           | Криптовалюта                           |
+| Hash Function Name                           | Cryptocurrencies that use it           |
 | -------------------------------------------- | -------------------------------------- |
 | SHA256                                       | Bitcoin, Litecoin, Bitcoin Cash...     |
-| Ethash (DaggerHashimoto) и его разновидности | Ethereum, Ethereum Classic, Expanse... |
+| Ethash (DaggerHashimoto) and its derivatives | Ethereum, Ethereum Classic, Expanse... |
 | RandomX                                      | Monero                                 |
 | CuckooCycle/Cuckaroo/Cuckatoo                | Grin                                   |
 | Equihash                                     | ZCash                                  |
 
-#### Сложность
+#### Difficulty
 
-Количество догадок, которые необходимы для того, чтобы получить определенное количество нулей в начале хэша, называется "Сложность" - сложнее получить больше нулей и поэтому чтобы иметь много нулей, майнеру нужно перебирать много Nonce-чисел, чтобы разгадать то самое число.
+The amount of guesses which are needed to get a given number of zeroes at the start of the Hash is referred to as the Difficulty - it is harder to get more zeroes and therefore to have a lot of zeroes it is likely that the miner would have to have tried a lot of Nonces to achieve this.
 
-Разгадать вводные значения хэш-функции на основе выходных значений невозможно, получить Хеш определённой Сложности можно только посредством метода проб и ошибок.
+It is not possible to identify the inputs to a hash function from its output, therefore the only way to get a Hash of a particular Difficulty is by trial and error.
 
-Например:
-| Сообщение                 | Хеш SHA256 для данного сообщения                                                              |
+For Example:
+| Message                   | SHA256 Hash of the message                                                                    |
 | ------------------------- | --------------------------------------------------------------------------------------------- |
-| <code>Добро пожаловать на Flexpool! (nonce=0)</code> | 58ecf42082e136722a706bd2b8d028b90c94f6e4ddfa60720fd470ff11cd875a                              |
-| <code>Добро пожаловать на Flexpool! (nonce=1)</code> | 9a605788b6d2f16b6f5c418a394965197d7e88a912afb275fde8735fa308971e                              |
-| <code>Добро пожаловать на Flexpool! (nonce=2)</code> | 37916e8263c7266b8ecfc878ab87d585a546c87a5d32d18658d066122bcc9037                              |
+| <code>Welcome to Flexpool! (nonce=0)</code> | 58ecf42082e136722a706bd2b8d028b90c94f6e4ddfa60720fd470ff11cd875a                              |
+| <code>Welcome to Flexpool! (nonce=1)</code> | 9a605788b6d2f16b6f5c418a394965197d7e88a912afb275fde8735fa308971e                              |
+| <code>Welcome to Flexpool! (nonce=2)</code> | 37916e8263c7266b8ecfc878ab87d585a546c87a5d32d18658d066122bcc9037                              |
 | ...                       | ...                                                                                           |
-| <code>Добро пожаловать на Flexpool! (nonce=16105490)</code> | <span className="red">000000</span>4298495e8f9096c674f1197be8c6fb25f2012228374b7307cc66ae6200 |
+| <code>Welcome to Flexpool! (nonce=16105490)</code> | <span className="red">000000</span>4298495e8f9096c674f1197be8c6fb25f2012228374b7307cc66ae6200 |
 
 As you can see it took over 12 million tries to get only 6 zeroes, however it is easy to confirm that someone has made a lot of guesses by just hashing the block yourself! The Nonce which provides a hash like this is proof that you have likely carried out a significant amount of work, hence the phrase "Proof of Work" being used for mining coins. Note that it is not neccessarily to start with 0. The only requirement is that the nonce is not beyond the limit.
 

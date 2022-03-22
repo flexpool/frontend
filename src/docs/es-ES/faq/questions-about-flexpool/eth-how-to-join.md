@@ -1,6 +1,6 @@
 ---
-title: '¿Cómo me uno a Flexpool?'
+title: How to join Flexpool?
 coin: eth
 ---
 
-Sigue las instrucciones paso-a-paso aquí: [Comenzando](/get-started)
+We have step-by-step instructions here: [Getting Started](/get-started)

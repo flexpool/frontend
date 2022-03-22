@@ -1,6 +1,6 @@
 ---
-title: Ar „Flexpool“ kas savaitę moka išmokas, neatsižvelgdamas į likutį?
+title: Does Flexpool make weekly payouts regardless of the balance?
 coin: eth
 ---
 
-**Ne **. Mes neatliekame savaitinių išmokėjimų, jei jūsų likutis yra mažesnis nei jūsų išmokų limitas. Tam reikės „iššvaistyti“ šiek tiek vietos mūsų blokuose, ir žinoma, kad sumažės kasėjų pelnas. Mes to nedarome ir niekada nedarysime ateityje, nes kasėjų uždarbis mums yra prioritetas Nr. 1.
+**No**. We don't do weekly payouts if your balance is below your payout limit. Doing this will require "wasting" some space in our blocks, and it is known to decrease miners' profits. We are not doing that, and will never do in the future because miners' earnings are in #1 priority for us.

@@ -1,0 +1,18 @@
+{
+  "head_title": "Mineři",
+  "title": "Mineři",
+  "top_miners": {
+    "title": "Nejlepší mineři",
+    "table_head": {
+      "miner": "Miner",
+      "hashrate": "Hashrate",
+      "space": "Space",
+      "balance": "Zůstatek",
+      "workers": "Workeři",
+      "joined": "Připojil se"
+    }
+  },
+  "distribution": {
+    "title": "Distribuce těžby podle hashratu"
+  }
+}
