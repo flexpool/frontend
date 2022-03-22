@@ -1,13 +1,13 @@
 ---
-title: '¿Debería usar SSL?'
+title: Should I use SSL?
 coin: eth
 ---
 
-**Sí**, usa SSL siempre que sea posible.
+**Yes**, use SSL where possible.
 
-Estamos firmemente en contra de usar una conexión no cifrada (TCP) durante la minería en nuestro pool. Esta conexión es vulnerable a ataques del MITM (Man-In-The-Middle/Hombre-En-El-Medio), lo que significa que si alguien se encuentra malintencionadamente entre su trabajador (minero) y el pool, un porcentaje de tu hashrate puede ser robado.
+We are strongly against using unencrypted (TCP) connection while mining on our pool. This connection is vulnerable to MITM (Man-In-The-Middle) attacks, which means that if someone will maliciously stand in between of your worker and pool, some % of your hashrate may be stolen.
 
-#### NO UTILICES CONEXIÓN NO ENCRIPTADA
+#### DO NOT USE UNENCRYPTED CONNECTION
 
 Keep in mind that before your worker's message reaches the pool, it passes through a dozen of routers (you can use `traceroute` command to see all of them).
 

@@ -1,6 +1,6 @@
 ---
-title: Flexpool effectue-t-il des versements hebdomadaires, quel que soit le solde ?
+title: Does Flexpool make weekly payouts regardless of the balance?
 coin: eth
 ---
 
-**Non**. Nous n'effectuons pas de paiements hebdomadaires si votre solde est inférieur à votre limite de paiement. Pour ce faire, il faudra "gaspiller" de l'espace dans nos blocs, et il est connu que cela diminue les profits des mineurs. Nous ne le faisons pas, et ne le ferons jamais à l'avenir, car les revenus des mineurs sont notre première priorité.
+**No**. We don't do weekly payouts if your balance is below your payout limit. Doing this will require "wasting" some space in our blocks, and it is known to decrease miners' profits. We are not doing that, and will never do in the future because miners' earnings are in #1 priority for us.

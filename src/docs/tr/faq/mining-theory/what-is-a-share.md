@@ -1,6 +1,6 @@
 ---
 title: What is a Share?
-level: başlangıç
+level: beginner
 ---
 
-Pay, havuzun üzerinde çalıştığı blok parçasıdır. Madencilik donanımınız havuz üzerinde hashleme yaparak bu yap-bozu çözer/kazar ve havuza sunar. Bunlar için size ödeme yapılır.
+Share is a part of the block the pool is working on. By hashing on the pool, your rig solves/mines these puzzles, and submits them to the pool. You are getting paid for those.

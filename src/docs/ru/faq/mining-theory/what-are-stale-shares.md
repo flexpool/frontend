@@ -1,20 +1,20 @@
 ---
-title: Что такое Stale-шары? Как они влияют на мою прибыльность?
-level: начинающий
+title: What are Stale Shares? How they affect my profitability?
+level: beginner
 ---
 
-Stale-шары – это шары, которые дошли до пула уже после потери своей актуальности. Это напрямую влияет на прибыльность и потому крайне рекомендуется держать их число на минимальном уровне.
+Stale shares are shares that were sent to the pool after they were expired. This directly affects your profitability, and it is recommended to keep them as low as possible.
 
-Нормальная периодичность возникновения Stale-шар составляет менее 1% от общего числа шар. Большее число недопустимо, если только вы не проживаете слишком далеко от ближайшего сервера Flexpool.
+Normal stale rate is the stale rate below 1%. Everything above in unacceptable unless you are located far away from the closest Flexpool region.
 
-Подсказки для уменьшения количества Stale-шар:
+Tips for reducing the stale rate:
 
-* Используйте Ethernet вместо Wi-Fi соединения.
-* Используйте кабельное подключение (не мобильное).
-* Убедитесь, что на вашей сетевой плате отключен режим пониженного энергопотребления, если ранее он был включён.
+* Use Ethernet instead of Wi-Fi.
+* Use Cable/Fiber connection (not mobile).
+* Make sure that you've disabled the Ethernet power save mode, if you have one enabled.
 
-Вещи, которые приводят к возникновению Stale-шар:
-* Задержка между вашим воркером и сервером пула
-* Проблемы с ПО для майнинга
-* Потеря пакетов
-* Фазовое дрожание цифрового сигнала (Джиттер)
+Things that cause stale shares:
+* Latency between your worker and pool server
+* Poor miner software
+* Packet loss
+* Jitter

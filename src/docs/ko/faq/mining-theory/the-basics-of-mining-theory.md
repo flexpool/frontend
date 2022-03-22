@@ -9,13 +9,13 @@ In mining, a Hash is the result of running a Block Template and a prospective No
 
 There are various different cryptographic hashing functions used in cryptocurrencies, examples include:
 
-| Hash Function Name                           | Cryptocurrencies that use it |
-| -------------------------------------------- | ---------------------------- |
-| SHA256                                       | 비트코인, 라이트코인, 비트코인 캐시...      |
-| Ethash (DaggerHashimoto) and its derivatives | 이더리움, 이더리움 클래식, 익스팬스...      |
-| RandomX                                      | 모네로                          |
-| CuckooCycle/Cuckaroo/Cuckatoo                | Grin                         |
-| Equihash                                     | ZCash                        |
+| Hash Function Name                           | Cryptocurrencies that use it           |
+| -------------------------------------------- | -------------------------------------- |
+| SHA256                                       | Bitcoin, Litecoin, Bitcoin Cash...     |
+| Ethash (DaggerHashimoto) and its derivatives | Ethereum, Ethereum Classic, Expanse... |
+| RandomX                                      | Monero                                 |
+| CuckooCycle/Cuckaroo/Cuckatoo                | Grin                                   |
+| Equihash                                     | ZCash                                  |
 
 #### Difficulty
 

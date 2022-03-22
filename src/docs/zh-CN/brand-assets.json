@@ -1,0 +1,35 @@
+{
+  "head_title": "品牌资源",
+  "brand_name": {
+    "title": "品牌介绍",
+    "description": "我们的品牌名称是<b>Flexpool.io</b>。单词“Flex”和“pool”用一个大写的F和io结尾组合在一起。"
+  },
+  "colors": {
+    "title": "颜色",
+    "accent": "强调颜色",
+    "blue": "蓝色",
+    "green": "绿色",
+    "yellow": "换色",
+    "red": "红色"
+  },
+  "typo": {
+    "title": "排版",
+    "description": "我们在网站上使用<font>{{fontName}}</font>。"
+  },
+  "guidelines": {
+    "title": "品牌参考",
+    "description": "通过使用我们的品牌资源，您必须遵循我们的品牌指南:",
+    "item_one": "您不允许更改标识。包括形状和颜色的变化。",
+    "item_two": "你不能使用Flexpool.io品牌暗示与任何其他业务有关系或合作关系，除非我们已宣布合作关系的。示例:“……与Flexpool.io合作。”",
+    "item_three": "你不能利用Flexpool.io品牌，使用在非法和传销等场所。"
+  },
+  "downloads": {
+    "title": "下载",
+    "description": "我们已经收集了一个包含所有类型的Flexpool.io标志包，包括明亮和黑暗二个主题。",
+    "cta": "下载品牌推广包"
+  },
+  "legal": {
+    "title": "法律声明",
+    "description": "通过使用我们的品牌资源，即表示您同意品牌指导意见和我们的<terms> terms </terms>。如果您需要获得有关使用Flexpool.io品牌化的帮助，您可以通过<email>{{email}}</email>联系我们"
+  }
+}

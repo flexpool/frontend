@@ -1,0 +1,21 @@
+{
+  "head_title": "矿池统计",
+  "title": "矿池统计",
+  "pool_hashrate": "矿池算力",
+  "pool_space": "矿池存储",
+  "average_luck": "平均幸运值",
+  "average_luck_tooltip": "过去30天区块平均幸运值。",
+  "miners": "矿工数量",
+  "workers": "矿机数量",
+  "chart": {
+    "title": "矿池算力",
+    "title_space": "矿池存储",
+    "total_hashrate": "矿池总算力",
+    "total_space": "矿池存储",
+    "as": "亚太地区 (AS)",
+    "au": "澳州 (AU)",
+    "eu": "欧洲 (EU)",
+    "sa": "南美 (SA)",
+    "us": "北美 (US)"
+  }
+}

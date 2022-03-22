@@ -26,7 +26,9 @@
         "average_lat": "Latency"
       },
       "fastest": "Fastest",
-      "backup": "Backup"
+      "backup": "Backup",
+      "hke_warning_title": "Additional ports:",
+      "warning_1": "Please DO NOT connect to pool by using the IP addresses resolved from the domain name. IP addresses are subject to change at ANY TIME without ANY PRIOR NOTICE."
     },
     "ports": {
       "title": "Ports",
@@ -87,6 +89,62 @@
       {
         "key": "Mining Algorithm",
         "value": "Ethash"
+      }
+    ],
+    "hardware": [
+      {
+        "title": "GPU Mining",
+        "key": "GPU",
+        "miners": [
+          {
+            "description": "Best miner for AMD GPUs"
+          },
+          {
+            "description": "Best miner for NVIDIA 20/30 Series GPUs"
+          },
+          {
+            "description": "Best miner for 4GB zombie mode."
+          },
+          {
+            "description": "Proprietary Ethash miner with low dev fee."
+          },
+          {
+            "description": "Actively developed and stable miner with low dev fee."
+          }
+        ]
+      }
+    ]
+  },
+  "detail_etc": {
+    "title": "Ethereum Classic mining",
+    "pool_details": [
+      {
+        "key": "Reward Scheme",
+        "value": "PPLNS (Pay Per Last N Shares)"
+      },
+      {
+        "key": "Pool Fee",
+        "value": "0.9%"
+      },
+      {
+        "key": "Payout Round",
+        "value": "Once an hour"
+      },
+      {
+        "key": "Payouts",
+        "value": "from 0.01 ETC up to 100 ETC"
+      },
+      {
+        "key": "Block confirmation time",
+        "value": "120 Blocks"
+      },
+      {
+        "key": "Share Difficulty",
+        "value": "4 GH"
+      },
+      {
+        "key": "Mining Algorithm",
+        "value": "Etchash"
       }
     ],
     "hardware": [
@@ -227,7 +285,11 @@
     "sg": "Singapore",
     "au": "Australia",
     "br": "Brazil",
-    "kr": "South Korea"
+    "kr": "South Korea",
+    "hk": "Hong Kong",
+    "hke": "Hong Kong (Optimized for China)",
+    "additional_ports": "Additional Ports",
+    "additional_domains": "Additional Domains"
   },
   "cmd_keys": {
     "CLOSEST_SERVER": "CLOSEST_SERVER",

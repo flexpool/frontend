@@ -1,0 +1,247 @@
+{
+  "settings": {
+    "cta": "支付设置",
+    "title": "支付设置",
+    "ip": "IP地址（验证用）",
+    "ip_caption": "验证IP，用过去24小时内，算力最大一台矿机的IPv4地址。",
+    "ip_hint": "提示：您目前电脑IP地址是",
+    "ip_description": "如果正在使用代理服务器，包括ETH+ZIL双排序挖矿，请使用代理服务器或者ZIL矿池的IP地址。",
+    "high_fees_warning": "起付额度低于0.05ETH，Gas费用（转账手续费）占比会相对地高。这笔费用将会从您的余额中扣除。建议调高起付额度，比较划算，也减少交费用的次数。",
+    "payout": {
+      "title": "支付设置",
+      "eth_mainnet": "您的付款将通过以太坊主网支付。以太坊主网是以太坊主要网络，他更加的分布式和安全，但拥有更高的交易手续费。",
+      "eth_polygon": "您的付款将通过 Polygon (L2) 支付。L2 网络提供了非常低的交易手续费，您将收到 WETH (Wrapper Ethereum)。在切换网络之前，请确保您了解这将如何影响您的支出。",
+      "limit": "起付额度（最低：{{min}}）",
+      "limit_desc": "只有在您的未付余额达到{{value}}后，您才能获得付款。您的全部未付余额将被支付，而不仅仅是您的阈值金额。",
+      "limit_err_higher": "数目必须大于 {{min}}",
+      "gas_limit": "Gas 费用上限（转账手续费上限）",
+      "gas_limit_desc": "Gas费用会限于 {{value}} {{valueUnit}} ({{valueTicker}}, 当前起付额度的 {delimiter})。Gas费用低于上限，才会转账。",
+      "gas_limit_zero": "Gas费用没定上限。",
+      "submit": "确认更改",
+      "l2_warning": "请确保您的钱包支持转入<bold>{{network_name}}</bold>WETH。否则，你的资金将永远丢失。",
+      "l2_acknowledge": "我承认我的钱包支持<bold>{{network_name}}</bold>网络，否则资金将不可逆转地流失， 并且知道如何处理<bold>{{network_name}}</bold>网络中的支出。"
+    },
+    "payout_warning": [
+      "我们强烈建议把起付额度提高，从而减少转账次数和Gas费用占比。",
+      "以太坊主网转账手续费（Gas费用）由你自己承擔。 Gas费用按单次收费，与金额多少没有直接关系。0.1个ETH和10个ETH需扣除的Gas费用是一样的。这个Gas费用，与以太坊网络交易量而动态调整的，下面可以设置上限。Gas费用低于你设置的上限，才会转账。"
+    ],
+    "notifications": {
+      "title": "电子邮件通知",
+      "email_enabled": "电子邮件通知已启用",
+      "email_disabled": "电子邮件通知已停用",
+      "send_to": "电邮地址",
+      "send_to_placeholder": "your@email.com",
+      "check_worker_down": "矿机掉线提醒",
+      "check_payout_sent": "余额转账通知",
+      "submit": "确认更改"
+    }
+  },
+  "header": {
+    "greet_period_morning": "早上好",
+    "greet_period_afternoon": "下午好",
+    "greet_period_evening": "晚上好",
+    "greet_desc": "{{count}} 部矿机正在挖 {{coin}} ，总算力 {{hashrate}}。",
+    "greet_desc_plural": "{{count}} 部矿机正在挖 {{coin}} ，总算力 {{hashrate}}。",
+    "greet_desc_farm": "{{数量}} 正在挖矿矿工的 {{代币}} 拥有的 {{哈希率}} 总共的.",
+    "greet_desc_farm_plural": "{{count}} 部矿机正在挖 {{coin}} ，总算力 {{hashrate}}。",
+    "greet_desc_1": "[empty string]",
+    "greet_desc_2": "[empty string]",
+    "greet_desc_3": "[empty string]",
+    "greet_desc_4": "[empty string]",
+    "greet_desc_5": "[empty string]",
+    "info_payout_limit": "支付阈值",
+    "info_gas_limit": "Gas 费用上限",
+    "info_gas_limit_none": "没有上限",
+    "info_gas_limit_detail": "起付额度的{{percent}}",
+    "info_gas_limit_detail_none": "转账手续费（Gas费用）没有设置上限。",
+    "info_gas_limit_detail_na": "价格加载失败。",
+    "info_joined": "开户时间",
+    "info_joined_tooltip": "首个份额：",
+    "info_joined_tooltip_empty": "记录中没有收到份额",
+    "info_coin_price": "{{coin}} 价格",
+    "network": "网络",
+    "stat_workers": "在线/离线矿机",
+    "stat_unpaid_balance": "余额",
+    "stat_unpaid_balance_reach": "已达到起付额度的 <v>{{value}}</v> 。",
+    "stat_unpaid_balance_reach_est": "预计还需 <v>{{value}}</v> 才到起付额度。",
+    "stat_unpaid_balance_reach_ok": "您的付款将在下一个支付窗口(每小时)，按照您的手续费设置进行相应处理。",
+    "stat_unpaid_balance_reach_ok_l2": "你的付款将在下一个L2支付窗口被处理。L2支付窗口为每24小时1次，并可能发生在一天的任意时间。",
+    "stat_unpaid_balance_reach_delayed_by_gas_limit": "目前的Gas费用(<v>{{currentGas}}</v>) 高于你设置的上限 (<v>{{gasLimit}}</v>)，不会进行转账。",
+    "stat_estimate": "预计收益",
+    "stat_estimate_daily": "每天收益",
+    "stat_estimate_weekly": "每周收益",
+    "stat_estimate_monthly": "每月收益",
+    "stat_estimate_tooltip": "按这可以换每天，每周，每月预计收益。",
+    "update_in": "刷新",
+    "auto_update": "自动刷新"
+  },
+  "nav": {
+    "stats": "矿机状态",
+    "payments": "转账记录",
+    "rewards": "收益",
+    "blocks": "个人出块记录"
+  },
+  "rewards": {
+    "head_title": "收益",
+    "earnings_chart": {
+      "title": "本月收益",
+      "earnings": "收益",
+      "daily_income": "当天收入",
+      "download_csv": "导出收益到CSV文件"
+    },
+    "past_earnings": {
+      "title": "过往收益",
+      "yesterday": "昨天收益",
+      "last_week": "过去7天",
+      "last_month": "过去30天"
+    },
+    "forecasted_earnings": {
+      "title": "预计收益",
+      "daily": "每日收益",
+      "weekly": "每周收益",
+      "monthly": "每月收益"
+    },
+    "pplns": {
+      "title": "PPLNS 数据分析",
+      "avp": {
+        "title": "计算收入用的平均有效算力",
+        "tooltip": "根据当前PPLNS滑动窗口内的份额比例，和3小時内矿池总算力计算",
+        "current": "当前"
+      },
+      "crs": {
+        "title": "当前PPLNS滑动窗口份额比例",
+        "aprox": "每区块预计分配奖励",
+        "tooltip": "以PPLNS份额记录计算"
+      },
+      "log": {
+        "title": "PPLNS份额记录的滑动窗口周期",
+        "tooltip": "停止挖矿后，PPLNS份额比例降为零所需时间。",
+        "size": "共有 {{value}} 份额记录在滑动窗口内"
+      }
+    },
+    "pplns_chart": {
+      "title": "滑动窗口中记录的份额",
+      "valid_shares": "有效份额"
+    }
+  },
+  "payments": {
+    "head_title": "支付记录",
+    "chart": {
+      "title": "过往一年支付",
+      "fee": "转账费用",
+      "value": "价值",
+      "net_value": "净价值"
+    },
+    "general": {
+      "title": "支付数据",
+      "total_paid": "支出总额",
+      "total_transactions": "过往转账次数",
+      "paid_in_fees": "过往转账费用总价值 {{value}}",
+      "average_payout_duration": "平均支付周期",
+      "average_payout_duration_desc": "每次支付相隔时间"
+    },
+    "transaction_fees": {
+      "title": "转账费用",
+      "last": "上次转账总额",
+      "fee": "{{value}} 转账Gas费用",
+      "average": "平均转账费用",
+      "average_percent": "平均转账费用率",
+      "average_cta": "如何减少转账Gas费用？",
+      "average_cta_tooltip": [
+        "1. 提高起付额度会降低转账，支付手续费次数。",
+        "2. 把余额转账费用上限（Gas price 上限）降低，可以避免支付高手续费。达到起付额度后，网络手续费市价一降到您上限以下才会付款。"
+      ]
+    },
+    "table": {
+      "title": "转账记录",
+      "download": "下载CSV文件",
+      "table_contents": {
+        "pending": "等待确认",
+        "success": "成功"
+      },
+      "table_head": {
+        "date": "日期",
+        "value": "转账数额",
+        "fee": "转账费用",
+        "duration": "周期",
+        "hash": "交易编号",
+        "status": "状态"
+      }
+    }
+  },
+  "stats": {
+    "not_enough_data": "数据不足",
+    "not_enough_data_message": "我们没有足够的数据来显示图表。如果你已经开始挖矿了，在数据处理完成之前可能需要等待10分钟。",
+    "active_worker": {
+      "title": "当前选择的矿机",
+      "reset": "重置"
+    },
+    "hashrate": {
+      "title": "算力",
+      "title_space": "存储",
+      "current": "当前有效算力",
+      "average": "24小时平均有效",
+      "reported": "本地算力"
+    },
+    "shares": {
+      "title": "份额总数",
+      "title_hint": "过去24小时",
+      "title_points": "份额",
+      "valid": "有效",
+      "stale": "过期",
+      "invalid": "无效"
+    },
+    "hashrate_chart": {
+      "title": "矿机算力",
+      "title_space": "存储",
+      "effective": "当前有效算力",
+      "average": "三小时平均",
+      "reported": "本地算力",
+      "effective_space": "有效存储",
+      "average_space": "平均有效存储",
+      "reported_space": "报告存储"
+    },
+    "shares_chart": {
+      "title": "份额总数",
+      "title_points": "份额",
+      "valid": "有效",
+      "stale": "过期",
+      "invalid": "无效"
+    },
+    "table": {
+      "title_active": "在线矿机",
+      "title_inactive": "离线矿机",
+      "search_placeholder": "按矿机名字搜索",
+      "table_head": {
+        "name": "矿机",
+        "reported_hashrate": "本地算力",
+        "reported_space": "报告存储",
+        "current_e_hashrate": "当前有效算力",
+        "current_e_space": "当前E.存储",
+        "average_e_hashrate": "平均有效算力",
+        "average_e_space": "平均有效存储",
+        "valid": "有效份额",
+        "stale": "过期份额",
+        "invalid": "无效份额",
+        "valid_points": "有效份额",
+        "stale_points": "过期点数",
+        "invalid_points": "无效份额",
+        "last_seen": "最后上线时间"
+      }
+    },
+    "proTips": {
+      "chartsProTip": "点击图例在图表中显示/隐藏相关数据",
+      "tablesProTip": "你可以点击表头给你的矿机排序。",
+      "hoverHashrateProtip": "你可以将鼠标悬停在“平均有效算力”上查看过去12小时或者6小时的平均有效算力。",
+      "apiProTip": "Flexpool API是公开的。",
+      "searchProTip": "如果你在首页上点击搜索按钮，你将会被跳转到最近查看的地址。",
+      "payoutExportProTip": "你可以在“转账记录”标签里导出你所有的转账记录为一个CSV文件。",
+      "rewardsExportProTip": "你可以在“收益”标签里导出你所有的收益记录为一个CSV文件。"
+    }
+  },
+  "status_pending_tooltip": "等待交易确认",
+  "confirmation_duration_tooltip": "交易确认时间",
+  "confirmed_at_tooltip": "交易确认时间",
+  "warning_header": "看起来你的仪表板还没有准备好。",
+  "warning_description": "如果您是新用户，您的仪表板将在首次将共享提交到此地址后20分钟内准备就绪。请稍后再查。"
+}

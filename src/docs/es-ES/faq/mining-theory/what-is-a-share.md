@@ -1,6 +1,6 @@
 ---
-title: '¿Que es un Share?'
-level: Principiante
+title: What is a Share?
+level: beginner
 ---
 
-Un Share es una parte del bloque en el que la pool esta trabajando. Al picar en la pool, tu rig resuelve/mina los puzles y se los envía a la pool. Esos "puzles resueltos" son por los que eres pagado.
+Share is a part of the block the pool is working on. By hashing on the pool, your rig solves/mines these puzzles, and submits them to the pool. You are getting paid for those.

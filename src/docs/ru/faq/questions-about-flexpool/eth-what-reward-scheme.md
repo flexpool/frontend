@@ -1,6 +1,6 @@
 ---
-title: 'Какую систему наград использует Flexpool?'
+title: 'What reward scheme Flexpool uses?'
 coin: eth
 ---
 
-Мы используем систему наград PPLNS (Pay-Per-Last-N-Shares), где _N_ составляет 6 млн последних шар.
+We use PPLNS (Pay-Per-Last-N-Shares) Reward Scheme.

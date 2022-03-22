@@ -1,6 +1,6 @@
 ---
-title: Erhebt Flexpool eine Gebühr für jede Transaktion?
+title: Does Flexpool charge a fee for every transaction?
 coin: eth
 ---
 
-**Nein**. Wir berechnen keine zusätzlichen Transaktionsgebühren von unserer Seite. Die einzige Gebühr, die Sie zahlen, ist die Netzwerktransaktionsgebühr, die unabhängig vom Transaktionswert festgeschrieben ist.
+**No**. We don't charge any additional transaction fees from our side. The only fee you will pay is the network transaction fee, that is static regardless of the transaction value.

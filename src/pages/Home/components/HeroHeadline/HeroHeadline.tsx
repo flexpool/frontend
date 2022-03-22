@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import useInterval from '@/hooks/useInterval';
+import useIsMounted from '@/hooks/useIsMounted';
 
 const ScrollTextContainer = styled.div`
   display: inline-block;
@@ -11,6 +12,7 @@ const ScrollTextContainer = styled.div`
   vertical-align: top;
   min-width: 230px;
   white-space: nowrap;
+  color: var(--primary);
 
   @media screen and (min-width: 800px) {
     min-width: 510px;
@@ -36,7 +38,6 @@ const TextAppear = styled.span`
   display: block;
   top: 0;
   animation: ${appear} 2.5s ease-in-out;
-  color: var(--primary);
 `;
 
 const disappear = keyframes`
@@ -65,7 +66,6 @@ const TextDisappear = styled.span`
   display: block;
   top: 0;
   animation: ${disappear} 2.5s ease-in-out;
-  color: var(--primary);
 `;
 
 const list = [
@@ -96,6 +96,7 @@ const HeroHeadLineContainer = styled.div`
 
 const HeroHeadline = () => {
   const [count, setCount] = useState(0);
+  const isMounted = useIsMounted();
 
   useInterval(() => {
     setCount((c) => {
@@ -109,13 +110,19 @@ const HeroHeadline = () => {
       <br />
       for{' '}
       <ScrollTextContainer>
-        <TextDisappear key={count - 1}>
-          {list[(3 + (count - 1)) % 3].name}
-        </TextDisappear>
-        <TextAppear key={count}>{list[count].name}</TextAppear>
+        {isMounted ? (
+          <>
+            <TextDisappear key={count - 1}>
+              {list[(3 + (count - 1)) % 3].name}
+            </TextDisappear>
+            <TextAppear key={count}>{list[count].name}</TextAppear>
+          </>
+        ) : (
+          <span>Chia</span>
+        )}
       </ScrollTextContainer>
     </HeroHeadLineContainer>
   );
 };
 
-export default HeroHeadline;
+export default React.memo(HeroHeadline);

@@ -1,5 +1,5 @@
 ---
-title: Kryptovaluutan louhinnan "perusteet"
+title: Louhintateorian "perusteet"
 level: intermediate
 ---
 

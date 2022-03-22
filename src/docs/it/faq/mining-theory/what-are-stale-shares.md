@@ -1,20 +1,20 @@
 ---
-title: Cosa sono le quote scadute? Come impattano il mio profitto?
-level: principiante
+title: What are Stale Shares? How they affect my profitability?
+level: beginner
 ---
 
-Le stale share sono share che sono state inviate alla pool dopo la loro scadenza. Questo impatta direttamente il tuo profitto, ed è raccomandato mantenerle il più basso possibile.
+Stale shares are shares that were sent to the pool after they were expired. This directly affects your profitability, and it is recommended to keep them as low as possible.
 
-Di norma la percentuale di stale share è al di sotto dell'1%. Qualsiasi valore superiore è inaccettabile, a meno che tu non sia localizzato in una regione distante dalla più vicina regione di Flexpool.
+Normal stale rate is the stale rate below 1%. Everything above in unacceptable unless you are located far away from the closest Flexpool region.
 
-Suggerimenti per ridurre le quote scadute:
+Tips for reducing the stale rate:
 
-* Usa un cavo Ethernet invece del Wi-Fi.
-* Usa una connessione via cavo/fibra (non mobile).
-* Assicurati di aver disabilitato la modalità Ethernet di risparmio energia, se ne hai una abilitata.
+* Use Ethernet instead of Wi-Fi.
+* Use Cable/Fiber connection (not mobile).
+* Make sure that you've disabled the Ethernet power save mode, if you have one enabled.
 
-Possibili cause delle stale share:
-* Latenza tra il tuo lavoratore ed il server della pool
-* Applicazione miner povera
-* Pacchetti persi
+Things that cause stale shares:
+* Latency between your worker and pool server
+* Poor miner software
+* Packet loss
 * Jitter

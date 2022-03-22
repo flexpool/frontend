@@ -1,6 +1,6 @@
 ---
-title: 'Vad är ett block?'
-level: nybörjare
+title: 'What is a Block?'
+level: beginner
 ---
 
 At its most basic, a Block is a combination of the following elements:

@@ -5,7 +5,7 @@ level: beginner
 
 Stale shares zijn shares die naar de pool werden gestuurd nadat ze vervallen waren. Dat heeft een directe invloed op je winstgevendheid; je hebt er liefst zo weinig mogelijk.
 
-Een normale hoeveelheid stale shares is er een onder 1%. Alles boven 1% is onaanvaardbaar tenzij je je ver van de dichtsbijzijnde Flexpool regio bevindt.
+Een normale hoeveelheid stale shares is er een onder 1%. Alles boven 1% is onaanvaardbaar tenzij je je ver van de dichtsbijzijnde Flexpool-regio bevindt.
 
 Tips om het aantal stale shares te verminderen:
 

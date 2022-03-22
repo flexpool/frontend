@@ -1,0 +1,87 @@
+{
+  "head_title": "A Pool de Mineração Mais Avançada",
+  "title": "Construindo o Futuro das Pools de Mineração",
+  "description": "Pool de mineração inovadora criada para minerar criptomoedas modernas.",
+  "coin_earnings_cards": {
+    "estimated": "Ganhos estimados",
+    "estimated_tooltip": "Estimated earnings are based on the past 24 hours on our pool (luck excluded).",
+    "daily": "diariamente",
+    "monthly": "mensalmente",
+    "cta_mine": "Comece a minerar",
+    "cta_farm": "Start Farming",
+    "pool_fee": "{{value}} Taxa da Pool",
+    "mev": "{{value}} de Bônus MEV",
+    "finder_reward": "{{value}} Block Finder Reward",
+    "more_title": "Mais Moedas Disponíveis em Breve!",
+    "more_description": "Estamos trabalhando para lançar várias pools em um futuro próximo. Junte-se ao nosso discord ou telegram."
+  },
+  "news_section": {
+    "join_us": {
+      "pre_title": "Junte-se a nós",
+      "title": "Conectar à Flexpool",
+      "cta": "Primeiros Passos"
+    },
+    "learn": {
+      "pre_title": "Aprenda",
+      "title": "Leia nosso Blog",
+      "cta": "Aprenda"
+    },
+    "support": {
+      "pre_title": "Suporte",
+      "title": "Obter Suporte",
+      "cta": "Contato"
+    }
+  },
+  "mined_coins_section": {
+    "title": "Moedas que nós mineramos",
+    "description": "Flexpool é uma pool de mineração multi-moeda, o que significa que você pode minerar suas moedas favoritas na Flexpool.",
+    "table_head": {
+      "name": "Nome",
+      "price": "Preço",
+      "market_cap": "Capitalização de Mercado",
+      "algorithm": "Algoritmo",
+      "hashrate": "Hashrate",
+      "miners": "Mineradores"
+    },
+    "item_cta": "Minerar"
+  },
+  "coin_news_item": {
+    "eth": {
+      "title": "Sobre o Ethereum",
+      "description": "O Ethereum é um computador mundial criado para suportar Aplicativos Descentralizados conhecidos como Contratos Inteligentes."
+    },
+    "xch": {
+      "title": "Sobre a Chia",
+      "description": "Chia é uma criptomoeda programável focada em uma maneira sustentável de segurança da blockchain."
+    },
+    "resources": "Recursos",
+    "website": "Website",
+    "whitepaper": "Whitepaper",
+    "calculator": {
+      "title": "Calculadora de Rendimento",
+      "title_tooltip": "O Rendimento Estimado é calculado com base na dificuldade média da rede nas últimas 24 horas e na média de recompensas de bloco nas últimas 24 horas. Este cálculo não inclui shares Obsoletos e Inválidos.",
+      "per_day": "por dia",
+      "per_month": "por mês",
+      "per_year": "por ano",
+      "cta": "Comece a Minerar"
+    },
+    "featured": {
+      "title": "Histórias em Destaque"
+    }
+  },
+  "why_section": {
+    "title": "Por que a Flexpool",
+    "item_1": {
+      "title": "Velocidade relâmpago",
+      "description": "Usamos clusters especializados de alto desempenho, suportados por um software super rápido projetado para lidar com mais de 100 TH/s."
+    },
+    "item_2": {
+      "title": "Simplesmente Melhor",
+      "description": "Você pode esquecer suas experiências ruins com pools de mineração. A Flexpool possui um suporte de alta qualidade e estamos sempre felizes em ajudar!"
+    }
+  },
+  "get_started_section": {
+    "title": "Pronto para começar?",
+    "cta": "Comece a Minerar"
+  }
+}

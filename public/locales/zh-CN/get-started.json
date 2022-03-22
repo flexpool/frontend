@@ -27,20 +27,21 @@
       },
       "fastest": "最佳",
       "backup": "备用",
-      "hke_warning_title": "更多端口:"
+      "hke_warning_title": "更多端口:",
+      "warning_1": "Please DO NOT connect to pool by using the IP addresses resolved from the domain name. IP addresses are subject to change at ANY TIME without ANY PRIOR NOTICE."
     },
     "ports": {
       "title": "端口",
-      "description": "我们建议使用SSL安全端口连接服务器。 <more>了解非安全端口的风险</more>。 <strong>注意</strong>: 使用 SSL端口不会增加过期份额率。",
-      "ssl_port": "SSL安全端口",
+      "description": "我们建议使用SSL加密端口来连接服务器。 <more>了解非安全端口的风险</more>。 <strong>注意</strong>: 使用 SSL端口不会影响延迟份额率。",
+      "ssl_port": "SSL加密端口",
       "tcp_port": "TCP端口",
       "tcp_port_tooltip": "我们并不建议使用非加密的TCP端口，预防中间人攻击，侵吞你的算力。可以在我们的<more>常见问题</more>了解更多。",
       "high_diff_port": "高难度端口",
-      "high_diff_port_tooltip": "这个端口适用与ASIC矿机或代理服务器下的多台矿机，还有<NiceHash>Nicehash</NiceHash>和其他算力市场上购买的算力。只能在以下的服务器用： "
+      "high_diff_port_tooltip": "这个端口适用与ASIC专业矿机，还有<NiceHash>Nicehash</NiceHash>和其他算力市场上购买的算力。只能在以下的服务器用： "
     },
     "worker": {
       "title": "矿机定名",
-      "description": "建议自定义矿机名字，容易分析矿机情况",
+      "description": "建议设置矿机名字，容易分析矿机情况",
       "worker_name": "矿机名字",
       "worker_name_placeholder": "例如：矿机RX580x2"
     },
@@ -67,15 +68,15 @@
       },
       {
         "key": "額外奖励",
-        "value": "90% 矿工可提取价值（MEV）的收入"
+        "value": "95% of Supercharged MEV"
       },
       {
-        "key": "支付周期",
+        "key": "支付时间",
         "value": "每小时一轮"
       },
       {
         "key": "起付额度",
-        "value": "自定义额度，0.01 ETH 到最大 100 ETH"
+        "value": "自己设置，0.01 ETH 到最高 100 ETH"
       },
       {
         "key": "区块确认时间",
@@ -109,6 +110,62 @@
           },
           {
             "description": "算力稳定，持续研创的挖矿软件"
+          }
+        ]
+      }
+    ]
+  },
+  "detail_etc": {
+    "title": "Ethereum Classic mining",
+    "pool_details": [
+      {
+        "key": "Reward Scheme",
+        "value": "PPLNS (Pay Per Last N Shares)"
+      },
+      {
+        "key": "Pool Fee",
+        "value": "0.9%"
+      },
+      {
+        "key": "Payout Round",
+        "value": "Once an hour"
+      },
+      {
+        "key": "Payouts",
+        "value": "from 0.01 ETC up to 100 ETC"
+      },
+      {
+        "key": "Block confirmation time",
+        "value": "120 Blocks"
+      },
+      {
+        "key": "Share Difficulty",
+        "value": "4 GH"
+      },
+      {
+        "key": "Mining Algorithm",
+        "value": "Etchash"
+      }
+    ],
+    "hardware": [
+      {
+        "title": "GPU Mining",
+        "key": "GPU",
+        "miners": [
+          {
+            "description": "Best miner for AMD GPUs"
+          },
+          {
+            "description": "Best miner for NVIDIA 20/30 Series GPUs"
+          },
+          {
+            "description": "Best miner for 4GB zombie mode."
+          },
+          {
+            "description": "Proprietary Ethash miner with low dev fee."
+          },
+          {
+            "description": "Actively developed and stable miner with low dev fee."
           }
         ]
       }
@@ -232,6 +289,8 @@
     "hk": "香港",
     "hke": "香港 (针对中国大陆优化)",
     "sge": "新加坡 (针对中国大陆优化)"
+    "additional_ports": "Additional Ports",
+    "additional_domains": "Additional Domains"
   },
   "cmd_keys": {
     "CLOSEST_SERVER": "最近服务器地址",

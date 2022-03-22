@@ -1,6 +1,6 @@
 ---
-title: Что такое Сложность Шары?
-level: Продвинутый
+title: What is Share Difficulty?
+level: intermediate
 ---
 
-Технически, шары являются теми же блоками, но только с изменённой (уменьшенной в данном случае) сложностью. Ваши воркеры добывают эти шары, и для них важно легко их находить. В противном случае, для пула будет невозможно отслеживать статистику работы и проверять то, что на самом деле вы добываете, а не просто отправлять непроверенные отчеты о хэшрейте.
+Technically, shares are the same blocks, but just with modified (reduced in this case) difficulty. Your workers are mining those shares, and it is important for them to be easy to find. Otherwise, it would be impossible for pool to track worker statistics and verify that it is actually mining, not just sending unproven hashrate reports.

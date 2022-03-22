@@ -1,26 +1,26 @@
 ---
-title: 'Hashrate nedir?'
-level: başlangıç
+title: 'What is Hashrate?'
+level: beginner
 ---
 
-Hashrate donanımın bir saniyedeki yapabildiği hash sayısının bir ölçüsüdür. Hashrate ne kadar yüksek olursa belirli zaman diliminde o kadar çok Pay bulma şansınız artar.
+Hashrate is a measure of the amount of Hashes your worker is processing per second - the higher your hashrate the more likely you are to find more Shares in a given amount of time.
 
-Hashrateler SI (Uluslararası Birim Metrik sistemi) metrik sistemi kullanılarak öneklerle ölçülür:
+Hashrates are measured using SI (Metric International System of Units) prefixes:
 
-| Birim | Açıklama                                                             |
-| ----- | -------------------------------------------------------------------- |
-| H/s   | Hash Saniye - Saniyedeki hash sayısı                                 |
-| KH/s  | KiloHash Saniye - Saniyede bin hash, 1000 H/s' ye eşittir            |
-| MH/s  | MegaHash Saniye - Saniyede bir milyon hash, 1000 KH/s' ye eşittir    |
-| GH/s  | GigaHash Saniye - Saniyede bir milyar hash, 1000 MH/s' ye eşittir    |
-| TH/s  | TeraHash Saniye - Saniyede bir trilyon hash, 1000 GH/s' ye eşittir   |
-| PH/s  | PetaHash Saniye - Saniyede bir katrilyon hash, 1000 TH/s' ye eşittir |
-| ...   | Ve dahası                                                            |
+| Unit | Description                                                                    |
+| ---- | ------------------------------------------------------------------------------ |
+| H/s  | Hashes per Second - Number of individual hashes each second                    |
+| KH/s | KiloHashes per Second - Thousands of hashes each second, equal to 1000 H/s     |
+| MH/s | MegaHashes per Second - Millions of hashes each second, equal to 1000 KH/s     |
+| GH/s | GigaHashes per Second - Billions of hashes each second, equal to 1000 MH/s     |
+| TH/s | TeraHashes per Second - Trillions of hashes each second, equal to 1000 GH/s    |
+| PH/s | PetaHashes per Second - Quadrillions of hashes each second, equal to 1000 TH/s |
+| ...  | And more                                                                       |
 
-Kontrol panelinizde üç hashrate gösterilir:
+In your dashboard, you have three hashrates shown:
 
-| Hashrate Tipi        | Açıklama                                                                                                                                                  |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Etkin                | Havuzun sizden aldığı pay sayısına göre hesapladığı hashrate, bu zaman içerisinde Şansa bağlı olarak çok fazla değişebilir.                               |
-| Ortalama \[Etkin\] | Etkin hashrate'in 24 saatlik ortalaması, bu değer rapor edilen hashrate'e yakın olmalıdır                                                                 |
-| Rapor Edilen         | Madencilik yazılımınızın havuza raporladığı hashrate (bu değer ödülleri hesaplamakta kullanılmaz fakat Etkin hashrate ile karşılaştırmak için gösterilir) |
+| Hashrate Type           | Description                                                                                                                                                               |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Effective               | The hashrate the pool thinks you have based on the amount of shares the pool is recieving from you, this can vary a lot over time due to Luck.                            |
+| Average \[Effective\] | The rolling 24 hour average of your Effective hashrate, this should be close to your Reported Hashrate                                                                    |
+| Reported                | The hashrate your mining software is reporting to the pool (this is not taken into account for calculating rewards but is shown for comparison to the Effective hashrate) |
