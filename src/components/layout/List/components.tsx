@@ -48,7 +48,7 @@ const StyledAdditionalTd = styled.td`
 `;
 
 const AdditionalTdContainer = styled.div`
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid var(--bg-secondary);
 `;
 
 const AdditionalTd = ({
