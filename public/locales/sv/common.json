@@ -1,0 +1,95 @@
+{
+  "proTip": "Pro Tip",
+  "searchbar": {
+    "placeholder": "Sök via din gruvadress"
+  },
+  "nav": {
+    "statistics": "Statistik",
+    "blocks": "Blocks",
+    "miners": "Gruvarbetare",
+    "faq": "Vanliga frågor",
+    "support": "Support",
+    "get_started": "Kom igång",
+    "community_title": "Gå med i communityn"
+  },
+  "footer": {
+    "company": {
+      "title": "Företag",
+      "contact_us": "Kontakt",
+      "brand_assets": "Varumärkets tillgångar",
+      "partners": "Partnerskap",
+      "business_dev": "Affärsutveckling",
+      "blog": "Blogg",
+      "terms": "Villkor",
+      "pp": "Integritetspolicy"
+    },
+    "resources": {
+      "title": "Resurser",
+      "get_started": "Kom igång",
+      "faq": "Vanliga frågor",
+      "api_docs": "API dokumentation"
+    },
+    "community": {
+      "title": "Gemenskap"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "service_status": "Tjänstens status",
+      "support": "Support"
+    },
+    "preferences": {
+      "title": "Inställningar"
+    },
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io Technologies Inc., or its affiliates. All rights reserved.",
+    "translation_help": "Hjälp oss att översätta webbplatsen till ditt språk"
+  },
+  "theme": {
+    "default": "Standardtema",
+    "dark": "Mörkt tema",
+    "light": "Ljust tema"
+  },
+  "list_navigation": {
+    "previous": "Föregående",
+    "next": "Nästa"
+  },
+  "errors": {
+    "999": "Too high payout limit",
+    "1000": "Too low payout limit",
+    "1001": "Invalid fee price",
+    "1003": "Invalid IP Address",
+    "1004": "Invalid payout limit",
+    "1005": "IP Address is not available (Miner is inactive)",
+    "1006": "Cannot change payment network because your current unpaid balance is above the pool’s minimum payout threshold of 0.01 {{coin}}",
+    "4000": "Invalid email address",
+    "4001": "Cannot find email address",
+    "4002": "Error during email confirmation",
+    "4003": "Email not registered",
+    "4004": "Invalid Token",
+    "number_max": "Maximum value is {{value}}",
+    "number_min": "Minimum value is {{value}}",
+    "higher_than": "Måste vara högre än {{value}}",
+    "invalid_number": "Please enter a valid number",
+    "required": "Obligatorisk",
+    "invalid_ip": "Invalid IP address",
+    "email_invalid": "Ogiltig e-postadress",
+    "email_required": "Vänligen ange din e-postadress",
+    "address_not_found": "Ingen angiven adress hittades i vårt system. Försök att vänta lite tid om du redan minar.",
+    "decimal_places": "Exceed maximum decimal place of {{value}}"
+  },
+  "date_time": {
+    "now": "nu"
+  },
+  "snacks": {
+    "emailConfirmed": {
+      "title": "Din e-post har bekräftats"
+    },
+    "emailUnsubscribed": {
+      "title": "Du har avregistrerat dig från e-postmeddelanden"
+    }
+  },
+  "faq": {
+    "questionsAboutFlexpool": "Questions About Flexpool",
+    "miningBasics": "Mining Basics"
+  },
+  "noDataAvailable": "No data available"
+}

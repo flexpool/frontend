@@ -10,7 +10,7 @@
     "cta_mine": "Aloita louhinta",
     "cta_farm": "Aloita farmaaminen",
     "pool_fee": "{{value}} Poolin Kulut",
-    "mev": "{{value}} MEV Bonuksesta",
+    "mev": "{{value}} of Supercharged MEV Bonus",
     "finder_reward": "{{value}} Lohkon löytäjän palkkio",
     "more_title": "Lisää kryptovaluuttoja tulossa!",
     "more_description": "Rakennamme jatkuvasti uusia pooleja, jotka julkaistaan tulevaisuudessa. Pysy ajan tasalla liittymällä Discordiimme tai Telegram-ryhmäämme."
@@ -50,9 +50,17 @@
       "title": "Tietoa Ethereumista",
       "description": "Ethereum on maailmanlaajuinen tietokone, joka on luotu mahdollistamaan Hajautetut Ohjelmistot, jotka tunnetaan myös Älysopimuksina."
     },
+    "etc": {
+      "title": "About Ethereum Classic",
+      "description": "Ethereum Classic maintains the original, unaltered history of the Ethereum network."
+    },
     "xch": {
       "title": "Tietoa Chiasta",
       "description": "Chia on ohjelmoitava kryptovaluutta, joka keskittyy ympäristöystävälliseen tapaan turvata lohkoketju."
+    },
+    "btc": {
+      "title": "About Bitcoin",
+      "description": "Bitcoin is the world's first cryptocurrency that has introduced the concept of blockchain and peer to peer internet money."
     },
     "resources": "Tietolähteitä",
     "website": "Kotisivut",

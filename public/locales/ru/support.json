@@ -19,6 +19,6 @@
   },
   "section_five": {
     "title": "Другие вопросы",
-    "description": "По деловым вопросам, пожалуйста, пишите нам на <email>hq@flexpool.io</email>. Пожалуйста, учтите, что мы не оказываем техподдержку по данному e-mail."
+    "description": "For business-related questions, please, contact us at <email>{{email}}</email>  <bold>(English only)</bold>. Please, note that <bold>we do not provide support via this Email</bold>."
   }
 }

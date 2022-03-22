@@ -1,8 +1,8 @@
 {
-  "head_title": "Avoimen Datan raportit",
-  "title": "Avoimen Datan raportit",
+  "head_title": "Transparency Reports",
+  "title": "Transparency Reports",
   "description": "Aloitteemme tarjota läpinäkyvää ja selkeää tietoa siitä mitä teemme Flexpoolissa.",
-  "latest": "Viimeisin raportti",
-  "archive": "Raportti-arkisto",
+  "latest": "Latest Transparency Report",
+  "archive": "Legacy open data report archive",
   "report_item": "Flexpool Edistymisraportti"
 }

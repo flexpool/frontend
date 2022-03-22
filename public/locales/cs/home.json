@@ -10,7 +10,7 @@
     "cta_mine": "Chci těžit",
     "cta_farm": "Start Farming",
     "pool_fee": "{{value}} poplatek poolu",
-    "mev": "{{value}} MEV bonusu",
+    "mev": "{{value}} of Supercharged MEV Bonus",
     "finder_reward": "{{value}} Block Finder Reward",
     "more_title": "Více kryptoměn již brzy!",
     "more_description": "Pracujeme na spuštění dalších poolů pro těžbu různých kryptoměn. Pro aktuální novinky se připojte k nám na discord či telegram."
@@ -50,9 +50,17 @@
       "title": "Co je Ethereum",
       "description": "Ethereum je celosvětový počítač vytvořený k podpoře decentralizovaných aplikací známých jako chytré smlouvy."
     },
+    "etc": {
+      "title": "About Ethereum Classic",
+      "description": "Ethereum Classic maintains the original, unaltered history of the Ethereum network."
+    },
     "xch": {
       "title": "About Chia",
       "description": "Chia is a programmable cryptocurrency focused on the eco-friendly way of securing the blockchain."
+    },
+    "btc": {
+      "title": "About Bitcoin",
+      "description": "Bitcoin is the world's first cryptocurrency that has introduced the concept of blockchain and peer to peer internet money."
     },
     "resources": "Zdroje",
     "website": "Webová stránka",

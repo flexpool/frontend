@@ -1,8 +1,8 @@
 {
-  "head_title": "Otevřené datové reporty",
-  "title": "Otevřené datové reporty",
+  "head_title": "Transparency Reports",
+  "title": "Transparency Reports",
   "description": "Naše iniciativa na poskytnutí jasných a transparentních zpráv o pokroku a ohledně toho, co děláme ve Flexpoolu.",
-  "latest": "Poslední report",
-  "archive": "Archiv reportů",
+  "latest": "Latest Transparency Report",
+  "archive": "Legacy open data report archive",
   "report_item": "Přehled"
 }

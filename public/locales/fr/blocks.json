@@ -31,6 +31,7 @@
     "rewards_block_list_title": "Rewards Per Block",
     "table_head": {
       "number": "Nombre",
+      "height": "Height",
       "type": "Type",
       "date": "Date",
       "region": "Région",

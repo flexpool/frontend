@@ -31,6 +31,7 @@
     "rewards_block_list_title": "Palkkio Per Lohko",
     "table_head": {
       "number": "Numero",
+      "height": "Height",
       "type": "Tyyppi",
       "date": "Päiväys",
       "region": "Alue",

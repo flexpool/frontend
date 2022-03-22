@@ -19,6 +19,6 @@
   },
   "section_five": {
     "title": "Andere vragen",
-    "description": "Gelieve voor zakelijke vragen contact met ons op te nemen via <email>hq@flexpool.io</email>. Via dit mailadres bieden we geen ondersteuning."
+    "description": "For business-related questions, please, contact us at <email>{{email}}</email>  <bold>(English only)</bold>. Please, note that <bold>we do not provide support via this Email</bold>."
   }
 }

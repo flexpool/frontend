@@ -10,7 +10,7 @@
     "cta_mine": "Start Mining",
     "cta_farm": "Start Farming",
     "pool_fee": "{{value}} Pool Fee",
-    "mev": "{{value}} of MEV Bonus",
+    "mev": "{{value}} of Supercharged MEV Bonus",
     "finder_reward": "{{value}} Block Finder Reward",
     "more_title": "More Coins Coming Soon!",
     "more_description": "We are working to launch multiple pools in the near future. Stay connected by joining our discord or telegram."
@@ -50,9 +50,17 @@
       "title": "About Ethereum",
       "description": "Ethereum is a worldwide computer created to power Decentralized Applications known as Smart Contracts."
     },
+    "etc": {
+      "title": "About Ethereum Classic",
+      "description": "Ethereum Classic maintains the original, unaltered history of the Ethereum network."
+    },
     "xch": {
       "title": "About Chia",
       "description": "Chia is a programmable cryptocurrency focused on the eco-friendly way of securing the blockchain."
+    },
+    "btc": {
+      "title": "About Bitcoin",
+      "description": "Bitcoin is the world's first cryptocurrency that has introduced the concept of blockchain and peer to peer internet money."
     },
     "resources": "Resources",
     "website": "Website",

@@ -19,6 +19,6 @@
   },
   "section_five": {
     "title": "Muut yhteydenotot",
-    "description": "Yritystoimintaan liittyvissä kysymyksissä voit olla yhteydessä sähköpostilla osoitteeseen <email>hq@flexpool.io</email>. Huomioithan, että emme tarjoa tukea tämän sähköpostin kautta."
+    "description": "For business-related questions, please, contact us at <email>{{email}}</email>  <bold>(English only)</bold>. Please, note that <bold>we do not provide support via this Email</bold>."
   }
 }

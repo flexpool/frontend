@@ -19,6 +19,6 @@
   },
   "section_five": {
     "title": "Jiné otázky",
-    "description": "Pokud jde o obchodní otázky či spolupráci, kontaktujte nás prosím na adrese <email>hq@flexpool.io</email>. Vezměte prosím na vědomí, že neposkytujeme podporu prostřednictvím tohoto e-mailu."
+    "description": "For business-related questions, please, contact us at <email>{{email}}</email>  <bold>(English only)</bold>. Please, note that <bold>we do not provide support via this Email</bold>."
   }
 }

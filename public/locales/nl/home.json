@@ -10,7 +10,7 @@
     "cta_mine": "Begin met minen",
     "cta_farm": "Start Farming",
     "pool_fee": "{{value}} Pool kost",
-    "mev": "{{value}} van MEV Bonus",
+    "mev": "{{value}} of Supercharged MEV Bonus",
     "finder_reward": "{{value}} Block Finder Reward",
     "more_title": "Binnenkort meer coins!",
     "more_description": "We zijn bezig om in de nabije toekomst meerdere pools te lanceren. Blijf op de hoogte via ons Discordkanaal of Telegramgroep."
@@ -50,9 +50,17 @@
       "title": "Over Ethereum",
       "description": "Ethereum is een wereldwijde computer die gemaakt is om gedecentraliseerde applicaties, ook wel smart contracts genoemd, aan te sturen."
     },
+    "etc": {
+      "title": "About Ethereum Classic",
+      "description": "Ethereum Classic maintains the original, unaltered history of the Ethereum network."
+    },
     "xch": {
       "title": "About Chia",
       "description": "Chia is a programmable cryptocurrency focused on the eco-friendly way of securing the blockchain."
+    },
+    "btc": {
+      "title": "About Bitcoin",
+      "description": "Bitcoin is the world's first cryptocurrency that has introduced the concept of blockchain and peer to peer internet money."
     },
     "resources": "Bronnen",
     "website": "Website",

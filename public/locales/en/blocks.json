@@ -1,0 +1,59 @@
+{
+  "head_title": "Mined Blocks",
+  "title": "Blocks",
+  "description": "History of mined blocks by Flexpool",
+  "average_luck": "Average Luck",
+  "average_luck_tooltip": "Last 30 days average block luck.",
+  "current_luck": "Current luck",
+  "current_luck_tooltip": "Current round's block luck. This value is updated in real-time.",
+  "network_hashrate": "Network Hashrate",
+  "network_space": "Network Space",
+  "network_difficulty": "Network difficulty",
+  "network_difficulty_tooltip": "Average amount of hashes the pool should calculate to mine a block.",
+  "network_difficulty_tooltip_points": "Average amount of how many points pool should produce to mine a block.",
+  "table": {
+    "title_zero": "Unable to retrieve pool data",
+    "title": "Flexpool has mined {{count}} block",
+    "title_1": "Flexpool has mined {{count}} blocks",
+    "title_2": "Flexpool has mined {{count}} blocks",
+    "title_3": "Flexpool has mined {{count}} blocks",
+    "title_4": "Flexpool has mined {{count}} blocks",
+    "title_5": "Flexpool has mined {{count}} blocks",
+    "title_plural": "Flexpool has mined {{count}} blocks",
+    "title_miner_zero": "You haven't mined any blocks yet",
+    "title_miner": "You have mined {{count}} block",
+    "title_miner_1": "You have mined {{count}} blocks",
+    "title_miner_2": "You have mined {{count}} blocks",
+    "title_miner_3": "You have mined {{count}} blocks",
+    "title_miner_4": "You have mined {{count}} blocks",
+    "title_miner_5": "You have mined {{count}} blocks",
+    "title_miner_plural": "You have mined {{count}} blocks",
+    "rewards_block_list_title": "Rewards Per Block",
+    "table_head": {
+      "number": "Number",
+      "height": "Height",
+      "type": "Type",
+      "date": "Date",
+      "region": "Region",
+      "miner": "Miner",
+      "reward": "Reward",
+      "round_time": "Round Time",
+      "hash": "Hash",
+      "luck": "Luck",
+      "share": "Share"
+    }
+  },
+  "type": {
+    "block": "Block",
+    "orphan": "Orphan",
+    "uncle": "Uncle"
+  },
+  "chart": {
+    "title": "Monthly Blocks Visualization",
+    "blocks_per_day": "Blocks per day",
+    "difficulty": "Difficulty"
+  },
+  "waiting_confirmation_tooltip": "Waiting for confirmation",
+  "orphan_tooltip": "Orphan blocks are the blocks that were not included into the canonical chain. They usually appear under very rare circumstances such as 2-block deep chain reorganization before the new work was sent to miners.",
+  "uncle_tooltip": "Uncle blocks are blocks that have the same parent hash and number. They are caused because of the high latency between mining pools. Typically, they appear when two mining pools mine two blocks at the same time, both having the same block number."
+}

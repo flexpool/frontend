@@ -31,6 +31,7 @@
     "rewards_block_list_title": "Rewards Per Block",
     "table_head": {
       "number": "Číslo bloku",
+      "height": "Height",
       "type": "Typ",
       "date": "Datum a čas",
       "region": "Region",
