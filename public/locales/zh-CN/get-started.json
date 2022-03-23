@@ -28,7 +28,7 @@
       "fastest": "最佳",
       "backup": "备用",
       "hke_warning_title": "更多端口:",
-      "warning_1": "Please DO NOT connect to pool by using the IP addresses resolved from the domain name. IP addresses are subject to change at ANY TIME without ANY PRIOR NOTICE."
+      "warning_1": "请不要尝试使用IP地址直连矿池。IP地址可能随时会更改。"
     },
     "ports": {
       "title": "端口",
