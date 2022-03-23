@@ -1,0 +1,263 @@
+{
+  "settings": {
+    "cta": "Nastavení",
+    "title": "Nastavení",
+    "ip": "IP adresa pro ověření",
+    "ip_caption": "The IP required for verification is the one that has the highest number of shares submitted during the past 24 hours.",
+    "ip_hint": "Tip: Prohlížíte tuto stránku z",
+    "ip_description": "Pokud tvůj rig používá proxy adresu, například při duálním těžení ZILu, prosím použij tu adresu namísto IP tvého rigu.",
+    "high_fees_warning": "A payout limit under 0.05 ETH will result in high gas fees that will be deducted from your payment. Please set up a higher payout limit if possible.",
+    "payout": {
+      "title": "Nastavení vyplácení",
+      "eth_mainnet": "You payout will be sent via Ethereum Mainnet. This is the main Ethereum network, it is more decentralized and secure, but has a significant transaction fee.",
+      "eth_polygon": "You payout will be sent via Polygon (L2). L2 offers significant lower transaction fees and your payment will be processed in WETH (Wrapped ETH). Please make sure you understand how this is going to affect your payouts before switching networks.",
+      "limit": "Payout threshold (min: {{min}})",
+      "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}. Your entire unpaid balance will be paid out, not just your threshold amount.",
+      "limit_err_higher": "Musí být vyšší než {{min}}",
+      "gas_limit": "Limit trans. poplatku",
+      "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {delimiter} of payout limit). You will not receive any payouts if gas price is higher.",
+      "gas_limit_zero": "Transakční poplatek nebude omezen.",
+      "submit": "Aplikovat změny",
+      "l2_warning": "Please make sure your wallet support <bold>{{network_name}}</bold> WETH deposits. Otherwise, your funds will be lost forever.",
+      "l2_acknowledge": "I acknowledge that my wallet supports <bold>{{network_name}}</bold> L2 network, that the funds will be irreversibly lost otherwise, and that I know how to deal with payouts made in the <bold>{{network_name}}</bold> network."
+    },
+    "difficulty": {
+      "title": "Difficulty Settings",
+      "warning": "The adjustable difficulty is a feature for advanced users only. We strongly recommend keeping 1 unless you have specific requirements. Please do not change the difficulty unless you know what you are doing.",
+      "check_difficulty": "Check current difficulty",
+      "update_difficulty": "Update difficulty",
+      "acknowledge": "I acknowledge that higher difficulty will make the effective space calculations less precise.",
+      "check_difficulty_button": "Check Difficulty",
+      "pending_difficulty": "You have a pending difficulty change of {{difficulty}}. Please wait up to 10 minutes for the changes to be applied.",
+      "current_difficulty": "Your current difficulty is: {{difficulty}}",
+      "launcher_id_desc": "Use the Launcher ID to check the difficulty of your current PlotNFT.",
+      "launcher_id_error": "The launcher ID is invalid, please try again.",
+      "difficulty_desc": "Difficulty determines the frequency of partials. The lower the difficulty is, the more partials you will get. More partials will result in more precise stats.",
+      "login_link_desc": "A Login Link is required to prove you own this PlotNFT.",
+      "submit": "Apply Changes"
+    },
+    "payout_warning": [
+      "We highly recommend setting a higher payout limit to reduce total number of payout transactions. Less transactions means less network fees.",
+      "You are the only one responsible for paying the transaction fees. We are strongly in favour of setting a transaction fee limit lower to avoid a total loss of money due to high network fees. This will also help you partially mitigate losses when sudden fee spikes happen."
+    ],
+    "notifications": {
+      "title": "E-mailová upozornění",
+      "email_enabled": "E-mailová upozornění zapnuta",
+      "email_disabled": "E-mailová upozornění vypnuta",
+      "send_to": "Odeslat upozornění na",
+      "send_to_placeholder": "tvuj@email.cz",
+      "check_worker_down": "Upozornit mě, když jeden z mých rigů přestane těžit",
+      "check_payout_sent": "Upozornit mě na vyplacení zůstatku",
+      "offline_duration": "We will notify you if we haven't received any shares from your rig in {{duration}}.",
+      "submit": "Aplikovat změny"
+    }
+  },
+  "header": {
+    "greet_period_morning": "Dobré ráno",
+    "greet_period_afternoon": "Dobré odpoledne",
+    "greet_period_evening": "Dobrý večer",
+    "greet_desc": "{{count}} rig těží {{coin}} a celkově hashuje {{hashrate}}.",
+    "greet_desc_plural": ".",
+    "greet_desc_farm": "{{count}} worker is farming {{coin}} with {{hashrate}} of storage.",
+    "greet_desc_farm_plural": "{{count}} workers are farming {{coin}} with {{hashrate}} of total storage.",
+    "greet_desc_1": "",
+    "greet_desc_2": "",
+    "greet_desc_3": "",
+    "greet_desc_4": "",
+    "greet_desc_5": "",
+    "info_payout_limit": "Payout Threshold",
+    "info_gas_limit": "Limit transakčního poplatku",
+    "info_gas_limit_none": "Žádný",
+    "info_gas_limit_detail": "{{percent}} z hodnoty transakce.",
+    "info_gas_limit_detail_none": "Limit poplatků nenastaven.",
+    "info_gas_limit_detail_na": "Nedostupné.",
+    "info_joined": "Připojil se",
+    "info_joined_tooltip": "Tvůj první share byl zaznamenán",
+    "info_joined_tooltip_empty": "Nebyl nalezen žádný záznam.",
+    "info_coin_price": "{{coin}} hodnota",
+    "network": "Network",
+    "stat_workers": "Workeři online/offline",
+    "stat_unpaid_balance": "Nevyplacený zůstatek",
+    "stat_unpaid_balance_reach": "Dosaženo <v>{{value}}</v> cíle pro vyplacení.",
+    "stat_unpaid_balance_reach_est": "Cíl bude dosažen <v>{{value}}</v>.",
+    "stat_unpaid_balance_reach_ok": "Your payout will be processed on the next hourly payment round if the fee preferences are met.",
+    "stat_unpaid_balance_reach_ok_l2": "Your payout will be processed on the next L2 payment round, which happens randomly every 24 hours.",
+    "stat_unpaid_balance_reach_delayed_by_gas_limit": "However, your payout won't be processed because your gas price limit of <v>{{gasLimit}}</v> is lower than the current network gas price of <v>{{currentGas}}</v>.",
+    "stat_estimate": "Odhadovaná výtěžnost",
+    "stat_estimate_daily": "denně",
+    "stat_estimate_weekly": "týdně",
+    "stat_estimate_monthly": "měsíčně",
+    "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimates.",
+    "update_in": "Update in",
+    "auto_update": "Auto-update"
+  },
+  "nav": {
+    "stats": "Statistiky",
+    "payments": "Vyplácení",
+    "rewards": "Vytěženo",
+    "blocks": "Bloky"
+  },
+  "rewards": {
+    "head_title": "Odměny za těžbu",
+    "earnings_chart": {
+      "title": "Vytěženo tento měsíc",
+      "earnings": "Vytěženo",
+      "daily_income": "Denní příjem",
+      "download_csv": "Export Rewards as CSV"
+    },
+    "past_earnings": {
+      "title": "Minulé výnosy",
+      "yesterday": "Včera",
+      "last_week": "Past 7 Days",
+      "last_month": "Past 30 Days"
+    },
+    "forecasted_earnings": {
+      "title": "Předpokládané výnosy",
+      "daily": "Denně",
+      "weekly": "Týdně",
+      "monthly": "Měsíčně"
+    },
+    "pplns": {
+      "title": "Pokročilé PPLNS statistiky",
+      "avp": {
+        "title": "Průměrný vyplácený hashrate",
+        "tooltip": "Calculated based on current round share and the last 3 hours of the pool hashrate chart.",
+        "current": "Aktuální"
+      },
+      "crs": {
+        "title": "Aktuální share kola",
+        "aprox": "Přibližná odměna",
+        "tooltip": "Odvozeno z share logu"
+      },
+      "log": {
+        "title": "Vyprázdnění Share Logu",
+        "tooltip": "Čas, kdy share kola spadne na nula.",
+        "size": "{{value}} sharů v logu"
+      }
+    },
+    "pplns_chart": {
+      "title": "Shary v PPLNS logu",
+      "valid_shares": "Platné shary"
+    }
+  },
+  "payments": {
+    "head_title": "Vyplácení",
+    "chart": {
+      "title": "Vyplacení v tomto roce",
+      "fee": "Poplatek",
+      "value": "Výše vyplacení",
+      "net_value": "Net Value"
+    },
+    "general": {
+      "title": "Všeobecné statistiky",
+      "total_paid": "Celkem vyplaceno",
+      "total_transactions": "Celkem transakcí",
+      "paid_in_fees": "{{value}} zaplaceno v poplatcích",
+      "average_payout_duration": "Průměrná doba mezi vyplacením",
+      "average_payout_duration_desc": "Průměrná doba mezi jednotlivými platbami"
+    },
+    "transaction_fees": {
+      "title": "Transakční poplatky",
+      "last": "Poslední transakce",
+      "fee": "{{value}} poplatek",
+      "average": "Průměrná cena transakčního poplatku",
+      "average_percent": "Průměrná cena transakčního poplatku %",
+      "average_cta": "Tipy jak snížit poplatky",
+      "average_cta_tooltip": [
+        "1. Nastavení vyššího limitu vyplacení sníží celkový počet transakcí. Zaplatíš tedy dohromady méně na poplatcích.",
+        "2. Set your transaction fee limit to avoid high fees in the settings. When you reach your payout threshold, we will make sure that your payout transaction will be executed as soon as it meets your fee limit settings."
+      ]
+    },
+    "table": {
+      "title": "Vyplácení",
+      "download": "Stáhnout CSV",
+      "table_contents": {
+        "pending": "Pending",
+        "success": "Success"
+      },
+      "table_head": {
+        "date": "Datum a čas",
+        "value": "Hodnota",
+        "fee": "Poplatek",
+        "duration": "Doba trvání",
+        "hash": "Hash",
+        "status": "Status"
+      }
+    }
+  },
+  "stats": {
+    "not_enough_data": "Not enough data",
+    "not_enough_data_message": "We don't have enough data to show charts. If your workers are already mining, please allow up to 10 minutes for the data to be processed.",
+    "active_worker": {
+      "title": "Worker",
+      "reset": "Zrušit"
+    },
+    "hashrate": {
+      "title": "Hashrate",
+      "title_space": "Space",
+      "current": "Aktuální efektivní",
+      "average": "24h Avg Effective",
+      "reported": "Nahlášený"
+    },
+    "shares": {
+      "title": "Shary",
+      "title_hint": "last 24 hours",
+      "title_points": "Points",
+      "valid": "Platné",
+      "stale": "Stale",
+      "invalid": "Neplatné"
+    },
+    "hashrate_chart": {
+      "title": "Hashrate",
+      "title_space": "Space",
+      "effective": "Efektivní hashrate",
+      "average": "Průměrný efektivní hashrate",
+      "reported": "Nahlášený hashrate",
+      "effective_space": "Effective Space",
+      "average_space": "Average Effective Space",
+      "reported_space": "Reported Space"
+    },
+    "shares_chart": {
+      "title": "Shary",
+      "title_points": "Points",
+      "valid": "Valid",
+      "stale": "Stale",
+      "invalid": "Invalid"
+    },
+    "table": {
+      "title_active": "Aktivní workeři",
+      "title_inactive": "Neaktivní workeři",
+      "search_placeholder": "Filtrovat podle workera",
+      "table_head": {
+        "name": "Název",
+        "reported_hashrate": "Nahlášený hashrate",
+        "reported_space": "Reported Space",
+        "current_e_hashrate": "Aktuální e. hashrate",
+        "current_e_space": "Current E. Space",
+        "average_e_hashrate": "Average E. Hashrate",
+        "average_e_space": "Average E. Space",
+        "valid": "Platné shary",
+        "stale": "Stale shary",
+        "invalid": "Neplatné shary",
+        "valid_points": "Valid Points",
+        "stale_points": "Stale Points",
+        "invalid_points": "Invalid Points",
+        "last_seen": "Naposledy spatřen"
+      }
+    },
+    "proTips": {
+      "chartsProTip": "Click on legend items to include/exclude related values on the chart",
+      "tablesProTip": "You can sort your worker table by clicking on the headers.",
+      "hoverHashrateProtip": "You can hover on \"Average Effective (E.)\" hashrate and see the last 6h and 12h average hashrate.",
+      "apiProTip": "The full-fledged Flexpool API is publicly available.",
+      "searchProTip": "If you just click the search button on the homepage, you will be directed to your latest viewed address.",
+      "payoutExportProTip": "You can export all your transactions as a CSV sheet in the \"Payouts\" tab.",
+      "rewardsExportProTip": "You can export all your rewards as a CSV sheet in the \"Rewards\" tab."
+    }
+  },
+  "status_pending_tooltip": "Awaiting transaction confirmation",
+  "confirmation_duration_tooltip": "Confirmed in",
+  "confirmed_at_tooltip": "Confirmed at",
+  "warning_header": "It looks like your dashboard is not ready yet.",
+  "warning_description": "If you are new here, your dashboard will be ready within 20 minutes of your first submitted share to this address. Please check back a little later."
+}

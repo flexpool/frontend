@@ -1,0 +1,24 @@
+{
+  "head_title": "Ondersteuning",
+  "title": "Ondersteuning",
+  "section_one": {
+    "title": "Contacteer Flexpool Ondersteuning",
+    "description": "Hallo! Vooraleer je ons contacteert, willen we je erop wijzen dat we geen hulp bieden voor hardware-gerelateerde onderwerpen. Daarmee bedoelen we de overclock instellingen van GPUs en andere geavanceerde instellingen van de mining software. Wij bieden enkel pool-gerelateerde ondersteuning. Voor hulp bij overclocken, mining software optimaliseren en dergelijke kan je je aansluiten bij onze gemeenschap. Daar kan je met anderen praten en leren uit hun ervaring."
+  },
+  "section_two": {
+    "title": "Stuur ons een berichtje via de chat op deze website",
+    "description": "De beste manier om ons te bereiken voor ondersteuning is via de chat op deze website. Die kan je vinden in de rechterbenedenhoek."
+  },
+  "section_three": {
+    "title": "Word lid van onze gemeenschap",
+    "description": "We voorzien ook een officiële Discordserver en een groep op Telegram - zo kan je praten met andere Flexpool miners en hulp krijgen van ons team."
+  },
+  "section_four": {
+    "title": "Neem contact met ons op via e-mail",
+    "description": "We voorzien ondersteuning via mail, maar garanderen via dat kanaal geen snelle responstijd. Je kan ons bereiken via <email>{{email}}</email>."
+  },
+  "section_five": {
+    "title": "Andere vragen",
+    "description": "For business-related questions, please, contact us at <email>{{email}}</email>  <bold>(English only)</bold>. Please, note that <bold>we do not provide support via this Email</bold>."
+  }
+}

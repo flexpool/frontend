@@ -1,0 +1,95 @@
+{
+  "head_title": "Kehittynein Kryptolouhinnan Pool",
+  "title": "Rakennamme louhintapoolien tulevaisuutta",
+  "description": "Innovatiivinen louhintapooli modernien kryptovaluuttojen louhimiseen.",
+  "coin_earnings_cards": {
+    "estimated": "Arvioidut tulot",
+    "estimated_tooltip": "Estimated earnings are based on the past 24 hours on our pool (luck excluded).",
+    "daily": "päivittäin",
+    "monthly": "kuukausittain",
+    "cta_mine": "Aloita louhinta",
+    "cta_farm": "Aloita farmaaminen",
+    "pool_fee": "{{value}} Poolin Kulut",
+    "mev": "{{value}} of Supercharged MEV Bonus",
+    "finder_reward": "{{value}} Lohkon löytäjän palkkio",
+    "more_title": "Lisää kryptovaluuttoja tulossa!",
+    "more_description": "Rakennamme jatkuvasti uusia pooleja, jotka julkaistaan tulevaisuudessa. Pysy ajan tasalla liittymällä Discordiimme tai Telegram-ryhmäämme."
+  },
+  "news_section": {
+    "join_us": {
+      "pre_title": "Liity nyt",
+      "title": "Yhdistä Flexpooliin",
+      "cta": "Aloittaminen"
+    },
+    "learn": {
+      "pre_title": "Opi",
+      "title": "Lue blogiamme",
+      "cta": "Opi"
+    },
+    "support": {
+      "pre_title": "Tuki",
+      "title": "Tarvitsetko apua?",
+      "cta": "Ota yhteyttä"
+    }
+  },
+  "mined_coins_section": {
+    "title": "Kryptovaluutat, joita louhimme",
+    "description": "Flexpool tukee useaa kryptovaluuttaa, joten voit louhia lempivaluuttaasi Flexpoolissa.",
+    "table_head": {
+      "name": "Nimi",
+      "price": "Hinta",
+      "market_cap": "Markkina-arvo",
+      "algorithm": "Algoritmi",
+      "hashrate": "Hashrate",
+      "miners": "Louhijoita"
+    },
+    "item_cta": "Louhi"
+  },
+  "coin_news_item": {
+    "eth": {
+      "title": "Tietoa Ethereumista",
+      "description": "Ethereum on maailmanlaajuinen tietokone, joka on luotu mahdollistamaan Hajautetut Ohjelmistot, jotka tunnetaan myös Älysopimuksina."
+    },
+    "etc": {
+      "title": "About Ethereum Classic",
+      "description": "Ethereum Classic maintains the original, unaltered history of the Ethereum network."
+    },
+    "xch": {
+      "title": "Tietoa Chiasta",
+      "description": "Chia on ohjelmoitava kryptovaluutta, joka keskittyy ympäristöystävälliseen tapaan turvata lohkoketju."
+    },
+    "btc": {
+      "title": "About Bitcoin",
+      "description": "Bitcoin is the world's first cryptocurrency that has introduced the concept of blockchain and peer to peer internet money."
+    },
+    "resources": "Tietolähteitä",
+    "website": "Kotisivut",
+    "whitepaper": "Whitepaper",
+    "calculator": {
+      "title": "Tulolaskuri",
+      "title_tooltip": "Arvioitu tulo perustuu 24 tunnin keskiarvoiseen vaikeusasteeseen ja 24 tunnin keskiarvoiseen lohkopalkkioon. Tämä laskuri ei ota huomioon ristiriitaisia tai virheellisiä osuuksia.",
+      "per_day": "päivässä",
+      "per_month": "kuukaudessa",
+      "per_year": "vuodessa",
+      "cta": "Aloita louhiminen"
+    },
+    "featured": {
+      "title": "Ajankohtaisia artikkeleita"
+    }
+  },
+  "why_section": {
+    "title": "Miksi Flexpool?",
+    "item_1": {
+      "title": "Salaman nopea",
+      "description": "Käytämme erityisiä korkean tehon palvelinklustereita, jonka tukena toimivat supernopeat ohjelmistot, jotka on suunniteltu kestämään yli 100 TH/s."
+    },
+    "item_2": {
+      "title": "Parempi vaihtoehto",
+      "description": "Voit unohtaa huonot louhintakokemukset. Flexpoolin tukena toimii todella laadukas asiakastuki ja me olemme aina valmiita auttamaan!"
+    }
+  },
+  "get_started_section": {
+    "title": "Oletko valmis aloittamaan?",
+    "cta": "Aloita louhiminen"
+  }
+}

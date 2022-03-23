@@ -18,7 +18,7 @@
         "text": "绑定到Plot NFT。"
       },
       {
-        "text": "PlotNFT已连接到Flexpool（有关说明，请参阅入门）。"
+        "text": "PlotNFT joined to Flexpool (To manage your PlotNFT with the Chia client, see our <guilink>GUI</guilink> and <clilink>CLI</clilink> instructions)."
       }
     ]
   },

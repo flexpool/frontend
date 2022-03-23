@@ -1,0 +1,59 @@
+{
+  "head_title": "Vytěžené bloky",
+  "title": "Bloky",
+  "description": "Historie vytěžených bloků na Flexpoolu",
+  "average_luck": "Average luck",
+  "average_luck_tooltip": "Počítáno na základě bloků vytěžených za posledních 30 dní.",
+  "current_luck": "Aktuální luck",
+  "current_luck_tooltip": "Luck bloku aktuálního těžení. Tato hodnota je aktualizována v reálném čase.",
+  "network_hashrate": "Síťová hashrate",
+  "network_space": "Network Space",
+  "network_difficulty": "Obtížnost sítě",
+  "network_difficulty_tooltip": "Average amount of how many hashes pool should produce to mine a block.",
+  "network_difficulty_tooltip_points": "Average amount of how many points pool should produce to mine a block.",
+  "table": {
+    "title_zero": "Nelze získat data",
+    "title": "Společně jsme vytěžili {{count}} blok",
+    "title_1": "Společně jsme vytěžili {{count}} bloky",
+    "title_2": "Společně jsme vytěžili {{count}} bloků",
+    "title_3": "Společně jsme vytěžili {{count}} bloků",
+    "title_4": "Společně jsme vytěžili {{count}} bloků",
+    "title_5": "Společně jsme vytěžili {{count}} bloků",
+    "title_plural": "Flexpool vytěžil {{count}} bloků",
+    "title_miner_zero": "Zatím jsi ještě žádný blok nevytěžil",
+    "title_miner": "Vytěžil jsi {{count}} blok",
+    "title_miner_1": "Vytěžil jsi {{count}} bloky",
+    "title_miner_2": "Vytěžil jsi {{count}} bloků",
+    "title_miner_3": "Vytěžil jsi {{count}} bloků",
+    "title_miner_4": "Vytěžil jsi {{count}} bloků",
+    "title_miner_5": "Vytěžil jsi {{count}} bloků",
+    "title_miner_plural": "Vytěžil jsi {{count}} bloků",
+    "rewards_block_list_title": "Rewards Per Block",
+    "table_head": {
+      "number": "Číslo bloku",
+      "height": "Height",
+      "type": "Typ",
+      "date": "Datum a čas",
+      "region": "Region",
+      "miner": "Miner",
+      "reward": "Odměna",
+      "round_time": "Doba trvání",
+      "hash": "Hash",
+      "luck": "Luck",
+      "share": "Share"
+    }
+  },
+  "type": {
+    "block": "Blok",
+    "orphan": "Orphan",
+    "uncle": "Uncle"
+  },
+  "chart": {
+    "title": "Bloky tento měsíc",
+    "blocks_per_day": "Bloků za den",
+    "difficulty": "Obtížnost"
+  },
+  "waiting_confirmation_tooltip": "Čekání na potvrzení",
+  "orphan_tooltip": "Orphan bloky jsou bloky, které nebyly zahrnuty do blockchainu. Takové bloky se většinou objevují velmi zřídka, například při reorganizaci blockchainu.",
+  "uncle_tooltip": "Uncly bloky jsou bloky, které mají stejný nadřazený hash a číslo. Jsou způsobeny kvůli latenci mezi těžebními pooly. Obvykle se objevují, když dva těžící pooly vytěží dva bloky současně, oba potom mají stejné číslo bloku."
+}

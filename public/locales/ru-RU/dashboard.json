@@ -1,0 +1,263 @@
+{
+  "settings": {
+    "cta": "Настройки",
+    "title": "Настройки",
+    "ip": "IP Адрес для верификации",
+    "ip_caption": "The IP required for verification is the one that has the highest number of shares submitted during the past 24 hours.",
+    "ip_hint": "Подсказка: Вы посетили эту страницу с",
+    "ip_description": "Если ваш воркер использует прокси-адрес, например ваш воркер занимается двойным майнингом через пул ZIL, пожалуйста, используйте вместо него прокси-адрес.",
+    "high_fees_warning": "Вывод средств меньше 0,05 ETH будет обложена повышенной ценой за газ, который будет вычтан из суммы выплаты. Рекомендуется ставить минимальный порог выплаты выше 0,05 ETH.",
+    "payout": {
+      "title": "Настройки оплаты",
+      "eth_mainnet": "You payout will be sent via Ethereum Mainnet. This is the main Ethereum network, it is more decentralized and secure, but has a significant transaction fee.",
+      "eth_polygon": "You payout will be sent via Polygon (L2). L2 offers significant lower transaction fees and your payment will be processed in WETH (Wrapped ETH). Please make sure you understand how this is going to affect your payouts before switching networks.",
+      "limit": "Payout threshold (min: {{min}})",
+      "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}. Your entire unpaid balance will be paid out, not just your threshold amount.",
+      "limit_err_higher": "Должно быть выше чем {{min}}",
+      "gas_limit": "Gas price limit",
+      "gas_limit_desc": "Your transaction fee gas price would be limited to {{value}} {{valueUnit}} ({{valueTicker}}, {delimiter} of payout limit). You will not receive any payouts if gas price is higher.",
+      "gas_limit_zero": "Комиссия за транзакцию не будет ограничена.",
+      "submit": "Принять изменения",
+      "l2_warning": "Please make sure your wallet support <bold>{{network_name}}</bold> WETH deposits. Otherwise, your funds will be lost forever.",
+      "l2_acknowledge": "I acknowledge that my wallet supports <bold>{{network_name}}</bold> L2 network, that the funds will be irreversibly lost otherwise, and that I know how to deal with payouts made in the <bold>{{network_name}}</bold> network."
+    },
+    "difficulty": {
+      "title": "Difficulty Settings",
+      "warning": "The adjustable difficulty is a feature for advanced users only. We strongly recommend keeping 1 unless you have specific requirements. Please do not change the difficulty unless you know what you are doing.",
+      "check_difficulty": "Check current difficulty",
+      "update_difficulty": "Update difficulty",
+      "acknowledge": "I acknowledge that higher difficulty will make the effective space calculations less precise.",
+      "check_difficulty_button": "Check Difficulty",
+      "pending_difficulty": "You have a pending difficulty change of {{difficulty}}. Please wait up to 10 minutes for the changes to be applied.",
+      "current_difficulty": "Your current difficulty is: {{difficulty}}",
+      "launcher_id_desc": "Use the Launcher ID to check the difficulty of your current PlotNFT.",
+      "launcher_id_error": "The launcher ID is invalid, please try again.",
+      "difficulty_desc": "Difficulty determines the frequency of partials. The lower the difficulty is, the more partials you will get. More partials will result in more precise stats.",
+      "login_link_desc": "A Login Link is required to prove you own this PlotNFT.",
+      "submit": "Apply Changes"
+    },
+    "payout_warning": [
+      "We highly recommend setting a higher payout limit to reduce total number of payout transactions. Less transactions means less network fees.",
+      "You are the only one responsible for paying the transaction fees. We are strongly in favour of setting a transaction fee limit lower to avoid a total loss of money due to high network fees. This will also help you partially mitigate losses when sudden fee spikes happen."
+    ],
+    "notifications": {
+      "title": "Уведомления на e-mail",
+      "email_enabled": "Уведомления e-mail включены",
+      "email_disabled": "Уведомления e-mail отключены",
+      "send_to": "Отправить уведомления на",
+      "send_to_placeholder": "your@email.com",
+      "check_worker_down": "Сообщить мне, если один из воркеров оффлайн",
+      "check_payout_sent": "Сообщить мне об отправленной выплате",
+      "offline_duration": "We will notify you if we haven't received any shares from your rig in {{duration}}.",
+      "submit": "Применить изменения"
+    }
+  },
+  "header": {
+    "greet_period_morning": "Доброе утро",
+    "greet_period_afternoon": "Добрый день",
+    "greet_period_evening": "Добрый вечер",
+    "greet_desc": "{{count}} воркер добывает {{coin}} и хэширует {{hashrate}} в итоге.",
+    "greet_desc_plural": "{{count}} воркер добывает {{coin}} и хэширует {{hashrate}} в итоге.",
+    "greet_desc_farm": "{{count}} worker is farming {{coin}} with {{hashrate}} of storage.",
+    "greet_desc_farm_plural": "{{count}} workers are farming {{coin}} with {{hashrate}} of total storage.",
+    "greet_desc_1": "",
+    "greet_desc_2": "",
+    "greet_desc_3": "",
+    "greet_desc_4": "",
+    "greet_desc_5": "",
+    "info_payout_limit": "Payout Threshold",
+    "info_gas_limit": "Лимит цены на Gas",
+    "info_gas_limit_none": "Пусто",
+    "info_gas_limit_detail": "{{percent}} минимальной выплаты.",
+    "info_gas_limit_detail_none": "Цена на gas не ограничена.",
+    "info_gas_limit_detail_na": "Цена не указана.",
+    "info_joined": "Присоединился",
+    "info_joined_tooltip": "Ваша первая шара была",
+    "info_joined_tooltip_empty": "шара еще не записана",
+    "info_coin_price": "{{coin}} Цена",
+    "network": "Network",
+    "stat_workers": "Воркеры Онлайн/Офлайн",
+    "stat_unpaid_balance": "Невыплаченный баланс",
+    "stat_unpaid_balance_reach": "<v>{{value}}</v> достигнутого лимита выплат.",
+    "stat_unpaid_balance_reach_est": "Лимит будет достигнут <v>{{value}}</v>.",
+    "stat_unpaid_balance_reach_ok": "Your payout will be processed on the next hourly payment round if the fee preferences are met.",
+    "stat_unpaid_balance_reach_ok_l2": "Your payout will be processed on the next L2 payment round, which happens randomly every 24 hours.",
+    "stat_unpaid_balance_reach_delayed_by_gas_limit": "However, your payout won't be processed because your gas price limit of <v>{{gasLimit}}</v> is lower than the current network gas price of <v>{{currentGas}}</v>.",
+    "stat_estimate": "Приблизительный заработок",
+    "stat_estimate_daily": "ежедневно",
+    "stat_estimate_weekly": "еженедельно",
+    "stat_estimate_monthly": "ежемесячно",
+    "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimates.",
+    "update_in": "Обновление через",
+    "auto_update": "Автообновление"
+  },
+  "nav": {
+    "stats": "Статистика",
+    "payments": "Выплаты",
+    "rewards": "Вознаграждения",
+    "blocks": "Блоки"
+  },
+  "rewards": {
+    "head_title": "Вознаграждение майнерам",
+    "earnings_chart": {
+      "title": "Выплаты в этом месяце",
+      "earnings": "Выплаты",
+      "daily_income": "Дневной доход",
+      "download_csv": "Экспорт выплат в CSV"
+    },
+    "past_earnings": {
+      "title": "Предыдущий доход",
+      "yesterday": "Вчера",
+      "last_week": "Past 7 Days",
+      "last_month": "Past 30 Days"
+    },
+    "forecasted_earnings": {
+      "title": "Прогнозируемая прибыль",
+      "daily": "Ежедневно",
+      "weekly": "Еженедельно",
+      "monthly": "Ежемесячно"
+    },
+    "pplns": {
+      "title": "Расширенная статистика PPLNS",
+      "avp": {
+        "title": "Средний хэшрейт выплат",
+        "tooltip": "Calculated based on current round share and the last 3 hours of the pool hashrate chart.",
+        "current": "Текущий"
+      },
+      "crs": {
+        "title": "Current Round Share",
+        "aprox": "Примерное вознаграждение",
+        "tooltip": "Derived from the share log"
+      },
+      "log": {
+        "title": "Share Log Wipeout Duration",
+        "tooltip": "Time for the round share to drop to zero.",
+        "size": "{{value}} shares in log"
+      }
+    },
+    "pplns_chart": {
+      "title": "Шары в журнале PPLNS",
+      "valid_shares": "Принятые шары"
+    }
+  },
+  "payments": {
+    "head_title": "Miner Payments",
+    "chart": {
+      "title": "Выплаты в этом году",
+      "fee": "Комиссия",
+      "value": "Значение",
+      "net_value": "Net Value"
+    },
+    "general": {
+      "title": "Общая статистика платежей",
+      "total_paid": "Всего Выплачено",
+      "total_transactions": "Всего Транзакций",
+      "paid_in_fees": "{{value}} paid in fees",
+      "average_payout_duration": "Average Payout Duration",
+      "average_payout_duration_desc": "Average Time Between Payouts"
+    },
+    "transaction_fees": {
+      "title": "Transaction Fees",
+      "last": "Last Transaction",
+      "fee": "{{value}} fee",
+      "average": "Average Transaction Fee",
+      "average_percent": "Average Transaction Fee %",
+      "average_cta": "Tips on reducing fees",
+      "average_cta_tooltip": [
+        "1. Setting higher payout limit will reduce the number of transactions you will have to pay for in terms of network transaction fees.",
+        "2. Set your transaction fee limit to avoid high fees in the settings. When you reach your payout threshold, we will make sure that your payout transaction will be executed as soon as it meets your fee limit settings."
+      ]
+    },
+    "table": {
+      "title": "Payments",
+      "download": "Download CSV",
+      "table_contents": {
+        "pending": "Pending",
+        "success": "Success"
+      },
+      "table_head": {
+        "date": "Date",
+        "value": "Transaction Value",
+        "fee": "Fee",
+        "duration": "Duration",
+        "hash": "Hash",
+        "status": "Status"
+      }
+    }
+  },
+  "stats": {
+    "not_enough_data": "Not enough data",
+    "not_enough_data_message": "We don't have enough data to show charts. If your workers are already mining, please allow up to 10 minutes for the data to be processed.",
+    "active_worker": {
+      "title": "Worker",
+      "reset": "Reset"
+    },
+    "hashrate": {
+      "title": "Hashrate",
+      "title_space": "Space",
+      "current": "Current Effective",
+      "average": "24h Avg Effective",
+      "reported": "Reported"
+    },
+    "shares": {
+      "title": "Shares",
+      "title_hint": "last 24 hours",
+      "title_points": "Points",
+      "valid": "Valid",
+      "stale": "Stale",
+      "invalid": "Invalid"
+    },
+    "hashrate_chart": {
+      "title": "Hashrate",
+      "title_space": "Space",
+      "effective": "Effective Hashrate",
+      "average": "Average Effective Hashrate",
+      "reported": "Reported Hashrate",
+      "effective_space": "Effective Space",
+      "average_space": "Average Effective Space",
+      "reported_space": "Reported Space"
+    },
+    "shares_chart": {
+      "title": "Шара",
+      "title_points": "Points",
+      "valid": "Valid",
+      "stale": "Stale",
+      "invalid": "Invalid"
+    },
+    "table": {
+      "title_active": "Active workers",
+      "title_inactive": "Inactive workers",
+      "search_placeholder": "Фильтр по воркерам",
+      "table_head": {
+        "name": "Имя",
+        "reported_hashrate": "Заявленный хэшрейт",
+        "reported_space": "Reported Space",
+        "current_e_hashrate": "Current E. Hashrate",
+        "current_e_space": "Current E. Space",
+        "average_e_hashrate": "Average E. Hashrate",
+        "average_e_space": "Average E. Space",
+        "valid": "Принятые Шары",
+        "stale": "Устаревшие Шары",
+        "invalid": "Неверные Шары",
+        "valid_points": "Valid Points",
+        "stale_points": "Stale Points",
+        "invalid_points": "Invalid Points",
+        "last_seen": "Был виден в последний раз"
+      }
+    },
+    "proTips": {
+      "chartsProTip": "Click on legend items to include/exclude related values on the chart",
+      "tablesProTip": "You can sort your worker table by clicking on the headers.",
+      "hoverHashrateProtip": "You can hover on \"Average Effective (E.)\" hashrate and see the last 6h and 12h average hashrate.",
+      "apiProTip": "The full-fledged Flexpool API is publicly available.",
+      "searchProTip": "If you just click the search button on the homepage, you will be directed to your latest viewed address.",
+      "payoutExportProTip": "Вы можете экспортировать все свои выплаты в формате CSV документа во вкладке \"Награды\".",
+      "rewardsExportProTip": "Вы можете экспортировать все свои выплаты в формате CSV документа во вкладке \"Награды\"."
+    }
+  },
+  "status_pending_tooltip": "Ожидание подтверждения транзакции",
+  "confirmation_duration_tooltip": "Подтверждено в",
+  "confirmed_at_tooltip": "Подтверждено на",
+  "warning_header": "It looks like your dashboard is not ready yet.",
+  "warning_description": "If you are new here, your dashboard will be ready within 20 minutes of your first submitted share to this address. Please check back a little later."
+}
