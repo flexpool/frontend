@@ -111,9 +111,7 @@ export const HomePage = () => {
             <HeroLeft>
               <HeroHeadline />
               <Spacer size="lg" />
-              <HeroSubHeadline>
-                Providing the highest profitability worldwide.
-              </HeroSubHeadline>
+              <HeroSubHeadline>{t('description')}</HeroSubHeadline>
               <Spacer size="sm" />
               <SearchWrapper>
                 <SearchAddressBar />
