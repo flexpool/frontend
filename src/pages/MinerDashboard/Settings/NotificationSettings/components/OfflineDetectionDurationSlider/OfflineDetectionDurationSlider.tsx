@@ -159,7 +159,11 @@ const OfflineDetectionDurationSlider = ({ disabled = false }) => {
 
   return (
     <div>
-      <SliderLabel>Worker Offline Detection Duration</SliderLabel>
+      <SliderLabel>
+        {t(
+          'dashboard:settings.notifications.worker_offline_detection_duration'
+        )}
+      </SliderLabel>
       <StyledSlider
         disabled={disabled}
         defaultValue={[optionIndex]}

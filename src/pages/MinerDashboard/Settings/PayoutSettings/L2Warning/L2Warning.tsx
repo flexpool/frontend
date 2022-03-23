@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trans } from 'next-i18next';
+import { Trans, useTranslation } from 'next-i18next';
 import { stringUtils } from '@/utils/string.utils';
 import { InfoBox } from '@/components/InfoBox';
 
@@ -10,9 +10,11 @@ type L2WarningProps = {
 };
 
 const L2Warning = ({ network }: L2WarningProps) => {
+  const { t } = useTranslation(['common']);
+
   return (
     <InfoBox variant="warning">
-      <h3>Important note</h3>
+      <h3>{t('dashboard:settings.important_note')}</h3>
       <Trans
         ns="dashboard"
         i18nKey="settings.payout.l2_warning"

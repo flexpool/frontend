@@ -18,7 +18,7 @@ const PayoutWarning = () => {
 
   return (
     <InfoBox variant="warning">
-      <h3>Important note</h3>
+      <h3>{t('dashboard:settings.important_note')}</h3>
       <div>
         {warningItems.map((item) => (
           <p key={item}>{item}</p>
