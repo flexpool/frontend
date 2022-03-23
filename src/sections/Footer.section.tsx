@@ -156,7 +156,9 @@ export const FooterSection = () => {
             <FSectionTitle>{t('footer.resources.title')}</FSectionTitle>
             <Link href="/get-started">{t('footer.resources.get_started')}</Link>
             <Link href="/faq">{t('footer.resources.faq')}</Link>
-            <Link href="/transparency">Transparency Reports</Link>
+            <Link href="/transparency">
+              {t('footer.resources.transparency_reports')}
+            </Link>
             <Link href="/docs/api">{t('footer.resources.api_docs')}</Link>
             <LinkOut href="https://www.gasprice.io/">Gasprice.io</LinkOut>
           </Section>
