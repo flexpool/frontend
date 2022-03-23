@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import useInterval from '@/hooks/useInterval';
 import useIsMounted from '@/hooks/useIsMounted';
+import { Trans } from 'next-i18next';
 
 const ScrollTextContainer = styled.div`
   display: inline-block;
@@ -13,6 +14,7 @@ const ScrollTextContainer = styled.div`
   min-width: 230px;
   white-space: nowrap;
   color: var(--primary);
+  margin-left: 12.5px;
 
   @media screen and (min-width: 800px) {
     min-width: 510px;
@@ -106,9 +108,14 @@ const HeroHeadline = () => {
 
   return (
     <HeroHeadLineContainer>
-      Building the future of mining pools
-      <br />
-      for{' '}
+      <Trans />
+      <Trans
+        i18nKey="title"
+        ns="home"
+        components={{
+          br: <br />,
+        }}
+      />
       <ScrollTextContainer>
         {isMounted ? (
           <>
