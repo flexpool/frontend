@@ -196,6 +196,11 @@ export const mineableCoins: MineableCoin[] = [
         imageCode: 'sg',
         high_diff_avail: true,
       },
+      {
+        domain: 'sgeetc.gfwroute.co',
+        code: 'sge',
+        imageCode: 'cn',
+      },
     ],
     hardware: [
       {

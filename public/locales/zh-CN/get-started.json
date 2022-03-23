@@ -288,6 +288,7 @@
     "kr": "南韩",
     "hk": "香港",
     "hke": "香港 (针对中国大陆优化)",
+    "sge": "新加坡 (针对中国大陆优化)"
     "additional_ports": "Additional Ports",
     "additional_domains": "Additional Domains"
   },
