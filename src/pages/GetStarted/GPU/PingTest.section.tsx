@@ -200,6 +200,18 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
                   alt={data.imageCode}
                 />
                 {t(`regions.${data.code}`)}
+                <span
+                  style={{ color: 'var(--text-tertiary)', marginLeft: '15px' }}
+                >
+                  {(() => {
+                    var split = data.code.split('-');
+                    if (split.length === 1) return data.code.toUpperCase();
+                    split[0] = split[0].toUpperCase();
+                    split[1] =
+                      split[1].charAt(0).toUpperCase() + split[1].slice(1);
+                    return split.join('-');
+                  })()}
+                </span>
               </div>
             </Ws>
           );
