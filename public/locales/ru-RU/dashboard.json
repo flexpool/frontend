@@ -7,6 +7,7 @@
     "ip_hint": "Подсказка: Вы посетили эту страницу с",
     "ip_description": "Если ваш воркер использует прокси-адрес, например ваш воркер занимается двойным майнингом через пул ZIL, пожалуйста, используйте вместо него прокси-адрес.",
     "high_fees_warning": "Вывод средств меньше 0,05 ETH будет обложена повышенной ценой за газ, который будет вычтан из суммы выплаты. Рекомендуется ставить минимальный порог выплаты выше 0,05 ETH.",
+    "important_note": "Important Note",
     "payout": {
       "title": "Настройки оплаты",
       "eth_mainnet": "You payout will be sent via Ethereum Mainnet. This is the main Ethereum network, it is more decentralized and secure, but has a significant transaction fee.",
@@ -49,6 +50,7 @@
       "check_worker_down": "Сообщить мне, если один из воркеров оффлайн",
       "check_payout_sent": "Сообщить мне об отправленной выплате",
       "offline_duration": "We will notify you if we haven't received any shares from your rig in {{duration}}.",
+      "worker_offline_detection_duration": "Worker Offline Detection Duration",
       "submit": "Применить изменения"
     }
   },

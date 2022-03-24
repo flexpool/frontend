@@ -12,6 +12,7 @@ module.exports = {
       'ru-RU',
       'pt-BR',
       'zh-CN',
+      'uk-UA',
     ],
     localePath: path.resolve('./public/locales'),
   },

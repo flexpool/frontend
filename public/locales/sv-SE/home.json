@@ -1,7 +1,7 @@
 {
   "head_title": "Den mest avancerade Mining Poolen",
-  "title": "Bygger framtiden för Mining Pools",
-  "description": "Förnyande mining pool skapad för modern kryptobrytning.",
+  "title": "Building the Future of Mining Pools <br/> for",
+  "description": "Providing the highest profitability worldwide.",
   "coin_earnings_cards": {
     "estimated": "Beräknade intäkter",
     "estimated_tooltip": "Estimated earnings are based on the past 24 hours on our pool (luck excluded).",
@@ -34,7 +34,7 @@
   },
   "mined_coins_section": {
     "title": "Coins som vi minar",
-    "description": "Flexpool är en Multi-Coin mining pool, vilket betyder att du kan mina dina favorit coins på Flexpool.",
+    "description": "Flexpool is a Multi-Coin mining pool, which means that you can mine multiple coins on Flexpool.",
     "table_head": {
       "name": "Namn",
       "price": "Pris",

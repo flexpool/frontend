@@ -1,7 +1,7 @@
 {
   "head_title": "De meest geavanceerde mining pool",
-  "title": "De toekomst van mining pools bouwen",
-  "description": "Innovatieve mining pool gemaakt voor hedendaagse cryptocurrency mining.",
+  "title": "Building the Future of Mining Pools <br/> for",
+  "description": "Providing the highest profitability worldwide.",
   "coin_earnings_cards": {
     "estimated": "Geschatte inkomsten",
     "estimated_tooltip": "Estimated earnings are based on the past 24 hours on our pool (luck excluded).",
@@ -34,7 +34,7 @@
   },
   "mined_coins_section": {
     "title": "Coins die we minen",
-    "description": "Flexpool is een multi-coin mining pool, dat betekent dat je je favoriete munten kan minen op Flexpool.",
+    "description": "Flexpool is a Multi-Coin mining pool, which means that you can mine multiple coins on Flexpool.",
     "table_head": {
       "name": "Naam",
       "price": "Prijs",

@@ -1,7 +1,7 @@
 {
   "head_title": "Le pool minier le plus avancé",
-  "title": "Construire l'avenir des pools miniers",
-  "description": "Pool minier innovant créé pour l'exploitation moderne des crypto-monnaies.",
+  "title": "Building the Future of Mining Pools <br/> for",
+  "description": "Providing the highest profitability worldwide.",
   "coin_earnings_cards": {
     "estimated": "Gains estimés",
     "estimated_tooltip": "Estimated earnings are based on the past 24 hours on our pool (luck excluded).",
@@ -34,7 +34,7 @@
   },
   "mined_coins_section": {
     "title": "Cryptomonnaies que nous minons",
-    "description": "Flexpool est un pool de minage de cryptomonnaie multiples , ce qui signifie que vous pouvez miner vos cryptomonnaies préférées.",
+    "description": "Flexpool is a Multi-Coin mining pool, which means that you can mine multiple coins on Flexpool.",
     "table_head": {
       "name": "Nom",
       "price": "Prix",

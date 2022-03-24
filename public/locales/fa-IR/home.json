@@ -1,7 +1,7 @@
 {
   "head_title": "The Most Advanced Mining Pool",
-  "title": "Building the Future of Mining Pools",
-  "description": "Innovative mining pool created for modern cryptocurrency mining.",
+  "title": "Building the Future of Mining Pools <br/> for",
+  "description": "Providing the highest profitability worldwide.",
   "coin_earnings_cards": {
     "estimated": "Estimated earnings",
     "estimated_tooltip": "Estimated earnings are based on the past 24 hours on our pool (luck excluded).",
@@ -34,7 +34,7 @@
   },
   "mined_coins_section": {
     "title": "Coins we mine",
-    "description": "Flexpool is a Multi-Coin mining pool, which means that you can mine multiple coins including Ethereum and Chia on Flexpool.",
+    "description": "Flexpool is a Multi-Coin mining pool, which means that you can mine multiple coins on Flexpool.",
     "table_head": {
       "name": "Name",
       "price": "Price",

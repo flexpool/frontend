@@ -7,6 +7,7 @@
     "ip_hint": "Vinkki: Sinä olet tällä sivulla osoitteesta",
     "ip_description": "Jos laitteesi käyttää proxy-välityspalvelinta, ts. laitteesi louhii tuplana ZIL-poolissa, käytä välityspalvelimen osoitetta.",
     "high_fees_warning": "Jos ulosmaksurajasi on alle 0.05 ETH, gas-hinnasta tulee korkea ja se vähennetään maksustasi. Suosittelemme asettamaan korkeamman ulosmaksurajan.",
+    "important_note": "Important Note",
     "payout": {
       "title": "Ulosmaksun asetukset",
       "eth_mainnet": "You payout will be sent via Ethereum Mainnet. This is the main Ethereum network, it is more decentralized and secure, but has a significant transaction fee.",
@@ -49,6 +50,7 @@
       "check_worker_down": "Ilmoita minulle, jos laitteeni lopettaa louhinnan",
       "check_payout_sent": "Ilmoita minulle kun maksu lähetetään",
       "offline_duration": "We will notify you if we haven't received any shares from your rig in {{duration}}.",
+      "worker_offline_detection_duration": "Worker Offline Detection Duration",
       "submit": "Ota muutokset käyttöön"
     }
   },

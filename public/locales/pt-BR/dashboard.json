@@ -7,6 +7,7 @@
     "ip_hint": "Dica: Você está visitando esta página a partir de",
     "ip_description": "Se o seu worker está usando um endereço de proxy, por exemplo, seu worker está minerando através de uma pool de ZIL, por favor use o endereço proxy ao invés do seu IP.",
     "high_fees_warning": "Limites de pagamentos abaixo de 0,05 ETH resultarão em altas taxas de transferência, elas serão deduzidas do seu pagamento. Por favor, defina um limite de pagamento mais alto, se possível.",
+    "important_note": "Important Note",
     "payout": {
       "title": "Configuração de Pagamento",
       "eth_mainnet": "You payout will be sent via Ethereum Mainnet. This is the main Ethereum network, it is more decentralized and secure, but has a significant transaction fee.",
@@ -49,6 +50,7 @@
       "check_worker_down": "Alertar quando um dos meus workers ficar offline",
       "check_payout_sent": "Notificar-me quando um pagamento for enviado",
       "offline_duration": "We will notify you if we haven't received any shares from your rig in {{duration}}.",
+      "worker_offline_detection_duration": "Worker Offline Detection Duration",
       "submit": "Aplicar alterações"
     }
   },

@@ -1,7 +1,7 @@
 {
   "head_title": "Nejpokročilejší Mining Pool",
-  "title": "Tvoříme budoucnost mining poolů",
-  "description": "Inovativní mining pool stvořený pro moderní těžbu kryptoměn.",
+  "title": "Building the Future of Mining Pools <br/> for",
+  "description": "Providing the highest profitability worldwide.",
   "coin_earnings_cards": {
     "estimated": "Odhadovaná výtěžnost",
     "estimated_tooltip": "Estimated earnings are based on the past 24 hours on our pool (luck excluded).",
@@ -34,7 +34,7 @@
   },
   "mined_coins_section": {
     "title": "Kryptoměny, které těžíme",
-    "description": "Flexpool je multipool, což znamená, že s námi můžeš těžit právě tvou oblíbenou kryptoměnu.",
+    "description": "Flexpool is a Multi-Coin mining pool, which means that you can mine multiple coins on Flexpool.",
     "table_head": {
       "name": "Název",
       "price": "Cena",

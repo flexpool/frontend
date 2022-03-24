@@ -39,4 +39,9 @@ export const availableLangs = [
     title: 'Česky',
     flag: 'cz',
   },
+  {
+    code: 'uk-UA',
+    title: 'Українська',
+    flag: 'ua',
+  },
 ];

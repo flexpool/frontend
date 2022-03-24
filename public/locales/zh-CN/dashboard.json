@@ -7,6 +7,7 @@
     "ip_hint": "提示：您目前电脑IP地址是",
     "ip_description": "如果正在使用代理服务器，包括ETH+ZIL双排序挖矿，请使用代理服务器或者ZIL矿池的IP地址。",
     "high_fees_warning": "起付额度低于0.05ETH，Gas费用（转账手续费）占比会相对地高。这笔费用将会从您的余额中扣除。建议调高起付额度，比较划算，也减少交费用的次数。",
+    "important_note": "Important Note",
     "payout": {
       "title": "支付设置",
       "eth_mainnet": "您的付款将通过以太坊主网支付。以太坊主网是以太坊主要网络，他更加的分布式和安全，但拥有更高的交易手续费。",
@@ -49,6 +50,7 @@
       "check_worker_down": "矿机掉线提醒",
       "check_payout_sent": "余额转账通知",
       "offline_duration": "We will notify you if we haven't received any shares from your rig in {{duration}}.",
+      "worker_offline_detection_duration": "Worker Offline Detection Duration",
       "submit": "确认更改"
     }
   },

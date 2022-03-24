@@ -7,6 +7,7 @@
     "ip_hint": "Hint: You are visiting this webpage from",
     "ip_description": "If your worker is using proxy address, e.g. your worker is dual mining through a ZIL pool, please use the proxy address instead.",
     "high_fees_warning": "A payout limit under 0.05 ETH will result in high gas fees that will be deducted from your payment. Please set up a higher payout limit if possible.",
+    "important_note": "Important Note",
     "payout": {
       "title": "Payout Settings",
       "eth_mainnet": "You payout will be sent via Ethereum Mainnet. This is the main Ethereum network, it is more decentralized and secure, but has a significant transaction fee.",
@@ -49,6 +50,7 @@
       "check_worker_down": "Warn me when one of my workers goes down",
       "check_payout_sent": "Notify me when a payout has been sent",
       "offline_duration": "We will notify you if we haven't received any shares from your rig in {{duration}}.",
+      "worker_offline_detection_duration": "Worker Offline Detection Duration",
       "submit": "Apply changes"
     }
   },
