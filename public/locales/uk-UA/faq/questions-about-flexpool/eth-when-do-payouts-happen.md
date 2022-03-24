@@ -3,4 +3,4 @@ title: Коли відбуваються виплати?
 coin: eth
 ---
 
-Payouts are checked every hour (for mainnet payouts) or every day (for Polygon WETH payouts) and sent if you meet the payout criteria. We do not predict or promise what minute the payout cycle runs, and it will vary over time.
+Виплати перевіряються щогодини (для виплат основної мережі) або щодня (для виплат Polygon WETH) і надсилаються, якщо ви відповідаєте критеріям виплат. Ми не прогнозуємо і не обіцяємо, на яку хвилину почнеться цикл виплат, і він буде змінюватися з часом.

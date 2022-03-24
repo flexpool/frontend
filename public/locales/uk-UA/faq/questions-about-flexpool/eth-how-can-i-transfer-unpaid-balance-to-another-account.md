@@ -3,6 +3,6 @@ title: Як я можу перевести несплачений залишок
 coin: eth
 ---
 
-If you have the keys or mnemonics (usually a 24 word recovery phrase), and if your unpaid balance on the "old" wallet is at least 0.01 ETH, you may sign an Ethereum digital message to authorize the transfer. Contact support for instructions.
+Якщо у вас є ключі або мнемоніки (зазвичай фраза для відновлення з 24 слів), і якщо ваш несплачений баланс на «старому» гаманці становить щонайменше 0,01 ETH, ви можете підписати цифрове повідомлення Ethereum, щоб авторизувати переказ. Зверніться до служби підтримки, щоб отримати інструкції.
 
-This option is not available if you use a hosted wallet like Coinbase or Binance, since we have no way of verifying your ownership of an exchange or hosted wallet.
+Ця опція недоступна, якщо ви використовуєте розміщений гаманець, як-от Coinbase або Binance, оскільки ми не можемо підтвердити ваше право власності на біржовий або розміщений гаманець.

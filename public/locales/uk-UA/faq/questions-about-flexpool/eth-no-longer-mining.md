@@ -3,6 +3,6 @@ title: Я більше не займаюся майнінгом, що мені �
 coin: eth
 ---
 
-If you have stopped mining and needed a payout, submit a support request [link to https://www.flexpool.io/support], confirming your coin and payout address, and we can enable a one-time payment.
+Якщо ви припинили майнінг і потребуєте виплати, надішліть запит на веб-сайті Flexpool, підтвердивши свою монету та адресу ETH, і ми зможемо ввімкнути одноразовий платіж.
 
-The minimum one-time payout is 0.005 ETH (but may change with gas conditions).
+Мінімальна одноразова виплата становить 0,005 ETH (але може змінюватися залежно від умов газу).
