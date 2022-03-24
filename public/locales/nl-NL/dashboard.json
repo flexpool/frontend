@@ -10,6 +10,7 @@
     "important_note": "Important Note",
     "payout": {
       "title": "Uitbetalingsinstellingen",
+      "title_sidebar": "Payouts",
       "eth_mainnet": "You payout will be sent via Ethereum Mainnet. This is the main Ethereum network, it is more decentralized and secure, but has a significant transaction fee.",
       "eth_polygon": "You payout will be sent via Polygon (L2). L2 offers significant lower transaction fees and your payment will be processed in WETH (Wrapped ETH). Please make sure you understand how this is going to affect your payouts before switching networks.",
       "limit": "Payout threshold (min: {{min}})",
@@ -24,6 +25,7 @@
     },
     "difficulty": {
       "title": "Difficulty Settings",
+      "title_sidebar": "Difficulty",
       "warning": "The adjustable difficulty is a feature for advanced users only. We strongly recommend keeping 1 unless you have specific requirements. Please do not change the difficulty unless you know what you are doing.",
       "check_difficulty": "Check current difficulty",
       "update_difficulty": "Update difficulty",
@@ -43,6 +45,7 @@
     ],
     "notifications": {
       "title": "E-mailmeldingen",
+      "title_sidebar": "Notifications",
       "email_enabled": "E-mailmeldingen ingeschakeld",
       "email_disabled": "E-mailmeldingen uitgeschakeld",
       "send_to": "Stuur meldingen naar",

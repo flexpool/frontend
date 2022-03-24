@@ -15,6 +15,11 @@ export const availableLangs = [
     flag: 'cn',
   },
   {
+    code: 'uk-UA',
+    title: 'Українська',
+    flag: 'ua',
+  },
+  {
     code: 'fr-FR',
     title: 'Français',
     flag: 'fr',
@@ -25,23 +30,8 @@ export const availableLangs = [
     flag: 'nl',
   },
   {
-    code: 'ru-RU',
-    title: 'Русский',
-    flag: 'ru',
-  },
-  {
     code: 'pt-BR',
     title: 'Português (Brasil)',
     flag: 'br',
-  },
-  {
-    code: 'cs-CZ',
-    title: 'Česky',
-    flag: 'cz',
-  },
-  {
-    code: 'uk-UA',
-    title: 'Українська',
-    flag: 'ua',
   },
 ];
