@@ -1,10 +1,10 @@
 ---
-title: What is the transaction fee for ETH payouts?
+title: Яка комісія за транзакцію для виплат ETH?
 coin: eth
 ---
 
-For mainnet payouts (the default), you pay the current gas fee at the time of a payout cycle, if it is below your gas price limit. The price varies, but it is a fixed fee regardless of your payout amount. As an estimate, 100 Gwei would be 0.0021 ETH.
+Для виплат основної мережі (за замовчуванням) ви сплачуєте поточну комісію за газ під час циклу виплат, якщо вона нижча за ваш ліміт ціни на газ. Ціна змінюється, але це фіксована комісія незалежно від суми виплати. За оцінками, 100 Gwei становлять 0,0021 ETH.
 
-For polygon WETH payouts, the fee is US$0.02 which covers the pool's costs in converting and transmitting the payouts.
+Для полігонних виплат WETH комісія становить 0,02 доларів США, яка покриває витрати пулу на конвертацію та передачу виплат.
 
-These fees are deducted before the payment reaches your wallet.
+Ці комісії знімаються до того, як платіж надійде до вашого гаманця.

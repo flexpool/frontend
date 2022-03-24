@@ -1,6 +1,6 @@
 ---
-title: I've lost my keys/mnemonics or my exchange has shut down my account. How can I get my unpaid balance?
+title: Я втратив ключі/мнемоніку або мій обмінник закрив мій обліковий запис. Як я можу отримати свій несплачений залишок?
 coin: eth
 ---
 
-First, stop mining to a wallet if you no longer believe you can access it. Then, contact support with a description of the situation and your ETH address. They will let you know if anything can be done.
+По-перше, припиніть майнінг у гаманці, якщо ви більше не вірите, що можете отримати до нього доступ. Потім зверніться в службу підтримки з описом ситуації та адресою ETH. Вони дадуть вам знати, якщо щось можна зробити.
