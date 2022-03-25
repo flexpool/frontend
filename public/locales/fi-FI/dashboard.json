@@ -7,8 +7,10 @@
     "ip_hint": "Vinkki: Sinä olet tällä sivulla osoitteesta",
     "ip_description": "Jos laitteesi käyttää proxy-välityspalvelinta, ts. laitteesi louhii tuplana ZIL-poolissa, käytä välityspalvelimen osoitetta.",
     "high_fees_warning": "Jos ulosmaksurajasi on alle 0.05 ETH, gas-hinnasta tulee korkea ja se vähennetään maksustasi. Suosittelemme asettamaan korkeamman ulosmaksurajan.",
+    "important_note": "Important Note",
     "payout": {
       "title": "Ulosmaksun asetukset",
+      "title_sidebar": "Payouts",
       "eth_mainnet": "You payout will be sent via Ethereum Mainnet. This is the main Ethereum network, it is more decentralized and secure, but has a significant transaction fee.",
       "eth_polygon": "You payout will be sent via Polygon (L2). L2 offers significant lower transaction fees and your payment will be processed in WETH (Wrapped ETH). Please make sure you understand how this is going to affect your payouts before switching networks.",
       "limit": "Payout threshold (min: {{min}})",
@@ -23,6 +25,7 @@
     },
     "difficulty": {
       "title": "Difficulty Settings",
+      "title_sidebar": "Difficulty",
       "warning": "The adjustable difficulty is a feature for advanced users only. We strongly recommend keeping 1 unless you have specific requirements. Please do not change the difficulty unless you know what you are doing.",
       "check_difficulty": "Check current difficulty",
       "update_difficulty": "Update difficulty",
@@ -42,6 +45,7 @@
     ],
     "notifications": {
       "title": "Sähköposti-ilmoitukset",
+      "title_sidebar": "Notifications",
       "email_enabled": "Sähköposti-ilmoitukset käytössä",
       "email_disabled": "Sähköposti-ilmoitukset pois käytöstä",
       "send_to": "Lähetä ilmoitus sähköpostiin",
@@ -49,6 +53,7 @@
       "check_worker_down": "Ilmoita minulle, jos laitteeni lopettaa louhinnan",
       "check_payout_sent": "Ilmoita minulle kun maksu lähetetään",
       "offline_duration": "We will notify you if we haven't received any shares from your rig in {{duration}}.",
+      "worker_offline_detection_duration": "Worker Offline Detection Duration",
       "submit": "Ota muutokset käyttöön"
     }
   },

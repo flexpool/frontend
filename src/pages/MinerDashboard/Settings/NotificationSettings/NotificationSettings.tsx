@@ -101,7 +101,7 @@ const NotificationSettings: React.FC<{
         return (
           <Form>
             <FieldGroup.V>
-              <h3>Email notifications</h3>
+              <h3>{t('dashboard:settings.notifications.title')}</h3>
               {notificationSettingsError && (
                 <ScrollIntoView>
                   <ErrorBox error={notificationSettingsError} />

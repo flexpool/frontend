@@ -7,8 +7,10 @@
     "ip_hint": "Tip: Prohlížíte tuto stránku z",
     "ip_description": "Pokud tvůj rig používá proxy adresu, například při duálním těžení ZILu, prosím použij tu adresu namísto IP tvého rigu.",
     "high_fees_warning": "A payout limit under 0.05 ETH will result in high gas fees that will be deducted from your payment. Please set up a higher payout limit if possible.",
+    "important_note": "Important Note",
     "payout": {
       "title": "Nastavení vyplácení",
+      "title_sidebar": "Payouts",
       "eth_mainnet": "You payout will be sent via Ethereum Mainnet. This is the main Ethereum network, it is more decentralized and secure, but has a significant transaction fee.",
       "eth_polygon": "You payout will be sent via Polygon (L2). L2 offers significant lower transaction fees and your payment will be processed in WETH (Wrapped ETH). Please make sure you understand how this is going to affect your payouts before switching networks.",
       "limit": "Payout threshold (min: {{min}})",
@@ -23,6 +25,7 @@
     },
     "difficulty": {
       "title": "Difficulty Settings",
+      "title_sidebar": "Difficulty",
       "warning": "The adjustable difficulty is a feature for advanced users only. We strongly recommend keeping 1 unless you have specific requirements. Please do not change the difficulty unless you know what you are doing.",
       "check_difficulty": "Check current difficulty",
       "update_difficulty": "Update difficulty",
@@ -42,6 +45,7 @@
     ],
     "notifications": {
       "title": "E-mailová upozornění",
+      "title_sidebar": "Notifications",
       "email_enabled": "E-mailová upozornění zapnuta",
       "email_disabled": "E-mailová upozornění vypnuta",
       "send_to": "Odeslat upozornění na",
@@ -49,6 +53,7 @@
       "check_worker_down": "Upozornit mě, když jeden z mých rigů přestane těžit",
       "check_payout_sent": "Upozornit mě na vyplacení zůstatku",
       "offline_duration": "We will notify you if we haven't received any shares from your rig in {{duration}}.",
+      "worker_offline_detection_duration": "Worker Offline Detection Duration",
       "submit": "Aplikovat změny"
     }
   },

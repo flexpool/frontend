@@ -14,7 +14,6 @@ const ScrollTextContainer = styled.div`
   min-width: 230px;
   white-space: nowrap;
   color: var(--primary);
-  margin-left: 12.5px;
 
   @media screen and (min-width: 800px) {
     min-width: 510px;
@@ -115,7 +114,7 @@ const HeroHeadline = () => {
         components={{
           br: <br />,
         }}
-      />
+      />{' '}
       <ScrollTextContainer>
         {isMounted ? (
           <>

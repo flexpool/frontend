@@ -27,7 +27,8 @@
       "title": "帮助中心",
       "get_started": "开始挖矿",
       "faq": "常见问题",
-      "api_docs": "API 文档"
+      "api_docs": "API 文档",
+      "transparency_reports": "Transparency Reports"
     },
     "community": {
       "title": "Flexpool 社群"

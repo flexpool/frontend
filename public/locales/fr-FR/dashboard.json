@@ -7,8 +7,10 @@
     "ip_hint": "Astuce : Vous visitez cette page Web depuis",
     "ip_description": "Si votre infrastructure de minage utilise une adresse proxy, par exemple si votre rigs fait du double minage via un pool ZIL, veuillez utiliser l'adresse proxy à la place.",
     "high_fees_warning": "A payout limit under 0.05 ETH will result in high gas fees that will be deducted from your payment. Please set up a higher payout limit if possible.",
+    "important_note": "Important Note",
     "payout": {
       "title": "Paramètres de paiement",
+      "title_sidebar": "Payouts",
       "eth_mainnet": "You payout will be sent via Ethereum Mainnet. This is the main Ethereum network, it is more decentralized and secure, but has a significant transaction fee.",
       "eth_polygon": "You payout will be sent via Polygon (L2). L2 offers significant lower transaction fees and your payment will be processed in WETH (Wrapped ETH). Please make sure you understand how this is going to affect your payouts before switching networks.",
       "limit": "Payout threshold (min: {{min}})",
@@ -23,6 +25,7 @@
     },
     "difficulty": {
       "title": "Difficulty Settings",
+      "title_sidebar": "Difficulty",
       "warning": "The adjustable difficulty is a feature for advanced users only. We strongly recommend keeping 1 unless you have specific requirements. Please do not change the difficulty unless you know what you are doing.",
       "check_difficulty": "Check current difficulty",
       "update_difficulty": "Update difficulty",
@@ -42,6 +45,7 @@
     ],
     "notifications": {
       "title": "Notifications par e-mail",
+      "title_sidebar": "Notifications",
       "email_enabled": "Notifications par e-mail activées",
       "email_disabled": "Notifications par e-mail désactivées",
       "send_to": "Envoyer les notifications à",
@@ -49,6 +53,7 @@
       "check_worker_down": "M'avertir quand un de mes rigs de minage est hors ligne",
       "check_payout_sent": "Me notifier lorsqu'un paiement a été envoyé",
       "offline_duration": "We will notify you if we haven't received any shares from your rig in {{duration}}.",
+      "worker_offline_detection_duration": "Worker Offline Detection Duration",
       "submit": "Appliquer les modifications"
     }
   },

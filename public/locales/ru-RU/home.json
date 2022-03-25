@@ -1,7 +1,7 @@
 {
   "head_title": "Самый Продвинутый Майнинг Пул",
-  "title": "Строим Будущее Майнинг-пулов",
-  "description": "Инновационный майнинг-пул, созданный для продвинутой добычи криптовалют.",
+  "title": "Building the Future of Mining Pools <br/> for",
+  "description": "Providing the highest profitability worldwide.",
   "coin_earnings_cards": {
     "estimated": "Расчетная прибыль",
     "estimated_tooltip": "Estimated earnings are based on the past 24 hours on our pool (luck excluded).",
@@ -34,7 +34,7 @@
   },
   "mined_coins_section": {
     "title": "Доступные монеты",
-    "description": "Flexpool – это Multi-Coin пул, что означает, что вы можете майнить свои любимые монеты на Flexpool.",
+    "description": "Flexpool is a Multi-Coin mining pool, which means that you can mine multiple coins on Flexpool.",
     "table_head": {
       "name": "Имя",
       "price": "Цена",

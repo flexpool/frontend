@@ -1,7 +1,7 @@
 {
   "head_title": "最先进的矿池",
-  "title": "构筑研发矿池的未来",
-  "description": "持续创新研发的加密货币采矿池。",
+  "title": "Building the Future of Mining Pools <br/> for",
+  "description": "Providing the highest profitability worldwide.",
   "coin_earnings_cards": {
     "estimated": "预计收益",
     "estimated_tooltip": "预计收益按过往七天矿池收入计算。",
@@ -34,7 +34,7 @@
   },
   "mined_coins_section": {
     "title": "我们的币种",
-    "description": "Flexpool 矿池支持多种货币。",
+    "description": "Flexpool is a Multi-Coin mining pool, which means that you can mine multiple coins on Flexpool.",
     "table_head": {
       "name": "币种",
       "price": "币价",
