@@ -114,8 +114,7 @@ const HeroHeadline = () => {
         components={{
           br: <br />,
         }}
-      />
-      <span> </span>
+      />{' '}
       <ScrollTextContainer>
         {isMounted ? (
           <>
