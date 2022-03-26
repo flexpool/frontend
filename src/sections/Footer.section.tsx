@@ -205,7 +205,7 @@ export const FooterSection = () => {
           </LinkOut>
 
           <LinkOut
-            href="https://play.google.com/store/apps/details?id=io.flexpool.android&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
+            href="https://play.google.com/store/apps/details?id=io.flexpool.android"
             style={{ display: 'inline-block' }}
           >
             <Image
