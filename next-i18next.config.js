@@ -14,6 +14,6 @@ module.exports = {
       'zh-CN',
       'uk-UA',
     ],
-    localePath: path.resolve('./public/locales'),
+    localePath: path.resolve('./src/locales'),
   },
 };
