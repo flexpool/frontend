@@ -4,6 +4,9 @@ const withTM = require('next-transpile-modules')(['@amcharts/amcharts4/']);
 
 module.exports = withPWA(
   withTM({
+    compiler: {
+      styledComponents: true,
+    },
     pwa: {
       dest: 'public',
       sw: 'service-worker.js',
