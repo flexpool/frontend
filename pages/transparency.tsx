@@ -3,7 +3,6 @@ import { NextSeo } from 'next-seo';
 
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { isAfter, subMonths } from 'date-fns';
 import format from 'date-fns/format';
 
 // Components
@@ -18,6 +17,21 @@ import {
 } from '../src/pages/Reports/components';
 import { useLocalizedDateFormatter } from '../src/utils/date.utils';
 
+/**
+ * After May 2021, yearly transparency reports are provided in replace of the old monthly open data reports
+ * Open data reports are available from Oct 2020 to May 2021
+ */
+const OPEN_DATA_REPORTS_DATE = [
+  '2021-05-01',
+  '2021-04-01',
+  '2021-03-01',
+  '2021-02-01',
+  '2021-01-01',
+  '2020-12-01',
+  '2020-11-01',
+  '2020-10-01',
+];
+
 const getTransparencyReportUrlByYear = (year: string) => {
   return `https://static.flexpool.io/opendata/fp-transparency-report-${year}.pdf`;
 };
@@ -28,51 +42,7 @@ const getReportUrlByDate = (date: Date) =>
     'y_MM'
   )}.pdf`;
 
-/**
- * tries to get the latest report date (month)
- */
-const getLatestReportDate = async () => {
-  let attempts = 0;
-  let date = new Date();
-  let resDate: Date | null = null;
-
-  while (attempts < 10 && !resDate) {
-    const dateStatus = await fetch(getReportUrlByDate(date), {
-      method: 'HEAD',
-    }).then((res) => res.status);
-
-    if (dateStatus === 200) {
-      resDate = date;
-    } else {
-      attempts += 1;
-      date = subMonths(date, 1);
-    }
-  }
-
-  return Promise.resolve(resDate);
-};
-
-/**
- * returns dates from latest report to the first report (Oct 2020)
- */
-const getDates = async () => {
-  const oldestReport = new Date('2020-10-01');
-  const latestReportDate = await getLatestReportDate();
-  if (latestReportDate === null) {
-    return [];
-  }
-  let date = latestReportDate;
-  const dates: Array<Date> = [];
-
-  while (isAfter(date, oldestReport)) {
-    dates.push(date);
-    date = subMonths(date, 1);
-  }
-
-  return dates;
-};
-
-export const OpenDataReportsPage = ({ dates, lastReportYear }) => {
+export const OpenDataReportsPage = ({ lastReportYear }) => {
   const { t } = useTranslation('reports');
   const dateFormatter = useLocalizedDateFormatter();
 
@@ -94,20 +64,24 @@ export const OpenDataReportsPage = ({ dates, lastReportYear }) => {
         />
         <Spacer />
         <h2>{t('archive')}</h2>
-        {(dates || []).map((item) => (
-          <ReportArchiveItem
-            key={dateFormatter.format(item, 'LLLL yy')}
-            href={getReportUrlByDate(item)}
-          >
-            <div>
-              <ReportTitle>{t('report_item')} - </ReportTitle>
-              {dateFormatter.format(item, 'LLLL y')}
-            </div>
-            <div>
-              <Sticker variant="primary">PDF</Sticker>
-            </div>
-          </ReportArchiveItem>
-        ))}
+        {OPEN_DATA_REPORTS_DATE.map((item) => {
+          let date = new Date(item);
+
+          return (
+            <ReportArchiveItem
+              key={dateFormatter.format(item, 'LLLL yy')}
+              href={getReportUrlByDate(date)}
+            >
+              <div>
+                <ReportTitle>{t('report_item')} - </ReportTitle>
+                {dateFormatter.format(date, 'LLLL y')}
+              </div>
+              <div>
+                <Sticker variant="primary">PDF</Sticker>
+              </div>
+            </ReportArchiveItem>
+          );
+        })}
       </Content>
     </Page>
   );
@@ -116,8 +90,6 @@ export const OpenDataReportsPage = ({ dates, lastReportYear }) => {
 export default OpenDataReportsPage;
 
 export async function getStaticProps({ locale }) {
-  const dates = await getDates();
-
   const lastReportYear = await fetch(
     'https://static.flexpool.io/opendata/last-report'
   ).then((res) => res.text());
@@ -129,7 +101,6 @@ export async function getStaticProps({ locale }) {
         'reports',
         'cookie-consent',
       ])),
-      dates: dates,
       lastReportYear,
     },
   };
