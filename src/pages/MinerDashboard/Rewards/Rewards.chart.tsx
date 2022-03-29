@@ -63,9 +63,7 @@ const RewardsChart: React.FC<{
     rewardsChart.colors.list = [color('#0069ff')];
     const rewardsChartData = rewards.map((item) => {
       return {
-        date: new Date(
-          item.timestamp * 1000 + new Date().getTimezoneOffset() * 60 * 1000
-        ),
+        date: new Date(item.timestamp * 1000).toISOString(),
         totalRewards: item.totalRewards / Math.pow(10, coin.decimalPlaces),
         countervaluedRewards: currencyFormatter(
           (item.totalRewards / Math.pow(10, coin.decimalPlaces)) * counterPrice
