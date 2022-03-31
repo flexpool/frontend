@@ -95,6 +95,10 @@ const HeroHeadLineContainer = styled.div`
   }
 `;
 
+const Highlight = styled.span`
+  color: var(--primary);
+`;
+
 const HeroHeadline = () => {
   const [count, setCount] = useState(0);
   const isMounted = useIsMounted();
@@ -108,14 +112,8 @@ const HeroHeadline = () => {
   return (
     <HeroHeadLineContainer>
       <Trans />
-      <Trans
-        i18nKey="title"
-        ns="home"
-        components={{
-          br: <br />,
-        }}
-      />{' '}
-      <ScrollTextContainer>
+      Earn your <Highlight>Lambo</Highlight> faster than your friends.
+      {/* <ScrollTextContainer>
         {isMounted ? (
           <>
             <TextDisappear key={count - 1}>
@@ -126,7 +124,7 @@ const HeroHeadline = () => {
         ) : (
           <span>Chia</span>
         )}
-      </ScrollTextContainer>
+      </ScrollTextContainer> */}
     </HeroHeadLineContainer>
   );
 };
