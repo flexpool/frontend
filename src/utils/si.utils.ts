@@ -49,6 +49,16 @@ export const useLocalizedNumberFormatter = (
       value: number,
       options: Intl.NumberFormatOptions | undefined = defaultOptions
     ) => {
+      if (options?.currency === 'lambo') {
+        return new Intl.NumberFormat(i18n.language, {
+          ...defaultOptions,
+          ...options,
+          currency: 'usd',
+        })
+          .format(value)
+          .replace('$', 'LAMBO ');
+      }
+
       return new Intl.NumberFormat(i18n.language, {
         ...defaultOptions,
         ...options,
