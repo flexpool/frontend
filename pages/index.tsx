@@ -15,6 +15,7 @@ import { WhyFlexpool } from '../src/pages/Home/components/WhyFlexpool/WhyFlexpoo
 import { SearchWrapper, PageContainer } from '../src/pages/Home/components';
 import HeroHeadline from '@/pages/Home/components/HeroHeadline';
 import Globe from '@/components/Globe';
+import { useCounterTicker } from '@/rdx/localSettings/localSettings.hooks';
 
 const StyledStonks = styled.div`
   /* position: absolute; */
@@ -104,6 +105,7 @@ const HeroSubHeadline = styled.div`
 export const HomePage = () => {
   const { t, i18n } = useTranslation('home');
   const { t: seoT } = useTranslation('seo');
+  const counterTicker = useCounterTicker();
 
   return (
     <PageContainer>
@@ -137,17 +139,33 @@ export const HomePage = () => {
               <Spacer size="md" />
             </HeroLeft>
             <StyledStonks>
-              <Image src="/stonks.jpeg" width={500} height={282} alt="stonks" />
+              <Image src="/lambo-homepage.png" width={1024} height={1024} />
             </StyledStonks>
             {/* <Globe /> */}
           </HeroLayout>
         </Content>
         <CoinEarnings />
+        {counterTicker === 'lambo' && (
+          <>
+            <Spacer />
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <p style={{ color: 'var(--text-tertiary)' }}>
+                Ł - LAMBO currency. mŁ - mLAMBO (microLAMBO), one 1000th of
+                LAMBO.
+              </p>
+            </div>
+          </>
+        )}
         <NewsSection />
         <HeroGlow1 src="/glow3.png" />
         <HeroGlow2 src="/glow4.png" />
       </Hero>
-
       <CoinsWeMineSection />
       <WhyFlexpool />
       <GetStartedSection />
