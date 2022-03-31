@@ -24,6 +24,7 @@ export const LAMBO_PRICE = {
   pln: 839087,
   czk: 4402208,
   uah: 5899542,
+  lambo: 1,
 };
 
 const useTimeToLambo = ({

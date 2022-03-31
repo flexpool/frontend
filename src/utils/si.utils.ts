@@ -50,13 +50,25 @@ export const useLocalizedNumberFormatter = (
       options: Intl.NumberFormatOptions | undefined = defaultOptions
     ) => {
       if (options?.currency === 'lambo') {
+        if (value < 0.001 && value > 0) {
+          return new Intl.NumberFormat(i18n.language, {
+            ...defaultOptions,
+            ...options,
+            maximumFractionDigits: 3,
+            currency: 'usd',
+          })
+            .format(value * 1000)
+            .replace('$', 'mŁ');
+        }
+
         return new Intl.NumberFormat(i18n.language, {
           ...defaultOptions,
           ...options,
+          maximumFractionDigits: 3,
           currency: 'usd',
         })
           .format(value)
-          .replace('$', 'LAMBO ');
+          .replace('$', 'Ł');
       }
 
       return new Intl.NumberFormat(i18n.language, {
