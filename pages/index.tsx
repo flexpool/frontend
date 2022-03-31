@@ -16,6 +16,24 @@ import { SearchWrapper, PageContainer } from '../src/pages/Home/components';
 import HeroHeadline from '@/pages/Home/components/HeroHeadline';
 import Globe from '@/components/Globe';
 
+const StyledStonks = styled.div`
+  /* position: absolute; */
+  width: 320px;
+  height: 320px;
+  right: -160px;
+  user-select: none;
+  cursor: pointer;
+  display: none;
+
+  @media screen and (min-width: 800px) {
+    flex: 1;
+    display: flex;
+    padding: 11.5rem 0 0;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
 const HeroGlow1 = styled.img`
   display: none;
   position: absolute;
@@ -118,7 +136,10 @@ export const HomePage = () => {
               </SearchWrapper>
               <Spacer size="md" />
             </HeroLeft>
-            <Globe />
+            <StyledStonks>
+              <Image src="/stonks.jpeg" width={500} height={282} alt="stonks" />
+            </StyledStonks>
+            {/* <Globe /> */}
           </HeroLayout>
         </Content>
         <CoinEarnings />
