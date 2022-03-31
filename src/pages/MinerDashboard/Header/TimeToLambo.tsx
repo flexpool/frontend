@@ -15,8 +15,22 @@ const TimeToLambo = ({ coin, address }: { coin: string; address: string }) => {
 
   return (
     <Card style={{ display: 'flex', alignItems: 'center' }} paddingShort>
-      <div style={{ marginLeft: '-12px', marginBottom: '-4px', flexShrink: 0 }}>
-        <Image src="/lambo.png" width={60} height={37} alt="lambo" />
+      <div
+        style={{
+          marginLeft: '-12px',
+          marginBottom: '-4px',
+          flexShrink: 0,
+          width: '60px',
+          height: '37px',
+        }}
+      >
+        <Image
+          src="/lambo.png"
+          quality={100}
+          width={120}
+          height={74}
+          alt="lambo"
+        />
       </div>
 
       <Text>Your estimated time to Lambo is {time}.</Text>
