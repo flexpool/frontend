@@ -64,7 +64,7 @@ const useTimeToLambo = ({
   }, [estimatedDailyEarnings, activeCoin?.decimalPlaces, minerBalance]);
 
   if (!estimatedEarningFiat) {
-    return '';
+    return '-';
   }
 
   const time = (LAMBO_PRICE[counterTicker] || 0) / estimatedEarningFiat;

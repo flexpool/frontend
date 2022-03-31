@@ -10,7 +10,6 @@ import { FaToggleOff, FaToggleOn } from 'react-icons/fa';
 import LoaderDots from 'src/components/Loader/LoaderDots';
 import useIsMounted from '@/hooks/useIsMounted';
 import useWorkerStatus from '@/hooks/useWorkerStatus';
-import useTimeToLambo from '@/hooks/useTimeToLambo';
 
 export function getGreeting() {
   const hours = new Date().getHours();
@@ -223,8 +222,6 @@ export const HeaderGreetings = ({
         })
     : '- ' + activeCoin?.hashrateUnit;
 
-  const timeToLambo = useTimeToLambo({ coin, address });
-
   return (
     <Wrap>
       <div>
@@ -243,11 +240,6 @@ export const HeaderGreetings = ({
                 coin: activeCoin?.name,
               })}
         </span>
-        <div style={{ marginTop: '4px' }}>
-          {timeToLambo && (
-            <span>Your estimated time to lambo is {timeToLambo}.</span>
-          )}
-        </div>
       </div>
       <AutoUpdateWrapper>
         <ToggleWrapper>

@@ -23,6 +23,7 @@ import AccountHeader from 'src/pages/MinerDashboard/Header/AccountHeader';
 import { HeaderGreetings } from 'src/pages/MinerDashboard/Header/Greetings';
 import { HeaderStats } from 'src/pages/MinerDashboard/Header/Stats';
 import { MinerDetails } from 'src/pages/MinerDashboard/Header/MinerDetails';
+import TimeToLambo from '@/pages/MinerDashboard/Header/TimeToLambo';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import { PullToRefresh } from 'src/components/layout/PullToRefresh/PullToRefresh';
@@ -253,6 +254,8 @@ export const MinerDashboardPageContent: React.FC<{
               address={address}
               onRefresh={loadAll}
             />
+            <TimeToLambo coin={coinTicker} address={address} />
+            <Spacer />
             <AccountHeader
               coin={activeCoin}
               address={address}
