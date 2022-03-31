@@ -26,7 +26,9 @@ const Sphere = ({ worldmap }: any) => {
     fresnel_color: '#c0c5d4',
   });
 
-  const matcap = useLoader(THREE.TextureLoader, 'matcap11.png');
+  // const matcap = useLoader(THREE.TextureLoader, 'matcap11.png');
+  const stonksTexture = useLoader(THREE.TextureLoader, 'stonks.jpeg');
+  stonksTexture.offset.set(-0.25, 0);
 
   const getPixelData = (x, y) => {
     const i = Math.floor(y - 1) * CANVAS_WIDTH * 4 + Math.floor(x) * 4;
@@ -119,7 +121,8 @@ const Sphere = ({ worldmap }: any) => {
     <>
       <mesh>
         <sphereGeometry attach="geometry" args={[600, 32 * 2, 32 * 2]} />
-        <meshMatcapMaterial transparent attach="material" matcap={matcap} />
+        {/* <meshMatcapMaterial transparent attach="material" matcap={matcap} /> */}
+        <meshBasicMaterial transparent map={stonksTexture} attach="material" />
       </mesh>
       <mesh
         ref={sphereRef}
