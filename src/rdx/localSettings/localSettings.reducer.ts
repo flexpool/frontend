@@ -10,7 +10,7 @@ export type LocalSettingsState = {
 
 export const defaultState: LocalSettingsState = {
   coin: 'eth',
-  counterTicker: 'usd',
+  counterTicker: 'lambo',
   colorMode: 'system',
   systemColorMode: 'light',
 };

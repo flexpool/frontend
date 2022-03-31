@@ -82,6 +82,7 @@ export default class MyDocument extends Document {
         </Head>
         <body>
           <ThemeControlScript />
+          <LamboScript />
           <Main />
           <NextScript />
         </body>
@@ -147,8 +148,33 @@ const themeControlScript = () => {
   });
 };
 
+const lamboTickerScript = () => {
+  const appState = localStorage.getItem('app_state');
+
+  const lamboInit = localStorage.getItem('lambo-init');
+
+  if (appState && lamboInit !== 'true') {
+    try {
+      let j = JSON.parse(appState);
+
+      j.localSettings.counterTicker = 'lambo';
+
+      localStorage.setItem('app_state', JSON.stringify(j));
+      localStorage.setItem('lambo-init', 'true');
+    } catch (error) {
+      console.log('something went wrong', error);
+    }
+  }
+};
+
 function ThemeControlScript() {
   const scriptFn = `(${String(themeControlScript)})()`;
+
+  return <script dangerouslySetInnerHTML={{ __html: scriptFn }} />;
+}
+
+function LamboScript() {
+  const scriptFn = `(${String(lamboTickerScript)})()`;
 
   return <script dangerouslySetInnerHTML={{ __html: scriptFn }} />;
 }
