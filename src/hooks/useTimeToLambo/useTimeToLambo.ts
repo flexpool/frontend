@@ -67,11 +67,11 @@ const useTimeToLambo = ({
     return '';
   }
 
-  return (
-    (LAMBO_PRICE[counterTicker] || 0) /
-    estimatedEarningFiat /
-    365
-  ).toFixed(2);
+  const time = (LAMBO_PRICE[counterTicker] || 0) / estimatedEarningFiat;
+
+  if (time < 365) return `${time.toFixed(2)} days`;
+
+  return `${(time / 365).toFixed(2)} years`;
 };
 
 export default useTimeToLambo;

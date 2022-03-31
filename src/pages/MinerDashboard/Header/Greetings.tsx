@@ -245,7 +245,7 @@ export const HeaderGreetings = ({
         </span>
         <div style={{ marginTop: '4px' }}>
           {timeToLambo && (
-            <span>Your estimated time to lambo is {timeToLambo} years.</span>
+            <span>Your estimated time to lambo is {timeToLambo}.</span>
           )}
         </div>
       </div>
