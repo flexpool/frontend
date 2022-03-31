@@ -111,7 +111,7 @@ export const HomePage = () => {
             <HeroLeft>
               <HeroHeadline />
               <Spacer size="lg" />
-              <HeroSubHeadline>{t('description')}</HeroSubHeadline>
+              <HeroSubHeadline>Lowest Time-To-Lambo ever.</HeroSubHeadline>
               <Spacer size="sm" />
               <SearchWrapper>
                 <SearchAddressBar />
