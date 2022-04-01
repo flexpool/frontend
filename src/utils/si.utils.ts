@@ -58,7 +58,9 @@ export const useLocalizedNumberFormatter = (
             currency: 'usd',
           })
             .format(value * 1000)
-            .replace('$', 'mŁ');
+            .replace('USD', 'mŁ')
+            .replace('$', 'mŁ')
+            .replace('US', '');
         }
 
         return new Intl.NumberFormat(i18n.language, {
@@ -68,7 +70,9 @@ export const useLocalizedNumberFormatter = (
           currency: 'usd',
         })
           .format(value)
-          .replace('$', 'Ł');
+          .replace('USD', 'Ł')
+          .replace('$', 'Ł')
+          .replace('US', '');
       }
 
       return new Intl.NumberFormat(i18n.language, {
