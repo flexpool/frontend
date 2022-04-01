@@ -19,12 +19,13 @@ import { useCounterTicker } from '@/rdx/localSettings/localSettings.hooks';
 
 const StyledStonks = styled.div`
   /* position: absolute; */
-  width: 320px;
-  height: 320px;
-  right: -160px;
   user-select: none;
-  cursor: pointer;
-  display: none;
+
+  @media screen and (max-width: 800px) {
+    // height: 400px;
+    margin-top: -30%;
+    margin-bottom: -30%;
+  }
 
   @media screen and (min-width: 800px) {
     flex: 1;
@@ -32,6 +33,8 @@ const StyledStonks = styled.div`
     padding: 11.5rem 0 0;
     justify-content: center;
     align-items: center;
+    width: 320px;
+    height: 320px;
   }
 `;
 
@@ -75,6 +78,10 @@ const Hero = styled.div`
 const HeroLayout = styled.div`
   display: flex;
   position: relative;
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 const HeroLeft = styled.div`
@@ -146,21 +153,18 @@ export const HomePage = () => {
         </Content>
         <CoinEarnings />
         {counterTicker === 'lambo' && (
-          <>
-            <Spacer />
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <p style={{ color: 'var(--text-tertiary)' }}>
-                Ł - LAMBO currency. mŁ - mLAMBO (microLAMBO), one 1000th of
-                LAMBO.
-              </p>
-            </div>
-          </>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              margin: '20px',
+            }}
+          >
+            <p style={{ color: 'var(--text-tertiary)' }}>
+              Ł - LAMBO currency. mŁ - mLAMBO (microLAMBO), one 1000th of LAMBO.
+            </p>
+          </div>
         )}
         <NewsSection />
         <HeroGlow1 src="/glow3.png" />
