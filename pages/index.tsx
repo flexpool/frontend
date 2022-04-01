@@ -162,7 +162,7 @@ export const HomePage = () => {
             }}
           >
             <p style={{ color: 'var(--text-tertiary)' }}>
-              Ł - LAMBO currency. mŁ - mLAMBO (microLAMBO), one 1000th of LAMBO.
+              Ł - LAMBO currency. mŁ - mLAMBO (milliLAMBO), one 1000th of LAMBO.
             </p>
           </div>
         )}
