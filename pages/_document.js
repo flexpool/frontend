@@ -82,7 +82,6 @@ export default class MyDocument extends Document {
         </Head>
         <body>
           <ThemeControlScript />
-          <LamboDayCompatibilityScript />
           <Main />
           <NextScript />
         </body>
@@ -150,30 +149,6 @@ const themeControlScript = () => {
 
 function ThemeControlScript() {
   const scriptFn = `(${String(themeControlScript)})()`;
-
-  return <script dangerouslySetInnerHTML={{ __html: scriptFn }} />;
-}
-
-// On Lambo day, we added a new currency: LAMBO,
-// This script converts it back to usd for those who have used LAMBO
-const lamboDayCompatibilityScript = () => {
-  let appState = localStorage.getItem('app_state');
-
-  if (appState) {
-    try {
-      let j = JSON.parse(appState);
-      if (j.localSettings.counterTicker === 'lambo') {
-        j.localSettings.counterTicker = 'usd';
-        localStorage.setItem('app_state', JSON.stringify(j));
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  }
-};
-
-function LamboDayCompatibilityScript() {
-  const scriptFn = `(${String(lamboDayCompatibilityScript)})()`;
 
   return <script dangerouslySetInnerHTML={{ __html: scriptFn }} />;
 }
