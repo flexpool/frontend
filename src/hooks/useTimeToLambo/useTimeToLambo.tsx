@@ -6,6 +6,7 @@ import {
   useActiveCoin,
   useCounterTicker,
 } from '@/rdx/localSettings/localSettings.hooks';
+import { useTranslation } from 'next-i18next';
 
 export const LAMBO_PRICE = {
   usd: 200000,
@@ -36,6 +37,7 @@ const useTimeToLambo = ({
 }) => {
   const activeCoin = useActiveCoin();
   const counterTicker = useCounterTicker();
+  const { t } = useTranslation('common');
   const { data: dailyRewardsPerGh } = usePoolDailyRewardPerGigahashSecQuery({
     coin,
   });
@@ -70,9 +72,9 @@ const useTimeToLambo = ({
 
   const time = (LAMBO_PRICE[counterTicker] || 0) / estimatedEarningFiat;
 
-  if (time < 365) return `${time.toFixed(2)} days`;
+  if (time < 365) return `${time.toFixed(2)} ${t('days')}`;
 
-  return `${(time / 365).toFixed(2)} years`;
+  return `${(time / 365).toFixed(2)} ${t('years')}`;
 };
 
 export default useTimeToLambo;

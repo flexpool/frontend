@@ -80,6 +80,8 @@
   "date_time": {
     "now": "now"
   },
+  "years": "years",
+  "days": "days",
   "snacks": {
     "emailConfirmed": {
       "title": "Your email has been confirmed"
