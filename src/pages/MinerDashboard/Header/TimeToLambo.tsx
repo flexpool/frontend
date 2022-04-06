@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Card } from 'src/components/layout/Card';
 import Image from 'next/image';
 import useTimeToLambo from '@/hooks/useTimeToLambo';
+import { useCounterTicker } from '@/rdx/localSettings/localSettings.hooks';
 
 const Text = styled.span`
   font-weight: 500;
@@ -12,6 +13,9 @@ const Text = styled.span`
 
 const TimeToLambo = ({ coin, address }: { coin: string; address: string }) => {
   const time = useTimeToLambo({ coin, address });
+  const counterTicker = useCounterTicker();
+
+  if (counterTicker !== 'lambo') return null;
 
   return (
     <Card style={{ display: 'flex', alignItems: 'center' }} paddingShort>
