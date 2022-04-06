@@ -14,4 +14,5 @@ export type Ticker =
   | 'rub'
   | 'uah'
   | 'czk'
-  | 'pln';
+  | 'pln'
+  | 'lambo';
