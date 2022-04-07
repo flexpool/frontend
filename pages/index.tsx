@@ -15,6 +15,7 @@ import { WhyFlexpool } from '../src/pages/Home/components/WhyFlexpool/WhyFlexpoo
 import { SearchWrapper, PageContainer } from '../src/pages/Home/components';
 import HeroHeadline from '@/pages/Home/components/HeroHeadline';
 import Globe from '@/components/Globe';
+import LamboExplainer from '@/pages/Home/components/LamboExplainer';
 
 const HeroGlow1 = styled.img`
   display: none;
@@ -122,6 +123,7 @@ export const HomePage = () => {
           </HeroLayout>
         </Content>
         <CoinEarnings />
+        <LamboExplainer />
         <NewsSection />
         <HeroGlow1 src="/glow3.png" />
         <HeroGlow2 src="/glow4.png" />

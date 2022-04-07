@@ -158,8 +158,9 @@ function ThemeControlScript() {
 // This script converts it back to usd for those who have used LAMBO
 const lamboDayCompatibilityScript = () => {
   let appState = localStorage.getItem('app_state');
+  let lamboInit = localStorage.getItem('lambo-init');
 
-  if (appState) {
+  if (appState && lamboInit === 'true') {
     try {
       let j = JSON.parse(appState);
       if (j.localSettings.counterTicker === 'lambo') {
@@ -169,6 +170,11 @@ const lamboDayCompatibilityScript = () => {
     } catch (e) {
       console.log(e);
     }
+  }
+
+  // Clean up flag
+  if (lamboInit) {
+    localStorage.removeItem('lambo-init');
   }
 };
 
