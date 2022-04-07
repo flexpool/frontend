@@ -110,9 +110,27 @@
 
 .opblock-summary {
   cursor: pointer;
-  padding: 1rem 1.5rem;
   & + * {
     border-top: 1px solid var(--border-color);
+  }
+}
+
+.opblock-summary .opblock-summary-control {
+  border: none;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  height: auto;
+  display: block;
+  text-align: left;
+  line-height: 1;
+  height: auto;
+
+  .arrow {
+    position: absolute;
+    right: 1.5rem;
+    top: 1rem;
+    color: white;
+    fill: var(--text-primary);
   }
 }
 
