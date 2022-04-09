@@ -17,7 +17,7 @@ import HeroHeadline from '@/pages/Home/components/HeroHeadline';
 import Globe from '@/components/Globe';
 import LamboExplainer from '@/pages/Home/components/LamboExplainer';
 
-const HeroGlow1 = styled.img`
+const HeroGlow1 = styled.div`
   display: none;
   position: absolute;
   right: -400px;
@@ -31,7 +31,7 @@ const HeroGlow1 = styled.img`
   }
 `;
 
-const HeroGlow2 = styled.img`
+const HeroGlow2 = styled.div`
   position: absolute;
   left: -400px;
   top: -400px;
@@ -125,8 +125,12 @@ export const HomePage = () => {
         <CoinEarnings />
         <LamboExplainer />
         <NewsSection />
-        <HeroGlow1 src="/glow3.png" />
-        <HeroGlow2 src="/glow4.png" />
+        <HeroGlow1>
+          <Image width={800} height={800} src="/glow3.png" alt="glow" />
+        </HeroGlow1>
+        <HeroGlow2>
+          <Image width={800} height={800} src="/glow4.png" alt="glow" />
+        </HeroGlow2>
       </Hero>
 
       <CoinsWeMineSection />
