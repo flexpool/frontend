@@ -219,6 +219,9 @@ const Globe = () => {
   const overlayRef = useRef<HTMLDivElement | null>(null);
   const hashrate = useGetRegionHashRate();
 
+  useLoader.preload(THREE.ImageLoader, './map.png');
+  useLoader.preload(THREE.TextureLoader, 'matcap11.png');
+
   useEffect(() => {
     const saveMousePos = (e: any) => {
       if (overlayRef.current) {

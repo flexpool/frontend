@@ -3,6 +3,7 @@ import { NextSeo } from 'next-seo';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styled from 'styled-components';
+import Image from 'next/image';
 import { Content } from '../src/components/layout/Content';
 import { CoinsWeMineSection } from '../src/pages/Home/components/CoinsWeMine/CoinsWeMine.section';
 import { GetStartedSection } from '../src/pages/Home/components/GetStarted/GetStarted.section';
@@ -17,7 +18,7 @@ import Globe from '@/components/Globe';
 import LamboExplainer from '@/pages/Home/components/LamboExplainer';
 import MergeAnnouncement from '@/pages/MinerDashboard/Announcements/MergeAnnouncement';
 
-const HeroGlow1 = styled.img`
+const HeroGlow1 = styled.div`
   display: none;
   position: absolute;
   right: -400px;
@@ -31,7 +32,7 @@ const HeroGlow1 = styled.img`
   }
 `;
 
-const HeroGlow2 = styled.img`
+const HeroGlow2 = styled.div`
   position: absolute;
   left: -400px;
   top: -400px;
@@ -105,31 +106,32 @@ export const HomePage = () => {
         ]}
       />
       <MergeAnnouncement />
-      <div style={{ position: 'relative' }}>
-        <Hero>
-          <Content>
-            <HeroLayout>
-              <HeroLeft>
-                <HeroHeadline />
-                <Spacer size="lg" />
-                <HeroSubHeadline>{t('description')}</HeroSubHeadline>
-                <Spacer size="sm" />
-                <SearchWrapper>
-                  <SearchAddressBar />
-                </SearchWrapper>
-                <Spacer size="md" />
-              </HeroLeft>
-              <Globe />
-            </HeroLayout>
-          </Content>
-          <CoinEarnings />
-          <LamboExplainer />
-
-          <HeroGlow1 src="/glow3.png" />
-          <HeroGlow2 src="/glow4.png" />
-        </Hero>
+      <Hero>
+        <Content>
+          <HeroLayout>
+            <HeroLeft>
+              <HeroHeadline />
+              <Spacer size="lg" />
+              <HeroSubHeadline>{t('description')}</HeroSubHeadline>
+              <Spacer size="sm" />
+              <SearchWrapper>
+                <SearchAddressBar />
+              </SearchWrapper>
+              <Spacer size="md" />
+            </HeroLeft>
+            <Globe />
+          </HeroLayout>
+        </Content>
+        <CoinEarnings />
+        <LamboExplainer />
         <NewsSection />
-      </div>
+        <HeroGlow1>
+          <Image width={800} height={800} src="/glow3.png" alt="glow" />
+        </HeroGlow1>
+        <HeroGlow2>
+          <Image width={800} height={800} src="/glow4.png" alt="glow" />
+        </HeroGlow2>
+      </Hero>
 
       <CoinsWeMineSection />
       <WhyFlexpool />
