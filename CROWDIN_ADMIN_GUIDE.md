@@ -17,7 +17,7 @@ cp crowdin.yml.example crowdin.yml
 #
 'project_id': '453244'
 'api_token': '<YOUR_CROWDIN_API_TOKEN_HERE>' # <--- HERE
-'base_path': './public/locales'
+'base_path': './src/locales'
 'base_url': 'https://api.crowdin.com'
 ```
 
