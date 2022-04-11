@@ -1,10 +1,10 @@
 ---
-title: What is the transaction fee for ETH payouts?
-coin: eth
+title: ETH 支付的交易费用是多少？
+coin: ETH
 ---
 
-For mainnet payouts (the default), you pay the current gas fee at the time of a payout cycle, if it is below your gas price limit. The price varies, but it is a fixed fee regardless of your payout amount. As an estimate, 100 Gwei would be 0.0021 ETH.
+对于主网支付（默认），您在支付周期时支付当前的gas费，如果它低于您的gas价格限制。 价格各不相同，但无论您的支付金额如何，它都是固定费用。 作为估计，100 Gwei 将是 0.0021 ETH。
 
-For polygon WETH payouts, the fee is US$0.02 which covers the pool's costs in converting and transmitting the payouts.
+对于polygon WETH 支付，费用为 0.02 美元，用于支付池转换和传输支付的成本。
 
-These fees are deducted before the payment reaches your wallet.
+这些费用会在付款到达您的钱包之前扣除。

@@ -1,6 +1,6 @@
 ---
-title: I've lost my keys/mnemonics or my exchange has shut down my account. How can I get my unpaid balance?
-coin: eth
+title: 我丢失了我的密钥/助记符，或者我的交易所关闭了我的账户。 我怎样才能得到我的未付余额？
+coin: ETH
 ---
 
-First, stop mining to a wallet if you no longer believe you can access it. Then, contact support with a description of the situation and your ETH address. They will let you know if anything can be done.
+首先，如果您不再相信自己可以访问钱包，请停止挖掘钱包。 然后，联系支持人员并说明情况和您的 ETH 地址。 他们会告诉你是否可以做任何事情。

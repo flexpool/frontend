@@ -1,6 +1,6 @@
 ---
-title: I mined a block, why didn't I receive all of it?
-coin: eth
+title: 我挖到了一个区块，为什么我没有收到全部的以太坊？
+coin: ETH
 ---
 
-On a pool, rewards received by the pool are distributed proportionally to all farmers based on their share of the PPLNS queue. There is no bonus from the pool, as we would have to take rewards from someone else, or increase our pool fee, to pay for that.
+在矿池中，矿池收到的奖励（ETH）根据他们在 PPLNS 队列中的份额按比例分配给所有矿工， 矿池没有收取区块奖励。

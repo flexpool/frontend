@@ -1,8 +1,8 @@
 ---
-title: My exchange has changed my address, how do I fix this on Flexpool?
-coin: eth
+title: 我的交易所更改了我的地址，我该如何在 Flexpool 上解决这个问题？
+coin: ETH
 ---
 
-You should first contact your exchange to see if the "old" wallet address can receive a last deposit and credit your account. Most exchanges do this for a time after changing the address. Some exchanges like Coinbase create a new address everytime you look up your "receive" address, but all past addresses are still linked to your account and can be used.
+你应该首先联系你的交易所，看看“旧”钱包地址是否可以收到最后一笔存款并记入你的账户。 大多数交易所在更改地址后会这样做一段时间。 每次您查找“接收”地址时，像 Coinbase 这样的交易所都会创建一个新地址，但所有过去的地址仍与您的帐户相关联并且可以使用。
 
-If you can receive a last deposit to the old address, stop mining to the old address immediately and contact support for help with getting a payout if your unpaid balance is at least 0.005 ETH.
+如果您可以在旧地址收到最后一笔存款，请立即停止对旧地址的挖矿，如果您的未付余额至少为 0.005 ETH，请联系支持以获取付款。

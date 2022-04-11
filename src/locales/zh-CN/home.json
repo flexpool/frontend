@@ -1,7 +1,7 @@
 {
   "head_title": "最先进的矿池",
-  "title": "Building the Future of Mining Pools <br/> for",
-  "description": "Providing the highest profitability worldwide.",
+  "title": "构筑研发矿池的未来",
+  "description": "提供全球最高的盈利能力。",
   "coin_earnings_cards": {
     "estimated": "预计收益",
     "estimated_tooltip": "预计收益按过往七天矿池收入计算。",
@@ -10,7 +10,7 @@
     "cta_mine": "开始挖矿",
     "cta_farm": "开始挖矿",
     "pool_fee": "费率 {{value}} (PPLNS)",
-    "mev": "{{value}} of Supercharged MEV Bonus",
+    "mev": "增加 {{value}} MEV 奖金",
     "finder_reward": "{{value}}区块查找器奖励",
     "more_title": "其他币种即將上線，敬請期待！",
     "more_description": "将来还会推出其他币种，加入社群留意最新公报。"
@@ -34,7 +34,7 @@
   },
   "mined_coins_section": {
     "title": "我们的币种",
-    "description": "Flexpool is a Multi-Coin mining pool, which means that you can mine multiple coins on Flexpool.",
+    "description": "Flexpool 矿池支持多种货币。",
     "table_head": {
       "name": "币种",
       "price": "币价",
@@ -51,16 +51,16 @@
       "description": "以太坊是一个以区块链为基础的公共平台，专用加密货币以太币。分布式的以太网络，支持多种去中心化应用，智能合约。"
     },
     "etc": {
-      "title": "About Ethereum Classic",
-      "description": "Ethereum Classic maintains the original, unaltered history of the Ethereum network."
+      "title": "关于ETC",
+      "description": "ETC保留了以太坊网络的原始、未改变的历史。"
     },
     "xch": {
       "title": "关于 Chia",
       "description": "Chia是一种可编程加密货币，专注于保护区块链的生态友好方式。"
     },
     "btc": {
-      "title": "About Bitcoin",
-      "description": "Bitcoin is the world's first cryptocurrency that has introduced the concept of blockchain and peer to peer internet money."
+      "title": "关于比特币",
+      "description": "比特币是世界上第一个引入区块链和点对点互联网货币概念的加密货币。"
     },
     "resources": "资源",
     "website": "官方网站",

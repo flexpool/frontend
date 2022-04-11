@@ -3,4 +3,4 @@ title: Flexpool矿池抽成是多少？
 coin: XCH
 ---
 
-Our Chia pool has a 0.7% fee as of November 2021.
+我们的 Chia 池收取 0.7% 的费用。

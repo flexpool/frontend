@@ -3,6 +3,6 @@ title: 我不再挖矿了，我该如何处理我的剩余余额？
 coin: ETH
 ---
 
-If you have stopped mining and needed a payout, submit a support request [link to https://www.flexpool.io/support], confirming your coin and payout address, and we can enable a one-time payment.
+如果您已经停止挖矿并需要付款，请在 Flexpool 网站上提交请求，并确认您的加密货币和 ETH 钱包地址，然后我们可以一次性将货币支付给您。
 
-The minimum one-time payout is 0.005 ETH (but may change with gas conditions).
+最低一次性支付为 0.005 ETH（但可能会随gas条件而变化）。
