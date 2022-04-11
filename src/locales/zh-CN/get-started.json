@@ -68,7 +68,7 @@
       },
       {
         "key": "額外奖励",
-        "value": "95% of Supercharged MEV"
+        "value": "增加95% 的MEV"
       },
       {
         "key": "支付时间",
@@ -109,63 +109,63 @@
             "description": "独创专利挖矿软件"
           },
           {
-            "description": "算力稳定，持续研创的挖矿软件"
+            "description": "Actively developed and stable miner."
           }
         ]
       }
     ]
   },
   "detail_etc": {
-    "title": "Ethereum Classic mining",
+    "title": "ETC 挖矿",
     "pool_details": [
       {
-        "key": "Reward Scheme",
-        "value": "PPLNS (Pay Per Last N Shares)"
+        "key": "结算模式",
+        "value": "PPLNS （按最后N份额比例分配）"
       },
       {
-        "key": "Pool Fee",
+        "key": "费率",
         "value": "0.9%"
       },
       {
-        "key": "Payout Round",
-        "value": "Once an hour"
+        "key": "支付时间",
+        "value": "每小时一轮"
       },
       {
-        "key": "Payouts",
-        "value": "from 0.01 ETC up to 100 ETC"
+        "key": "起付额度",
+        "value": "自己设置，0.01 ETH 到最高 100 ETH"
       },
       {
-        "key": "Block confirmation time",
-        "value": "120 Blocks"
+        "key": "区块确认时间",
+        "value": "120 个区块"
       },
       {
-        "key": "Share Difficulty",
+        "key": "份额难度",
         "value": "4 GH"
       },
       {
-        "key": "Mining Algorithm",
-        "value": "Etchash"
+        "key": "算法",
+        "value": "ETC 算力"
       }
     ],
     "hardware": [
       {
-        "title": "GPU Mining",
+        "title": "显卡矿机",
         "key": "GPU",
         "miners": [
           {
-            "description": "Best miner for AMD GPUs"
+            "description": "AMD显卡推荐挖矿软件"
           },
           {
-            "description": "Best miner for NVIDIA 20/30 Series GPUs"
+            "description": "NVIDIA 20/30系列显卡推荐挖矿软件"
           },
           {
-            "description": "Best miner for 4GB zombie mode."
+            "description": "能用4G显卡继续挖以太币的软件"
           },
           {
-            "description": "Proprietary Ethash miner with low dev fee."
+            "description": "独创专利挖矿软件"
           },
           {
-            "description": "Actively developed and stable miner with low dev fee."
+            "description": "Actively developed and stable miner."
           }
         ]
       }
@@ -289,8 +289,8 @@
     "hk": "香港",
     "hke": "香港 (针对中国大陆优化)",
     "sge": "新加坡 (针对中国大陆优化)",
-    "additional_ports": "Additional Ports",
-    "additional_domains": "Additional Domains"
+    "additional_ports": "更多端口",
+    "additional_domains": "更多端口"
   },
   "cmd_keys": {
     "CLOSEST_SERVER": "最近服务器地址",

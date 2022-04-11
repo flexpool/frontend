@@ -1,8 +1,8 @@
 ---
-title: How do I change to a different pool server for my Chia farm?
-coin: xch
+title: 如何为我的 Chia 矿场更改为不同的池服务器？
+coin: XCH
 ---
 
-First of all, you should not need to do this unless you are seeing 500ms or higher ping times to the server, and maybe not even then. Chia is not as sensitive to network latency as Ethereum is.
+首先，除非您看到服务器的 ping 时间为 500 毫秒或更高，否则您不需要这样做，甚至可能不需要这样做。 Chia 对网络延迟的敏感度不如以太坊。
 
-That being said, "changing" the pool server is technically leaving the pool and joining again. From the GUI, you would use the "Change Pool" button, changing to the "new" region server. From the CLI, you would leave the pool with "chia plotnft leave" and join the new one with "chia plotnft join"
+话虽如此，“更改”池服务器在技术上是离开池并再次加入。 在 GUI 中，您将使用“更改池”按钮，更改为“新”区域服务器。 在 CLI 中，您将使用“chia plotnft leave”离开池并使用“chia plotnft join”加入新池

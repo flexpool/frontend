@@ -28,7 +28,7 @@
       "get_started": "开始挖矿",
       "faq": "常见问题",
       "api_docs": "API 文档",
-      "transparency_reports": "Transparency Reports"
+      "transparency_reports": "发展报告"
     },
     "community": {
       "title": "Flexpool 社群"
@@ -66,10 +66,10 @@
     "4002": "邮件确认时发生错误",
     "4003": "邮箱未被注册",
     "4004": "Token无效",
-    "number_max": "Maximum value is {{value}}",
-    "number_min": "Minimum value is {{value}}",
+    "number_max": "最大值为 {{value}}",
+    "number_min": "最小值为 {{value}}",
     "higher_than": "数目必须大于 {{value}}",
-    "invalid_number": "Please enter a valid number",
+    "invalid_number": "请输入有效号码",
     "required": "必填项",
     "invalid_ip": "IP地址无效",
     "email_invalid": "电邮地址无效",

@@ -7,10 +7,10 @@
     "ip_hint": "提示：您目前电脑IP地址是",
     "ip_description": "如果正在使用代理服务器，包括ETH+ZIL双排序挖矿，请使用代理服务器或者ZIL矿池的IP地址。",
     "high_fees_warning": "起付额度低于0.05ETH，Gas费用（转账手续费）占比会相对地高。这笔费用将会从您的余额中扣除。建议调高起付额度，比较划算，也减少交费用的次数。",
-    "important_note": "Important Note",
+    "important_note": "重要的提示",
     "payout": {
       "title": "支付设置",
-      "title_sidebar": "Payouts",
+      "title_sidebar": "起付额度",
       "eth_mainnet": "您的付款将通过以太坊主网支付。以太坊主网是以太坊主要网络，他更加的分布式和安全，但拥有更高的交易手续费。",
       "eth_polygon": "您的付款将通过 Polygon (L2) 支付。L2 网络提供了非常低的交易手续费，您将收到 WETH (Wrapper Ethereum)。在切换网络之前，请确保您了解这将如何影响您的支出。",
       "limit": "起付额度（最低：{{min}}）",
@@ -24,36 +24,36 @@
       "l2_acknowledge": "我承认我的钱包支持<bold>{{network_name}}</bold>网络，否则资金将不可逆转地流失， 并且知道如何处理<bold>{{network_name}}</bold>网络中的支出。"
     },
     "difficulty": {
-      "title": "Difficulty Settings",
-      "title_sidebar": "Difficulty",
-      "warning": "The adjustable difficulty is a feature for advanced users only. We strongly recommend keeping 1 unless you have specific requirements. Please do not change the difficulty unless you know what you are doing.",
-      "check_difficulty": "Check current difficulty",
-      "update_difficulty": "Update difficulty",
-      "acknowledge": "I acknowledge that higher difficulty will make the effective space calculations less precise.",
-      "check_difficulty_button": "Check Difficulty",
-      "pending_difficulty": "You have a pending difficulty change of {{difficulty}}. Please wait up to 10 minutes for the changes to be applied.",
-      "current_difficulty": "Your current difficulty is: {{difficulty}}",
-      "launcher_id_desc": "Use the Launcher ID to check the difficulty of your current PlotNFT.",
-      "launcher_id_error": "The launcher ID is invalid, please try again.",
-      "difficulty_desc": "Difficulty determines the frequency of partials. The lower the difficulty is, the more partials you will get. More partials will result in more precise stats.",
-      "login_link_desc": "A Login Link is required to prove you own this PlotNFT.",
-      "submit": "Apply Changes"
+      "title": "难度设置",
+      "title_sidebar": "全网难度",
+      "warning": "可调整的难度仅适用于高级用户。除非您有特殊要求，否则我们强烈建议保留 1。除非您知道自己在做什么，否则请不要更改难度。",
+      "check_difficulty": "检查当前难度",
+      "update_difficulty": "份额难度",
+      "acknowledge": "更高的难度会降低有效空间计算的精确度。",
+      "check_difficulty_button": "份额难度",
+      "pending_difficulty": "您的待定难度更改为 {{difficulty}}。请等待最多 10 分钟以应用更改。",
+      "current_difficulty": "你目前的难度是： {{difficulty}}",
+      "launcher_id_desc": "使用 Launcher ID 检查您当前 PlotNFT 的难度。",
+      "launcher_id_error": "启动器 ID 无效，请重试。",
+      "difficulty_desc": "难度决定了分块的频率。难度越低，获得的部分越多。更多的部分将导致更精确的统计数据。",
+      "login_link_desc": "需要登录链接来证明您拥有此 PlotNFT。",
+      "submit": "确认更改"
     },
     "payout_warning": [
-      "We highly recommend setting a higher payout limit to reduce total number of payout transactions. Less transactions means less network fees.",
-      "You are the only one responsible for paying the transaction fees. We are strongly in favour of setting a transaction fee limit lower to avoid a total loss of money due to high network fees. This will also help you partially mitigate losses when sudden fee spikes happen."
+      "我们强烈建议把起付额度提高，从而减少转账次数和Gas费用占比。",
+      "以太坊主网转账手续费（Gas费用）由你自己承擔。 Gas费用按单次收费，与金额多少没有直接关系。0.1个ETH和10个ETH需扣除的Gas费用是一样的。这个Gas费用，与以太坊网络交易量而动态调整的，下面可以设置上限。Gas费用低于你设置的上限，才会转账。"
     ],
     "notifications": {
       "title": "电子邮件通知",
-      "title_sidebar": "Notifications",
+      "title_sidebar": "通知",
       "email_enabled": "电子邮件通知已启用",
       "email_disabled": "电子邮件通知已停用",
       "send_to": "电邮地址",
       "send_to_placeholder": "your@email.com",
       "check_worker_down": "矿机掉线提醒",
       "check_payout_sent": "余额转账通知",
-      "offline_duration": "We will notify you if we haven't received any shares from your rig in {{duration}}.",
-      "worker_offline_detection_duration": "Worker Offline Detection Duration",
+      "offline_duration": "如果我们在 {{duration}}中没有从您的钻机收到任何股份，我们会通知您。",
+      "worker_offline_detection_duration": "Worker 离线检测持续时间",
       "submit": "确认更改"
     }
   },
@@ -63,8 +63,8 @@
     "greet_period_evening": "晚上好",
     "greet_desc": "{{count}} 部矿机正在挖 {{coin}} ，总算力 {{hashrate}}。",
     "greet_desc_plural": "{{count}} 部矿机正在挖 {{coin}} ，总算力 {{hashrate}}。",
-    "greet_desc_farm": "{{count}} worker is farming {{coin}} with {{hashrate}} of storage.",
-    "greet_desc_farm_plural": "{{count}} workers are farming {{coin}} with {{hashrate}} of total storage.",
+    "greet_desc_farm": "{{数量}} 正在挖矿矿工的 {{代币}} 拥有的 {{哈希率}} 总共的.",
+    "greet_desc_farm_plural": "{{count}} 名工人正在耕种 {{coin}} 和 {{hashrate}} 的总存储量。",
     "greet_desc_1": "[empty string]",
     "greet_desc_2": "[empty string]",
     "greet_desc_3": "[empty string]",
@@ -85,14 +85,14 @@
     "stat_unpaid_balance": "余额",
     "stat_unpaid_balance_reach": "已达到起付额度的 <v>{{value}}</v> 。",
     "stat_unpaid_balance_reach_est": "预计还需 <v>{{value}}</v> 才到起付额度。",
-    "stat_unpaid_balance_reach_ok": "Your payout will be processed on the next hourly payment round if the fee preferences are met.",
-    "stat_unpaid_balance_reach_ok_l2": "Your payout will be processed on the next L2 payment round, which happens randomly every 24 hours.",
+    "stat_unpaid_balance_reach_ok": "您的付款将在下一个支付窗口(每小时)，按照您的手续费设置进行相应处理。",
+    "stat_unpaid_balance_reach_ok_l2": "您的付款将在下一轮 L2 付款中处理，每 24 小时随机发生一次。",
     "stat_unpaid_balance_reach_delayed_by_gas_limit": "目前的Gas费用(<v>{{currentGas}}</v>) 高于你设置的上限 (<v>{{gasLimit}}</v>)，不会进行转账。",
     "stat_estimate": "预计收益",
     "stat_estimate_daily": "每天收益",
     "stat_estimate_weekly": "每周收益",
     "stat_estimate_monthly": "每月收益",
-    "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimates.",
+    "stat_estimate_tooltip": "按这可以换每天，每周，每月预计收益。",
     "update_in": "刷新",
     "auto_update": "自动刷新"
   },
@@ -126,7 +126,7 @@
       "title": "PPLNS 数据分析",
       "avp": {
         "title": "计算收入用的平均有效算力",
-        "tooltip": "Calculated based on current round share and the last 3 hours of the pool hashrate chart.",
+        "tooltip": "根据当前PPLNS滑动窗口内的份额比例，和3小時内矿池总算力计算",
         "current": "当前"
       },
       "crs": {
@@ -170,7 +170,7 @@
       "average_cta": "如何减少转账Gas费用？",
       "average_cta_tooltip": [
         "1. 提高起付额度会降低转账，支付手续费次数。",
-        "2. Set your transaction fee limit to avoid high fees in the settings. When you reach your payout threshold, we will make sure that your payout transaction will be executed as soon as it meets your fee limit settings."
+        "2. 把余额转账费用上限（Gas price 上限）降低，可以避免支付高手续费。达到起付额度后，网络手续费市价一降到您上限以下才会付款。"
       ]
     },
     "table": {

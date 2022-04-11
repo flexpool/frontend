@@ -109,7 +109,7 @@
             "description": "Mineur Ethash propriétaire à faible coût de développement."
           },
           {
-            "description": "Mineur stable et activement développé, avec des frais de développement peu élevés."
+            "description": "Actively developed and stable miner."
           }
         ]
       }
@@ -165,7 +165,7 @@
             "description": "Proprietary Ethash miner with low dev fee."
           },
           {
-            "description": "Actively developed and stable miner with low dev fee."
+            "description": "Actively developed and stable miner."
           }
         ]
       }

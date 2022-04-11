@@ -109,7 +109,7 @@
             "description": "Proprietaire Ethash miner met lage ontwikkelingskost."
           },
           {
-            "description": "Actief ontwikkelde en stabiele miner met lage ontwikkelingskost."
+            "description": "Actively developed and stable miner."
           }
         ]
       }
@@ -165,7 +165,7 @@
             "description": "Proprietary Ethash miner with low dev fee."
           },
           {
-            "description": "Actively developed and stable miner with low dev fee."
+            "description": "Actively developed and stable miner."
           }
         ]
       }

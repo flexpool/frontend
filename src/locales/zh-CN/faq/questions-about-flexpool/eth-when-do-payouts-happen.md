@@ -3,4 +3,4 @@ title: 什么时候支付？
 coin: ETH
 ---
 
-Payouts are checked every hour (for mainnet payouts) or every day (for Polygon WETH payouts) and sent if you meet the payout criteria. We do not predict or promise what minute the payout cycle runs, and it will vary over time.
+支付会每小时检查一次（对于主网支付）或每天（对于 Polygon WETH 支付），如果您符合支付标准，就会发送。 我们不预测或承诺支付周期运行的分钟数，它会随着时间的推移而变化。
