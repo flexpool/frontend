@@ -7,6 +7,7 @@ export const ActionIconContainer = styled.div`
   & > * {
     margin: 0;
     margin-left: 0.3rem;
+    white-space: nowrap;
   }
 `;
 export const ActionIcon = styled(Button)`
