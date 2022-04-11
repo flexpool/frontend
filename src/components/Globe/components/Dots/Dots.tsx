@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { Vector3 } from 'three';
-import { degree2Radian, geo2CanvasXY, getRegionFromColor } from '../../utils';
+import { degree2Radian, getRegionFromColor } from '../../utils';
+import { useWorldMapCanvasContext } from '../../providers/WorldMapCanvasProvider';
 import { useStore } from '../../store';
 
 import fragmentShader from './shader/fragment.glsl';
@@ -14,8 +15,6 @@ const Shader = {
 };
 
 const COUNT = 21430;
-const CANVAS_WIDTH = 1000;
-const CANVAS_HEIGHT = CANVAS_WIDTH / 2;
 
 const geometry = new THREE.CircleBufferGeometry(2, 5);
 
@@ -31,16 +30,10 @@ const REGION_COLOR = {
   'n/a': '#a1a4b1',
 };
 
-const Dots = ({ worldmap }) => {
+const Dots = () => {
   const selectedRegion = useStore((state) => state.region);
 
-  const getPixelData = useCallback(
-    (x: number, y: number) => {
-      const i = Math.floor(y - 1) * CANVAS_WIDTH * 4 + Math.floor(x) * 4;
-      return [worldmap[i], worldmap[i + 1], worldmap[i + 2], worldmap[i + 3]];
-    },
-    [worldmap]
-  );
+  const { getGeoPixelData } = useWorldMapCanvasContext();
 
   const ref = useRef<THREE.InstancedMesh>();
 
@@ -64,8 +57,7 @@ const Dots = ({ worldmap }) => {
           const latR = degree2Radian(lat + 90);
           const longR = degree2Radian(long + 180);
 
-          const { x, y } = geo2CanvasXY(lat, long, CANVAS_HEIGHT, CANVAS_WIDTH);
-          let pixel = getPixelData(x, y);
+          const pixel = getGeoPixelData(lat, long);
 
           if (pixel[3] > 0) {
             vector.setFromSphericalCoords(602, latR, longR);
@@ -95,7 +87,7 @@ const Dots = ({ worldmap }) => {
       ref.current.instanceColor.needsUpdate = true;
       ref.current.instanceMatrix.needsUpdate = true;
     }
-  }, [ref, getPixelData, selectedRegion]);
+  }, [ref, selectedRegion, getGeoPixelData]);
 
   return (
     <instancedMesh ref={ref} args={[geometry, null, COUNT]}>

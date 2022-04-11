@@ -6,17 +6,16 @@ import { Vector3 } from 'three';
 import styled from 'styled-components';
 import { Leva } from 'leva';
 import Halo from './components/Halo';
-import CanadaFlag from './components/CanadaFlag';
 import Sphere from './components/Sphere';
 import Dots from './components/Dots';
 import Marker from './components/Marker';
 import Arc from './components/Arc';
 import { useStore } from './store';
 import useInterval from '@/hooks/useInterval';
+import WorldMapCanvasProvider, {
+  useWorldMapCanvasContext,
+} from './providers/WorldMapCanvasProvider';
 import useGetRegionHashRate from '@/hooks/useGetRegionHashrate';
-
-const CANVAS_WIDTH = 1000;
-const CANVAS_HEIGHT = CANVAS_WIDTH / 2;
 
 const SERVERS = [
   {
@@ -96,21 +95,9 @@ const REGION_MAP = {
 };
 
 const Scene = () => {
-  const [mapIns, setMapIns] = useState<any>();
   const oc = useRef<any>(null);
 
-  const image = useLoader(THREE.ImageLoader, './map.png');
-
-  useEffect(() => {
-    if (image) {
-      const worldMap = document.createElement('canvas');
-      worldMap.width = CANVAS_WIDTH;
-      worldMap.height = CANVAS_HEIGHT;
-      const context = worldMap.getContext('2d');
-      context?.drawImage(image, 0, 0, worldMap.width, worldMap.height);
-      setMapIns(context?.getImageData(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT).data);
-    }
-  }, [image]);
+  const { map } = useWorldMapCanvasContext();
 
   useEffect(() => {
     if (oc.current) {
@@ -125,7 +112,7 @@ const Scene = () => {
   const globeGroupRef = useRef<any>(null);
 
   useFrame((_, delta) => {
-    if (mapIns && globeGroupRef.current) {
+    if (map && globeGroupRef.current) {
       const { scale } = globeGroupRef.current;
 
       if (scale.x < 1) {
@@ -160,11 +147,11 @@ const Scene = () => {
         enableDamping={false}
       />
       <group ref={globeGroupRef} scale={[0.5, 0.5, 0.5]}>
-        {mapIns && (
+        {map && (
           <>
             <Halo />
-            <Sphere worldmap={mapIns} />
-            <Dots worldmap={mapIns} />
+            <Sphere />
+            <Dots />
             {/* <CanadaFlag /> */}
             {arcs.map((arc, index) => (
               <Arc
@@ -257,10 +244,11 @@ const Globe = () => {
         id="globe-canvas"
       >
         <Suspense fallback={null}>
-          {/* <axesHelper args={[1000]} /> */}
-          <ambientLight intensity={1} />
-          <Scene />
-          {/* <Stats /> */}
+          <WorldMapCanvasProvider>
+            <ambientLight intensity={1} />
+            <Scene />
+            {/* <Stats /> */}
+          </WorldMapCanvasProvider>
         </Suspense>
       </Canvas>
       <StyledRegionOverlay
