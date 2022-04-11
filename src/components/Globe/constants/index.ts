@@ -1,0 +1,76 @@
+export const SERVERS = [
+  {
+    location: 'Ashburn, N. Virginia',
+    region: 'us-east',
+    latitude: 39.043757,
+    longitude: -77.487442,
+    color: '#0069ff',
+  },
+  {
+    location: 'Boardman, Oregon',
+    region: 'us-west',
+    latitude: 45.8371049,
+    longitude: -119.69639,
+    color: '#0069ff',
+  },
+  {
+    location: 'Frankfurt',
+    region: 'de',
+    latitude: 50.110924,
+    longitude: 8.682127,
+    color: '#0069ff',
+  },
+  {
+    location: 'Stockholm',
+    region: 'se',
+    latitude: 59.334591,
+    longitude: 18.06324,
+    color: '#0069ff',
+  },
+  {
+    location: 'Singapore',
+    region: 'sg',
+    latitude: -1.29027,
+    longitude: 103.851959,
+    color: '#0069ff',
+  },
+  {
+    location: 'Sydney',
+    region: 'au',
+    latitude: -33.865143,
+    longitude: 151.2099,
+    color: '#0069ff',
+  },
+  {
+    location: 'Sao Paulo',
+    region: 'br',
+    latitude: -23.533773,
+    longitude: -46.62529,
+    color: '#0069ff',
+  },
+  {
+    location: 'Seoul',
+    region: 'kr',
+    latitude: 37.5326,
+    longitude: 127.024612,
+    color: '#0069ff',
+  },
+  {
+    location: 'Hong Kong',
+    region: 'hk',
+    latitude: 22.302711,
+    longitude: 114.177216,
+    color: '#0069ff',
+  },
+];
+
+export const REGION_MAP = {
+  na: 'North America',
+  sa: 'South America',
+  eu: 'Europe',
+  ap: 'Asia Pacific',
+  au: 'Australia',
+  af: 'Africa',
+  me: 'Middle East',
+  ru: 'Russia',
+};
