@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, Suspense } from 'react';
+import React, { useEffect, useRef, Suspense } from 'react';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
 import { OrbitControls, Stats } from '@react-three/drei';
@@ -8,19 +8,15 @@ import { Leva } from 'leva';
 import Halo from './components/Halo';
 import Sphere from './components/Sphere';
 import Dots from './components/Dots';
-import Marker from './components/Marker';
-import Arc from './components/Arc';
-import { useStore } from './store';
-import useInterval from '@/hooks/useInterval';
+import ServerMarkers from './components/ServerMarkers';
+import Arcs from './components/Arcs';
+import RegionOverlay from './components/RegionOverlay';
 import WorldMapCanvasProvider, {
   useWorldMapCanvasContext,
 } from './providers/WorldMapCanvasProvider';
-import useGetRegionHashRate from '@/hooks/useGetRegionHashrate';
-import { REGION_MAP, SERVERS } from './constants';
 
 const Scene = () => {
   const oc = useRef<any>(null);
-
   const { map } = useWorldMapCanvasContext();
 
   useEffect(() => {
@@ -47,19 +43,6 @@ const Scene = () => {
     }
   });
 
-  const [arcs, setArcs] = useState<{ from: number; to: number }[]>([
-    { from: 0, to: 7 },
-    { from: 5, to: 1 },
-  ]);
-
-  useInterval(() => {
-    if (document && !document.hidden) {
-      const from = Math.floor(Math.random() * 9);
-      const to = Math.floor(Math.random() * 9);
-      setArcs((a) => a.concat([{ from, to }]));
-    }
-  }, 3000);
-
   return (
     <>
       <OrbitControls
@@ -76,26 +59,8 @@ const Scene = () => {
             <Halo />
             <Sphere />
             <Dots />
-            {/* <CanadaFlag /> */}
-            {arcs.map((arc, index) => (
-              <Arc
-                key={`${arc.from}-${arc.to}-${index}`}
-                fromLatitude={SERVERS[arc.from].latitude}
-                fromLongitude={SERVERS[arc.from].longitude}
-                toLatitude={SERVERS[arc.to].latitude}
-                toLongitude={SERVERS[arc.to].longitude}
-              />
-            ))}
-
-            {SERVERS.map((server, index) => (
-              <Marker
-                key={index}
-                {...server}
-                lat={server.latitude}
-                long={server.longitude}
-                color={server.color}
-              />
-            ))}
+            <Arcs />
+            <ServerMarkers />
           </>
         )}
       </group>
@@ -126,29 +91,8 @@ const StyledGlobe = styled.div`
 `;
 
 const Globe = () => {
-  const region = useStore((state) => state.region);
-  const overlayRef = useRef<HTMLDivElement | null>(null);
-  const hashrate = useGetRegionHashRate();
-
   useLoader.preload(THREE.ImageLoader, './map.png');
   useLoader.preload(THREE.TextureLoader, 'matcap11.png');
-
-  useEffect(() => {
-    const saveMousePos = (e: any) => {
-      if (overlayRef.current) {
-        overlayRef.current.style.left = `${Math.min(
-          e.clientX + 10,
-          window.innerWidth - 280
-        )}px`;
-        overlayRef.current.style.top = `${e.clientY + 10}px`;
-      }
-    };
-
-    window.addEventListener('mousemove', saveMousePos);
-    return () => {
-      window.removeEventListener('mousemove', saveMousePos);
-    };
-  }, []);
 
   return (
     <StyledGlobe>
@@ -175,78 +119,9 @@ const Globe = () => {
           </WorldMapCanvasProvider>
         </Suspense>
       </Canvas>
-      <StyledRegionOverlay
-        style={{
-          display: region ? 'block' : 'none',
-        }}
-        ref={overlayRef}
-      >
-        <div>{REGION_MAP[region]}</div>
-
-        <HashrateList>
-          {region === 'ru' && <div>This region is not available.</div>}
-          {region === 'af' && (
-            <div>
-              No server locations in this region. <br />
-              Closest region you can use is Europe.
-            </div>
-          )}
-          {region === 'me' && (
-            <div>
-              No server locations in this region. <br />
-              Closest regions you can use are Europe & Asia Pacific.
-            </div>
-          )}
-
-          {hashrate?.etc?.[region] && (
-            <Item>
-              <div>Ethereum Classic</div>
-              <div>{hashrate.etc[region]}</div>
-            </Item>
-          )}
-
-          {hashrate?.xch?.[region] && (
-            <Item>
-              <div>Chia</div>
-              <div>{hashrate.xch[region]}</div>
-            </Item>
-          )}
-        </HashrateList>
-      </StyledRegionOverlay>
+      <RegionOverlay />
     </StyledGlobe>
   );
 };
-
-const StyledRegionOverlay = styled.div`
-  border-radius: 4px;
-  font-family: 'Inter', sans-serif;
-  padding: 1rem;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
-  width: 280px;
-  min-height: 45px;
-  position: fixed;
-  pointer-events: none;
-`;
-
-const Item = styled.div`
-  display: flex;
-
-  & > div:first-child {
-    flex: 1;
-  }
-`;
-
-const HashrateList = styled.div`
-  color: #a3a2a2;
-  margin-top: 6px;
-  font-size: 0.85rem;
-  line-height: 1.4;
-
-  & > ${Item} + ${Item} {
-    margin-top: 4px;
-  }
-`;
 
 export default Globe;
