@@ -122,8 +122,6 @@ export const MinerPaymentsList: React.FC<{
     };
   }, [minerPayments]);
 
-  const counterValuePrice = minerPayments?.countervalue || 1;
-
   const { t } = useTranslation('dashboard');
   const currencyFormatter = useLocalizedCurrencyFormatter();
   const dateFormatter = useLocalizedDateFormatter();
@@ -204,16 +202,10 @@ export const MinerPaymentsList: React.FC<{
             alignRight: true,
             Component: ({ data }) => {
               const value = activeCoinFormatter(data.value);
-              const tickerValue = coin
-                ? (data.value / Math.pow(10, coin.decimalPlaces)) *
-                  counterValuePrice
-                : null;
-
-              const tickerDisplayValue = currencyFormatter(tickerValue || 0);
-
               return (
                 <Ws>
-                  {value} ({tickerDisplayValue})<span className="reward"></span>
+                  {value} ({currencyFormatter(data.countervalue)})
+                  <span className="reward"></span>
                 </Ws>
               );
             },
@@ -230,10 +222,7 @@ export const MinerPaymentsList: React.FC<{
                   })}{' '}
                   (
                   {coin &&
-                    currencyFormatter(
-                      (data.fee / Math.pow(10, coin.decimalPlaces)) *
-                        counterValuePrice
-                    )}
+                    currencyFormatter(data.feePercent * data.countervalue)}
                   )
                 </Ws>
               );

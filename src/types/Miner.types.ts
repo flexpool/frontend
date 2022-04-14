@@ -69,6 +69,7 @@ export type ApiMinerPayment = {
   fee: number;
   feePercent: number;
   hash: string;
+  countervalue: number;
   timestamp: number;
   value: number;
   confirmed: boolean;
@@ -76,7 +77,6 @@ export type ApiMinerPayment = {
   network: string;
 };
 export type ApiMinerPayments = {
-  countervalue: number;
   data: ApiMinerPayment[];
   totalItems: number;
   totalPages: number;
