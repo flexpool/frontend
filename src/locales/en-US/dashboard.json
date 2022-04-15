@@ -182,9 +182,11 @@
         "pending": "Pending",
         "success": "Success"
       },
+      "estimated_value": "Estimated value now:",
       "table_head": {
         "date": "Date",
         "value": "Transaction Value",
+        "value_tooltip": "The fiat conversion is based on the price on the time of the payout.",
         "fee": "Fee",
         "duration": "Duration",
         "hash": "Hash",

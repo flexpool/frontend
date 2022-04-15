@@ -29,6 +29,15 @@ const HeaderSplit = styled.div`
   justify-content: space-between;
 `;
 
+const TransactionValueHeader = styled.span`
+  & > span {
+    position: absolute;
+    margin-left: 4px;
+    font-size: 1rem;
+    top: 7px;
+  }
+`;
+
 const StatusContainer = styled.span<{
   confirmed: ApiMinerPayment['confirmed'];
 }>`
@@ -185,7 +194,16 @@ export const MinerPaymentsList: React.FC<{
             },
           },
           {
-            title: t('payments.table.table_head.value'),
+            title: (
+              <TransactionValueHeader>
+                {t('payments.table.table_head.value')}
+                <Tooltip>
+                  <TooltipContent>
+                    {t('payments.table.table_head.value_tooltip')}
+                  </TooltipContent>
+                </Tooltip>
+              </TransactionValueHeader>
+            ),
             alignRight: true,
             Component: ({ data }) => {
               const value = activeCoinFormatter(data.value);
@@ -206,7 +224,8 @@ export const MinerPaymentsList: React.FC<{
                   }
                 >
                   <TooltipContent>
-                    Now: {currencyFormatter(tickerValue || 0)}
+                    {t('payments.table.estimated_value')}{' '}
+                    {currencyFormatter(tickerValue || 0)}
                   </TooltipContent>
                 </Tooltip>
               );
@@ -233,7 +252,7 @@ export const MinerPaymentsList: React.FC<{
                   }
                 >
                   <TooltipContent>
-                    Now:{' '}
+                    {t('payments.table.estimated_value')}{' '}
                     {coin &&
                       currencyFormatter(
                         (data.fee / Math.pow(10, coin.decimalPlaces)) *
