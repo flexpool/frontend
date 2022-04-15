@@ -38,6 +38,13 @@ const TransactionValueHeader = styled.span`
   }
 `;
 
+const DownloadButton = styled(Button)`
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+`;
+
 const StatusContainer = styled.span<{
   confirmed: ApiMinerPayment['confirmed'];
 }>`
@@ -130,7 +137,7 @@ export const MinerPaymentsList: React.FC<{
           <h2>{t('payments.table.title')}</h2>
         </div>
         <Stack>
-          <Button
+          <DownloadButton
             size="xs"
             as="a"
             className="export-button"
@@ -138,15 +145,15 @@ export const MinerPaymentsList: React.FC<{
             href={`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/miner/export/payments.pdf?coin=${coin?.ticker}&address=${address}&countervalue=${counterTicker}`}
           >
             {t('payments.table.download_pdf')}
-          </Button>
-          <Button
+          </DownloadButton>
+          <DownloadButton
             size="xs"
             as="a"
             className="export-button"
             href={`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/miner/export/payments.csv?coin=${coin?.ticker}&address=${address}&countervalue=${counterTicker}`}
           >
             {t('payments.table.download')}
-          </Button>
+          </DownloadButton>
         </Stack>
       </HeaderSplit>
       <Spacer />
