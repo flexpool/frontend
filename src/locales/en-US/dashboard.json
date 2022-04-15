@@ -177,13 +177,16 @@
     "table": {
       "title": "Payments",
       "download": "Download CSV",
+      "download_pdf": "Download PDF",
       "table_contents": {
         "pending": "Pending",
         "success": "Success"
       },
+      "estimated_value": "Estimated value now:",
       "table_head": {
         "date": "Date",
         "value": "Transaction Value",
+        "value_tooltip": "The fiat conversion is based on the price at the time of the payout.",
         "fee": "Fee",
         "duration": "Duration",
         "hash": "Hash",
