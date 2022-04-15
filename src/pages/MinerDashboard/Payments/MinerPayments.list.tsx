@@ -103,7 +103,7 @@ export const MinerPaymentsList: React.FC<{
   const [currentPage, setCurrentPage] = React.useState(0);
   const counterTicker = useCounterTicker();
 
-  const { data: minerPayments, isLoading } = useMinerPaymentsQuery({
+  const { data: minerPayments, isFetching } = useMinerPaymentsQuery({
     address,
     coin: coin?.ticker as string,
     countervalue: counterTicker,
@@ -170,7 +170,7 @@ export const MinerPaymentsList: React.FC<{
       </HeaderSplit>
       <Spacer />
       <DynamicList
-        isLoading={isLoading}
+        isLoading={isFetching}
         onRowClick={handleRowClick}
         pagination={{
           currentPage,
