@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-type Spacing = 'small' | 'medium' | 'large';
+type Spacing = 'xs' | 'small' | 'medium' | 'large';
 
 type StackProps = {
   vertical?: boolean;
@@ -12,6 +12,8 @@ type StackProps = {
 
 const spacing2px = (spacing: Spacing) => {
   switch (spacing) {
+    case 'xs':
+      return '0.25rem';
     case 'small':
       return '0.5rem';
     case 'medium':

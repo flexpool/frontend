@@ -24,34 +24,6 @@ import styled from 'styled-components';
 import { BiTransferAlt } from 'react-icons/bi';
 import NetworkLogo from '@/components/NetworkLogo';
 
-const StyledHashLink = styled.div`
-  display: flex;
-  align-items: center;
-
-  div:first-child {
-    flex-shrink: 0;
-  }
-
-  span {
-    margin-left: 0.25rem;
-  }
-`;
-
-type HashLinkProps = {
-  ticker: string;
-  network: string;
-  children: React.ReactNode;
-};
-
-const HashLink = ({ ticker, network, children }: HashLinkProps) => {
-  return (
-    <StyledHashLink>
-      <NetworkLogo ticker={ticker} network={network} />
-      {children}
-    </StyledHashLink>
-  );
-};
-
 const HeaderSplit = styled.div`
   display: flex;
   justify-content: space-between;
@@ -344,10 +316,11 @@ export const MinerPaymentsList: React.FC<{
               }
 
               return (
-                <HashLink
-                  ticker={coin?.ticker as string}
-                  network={data.network}
-                >
+                <Stack spacing="xs">
+                  <NetworkLogo
+                    ticker={coin?.ticker as string}
+                    network={data.network}
+                  />
                   <Ws>
                     <Mono className="item-hover-higjlight">
                       <LinkOutCoin
@@ -357,7 +330,7 @@ export const MinerPaymentsList: React.FC<{
                       />
                     </Mono>
                   </Ws>
-                </HashLink>
+                </Stack>
               );
             },
           },
