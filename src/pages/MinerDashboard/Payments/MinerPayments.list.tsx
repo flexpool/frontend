@@ -13,6 +13,7 @@ import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { getCoinLink } from 'src/utils/coinLinks.utils';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
+import Stack from '@/components/Stack';
 import { TableCellSpinner } from 'src/components/Loader/TableCellSpinner';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import {
@@ -122,6 +123,8 @@ export const MinerPaymentsList: React.FC<{
     };
   }, [minerPayments]);
 
+  const currentCounterValuePrice = minerPayments?.countervalue || 1;
+
   const { t } = useTranslation('dashboard');
   const currencyFormatter = useLocalizedCurrencyFormatter();
   const dateFormatter = useLocalizedDateFormatter();
@@ -145,15 +148,27 @@ export const MinerPaymentsList: React.FC<{
         <div>
           <h2>{t('payments.table.title')}</h2>
         </div>
-        <Button
-          size="xs"
-          as="a"
-          className="export-button"
-          href={`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/miner/export/payments.csv?coin=${coin?.ticker}&address=${address}&countervalue=${counterTicker}`}
-        >
-          {t('payments.table.download')}
-        </Button>
+        <Stack>
+          <Button
+            size="xs"
+            as="a"
+            className="export-button"
+            target="_blank"
+            href={`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/miner/export/payments.pdf?coin=${coin?.ticker}&address=${address}&countervalue=${counterTicker}`}
+          >
+            {t('payments.table.download_pdf')}
+          </Button>
+          <Button
+            size="xs"
+            as="a"
+            className="export-button"
+            href={`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/miner/export/payments.csv?coin=${coin?.ticker}&address=${address}&countervalue=${counterTicker}`}
+          >
+            {t('payments.table.download')}
+          </Button>
+        </Stack>
       </HeaderSplit>
+      <Spacer />
       <DynamicList
         isLoading={isLoading}
         onRowClick={handleRowClick}
@@ -202,11 +217,26 @@ export const MinerPaymentsList: React.FC<{
             alignRight: true,
             Component: ({ data }) => {
               const value = activeCoinFormatter(data.value);
+
+              const tickerValue = coin
+                ? (data.value / Math.pow(10, coin.decimalPlaces)) *
+                  currentCounterValuePrice
+                : null;
+
               return (
-                <Ws>
-                  {value} ({currencyFormatter(data.countervalue)})
-                  <span className="reward"></span>
-                </Ws>
+                <Tooltip
+                  wrapIcon={false}
+                  icon={
+                    <Ws>
+                      {value} ({currencyFormatter(data.countervalue)})
+                      <span className="reward"></span>
+                    </Ws>
+                  }
+                >
+                  <TooltipContent>
+                    Now: {currencyFormatter(tickerValue || 0)}
+                  </TooltipContent>
+                </Tooltip>
               );
             },
           },
@@ -215,16 +245,30 @@ export const MinerPaymentsList: React.FC<{
             alignRight: true,
             Component: ({ data }) => {
               return (
-                <Ws>
-                  {numberFormatter(data.feePercent, {
-                    style: 'percent',
-                    maximumFractionDigits: 3,
-                  })}{' '}
-                  (
-                  {coin &&
-                    currencyFormatter(data.feePercent * data.countervalue)}
-                  )
-                </Ws>
+                <Tooltip
+                  wrapIcon={false}
+                  icon={
+                    <Ws>
+                      {numberFormatter(data.feePercent, {
+                        style: 'percent',
+                        maximumFractionDigits: 3,
+                      })}{' '}
+                      (
+                      {coin &&
+                        currencyFormatter(data.feePercent * data.countervalue)}
+                      )
+                    </Ws>
+                  }
+                >
+                  <TooltipContent>
+                    Now:{' '}
+                    {coin &&
+                      currencyFormatter(
+                        (data.fee / Math.pow(10, coin.decimalPlaces)) *
+                          currentCounterValuePrice
+                      )}
+                  </TooltipContent>
+                </Tooltip>
               );
             },
           },

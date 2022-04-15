@@ -177,6 +177,7 @@
     "table": {
       "title": "Payments",
       "download": "Download CSV",
+      "download_pdf": "Download PDF",
       "table_contents": {
         "pending": "Pending",
         "success": "Success"

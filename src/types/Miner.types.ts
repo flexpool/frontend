@@ -77,6 +77,7 @@ export type ApiMinerPayment = {
   network: string;
 };
 export type ApiMinerPayments = {
+  countervalue: number;
   data: ApiMinerPayment[];
   totalItems: number;
   totalPages: number;
