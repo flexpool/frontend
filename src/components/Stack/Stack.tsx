@@ -8,6 +8,7 @@ type StackProps = {
   spacing?: Spacing;
   children: React.ReactNode;
   className?: string;
+  wrap?: boolean;
 };
 
 const spacing2px = (spacing: Spacing) => {
@@ -25,12 +26,20 @@ const spacing2px = (spacing: Spacing) => {
   }
 };
 
-const FlexBox = styled.div<{ vertical: boolean; spacing: Spacing }>`
+const FlexBox = styled.div<{
+  vertical: boolean;
+  spacing: Spacing;
+  shouldWrap: boolean;
+}>`
   display: flex;
   flex-direction: ${(props) => (props.vertical ? 'column' : 'row')};
   justify-content: flex-start;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: ${(props) => (props.shouldWrap ? 'wrap' : 'nowrap')};
+
+  & > * {
+    flex-shrink: 0;
+  }
 
   & > * + * {
     margin-left: ${(props) =>
@@ -45,9 +54,15 @@ const Stack = ({
   vertical = false,
   spacing = 'small',
   className,
+  wrap = false,
 }: StackProps) => {
   return (
-    <FlexBox className={className} vertical={vertical} spacing={spacing}>
+    <FlexBox
+      className={className}
+      vertical={vertical}
+      spacing={spacing}
+      shouldWrap={wrap}
+    >
       {children}
     </FlexBox>
   );
