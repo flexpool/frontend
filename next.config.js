@@ -27,6 +27,12 @@ module.exports = withPWA(
         use: ['@svgr/webpack'],
       });
 
+      config.module.rules.push({
+        test: /\.(glsl|vs|fs|frag)$/,
+        exclude: '/node_modules',
+        use: ['raw-loader'],
+      });
+
       config.module.rules.unshift({
         test: /pdf\.worker\.(min\.)?js/,
         use: [

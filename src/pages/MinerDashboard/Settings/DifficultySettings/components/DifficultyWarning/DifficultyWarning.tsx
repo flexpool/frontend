@@ -6,7 +6,7 @@ const DifficultyWarning = () => {
 
   return (
     <InfoBox variant="warning">
-      <h3>Important note</h3>
+      <h3>{t('dashboard:settings.important_note')}</h3>
       <div>
         <p>{t('dashboard:settings.difficulty.warning')}</p>
       </div>

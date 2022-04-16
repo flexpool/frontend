@@ -83,7 +83,16 @@ export const NewSelectCounterTicker = () => {
 
   const items = React.useMemo(() => {
     const currencyOptions = poolCoins?.countervalues
-      ? [...poolCoins.countervalues, 'sek', 'nzd', 'thb', 'pln', 'czk']
+      ? [
+          ...poolCoins.countervalues,
+          'sek',
+          'nzd',
+          'thb',
+          'pln',
+          'czk',
+          'uah',
+          'lambo',
+        ]
       : [];
 
     return currencyOptions.map((item) => ({

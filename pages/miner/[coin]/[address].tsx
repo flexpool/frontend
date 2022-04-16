@@ -4,10 +4,12 @@ import { NextSeo } from 'next-seo';
 import dynamic from 'next/dynamic';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Image from 'next/image';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Content } from 'src/components/layout/Content';
-import { Page, PageLoading } from 'src/components/layout/Page';
+import { Page } from 'src/components/layout/Page';
+import AnnouncementBar from '@/components/AnnouncementBar';
 
 import {
   useActiveCoin,
@@ -21,6 +23,7 @@ import AccountHeader from 'src/pages/MinerDashboard/Header/AccountHeader';
 import { HeaderGreetings } from 'src/pages/MinerDashboard/Header/Greetings';
 import { HeaderStats } from 'src/pages/MinerDashboard/Header/Stats';
 import { MinerDetails } from 'src/pages/MinerDashboard/Header/MinerDetails';
+import TimeToLambo from '@/pages/MinerDashboard/Header/TimeToLambo';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import { PullToRefresh } from 'src/components/layout/PullToRefresh/PullToRefresh';
@@ -31,6 +34,8 @@ import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
 import { getChecksumByTicker } from '@/utils/validators/checksum';
 import Warning from '@/assets/warning-icon.svg';
 import { fetchApi } from 'src/utils/fetchApi';
+
+const DONATION_ADDRESS = '0x165CD37b4C644C2921454429E7F9358d18A45e14';
 
 const TabContent = styled.div`
   box-shadow: inset -1px 18px 19px -13px var(--bg-secondary);
@@ -101,6 +106,29 @@ const BannerText = styled.div`
 
   & > p {
     margin-top: 0.5rem;
+  }
+`;
+
+const DonationAnnouncement = styled(AnnouncementBar)`
+  border-top: 9px solid #005bb9;
+  border-bottom: 8px solid #ffd302;
+`;
+
+const ETCAnnouncement = styled(AnnouncementBar)`
+  padding: 1rem 0;
+`;
+
+const ETCCallToAction = styled.a`
+  border: 1px solid white;
+  text-decoration: none;
+  padding: 0.25rem 0.4rem;
+  border-radius: 4px;
+  color: white;
+  font-size: 0.85rem;
+  margin-left: 0.25rem;
+
+  &:hover {
+    text-decoration: none;
   }
 `;
 
@@ -197,12 +225,37 @@ export const MinerDashboardPageContent: React.FC<{
               title: `${address}`,
             }}
           />
+          <ETCAnnouncement variant="success" id="etc">
+            🎉 Flexpool now supports Ethereum Classic (ETC)!{' '}
+            <ETCCallToAction href={'/get-started/etc/GPU'}>
+              Get Started
+            </ETCCallToAction>
+          </ETCAnnouncement>
+          {address === DONATION_ADDRESS && (
+            <DonationAnnouncement
+              id="donation-dashboard"
+              variant="onBg"
+              removable={false}
+            >
+              <Image
+                width={100}
+                height={66.66}
+                src="/images/ukraine_flag.png"
+                alt="Ukraine Flag"
+              />
+              <h3>This is the Ukraine donation dashboard</h3>
+              <h3>Thank you for your support</h3>
+            </DonationAnnouncement>
+          )}
+
           <Content>
             <HeaderGreetings
               coin={coinTicker}
               address={address}
               onRefresh={loadAll}
             />
+            <TimeToLambo coin={coinTicker} address={address} />
+            <Spacer />
             <AccountHeader
               coin={activeCoin}
               address={address}

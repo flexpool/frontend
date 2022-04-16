@@ -1,0 +1,268 @@
+{
+  "settings": {
+    "cta": "Configurações",
+    "title": "Configurações",
+    "ip": "Endereço IP para verificação",
+    "ip_caption": "The IP required for verification is the one that has the highest number of shares submitted during the past 24 hours.",
+    "ip_hint": "Dica: Você está visitando esta página a partir de",
+    "ip_description": "Se o seu worker está usando um endereço de proxy, por exemplo, seu worker está minerando através de uma pool de ZIL, por favor use o endereço proxy ao invés do seu IP.",
+    "high_fees_warning": "Limites de pagamentos abaixo de 0,05 ETH resultarão em altas taxas de transferência, elas serão deduzidas do seu pagamento. Por favor, defina um limite de pagamento mais alto, se possível.",
+    "important_note": "Important Note",
+    "payout": {
+      "title": "Configuração de Pagamento",
+      "title_sidebar": "Payouts",
+      "eth_mainnet": "You payout will be sent via Ethereum Mainnet. This is the main Ethereum network, it is more decentralized and secure, but has a significant transaction fee.",
+      "eth_polygon": "You payout will be sent via Polygon (L2). L2 offers significant lower transaction fees and your payment will be processed in WETH (Wrapped ETH). Please make sure you understand how this is going to affect your payouts before switching networks.",
+      "limit": "Payout threshold (min: {{min}})",
+      "limit_desc": "You will be paid only after your unpaid balance will reach {{value}}. Your entire unpaid balance will be paid out, not just your threshold amount.",
+      "limit_err_higher": "Deve ser maior que {{min}}",
+      "gas_limit": "Limite de preço do gás",
+      "gas_limit_desc": "O preço do gás da sua transação será limitado a {{value}} {{valueUnit}} ({{valueTicker}}, {delimiter} do limite de pagamento). Você não receberá nenhum pagamento se o preço do gás for mais alto.",
+      "gas_limit_zero": "Sua transação não tem limite de taxa.",
+      "submit": "Aplicar alterações",
+      "l2_warning": "Please make sure your wallet support <bold>{{network_name}}</bold> WETH deposits. Otherwise, your funds will be lost forever.",
+      "l2_acknowledge": "I acknowledge that my wallet supports <bold>{{network_name}}</bold> L2 network, that the funds will be irreversibly lost otherwise, and that I know how to deal with payouts made in the <bold>{{network_name}}</bold> network."
+    },
+    "difficulty": {
+      "title": "Difficulty Settings",
+      "title_sidebar": "Difficulty",
+      "warning": "The adjustable difficulty is a feature for advanced users only. We strongly recommend keeping 1 unless you have specific requirements. Please do not change the difficulty unless you know what you are doing.",
+      "check_difficulty": "Check current difficulty",
+      "update_difficulty": "Update difficulty",
+      "acknowledge": "I acknowledge that higher difficulty will make the effective space calculations less precise.",
+      "check_difficulty_button": "Check Difficulty",
+      "pending_difficulty": "You have a pending difficulty change of {{difficulty}}. Please wait up to 10 minutes for the changes to be applied.",
+      "current_difficulty": "Your current difficulty is: {{difficulty}}",
+      "launcher_id_desc": "Use the Launcher ID to check the difficulty of your current PlotNFT.",
+      "launcher_id_error": "The launcher ID is invalid, please try again.",
+      "difficulty_desc": "Difficulty determines the frequency of partials. The lower the difficulty is, the more partials you will get. More partials will result in more precise stats.",
+      "login_link_desc": "A Login Link is required to prove you own this PlotNFT.",
+      "submit": "Apply Changes"
+    },
+    "payout_warning": [
+      "We highly recommend setting a higher payout limit to reduce total number of payout transactions. Less transactions means less network fees.",
+      "You are the only one responsible for paying the transaction fees. We are strongly in favour of setting a transaction fee limit lower to avoid a total loss of money due to high network fees. This will also help you partially mitigate losses when sudden fee spikes happen."
+    ],
+    "notifications": {
+      "title": "Notificações por email",
+      "title_sidebar": "Notifications",
+      "email_enabled": "Notificações por email habilitadas",
+      "email_disabled": "Notificações por email desativadas",
+      "send_to": "Enviar notificações para",
+      "send_to_placeholder": "seu@email.com",
+      "check_worker_down": "Alertar quando um dos meus workers ficar offline",
+      "check_payout_sent": "Notificar-me quando um pagamento for enviado",
+      "offline_duration": "We will notify you if we haven't received any shares from your rig in {{duration}}.",
+      "worker_offline_detection_duration": "Worker Offline Detection Duration",
+      "submit": "Aplicar alterações"
+    }
+  },
+  "header": {
+    "greet_period_morning": "Bom dia",
+    "greet_period_afternoon": "Boa tarde",
+    "greet_period_evening": "Bom dia",
+    "greet_desc": "{{count}} worker está minerando {{coin}} e está hasheando {{hashrate}} no total.",
+    "greet_desc_plural": "{{count}} workers estão minerando {{coin}} e estão hasheando {{hashrate}} no total.",
+    "greet_desc_farm": "{{count}} worker is farming {{coin}} with {{hashrate}} of storage.",
+    "greet_desc_farm_plural": "{{count}} workers are farming {{coin}} with {{hashrate}} of total storage.",
+    "greet_desc_1": "",
+    "greet_desc_2": "",
+    "greet_desc_3": "",
+    "greet_desc_4": "",
+    "greet_desc_5": "",
+    "info_payout_limit": "Payout Threshold",
+    "info_gas_limit": "Limite do Valor do Gás",
+    "info_gas_limit_none": "Nenhum",
+    "info_gas_limit_detail": "{{percent}} do limite de pagamento.",
+    "info_gas_limit_detail_none": "O preço do gás não é limitado.",
+    "info_gas_limit_detail_na": "Preço não disponível.",
+    "info_joined": "Entrou",
+    "info_joined_tooltip": "Sua primeira share foi registrada em",
+    "info_joined_tooltip_empty": "Nenhuma share foi registrada ainda",
+    "info_coin_price": "Preço do {{coin}}",
+    "network": "Network",
+    "stat_workers": "Mineradores Ligados/Desligados",
+    "stat_unpaid_balance": "Saldo Não Pago",
+    "stat_unpaid_balance_reach": "<v>{{value}}</v> do limite de pagamento atingido.",
+    "stat_unpaid_balance_reach_est": "O limite será atingido <v>{{value}}</v>.",
+    "stat_unpaid_balance_reach_ok": "Your payout will be processed on the next hourly payment round if the fee preferences are met.",
+    "stat_unpaid_balance_reach_ok_l2": "Your payout will be processed on the next L2 payment round, which happens randomly every 24 hours.",
+    "stat_unpaid_balance_reach_delayed_by_gas_limit": "However, your payout won't be processed because your gas price limit of <v>{{gasLimit}}</v> is lower than the current network gas price of <v>{{currentGas}}</v>.",
+    "stat_estimate": "Ganhos Estimados",
+    "stat_estimate_daily": "diário",
+    "stat_estimate_weekly": "semanal",
+    "stat_estimate_monthly": "mensal",
+    "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimates.",
+    "update_in": "Atualizando em",
+    "auto_update": "Atualização automática"
+  },
+  "nav": {
+    "stats": "Estatísticas",
+    "payments": "Pagamentos",
+    "rewards": "Recompensas",
+    "blocks": "Blocos"
+  },
+  "rewards": {
+    "head_title": "Recompensas do Minerador",
+    "earnings_chart": {
+      "title": "Ganhos deste mês",
+      "earnings": "Ganhos",
+      "daily_income": "Renda diária",
+      "download_csv": "Exportar Recompensas como CSV"
+    },
+    "past_earnings": {
+      "title": "Ganhos Anteriores",
+      "yesterday": "Ontem",
+      "last_week": "Past 7 Days",
+      "last_month": "Past 30 Days"
+    },
+    "forecasted_earnings": {
+      "title": "Ganhos Previstos",
+      "daily": "Diariamente",
+      "weekly": "Semanalmente",
+      "monthly": "Mensalmente"
+    },
+    "pplns": {
+      "title": "Estatísticas Avançadas de PPLNS",
+      "avp": {
+        "title": "Hashrate Médio de Pagamento",
+        "tooltip": "Calculated based on current round share and the last 3 hours of the pool hashrate chart.",
+        "current": "Atual"
+      },
+      "crs": {
+        "title": "Share da Rodada Atual",
+        "aprox": "Recompensa aproximada",
+        "tooltip": "Derivado do registro de shares"
+      },
+      "log": {
+        "title": "Tempo para Limpeza do Log de Shares",
+        "tooltip": "Tempo para a share da rodada ser esvaziada.",
+        "size": "{{value}} shares no log"
+      }
+    },
+    "pplns_chart": {
+      "title": "Shares no Log PPLNS",
+      "valid_shares": "Shares Válidas"
+    }
+  },
+  "payments": {
+    "head_title": "Pagamentos à Mineradores",
+    "chart": {
+      "title": "Pagamentos Este Ano",
+      "fee": "Taxa",
+      "value": "Valor",
+      "net_value": "Valor Líquido"
+    },
+    "general": {
+      "title": "Estatísticas Gerais de Pagamento",
+      "total_paid": "Total Pago",
+      "total_transactions": "Total de Transações",
+      "paid_in_fees": "{{value}} pago em tarifas",
+      "average_payout_duration": "Duração Média de Pagamento",
+      "average_payout_duration_desc": "Tempo Médio Entre Pagamentos"
+    },
+    "transaction_fees": {
+      "title": "Taxas da Transação",
+      "last": "Última Transação",
+      "fee": "{{value}} taxa",
+      "average": "Taxa Média da Transação",
+      "average_percent": "Taxa Média da Transação %",
+      "average_cta": "Dicas para reduzir as taxas",
+      "average_cta_tooltip": [
+        "1. Definir um limite de pagamento mais alto reduzirá o número de transações que você terá que pagar em termos de taxas de transação de rede.",
+        "2. Set your transaction fee limit to avoid high fees in the settings. When you reach your payout threshold, we will make sure that your payout transaction will be executed as soon as it meets your fee limit settings."
+      ]
+    },
+    "table": {
+      "title": "Pagamentos",
+      "download": "Baixar arquivo CSV",
+      "table_contents": {
+        "pending": "Pendente",
+        "success": "Sucesso"
+      },
+      "table_head": {
+        "date": "Data",
+        "value": "Valor da Transação",
+        "fee": "Taxa",
+        "duration": "Duração",
+        "hash": "Hash",
+        "status": "Status"
+      }
+    }
+  },
+  "stats": {
+    "not_enough_data": "Não há dados suficientes",
+    "not_enough_data_message": "Não temos dados suficientes para mostrar gráficos. Se seus workers já estiverem minerando, aguarde até 10 minutos para que os dados sejam processados.",
+    "active_worker": {
+      "title": "Worker",
+      "reset": "Redefinir"
+    },
+    "hashrate": {
+      "title": "Hashrate",
+      "title_space": "Espaço",
+      "current": "Atual",
+      "average": "24h Avg Effective",
+      "reported": "Reportado"
+    },
+    "shares": {
+      "title": "Shares",
+      "title_hint": "last 24 hours",
+      "title_points": "Pontos",
+      "valid": "Válida",
+      "stale": "Obsoleta",
+      "invalid": "Inválida"
+    },
+    "hashrate_chart": {
+      "title": "Hashrate",
+      "title_space": "Espaço",
+      "effective": "Hashrate Atual",
+      "average": "Hashrate Médio",
+      "reported": "Hashrate Reportado",
+      "effective_space": "Espaço Efetivo",
+      "average_space": "Espaço Efetivo Médio",
+      "reported_space": "Espaço Reportado"
+    },
+    "shares_chart": {
+      "title": "Shares",
+      "title_points": "Pontos",
+      "valid": "Válida",
+      "stale": "Obsoleta",
+      "invalid": "Inválida"
+    },
+    "table": {
+      "title_active": "Workers Ativos",
+      "title_inactive": "Workers Inativos",
+      "search_placeholder": "Filtrar por worker",
+      "table_head": {
+        "name": "Nome",
+        "reported_hashrate": "Hashrate Reportado",
+        "reported_space": "Espaço Reportado",
+        "current_e_hashrate": "Hashrate Atual",
+        "current_e_space": "Espaço E. Atual",
+        "average_e_hashrate": "Hashrate E. Médio",
+        "average_e_space": "Espaço E. Médio",
+        "valid": "Shares Válidas",
+        "stale": "Shares Obsoletas",
+        "invalid": "Shares Inválidas",
+        "valid_points": "Pontos Válidos",
+        "stale_points": "Pontos Obsoletos",
+        "invalid_points": "Pontos Inválidos",
+        "last_seen": "Visto por Último"
+      }
+    },
+    "proTips": {
+      "chartsProTip": "Clique nos itens da legenda para incluir/excluir valores relacionados no gráfico",
+      "tablesProTip": "Você pode classificar sua tabela de workers clicando nos cabeçalhos.",
+      "hoverHashrateProtip": "Você pode passar o mouse sobre o hashrate \"Efetivo Médio (E.)\" e ver o hashrate médio das últimas 6h e 12h.",
+      "apiProTip": "A API Flexpool completa está disponível publicamente.",
+      "searchProTip": "Se você apenas clicar no botão de pesquisa na página inicial, você será direcionado para o último endereço visualizado.",
+      "payoutExportProTip": "Você pode exportar todas as suas transações como uma planilha CSV na aba \"Pagamentos\".",
+      "rewardsExportProTip": "Você pode exportar todas as suas recompensas como uma planilha CSV na aba \"Recompensas\"."
+    }
+  },
+  "status_pending_tooltip": "Aguardando confirmação da transação",
+  "confirmation_duration_tooltip": "Confirmado em",
+  "confirmed_at_tooltip": "Confirmado na",
+  "warning_header": "It looks like your dashboard is not ready yet.",
+  "warning_description": "If you are new here, your dashboard will be ready within 20 minutes of your first submitted share to this address. Please check back a little later."
+}

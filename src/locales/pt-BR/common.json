@@ -1,0 +1,96 @@
+{
+  "proTip": "Pro Tip",
+  "searchbar": {
+    "placeholder": "Busque pelo seu endereço de mineração"
+  },
+  "nav": {
+    "statistics": "Estatísticas",
+    "blocks": "Blocos",
+    "miners": "Mineradores",
+    "faq": "Perguntas Frequentes",
+    "support": "Suporte",
+    "get_started": "Primeiros Passos",
+    "community_title": "Junte-se à comunidade"
+  },
+  "footer": {
+    "company": {
+      "title": "Empresa",
+      "contact_us": "Fale Conosco",
+      "brand_assets": "Mídias da Marca",
+      "partners": "Parceiros",
+      "business_dev": "Oportunidade de Negócio",
+      "blog": "Blog",
+      "terms": "Termos",
+      "pp": "Política de Privacidade"
+    },
+    "resources": {
+      "title": "Recursos",
+      "get_started": "Primeiros Passos",
+      "faq": "Perguntas Frequentes",
+      "api_docs": "Documentação da API",
+      "transparency_reports": "Transparency Reports"
+    },
+    "community": {
+      "title": "Comunidade"
+    },
+    "contact": {
+      "title": "Fale Conosco",
+      "service_status": "Status do Serviço",
+      "support": "Suporte"
+    },
+    "preferences": {
+      "title": "Preferências"
+    },
+    "bottom_message": "© 2020-{{currentYear}} Flexpool.io ou seus afiliados. Todos os direitos reservados.",
+    "translation_help": "Ajude-nos a traduzir o site para o seu idioma"
+  },
+  "theme": {
+    "default": "Tema Padrão",
+    "dark": "Tema Escuro",
+    "light": "Tema Claro"
+  },
+  "list_navigation": {
+    "previous": "Anterior",
+    "next": "Próximo"
+  },
+  "errors": {
+    "999": "Too high payout limit",
+    "1000": "Too low payout limit",
+    "1001": "Invalid fee price",
+    "1003": "Invalid IP Address",
+    "1004": "Invalid payout limit",
+    "1005": "IP Address is not available (Miner is inactive)",
+    "1006": "Cannot change payment network because your current unpaid balance is above the pool’s minimum payout threshold of 0.01 {{coin}}",
+    "4000": "Invalid email address",
+    "4001": "Cannot find email address",
+    "4002": "Error during email confirmation",
+    "4003": "Email not registered",
+    "4004": "Invalid Token",
+    "number_max": "Maximum value is {{value}}",
+    "number_min": "Minimum value is {{value}}",
+    "higher_than": "Deve ser maior que {{value}}",
+    "invalid_number": "Please enter a valid number",
+    "required": "Obrigatório",
+    "invalid_ip": "Invalid IP address",
+    "email_invalid": "Endereço de e-mail inválido",
+    "email_required": "Por favor, digite seu endereço de e-mail",
+    "address_not_found": "O endereço especificado não foi encontrado em nosso sistema. Tente aguardar alguns minutos se você já estiver minerando.",
+    "decimal_places": "Exceed maximum decimal place of {{value}}"
+  },
+  "date_time": {
+    "now": "agora"
+  },
+  "snacks": {
+    "emailConfirmed": {
+      "title": "Seu e-mail foi confirmado"
+    },
+    "emailUnsubscribed": {
+      "title": "Você cancelou com sucesso a inscrição de notificações por e-mail"
+    }
+  },
+  "faq": {
+    "questionsAboutFlexpool": "Perguntas Sobre a Flexpool",
+    "miningBasics": "Mining Basics"
+  },
+  "noDataAvailable": "Sem dados disponíveis"
+}

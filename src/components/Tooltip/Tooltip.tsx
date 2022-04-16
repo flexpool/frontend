@@ -48,6 +48,7 @@ export const Tooltip: React.FC<{
   wrapIcon?: boolean;
   placement?: TippyProps['placement'];
   plus?: boolean;
+  interactive?: boolean;
 }> = ({
   children,
   icon,
@@ -55,6 +56,7 @@ export const Tooltip: React.FC<{
   wrapIcon = true,
   placement = 'top',
   plus,
+  interactive = false,
 }) => {
   return (
     <Tippy
@@ -62,7 +64,7 @@ export const Tooltip: React.FC<{
       delay={0}
       animation="shift-away"
       theme="light"
-      interactive={true}
+      interactive={interactive}
       placement={placement}
     >
       {wrapIcon ? (

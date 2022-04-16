@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Content } from '../layout/Content';
 import { useLocalStorageState } from '@/hooks/useLocalStorageState';
 import { UIVariant } from '@/App/styledTheme';
+import useIsMounted from '@/hooks/useIsMounted';
 
 const StyledAnnouncementBar = styled.div<{
   variant?: 'danger' | UIVariant;
@@ -37,26 +38,33 @@ type AnnouncementBarProps = {
   children: React.ReactNode;
   id: string;
   variant?: UIVariant;
+  className?: string;
+  removable?: boolean;
 };
 
 const AnnouncementBar = ({
   children,
   id,
   variant = 'danger',
+  className,
+  removable = true,
 }: AnnouncementBarProps) => {
   const [closed, setClosed] = useLocalStorageState(
     `announcement-bar-${id}`,
     'false'
   );
-
-  if (closed === 'true') return null;
+  const isMounted = useIsMounted();
+  if (!isMounted || closed === 'true') return null;
 
   return (
-    <StyledAnnouncementBar variant={variant}>
+    <StyledAnnouncementBar className={className} variant={variant}>
       <StyledContent>
-        <Close onClick={() => setClosed('true')}>
-          <FaTimes />
-        </Close>
+        {removable && (
+          <Close onClick={() => setClosed('true')}>
+            <FaTimes />
+          </Close>
+        )}
+
         {children}
       </StyledContent>
     </StyledAnnouncementBar>

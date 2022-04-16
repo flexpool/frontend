@@ -1,0 +1,24 @@
+{
+  "head_title": "Podpora",
+  "title": "Podpora",
+  "section_one": {
+    "title": "Kontaktujte podporu Flexpoolu",
+    "description": "Ahoj! Předtím než nám napíšete, rádi bychom vás upozornili, že neposkytujeme pomoc v tématech souvisejících s hardwarem. To zahrnuje taktování GPU a další pokročilé konfigurace těžebního softwaru. Poskytujeme pouze podporu týkající se našeho poolu. Pokud potřebujete pomoc při taktování GPU, optimalizaci těžebního softwaru atd., můžete se připojit k naší komunitě a pokecat s lidmi, kteří chtějí sdílet své zkušenosti."
+  },
+  "section_two": {
+    "title": "Napište nám přes webový messenger",
+    "description": "Nejlepší způsob, jak získat rychle odpověď, je přes náš chat kliknutím na ikonku v pravo dole na webu."
+  },
+  "section_three": {
+    "title": "Připoj se ke komunitě",
+    "description": "Poskytujeme také oficiální Discord server a Telegramovou skupinu, abyste se mohli spojit s ostatními minery Flexpoolu a zároveň se můžete spojit i s některým členem našeho týmu."
+  },
+  "section_four": {
+    "title": "Napište nám na email",
+    "description": "Poskytujeme emailovou podporu, ale nezaručujeme tak rychlou odpoveď jako jinde. Jsme k dispozici na <email>{{email}}</email>."
+  },
+  "section_five": {
+    "title": "Jiné otázky",
+    "description": "For business-related questions, please, contact us at <email>{{email}}</email>  <bold>(English only)</bold>. Please, note that <bold>we do not provide support via this Email</bold>."
+  }
+}

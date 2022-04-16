@@ -58,17 +58,6 @@ const PageWrapper = styled(ScrollArea)`
   }
 `;
 
-const navItems = [
-  {
-    val: 'payouts',
-    title: 'Payouts',
-  },
-  {
-    val: 'notifications',
-    title: 'Notifications',
-  },
-];
-
 const pageComponents = {
   payouts: PayoutSettings,
   notifications: NotificationSettings,
@@ -117,6 +106,17 @@ export const MinerSettingsModal: React.FC<{
 
   const PageComponent = pageComponents[page];
 
+  const navItems = [
+    {
+      val: 'payouts',
+      title: t('settings.payout.title_sidebar'),
+    },
+    {
+      val: 'notifications',
+      title: t('settings.notifications.title_sidebar'),
+    },
+  ];
+
   return (
     <>
       <SettingsBtn
@@ -151,7 +151,7 @@ export const MinerSettingsModal: React.FC<{
                 size="sm"
                 variant={page === 'difficulty' ? 'primary' : undefined}
               >
-                Difficulty
+                {t('settings.difficulty.title_sidebar')}
               </NavItem>
             )}
           </Nav>

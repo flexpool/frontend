@@ -69,6 +69,7 @@ export type ApiMinerPayment = {
   fee: number;
   feePercent: number;
   hash: string;
+  countervalue: number;
   timestamp: number;
   value: number;
   confirmed: boolean;

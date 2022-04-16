@@ -13,6 +13,7 @@ import { ApiPoolCoin } from 'src/types/PoolCoin.types';
 import { getCoinLink } from 'src/utils/coinLinks.utils';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
+import Stack from '@/components/Stack';
 import { TableCellSpinner } from 'src/components/Loader/TableCellSpinner';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import {
@@ -23,37 +24,25 @@ import styled from 'styled-components';
 import { BiTransferAlt } from 'react-icons/bi';
 import NetworkLogo from '@/components/NetworkLogo';
 
-const StyledHashLink = styled.div`
-  display: flex;
-  align-items: center;
-
-  div:first-child {
-    flex-shrink: 0;
-  }
-
-  span {
-    margin-left: 0.25rem;
-  }
-`;
-
-type HashLinkProps = {
-  ticker: string;
-  network: string;
-  children: React.ReactNode;
-};
-
-const HashLink = ({ ticker, network, children }: HashLinkProps) => {
-  return (
-    <StyledHashLink>
-      <NetworkLogo ticker={ticker} network={network} />
-      {children}
-    </StyledHashLink>
-  );
-};
-
 const HeaderSplit = styled.div`
   display: flex;
   justify-content: space-between;
+`;
+
+const TransactionValueHeader = styled.span`
+  & > span {
+    position: absolute;
+    margin-left: 4px;
+    font-size: 1rem;
+    top: 7px;
+  }
+`;
+
+const DownloadButton = styled(Button)`
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
 `;
 
 const StatusContainer = styled.span<{
@@ -102,7 +91,7 @@ export const MinerPaymentsList: React.FC<{
   const [currentPage, setCurrentPage] = React.useState(0);
   const counterTicker = useCounterTicker();
 
-  const { data: minerPayments, isLoading } = useMinerPaymentsQuery({
+  const { data: minerPayments, isFetching } = useMinerPaymentsQuery({
     address,
     coin: coin?.ticker as string,
     countervalue: counterTicker,
@@ -122,7 +111,7 @@ export const MinerPaymentsList: React.FC<{
     };
   }, [minerPayments]);
 
-  const counterValuePrice = minerPayments?.countervalue || 1;
+  const currentCounterValuePrice = minerPayments?.countervalue || 1;
 
   const { t } = useTranslation('dashboard');
   const currencyFormatter = useLocalizedCurrencyFormatter();
@@ -147,17 +136,29 @@ export const MinerPaymentsList: React.FC<{
         <div>
           <h2>{t('payments.table.title')}</h2>
         </div>
-        <Button
-          size="xs"
-          as="a"
-          className="export-button"
-          href={`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/miner/export/payments.csv?coin=${coin?.ticker}&address=${address}&countervalue=${counterTicker}`}
-        >
-          {t('payments.table.download')}
-        </Button>
+        <Stack>
+          <DownloadButton
+            size="xs"
+            as="a"
+            className="export-button"
+            target="_blank"
+            href={`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/miner/export/payments.pdf?coin=${coin?.ticker}&address=${address}&countervalue=${counterTicker}`}
+          >
+            {t('payments.table.download_pdf')}
+          </DownloadButton>
+          <DownloadButton
+            size="xs"
+            as="a"
+            className="export-button"
+            href={`${process.env.NEXT_PUBLIC_REACT_APP_API_URL}/miner/export/payments.csv?coin=${coin?.ticker}&address=${address}&countervalue=${counterTicker}`}
+          >
+            {t('payments.table.download')}
+          </DownloadButton>
+        </Stack>
       </HeaderSplit>
+      <Spacer />
       <DynamicList
-        isLoading={isLoading}
+        isLoading={isFetching}
         onRowClick={handleRowClick}
         pagination={{
           currentPage,
@@ -200,21 +201,40 @@ export const MinerPaymentsList: React.FC<{
             },
           },
           {
-            title: t('payments.table.table_head.value'),
+            title: (
+              <TransactionValueHeader>
+                {t('payments.table.table_head.value')}
+                <Tooltip>
+                  <TooltipContent>
+                    {t('payments.table.table_head.value_tooltip')}
+                  </TooltipContent>
+                </Tooltip>
+              </TransactionValueHeader>
+            ),
             alignRight: true,
             Component: ({ data }) => {
               const value = activeCoinFormatter(data.value);
+
               const tickerValue = coin
                 ? (data.value / Math.pow(10, coin.decimalPlaces)) *
-                  counterValuePrice
+                  currentCounterValuePrice
                 : null;
 
-              const tickerDisplayValue = currencyFormatter(tickerValue || 0);
-
               return (
-                <Ws>
-                  {value} ({tickerDisplayValue})<span className="reward"></span>
-                </Ws>
+                <Tooltip
+                  wrapIcon={false}
+                  icon={
+                    <Ws>
+                      {value} ({currencyFormatter(data.countervalue)})
+                      <span className="reward"></span>
+                    </Ws>
+                  }
+                >
+                  <TooltipContent>
+                    {t('payments.table.estimated_value')}{' '}
+                    {currencyFormatter(tickerValue || 0)}
+                  </TooltipContent>
+                </Tooltip>
               );
             },
           },
@@ -223,19 +243,30 @@ export const MinerPaymentsList: React.FC<{
             alignRight: true,
             Component: ({ data }) => {
               return (
-                <Ws>
-                  {numberFormatter(data.feePercent, {
-                    style: 'percent',
-                    maximumFractionDigits: 3,
-                  })}{' '}
-                  (
-                  {coin &&
-                    currencyFormatter(
-                      (data.fee / Math.pow(10, coin.decimalPlaces)) *
-                        counterValuePrice
-                    )}
-                  )
-                </Ws>
+                <Tooltip
+                  wrapIcon={false}
+                  icon={
+                    <Ws>
+                      {numberFormatter(data.feePercent, {
+                        style: 'percent',
+                        maximumFractionDigits: 3,
+                      })}{' '}
+                      (
+                      {coin &&
+                        currencyFormatter(data.feePercent * data.countervalue)}
+                      )
+                    </Ws>
+                  }
+                >
+                  <TooltipContent>
+                    {t('payments.table.estimated_value')}{' '}
+                    {coin &&
+                      currencyFormatter(
+                        (data.fee / Math.pow(10, coin.decimalPlaces)) *
+                          currentCounterValuePrice
+                      )}
+                  </TooltipContent>
+                </Tooltip>
               );
             },
           },
@@ -311,10 +342,11 @@ export const MinerPaymentsList: React.FC<{
               }
 
               return (
-                <HashLink
-                  ticker={coin?.ticker as string}
-                  network={data.network}
-                >
+                <Stack spacing="xs">
+                  <NetworkLogo
+                    ticker={coin?.ticker as string}
+                    network={data.network}
+                  />
                   <Ws>
                     <Mono className="item-hover-higjlight">
                       <LinkOutCoin
@@ -324,7 +356,7 @@ export const MinerPaymentsList: React.FC<{
                       />
                     </Mono>
                   </Ws>
-                </HashLink>
+                </Stack>
               );
             },
           },

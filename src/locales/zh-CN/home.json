@@ -1,0 +1,95 @@
+{
+  "head_title": "最先进的矿池",
+  "title": "构筑研发矿池的未来",
+  "description": "提供全球最高的盈利能力。",
+  "coin_earnings_cards": {
+    "estimated": "预计收益",
+    "estimated_tooltip": "预计收益按过往七天矿池收入计算。",
+    "daily": "每日收益",
+    "monthly": "每月收益",
+    "cta_mine": "开始挖矿",
+    "cta_farm": "开始挖矿",
+    "pool_fee": "费率 {{value}} (PPLNS)",
+    "mev": "增加 {{value}} MEV 奖金",
+    "finder_reward": "{{value}}区块查找器奖励",
+    "more_title": "其他币种即將上線，敬請期待！",
+    "more_description": "将来还会推出其他币种，加入社群留意最新公报。"
+  },
+  "news_section": {
+    "join_us": {
+      "pre_title": "加入矿池",
+      "title": "挖矿配置",
+      "cta": "开始挖矿"
+    },
+    "learn": {
+      "pre_title": "学习",
+      "title": "博客文章加深了解",
+      "cta": "学习"
+    },
+    "support": {
+      "pre_title": "帮助",
+      "title": "联系客服",
+      "cta": "联系我们"
+    }
+  },
+  "mined_coins_section": {
+    "title": "我们的币种",
+    "description": "Flexpool 矿池支持多种货币。",
+    "table_head": {
+      "name": "币种",
+      "price": "币价",
+      "market_cap": "总市值",
+      "algorithm": "算法",
+      "hashrate": "矿池算力",
+      "miners": "矿工数"
+    },
+    "item_cta": "开挖"
+  },
+  "coin_news_item": {
+    "eth": {
+      "title": "关于以太币",
+      "description": "以太坊是一个以区块链为基础的公共平台，专用加密货币以太币。分布式的以太网络，支持多种去中心化应用，智能合约。"
+    },
+    "etc": {
+      "title": "关于ETC",
+      "description": "ETC保留了以太坊网络的原始、未改变的历史。"
+    },
+    "xch": {
+      "title": "关于 Chia",
+      "description": "Chia是一种可编程加密货币，专注于保护区块链的生态友好方式。"
+    },
+    "btc": {
+      "title": "关于比特币",
+      "description": "比特币是世界上第一个引入区块链和点对点互联网货币概念的加密货币。"
+    },
+    "resources": "资源",
+    "website": "官方网站",
+    "whitepaper": "白皮书",
+    "calculator": {
+      "title": "收益计算器",
+      "title_tooltip": "预计收益采用24小时内平均网络难度和区块奖励估算理论收益。 此计算并不包括矿机可能算出的过期和无效份额。预计和实际收益会有差异，预算仅供参考。",
+      "per_day": "每天",
+      "per_month": "每月",
+      "per_year": "每年",
+      "cta": "开始挖矿"
+    },
+    "featured": {
+      "title": "焦点新聞"
+    }
+  },
+  "why_section": {
+    "title": "Flexpool 矿池特色",
+    "item_1": {
+      "title": "更快更稳定",
+      "description": "我们矿池专用高性能服务器集群和软件，能处理超过100 TH/s算力。"
+    },
+    "item_2": {
+      "title": "热心服务",
+      "description": "我们团队为你提供专业服务，挖矿经历不需再担心。"
+    }
+  },
+  "get_started_section": {
+    "title": "准备好了吗？",
+    "cta": "开始挖矿"
+  }
+}

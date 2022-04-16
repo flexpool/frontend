@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaLink } from 'react-icons/fa';
 import _ from 'lodash';
 import { NextSeo } from 'next-seo';
 import { useTranslation } from 'next-i18next';
@@ -9,7 +10,7 @@ import { useActiveCoinTicker } from '@/rdx/localSettings/localSettings.hooks';
 import { Content } from '../src/components/layout/Content';
 import { Page } from '../src/components/layout/Page';
 import { CopyButton } from '../src/components/CopyButton';
-import { FaLink } from 'react-icons/fa';
+import { faqStructure } from '@/locales/faqStructure';
 
 type FaqMarkdown = {
   attributes: { title: string; coin?: string };
@@ -188,19 +189,18 @@ function FAQPage({ faq }) {
 
 export default FAQPage;
 
-import { faqStructure } from '../src/docs/index';
-
 const loadFaqMarkdown = (locale: string, item: string): FaqMarkdown | {} => {
   const isTranslationAvailable = !_.isError(
-    _.attempt(() => require(`src/docs/${locale}/faq/${item}`))
+    _.attempt(() => require(`src/locales/${locale}/faq/${item}`))
   );
 
-  if (isTranslationAvailable) return require(`src/docs/${locale}/faq/${item}`);
+  if (isTranslationAvailable)
+    return require(`src/locales/${locale}/faq/${item}`);
   const isEnglishAvailable = !_.isError(
-    _.attempt(() => require(`src/docs/en-US/faq/${item}`))
+    _.attempt(() => require(`src/locales/en-US/faq/${item}`))
   );
 
-  if (isEnglishAvailable) return require(`src/docs/en-US/faq/${item}`);
+  if (isEnglishAvailable) return require(`src/locales/en-US/faq/${item}`);
   return {};
 };
 
