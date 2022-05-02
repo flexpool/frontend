@@ -82,8 +82,6 @@ const TabLink = styled(Tab)`
 `;
 
 const TopBannerContainer = styled.div`
-  margin: 1rem 0 -1rem;
-
   & h3 {
     font-size: 1.1rem;
   }
@@ -395,7 +393,7 @@ export const MinerDashboardPage: React.FC<{
   return (
     <>
       {!isLocated && (
-        <Content>
+        <Content style={{ marginTop: '1rem' }}>
           <TopBannerContainer>
             <InfoBox variant="warning">
               <MediaContainer>
