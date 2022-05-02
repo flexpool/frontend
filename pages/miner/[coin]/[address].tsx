@@ -225,12 +225,6 @@ export const MinerDashboardPageContent: React.FC<{
               title: `${address}`,
             }}
           />
-          <ETCAnnouncement variant="success" id="etc">
-            🎉 Flexpool now supports Ethereum Classic (ETC)!{' '}
-            <ETCCallToAction href={'/get-started/etc/GPU'}>
-              Get Started
-            </ETCCallToAction>
-          </ETCAnnouncement>
           {address === DONATION_ADDRESS && (
             <DonationAnnouncement
               id="donation-dashboard"
