@@ -82,8 +82,6 @@ const TabLink = styled(Tab)`
 `;
 
 const TopBannerContainer = styled.div`
-  margin: 1rem 0 -1rem;
-
   & h3 {
     font-size: 1.1rem;
   }
@@ -225,12 +223,6 @@ export const MinerDashboardPageContent: React.FC<{
               title: `${address}`,
             }}
           />
-          <ETCAnnouncement variant="success" id="etc">
-            🎉 Flexpool now supports Ethereum Classic (ETC)!{' '}
-            <ETCCallToAction href={'/get-started/etc/GPU'}>
-              Get Started
-            </ETCCallToAction>
-          </ETCAnnouncement>
           {address === DONATION_ADDRESS && (
             <DonationAnnouncement
               id="donation-dashboard"
@@ -401,7 +393,7 @@ export const MinerDashboardPage: React.FC<{
   return (
     <>
       {!isLocated && (
-        <Content>
+        <Content style={{ marginTop: '1rem' }}>
           <TopBannerContainer>
             <InfoBox variant="warning">
               <MediaContainer>
