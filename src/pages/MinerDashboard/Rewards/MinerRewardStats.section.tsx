@@ -71,29 +71,25 @@ export const MinerRewardStatsSection: React.FC<{
 
     const utc = new Date(Date.UTC(year, month, day));
 
-    const dailySum = rewards
-      .filter((item) =>
-        isBefore(subDays(utc, 2), new Date(item.timestamp * 1000))
-      )
-      .reduce((res, next) => {
-        return res + next.totalRewards;
-      }, 0);
+    let dailySum = 0,
+      weeklySum = 0,
+      monthlySum = 0;
 
-    const weeklySum = rewards
-      .filter((item) =>
-        isBefore(subDays(utc, 8), new Date(item.timestamp * 1000))
-      )
-      .reduce((res, next) => {
-        return res + next.totalRewards;
-      }, 0);
+    rewards.forEach((reward) => {
+      const rewardTime = new Date(reward.timestamp * 1000);
 
-    const monthlySum = rewards
-      .filter((item) =>
-        isBefore(subDays(utc, 31), new Date(item.timestamp * 1000))
-      )
-      .reduce((res, next) => {
-        return res + next.totalRewards;
-      }, 0);
+      if (isBefore(subDays(utc, 2), rewardTime)) {
+        dailySum += reward.totalRewards;
+      }
+
+      if (isBefore(subDays(utc, 8), rewardTime)) {
+        weeklySum += reward.totalRewards;
+      }
+
+      if (isBefore(subDays(utc, 31), rewardTime)) {
+        monthlySum += reward.totalRewards;
+      }
+    });
 
     return [dailySum, weeklySum, monthlySum];
   }, [rewards]);
