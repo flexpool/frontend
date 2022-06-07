@@ -61,19 +61,39 @@ export const MinerRewardStatsSection: React.FC<{
   const { data: minerStatsState } = useMinerStatsQuery({ coin, address });
 
   const summary: [number, number, number] = React.useMemo(() => {
-    const dailySum = rewards[0] ? rewards[0].totalRewards : 0;
+    const currentDate = new Date();
 
-    const weeklySum = rewards
+    const [year, month, day] = [
+      currentDate.getUTCFullYear(),
+      currentDate.getUTCMonth(),
+      currentDate.getUTCDate(),
+    ];
+
+    const utc = new Date(Date.UTC(year, month, day));
+
+    const dailySum = rewards
       .filter((item) =>
-        isBefore(subDays(new Date(), 8), new Date(item.timestamp * 1000))
+        isBefore(subDays(utc, 2), new Date(item.timestamp * 1000))
       )
       .reduce((res, next) => {
         return res + next.totalRewards;
       }, 0);
 
-    const monthlySum = rewards.reduce((res, next) => {
-      return res + next.totalRewards;
-    }, 0);
+    const weeklySum = rewards
+      .filter((item) =>
+        isBefore(subDays(utc, 8), new Date(item.timestamp * 1000))
+      )
+      .reduce((res, next) => {
+        return res + next.totalRewards;
+      }, 0);
+
+    const monthlySum = rewards
+      .filter((item) =>
+        isBefore(subDays(utc, 31), new Date(item.timestamp * 1000))
+      )
+      .reduce((res, next) => {
+        return res + next.totalRewards;
+      }, 0);
 
     return [dailySum, weeklySum, monthlySum];
   }, [rewards]);
