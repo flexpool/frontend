@@ -1,5 +1,7 @@
-import { Wrapper, Title, Image, ItemsContainer, Item } from './components';
+import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
+import { Wrapper, Title, ItemsContainer, Item } from './components';
+
 import { Content } from 'src/components/layout/Content';
 import { Spacer } from 'src/components/layout/Spacer';
 
@@ -13,8 +15,8 @@ export const WhyFlexpool = () => {
         <ItemsContainer>
           <Item>
             <Image
-              height="150"
-              width="185"
+              height={150}
+              width={185}
               src="/illustrations/moon.svg"
               alt={t('why_section.item_1.title')}
             />
@@ -23,8 +25,8 @@ export const WhyFlexpool = () => {
           </Item>
           <Item>
             <Image
-              height="150"
-              width="242"
+              height={150}
+              width={242}
               src="/illustrations/horseride.svg"
               alt={t('why_section.item_2.title')}
             />
