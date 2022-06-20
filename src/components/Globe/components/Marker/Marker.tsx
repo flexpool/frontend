@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useMemo } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useControls } from 'leva';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -54,23 +54,12 @@ const Marker = ({
     [color]
   );
 
-  useFrame(({ clock }) => {
-    if (testShaderMaterialRef.current) {
-      testShaderMaterialRef.current.uniforms.u_time.value = clock.elapsedTime;
-    }
-  });
-
   const markerGroupRef = useRef<THREE.Group>();
   const testShaderMaterialRef = useRef<THREE.ShaderMaterial>();
 
   useEffect(() => {
     if (testShaderMaterialRef.current) {
-      // testShaderMaterialRef.current.uniforms.u_color.value = new THREE.Color(
-      //   p_color
-      // );
-
       testShaderMaterialRef.current.uniforms.u_frequency.value = frequency;
-
       testShaderMaterialRef.current.uniforms.u_speed.value = speed;
     }
 
@@ -86,7 +75,7 @@ const Marker = ({
   });
 
   return (
-    <group
+    <mesh
       position={new THREE.Vector3().setFromSphericalCoords(
         602,
         degree2Radian(90 - lat),
@@ -95,17 +84,15 @@ const Marker = ({
       scale={[38, 38, 38]}
       ref={markerGroupRef}
     >
-      <mesh>
-        <planeBufferGeometry attach="geometry" args={[1, 1, 32 * 3, 32 * 3]} />
-        <shaderMaterial
-          transparent
-          side={THREE.DoubleSide}
-          ref={testShaderMaterialRef}
-          attach="material"
-          args={[MarkerShader]}
-        />
-      </mesh>
-    </group>
+      <planeBufferGeometry attach="geometry" args={[1, 1, 32 * 3, 32 * 3]} />
+      <shaderMaterial
+        transparent
+        side={THREE.DoubleSide}
+        ref={testShaderMaterialRef}
+        attach="material"
+        args={[MarkerShader]}
+      />
+    </mesh>
   );
 };
 

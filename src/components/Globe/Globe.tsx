@@ -59,8 +59,8 @@ const Scene = () => {
             <Halo />
             <Sphere />
             <Dots />
-            <Arcs />
             <ServerMarkers />
+            <Arcs />
           </>
         )}
       </group>
@@ -104,6 +104,7 @@ const Globe = () => {
         )}
         gl={{
           antialias: true,
+          sortObjects: false,
         }}
         camera={{
           position: new Vector3(0, 0, 1250),
