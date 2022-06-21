@@ -49,7 +49,6 @@ const Hero = styled.div`
   padding-bottom: 3rem;
 
   @media screen and (min-width: 800px) {
-    overflow: inherit;
     padding-bottom: 8rem;
   }
 `;
@@ -105,29 +104,31 @@ export const HomePage = () => {
           },
         ]}
       />
+      <div style={{ position: 'relative' }}>
+        <Hero>
+          <Content>
+            <HeroLayout>
+              <HeroLeft>
+                <HeroHeadline />
+                <Spacer size="lg" />
+                <HeroSubHeadline>{t('description')}</HeroSubHeadline>
+                <Spacer size="sm" />
+                <SearchWrapper>
+                  <SearchAddressBar />
+                </SearchWrapper>
+                <Spacer size="md" />
+              </HeroLeft>
+              <Globe />
+            </HeroLayout>
+          </Content>
+          <CoinEarnings />
+          <LamboExplainer />
 
-      <Hero>
-        <Content>
-          <HeroLayout>
-            <HeroLeft>
-              <HeroHeadline />
-              <Spacer size="lg" />
-              <HeroSubHeadline>{t('description')}</HeroSubHeadline>
-              <Spacer size="sm" />
-              <SearchWrapper>
-                <SearchAddressBar />
-              </SearchWrapper>
-              <Spacer size="md" />
-            </HeroLeft>
-            <Globe />
-          </HeroLayout>
-        </Content>
-        <CoinEarnings />
-        <LamboExplainer />
+          <HeroGlow1 src="/glow3.png" />
+          <HeroGlow2 src="/glow4.png" />
+        </Hero>
         <NewsSection />
-        <HeroGlow1 src="/glow3.png" />
-        <HeroGlow2 src="/glow4.png" />
-      </Hero>
+      </div>
 
       <CoinsWeMineSection />
       <WhyFlexpool />
