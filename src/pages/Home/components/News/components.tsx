@@ -79,7 +79,7 @@ export const WrapperInner = styled.div`
     position: relative !important;
     display: block;
     width: calc(100%);
-    top: 2rem;
+    top: -2rem;
     & > * {
       width: 100%;
       display: block;
