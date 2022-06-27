@@ -28,6 +28,7 @@ import { Spacer } from 'src/components/layout/Spacer';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import { PullToRefresh } from 'src/components/layout/PullToRefresh/PullToRefresh';
 import { InfoBox } from 'src/components/InfoBox';
+import FlexFarmerAnnouncement from '@/pages/MinerDashboard/Announcements/FlexFarmerAnnouncement';
 
 import styled from 'styled-components';
 import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
@@ -239,6 +240,8 @@ export const MinerDashboardPageContent: React.FC<{
               <h3>Thank you for your support</h3>
             </DonationAnnouncement>
           )}
+
+          <FlexFarmerAnnouncement />
 
           <Content>
             <HeaderGreetings

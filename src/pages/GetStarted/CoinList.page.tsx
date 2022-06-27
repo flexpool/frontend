@@ -87,29 +87,33 @@ export const MineableCoinList: React.FC = () => {
                   <Title>{item.name}</Title>
                 </CoinContent>
                 <GuidesList>
-                  {poolHw.map((itemHw) => (
-                    <Link
-                      key={itemHw.key}
-                      href={`/get-started/${item.ticker}/${itemHw.key}`}
-                      passHref
-                    >
-                      <Button
-                        shape="block"
-                        size="sm"
-                        variant={
-                          itemHw.key === 'flexfarmer' ? 'success' : 'primary'
-                        }
-                      >
-                        {itemHw.key === 'flexfarmer' ? (
-                          <>
-                            +&nbsp;<b>{itemHw.title}</b>&nbsp;[NEW]
-                          </>
-                        ) : (
-                          itemHw.title
-                        )}
-                      </Button>
-                    </Link>
-                  ))}
+                  {poolHw.map((itemHw) => {
+                    let guideLink = `/get-started/${item.ticker}/${itemHw.key}`;
+
+                    if (itemHw.key === 'flexfarmer') {
+                      guideLink = 'https://farmer.flexpool.io';
+                    }
+
+                    return (
+                      <Link key={itemHw.key} href={guideLink} passHref>
+                        <Button
+                          shape="block"
+                          size="sm"
+                          variant={
+                            itemHw.key === 'flexfarmer' ? 'success' : 'primary'
+                          }
+                        >
+                          {itemHw.key === 'flexfarmer' ? (
+                            <>
+                              +&nbsp;<b>{itemHw.title}</b>&nbsp;[NEW]
+                            </>
+                          ) : (
+                            itemHw.title
+                          )}
+                        </Button>
+                      </Link>
+                    );
+                  })}
                   {item.nicehashAvailable ? (
                     <Link
                       href={`/get-started/${item.ticker}/nicehash`}
