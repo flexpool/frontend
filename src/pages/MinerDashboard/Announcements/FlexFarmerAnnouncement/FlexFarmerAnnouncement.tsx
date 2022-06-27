@@ -97,6 +97,7 @@ const FlexFarmerAnnouncement = () => {
         <Image
           width={150}
           height={28}
+          priority={true}
           src="/images/flexfarmer-logo.png"
           alt="FlexFarmer logo"
         />
@@ -117,9 +118,10 @@ const FlexFarmerAnnouncement = () => {
 
       <IllustrationContainer>
         <Image
-          width={536 * 1.2}
-          height={256 * 1.2}
-          src="/images/flexfarmer-screenshot.png"
+          width={643.2}
+          height={307.2}
+          priority={true}
+          src="/images/flexfarmer-screenshot.webp"
           alt="FlexFarmer screenshot"
         />
       </IllustrationContainer>
