@@ -35,7 +35,6 @@ import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
 import { getChecksumByTicker } from '@/utils/validators/checksum';
 import Warning from '@/assets/warning-icon.svg';
 import { fetchApi } from 'src/utils/fetchApi';
-import useMinerStatsQuery from '@/hooks/api/useMinerStatsQuery';
 
 const DONATION_ADDRESS = '0x165CD37b4C644C2921454429E7F9358d18A45e14';
 
@@ -114,24 +113,6 @@ const DonationAnnouncement = styled(AnnouncementBar)`
   border-bottom: 8px solid #ffd302;
 `;
 
-const ETCAnnouncement = styled(AnnouncementBar)`
-  padding: 1rem 0;
-`;
-
-const ETCCallToAction = styled.a`
-  border: 1px solid white;
-  text-decoration: none;
-  padding: 0.25rem 0.4rem;
-  border-radius: 4px;
-  color: white;
-  font-size: 0.85rem;
-  margin-left: 0.25rem;
-
-  &:hover {
-    text-decoration: none;
-  }
-`;
-
 export const MinerDashboardPageContent: React.FC<{
   coinTicker: string;
   address: string;
@@ -151,14 +132,6 @@ export const MinerDashboardPageContent: React.FC<{
     rewards: 2,
     blocks: 3,
   };
-
-  const { data } = useMinerStatsQuery({
-    address,
-    coin: coinTicker,
-  });
-
-  const shouldDisplayFlexFarmerBanner =
-    coinTicker === 'xch' && data && data.reportedHashrate === 0;
 
   // TODO: Provide a miner address oriented query key handler
   const loadAll = React.useCallback(() => {
@@ -250,7 +223,7 @@ export const MinerDashboardPageContent: React.FC<{
             </DonationAnnouncement>
           )}
 
-          {shouldDisplayFlexFarmerBanner && <FlexFarmerAnnouncement />}
+          {coinTicker === 'xch' && <FlexFarmerAnnouncement address={address} />}
 
           <Content>
             <HeaderGreetings

@@ -167,11 +167,11 @@ export const MinerStats: React.FC<{
                   })}{' '}
                   {String(activeCoin?.ticker) === 'xch' &&
                     minerStatsState?.reportedHashrate === 0 && (
-                      <Tooltip>
+                      <Tooltip interactive>
                         <TooltipContent>
                           Only available with{' '}
                           <FlexFarmerLink
-                            href="/get-started/xch/flexfarmer"
+                            href="https://farmer.flexpool.io"
                             target="_blank"
                           >
                             FlexFarmer

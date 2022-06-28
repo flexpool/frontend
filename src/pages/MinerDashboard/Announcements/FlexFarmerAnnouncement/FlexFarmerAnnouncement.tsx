@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import AnnouncementBar from '@/components/AnnouncementBar';
 import { FiChevronRight } from 'react-icons/fi';
 import Link from 'next/link';
+import useMinerStatsQuery from '@/hooks/api/useMinerStatsQuery';
 
 const StyledAnnouncementBar = styled(AnnouncementBar)`
   position: relative;
@@ -70,17 +71,6 @@ const CTA = styled.a`
   transition: color 0.1s linear;
 `;
 
-const LearnMoreButton = styled.button`
-  display: block;
-  all: unset;
-  color: white;
-  background-color: #28282e;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left: auto;
-`;
-
 const Description = styled.p`
   font-size: 16px;
   font-weight: 600;
@@ -90,9 +80,16 @@ const Description = styled.p`
   margin-top: 12px;
 `;
 
-const FlexFarmerAnnouncement = () => {
+const FlexFarmerAnnouncement = ({ address }: { address: string }) => {
+  const { data } = useMinerStatsQuery({
+    address,
+    coin: 'xch',
+  });
+
+  if (data?.reportedHashrate !== 0) return null;
+
   return (
-    <StyledAnnouncementBar id="flex-farmer-ad">
+    <StyledAnnouncementBar id="flexfarmer-ad">
       <Content>
         <Image
           width={150}
