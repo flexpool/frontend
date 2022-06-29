@@ -71,7 +71,7 @@ const AnnouncementBar = ({
     isClosed = true;
   }
 
-  if (!isMounted || isClosed || !isTargetTimeUp) return null;
+  if (removable && (!isMounted || isClosed || !isTargetTimeUp)) return null;
 
   return (
     <StyledAnnouncementBar className={className} variant={variant}>

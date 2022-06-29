@@ -1,9 +1,9 @@
-import { NextSeo } from 'next-seo';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
 import { ChiaCliGuidePage } from 'src/pages/GetStarted/ChiaCli/Guide.page';
+import FlexFarmerAnnouncement from '@/pages/MinerDashboard/Announcements/FlexFarmerAnnouncement';
 
 export const GetStartedXchCliPage = () => {
   return (
@@ -11,6 +11,7 @@ export const GetStartedXchCliPage = () => {
       <Content paddingLg>
         <ChiaCliGuidePage />
       </Content>
+      <FlexFarmerAnnouncement removable={false} />
     </Page>
   );
 };
@@ -31,7 +32,8 @@ export async function getStaticProps({ locale }) {
 }
 
 export const getStaticPaths = ({ locales }) => {
-  const paths: Array<{ params: { ticker: string; hw: string }; locale: any }> = [];
+  const paths: Array<{ params: { ticker: string; hw: string }; locale: any }> =
+    [];
 
   for (const locale of locales) {
     paths.push({ params: { ticker: 'xch', hw: 'XCH-CLI' }, locale });

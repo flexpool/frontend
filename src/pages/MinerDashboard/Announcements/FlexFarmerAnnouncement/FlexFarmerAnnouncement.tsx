@@ -15,6 +15,7 @@ const StyledAnnouncementBar = styled(AnnouncementBar)`
   min-height: 203px;
   overflow: hidden;
   border-bottom: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
 
   & > div {
     height: 100%;
@@ -100,7 +101,13 @@ const Description = styled.p`
   margin-top: 12px;
 `;
 
-const FlexFarmerAnnouncement = ({ address }: { address: string }) => {
+const FlexFarmerAnnouncement = ({
+  address = '',
+  removable = true,
+}: {
+  address?: string;
+  removable?: boolean;
+}) => {
   const [targetTime, setTargetTime] = useState<number | null>(null);
 
   const { data } = useMinerStatsQuery({
@@ -108,14 +115,18 @@ const FlexFarmerAnnouncement = ({ address }: { address: string }) => {
     coin: 'xch',
   });
 
-  if (data?.reportedHashrate !== 0) return null;
+  if (address !== '' && data?.reportedHashrate !== 0) return null;
 
   const handleRemindLaterClick = () => {
     setTargetTime(Date.now() + 1000 * 60 * 60 * 24 * 2); // 2 days
   };
 
   return (
-    <StyledAnnouncementBar id="flexfarmer-ad" targetTime={targetTime}>
+    <StyledAnnouncementBar
+      id="flexfarmer-ad"
+      targetTime={targetTime}
+      removable={removable}
+    >
       <Content>
         <Image
           width={150}
@@ -136,9 +147,11 @@ const FlexFarmerAnnouncement = ({ address }: { address: string }) => {
               Learn more about FlexFarmer <FiChevronRight />
             </CTA>
           </Link>
-          <LaterButton onClick={handleRemindLaterClick}>
-            Maybe later
-          </LaterButton>
+          {removable && (
+            <LaterButton onClick={handleRemindLaterClick}>
+              Maybe later
+            </LaterButton>
+          )}
         </Description>
       </Content>
 
