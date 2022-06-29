@@ -40,6 +40,7 @@ type AnnouncementBarProps = {
   variant?: UIVariant;
   className?: string;
   removable?: boolean;
+  targetTime?: number | null;
 };
 
 const AnnouncementBar = ({
@@ -48,19 +49,35 @@ const AnnouncementBar = ({
   variant = 'danger',
   className,
   removable = true,
+  targetTime = null,
 }: AnnouncementBarProps) => {
-  const [closed, setClosed] = useLocalStorageState(
-    `announcement-bar-${id}`,
-    'false'
-  );
   const isMounted = useIsMounted();
-  if (!isMounted || closed === 'true') return null;
+  const [closed, setClosed] = useLocalStorageState<boolean | number>(
+    `announcement-bar-${id}`,
+    targetTime === null ? false : targetTime
+  );
+
+  if (targetTime && targetTime !== closed) {
+    setClosed(targetTime);
+  }
+
+  const isTargetTimeUp =
+    typeof closed === 'number' ? Date.now() > closed : true;
+
+  let isClosed = typeof closed === 'boolean' && closed === true;
+
+  // this is for backwards compatibility
+  if (typeof closed === 'string') {
+    isClosed = true;
+  }
+
+  if (!isMounted || isClosed || !isTargetTimeUp) return null;
 
   return (
     <StyledAnnouncementBar className={className} variant={variant}>
       <StyledContent>
         {removable && (
-          <Close onClick={() => setClosed('true')}>
+          <Close onClick={() => setClosed(true)}>
             <FaTimes />
           </Close>
         )}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import AnnouncementBar from '@/components/AnnouncementBar';
@@ -48,10 +48,14 @@ const Content = styled.div`
 
 const CTA = styled.a`
   color: white;
-  padding: 8px 16px;
-  margin-left: -16px;
+  padding: 8px 10px 8px 16px;
   display: inline-flex;
   align-items: center;
+
+  background-color: var(--primary);
+  border-radius: 4px;
+
+  transition: all 0.1s linear;
 
   svg {
     position: relative;
@@ -61,9 +65,10 @@ const CTA = styled.a`
 
   &:hover {
     text-decoration: none;
-    color: #0069ff;
+
+    background-color: #1a79ff;
+
     svg {
-      color: #0069ff;
       left: 3px;
     }
   }
@@ -71,16 +76,33 @@ const CTA = styled.a`
   transition: color 0.1s linear;
 `;
 
+const LaterButton = styled.button`
+  all: unset;
+  color: #6a6a6a;
+  font-weight: 500;
+  cursor: pointer;
+
+  transition: all 0.1s linear;
+
+  margin-left: 1rem;
+
+  &:hover {
+    color: white;
+  }
+`;
+
 const Description = styled.p`
   font-size: 16px;
   font-weight: 600;
-  line-height: 21px;
+  line-height: 22px;
   letter-spacing: -0.015em;
   color: white;
   margin-top: 12px;
 `;
 
 const FlexFarmerAnnouncement = ({ address }: { address: string }) => {
+  const [targetTime, setTargetTime] = useState<number | null>(null);
+
   const { data } = useMinerStatsQuery({
     address,
     coin: 'xch',
@@ -88,8 +110,12 @@ const FlexFarmerAnnouncement = ({ address }: { address: string }) => {
 
   if (data?.reportedHashrate !== 0) return null;
 
+  const handleRemindLaterClick = () => {
+    setTargetTime(Date.now() + 1000 * 60 * 60 * 24 * 2); // 2 days
+  };
+
   return (
-    <StyledAnnouncementBar id="flexfarmer-ad">
+    <StyledAnnouncementBar id="flexfarmer-ad" targetTime={targetTime}>
       <Content>
         <Image
           width={150}
@@ -110,6 +136,9 @@ const FlexFarmerAnnouncement = ({ address }: { address: string }) => {
               Learn more about FlexFarmer <FiChevronRight />
             </CTA>
           </Link>
+          <LaterButton onClick={handleRemindLaterClick}>
+            Maybe later
+          </LaterButton>
         </Description>
       </Content>
 
