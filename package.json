@@ -62,7 +62,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "tsc && next lint ",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "jest"
   },
   "browserslist": {
     "production": [
@@ -93,6 +94,7 @@
     "@types/styled-components": "^5.1.14",
     "@types/swagger-ui-react": "3.35.0",
     "@types/websocket": "1.0.2",
+    "babel-jest": "^28.1.2",
     "babel-plugin-inline-react-svg": "^2.0.1",
     "babel-plugin-macros": "^3.1.0",
     "babel-plugin-styled-components": "^1.13.2",
@@ -102,6 +104,8 @@
     "file-loader": "^6.2.0",
     "frontmatter-markdown-loader": "^3.6.2",
     "husky": "6.0.0",
+    "jest": "^28.1.2",
+    "jest-environment-jsdom": "^28.1.2",
     "prettier": "^2.2.1",
     "raw-loader": "^4.0.2",
     "sass": "^1.32.8",

@@ -77,7 +77,11 @@ const AnnouncementBar = ({
     <StyledAnnouncementBar className={className} variant={variant}>
       <StyledContent>
         {removable && (
-          <Close onClick={() => setClosed(true)}>
+          <Close
+            onClick={() => setClosed(true)}
+            role="button"
+            aria-label="Close"
+          >
             <FaTimes />
           </Close>
         )}
