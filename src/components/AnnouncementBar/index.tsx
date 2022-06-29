@@ -62,7 +62,7 @@ const AnnouncementBar = ({
   }
 
   const isTargetTimeUp =
-    typeof closed === 'number' ? Date.now() > closed : true;
+    typeof closed === 'number' ? Date.now() >= closed : true;
 
   let isClosed = typeof closed === 'boolean' && closed === true;
 
