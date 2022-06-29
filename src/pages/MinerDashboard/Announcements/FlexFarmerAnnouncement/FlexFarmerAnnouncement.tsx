@@ -35,7 +35,7 @@ const IllustrationContainer = styled.div`
   z-index: -1;
 
   @media (max-width: 648px) {
-    left: -58px;
+    left: -38px;
     top: auto;
     bottom: -70%;
   }
@@ -95,7 +95,7 @@ const FlexFarmerAnnouncement = ({ address }: { address: string }) => {
           width={150}
           height={28}
           priority={true}
-          src="/images/flexfarmer-logo.png"
+          src="/images/flexfarmer-logo.svg"
           alt="FlexFarmer logo"
         />
         <Description>
@@ -106,7 +106,7 @@ const FlexFarmerAnnouncement = ({ address }: { address: string }) => {
           <br />
           <br />
           <Link href="https://farmer.flexpool.io" passHref>
-            <CTA>
+            <CTA id="learn_more_about_flexfarmer_cta">
               Learn more about FlexFarmer <FiChevronRight />
             </CTA>
           </Link>
@@ -115,10 +115,11 @@ const FlexFarmerAnnouncement = ({ address }: { address: string }) => {
 
       <IllustrationContainer>
         <Image
-          width={643.2}
-          height={307.2}
+          width={2082}
+          height={1150}
           priority={true}
-          src="/images/flexfarmer-screenshot.webp"
+          quality={100}
+          src="/images/flexfarmer-screenshot.png"
           alt="FlexFarmer screenshot"
         />
       </IllustrationContainer>
