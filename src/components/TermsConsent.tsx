@@ -4,6 +4,7 @@ import { Button } from 'src/components/Button';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { Trans, useTranslation } from 'next-i18next';
 import { LinkOut } from './LinkOut';
+import useIsMounted from '@/hooks/useIsMounted';
 
 declare global {
   interface Window {
@@ -65,15 +66,15 @@ const TermsConsent: React.FC<{}> = () => {
     'termsConsented' | 'false'
   >('termsConsent', 'false');
 
+  const isMounted = useIsMounted();
+
   const { t, ready } = useTranslation('cookie-consent');
 
   const applyConsent = () => {
     setTermsConsent('termsConsented');
   };
 
-  if (termsConsent === 'termsConsented') {
-    return <></>;
-  }
+  if (termsConsent === 'termsConsented' || !isMounted) return null;
 
   return (
     <TermsConsentBaseContainer consented={termsConsent}>
