@@ -102,6 +102,7 @@ export const Table = {
 export const HorizontalScrollWrapepr = styled.div`
   width: 100%;
   overflow-x: auto;
+  position: relative;
 `;
 
 export const ListWrapper = styled.div`
