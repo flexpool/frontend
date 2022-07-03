@@ -11,7 +11,7 @@ export const GetStartedXchCliPage = () => {
       <Content paddingLg>
         <ChiaCliGuidePage />
       </Content>
-      <FlexFarmerAnnouncement removable={false} />
+      <FlexFarmerAnnouncement removable={false} borderLocation="top" />
     </Page>
   );
 };

@@ -223,7 +223,9 @@ export const MinerDashboardPageContent: React.FC<{
             </DonationAnnouncement>
           )}
 
-          {coinTicker === 'xch' && <FlexFarmerAnnouncement address={address} />}
+          {coinTicker === 'xch' && (
+            <FlexFarmerAnnouncement address={address} borderLocation="bottom" />
+          )}
 
           <Content>
             <HeaderGreetings

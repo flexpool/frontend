@@ -11,7 +11,7 @@ export const GetStartedXchGuiPage = () => {
       <Content paddingLg>
         <ChiaGuiGuidePage />
       </Content>
-      <FlexFarmerAnnouncement removable={false} />
+      <FlexFarmerAnnouncement removable={false} borderLocation="top" />
     </Page>
   );
 };

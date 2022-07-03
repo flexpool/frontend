@@ -6,7 +6,9 @@ import { FiChevronRight } from 'react-icons/fi';
 import Link from 'next/link';
 import useMinerStatsQuery from '@/hooks/api/useMinerStatsQuery';
 
-const StyledAnnouncementBar = styled(AnnouncementBar)`
+const StyledAnnouncementBar = styled(AnnouncementBar)<{
+  borderLocation: 'top' | 'bottom';
+}>`
   position: relative;
   z-index: 0;
   background-color: #151519;
@@ -14,8 +16,7 @@ const StyledAnnouncementBar = styled(AnnouncementBar)`
   position: relative;
   min-height: 203px;
   overflow: hidden;
-  border-bottom: 1px solid var(--border-color);
-  border-top: 1px solid var(--border-color);
+  border-${(props) => props.borderLocation}: 1px solid var(--border-color);
 
   & > div {
     height: 100%;
@@ -104,9 +105,11 @@ const Description = styled.p`
 const FlexFarmerAnnouncement = ({
   address = '',
   removable = true,
+  borderLocation = 'top',
 }: {
   address?: string;
   removable?: boolean;
+  borderLocation: 'top' | 'bottom';
 }) => {
   const [targetTime, setTargetTime] = useState<number | null>(null);
 
@@ -126,6 +129,7 @@ const FlexFarmerAnnouncement = ({
       id="flexfarmer-ad"
       targetTime={targetTime}
       removable={removable}
+      borderLocation={borderLocation}
     >
       <Content>
         <Image

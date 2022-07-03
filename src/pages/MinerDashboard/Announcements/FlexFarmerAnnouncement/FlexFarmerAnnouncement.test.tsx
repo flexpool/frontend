@@ -37,14 +37,14 @@ describe('<FlexFarmerAnnouncement />', () => {
   });
 
   it('should render correctly.', () => {
-    render(<FlexFarmerAnnouncement />);
+    render(<FlexFarmerAnnouncement borderLocation="top" />);
     expect(
       screen.getByRole('link', { name: /learn more about flexfarmer/i })
     ).toBeInTheDocument();
   });
 
   it('should disappear when x is clicked.', async () => {
-    render(<FlexFarmerAnnouncement />);
+    render(<FlexFarmerAnnouncement borderLocation="bottom" />);
 
     expect(
       screen.getByRole('link', { name: /learn more about flexfarmer/i })
@@ -66,7 +66,9 @@ describe('<FlexFarmerAnnouncement />', () => {
 
     jest.setSystemTime(mockTime);
 
-    const { rerender } = render(<FlexFarmerAnnouncement />);
+    const { rerender } = render(
+      <FlexFarmerAnnouncement borderLocation="top" />
+    );
 
     screen.getByRole('button', { name: /maybe later/i }).click();
 
@@ -78,7 +80,7 @@ describe('<FlexFarmerAnnouncement />', () => {
 
     jest.advanceTimersByTime(1000 * 60 * 60 * 24 * 2);
 
-    rerender(<FlexFarmerAnnouncement />);
+    rerender(<FlexFarmerAnnouncement borderLocation="top" />);
 
     expect(
       screen.getByRole('link', { name: /learn more about flexfarmer/i })
