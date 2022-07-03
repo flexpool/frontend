@@ -28,6 +28,7 @@ import { Spacer } from 'src/components/layout/Spacer';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import { PullToRefresh } from 'src/components/layout/PullToRefresh/PullToRefresh';
 import { InfoBox } from 'src/components/InfoBox';
+import FlexFarmerAnnouncement from '@/pages/MinerDashboard/Announcements/FlexFarmerAnnouncement';
 
 import styled from 'styled-components';
 import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
@@ -110,24 +111,6 @@ const BannerText = styled.div`
 const DonationAnnouncement = styled(AnnouncementBar)`
   border-top: 9px solid #005bb9;
   border-bottom: 8px solid #ffd302;
-`;
-
-const ETCAnnouncement = styled(AnnouncementBar)`
-  padding: 1rem 0;
-`;
-
-const ETCCallToAction = styled.a`
-  border: 1px solid white;
-  text-decoration: none;
-  padding: 0.25rem 0.4rem;
-  border-radius: 4px;
-  color: white;
-  font-size: 0.85rem;
-  margin-left: 0.25rem;
-
-  &:hover {
-    text-decoration: none;
-  }
 `;
 
 export const MinerDashboardPageContent: React.FC<{
@@ -238,6 +221,10 @@ export const MinerDashboardPageContent: React.FC<{
               <h3>This is the Ukraine donation dashboard</h3>
               <h3>Thank you for your support</h3>
             </DonationAnnouncement>
+          )}
+
+          {coinTicker === 'xch' && (
+            <FlexFarmerAnnouncement address={address} borderLocation="bottom" />
           )}
 
           <Content>

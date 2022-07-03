@@ -1,3 +1,4 @@
+import FlexFarmerAnnouncement from '@/pages/MinerDashboard/Announcements/FlexFarmerAnnouncement';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { Content } from 'src/components/layout/Content';
@@ -10,6 +11,7 @@ export const GetStartedXchGuiPage = () => {
       <Content paddingLg>
         <ChiaGuiGuidePage />
       </Content>
+      <FlexFarmerAnnouncement removable={false} borderLocation="top" />
     </Page>
   );
 };
@@ -30,7 +32,8 @@ export async function getStaticProps({ locale }) {
 }
 
 export const getStaticPaths = ({ locales }) => {
-  const paths: Array<{ params: { ticker: string; hw: string }; locale: any }> = [];
+  const paths: Array<{ params: { ticker: string; hw: string }; locale: any }> =
+    [];
 
   for (const locale of locales) {
     paths.push({ params: { ticker: 'xch', hw: 'XCH-GUI' }, locale });
