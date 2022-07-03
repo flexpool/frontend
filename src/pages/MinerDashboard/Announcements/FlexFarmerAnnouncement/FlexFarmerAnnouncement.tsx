@@ -16,6 +16,7 @@ const StyledAnnouncementBar = styled(AnnouncementBar)<{
   position: relative;
   min-height: 203px;
   overflow: hidden;
+  padding: 1rem 0;
   border-${(props) => props.borderLocation}: 1px solid var(--border-color);
 
   & > div {
@@ -39,7 +40,7 @@ const IllustrationContainer = styled.div`
   @media (max-width: 648px) {
     left: -38px;
     top: auto;
-    bottom: -70%;
+    bottom: -75%;
   }
 `;
 
@@ -100,6 +101,11 @@ const Description = styled.p`
   letter-spacing: -0.015em;
   color: white;
   margin-top: 12px;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+    line-height: 18px;
+  }
 `;
 
 const FlexFarmerAnnouncement = ({
@@ -146,16 +152,18 @@ const FlexFarmerAnnouncement = ({
           How about a farmer with virtually no system requirements?
           <br />
           <br />
-          <Link href="https://farmer.flexpool.io" passHref>
-            <CTA id="learn_more_about_flexfarmer_cta">
-              Learn more about FlexFarmer <FiChevronRight />
-            </CTA>
-          </Link>
-          {removable && (
-            <LaterButton onClick={handleRemindLaterClick}>
-              Maybe later
-            </LaterButton>
-          )}
+          <div>
+            <Link href="https://farmer.flexpool.io" passHref>
+              <CTA id="learn_more_about_flexfarmer_cta">
+                Learn more about FlexFarmer <FiChevronRight />
+              </CTA>
+            </Link>
+            {removable && (
+              <LaterButton onClick={handleRemindLaterClick}>
+                Maybe later
+              </LaterButton>
+            )}
+          </div>
         </Description>
       </Content>
 
