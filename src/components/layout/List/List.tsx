@@ -180,9 +180,9 @@ export const DynamicList = <D extends {}, CP extends {}>(
   return (
     <ListWrapper {...wrapperProps}>
       <HorizontalScrollWrapepr>
+        {isLoading && <LoaderOverlayWithin></LoaderOverlayWithin>}
         <Table.Container>
           {headEl}
-          {isLoading && <LoaderOverlayWithin></LoaderOverlayWithin>}
           {(isLoading && (!data || data.length < 1) && (
             <tbody>
               {Array.apply(null, Array(loadingRowsCount)).map((_, index) => (
