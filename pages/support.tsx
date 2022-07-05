@@ -15,6 +15,9 @@ import {
   TELEGRAM_LINK,
   TELEGRAM_LINK_CN,
 } from '../src/constants';
+import { InfoBox } from '@/components/InfoBox';
+import Warning from '@/assets/warning-icon.svg';
+import { Spacer } from '@/components/layout/Spacer';
 
 const SupportChannelWrapper = styled.a`
   border: 1px solid var(--border-color);
@@ -50,6 +53,24 @@ const SupportChannel: React.FC<{
   );
 };
 
+const MediaContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  & > svg {
+    width: 50px;
+  }
+`;
+
+const BannerText = styled.div`
+  margin-left: 1rem;
+  flex-grow: 1;
+
+  & > p {
+    margin-top: 0.5rem;
+  }
+`;
+
 export const SupportPage = () => {
   const { t, i18n } = useTranslation('support');
   const { t: seoT } = useTranslation('seo');
@@ -83,6 +104,26 @@ export const SupportPage = () => {
         <Divider margin />
         <h2>{t('section_two.title')}</h2>
         <p>{t('section_two.description')}</p>
+        <Spacer />
+        <InfoBox variant="warning">
+          <MediaContainer>
+            <Warning />
+            <BannerText>{t('section_two.warning')}</BannerText>
+          </MediaContainer>
+        </InfoBox>
+        <Divider margin />
+        <h2>{t('section_four.title')}</h2>
+        <p>
+          <Trans
+            ns={'support'}
+            i18nKey="section_four.description" // optional -> fallbacks to defaults if not provided
+            values={{ email: 'support@flexpool.io' }}
+            components={{
+              // eslint-disable-next-line
+              email: <a href="mailto:support@flexpool.io" />,
+            }}
+          />
+        </p>
         <Divider margin />
         <h2>{t('section_three.title')}</h2>
         <p>{t('section_three.description')}</p>
@@ -103,19 +144,7 @@ export const SupportPage = () => {
             href={TELEGRAM_LINK_CN}
           />
         </div>
-        <Divider margin />
-        <h2>{t('section_four.title')}</h2>
-        <p>
-          <Trans
-            ns={'support'}
-            i18nKey="section_four.description" // optional -> fallbacks to defaults if not provided
-            values={{ email: 'support@flexpool.io' }}
-            components={{
-              // eslint-disable-next-line
-              email: <a href="mailto:support@flexpool.io" />,
-            }}
-          />
-        </p>
+
         {/* <Divider margin />
         <h2>{t('section_five.title')}</h2>
         <p>
