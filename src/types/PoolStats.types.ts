@@ -15,3 +15,9 @@ export type ApiBlocksChartItem = {
   timestamp: number;
   luck: number;
 };
+
+export type ChainStatsHistoryItem = {
+  blockCount: number;
+  difficulty: number;
+  timestamp: number;
+};
