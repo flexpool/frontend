@@ -46,46 +46,47 @@ export const useDisplaySnackOnSearchParams = () => {
   const router = useRouter();
 
   React.useEffect(() => {
-    const { snack, snackAutoHide, snackVariant, ...rest } = router.query;
-    const snacksToDisplay = typeof snack === 'string' ? [snack] : snack;
-    // default autoHide is 5s
-    const autoHide = Number(snackAutoHide) || 5000;
-    // default variant is success (green)
-    const variant: SnackVariant =
-      typeof snackVariant === 'string'
-        ? (snackVariant as SnackVariant)
-        : 'success';
-    if (snacksToDisplay) {
-      const snacksToPush = snacksToDisplay.map((key) => {
-        const title = t(`snacks.${key}.title`);
-        const description = t(`snacks.${key}.description`);
-        const snack = createSnack({
-          title,
-          ...(description !== `snacks.${key}.description`
-            ? { description }
-            : {}),
-          id: key,
-          autoHide,
-          variant,
+    if (router.isReady && router.query.snack) {
+      const { snack, snackAutoHide, snackVariant, ...rest } = router.query;
+      const snacksToDisplay = typeof snack === 'string' ? [snack] : snack;
+      // default autoHide is 5s
+      const autoHide = Number(snackAutoHide) || 5000;
+      // default variant is success (green)
+      const variant: SnackVariant =
+        typeof snackVariant === 'string'
+          ? (snackVariant as SnackVariant)
+          : 'success';
+      if (snacksToDisplay) {
+        const snacksToPush = snacksToDisplay.map((key) => {
+          const title = t(`snacks.${key}.title`);
+          const description = t(`snacks.${key}.description`);
+          const snack = createSnack({
+            title,
+            ...(description !== `snacks.${key}.description`
+              ? { description }
+              : {}),
+            id: key,
+            autoHide,
+            variant,
+          });
+          return snack;
         });
-        return snack;
-      });
-      snacksToPush.forEach((snack) => d(snackActions.create(snack)));
-    }
-    /**
-     * remove snack info from the URL
-     */
-    router.replace(
-      {
-        search: qs.stringify(rest),
-      },
-      undefined,
-      {
-        shallow: true,
+        snacksToPush.forEach((snack) => d(snackActions.create(snack)));
       }
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [d]);
+      /**
+       * remove snack info from the URL
+       */
+      router.replace(
+        {
+          search: qs.stringify(rest),
+        },
+        undefined,
+        {
+          shallow: true,
+        }
+      );
+    }
+  }, [d, router, t]);
 
   return null;
 };

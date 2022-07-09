@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Page } from '@/components/layout/Page';
 import { HeaderStat } from '@/components/layout/StatHeader';
@@ -19,7 +20,10 @@ const ChartCard = styled(Card)`
   padding: 36px 36px 22px;
 `;
 
-import { useActiveCoin } from '@/rdx/localSettings/localSettings.hooks';
+import {
+  useActiveCoin,
+  useCoinTicker,
+} from '@/rdx/localSettings/localSettings.hooks';
 import { Spacer } from '@/components/layout/Spacer';
 import { Skeleton } from '@/components/layout/Skeleton';
 import { Content } from '@/components/layout/Content';
@@ -38,6 +42,32 @@ const ChartCoinSkeleton = styled(Skeleton)`
 
 const NetworkStatsPage = () => {
   const activeCoin = useActiveCoin();
+  const firstRender = useRef(true);
+
+  const [coin, setCoin] = useCoinTicker();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (router.isReady && router.pathname === '/network-stats') {
+      if (router.query?.coin !== coin) {
+        if (firstRender.current && router.query?.coin) {
+          setCoin(router.query.coin as string);
+          firstRender.current = false;
+        } else {
+          const urlSearchParams = new URLSearchParams({ coin });
+          router.replace(
+            {
+              query: urlSearchParams.toString(),
+            },
+            undefined,
+            { shallow: true }
+          );
+        }
+      } else {
+        firstRender.current = false;
+      }
+    }
+  }, [router, coin, setCoin]);
 
   // TODO: save user preference to local storage
   const [duration, setDuration] = useState<DurationKey>('1m');
