@@ -48,34 +48,77 @@ const NetworkStatsPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (router.isReady && router.pathname === '/network-stats') {
-      if (router.query?.coin !== coin) {
-        if (firstRender.current && router.query?.coin) {
-          setCoin(router.query.coin as string);
-          firstRender.current = false;
-        } else {
-          const urlSearchParams = new URLSearchParams({ coin });
-          router.replace(
-            {
-              query: urlSearchParams.toString(),
-            },
-            undefined,
-            { shallow: true }
-          );
-        }
-      } else {
-        firstRender.current = false;
-      }
+    if (
+      router.isReady &&
+      router.pathname === '/network-stats' &&
+      !firstRender.current &&
+      router.query.coin &&
+      coin !== router.query.coin
+    ) {
+      let [queryString] = router.asPath.match(/\?[^#]+/g) || [''];
+      const urlSearchParams = new URLSearchParams(queryString);
+      urlSearchParams.set('coin', coin);
+      router.replace(
+        {
+          query: urlSearchParams.toString(),
+        },
+        undefined,
+        { shallow: true }
+      );
     }
-  }, [router, coin, setCoin]);
+  }, [router, coin]);
 
-  // TODO: save user preference to local storage
   const [duration, setDuration] = useState<DurationKey>('1m');
 
   const chartUnit =
     String(activeCoin?.ticker) === 'xch'
       ? 'PT'
       : activeCoin?.hashrateUnit.split('/')[0];
+
+  useEffect(() => {
+    if (router.isReady && firstRender.current) {
+      let [queryString] = router.asPath.match(/\?[^#]+/g) || [''];
+      const urlSearchParams = new URLSearchParams(queryString);
+
+      if (!router.query.coin) {
+        urlSearchParams.set('coin', coin);
+      } else {
+        setCoin(router.query.coin as string);
+      }
+
+      if (!router.query.duration) {
+        urlSearchParams.set('duration', '1m');
+      } else {
+        setDuration(router.query.duration as DurationKey);
+      }
+
+      router.replace(
+        {
+          query: urlSearchParams.toString(),
+        },
+        undefined,
+        { shallow: true }
+      );
+
+      firstRender.current = false;
+    }
+  }, [router, coin, setCoin]);
+
+  const handleDurationChange = (value) => {
+    setDuration(value);
+    let [queryString] = router.asPath.match(/\?[^#]+/g) || [''];
+
+    const urlSearchParams = new URLSearchParams(queryString);
+    urlSearchParams.set('duration', value);
+
+    router.replace(
+      {
+        query: urlSearchParams.toString(),
+      },
+      undefined,
+      { shallow: true }
+    );
+  };
 
   return (
     <Page>
@@ -100,9 +143,7 @@ const NetworkStatsPage = () => {
                 <ChartDurationPicker
                   options={DURATION_OPTIONS}
                   selected={duration}
-                  onChange={(value) => {
-                    setDuration(value);
-                  }}
+                  onChange={handleDurationChange}
                 />
               </ChartHeaderRow>
               <Spacer />
