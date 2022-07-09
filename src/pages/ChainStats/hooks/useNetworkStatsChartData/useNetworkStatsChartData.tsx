@@ -9,7 +9,7 @@ const DurationQueryParams = {
   },
   '1w': {
     duration: 'week',
-    period: '4h',
+    period: '1h',
   },
   '1m': {
     duration: 'month',
