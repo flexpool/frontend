@@ -10,6 +10,8 @@ import {
   ChartDurationPicker,
   ChartMetricsSkeleton,
   StatsChart,
+  ChartTypeSelect,
+  ChartType,
 } from '@/pages/ChainStats/components';
 import { DurationKey } from '@/pages/ChainStats/hooks/useNetworkStatsChartData';
 import { DURATION_OPTIONS } from '@/pages/ChainStats/constants';
@@ -69,6 +71,7 @@ const NetworkStatsPage = () => {
   }, [router, coin]);
 
   const [duration, setDuration] = useState<DurationKey>('1m');
+  const [chartType, setChartType] = useState<ChartType>('difficulty');
 
   const chartUnit =
     String(activeCoin?.ticker) === 'xch'
@@ -90,6 +93,12 @@ const NetworkStatsPage = () => {
         urlSearchParams.set('duration', '1m');
       } else {
         setDuration(router.query.duration as DurationKey);
+      }
+
+      if (!router.query.type) {
+        urlSearchParams.set('type', 'difficulty');
+      } else {
+        setChartType(router.query.type as ChartType);
       }
 
       router.replace(
@@ -120,6 +129,22 @@ const NetworkStatsPage = () => {
     );
   };
 
+  const handleChartTypeSelect = (value) => {
+    setChartType(value);
+    let [queryString] = router.asPath.match(/\?[^#]+/g) || [''];
+
+    const urlSearchParams = new URLSearchParams(queryString);
+    urlSearchParams.set('type', value);
+
+    router.replace(
+      {
+        query: urlSearchParams.toString(),
+      },
+      undefined,
+      { shallow: true }
+    );
+  };
+
   return (
     <Page>
       <HeaderStat>
@@ -135,6 +160,10 @@ const NetworkStatsPage = () => {
                 <ChartCoin
                   name={activeCoin?.name as string}
                   ticker={activeCoin?.ticker}
+                />
+                <ChartTypeSelect
+                  onSelect={handleChartTypeSelect}
+                  value={chartType}
                 />
               </ChartHeaderRow>
               <Spacer size="md" />

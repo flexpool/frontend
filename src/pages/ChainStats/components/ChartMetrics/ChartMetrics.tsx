@@ -13,7 +13,7 @@ const ChartMetricsContainer = styled.div`
 
 const CurrentMetric = styled.span`
   font-weight: 600;
-  font-size: 90px;
+  font-size: 68px;
 `;
 
 const MetricTypeSubtitle = styled.div`
@@ -48,7 +48,7 @@ const TrendBadge = styled.span<{ isTrendingUp: boolean }>`
 
 export const ChartMetricsSkeleton = styled(Skeleton)`
   width: 340px;
-  height: 120.5px;
+  height: 95.2px;
   margin: 0;
 `;
 
