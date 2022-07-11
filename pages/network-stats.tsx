@@ -73,10 +73,24 @@ const NetworkStatsPage = () => {
   const [duration, setDuration] = useState<DurationKey>('1m');
   const [chartType, setChartType] = useState<ChartType>('difficulty');
 
-  const chartUnit =
-    String(activeCoin?.ticker) === 'xch'
-      ? 'PT'
-      : activeCoin?.hashrateUnit.split('/')[0];
+  let chartUnit = '';
+
+  if (activeCoin) {
+    if (chartType === 'difficulty') {
+      chartUnit =
+        String(activeCoin?.ticker) === 'xch'
+          ? 'PT'
+          : activeCoin?.hashrateUnit.split('/')[0];
+    } else if (chartType === 'blockTime') {
+      chartUnit = 'sec';
+    } else {
+      chartUnit =
+        String(activeCoin?.ticker) === 'xch'
+          ? 'PT'
+          : activeCoin?.hashrateUnit.split('/')[0];
+      chartUnit += '/s';
+    }
+  }
 
   useEffect(() => {
     if (router.isReady && firstRender.current) {
@@ -168,7 +182,7 @@ const NetworkStatsPage = () => {
               </ChartHeaderRow>
               <Spacer size="md" />
               <ChartHeaderRow>
-                <ChartMetrics type="Difficulty" coin={activeCoin?.ticker} />
+                <ChartMetrics type={chartType} coin={activeCoin?.ticker} />
                 <ChartDurationPicker
                   options={DURATION_OPTIONS}
                   selected={duration}
@@ -180,6 +194,7 @@ const NetworkStatsPage = () => {
                 coin={activeCoin.ticker}
                 unit={chartUnit || ''}
                 duration={duration}
+                type={chartType}
               />
             </>
           ) : (

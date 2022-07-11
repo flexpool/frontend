@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import DownshiftSelect from '@/components/Form/DownshiftSelect';
 
 type ChartTypeSelectProps<T = string> = {
@@ -10,10 +9,10 @@ type ChartTypeSelectProps<T = string> = {
 const CHART_TYPE_OPTIONS = [
   { value: 'difficulty', label: 'Difficulty Chart' },
   { value: 'hashrate', label: 'Hashrate Chart' },
-  { value: 'blocktime', label: 'Block Time Chart' },
+  { value: 'blockTime', label: 'Block Time Chart' },
 ];
 
-export type ChartType = 'difficulty' | 'hashrate' | 'blocktime';
+export type ChartType = 'difficulty' | 'hashrate' | 'blockTime';
 
 export const ChartTypeSelect = ({ onSelect, value }: ChartTypeSelectProps) => {
   const selected = CHART_TYPE_OPTIONS.find((option) => option.value === value);

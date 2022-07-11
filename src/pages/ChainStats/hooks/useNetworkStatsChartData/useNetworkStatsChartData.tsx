@@ -44,7 +44,8 @@ export const useNetworkStatsChartData = (
             //needs to be end of day for chart to work properly
             date: new Date(item.timestamp * 1000 + userTimezoneOffset),
             difficulty: item.difficulty,
-            blockCount: item.blockCount,
+            blockTime: item.blockTime,
+            hashrate: item.difficulty / item.blockTime,
           }))
           .reverse();
       },

@@ -6,6 +6,7 @@ import { Skeleton } from '@/components/layout/Skeleton';
 import useChainStatsHistoryQuery from '@/hooks/api/useChainStatsHistoryQuery';
 import { useLocalizedSiFormatter } from '@/utils/si.utils';
 import { useActiveCoin } from '@/rdx/localSettings/localSettings.hooks';
+import { ChartType } from '../ChartTypeSelect';
 
 const ChartMetricsContainer = styled.div`
   color: var(--text-color);
@@ -57,42 +58,68 @@ export const ChartMetrics = ({
   coin,
 }: {
   coin: string;
-  type: string;
+  type: ChartType;
 }) => {
   const coinMeta = useActiveCoin(coin);
   const formatter = useLocalizedSiFormatter();
-  const { data: monthlyStats, isLoading } = useChainStatsHistoryQuery({
-    coin,
-    duration: 'month',
-    period: '1d',
-  });
+  const { data: monthlyStats, isLoading } = useChainStatsHistoryQuery(
+    {
+      coin,
+      duration: 'day',
+      period: '10m',
+    },
+    {
+      select: (data) =>
+        data.map(({ difficulty, blockTime }) => ({
+          difficulty,
+          blockTime,
+          hashrate: difficulty / blockTime,
+        })),
+    }
+  );
 
   let metricValue: string | null = null;
   let metricUnit: string | null = null;
 
   if (monthlyStats) {
-    const currentDifficulty = monthlyStats[0].difficulty;
-    const formattedDifficulty = formatter(currentDifficulty, {
+    const currentMetric = monthlyStats[0][type];
+    const formattedMetric = formatter(currentMetric, {
       decimals: 2,
     });
 
-    if (formattedDifficulty) {
-      const [value, unit] = formattedDifficulty.split(' ');
+    if (formattedMetric) {
+      const [value, unit] = formattedMetric.split(' ');
 
       metricValue = value;
 
-      if (coinMeta?.ticker === 'xch') {
-        metricUnit = unit + 'PT';
-      } else {
-        metricUnit = unit + coinMeta?.hashrateUnit.split('/')[0];
+      switch (type) {
+        case 'difficulty':
+          if (coinMeta?.ticker === 'xch') {
+            metricUnit = unit + 'PT';
+          } else {
+            metricUnit = unit + coinMeta?.hashrateUnit.split('/')[0];
+          }
+          break;
+        case 'hashrate':
+          if (coinMeta?.ticker === 'xch') {
+            metricUnit = unit + 'PT/s';
+          } else {
+            metricUnit = unit + coinMeta?.hashrateUnit.split('/')[0] + '/s';
+          }
+          break;
+
+        case 'blockTime':
+          metricUnit = unit + 'sec';
+          break;
       }
     }
   }
 
-  let difficultyTrend: number | null = null;
+  let trend: number | null = null;
   if (monthlyStats) {
-    const delta = monthlyStats[0].difficulty - monthlyStats[1].difficulty;
-    difficultyTrend = delta / monthlyStats[1].difficulty;
+    const delta =
+      monthlyStats[0][type] - monthlyStats[monthlyStats.length - 1][type];
+    trend = delta / monthlyStats[monthlyStats.length - 1][type];
   }
 
   if (isLoading) return <ChartMetricsSkeleton />;
@@ -101,10 +128,10 @@ export const ChartMetrics = ({
     <ChartMetricsContainer>
       <CurrentMetric>{metricValue}</CurrentMetric>
       <MetricUnit>{metricUnit}</MetricUnit>
-      {difficultyTrend && (
-        <TrendBadge isTrendingUp={difficultyTrend >= 0}>
-          {difficultyTrend >= 0 ? <FiArrowUp /> : <FiArrowDown />}{' '}
-          {Math.abs(difficultyTrend * 100).toFixed(2)}% Today
+      {trend && (
+        <TrendBadge isTrendingUp={trend >= 0}>
+          {trend >= 0 ? <FiArrowUp /> : <FiArrowDown />}{' '}
+          {Math.abs(trend * 100).toFixed(2)}% Today
         </TrendBadge>
       )}
 

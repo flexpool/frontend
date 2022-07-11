@@ -17,7 +17,7 @@ export type ApiBlocksChartItem = {
 };
 
 export type ChainStatsHistoryItem = {
-  blockCount: number;
   difficulty: number;
+  blockTime: number;
   timestamp: number;
 };

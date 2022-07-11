@@ -16,6 +16,7 @@ import {
 import useNetworkStatsChartData, {
   DurationKey,
 } from '../../hooks/useNetworkStatsChartData';
+import { ChartType } from '../ChartTypeSelect';
 
 const appear = keyframes`
   from {
@@ -41,10 +42,23 @@ type StatsChartProps = {
   coin: string;
   unit: string;
   duration: DurationKey;
+  type: ChartType;
+};
+
+const AXIS_CONFIG = {
+  difficulty: {
+    name: 'Difficulty',
+  },
+  hashrate: {
+    name: 'Hashrate',
+  },
+  blockTime: {
+    name: 'Block Time',
+  },
 };
 
 export const StatsChart = React.memo(
-  ({ coin, unit, duration }: StatsChartProps) => {
+  ({ coin, unit, duration, type }: StatsChartProps) => {
     const chartRef = useRef<XYChart | null>(null);
 
     const { data, isFetching } = useNetworkStatsChartData(coin, duration);
@@ -76,11 +90,12 @@ export const StatsChart = React.memo(
         difficultySeries.fillOpacity = 0.3;
 
         difficultySeries.dataFields.dateX = 'date';
-        difficultySeries.name = 'Difficulty';
+        difficultySeries.name = AXIS_CONFIG[type].name;
         difficultySeries.yAxis = difficultyAxis;
-        difficultySeries.dataFields.valueY = 'difficulty';
+        difficultySeries.dataFields.valueY = type;
         difficultySeries.tooltipText =
-          'Difficulty' + `: {valueY.value.formatNumber("#.00 a'${unit}'")}`;
+          AXIS_CONFIG[type].name +
+          `: {valueY.value.formatNumber("#.00 a'${unit}'")}`;
 
         difficultySeries.strokeWidth = 2;
         difficultySeries.tensionX = 0.9;
@@ -88,7 +103,7 @@ export const StatsChart = React.memo(
 
         chartRef.current.cursor = new XYCursor();
       }
-    }, [data, unit, isFetching]);
+    }, [data, unit, isFetching, type]);
 
     useEffect(() => {
       return () => {
