@@ -13,10 +13,10 @@ import {
   ChartTypeSelect,
   ChartType,
 } from '@/pages/ChainStats/components';
+import { Card } from '@/components/layout/Card';
 import { DurationKey } from '@/pages/ChainStats/hooks/useNetworkStatsChartData';
 import { DURATION_OPTIONS } from '@/pages/ChainStats/constants';
-
-import { Card } from '@/components/layout/Card';
+import { getUnitByChartType } from '@/pages/ChainStats/utils';
 
 const ChartCard = styled(Card)`
   padding: 36px 36px 22px;
@@ -72,25 +72,6 @@ const NetworkStatsPage = () => {
 
   const [duration, setDuration] = useState<DurationKey>('1m');
   const [chartType, setChartType] = useState<ChartType>('difficulty');
-
-  let chartUnit = '';
-
-  if (activeCoin) {
-    if (chartType === 'difficulty') {
-      chartUnit =
-        String(activeCoin?.ticker) === 'xch'
-          ? 'PT'
-          : activeCoin?.hashrateUnit.split('/')[0];
-    } else if (chartType === 'blockTime') {
-      chartUnit = 'sec';
-    } else {
-      chartUnit =
-        String(activeCoin?.ticker) === 'xch'
-          ? 'PT'
-          : activeCoin?.hashrateUnit.split('/')[0];
-      chartUnit += '/s';
-    }
-  }
 
   useEffect(() => {
     if (router.isReady && firstRender.current) {
@@ -182,7 +163,7 @@ const NetworkStatsPage = () => {
               </ChartHeaderRow>
               <Spacer size="md" />
               <ChartHeaderRow>
-                <ChartMetrics type={chartType} coin={activeCoin?.ticker} />
+                <ChartMetrics type={chartType} coin={activeCoin} />
                 <ChartDurationPicker
                   options={DURATION_OPTIONS}
                   selected={duration}
@@ -192,7 +173,7 @@ const NetworkStatsPage = () => {
               <Spacer />
               <StatsChart
                 coin={activeCoin.ticker}
-                unit={chartUnit || ''}
+                unit={getUnitByChartType(chartType, activeCoin)}
                 duration={duration}
                 type={chartType}
               />

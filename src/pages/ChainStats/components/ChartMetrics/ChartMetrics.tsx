@@ -5,8 +5,8 @@ import { Skeleton } from '@/components/layout/Skeleton';
 
 import useChainStatsHistoryQuery from '@/hooks/api/useChainStatsHistoryQuery';
 import { useLocalizedSiFormatter } from '@/utils/si.utils';
-import { useActiveCoin } from '@/rdx/localSettings/localSettings.hooks';
-import { ChartType } from '../ChartTypeSelect';
+import { ChartType } from '../../types';
+import { getUnitByChartType } from '../../utils';
 
 const ChartMetricsContainer = styled.div`
   color: var(--text-color);
@@ -57,14 +57,14 @@ export const ChartMetrics = ({
   type,
   coin,
 }: {
-  coin: string;
+  coin: { ticker: string; hashrateUnit: string };
   type: ChartType;
 }) => {
-  const coinMeta = useActiveCoin(coin);
   const formatter = useLocalizedSiFormatter();
-  const { data: monthlyStats, isLoading } = useChainStatsHistoryQuery(
+
+  const { data: dailyStats, isLoading } = useChainStatsHistoryQuery(
     {
-      coin,
+      coin: coin.ticker,
       duration: 'day',
       period: '10m',
     },
@@ -80,46 +80,23 @@ export const ChartMetrics = ({
 
   let metricValue: string | null = null;
   let metricUnit: string | null = null;
+  let trend: number | null = null;
 
-  if (monthlyStats) {
-    const currentMetric = monthlyStats[0][type];
+  if (dailyStats) {
+    const currentMetric = dailyStats[0][type];
+    const previousMetric = dailyStats[dailyStats.length - 1][type];
+
     const formattedMetric = formatter(currentMetric, {
       decimals: 2,
     });
 
     if (formattedMetric) {
-      const [value, unit] = formattedMetric.split(' ');
-
+      const [value, si] = formattedMetric.split(' ');
       metricValue = value;
-
-      switch (type) {
-        case 'difficulty':
-          if (coinMeta?.ticker === 'xch') {
-            metricUnit = unit + 'PT';
-          } else {
-            metricUnit = unit + coinMeta?.hashrateUnit.split('/')[0];
-          }
-          break;
-        case 'hashrate':
-          if (coinMeta?.ticker === 'xch') {
-            metricUnit = unit + 'PT/s';
-          } else {
-            metricUnit = unit + coinMeta?.hashrateUnit.split('/')[0] + '/s';
-          }
-          break;
-
-        case 'blockTime':
-          metricUnit = unit + 'sec';
-          break;
-      }
+      metricUnit = si + getUnitByChartType(type, coin);
     }
-  }
 
-  let trend: number | null = null;
-  if (monthlyStats) {
-    const delta =
-      monthlyStats[0][type] - monthlyStats[monthlyStats.length - 1][type];
-    trend = delta / monthlyStats[monthlyStats.length - 1][type];
+    trend = (currentMetric - previousMetric) / previousMetric;
   }
 
   if (isLoading) return <ChartMetricsSkeleton />;

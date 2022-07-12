@@ -20,3 +20,9 @@ export const DURATION_OPTIONS = [
     value: 'all',
   },
 ];
+
+const CHART_TYPE_OPTIONS = [
+  { value: 'difficulty', label: 'Difficulty Chart' },
+  { value: 'hashrate', label: 'Hashrate Chart' },
+  { value: 'blockTime', label: 'Block Time Chart' },
+];
