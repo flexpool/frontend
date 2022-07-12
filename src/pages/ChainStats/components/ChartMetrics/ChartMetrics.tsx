@@ -10,11 +10,16 @@ import { getUnitByChartType } from '../../utils';
 
 const ChartMetricsContainer = styled.div`
   color: var(--text-color);
+  white-space: nowrap;
 `;
 
 const CurrentMetric = styled.span`
   font-weight: 600;
   font-size: 68px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 42px;
+  }
 `;
 
 const MetricTypeSubtitle = styled.div`
@@ -26,18 +31,27 @@ const MetricTypeSubtitle = styled.div`
   padding-left: 4px;
   position: relative;
   top: -6px;
+
+  @media screen and (max-width: 768px) {
+    top: 0;
+    padding-left: 0px;
+  }
 `;
 
 const MetricUnit = styled.span`
   font-weight: 600;
   font-size: 42px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 28px;
+  }
 `;
 
 const TrendBadge = styled.span<{ isTrendingUp: boolean }>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  top: -10px;
+  top: -8px;
   position: relative;
   color: ${(p) => (p.isTrendingUp ? 'var(--success)' : 'var(--danger)')};
   padding: 8px 16px;
@@ -45,6 +59,13 @@ const TrendBadge = styled.span<{ isTrendingUp: boolean }>`
   border-radius: 8px;
   font-size: 16px;
   margin-left: 18px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 12px;
+    padding: 6px 8px;
+    top: -5px;
+    margin-left: 8px;
+  }
 `;
 
 export const ChartMetricsSkeleton = styled(Skeleton)`

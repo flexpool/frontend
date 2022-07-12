@@ -20,6 +20,10 @@ import { getUnitByChartType } from '@/pages/ChainStats/utils';
 
 const ChartCard = styled(Card)`
   padding: 36px 36px 22px;
+
+  @media screen and (max-width: 768px) {
+    padding: 22px 22px 22px;
+  }
 `;
 
 import {
@@ -34,6 +38,11 @@ import styled from 'styled-components';
 
 const ChartHeaderRow = styled.div`
   display: flex;
+`;
+
+const ChartSubHeaderRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 const ChartCoinSkeleton = styled(Skeleton)`
@@ -162,14 +171,14 @@ const NetworkStatsPage = () => {
                 />
               </ChartHeaderRow>
               <Spacer size="md" />
-              <ChartHeaderRow>
+              <ChartSubHeaderRow>
                 <ChartMetrics type={chartType} coin={activeCoin} />
                 <ChartDurationPicker
                   options={DURATION_OPTIONS}
                   selected={duration}
                   onChange={handleDurationChange}
                 />
-              </ChartHeaderRow>
+              </ChartSubHeaderRow>
               <Spacer />
               <StatsChart
                 coin={activeCoin.ticker}

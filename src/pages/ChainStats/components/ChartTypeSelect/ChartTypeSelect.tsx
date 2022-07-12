@@ -1,5 +1,10 @@
 import React from 'react';
-import DownshiftSelect from '@/components/Form/DownshiftSelect';
+import styled from 'styled-components';
+import { AiOutlineLineChart } from 'react-icons/ai';
+import DownshiftSelect, {
+  DownshiftDropdownSelect,
+} from '@/components/Form/DownshiftSelect';
+import { Button } from '@/components/Button';
 
 type ChartTypeSelectProps<T = string> = {
   onSelect: (value: T) => void;
@@ -12,6 +17,26 @@ const CHART_TYPE_OPTIONS = [
   { value: 'blockTime', label: 'Block Time Chart' },
 ];
 
+const ChartTypeButton = styled(Button)`
+  font-size: 1.5rem;
+  min-width: 48px;
+  height: 48px;
+`;
+
+const DesktopBreakpoint = styled.div`
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+  }
+`;
+
+const MobileBreakpoint = styled.div`
+  display: block;
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
 export type ChartType = 'difficulty' | 'hashrate' | 'blockTime';
 
 export const ChartTypeSelect = ({ onSelect, value }: ChartTypeSelectProps) => {
@@ -19,13 +44,33 @@ export const ChartTypeSelect = ({ onSelect, value }: ChartTypeSelectProps) => {
 
   return (
     <div style={{ marginLeft: 'auto' }}>
-      <DownshiftSelect
-        items={CHART_TYPE_OPTIONS}
-        selectedItem={selected}
-        onSelectedItemChange={(v) => {
-          onSelect(v.selectedItem?.value as string);
-        }}
-      />
+      <DesktopBreakpoint>
+        <DownshiftSelect
+          items={CHART_TYPE_OPTIONS}
+          selectedItem={selected}
+          onSelectedItemChange={(v) => {
+            onSelect(v.selectedItem?.value as string);
+          }}
+        />
+      </DesktopBreakpoint>
+
+      <MobileBreakpoint>
+        <DownshiftDropdownSelect
+          items={CHART_TYPE_OPTIONS}
+          selectedItem={selected}
+          onSelectedItemChange={(v) => {
+            onSelect(v.selectedItem?.value as string);
+          }}
+        >
+          {(props) => {
+            return (
+              <ChartTypeButton size="sm" shape="square" {...props}>
+                <AiOutlineLineChart />
+              </ChartTypeButton>
+            );
+          }}
+        </DownshiftDropdownSelect>
+      </MobileBreakpoint>
     </div>
   );
 };

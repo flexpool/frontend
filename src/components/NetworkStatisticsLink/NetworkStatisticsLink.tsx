@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 
 const StyledLink = styled.a`
+  white-space: nowrap;
   color: var(--text-secondary);
   opacity: 0.5;
   font-size: 16px;

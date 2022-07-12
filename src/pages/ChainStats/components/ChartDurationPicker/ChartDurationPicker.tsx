@@ -8,6 +8,10 @@ const DurationButton = styled.button<{ selected: boolean }>`
   cursor: pointer;
   border-radius: 20px;
 
+  @media screen and (max-width: 768px) {
+    padding: 6px 14px;
+  }
+
   ${(p) =>
     p.selected &&
     css`
@@ -33,6 +37,12 @@ const DurationsContainer = styled.div`
 
   ${DurationButton} + ${DurationButton} {
     margin-left: 8px;
+  }
+
+  @media screen and (max-width: 768px) {
+    margin-left: -8px;
+    margin-top: 16px;
+    margin-bottom: 0px;
   }
 `;
 
