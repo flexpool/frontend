@@ -219,11 +219,6 @@ const NavBar: React.FC<NavBarType> = (props) => {
                 <FaCubes className="nav-svg" />
               </NLink>
             </Link>
-            <Link href="/difficulty" passHref>
-              <NLink aria-label="Difficulty">
-                <FaCubes className="nav-svg" />
-              </NLink>
-            </Link>
             <NLink
               as="button"
               aria-label="Search Address"

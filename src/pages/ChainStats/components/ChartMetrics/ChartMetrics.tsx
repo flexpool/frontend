@@ -1,12 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
-import { FiArrowDown, FiArrowUp } from 'react-icons/fi';
+import styled, { css } from 'styled-components';
+import { FiArrowDown, FiArrowUp, FiMinus } from 'react-icons/fi';
 import { Skeleton } from '@/components/layout/Skeleton';
 
 import useChainStatsHistoryQuery from '@/hooks/api/useChainStatsHistoryQuery';
 import { useLocalizedSiFormatter } from '@/utils/si.utils';
 import { ChartType } from '../../types';
 import { getUnitByChartType } from '../../utils';
+import useNetworkStatsChartData, {
+  DurationKey,
+} from '../../hooks/useNetworkStatsChartData';
 
 const ChartMetricsContainer = styled.div`
   color: var(--text-color);
@@ -47,15 +50,33 @@ const MetricUnit = styled.span`
   }
 `;
 
-const TrendBadge = styled.span<{ isTrendingUp: boolean }>`
+const TrendBadge = styled.span<{ type: 'up' | 'down' | 'stay' }>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
   top: -8px;
   position: relative;
-  color: ${(p) => (p.isTrendingUp ? 'var(--success)' : 'var(--danger)')};
+
+  ${(p) => {
+    if (p.type === 'up') {
+      return css`
+        background-color: #ed4f3221;
+        color: var(--danger);
+      `;
+    } else if (p.type === 'down') {
+      return css`
+        background-color: #15cd7221;
+        color: var(--success);
+      `;
+    } else {
+      return css`
+        background-color: #4a4a4a21;
+        color: #4a4a4a;
+      `;
+    }
+  }}
+
   padding: 8px 16px;
-  background-color: ${(p) => (p.isTrendingUp ? '#15cd7221' : '#ed4f3221')};
   border-radius: 8px;
   font-size: 16px;
   margin-left: 18px;
@@ -74,14 +95,42 @@ export const ChartMetricsSkeleton = styled(Skeleton)`
   margin: 0;
 `;
 
+const renderBadgeContent = (trend: number) => {
+  let Indicator = FiArrowUp;
+  let type = 'up';
+
+  if (Math.abs(trend * 100).toFixed(2) === '0.00') {
+    Indicator = FiMinus;
+    type = 'stay';
+  }
+  if (trend < 0) {
+    Indicator = FiArrowDown;
+    type = 'down';
+  }
+
+  return (
+    <TrendBadge type={type as any}>
+      <Indicator />
+      {Math.abs(trend * 100).toFixed(2)}%
+    </TrendBadge>
+  );
+};
+
 export const ChartMetrics = ({
   type,
   coin,
+  duration,
 }: {
   coin: { ticker: string; hashrateUnit: string };
   type: ChartType;
+  duration: DurationKey;
 }) => {
   const formatter = useLocalizedSiFormatter();
+
+  const { data: currentDurationStats } = useNetworkStatsChartData(
+    coin.ticker,
+    duration
+  );
 
   const { data: dailyStats, isLoading } = useChainStatsHistoryQuery(
     {
@@ -103,9 +152,9 @@ export const ChartMetrics = ({
   let metricUnit: string | null = null;
   let trend: number | null = null;
 
-  if (dailyStats) {
+  if (dailyStats && currentDurationStats) {
     const currentMetric = dailyStats[0][type];
-    const previousMetric = dailyStats[dailyStats.length - 1][type];
+    const previousMetric = currentDurationStats[0][type];
 
     const formattedMetric = formatter(currentMetric, {
       decimals: 2,
@@ -126,13 +175,7 @@ export const ChartMetrics = ({
     <ChartMetricsContainer>
       <CurrentMetric>{metricValue}</CurrentMetric>
       <MetricUnit>{metricUnit}</MetricUnit>
-      {trend && (
-        <TrendBadge isTrendingUp={trend >= 0}>
-          {trend >= 0 ? <FiArrowUp /> : <FiArrowDown />}{' '}
-          {Math.abs(trend * 100).toFixed(2)}% Today
-        </TrendBadge>
-      )}
-
+      {trend !== null && renderBadgeContent(trend)}
       <MetricTypeSubtitle>Current {type}</MetricTypeSubtitle>
     </ChartMetricsContainer>
   );

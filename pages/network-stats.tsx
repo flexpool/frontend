@@ -191,7 +191,11 @@ const NetworkStatsPage = () => {
               </ChartHeaderRow>
               <Spacer size="md" />
               <ChartSubHeaderRow>
-                <ChartMetrics type={chartType} coin={activeCoin} />
+                <ChartMetrics
+                  type={chartType}
+                  coin={activeCoin}
+                  duration={duration}
+                />
                 <ChartDurationPicker
                   options={DURATION_OPTIONS}
                   selected={duration}

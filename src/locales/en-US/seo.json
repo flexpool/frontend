@@ -50,6 +50,6 @@
     "get_started_nicehash": "guide,tutorial,nicehash {{coinName}} rental,nicehash {{coinTicker}} rental,nicehash {{coinName}} instructions,nicehash {{coinTicker}} instructions,nicehash {{coinName}} rent,nicehash {{coinTicker}} rent,nicehash flexpool,nicehash flexpool {{coinAlgorithm}}",
     "get_started_chia_regular": "guide,tutorial,{{coinName}} {{client}} farming,{{coinTicker}} {{client}} farming, {{coinName}} {{client}} instructions,{{coinTicker}} {{client}} instructions",
     "get_started_home": "guide,tutorial,start mining,start farming,mining guide,mining tutorial,get started,instructions",
-    "network_stats": "network statistics,network hashrate, network hashrate chart,network difficulty, network difficulty chart,network blocks,network blocks chart, {{coinName}} difficulty, {{coinTicker}} difficulty, {{coinName}} hashrate, {{coinTicker}} hashrate, {{coinName}} block time, {{coinTicker}} block time"
+    "network_stats": "network statistics, network hashrate, network hashrate chart,network difficulty, network difficulty chart,network blocks time,network blocks time chart, ethereum difficulty, ethereum hashrate, ethereum block time, eth difficulty, eth hashrate, eth block time, chia difficulty, chia hashrate, chia block time, xch difficulty, xch hashrate, xch block time, ethereum classic difficulty, ethereum classic hashrate, ethereum classic block time, etc difficulty, etc hashrate, etc block time"
   }
 }
