@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
+import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Page } from '@/components/layout/Page';
 import { HeaderStat } from '@/components/layout/StatHeader';
@@ -54,6 +56,7 @@ const ChartCoinSkeleton = styled(Skeleton)`
 const NetworkStatsPage = () => {
   const activeCoin = useActiveCoin();
   const firstRender = useRef(true);
+  const { i18n, t: seoT } = useTranslation('seo');
 
   const [coin, setCoin] = useCoinTicker();
   const router = useRouter();
@@ -151,6 +154,22 @@ const NetworkStatsPage = () => {
 
   return (
     <Page>
+      <NextSeo
+        title={seoT('title.network_stats')}
+        description={seoT('website_description.network_stats')}
+        openGraph={{
+          title: seoT('title.network_stats'),
+          description: seoT('website_description.network_stats'),
+          locale: i18n.language,
+        }}
+        additionalMetaTags={[
+          {
+            property: 'keywords',
+            content: seoT('keywords.network_stats'),
+          },
+        ]}
+      />
+
       <HeaderStat>
         <h1>Network Statistics</h1>
       </HeaderStat>

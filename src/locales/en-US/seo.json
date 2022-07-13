@@ -14,7 +14,8 @@
     "get_started_gpu": "Mine {{coinName}} ({{coinTicker}}) using GPU rig",
     "get_started_nicehash": "Rent NiceHash to {{coinName}} ({{coinTicker}})",
     "get_started_chia_regular": "Farm {{coinName}} ({{coinTicker}}) using {{client}}",
-    "get_started_home": "Get Started"
+    "get_started_home": "Get Started",
+    "network_stats": "Network Statistics"
   },
   "website_description": {
     "home": "Flexpool.io is the world's most advanced mining pool that provides an easy-to-use way to mine your favorite coins. We support Ethereum and Chia.",
@@ -31,7 +32,8 @@
     "get_started_gpu": "On this page, you can find an interactive guide on how to get started mining {{coinName}} ({{coinTicker}}) with {{coinAlgorithm}} using GPU rig on Flexpool.",
     "get_started_nicehash": "On this page, you can find an interactive guide on how to get started renting NiceHash to {{coinName}} ({{coinTicker}}) with {{coinAlgorithm}} on Flexpool.",
     "get_started_chia_regular": "On this page, you can find an interactive guide on how to get started farming {{coinName}} ({{coinTicker}}) using {{client}} on Flexpool.",
-    "get_started_home": "On this page, you can find all our interactive get started guides on how to mine on Flexpool."
+    "get_started_home": "On this page, you can find all our interactive get started guides on how to mine on Flexpool.",
+    "network_stats": "View historical network statistics including hashrate, difficulty, and block time on this page."
   },
   "keywords": {
     "home": "ethereum pool,chia pool,best ethereum pool, best chia pool,ethereum mining,chia farming,mining pool,farming pool,best mining pool,best farming pool",
@@ -47,6 +49,7 @@
     "get_started_gpu": "guide,tutorial,{{coinName}} mining,{{coinTicker}} mining,{{coinAlgorithm}} mining,{{coinName}} instructions,{{coinTicker}} instructions,{{coinAlgorithm}} instructions",
     "get_started_nicehash": "guide,tutorial,nicehash {{coinName}} rental,nicehash {{coinTicker}} rental,nicehash {{coinName}} instructions,nicehash {{coinTicker}} instructions,nicehash {{coinName}} rent,nicehash {{coinTicker}} rent,nicehash flexpool,nicehash flexpool {{coinAlgorithm}}",
     "get_started_chia_regular": "guide,tutorial,{{coinName}} {{client}} farming,{{coinTicker}} {{client}} farming, {{coinName}} {{client}} instructions,{{coinTicker}} {{client}} instructions",
-    "get_started_home": "guide,tutorial,start mining,start farming,mining guide,mining tutorial,get started,instructions"
+    "get_started_home": "guide,tutorial,start mining,start farming,mining guide,mining tutorial,get started,instructions",
+    "network_stats": "network statistics,network hashrate, network hashrate chart,network difficulty, network difficulty chart,network blocks,network blocks chart, {{coinName}} difficulty, {{coinTicker}} difficulty, {{coinName}} hashrate, {{coinTicker}} hashrate, {{coinName}} block time, {{coinTicker}} block time"
   }
 }
