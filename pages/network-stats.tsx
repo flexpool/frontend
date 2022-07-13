@@ -57,6 +57,7 @@ const NetworkStatsPage = () => {
   const activeCoin = useActiveCoin();
   const firstRender = useRef(true);
   const { i18n, t: seoT } = useTranslation('seo');
+  const { t } = useTranslation('network-stats');
 
   const [coin, setCoin] = useCoinTicker();
   const router = useRouter();
@@ -171,7 +172,7 @@ const NetworkStatsPage = () => {
       />
 
       <HeaderStat>
-        <h1>Network Statistics</h1>
+        <h1>{t('title')}</h1>
       </HeaderStat>
       <Content>
         <Spacer size="lg" />
@@ -237,7 +238,7 @@ export async function getStaticProps({ locale }) {
     props: {
       ...(await serverSideTranslations(locale, [
         'common',
-        'blocks',
+        'network-stats',
         'cookie-consent',
         'seo',
       ])),
