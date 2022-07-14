@@ -57,7 +57,7 @@ const AnnouncementBar = ({
     targetTime === null ? false : targetTime
   );
 
-  if (targetTime && targetTime !== closed) {
+  if (targetTime && targetTime !== closed && closed !== true) {
     setClosed(targetTime);
   }
 
