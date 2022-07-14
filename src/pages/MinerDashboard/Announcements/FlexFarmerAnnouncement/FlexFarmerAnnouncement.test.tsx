@@ -1,6 +1,6 @@
 import React from 'react';
 import FlexFarmerAnnouncement from './FlexFarmerAnnouncement';
-import { render, screen, waitFor } from '@/utils/test-utils';
+import { render, screen, waitFor, act } from '@/utils/test-utils';
 import '@testing-library/jest-dom';
 
 class LocalStorageMock {
@@ -51,7 +51,9 @@ describe('<FlexFarmerAnnouncement />', () => {
       screen.getByRole('link', { name: /learn more about flexfarmer/i })
     ).toBeVisible();
 
-    screen.getByRole('button', { name: /close/i }).click();
+    await act(async () =>
+      screen.getByRole('button', { name: /close/i }).click()
+    );
 
     await waitFor(() => {
       expect(
@@ -79,7 +81,9 @@ describe('<FlexFarmerAnnouncement />', () => {
       <FlexFarmerAnnouncement borderLocation="top" />
     );
 
-    screen.getByRole('button', { name: /maybe later/i }).click();
+    await act(async () =>
+      screen.getByRole('button', { name: /maybe later/i }).click()
+    );
 
     await waitFor(() => {
       expect(
@@ -123,7 +127,9 @@ describe('<FlexFarmerAnnouncement />', () => {
       screen.getByRole('link', { name: /learn more about flexfarmer/i })
     ).toBeVisible();
 
-    screen.getByRole('button', { name: /close/i }).click();
+    await act(async () =>
+      screen.getByRole('button', { name: /close/i }).click()
+    );
 
     jest.advanceTimersByTime(1000 * 60 * 60 * 24 * 2);
 
