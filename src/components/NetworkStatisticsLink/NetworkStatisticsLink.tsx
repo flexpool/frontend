@@ -9,6 +9,11 @@ const StyledLink = styled.a`
   text-decoration: none;
   font-weight: 500;
   transition: all 0.2s linear;
+  margin-left: 4px;
+
+  @media screen and (max-width: 768px) {
+    margin-left: 0;
+  }
 
   &:hover {
     text-decoration: none;
