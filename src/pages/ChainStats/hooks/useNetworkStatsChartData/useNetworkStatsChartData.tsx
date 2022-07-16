@@ -47,8 +47,7 @@ export const useNetworkStatsChartData = (
             blockTime: item.blockTime,
             hashrate: item.difficulty / item.blockTime,
           }))
-          .reverse()
-          .filter((item) => item.blockTime > 0); // temporary fix for corrupted data
+          .reverse();
       },
     }
   );
