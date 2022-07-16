@@ -53,7 +53,7 @@ const ChartCoinSkeleton = styled(Skeleton)`
 `;
 
 const NetworkStatsPage = () => {
-  const [values, setValues] = useNextQueryParams('duration', 'type', 'coin');
+  const [values, setValues] = useNextQueryParams('coin', 'duration', 'type');
 
   const activeCoin = useActiveCoin();
   const firstRender = useRef(true);

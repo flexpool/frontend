@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
-import { omitBy, isUndefined, merge } from 'lodash';
+import { omitBy, isUndefined } from 'lodash';
 
 export type ValuesOf<T extends any[]> = T[number];
 
@@ -22,7 +22,9 @@ const useNextQueryParams = <T extends string[]>(...args: T) => {
 
   const setValues = (input: { [key in ValuesOf<T>]?: string | undefined }) => {
     setParams((oldParams) => {
-      const newParams = merge(oldParams, input);
+      const newParams = { ...oldParams, ...input } as {
+        [key in ValuesOf<T>]: string;
+      };
 
       const urlSearchParams = new URLSearchParams(
         omitBy(newParams, isUndefined)
