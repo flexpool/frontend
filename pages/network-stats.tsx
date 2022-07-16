@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
+import React, { useEffect, useRef } from 'react';
+import styled from 'styled-components';
 import { NextSeo } from 'next-seo';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -20,14 +20,6 @@ import { DurationKey } from '@/pages/ChainStats/hooks/useNetworkStatsChartData';
 import { DURATION_OPTIONS } from '@/pages/ChainStats/constants';
 import { getUnitByChartType } from '@/pages/ChainStats/utils';
 
-const ChartCard = styled(Card)`
-  padding: 36px 36px 22px;
-
-  @media screen and (max-width: 768px) {
-    padding: 22px 22px 22px;
-  }
-`;
-
 import {
   useActiveCoin,
   useCoinTicker,
@@ -35,8 +27,15 @@ import {
 import { Spacer } from '@/components/layout/Spacer';
 import { Skeleton } from '@/components/layout/Skeleton';
 import { Content } from '@/components/layout/Content';
+import useNextQueryParams from '@/hooks/useNextQueryParams';
 
-import styled from 'styled-components';
+const ChartCard = styled(Card)`
+  padding: 36px 36px 22px;
+
+  @media screen and (max-width: 768px) {
+    padding: 22px 22px 22px;
+  }
+`;
 
 const ChartHeaderRow = styled.div`
   display: flex;
@@ -54,104 +53,41 @@ const ChartCoinSkeleton = styled(Skeleton)`
 `;
 
 const NetworkStatsPage = () => {
+  const [values, setValues] = useNextQueryParams('duration', 'type', 'coin');
+
   const activeCoin = useActiveCoin();
   const firstRender = useRef(true);
   const { i18n, t: seoT } = useTranslation('seo');
   const { t } = useTranslation('network-stats');
 
   const [coin, setCoin] = useCoinTicker();
-  const router = useRouter();
 
   useEffect(() => {
-    if (
-      router.isReady &&
-      router.pathname === '/network-stats' &&
-      !firstRender.current &&
-      router.query.coin &&
-      coin !== router.query.coin
-    ) {
-      let [queryString] = router.asPath.match(/\?[^#]+/g) || [''];
-      const urlSearchParams = new URLSearchParams(queryString);
-      urlSearchParams.set('coin', coin);
-      router.replace(
-        {
-          query: urlSearchParams.toString(),
-        },
-        undefined,
-        { shallow: true }
-      );
-    }
-  }, [router, coin]);
-
-  const [duration, setDuration] = useState<DurationKey>('1m');
-  const [chartType, setChartType] = useState<ChartType>('difficulty');
-
-  useEffect(() => {
-    if (router.isReady && firstRender.current) {
-      let [queryString] = router.asPath.match(/\?[^#]+/g) || [''];
-      const urlSearchParams = new URLSearchParams(queryString);
-
-      if (!router.query.coin) {
-        urlSearchParams.set('coin', coin);
+    if (typeof values !== 'undefined' && firstRender.current) {
+      if (!values.coin) {
+        setValues({ coin });
       } else {
-        setCoin(router.query.coin as string);
+        setCoin(values.coin);
       }
-
-      if (!router.query.duration) {
-        urlSearchParams.set('duration', '1m');
-      } else {
-        setDuration(router.query.duration as DurationKey);
-      }
-
-      if (!router.query.type) {
-        urlSearchParams.set('type', 'difficulty');
-      } else {
-        setChartType(router.query.type as ChartType);
-      }
-
-      router.replace(
-        {
-          query: urlSearchParams.toString(),
-        },
-        undefined,
-        { shallow: true }
-      );
 
       firstRender.current = false;
     }
-  }, [router, coin, setCoin]);
+  }, [coin, setCoin, values, setValues]);
+
+  if (values && values.coin !== coin && !firstRender.current) {
+    setValues({ coin });
+  }
 
   const handleDurationChange = (value) => {
-    setDuration(value);
-    let [queryString] = router.asPath.match(/\?[^#]+/g) || [''];
-
-    const urlSearchParams = new URLSearchParams(queryString);
-    urlSearchParams.set('duration', value);
-
-    router.replace(
-      {
-        query: urlSearchParams.toString(),
-      },
-      undefined,
-      { shallow: true }
-    );
+    setValues({ duration: value });
   };
 
   const handleChartTypeSelect = (value) => {
-    setChartType(value);
-    let [queryString] = router.asPath.match(/\?[^#]+/g) || [''];
-
-    const urlSearchParams = new URLSearchParams(queryString);
-    urlSearchParams.set('type', value);
-
-    router.replace(
-      {
-        query: urlSearchParams.toString(),
-      },
-      undefined,
-      { shallow: true }
-    );
+    setValues({ type: value });
   };
+
+  const duration = (values?.duration || '1m') as DurationKey;
+  const chartType = (values?.type || 'difficulty') as ChartType;
 
   return (
     <Page>
