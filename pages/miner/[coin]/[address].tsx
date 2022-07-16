@@ -35,6 +35,7 @@ import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
 import { getChecksumByTicker } from '@/utils/validators/checksum';
 import Warning from '@/assets/warning-icon.svg';
 import { fetchApi } from 'src/utils/fetchApi';
+import ChiaSoftforkAnnouncement from '@/pages/MinerDashboard/Announcements/ChiaSoftforkAnnouncement/ChiaSoftforkAnnouncement';
 
 const DONATION_ADDRESS = '0x165CD37b4C644C2921454429E7F9358d18A45e14';
 
@@ -221,6 +222,10 @@ export const MinerDashboardPageContent: React.FC<{
               <h3>This is the Ukraine donation dashboard</h3>
               <h3>Thank you for your support</h3>
             </DonationAnnouncement>
+          )}
+
+          {coinTicker === 'xch' && (
+            <ChiaSoftforkAnnouncement address={address} />
           )}
 
           {coinTicker === 'xch' && (
