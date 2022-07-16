@@ -152,7 +152,7 @@ const FlexFarmerAnnouncement = ({
           How about a farmer with virtually no system requirements?
           <br />
           <br />
-          <div>
+          <span>
             <Link href="https://farmer.flexpool.io" passHref>
               <CTA id="learn_more_about_flexfarmer_cta">
                 Learn more about FlexFarmer <FiChevronRight />
@@ -163,7 +163,7 @@ const FlexFarmerAnnouncement = ({
                 Maybe later
               </LaterButton>
             )}
-          </div>
+          </span>
         </Description>
       </Content>
 
