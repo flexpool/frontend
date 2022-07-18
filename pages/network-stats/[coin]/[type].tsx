@@ -71,7 +71,7 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
     if (router.isReady && router.route === '/network-stats/[coin]/[type]') {
       if (firstRender.current) {
         setCoin(router.query.coin as string);
-      } else {
+      } else if (router.query.coin !== coin) {
         router.replace(
           `/network-stats/${coin}/${router.query.type}`,
           undefined,
