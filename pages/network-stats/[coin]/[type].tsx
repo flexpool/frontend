@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { NextSeo } from 'next-seo';
-import { useTranslation } from 'next-i18next';
+import { useTranslation, Trans } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Page } from '@/components/layout/Page';
 import { HeaderStat } from '@/components/layout/StatHeader';
@@ -32,6 +32,7 @@ import { useRouter } from 'next/router';
 
 import { fetchApi } from '@/utils/fetchApi';
 import { ApiPoolCoin } from '@/types/PoolCoin.types';
+import { Sticker } from '@/components/Sticker';
 
 const ChartCard = styled(Card)`
   padding: 36px 36px 22px;
@@ -72,8 +73,14 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
       if (firstRender.current) {
         setCoin(router.query.coin as string);
       } else if (router.query.coin !== coin) {
+        let [queryString] = router.asPath.match(/\?[^#]+/g) || [''];
+        const urlSearchParams = new URLSearchParams(queryString);
+
         router.replace(
-          `/network-stats/${coin}/${router.query.type}`,
+          {
+            pathname: `/network-stats/${coin}/${router.query.type}`,
+            query: urlSearchParams.toString(),
+          },
           undefined,
           {
             shallow: true,
@@ -89,9 +96,19 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
   };
 
   const handleChartTypeSelect = (value) => {
-    router.replace(`/network-stats/${coin}/${value}`, undefined, {
-      shallow: true,
-    });
+    let [queryString] = router.asPath.match(/\?[^#]+/g) || [''];
+    const urlSearchParams = new URLSearchParams(queryString);
+
+    router.replace(
+      {
+        pathname: `/network-stats/${coin}/${value}`,
+        query: urlSearchParams.toString(),
+      },
+      undefined,
+      {
+        shallow: true,
+      }
+    );
   };
 
   const duration = (values?.duration || '1m') as DurationKey;
@@ -173,6 +190,59 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
             </>
           )}
         </ChartCard>
+        <h2>{t('faq.difficulty.title')}</h2>
+        <p>{t('faq.difficulty.content')}</p>
+        <table style={{ maxWidth: 300 }}>
+          <thead>
+            <tr>
+              <th>Unit</th>
+              <th>Definition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>K</td>
+              <td>1000</td>
+            </tr>
+            <tr>
+              <td>M</td>
+              <td>1000K</td>
+            </tr>
+            <tr>
+              <td>G</td>
+              <td>1000M</td>
+            </tr>
+            <tr>
+              <td>T</td>
+              <td>1000G</td>
+            </tr>
+            <tr>
+              <td>P</td>
+              <td>1000T</td>
+            </tr>
+            <tr>
+              <td>E</td>
+              <td>1000P</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>{t('faq.blocktime.title')}</h2>
+        <p>{t('faq.blocktime.content')}</p>
+
+        <h2>{t('faq.hashrate.title')}</h2>
+        <p>
+          <Trans
+            t={t}
+            i18nKey="faq.hashrate.content"
+            components={{
+              code: <code />,
+            }}
+          />
+        </p>
+
+        <Spacer size="sm" />
+
         <Spacer size="lg" />
         <Spacer size="lg" />
       </Content>
@@ -182,14 +252,12 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
 
 export default NetworkStatsPage;
 
-let coins: ApiPoolCoin[] = [];
-
 export async function getStaticProps({ locale, params }) {
-  if (coins.length === 0) {
-    coins = await fetchApi('/pool/coins').then((res: any) => res.coins);
-  }
-
-  const coin = coins.find((c) => c.ticker === params.coin);
+  const coinNames = {
+    eth: 'Ethereum',
+    etc: 'Ethereum Classic',
+    xch: 'Chia',
+  };
 
   return {
     props: {
@@ -199,7 +267,7 @@ export async function getStaticProps({ locale, params }) {
         'cookie-consent',
         'seo',
       ])),
-      coinName: coin?.name || '',
+      coinName: coinNames[params.coin],
     },
   };
 }
@@ -223,6 +291,6 @@ export async function getStaticPaths({ locales }) {
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 }
