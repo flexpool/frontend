@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { AiOutlineLineChart } from 'react-icons/ai';
+import { RiListSettingsLine } from 'react-icons/ri';
 import DownshiftSelect, {
   DownshiftDropdownSelect,
 } from '@/components/Form/DownshiftSelect';
@@ -63,7 +63,7 @@ export const ChartTypeSelect = ({ onSelect, value }: ChartTypeSelectProps) => {
           {(props) => {
             return (
               <ChartTypeButton size="sm" shape="square" {...props}>
-                <AiOutlineLineChart />
+                <RiListSettingsLine />
               </ChartTypeButton>
             );
           }}

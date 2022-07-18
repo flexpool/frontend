@@ -79,7 +79,7 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
           },
           undefined,
           {
-            shallow: true,
+            shallow: false,
           }
         );
       }
