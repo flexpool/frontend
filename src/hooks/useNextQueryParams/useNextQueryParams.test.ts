@@ -16,7 +16,9 @@ describe('useNextQueryParams', () => {
   });
 
   it('should always sync query params in the url', async () => {
-    const { result } = renderHook(() => useNextQueryParams('foo', 'bar'));
+    const { result, rerender } = renderHook(() =>
+      useNextQueryParams('foo', 'bar')
+    );
     const { result: routerResult } = renderHook(() => useRouter());
 
     expect(result.current[0]).toEqual({ foo: undefined, bar: undefined });
@@ -29,6 +31,8 @@ describe('useNextQueryParams', () => {
 
     expect(routerResult.current.query).toEqual('foo=foo');
 
+    rerender();
+
     act(() => {
       result.current[1]({ foo: 'baz', bar: 'bar' });
     });
@@ -36,6 +40,8 @@ describe('useNextQueryParams', () => {
     expect(result.current[0]).toEqual({ foo: 'baz', bar: 'bar' });
 
     expect(routerResult.current.query).toEqual('foo=baz&bar=bar');
+
+    rerender();
 
     act(() => {
       result.current[1]({ foo: undefined, bar: 'bar' });
