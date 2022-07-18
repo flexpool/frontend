@@ -15,7 +15,7 @@
     "get_started_nicehash": "Rent NiceHash to {{coinName}} ({{coinTicker}})",
     "get_started_chia_regular": "Farm {{coinName}} ({{coinTicker}}) using {{client}}",
     "get_started_home": "Get Started",
-    "network_stats": "Network Statistics"
+    "network_stats": "{{coinName}} Network Statistics"
   },
   "website_description": {
     "home": "Flexpool.io is the world's most advanced mining pool that provides an easy-to-use way to mine your favorite coins. We support Ethereum and Chia.",
@@ -50,6 +50,6 @@
     "get_started_nicehash": "guide,tutorial,nicehash {{coinName}} rental,nicehash {{coinTicker}} rental,nicehash {{coinName}} instructions,nicehash {{coinTicker}} instructions,nicehash {{coinName}} rent,nicehash {{coinTicker}} rent,nicehash flexpool,nicehash flexpool {{coinAlgorithm}}",
     "get_started_chia_regular": "guide,tutorial,{{coinName}} {{client}} farming,{{coinTicker}} {{client}} farming, {{coinName}} {{client}} instructions,{{coinTicker}} {{client}} instructions",
     "get_started_home": "guide,tutorial,start mining,start farming,mining guide,mining tutorial,get started,instructions",
-    "network_stats": "network statistics, network hashrate, network hashrate chart,network difficulty, network difficulty chart,network blocks time,network blocks time chart, {{coinTicker}} {{chartType}} chart, {{coinTicker}} {{chartType}}, {{coinName}} {{chartType}} chart, {{coinName}} {{chartType}}"
+    "network_stats": "network statistics,network hashrate,network hashrate chart,network difficulty,network difficulty chart,network blocks time,network blocks time chart,{{coinTicker}} {{chartType}} chart,{{coinTicker}} {{chartType}},{{coinName}} {{chartType}} chart,{{coinName}} {{chartType}}"
   }
 }

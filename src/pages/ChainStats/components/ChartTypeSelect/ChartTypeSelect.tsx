@@ -5,7 +5,6 @@ import DownshiftSelect, {
   DownshiftDropdownSelect,
 } from '@/components/Form/DownshiftSelect';
 import { Button } from '@/components/Button';
-import { ChartType } from '../../types';
 
 type ChartTypeSelectProps<T = string> = {
   onSelect: (value: T) => void;

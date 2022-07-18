@@ -30,10 +30,6 @@ import { Content } from '@/components/layout/Content';
 import useNextQueryParams from '@/hooks/useNextQueryParams';
 import { useRouter } from 'next/router';
 
-import { fetchApi } from '@/utils/fetchApi';
-import { ApiPoolCoin } from '@/types/PoolCoin.types';
-import { Sticker } from '@/components/Sticker';
-
 const ChartCard = styled(Card)`
   padding: 36px 36px 22px;
 
@@ -116,13 +112,19 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
   return (
     <Page>
       <NextSeo
-        title={seoT('title.network_stats')}
+        title={seoT('title.network_stats', {
+          coinName,
+        })}
         description={seoT('website_description.network_stats', {
           coinName,
         })}
         openGraph={{
-          title: seoT('title.network_stats'),
-          description: seoT('website_description.network_stats'),
+          title: seoT('title.network_stats', {
+            coinName,
+          }),
+          description: seoT('website_description.network_stats', {
+            coinName,
+          }),
           locale: i18n.language,
         }}
         additionalMetaTags={[
