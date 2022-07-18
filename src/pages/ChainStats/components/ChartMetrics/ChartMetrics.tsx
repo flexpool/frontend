@@ -142,7 +142,7 @@ export const ChartMetrics = ({
       select: (data) =>
         data.map(({ difficulty, blockTime }) => ({
           difficulty,
-          blockTime,
+          blocktime: blockTime,
           hashrate: difficulty / blockTime,
         })),
     }

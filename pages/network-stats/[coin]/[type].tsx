@@ -28,6 +28,10 @@ import { Spacer } from '@/components/layout/Spacer';
 import { Skeleton } from '@/components/layout/Skeleton';
 import { Content } from '@/components/layout/Content';
 import useNextQueryParams from '@/hooks/useNextQueryParams';
+import { useRouter } from 'next/router';
+
+import { fetchApi } from '@/utils/fetchApi';
+import { ApiPoolCoin } from '@/types/PoolCoin.types';
 
 const ChartCard = styled(Card)`
   padding: 36px 36px 22px;
@@ -52,48 +56,53 @@ const ChartCoinSkeleton = styled(Skeleton)`
   margin: 0;
 `;
 
-const NetworkStatsPage = () => {
-  const [values, setValues] = useNextQueryParams('coin', 'duration', 'type');
-
+const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
+  const [values, setValues] = useNextQueryParams('duration');
   const activeCoin = useActiveCoin();
   const firstRender = useRef(true);
   const { i18n, t: seoT } = useTranslation('seo');
   const { t } = useTranslation('network-stats');
-
   const [coin, setCoin] = useCoinTicker();
+  const router = useRouter();
+
+  const typeQuery = router.query.type as ChartType;
 
   useEffect(() => {
-    if (typeof values !== 'undefined' && firstRender.current) {
-      if (!values.coin) {
-        setValues({ coin });
+    if (router.isReady && router.route === '/network-stats/[coin]/[type]') {
+      if (firstRender.current) {
+        setCoin(router.query.coin as string);
       } else {
-        setCoin(values.coin);
+        router.replace(
+          `/network-stats/${coin}/${router.query.type}`,
+          undefined,
+          {
+            shallow: true,
+          }
+        );
       }
-
       firstRender.current = false;
     }
-  }, [coin, setCoin, values, setValues]);
-
-  if (values && values.coin !== coin && !firstRender.current) {
-    setValues({ coin });
-  }
+  }, [router, coin, setCoin]);
 
   const handleDurationChange = (value) => {
     setValues({ duration: value });
   };
 
   const handleChartTypeSelect = (value) => {
-    setValues({ type: value });
+    router.replace(`/network-stats/${coin}/${value}`, undefined, {
+      shallow: true,
+    });
   };
 
   const duration = (values?.duration || '1m') as DurationKey;
-  const chartType = (values?.type || 'difficulty') as ChartType;
 
   return (
     <Page>
       <NextSeo
         title={seoT('title.network_stats')}
-        description={seoT('website_description.network_stats')}
+        description={seoT('website_description.network_stats', {
+          coinName,
+        })}
         openGraph={{
           title: seoT('title.network_stats'),
           description: seoT('website_description.network_stats'),
@@ -102,7 +111,11 @@ const NetworkStatsPage = () => {
         additionalMetaTags={[
           {
             property: 'keywords',
-            content: seoT('keywords.network_stats'),
+            content: seoT('keywords.network_stats', {
+              coinName,
+              coinTicker: coin,
+              chartType: typeQuery,
+            }),
           },
         ]}
       />
@@ -123,13 +136,13 @@ const NetworkStatsPage = () => {
                 />
                 <ChartTypeSelect
                   onSelect={handleChartTypeSelect}
-                  value={chartType}
+                  value={typeQuery}
                 />
               </ChartHeaderRow>
               <Spacer size="md" />
               <ChartSubHeaderRow>
                 <ChartMetrics
-                  type={chartType}
+                  type={typeQuery}
                   coin={activeCoin}
                   duration={duration}
                 />
@@ -142,9 +155,9 @@ const NetworkStatsPage = () => {
               <Spacer />
               <StatsChart
                 coin={activeCoin.ticker}
-                unit={getUnitByChartType(chartType, activeCoin)}
+                unit={getUnitByChartType(typeQuery, activeCoin)}
                 duration={duration}
-                type={chartType}
+                type={typeQuery}
               />
             </>
           ) : (
@@ -169,7 +182,15 @@ const NetworkStatsPage = () => {
 
 export default NetworkStatsPage;
 
-export async function getStaticProps({ locale }) {
+let coins: ApiPoolCoin[] = [];
+
+export async function getStaticProps({ locale, params }) {
+  if (coins.length === 0) {
+    coins = await fetchApi('/pool/coins').then((res: any) => res.coins);
+  }
+
+  const coin = coins.find((c) => c.ticker === params.coin);
+
   return {
     props: {
       ...(await serverSideTranslations(locale, [
@@ -178,6 +199,30 @@ export async function getStaticProps({ locale }) {
         'cookie-consent',
         'seo',
       ])),
+      coinName: coin?.name || '',
     },
+  };
+}
+
+export async function getStaticPaths({ locales }) {
+  const coins = ['eth', 'etc', 'xch'];
+  const types = ['difficulty', 'hashrate', 'blocktime'];
+
+  let paths: any = [];
+
+  for (let coin of coins) {
+    for (let type of types) {
+      for (let locale of locales) {
+        paths.push({
+          params: { coin, type },
+          locale,
+        });
+      }
+    }
+  }
+
+  return {
+    paths,
+    fallback: true,
   };
 }

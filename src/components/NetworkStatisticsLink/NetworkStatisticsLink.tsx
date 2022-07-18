@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Link from 'next/link';
+import { useCoinTicker } from '@/rdx/localSettings/localSettings.hooks';
 
 const StyledLink = styled.a`
   white-space: nowrap;
@@ -26,8 +27,10 @@ const StyledLink = styled.a`
 `;
 
 const NetworkStatisticsLink = () => {
+  const [coin] = useCoinTicker();
+
   return (
-    <Link href="/network-stats" passHref>
+    <Link href={`/network-stats/${coin}/difficulty`} passHref>
       <StyledLink>View network statistics</StyledLink>
     </Link>
   );

@@ -1,1 +1,1 @@
-export type ChartType = 'difficulty' | 'hashrate' | 'blockTime';
+export type ChartType = 'difficulty' | 'hashrate' | 'blocktime';

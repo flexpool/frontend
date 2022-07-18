@@ -33,7 +33,7 @@
     "get_started_nicehash": "On this page, you can find an interactive guide on how to get started renting NiceHash to {{coinName}} ({{coinTicker}}) with {{coinAlgorithm}} on Flexpool.",
     "get_started_chia_regular": "On this page, you can find an interactive guide on how to get started farming {{coinName}} ({{coinTicker}}) using {{client}} on Flexpool.",
     "get_started_home": "On this page, you can find all our interactive get started guides on how to mine on Flexpool.",
-    "network_stats": "View historical network statistics including hashrate, difficulty, and block time on this page."
+    "network_stats": "View {{coinName}} historical network statistics including hashrate, difficulty, and block time on this page."
   },
   "keywords": {
     "home": "ethereum pool,chia pool,best ethereum pool, best chia pool,ethereum mining,chia farming,mining pool,farming pool,best mining pool,best farming pool",
@@ -50,6 +50,6 @@
     "get_started_nicehash": "guide,tutorial,nicehash {{coinName}} rental,nicehash {{coinTicker}} rental,nicehash {{coinName}} instructions,nicehash {{coinTicker}} instructions,nicehash {{coinName}} rent,nicehash {{coinTicker}} rent,nicehash flexpool,nicehash flexpool {{coinAlgorithm}}",
     "get_started_chia_regular": "guide,tutorial,{{coinName}} {{client}} farming,{{coinTicker}} {{client}} farming, {{coinName}} {{client}} instructions,{{coinTicker}} {{client}} instructions",
     "get_started_home": "guide,tutorial,start mining,start farming,mining guide,mining tutorial,get started,instructions",
-    "network_stats": "network statistics, network hashrate, network hashrate chart,network difficulty, network difficulty chart,network blocks time,network blocks time chart, ethereum difficulty, ethereum hashrate, ethereum block time, eth difficulty, eth hashrate, eth block time, chia difficulty, chia hashrate, chia block time, xch difficulty, xch hashrate, xch block time, ethereum classic difficulty, ethereum classic hashrate, ethereum classic block time, etc difficulty, etc hashrate, etc block time"
+    "network_stats": "network statistics, network hashrate, network hashrate chart,network difficulty, network difficulty chart,network blocks time,network blocks time chart, {{coinTicker}} {{chartType}} chart, {{coinTicker}} {{chartType}}, {{coinName}} {{chartType}} chart, {{coinName}} {{chartType}}"
   }
 }

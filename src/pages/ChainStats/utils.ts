@@ -25,7 +25,7 @@ export const getUnitByChartType = (type: ChartType, coin: Coin) => {
       }
       break;
 
-    case 'blockTime':
+    case 'blocktime':
       unit = 'sec';
       break;
   }

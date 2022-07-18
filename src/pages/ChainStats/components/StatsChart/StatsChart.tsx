@@ -16,7 +16,7 @@ import {
 import useNetworkStatsChartData, {
   DurationKey,
 } from '../../hooks/useNetworkStatsChartData';
-import { ChartType } from '../ChartTypeSelect';
+import { ChartType } from '../../types';
 
 const appear = keyframes`
   from {
@@ -52,7 +52,7 @@ const AXIS_CONFIG = {
   hashrate: {
     name: 'Hashrate',
   },
-  blockTime: {
+  blocktime: {
     name: 'Block Time',
   },
 };
@@ -90,11 +90,11 @@ export const StatsChart = React.memo(
         difficultySeries.fillOpacity = 0.3;
 
         difficultySeries.dataFields.dateX = 'date';
-        difficultySeries.name = AXIS_CONFIG[type].name;
+        difficultySeries.name = AXIS_CONFIG[type]?.name;
         difficultySeries.yAxis = difficultyAxis;
         difficultySeries.dataFields.valueY = type;
         difficultySeries.tooltipText =
-          AXIS_CONFIG[type].name +
+          AXIS_CONFIG[type]?.name +
           `: {valueY.value.formatNumber("#.00 a'${unit}'")}`;
 
         difficultySeries.strokeWidth = 2;

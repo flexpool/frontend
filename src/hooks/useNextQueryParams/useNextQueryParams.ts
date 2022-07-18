@@ -32,6 +32,7 @@ const useNextQueryParams = <T extends string[]>(...args: T) => {
 
       router.replace(
         {
+          pathname: router.asPath.replace(/\?.*/, ''),
           query: urlSearchParams.toString(),
         },
         undefined,

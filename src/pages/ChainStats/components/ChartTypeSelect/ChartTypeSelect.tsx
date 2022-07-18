@@ -5,6 +5,7 @@ import DownshiftSelect, {
   DownshiftDropdownSelect,
 } from '@/components/Form/DownshiftSelect';
 import { Button } from '@/components/Button';
+import { ChartType } from '../../types';
 
 type ChartTypeSelectProps<T = string> = {
   onSelect: (value: T) => void;
@@ -14,7 +15,7 @@ type ChartTypeSelectProps<T = string> = {
 const CHART_TYPE_OPTIONS = [
   { value: 'difficulty', label: 'Difficulty Chart' },
   { value: 'hashrate', label: 'Hashrate Chart' },
-  { value: 'blockTime', label: 'Block Time Chart' },
+  { value: 'blocktime', label: 'Block Time Chart' },
 ];
 
 const ChartTypeButton = styled(Button)`
@@ -36,8 +37,6 @@ const MobileBreakpoint = styled.div`
     display: none;
   }
 `;
-
-export type ChartType = 'difficulty' | 'hashrate' | 'blockTime';
 
 export const ChartTypeSelect = ({ onSelect, value }: ChartTypeSelectProps) => {
   const selected = CHART_TYPE_OPTIONS.find((option) => option.value === value);
