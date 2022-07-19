@@ -3,14 +3,12 @@ import styled, { css } from 'styled-components';
 import { FiArrowDown, FiArrowUp, FiMinus } from 'react-icons/fi';
 import { Skeleton } from '@/components/layout/Skeleton';
 
-import useChainStatsHistoryQuery from '@/hooks/api/useChainStatsHistoryQuery';
 import { useLocalizedSiFormatter } from '@/utils/si.utils';
 import { ChartType } from '../../types';
-import { getUnitByChartType } from '../../utils';
+import { getReadableCharType, getUnitByChartType } from '../../utils';
 import useNetworkStatsChartData, {
   DurationKey,
 } from '../../hooks/useNetworkStatsChartData';
-import { useActiveCoin } from '@/rdx/localSettings/localSettings.hooks';
 
 const ChartMetricsContainer = styled.div`
   color: var(--text-color);
@@ -128,36 +126,18 @@ export const ChartMetrics = ({
 }) => {
   const formatter = useLocalizedSiFormatter();
 
-  const activeCoin = useActiveCoin(coin.ticker);
-
-  const { data: currentDurationStats } = useNetworkStatsChartData(
+  const { data: currentDurationStats, isLoading } = useNetworkStatsChartData(
     coin.ticker,
     duration
-  );
-
-  const { data: dailyStats, isLoading } = useChainStatsHistoryQuery(
-    {
-      coin: coin.ticker,
-      duration: 'day',
-      period: '10m',
-    },
-    {
-      select: (data) => {
-        return data.map(({ difficulty, blockTime }) => ({
-          difficulty: difficulty,
-          blocktime: blockTime,
-          hashrate: (difficulty * activeCoin!.difficultyFactor) / blockTime,
-        }));
-      },
-    }
   );
 
   let metricValue: string | null = null;
   let metricUnit: string | null = null;
   let trend: number | null = null;
 
-  if (dailyStats && currentDurationStats) {
-    const currentMetric = dailyStats[0][type];
+  if (currentDurationStats) {
+    const currentMetric =
+      currentDurationStats[currentDurationStats.length - 1][type];
     const previousMetric = currentDurationStats[0][type];
 
     const formattedMetric = formatter(currentMetric, {
@@ -180,7 +160,9 @@ export const ChartMetrics = ({
       <CurrentMetric>{metricValue}</CurrentMetric>
       <MetricUnit>{metricUnit}</MetricUnit>
       {trend !== null && renderBadgeContent(trend)}
-      <MetricTypeSubtitle>Current {type}</MetricTypeSubtitle>
+      <MetricTypeSubtitle>
+        Current Network {getReadableCharType(type, coin.ticker)}
+      </MetricTypeSubtitle>
     </ChartMetricsContainer>
   );
 };

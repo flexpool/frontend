@@ -18,7 +18,10 @@ import { ChartType } from '@/pages/ChainStats/types';
 import { Card } from '@/components/layout/Card';
 import { DurationKey } from '@/pages/ChainStats/hooks/useNetworkStatsChartData';
 import { DURATION_OPTIONS } from '@/pages/ChainStats/constants';
-import { getUnitByChartType } from '@/pages/ChainStats/utils';
+import {
+  getReadableCharType,
+  getUnitByChartType,
+} from '@/pages/ChainStats/utils';
 
 import {
   useActiveCoin,
@@ -29,6 +32,9 @@ import { Skeleton } from '@/components/layout/Skeleton';
 import { Content } from '@/components/layout/Content';
 import useNextQueryParams from '@/hooks/useNextQueryParams';
 import { useRouter } from 'next/router';
+import { stringUtils } from '@/utils/string.utils';
+
+const { titleCase } = stringUtils;
 
 const ChartCard = styled(Card)`
   padding: 36px 36px 22px;
@@ -63,6 +69,7 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
   const router = useRouter();
 
   const typeQuery = router.query.type as ChartType;
+  const coinQuery = router.query.coin as string;
 
   useEffect(() => {
     if (router.isReady && router.route === '/network-stats/[coin]/[type]') {
@@ -108,22 +115,29 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
   };
 
   const duration = (values?.duration || '1m') as DurationKey;
+  const chartType = getReadableCharType(typeQuery, coinQuery);
 
   return (
     <Page>
       <NextSeo
         title={seoT('title.network_stats', {
           coinName,
+          coinTicker: coinQuery.toUpperCase(),
+          chartType,
         })}
         description={seoT('website_description.network_stats', {
           coinName,
+          coinTicker: coinQuery.toUpperCase(),
         })}
         openGraph={{
           title: seoT('title.network_stats', {
             coinName,
+            coinTicker: coinQuery.toUpperCase(),
+            chartType,
           }),
           description: seoT('website_description.network_stats', {
             coinName,
+            coinTicker: coinQuery.toUpperCase(),
           }),
           locale: i18n.language,
         }}
