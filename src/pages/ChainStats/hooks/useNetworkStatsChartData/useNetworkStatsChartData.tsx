@@ -1,4 +1,5 @@
 import useChainStatsHistoryQuery from '@/hooks/api/useChainStatsHistoryQuery';
+import { useActiveCoin } from '@/rdx/localSettings/localSettings.hooks';
 
 export type DurationKey = '1d' | '1w' | '1m' | '1y' | 'all';
 
@@ -29,6 +30,8 @@ export const useNetworkStatsChartData = (
   coin: string,
   duration: DurationKey
 ) => {
+  const activeCoin = useActiveCoin(coin);
+
   const chainStatsHistoryQuery = useChainStatsHistoryQuery(
     {
       coin: coin,
@@ -39,13 +42,15 @@ export const useNetworkStatsChartData = (
       keepPreviousData: true,
       select: (data) => {
         var userTimezoneOffset = new Date().getTimezoneOffset() * 60000;
+
         return data
           .map((item) => ({
             //needs to be end of day for chart to work properly
             date: new Date(item.timestamp * 1000 + userTimezoneOffset),
             difficulty: item.difficulty,
             blocktime: item.blockTime,
-            hashrate: item.difficulty / item.blockTime,
+            hashrate:
+              (item.difficulty * activeCoin!.difficultyFactor) / item.blockTime,
           }))
           .reverse();
       },

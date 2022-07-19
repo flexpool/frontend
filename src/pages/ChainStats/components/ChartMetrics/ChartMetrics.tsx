@@ -10,6 +10,7 @@ import { getUnitByChartType } from '../../utils';
 import useNetworkStatsChartData, {
   DurationKey,
 } from '../../hooks/useNetworkStatsChartData';
+import { useActiveCoin } from '@/rdx/localSettings/localSettings.hooks';
 
 const ChartMetricsContainer = styled.div`
   color: var(--text-color);
@@ -127,6 +128,8 @@ export const ChartMetrics = ({
 }) => {
   const formatter = useLocalizedSiFormatter();
 
+  const activeCoin = useActiveCoin(coin.ticker);
+
   const { data: currentDurationStats } = useNetworkStatsChartData(
     coin.ticker,
     duration
@@ -139,12 +142,13 @@ export const ChartMetrics = ({
       period: '10m',
     },
     {
-      select: (data) =>
-        data.map(({ difficulty, blockTime }) => ({
-          difficulty,
+      select: (data) => {
+        return data.map(({ difficulty, blockTime }) => ({
+          difficulty: difficulty,
           blocktime: blockTime,
-          hashrate: difficulty / blockTime,
-        })),
+          hashrate: (difficulty * activeCoin!.difficultyFactor) / blockTime,
+        }));
+      },
     }
   );
 

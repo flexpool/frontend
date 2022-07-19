@@ -18,8 +18,8 @@ export const getUnitByChartType = (type: ChartType, coin: Coin) => {
       break;
 
     case 'hashrate':
-      if (coin?.ticker === 'xch') {
-        unit = 'PT/s';
+      if (coin.ticker === 'xch') {
+        unit = coin?.hashrateUnit;
       } else {
         unit = coin?.hashrateUnit.split('/')[0] + '/s';
       }
