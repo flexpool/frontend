@@ -10,6 +10,10 @@ export const Ws = styled.span`
   white-space: nowrap;
 `;
 
+export const PreLine = styled.span`
+  white-space: pre-line;
+`;
+
 export const Highlight = styled.span`
   color: var(--primary);
 `;
