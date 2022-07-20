@@ -9,6 +9,7 @@ import { Spacer } from '../src/components/layout/Spacer';
 import { HeaderStat } from '../src/components/layout/StatHeader';
 import { TopMinersSection } from '../src/pages/Miners/components/TopMiners/TopMiners.section';
 import { LoaderSpinner } from '../src/components/Loader/LoaderSpinner';
+import NetworkStatisticsLink from '@/components/NetworkStatisticsLink';
 
 function MinersPage() {
   const { t, i18n } = useTranslation('miners');
@@ -33,7 +34,9 @@ function MinersPage() {
       />
 
       <HeaderStat>
-        <h1>{t('title')}</h1>
+        <h1>
+          {t('title')} <NetworkStatisticsLink />
+        </h1>
       </HeaderStat>
 
       <Content padding>

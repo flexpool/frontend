@@ -21,6 +21,8 @@ import { fetchApi } from '../src/utils/fetchApi';
 import { useLocalizedSiFormatter } from '../src/utils/si.utils';
 import { useActiveCoin } from '../src/rdx/localSettings/localSettings.hooks';
 
+import NetworkStatisticsLink from '@/components/NetworkStatisticsLink';
+
 function BlocksPage() {
   const statsState = useAsyncState<{
     averageLuck: number;
@@ -73,7 +75,9 @@ function BlocksPage() {
         ]}
       />
       <HeaderStat>
-        <h1>{t('title')}</h1>
+        <h1>
+          {t('title')} <NetworkStatisticsLink />
+        </h1>
         <p>{t('description')}</p>
       </HeaderStat>
       <Content>

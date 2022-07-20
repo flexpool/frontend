@@ -23,6 +23,7 @@ import {
   useLocalizedNumberFormatter,
   useLocalizedSiFormatter,
 } from '../src/utils/si.utils';
+import NetworkStatisticsLink from '@/components/NetworkStatisticsLink';
 
 function StatisticsPage() {
   const activeTicker = useActiveCoinTicker();
@@ -62,7 +63,9 @@ function StatisticsPage() {
         ]}
       />
       <HeaderStat>
-        <h1>{t('title')}</h1>
+        <h1>
+          {t('title')} <NetworkStatisticsLink />
+        </h1>
       </HeaderStat>
       <Content>
         <StatBoxContainer>

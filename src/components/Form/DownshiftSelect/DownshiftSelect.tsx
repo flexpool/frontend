@@ -125,6 +125,99 @@ const DownshiftSelect = (props: DownshiftSelectProps) => {
   );
 };
 
+type DownshiftDropdownSelect = {
+  disabled?: boolean;
+  children: (props: any) => React.ReactNode;
+} & UseSelectProps<SelectOption> &
+  BaseFormFieldProps;
+
+export const DownshiftDropdownSelect = (props: DownshiftDropdownSelect) => {
+  const { label, items, initialHighlightedIndex = -1, ...rest } = props;
+
+  const {
+    isOpen,
+    getToggleButtonProps,
+    getLabelProps,
+    getMenuProps,
+    selectedItem,
+    highlightedIndex,
+    getItemProps,
+  } = useSelect({
+    items,
+    initialHighlightedIndex,
+    ...rest,
+  });
+
+  const selectContainerRef = useRef<HTMLDivElement>(null);
+  const dropdownListRef = useRef<HTMLElement>(null);
+
+  React.useEffect(() => {
+    const checkFlip = () => {
+      const dropdownBottom =
+        dropdownListRef.current?.getBoundingClientRect().bottom || 0;
+
+      // The dropdown bottom position if display at bottom
+      const bottomPosition =
+        selectContainerRef.current && dropdownListRef.current
+          ? selectContainerRef.current?.getBoundingClientRect().bottom +
+            dropdownListRef.current?.getBoundingClientRect().height
+          : 0;
+
+      if (isOpen) {
+        bottomPosition > window.innerHeight ||
+        dropdownBottom > window.innerHeight
+          ? dropdownListRef.current?.classList.add('top')
+          : dropdownListRef.current?.classList.remove('top');
+      }
+    };
+
+    checkFlip();
+
+    window.addEventListener('scroll', checkFlip);
+
+    return () => {
+      window.removeEventListener('scroll', checkFlip);
+    };
+  }, [isOpen]);
+
+  return (
+    <SelectContainer ref={selectContainerRef}>
+      <FieldWrap {...props} {...getLabelProps()}>
+        {props.children(getToggleButtonProps())}
+
+        {/* <SelectButton type="button" {...getToggleButtonProps()}>
+          {selectedItem?.label}
+        </SelectButton> */}
+
+        <DropdownList
+          {...getMenuProps({ ref: dropdownListRef })}
+          style={{
+            width: 'auto',
+          }}
+          isOpen={isOpen}
+        >
+          {isOpen &&
+            items.map((item, index) => (
+              <DropdownItem
+                key={`${item.value}-${index}`}
+                {...getItemProps({ index, item })}
+              >
+                <SelectOptionButton
+                  size="sm"
+                  active={selectedItem?.value === item.value}
+                  highlighted={highlightedIndex === index}
+                  value={item.value}
+                >
+                  {item.label}
+                </SelectOptionButton>
+              </DropdownItem>
+            ))}
+        </DropdownList>
+      </FieldWrap>
+    </SelectContainer>
+  );
+};
+
 export const DownshiftSelectField = (
   props: DownshiftSelectProps & (FieldHookConfig<string> | { name: string })
 ) => {

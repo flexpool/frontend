@@ -1,0 +1,18 @@
+{
+  "title": "Network Statistics",
+  "foo": "bar",
+  "faq": {
+    "difficulty": {
+      "title": "What is Difficulty?",
+      "content": "Difficulty is a measure of how difficult it is for the miners to solve a block. The higher the difficulty, the harder it is to find a block. Difficulty is measured using SI (Metric International System of Units) prefixes, you can learn more in the following chart:"
+    },
+    "blocktime": {
+      "title": "What is Block Time?",
+      "content": "Block time refers to the time it takes to mine a new block."
+    },
+    "hashrate": {
+      "title": "What is Hashrate?",
+      "content": "Hashrate is a measure of the computational power the network is processing per second. It is calculated using <code>difficulty/blocktime</code>. Hashrate is measured using SI prefixes as well."
+    }
+  }
+}
