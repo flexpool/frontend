@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { NextSeo } from 'next-seo';
 import { useTranslation, Trans } from 'next-i18next';
@@ -32,9 +32,6 @@ import { Skeleton } from '@/components/layout/Skeleton';
 import { Content } from '@/components/layout/Content';
 import useNextQueryParams from '@/hooks/useNextQueryParams';
 import { useRouter } from 'next/router';
-import { stringUtils } from '@/utils/string.utils';
-
-const { titleCase } = stringUtils;
 
 const ChartCard = styled(Card)`
   padding: 36px 36px 22px;
@@ -68,8 +65,16 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
   const [coin, setCoin] = useCoinTicker();
   const router = useRouter();
 
-  const typeQuery = router.query.type as ChartType;
-  const coinQuery = router.query.coin as string;
+  const [typeQuery, setTypeQuery] = useState(router.query.type as ChartType);
+  const [coinQuery, setCoinQuery] = useState(router.query.coin as string);
+
+  if (router.query.type && router.query.type !== typeQuery) {
+    setTypeQuery(router.query.type as ChartType);
+  }
+
+  if (router.query.coin && router.query.coin !== coinQuery) {
+    setCoinQuery(router.query.coin as string);
+  }
 
   useEffect(() => {
     if (router.isReady && router.route === '/network-stats/[coin]/[type]') {
@@ -170,6 +175,7 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
                 <ChartTypeSelect
                   onSelect={handleChartTypeSelect}
                   value={typeQuery}
+                  coin={activeCoin.ticker}
                 />
               </ChartHeaderRow>
               <Spacer size="md" />
@@ -206,7 +212,10 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
             </>
           )}
         </ChartCard>
-        <h2>{t('faq.difficulty.title')}</h2>
+
+        <Spacer size="lg" />
+
+        <h1>{t('faq.difficulty.title')}</h1>
         <p>{t('faq.difficulty.content')}</p>
         <table style={{ maxWidth: 300 }}>
           <thead>
@@ -243,10 +252,10 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
           </tbody>
         </table>
 
-        <h2>{t('faq.blocktime.title')}</h2>
+        <h1>{t('faq.blocktime.title')}</h1>
         <p>{t('faq.blocktime.content')}</p>
 
-        <h2>{t('faq.hashrate.title')}</h2>
+        <h1>{t('faq.hashrate.title')}</h1>
         <p>
           <Trans
             t={t}

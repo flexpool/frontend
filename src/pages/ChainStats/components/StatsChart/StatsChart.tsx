@@ -57,6 +57,13 @@ const AXIS_CONFIG = {
   },
 };
 
+const XCH_CONFIG = {
+  ...AXIS_CONFIG,
+  hashrate: {
+    name: 'Space',
+  },
+};
+
 export const StatsChart = React.memo(
   ({ coin, unit, duration, type }: StatsChartProps) => {
     const chartRef = useRef<XYChart | null>(null);
@@ -89,13 +96,16 @@ export const StatsChart = React.memo(
         let difficultySeries = chartRef.current.series.push(new LineSeries());
         difficultySeries.fillOpacity = 0.3;
 
+        const chartType =
+          coin === 'xch' ? XCH_CONFIG[type]?.name : AXIS_CONFIG[type]?.name;
+
         difficultySeries.dataFields.dateX = 'date';
-        difficultySeries.name = AXIS_CONFIG[type]?.name;
+        difficultySeries.name = chartType;
         difficultySeries.yAxis = difficultyAxis;
         difficultySeries.dataFields.valueY = type;
+
         difficultySeries.tooltipText =
-          AXIS_CONFIG[type]?.name +
-          `: {valueY.value.formatNumber("#.00 a'${unit}'")}`;
+          chartType + `: {valueY.value.formatNumber("#.0 a'${unit}'")}`;
 
         difficultySeries.strokeWidth = 2;
         difficultySeries.tensionX = 0.9;
@@ -103,7 +113,7 @@ export const StatsChart = React.memo(
 
         chartRef.current.cursor = new XYCursor();
       }
-    }, [data, unit, isFetching, type]);
+    }, [data, unit, isFetching, type, coin]);
 
     useEffect(() => {
       return () => {

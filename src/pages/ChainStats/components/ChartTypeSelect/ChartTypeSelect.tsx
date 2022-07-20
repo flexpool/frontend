@@ -9,11 +9,18 @@ import { Button } from '@/components/Button';
 type ChartTypeSelectProps<T = string> = {
   onSelect: (value: T) => void;
   value: T;
+  coin: string;
 };
 
 const CHART_TYPE_OPTIONS = [
   { value: 'difficulty', label: 'Difficulty Chart' },
   { value: 'hashrate', label: 'Hashrate Chart' },
+  { value: 'blocktime', label: 'Block Time Chart' },
+];
+
+const XCH_CHART_TYPE_OPTIONS = [
+  { value: 'difficulty', label: 'Difficulty Chart' },
+  { value: 'hashrate', label: 'Space Chart' },
   { value: 'blocktime', label: 'Block Time Chart' },
 ];
 
@@ -37,14 +44,19 @@ const MobileBreakpoint = styled.div`
   }
 `;
 
-export const ChartTypeSelect = ({ onSelect, value }: ChartTypeSelectProps) => {
-  const selected = CHART_TYPE_OPTIONS.find((option) => option.value === value);
+export const ChartTypeSelect = ({
+  onSelect,
+  value,
+  coin,
+}: ChartTypeSelectProps) => {
+  const options = coin === 'xch' ? XCH_CHART_TYPE_OPTIONS : CHART_TYPE_OPTIONS;
+  const selected = options.find((option) => option.value === value);
 
   return (
     <div style={{ marginLeft: 'auto' }}>
       <DesktopBreakpoint>
         <DownshiftSelect
-          items={CHART_TYPE_OPTIONS}
+          items={options}
           selectedItem={selected}
           onSelectedItemChange={(v) => {
             onSelect(v.selectedItem?.value as string);
@@ -54,7 +66,7 @@ export const ChartTypeSelect = ({ onSelect, value }: ChartTypeSelectProps) => {
 
       <MobileBreakpoint>
         <DownshiftDropdownSelect
-          items={CHART_TYPE_OPTIONS}
+          items={options}
           selectedItem={selected}
           onSelectedItemChange={(v) => {
             onSelect(v.selectedItem?.value as string);

@@ -37,7 +37,7 @@ const CoinTicker = styled.div`
   margin-left: 10px;
   font-size: 36px;
   font-weight: 500;
-  color: #4a4a4a;
+  color: var(--text-tertiary);
 
   @media screen and (max-width: 768px) {
     font-size: 18px;

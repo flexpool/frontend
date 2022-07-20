@@ -141,7 +141,7 @@ export const ChartMetrics = ({
     const previousMetric = currentDurationStats[0][type];
 
     const formattedMetric = formatter(currentMetric, {
-      decimals: 2,
+      decimals: currentMetric >= 10 ? 1 : 2,
     });
 
     if (formattedMetric) {
