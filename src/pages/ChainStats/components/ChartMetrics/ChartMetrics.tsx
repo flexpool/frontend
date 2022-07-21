@@ -148,14 +148,18 @@ export const Headline: React.FC<{
   }
 
   return (
-    <Trans
-      ns="network-stats"
-      i18nKey="headline"
-      values={{ key: metaTitle, value: `${metricValue} ${metricUnit}` }}
-      components={{
-        b: <b />,
-      }}
-    />
+    <div style={{ height: '16px' }}>
+      {metricValue && (
+        <Trans
+          ns="network-stats"
+          i18nKey="headline"
+          values={{ key: metaTitle, value: `${metricValue} ${metricUnit}` }}
+          components={{
+            b: <b />,
+          }}
+        />
+      )}
+    </div>
   );
 };
 
