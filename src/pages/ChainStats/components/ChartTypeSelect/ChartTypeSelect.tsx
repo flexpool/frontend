@@ -5,7 +5,7 @@ import DownshiftSelect, {
   DownshiftDropdownSelect,
 } from '@/components/Form/DownshiftSelect';
 import { Button } from '@/components/Button';
-import { TFunction } from 'react-18next';
+import { TFunction } from 'react-i18next';
 
 type ChartTypeSelectProps<T = string> = {
   commonT: TFunction<'common'>;
