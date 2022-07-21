@@ -1,0 +1,18 @@
+{
+  "title": "网络统计",
+  "headline": "当前的 {{key}} 是 <b>{{value}}</b>。",
+  "faq": {
+    "difficulty": {
+      "title": "什么是难度？",
+      "content": "难度是衡量矿工解决区块难度的指标。 难度越高，越难找到块。 难度是使用 SI（公制国际单位制）前缀来衡量的，您可以在下表中了解更多信息："
+    },
+    "blocktime": {
+      "title": "什么是阻塞时间？",
+      "content": "出块时间是指整个网络挖出一个新区块所需的平均时间。"
+    },
+    "hashrate": {
+      "title": "什么是算力？",
+      "content": "哈希率是衡量网络每秒处理的计算能力的指标。 它是使用 <code>difficulty/blocktime</code> 计算的。 哈希率也使用 SI 前缀来衡量。"
+    }
+  }
+}

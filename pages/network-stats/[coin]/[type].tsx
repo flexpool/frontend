@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { NextSeo } from 'next-seo';
 import { useTranslation, Trans } from 'next-i18next';
+
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Page } from '@/components/layout/Page';
 import { HeaderStat } from '@/components/layout/StatHeader';
@@ -13,13 +14,14 @@ import {
   ChartMetricsSkeleton,
   StatsChart,
   ChartTypeSelect,
+  Headline,
 } from '@/pages/ChainStats/components';
 import { ChartType } from '@/pages/ChainStats/types';
 import { Card } from '@/components/layout/Card';
 import { DurationKey } from '@/pages/ChainStats/hooks/useNetworkStatsChartData';
 import { DURATION_OPTIONS } from '@/pages/ChainStats/constants';
 import {
-  getReadableCharType,
+  getReadableChartType,
   getUnitByChartType,
 } from '@/pages/ChainStats/utils';
 
@@ -32,6 +34,7 @@ import { Skeleton } from '@/components/layout/Skeleton';
 import { Content } from '@/components/layout/Content';
 import useNextQueryParams from '@/hooks/useNextQueryParams';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const ChartCard = styled(Card)`
   padding: 36px 36px 22px;
@@ -56,12 +59,65 @@ const ChartCoinSkeleton = styled(Skeleton)`
   margin: 0;
 `;
 
+const RelatedLinkWrapper = styled.div`
+  margin-top: 20px;
+`;
+
+const RelatedLink: React.FC<{
+  href: string;
+  children: any;
+}> = ({ children, href }) => {
+  return (
+    <RelatedLinkWrapper>
+      <Link href={href}>{children}</Link>
+    </RelatedLinkWrapper>
+  );
+};
+
+const RelatedChartTypeLink: React.FC<{
+  activeTypeQuery: string;
+  targetTypeQuery: ChartType;
+  seoT: any;
+  commonT: any;
+  coinQuery: string;
+  coinName: string;
+  hashrateUnit: string;
+}> = ({
+  activeTypeQuery,
+  targetTypeQuery,
+  seoT,
+  commonT,
+  coinQuery,
+  coinName,
+  hashrateUnit,
+}) => {
+  return (
+    <>
+      {activeTypeQuery != targetTypeQuery && (
+        <RelatedLink href={`/network-stats/${coinQuery}/${targetTypeQuery}`}>
+          {seoT('title.network_stats', {
+            coinName,
+            coinTicker: coinQuery.toUpperCase(),
+            chartType: getReadableChartType(
+              commonT,
+              targetTypeQuery,
+              coinQuery,
+              hashrateUnit
+            ),
+          })}
+        </RelatedLink>
+      )}
+    </>
+  );
+};
+
 const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
   const [values, setValues] = useNextQueryParams('duration');
   const activeCoin = useActiveCoin();
   const firstRender = useRef(true);
   const { i18n, t: seoT } = useTranslation('seo');
   const { t } = useTranslation('network-stats');
+  const { t: commonT } = useTranslation('common');
   const [coin, setCoin] = useCoinTicker();
   const router = useRouter();
 
@@ -119,27 +175,39 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
     );
   };
 
+  // TODO: Do not determine the hashrate unit here. Use the hashrate unit field from
+  // the API coins response.
+  const hashrateUnit = coinQuery === 'xch' ? 'B' : 'H';
+
   const duration = (values?.duration || '1m') as DurationKey;
-  const chartType = getReadableCharType(typeQuery, coinQuery);
+  const chartType = getReadableChartType(
+    commonT,
+    typeQuery,
+    coinQuery,
+    hashrateUnit
+  );
+
+  const metaTitle = seoT('title.network_stats', {
+    coinName,
+    coinTicker: coinQuery.toUpperCase(),
+    chartType: getReadableChartType(
+      commonT,
+      typeQuery,
+      coinQuery,
+      hashrateUnit
+    ),
+  });
 
   return (
     <Page>
       <NextSeo
-        title={seoT('title.network_stats', {
-          coinName,
-          coinTicker: coinQuery.toUpperCase(),
-          chartType,
-        })}
+        title={metaTitle}
         description={seoT('website_description.network_stats', {
           coinName,
           coinTicker: coinQuery.toUpperCase(),
         })}
         openGraph={{
-          title: seoT('title.network_stats', {
-            coinName,
-            coinTicker: coinQuery.toUpperCase(),
-            chartType,
-          }),
+          title: metaTitle,
           description: seoT('website_description.network_stats', {
             coinName,
             coinTicker: coinQuery.toUpperCase(),
@@ -152,7 +220,7 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
             content: seoT('keywords.network_stats', {
               coinName,
               coinTicker: coin,
-              chartType: typeQuery,
+              chartType: commonT(chartType as ChartType).toLowerCase(),
             }),
           },
         ]}
@@ -173,17 +241,21 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
                   ticker={activeCoin?.ticker}
                 />
                 <ChartTypeSelect
+                  commonT={commonT}
                   onSelect={handleChartTypeSelect}
                   value={typeQuery}
                   coin={activeCoin.ticker}
+                  hashrateUnit={hashrateUnit}
                 />
               </ChartHeaderRow>
               <Spacer size="md" />
               <ChartSubHeaderRow>
                 <ChartMetrics
+                  commonT={commonT}
                   type={typeQuery}
                   coin={activeCoin}
                   duration={duration}
+                  hashrateUnit={hashrateUnit}
                 />
                 <ChartDurationPicker
                   options={DURATION_OPTIONS}
@@ -214,6 +286,14 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
         </ChartCard>
 
         <Spacer size="lg" />
+        {activeCoin ? (
+          <Headline
+            metaTitle={metaTitle}
+            type={typeQuery}
+            coin={activeCoin}
+            duration={duration}
+          />
+        ) : null}
 
         <h1>{t('faq.difficulty.title')}</h1>
         <p>{t('faq.difficulty.content')}</p>
@@ -226,28 +306,28 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
           </thead>
           <tbody>
             <tr>
-              <td>K</td>
+              <td>k</td>
               <td>1000</td>
             </tr>
             <tr>
               <td>M</td>
-              <td>1000K</td>
+              <td>1000 k</td>
             </tr>
             <tr>
               <td>G</td>
-              <td>1000M</td>
+              <td>1000 M</td>
             </tr>
             <tr>
               <td>T</td>
-              <td>1000G</td>
+              <td>1000 G</td>
             </tr>
             <tr>
               <td>P</td>
-              <td>1000T</td>
+              <td>1000 T</td>
             </tr>
             <tr>
               <td>E</td>
-              <td>1000P</td>
+              <td>1000 P</td>
             </tr>
           </tbody>
         </table>
@@ -265,10 +345,38 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
             }}
           />
         </p>
+        <Spacer size="md" />
+        <RelatedChartTypeLink
+          activeTypeQuery={typeQuery}
+          targetTypeQuery={'difficulty'}
+          seoT={seoT}
+          commonT={commonT}
+          coinQuery={coinQuery}
+          coinName={coinName}
+          hashrateUnit={hashrateUnit}
+        />
+        <RelatedChartTypeLink
+          activeTypeQuery={typeQuery}
+          targetTypeQuery={'hashrate'}
+          seoT={seoT}
+          commonT={commonT}
+          coinQuery={coinQuery}
+          coinName={coinName}
+          hashrateUnit={hashrateUnit}
+        />
+        <RelatedChartTypeLink
+          activeTypeQuery={typeQuery}
+          targetTypeQuery={'blocktime'}
+          seoT={seoT}
+          commonT={commonT}
+          coinQuery={coinQuery}
+          coinName={coinName}
+          hashrateUnit={hashrateUnit}
+        />
 
         <Spacer size="sm" />
-
         <Spacer size="lg" />
+
         <Spacer size="lg" />
       </Content>
     </Page>
@@ -291,6 +399,7 @@ export async function getStaticProps({ locale, params }) {
         'network-stats',
         'cookie-consent',
         'seo',
+        'dashboard',
       ])),
       coinName: coinNames[params.coin],
     },
