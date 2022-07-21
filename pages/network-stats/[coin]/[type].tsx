@@ -74,23 +74,22 @@ const RelatedLink: React.FC<{
   );
 };
 
-const RelatedChartTypeLink: React.FC<{
-  activeTypeQuery: string;
-  targetTypeQuery: ChartType;
-  seoT: any;
-  commonT: any;
-  coinQuery: string;
-  coinName: string;
-  hashrateUnit: string;
-}> = ({
+const RelatedChartTypeLink = ({
   activeTypeQuery,
   targetTypeQuery,
-  seoT,
-  commonT,
   coinQuery,
   coinName,
   hashrateUnit,
+}: {
+  activeTypeQuery: string;
+  targetTypeQuery: ChartType;
+  coinQuery: string;
+  coinName: string;
+  hashrateUnit: string;
 }) => {
+  const { t: seoT } = useTranslation('seo');
+  const { t: commonT } = useTranslation('common');
+
   return (
     <>
       {activeTypeQuery != targetTypeQuery && (
@@ -101,7 +100,6 @@ const RelatedChartTypeLink: React.FC<{
             chartType: getReadableChartType(
               commonT,
               targetTypeQuery,
-              coinQuery,
               hashrateUnit
             ),
           })}
@@ -180,22 +178,12 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
   const hashrateUnit = coinQuery === 'xch' ? 'B' : 'H';
 
   const duration = (values?.duration || '1m') as DurationKey;
-  const chartType = getReadableChartType(
-    commonT,
-    typeQuery,
-    coinQuery,
-    hashrateUnit
-  );
+  const chartType = getReadableChartType(commonT, typeQuery, hashrateUnit);
 
   const metaTitle = seoT('title.network_stats', {
     coinName,
     coinTicker: coinQuery.toUpperCase(),
-    chartType: getReadableChartType(
-      commonT,
-      typeQuery,
-      coinQuery,
-      hashrateUnit
-    ),
+    chartType: getReadableChartType(commonT, typeQuery, hashrateUnit),
   });
 
   return (
@@ -241,7 +229,6 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
                   ticker={activeCoin?.ticker}
                 />
                 <ChartTypeSelect
-                  commonT={commonT}
                   onSelect={handleChartTypeSelect}
                   value={typeQuery}
                   coin={activeCoin.ticker}
@@ -251,7 +238,6 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
               <Spacer size="md" />
               <ChartSubHeaderRow>
                 <ChartMetrics
-                  commonT={commonT}
                   type={typeQuery}
                   coin={activeCoin}
                   duration={duration}
@@ -346,11 +332,10 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
           />
         </p>
         <Spacer size="md" />
+
         <RelatedChartTypeLink
           activeTypeQuery={typeQuery}
           targetTypeQuery={'difficulty'}
-          seoT={seoT}
-          commonT={commonT}
           coinQuery={coinQuery}
           coinName={coinName}
           hashrateUnit={hashrateUnit}
@@ -358,8 +343,6 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
         <RelatedChartTypeLink
           activeTypeQuery={typeQuery}
           targetTypeQuery={'hashrate'}
-          seoT={seoT}
-          commonT={commonT}
           coinQuery={coinQuery}
           coinName={coinName}
           hashrateUnit={hashrateUnit}
@@ -367,8 +350,6 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
         <RelatedChartTypeLink
           activeTypeQuery={typeQuery}
           targetTypeQuery={'blocktime'}
-          seoT={seoT}
-          commonT={commonT}
           coinQuery={coinQuery}
           coinName={coinName}
           hashrateUnit={hashrateUnit}

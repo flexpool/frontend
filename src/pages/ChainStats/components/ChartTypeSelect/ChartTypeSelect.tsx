@@ -5,10 +5,9 @@ import DownshiftSelect, {
   DownshiftDropdownSelect,
 } from '@/components/Form/DownshiftSelect';
 import { Button } from '@/components/Button';
-import { TFunction } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 type ChartTypeSelectProps<T = string> = {
-  commonT: TFunction<'common'>;
   onSelect: (value: T) => void;
   value: T;
   coin: string;
@@ -36,11 +35,12 @@ const MobileBreakpoint = styled.div`
 `;
 
 export const ChartTypeSelect = ({
-  commonT,
   onSelect,
   value,
   hashrateUnit,
 }: ChartTypeSelectProps) => {
+  const { t: commonT } = useTranslation('common');
+
   const CHART_TYPE_OPTIONS = [
     { value: 'difficulty', label: commonT('difficulty') },
     { value: 'hashrate', label: commonT('hashrate') },

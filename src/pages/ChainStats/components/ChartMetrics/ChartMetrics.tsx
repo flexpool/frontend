@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation, Trans } from 'next-i18next';
 import styled, { css } from 'styled-components';
 import { FiArrowDown, FiArrowUp, FiMinus } from 'react-icons/fi';
 import { Skeleton } from '@/components/layout/Skeleton';
@@ -9,7 +10,6 @@ import { getReadableChartType, getUnitByChartType } from '../../utils';
 import useNetworkStatsChartData, {
   DurationKey,
 } from '../../hooks/useNetworkStatsChartData';
-import { TFunction, Trans } from 'react-i18next';
 
 const ChartMetricsContainer = styled.div`
   color: var(--text-color);
@@ -160,19 +160,18 @@ export const Headline: React.FC<{
 };
 
 export const ChartMetrics = ({
-  commonT,
   type,
   coin,
   duration,
   hashrateUnit,
 }: {
-  commonT: TFunction<'common'>;
   coin: { ticker: string; hashrateUnit: string };
   type: ChartType;
   duration: DurationKey;
   hashrateUnit: string;
 }) => {
   const formatter = useLocalizedSiFormatter();
+  const { t: commonT } = useTranslation('common');
 
   const { data: currentDurationStats, isLoading } = useNetworkStatsChartData(
     coin.ticker,
@@ -210,7 +209,7 @@ export const ChartMetrics = ({
       {trend !== null && renderBadgeContent(trend)}
       <MetricTypeSubtitle>
         {commonT('current_network_value', {
-          value: getReadableChartType(commonT, type, coin.ticker, hashrateUnit),
+          value: getReadableChartType(commonT, type, hashrateUnit),
         })}
       </MetricTypeSubtitle>
     </ChartMetricsContainer>

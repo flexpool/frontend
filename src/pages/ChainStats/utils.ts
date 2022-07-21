@@ -37,7 +37,6 @@ export const getUnitByChartType = (type: ChartType, coin: Coin) => {
 export const getReadableChartType = (
   commonT: TFunction<'common'>,
   type: ChartType,
-  coin: string,
   hashrateUnit: string
 ) => {
   let readableType = '';
