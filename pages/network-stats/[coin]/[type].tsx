@@ -121,6 +121,7 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
 
   const [typeQuery, setTypeQuery] = useState(router.query.type as ChartType);
   const [coinQuery, setCoinQuery] = useState(router.query.coin as string);
+  const [duration, setDuration] = useState('1m' as DurationKey);
 
   if (router.query.type && router.query.type !== typeQuery) {
     setTypeQuery(router.query.type as ChartType);
@@ -154,7 +155,7 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
   }, [router, coin, setCoin]);
 
   const handleDurationChange = (value) => {
-    setValues({ duration: value });
+    setDuration(value);
   };
 
   const handleChartTypeSelect = (value) => {
@@ -177,7 +178,6 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
   // the API coins response.
   const hashrateUnit = coinQuery === 'xch' ? 'B' : 'H';
 
-  const duration = (values?.duration || '1m') as DurationKey;
   const chartType = getReadableChartType(commonT, typeQuery, hashrateUnit);
 
   const metaTitle = seoT('title.network_stats', {
