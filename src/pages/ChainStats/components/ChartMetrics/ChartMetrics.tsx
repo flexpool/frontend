@@ -124,7 +124,7 @@ export const Headline: React.FC<{
 }> = ({ metaTitle, coin, type, duration }) => {
   const formatter = useLocalizedSiFormatter();
 
-  const { data: currentDurationStats, isLoading } = useNetworkStatsChartData(
+  const { data: currentDurationStats } = useNetworkStatsChartData(
     coin.ticker,
     duration
   );
@@ -149,7 +149,7 @@ export const Headline: React.FC<{
 
   return (
     <div style={{ height: '16px' }}>
-      {metricValue && (
+      {metricValue && duration == '1m' && (
         <Trans
           ns="network-stats"
           i18nKey="headline"
