@@ -94,7 +94,8 @@
     "stat_estimate_monthly": "щомісячно",
     "stat_estimate_tooltip": "Натисніть, щоб перейти між щоденними, щотижневими та місячними оцінками.",
     "update_in": "Оновлення в",
-    "auto_update": "Автоматичне оновлення"
+    "auto_update": "Автоматичне оновлення",
+    "time_to_lambo": "Your estimated time to Lambo is {{time}}."
   },
   "nav": {
     "stats": "Статистика",
@@ -176,13 +177,16 @@
     "table": {
       "title": "Виплати",
       "download": "Завантажити CSV",
+      "download_pdf": "Download PDF",
       "table_contents": {
         "pending": "Очікується",
         "success": "Успіх"
       },
+      "estimated_value": "Estimated value now:",
       "table_head": {
         "date": "Дата",
         "value": "Вартість транзакції",
+        "value_tooltip": "The fiat conversion is based on the price at the time of the payout.",
         "fee": "Комісія",
         "duration": "Тривалість",
         "hash": "Хеш",
@@ -259,6 +263,9 @@
       "payoutExportProTip": "Ви можете експортувати всі свої транзакції у форматі CSV на вкладці «Виплати».",
       "rewardsExportProTip": "Ви можете експортувати всі свої нагороди у вигляді аркуша CSV на вкладці «Винагороди»."
     }
+  },
+  "announcements": {
+    "chia_softfork": "The Chia softfork is scheduled to happen approximately on <bold>July 22</bold>.<br/>If you are using the reference farmer, <bold>please ensure that you are running chia-blockchain version v1.3.0 or newer.</bold><br/>After the network upgrade is completed, all partials from Chia clients that don't support the softfork will be rejected.<br/><bold>No action is required for FlexFarmer users.</bold>"
   },
   "status_pending_tooltip": "Очікується підтвердження транзакції",
   "confirmation_duration_tooltip": "Підтверджено в",

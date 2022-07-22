@@ -72,11 +72,11 @@
       },
       {
         "key": "Виплата за раунд",
-        "value": "Раз на годину"
+        "value": "Once an hour (Mainnet) \n\nOnce a day (Polygon L2)"
       },
       {
         "key": "Виплати",
-        "value": "від 0,01 ETH до 100 ETH"
+        "value": "From 0.01 ETH to 20 ETH (Mainnet)\n\nFrom 0.005 ETH to 20 ETH (Polygon L2) \n\n*Can be set up to 100 ETH through support"
       },
       {
         "key": "Час підтвердження блоку",
@@ -132,7 +132,7 @@
       },
       {
         "key": "Виплати",
-        "value": "від 0,01 ETC до 100 ETC"
+        "value": "From 0.01 ETC up to 100 ETC"
       },
       {
         "key": "Час підтвердження блоку",
@@ -190,7 +190,7 @@
       },
       {
         "key": "Виплати",
-        "value": "від 0,01 XCH до 10 XCH"
+        "value": "From 0.01 XCH to 10 XCH"
       },
       {
         "key": "Час підтвердження блоку",

@@ -94,7 +94,8 @@
     "stat_estimate_monthly": "每月收益",
     "stat_estimate_tooltip": "按这可以换每天，每周，每月预计收益。",
     "update_in": "刷新",
-    "auto_update": "自动刷新"
+    "auto_update": "自动刷新",
+    "time_to_lambo": "Your estimated time to Lambo is {{time}}."
   },
   "nav": {
     "stats": "矿机状态",
@@ -176,13 +177,16 @@
     "table": {
       "title": "转账记录",
       "download": "下载CSV文件",
+      "download_pdf": "Download PDF",
       "table_contents": {
         "pending": "等待确认",
         "success": "成功"
       },
+      "estimated_value": "Estimated value now:",
       "table_head": {
         "date": "日期",
         "value": "转账数额",
+        "value_tooltip": "The fiat conversion is based on the price at the time of the payout.",
         "fee": "转账费用",
         "duration": "周期",
         "hash": "交易编号",
@@ -259,6 +263,9 @@
       "payoutExportProTip": "你可以在“转账记录”标签里导出你所有的转账记录为一个CSV文件。",
       "rewardsExportProTip": "你可以在“收益”标签里导出你所有的收益记录为一个CSV文件。"
     }
+  },
+  "announcements": {
+    "chia_softfork": "The Chia softfork is scheduled to happen approximately on <bold>July 22</bold>.<br/>If you are using the reference farmer, <bold>please ensure that you are running chia-blockchain version v1.3.0 or newer.</bold><br/>After the network upgrade is completed, all partials from Chia clients that don't support the softfork will be rejected.<br/><bold>No action is required for FlexFarmer users.</bold>"
   },
   "status_pending_tooltip": "等待交易确认",
   "confirmation_duration_tooltip": "交易确认时间",

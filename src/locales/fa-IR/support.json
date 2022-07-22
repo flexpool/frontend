@@ -7,7 +7,8 @@
   },
   "section_two": {
     "title": "Reach us via the Website Messenger",
-    "description": "The best way to reach us to get assistance is to use the built-in website messenger. You can find it in the bottom-right corner."
+    "description": "The best way to reach us to get assistance is to use the built-in website messenger. You can find it in the bottom-right corner. If we are offline, please leave a full question so we can respond accurately when we are available. Please be sure to provide your coin and wallet/payout address.",
+    "warning": "Please note that China Support is for Chinese language support only. If you do not read and write Chinese, please enter a ticket in Global Support."
   },
   "section_three": {
     "title": "Join our Community",
@@ -15,7 +16,7 @@
   },
   "section_four": {
     "title": "Reach us via Email",
-    "description": "We provide Email support, but we do not guarantee fast response time via this support channel. We are available at <email>{{email}}</email>."
+    "description": "You may also use our email support, which goes to the same system as the website messenger. As with messenger, please leave a full question including your coin and wallet/payout address so we can respond accurately when we are available. Our support email address is <email>{{email}}</email>."
   },
   "section_five": {
     "title": "Other questions",

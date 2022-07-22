@@ -7,7 +7,8 @@
   },
   "section_two": {
     "title": "Contactez-nous via le Messenger du site web",
-    "description": "La meilleure façon de nous joindre pour obtenir de l'aide est d'utiliser la messagerie intégrée du site Web. Vous pouvez le trouver dans le coin inférieur droit."
+    "description": "The best way to reach us to get assistance is to use the built-in website messenger. You can find it in the bottom-right corner. If we are offline, please leave a full question so we can respond accurately when we are available. Please be sure to provide your coin and wallet/payout address.",
+    "warning": "Please note that China Support is for Chinese language support only. If you do not read and write Chinese, please enter a ticket in Global Support."
   },
   "section_three": {
     "title": "Rejoignez la communauté",
@@ -15,7 +16,7 @@
   },
   "section_four": {
     "title": "Contactez-nous par e-mail",
-    "description": "Nous fournissons une assistance par courriel, mais nous ne garantissons pas un temps de réponse rapide via ce canal d'assistance. Nous sommes disponibles à <email>{{email}}</email>."
+    "description": "You may also use our email support, which goes to the same system as the website messenger. As with messenger, please leave a full question including your coin and wallet/payout address so we can respond accurately when we are available. Our support email address is <email>{{email}}</email>."
   },
   "section_five": {
     "title": "Autres questions",

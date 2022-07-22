@@ -14,7 +14,8 @@
     "get_started_gpu": "Louhi {{coinName}} ({{coinTicker}}) käyttämällä näytönohjainta",
     "get_started_nicehash": "Vuokraa NiceHashista {{coinName}} ({{coinTicker}})",
     "get_started_chia_regular": "Farmaa {{coinName}} ({{coinTicker}}) käyttämällä {{client}}",
-    "get_started_home": "Aloita"
+    "get_started_home": "Aloita",
+    "network_stats": "{{coinName}} ({{coinTicker}}) Network {{chartType}}"
   },
   "website_description": {
     "home": "Flexpool.io on maailman edistynein louhintapool, joka tarjoaa helpon tavan louhia lempikryptojasi. Tuemme Ethereumia ja Chiaa.",
@@ -31,7 +32,8 @@
     "get_started_gpu": "Tältä sivulta löydät interaktiivisen ohjeen {{coinName}} ({{coinTicker}}) louhinnan aloittamiseen käyttäen {{coinAlgorithm}} algoritmia näytönohjaimella Flexpoolissa.",
     "get_started_nicehash": "Tältä sivulta löydät interaktiivisen ohjeen {{coinName}} ({{coinTicker}}) louhintatehon vuokraamiseen NiceHashista käyttäen {{coinAlgorithm}} algoritmia ja sen liittämiseksi Flexpooliin.",
     "get_started_chia_regular": "Tältä sivulta löydät interaktiivisen ohjeen {{coinName}} ({{coinTicker}}) farmaamisen aloittamiseen käyttäen {{client}} algoritmia Flexpoolissa.",
-    "get_started_home": "Tältä sivulta löydät kaikki interaktiiviset ohjeemme louhinnan aloittamiseen Flexpoolissa."
+    "get_started_home": "Tältä sivulta löydät kaikki interaktiiviset ohjeemme louhinnan aloittamiseen Flexpoolissa.",
+    "network_stats": "View {{coinName}} ({{coinTicker}}) historical network statistics including hashrate, difficulty, and block time on this page."
   },
   "keywords": {
     "home": "ethereum pool,chia pool,paras ethereum pool,paras chia pool,ethereum louhinta,chia farmaus,louhinta pool,farmaus pool,paras louhinta pool,paras farmaus pool",
@@ -47,6 +49,7 @@
     "get_started_gpu": "ohje,neuvot,{{coinName}} louhinta,{{coinTicker}} louhinta,{{coinAlgorithm}} louhinta,{{coinName}} ohjeet,{{coinTicker}} ohjeet,{{coinAlgorithm}} ohjeet",
     "get_started_nicehash": "ohje,neuvot,nicehash {{coinName}} vuokraus,nicehash {{coinTicker}} vuokraus,nicehash {{coinName}} ohjeet,nicehash {{coinTicker}} ohjeet,nicehash {{coinName}} vuokra,nicehash {{coinTicker}} vuokra,nicehash flexpool,nicehash flexpool {{coinAlgorithm}}",
     "get_started_chia_regular": "ohje,neuvot,{{coinName}} {{client}} farmaus,{{coinTicker}} {{client}} farmaus,{{coinName}} {{client}} ohjeet,{{coinTicker}} {{client}} ohjeet",
-    "get_started_home": "ohje,neuvot,aloita louhinta,aloita farmaus,louhinta-ohje,louhinta-neuvot,aloittaminen,ohjeet"
+    "get_started_home": "ohje,neuvot,aloita louhinta,aloita farmaus,louhinta-ohje,louhinta-neuvot,aloittaminen,ohjeet",
+    "network_stats": "network statistics,network hashrate,network hashrate chart,network difficulty,network difficulty chart,network blocks time,network blocks time chart,{{coinTicker}} {{chartType}} chart,{{coinTicker}} {{chartType}},{{coinName}} {{chartType}} chart,{{coinName}} {{chartType}}"
   }
 }

@@ -37,9 +37,9 @@
       "local": "On your Machine"
     },
     "description_extract": "To farm with FlexFarmer, you will need to extract your Farmer Secret Key from your primary mnemonic phrase. You can do it both locally on your machine, and in this browser.",
-    "description_mnemonic": "Enter your 24 word mnemonic phrase, and paste the secret key below.",
+    "description_mnemonic": "The extraction script is bundled with the downloaded archive. Enter your 24-word mnemonic phrase, and paste the secret key below.",
     "input_label": "Farmer Secret Key",
-    "browser_security_notice": "<warning>Important Security Warning:</warning> Farmer secret key extraction is done locally in this Browser using JavaScript, and your mnemonic is never sent to our servers. To ensure the security of this procedure, please make sure that you are using a malware-free machine running without untrusted browser extensions. If you don't trust the browser, we strongly advise you to use the on-machine extraction method that utilizes the script bundled with the FlexFarmer download archive. We always recommend you to have a different mnemonic phrase for farming and storing funds. Flexpool is not responsible for the mnemonic phrase theft.",
+    "browser_security_notice": "<warning>Important Security Warning:</warning> We strongly discourage using this method if you use the mnemonic for storing funds, not for plot generation only. We always recommend having a different mnemonic phrase for farming and a different one for storing funds. If this is not the case, we advise you to use the on-machine extraction method that utilizes the script bundled with the FlexFarmer. Flexpool.io is not responsible for any losses that may incur during this process.",
     "extractor_locked": "Accepted. Click on the lock to unlock the mnemonic entry",
     "description_local_win": "To run the extraction script, ensure that you have installed Python from the <link>official Python download website</link>"
   },

@@ -94,7 +94,8 @@
     "stat_estimate_monthly": "měsíčně",
     "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimates.",
     "update_in": "Update in",
-    "auto_update": "Auto-update"
+    "auto_update": "Auto-update",
+    "time_to_lambo": "Your estimated time to Lambo is {{time}}."
   },
   "nav": {
     "stats": "Statistiky",
@@ -176,13 +177,16 @@
     "table": {
       "title": "Vyplácení",
       "download": "Stáhnout CSV",
+      "download_pdf": "Download PDF",
       "table_contents": {
         "pending": "Pending",
         "success": "Success"
       },
+      "estimated_value": "Estimated value now:",
       "table_head": {
         "date": "Datum a čas",
         "value": "Hodnota",
+        "value_tooltip": "The fiat conversion is based on the price at the time of the payout.",
         "fee": "Poplatek",
         "duration": "Doba trvání",
         "hash": "Hash",
@@ -259,6 +263,9 @@
       "payoutExportProTip": "You can export all your transactions as a CSV sheet in the \"Payouts\" tab.",
       "rewardsExportProTip": "You can export all your rewards as a CSV sheet in the \"Rewards\" tab."
     }
+  },
+  "announcements": {
+    "chia_softfork": "The Chia softfork is scheduled to happen approximately on <bold>July 22</bold>.<br/>If you are using the reference farmer, <bold>please ensure that you are running chia-blockchain version v1.3.0 or newer.</bold><br/>After the network upgrade is completed, all partials from Chia clients that don't support the softfork will be rejected.<br/><bold>No action is required for FlexFarmer users.</bold>"
   },
   "status_pending_tooltip": "Awaiting transaction confirmation",
   "confirmation_duration_tooltip": "Confirmed in",

@@ -72,11 +72,11 @@
       },
       {
         "key": "支付时间",
-        "value": "每小时一轮"
+        "value": "Once an hour (Mainnet) \n\nOnce a day (Polygon L2)"
       },
       {
         "key": "起付额度",
-        "value": "自己设置，0.01 ETH 到最高 100 ETH"
+        "value": "From 0.01 ETH to 20 ETH (Mainnet)\n\nFrom 0.005 ETH to 20 ETH (Polygon L2) \n\n*Can be set up to 100 ETH through support"
       },
       {
         "key": "区块确认时间",
@@ -132,7 +132,7 @@
       },
       {
         "key": "起付额度",
-        "value": "自己设置，0.01 ETH 到最高 100 ETH"
+        "value": "From 0.01 ETC up to 100 ETC"
       },
       {
         "key": "区块确认时间",
@@ -190,7 +190,7 @@
       },
       {
         "key": "起付额度",
-        "value": "自定义额度，0.01 XCH 到最大 10 XCH"
+        "value": "From 0.01 XCH to 10 XCH"
       },
       {
         "key": "区块确认时间",

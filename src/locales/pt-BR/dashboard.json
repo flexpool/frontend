@@ -94,7 +94,8 @@
     "stat_estimate_monthly": "mensal",
     "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimates.",
     "update_in": "Atualizando em",
-    "auto_update": "Atualização automática"
+    "auto_update": "Atualização automática",
+    "time_to_lambo": "Your estimated time to Lambo is {{time}}."
   },
   "nav": {
     "stats": "Estatísticas",
@@ -176,13 +177,16 @@
     "table": {
       "title": "Pagamentos",
       "download": "Baixar arquivo CSV",
+      "download_pdf": "Download PDF",
       "table_contents": {
         "pending": "Pendente",
         "success": "Sucesso"
       },
+      "estimated_value": "Estimated value now:",
       "table_head": {
         "date": "Data",
         "value": "Valor da Transação",
+        "value_tooltip": "The fiat conversion is based on the price at the time of the payout.",
         "fee": "Taxa",
         "duration": "Duração",
         "hash": "Hash",
@@ -259,6 +263,9 @@
       "payoutExportProTip": "Você pode exportar todas as suas transações como uma planilha CSV na aba \"Pagamentos\".",
       "rewardsExportProTip": "Você pode exportar todas as suas recompensas como uma planilha CSV na aba \"Recompensas\"."
     }
+  },
+  "announcements": {
+    "chia_softfork": "The Chia softfork is scheduled to happen approximately on <bold>July 22</bold>.<br/>If you are using the reference farmer, <bold>please ensure that you are running chia-blockchain version v1.3.0 or newer.</bold><br/>After the network upgrade is completed, all partials from Chia clients that don't support the softfork will be rejected.<br/><bold>No action is required for FlexFarmer users.</bold>"
   },
   "status_pending_tooltip": "Aguardando confirmação da transação",
   "confirmation_duration_tooltip": "Confirmado em",

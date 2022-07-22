@@ -7,7 +7,8 @@
   },
   "section_two": {
     "title": "Ole yhteydessä verkkosivun chatin kautta",
-    "description": "Paras tapa olla meihin yhteydessä on käyttää verkkosivuillamme olevaa chattia. Löydät sen sivuston oikeasta alakulmasta."
+    "description": "The best way to reach us to get assistance is to use the built-in website messenger. You can find it in the bottom-right corner. If we are offline, please leave a full question so we can respond accurately when we are available. Please be sure to provide your coin and wallet/payout address.",
+    "warning": "Please note that China Support is for Chinese language support only. If you do not read and write Chinese, please enter a ticket in Global Support."
   },
   "section_three": {
     "title": "Liity yhteisöön",
@@ -15,10 +16,10 @@
   },
   "section_four": {
     "title": "Ole yhteydessä sähköpostilla",
-    "description": "Tarjoamme tukea sähköpostin välityksellä, mutta emme takaa nopeaa vastausta tätä kautta. Voit olla yhteydessä osoitteeseen <email>{{email}}</email>."
+    "description": "You may also use our email support, which goes to the same system as the website messenger. As with messenger, please leave a full question including your coin and wallet/payout address so we can respond accurately when we are available. Our support email address is <email>{{email}}</email>."
   },
   "section_five": {
     "title": "Muut yhteydenotot",
-    "description": "For business-related questions, please, contact us at <email>{{email}}</email>  <bold>(English only)</bold>. Please, note that <bold>we do not provide support via this Email</bold>."
+    "description": "Yritystoimintaan liittyvissä kysymyksissä voit olla yhteydessä sähköpostilla osoitteeseen <email>{{email}}</email> <bold>(Englanniksi)</bold>. Huomioithan, että <bold>emme tarjoa tukea tämän sähköpostin kautta</bold>."
   }
 }

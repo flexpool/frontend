@@ -80,6 +80,8 @@
   "date_time": {
     "now": "зараз"
   },
+  "years": "years",
+  "days": "days",
   "snacks": {
     "emailConfirmed": {
       "title": "Вашу електронну пошту підтверджено"
@@ -92,5 +94,10 @@
     "questionsAboutFlexpool": "Питання про Flexpool",
     "miningBasics": "Основи майнінгу"
   },
-  "noDataAvailable": "Немає даних"
+  "noDataAvailable": "Немає даних",
+  "difficulty": "Difficulty",
+  "blocktime": "Block Time",
+  "hashrate": "Hashrate",
+  "hashrate_space": "Space",
+  "current_network_value": "Current Network {{value}}"
 }

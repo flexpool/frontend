@@ -80,6 +80,8 @@
   "date_time": {
     "now": "nu"
   },
+  "years": "years",
+  "days": "days",
   "snacks": {
     "emailConfirmed": {
       "title": "Din e-post har bekräftats"
@@ -92,5 +94,10 @@
     "questionsAboutFlexpool": "Questions About Flexpool",
     "miningBasics": "Mining Basics"
   },
-  "noDataAvailable": "No data available"
+  "noDataAvailable": "No data available",
+  "difficulty": "Difficulty",
+  "blocktime": "Block Time",
+  "hashrate": "Hashrate",
+  "hashrate_space": "Space",
+  "current_network_value": "Current Network {{value}}"
 }

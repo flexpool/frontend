@@ -37,9 +37,9 @@
       "local": "На вашій машині"
     },
     "description_extract": "Щоб фармити за допомогою FlexFarmer, вам потрібно буде витягти свій секретний ключ фермера з основної мнемонічної фрази. Ви можете зробити це як локально на своїй машині, так і в цьому браузері.",
-    "description_mnemonic": "Введіть свою мнемонічну фразу з 24 слів і вставте секретний ключ нижче.",
+    "description_mnemonic": "The extraction script is bundled with the downloaded archive. Enter your 24-word mnemonic phrase, and paste the secret key below.",
     "input_label": "Секретний ключ фармера",
-    "browser_security_notice": "<warning>Важливе попередження безпеки:</warning> Вилучення секретного ключа фермера виконується локально в цьому браузері за допомогою JavaScript, і ваша мнемоніка ніколи не надсилається на наші сервери. Щоб забезпечити безпеку цієї процедури, переконайтеся, що ви використовуєте комп’ютер без зловмисного програмного забезпечення, який працює без ненадійних розширень браузера. Якщо ви не довіряєте браузеру, ми настійно рекомендуємо вам використовувати метод вилучення на машині, який використовує сценарій, що постачається з архівом завантаження FlexFarmer. Ми завжди рекомендуємо вам використовувати іншу мнемологічну фразу для ведення фармінгу та зберігання коштів. Flexpool не несе відповідальності за крадіжку мнемонічної фрази.",
+    "browser_security_notice": "<warning>Important Security Warning:</warning> We strongly discourage using this method if you use the mnemonic for storing funds, not for plot generation only. We always recommend having a different mnemonic phrase for farming and a different one for storing funds. If this is not the case, we advise you to use the on-machine extraction method that utilizes the script bundled with the FlexFarmer. Flexpool.io is not responsible for any losses that may incur during this process.",
     "extractor_locked": "Прийнято. Натисніть на замок, щоб розблокувати мнемонічний запис",
     "description_local_win": "Щоб запустити сценарій вилучення, переконайтеся, що ви інсталювали Python з офіційного веб-сайту для завантаження Python <link></link>"
   },
