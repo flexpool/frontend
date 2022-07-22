@@ -1,11 +1,12 @@
 import React from 'react';
+import { useTranslation, Trans } from 'next-i18next';
 import styled, { css } from 'styled-components';
 import { FiArrowDown, FiArrowUp, FiMinus } from 'react-icons/fi';
 import { Skeleton } from '@/components/layout/Skeleton';
 
 import { useLocalizedSiFormatter } from '@/utils/si.utils';
 import { ChartType } from '../../types';
-import { getReadableCharType, getUnitByChartType } from '../../utils';
+import { getReadableChartType, getUnitByChartType } from '../../utils';
 import useNetworkStatsChartData, {
   DurationKey,
 } from '../../hooks/useNetworkStatsChartData';
@@ -115,16 +116,66 @@ const renderBadgeContent = (trend: number) => {
   );
 };
 
+export const Headline: React.FC<{
+  metaTitle: string;
+  coin: { ticker: string; hashrateUnit: string };
+  type: ChartType;
+  duration: DurationKey;
+}> = ({ metaTitle, coin, type, duration }) => {
+  const formatter = useLocalizedSiFormatter();
+
+  const { data: currentDurationStats } = useNetworkStatsChartData(
+    coin.ticker,
+    duration
+  );
+
+  let metricValue: string | null = null;
+  let metricUnit: string | null = null;
+
+  if (currentDurationStats) {
+    const currentMetric =
+      currentDurationStats[currentDurationStats.length - 1][type];
+
+    const formattedMetric = formatter(currentMetric, {
+      decimals: currentMetric >= 10 ? 1 : 2,
+    });
+
+    if (formattedMetric) {
+      const [value, si] = formattedMetric.split(' ');
+      metricValue = value;
+      metricUnit = si + getUnitByChartType(type, coin);
+    }
+  }
+
+  return (
+    <div style={{ height: '16px' }}>
+      {metricValue && duration == '1m' && (
+        <Trans
+          ns="network-stats"
+          i18nKey="headline"
+          values={{ key: metaTitle, value: `${metricValue} ${metricUnit}` }}
+          components={{
+            b: <b />,
+          }}
+        />
+      )}
+    </div>
+  );
+};
+
 export const ChartMetrics = ({
   type,
   coin,
   duration,
+  hashrateUnit,
 }: {
   coin: { ticker: string; hashrateUnit: string };
   type: ChartType;
   duration: DurationKey;
+  hashrateUnit: string;
 }) => {
   const formatter = useLocalizedSiFormatter();
+  const { t: commonT } = useTranslation('common');
 
   const { data: currentDurationStats, isLoading } = useNetworkStatsChartData(
     coin.ticker,
@@ -161,7 +212,9 @@ export const ChartMetrics = ({
       <MetricUnit>{metricUnit}</MetricUnit>
       {trend !== null && renderBadgeContent(trend)}
       <MetricTypeSubtitle>
-        Current Network {getReadableCharType(type, coin.ticker)}
+        {commonT('current_network_value', {
+          value: getReadableChartType(commonT, type, hashrateUnit),
+        })}
       </MetricTypeSubtitle>
     </ChartMetricsContainer>
   );

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled, { keyframes } from 'styled-components';
 import { LoaderSpinner } from '@/components/Loader/LoaderSpinner';
 import { responsiveRule } from 'src/components/Chart/ChartContainer';
@@ -45,30 +46,31 @@ type StatsChartProps = {
   type: ChartType;
 };
 
-const AXIS_CONFIG = {
-  difficulty: {
-    name: 'Difficulty',
-  },
-  hashrate: {
-    name: 'Hashrate',
-  },
-  blocktime: {
-    name: 'Block Time',
-  },
-};
-
-const XCH_CONFIG = {
-  ...AXIS_CONFIG,
-  hashrate: {
-    name: 'Space',
-  },
-};
-
 export const StatsChart = React.memo(
   ({ coin, unit, duration, type }: StatsChartProps) => {
     const chartRef = useRef<XYChart | null>(null);
+    const { t: commonT } = useTranslation('common');
 
     const { data, isFetching } = useNetworkStatsChartData(coin, duration);
+
+    const AXIS_CONFIG = {
+      difficulty: {
+        name: commonT('difficulty'),
+      },
+      hashrate: {
+        name: commonT('hashrate'),
+      },
+      blocktime: {
+        name: commonT('blocktime'),
+      },
+    };
+
+    const XCH_CONFIG = {
+      ...AXIS_CONFIG,
+      hashrate: {
+        name: commonT('hashrate_space'),
+      },
+    };
 
     useEffect(() => {
       if (data && !isFetching) {

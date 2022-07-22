@@ -1,4 +1,5 @@
 import { ChartType } from './types';
+import { TFunction } from 'react-i18next';
 
 interface Coin {
   ticker: string;
@@ -33,25 +34,29 @@ export const getUnitByChartType = (type: ChartType, coin: Coin) => {
   return unit;
 };
 
-export const getReadableCharType = (type: ChartType, coin: string) => {
+export const getReadableChartType = (
+  commonT: TFunction<'common'>,
+  type: ChartType,
+  hashrateUnit: string
+) => {
   let readableType = '';
 
   switch (type) {
     case 'difficulty':
-      readableType = 'Difficulty';
+      readableType = commonT('difficulty');
       break;
 
     case 'hashrate':
-      if (coin === 'xch') {
-        readableType = 'Space';
+      if (hashrateUnit === 'B') {
+        readableType = commonT('hashrate_space');
       } else {
-        readableType = 'Hashrate';
+        readableType = commonT('hashrate');
       }
 
       break;
 
     case 'blocktime':
-      readableType = 'Block Time';
+      readableType = commonT('blocktime');
       break;
   }
 

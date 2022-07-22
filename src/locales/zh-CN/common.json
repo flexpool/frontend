@@ -92,5 +92,10 @@
     "questionsAboutFlexpool": "关于Flexpool的问题",
     "miningBasics": "挖矿基础知识"
   },
-  "noDataAvailable": "没有可用数据"
+  "noDataAvailable": "没有可用数据",
+  "difficulty": "难度",
+  "blocktime": "出块时间",
+  "hashrate": "算力",
+  "hashrate_space": "空间",
+  "current_network_value": "当前全网{{value}}"
 }

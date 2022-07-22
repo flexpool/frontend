@@ -5,24 +5,14 @@ import DownshiftSelect, {
   DownshiftDropdownSelect,
 } from '@/components/Form/DownshiftSelect';
 import { Button } from '@/components/Button';
+import { useTranslation } from 'react-i18next';
 
 type ChartTypeSelectProps<T = string> = {
   onSelect: (value: T) => void;
   value: T;
   coin: string;
+  hashrateUnit: string;
 };
-
-const CHART_TYPE_OPTIONS = [
-  { value: 'difficulty', label: 'Difficulty Chart' },
-  { value: 'hashrate', label: 'Hashrate Chart' },
-  { value: 'blocktime', label: 'Block Time Chart' },
-];
-
-const XCH_CHART_TYPE_OPTIONS = [
-  { value: 'difficulty', label: 'Difficulty Chart' },
-  { value: 'hashrate', label: 'Space Chart' },
-  { value: 'blocktime', label: 'Block Time Chart' },
-];
 
 const ChartTypeButton = styled(Button)`
   font-size: 1.5rem;
@@ -47,9 +37,24 @@ const MobileBreakpoint = styled.div`
 export const ChartTypeSelect = ({
   onSelect,
   value,
-  coin,
+  hashrateUnit,
 }: ChartTypeSelectProps) => {
-  const options = coin === 'xch' ? XCH_CHART_TYPE_OPTIONS : CHART_TYPE_OPTIONS;
+  const { t: commonT } = useTranslation('common');
+
+  const CHART_TYPE_OPTIONS = [
+    { value: 'difficulty', label: commonT('difficulty') },
+    { value: 'hashrate', label: commonT('hashrate') },
+    { value: 'blocktime', label: commonT('blocktime') },
+  ];
+
+  const SPACE_CHART_TYPE_OPTIONS = [
+    { value: 'difficulty', label: commonT('difficulty') },
+    { value: 'hashrate', label: commonT('hashrate_space') },
+    { value: 'blocktime', label: commonT('blocktime') },
+  ];
+
+  const options =
+    hashrateUnit === 'B' ? SPACE_CHART_TYPE_OPTIONS : CHART_TYPE_OPTIONS;
   const selected = options.find((option) => option.value === value);
 
   return (
