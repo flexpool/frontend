@@ -110,7 +110,6 @@ const RelatedChartTypeLink = ({
 };
 
 const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
-  const [values, setValues] = useNextQueryParams('duration');
   const activeCoin = useActiveCoin();
   const firstRender = useRef(true);
   const { i18n, t: seoT } = useTranslation('seo');
@@ -186,20 +185,19 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
     chartType: getReadableChartType(commonT, typeQuery, hashrateUnit),
   });
 
+  const metaDescription = seoT('website_description.network_stats', {
+    coinName,
+    coinTicker: coinQuery.toUpperCase(),
+  });
+
   return (
     <Page>
       <NextSeo
         title={metaTitle}
-        description={seoT('website_description.network_stats', {
-          coinName,
-          coinTicker: coinQuery.toUpperCase(),
-        })}
+        description={metaDescription}
         openGraph={{
           title: metaTitle,
-          description: seoT('website_description.network_stats', {
-            coinName,
-            coinTicker: coinQuery.toUpperCase(),
-          }),
+          description: metaDescription,
           locale: i18n.language,
         }}
         additionalMetaTags={[
