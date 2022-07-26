@@ -80,8 +80,8 @@
   "date_time": {
     "now": "现在"
   },
-  "years": "years",
-  "days": "days",
+  "years": "年",
+  "days": "天",
   "snacks": {
     "emailConfirmed": {
       "title": "电子邮件地址已更改。"

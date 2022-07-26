@@ -7,8 +7,8 @@
   },
   "section_two": {
     "title": "在线客服",
-    "description": "The best way to reach us to get assistance is to use the built-in website messenger. You can find it in the bottom-right corner. If we are offline, please leave a full question so we can respond accurately when we are available. Please be sure to provide your coin and wallet/payout address.",
-    "warning": "Please note that China Support is for Chinese language support only. If you do not read and write Chinese, please enter a ticket in Global Support."
+    "description": "联系我们获得帮助的最佳方式是使用内置的网站客服系统。你可以在右下角找到它。如果我们不在线，请留下一个完整的问题，以便我们在有时间的时候能够准确地回复。请务必提供您的硬币和钱包/支付地址。",
+    "warning": "请注意，中国支持仅用于中文支持。如果你不会读写中文，请在全球支持中输入一个票据。"
   },
   "section_three": {
     "title": "加入我们社群",
@@ -16,7 +16,7 @@
   },
   "section_four": {
     "title": "电子邮件信箱",
-    "description": "You may also use our email support, which goes to the same system as the website messenger. As with messenger, please leave a full question including your coin and wallet/payout address so we can respond accurately when we are available. Our support email address is <email>{{email}}</email>."
+    "description": "你也可以使用我们的电子邮件支持，它与网站信使的系统相同。与信使一样，请留下一个完整的问题，包括你的硬币和钱包/支付地址，以便我们在有时间的时候能够准确地回复。我们的支持邮件地址是<email>{{email}}</email>。"
   },
   "section_five": {
     "title": "其他问题",
