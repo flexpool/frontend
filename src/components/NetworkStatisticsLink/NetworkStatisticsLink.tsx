@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 import { useCoinTicker } from '@/rdx/localSettings/localSettings.hooks';
+import { useTranslation } from 'next-i18next';
 
 const StyledLink = styled.a`
   white-space: nowrap;
@@ -28,10 +29,11 @@ const StyledLink = styled.a`
 
 const NetworkStatisticsLink = () => {
   const [coin] = useCoinTicker();
+  const { t } = useTranslation('common');
 
   return (
     <Link href={`/network-stats/${coin}/difficulty`} passHref>
-      <StyledLink>View network statistics</StyledLink>
+      <StyledLink>{t('view_network_stats')}</StyledLink>
     </Link>
   );
 };
