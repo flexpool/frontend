@@ -99,5 +99,6 @@
   "blocktime": "Block Time",
   "hashrate": "Hashrate",
   "hashrate_space": "Space",
-  "current_network_value": "Current Network {{value}}"
+  "current_network_value": "Current Network {{value}}",
+  "view_network_stats": "View network statistics"
 }
