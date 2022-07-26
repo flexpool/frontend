@@ -3,12 +3,18 @@ import { ServerStyleSheet } from 'styled-components';
 import { resetIdCounter } from 'downshift';
 import { resetIdCounter as resetTabsId } from 'react-tabs';
 
+import { defaultReduxState } from '@/rdx/rootReducer';
+
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     resetIdCounter();
     resetTabsId();
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
+
+    if (ctx.query.coin) {
+      defaultReduxState.localSettings.coin = ctx.query.coin;
+    }
 
     try {
       ctx.renderPage = () =>
@@ -26,6 +32,7 @@ export default class MyDocument extends Document {
             {sheet.getStyleElement()}
           </>
         ),
+        coinQuery: ctx.query.coin,
       };
     } finally {
       sheet.seal();
@@ -83,6 +90,16 @@ export default class MyDocument extends Document {
         <body>
           <ThemeControlScript />
           <LamboDayCompatibilityScript />
+          {this.props.coinQuery && (
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                window.__COIN__ = '${this.props.coinQuery}';
+              `,
+              }}
+            />
+          )}
+
           <Main />
           <NextScript />
         </body>

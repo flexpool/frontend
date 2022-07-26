@@ -17,6 +17,7 @@ import { clx } from 'src/utils/clx';
 import LogoSvg from 'public/svg/logo.svg';
 import { useTranslation } from 'next-i18next';
 import MobileDrawer from './MobileDrawer';
+import { useCoinTicker } from '@/rdx/localSettings/localSettings.hooks';
 
 const Logo = styled.div`
   width: 165px;
@@ -135,6 +136,7 @@ const NavBar: React.FC<NavBarType> = (props) => {
   const openState = useBoolState();
   const modalSearchOpenState = useOpenState();
   const { t } = useTranslation(['home', 'common']);
+  const [coin] = useCoinTicker();
 
   return (
     <>
@@ -170,7 +172,7 @@ const NavBar: React.FC<NavBarType> = (props) => {
                 </Logo>
               </NLink>
             </Link>
-            <Link href="/statistics" passHref>
+            <Link href={`/statistics/${coin}`} passHref>
               <NLink>{t('common:nav.statistics')}</NLink>
             </Link>
             <Link href="/blocks" passHref>
@@ -209,7 +211,7 @@ const NavBar: React.FC<NavBarType> = (props) => {
             </LogoMobile>
           </Link>
           <NavSection>
-            <Link href="/statistics" passHref>
+            <Link href={`/statistics/${coin}`} passHref>
               <NLink aria-label="Statistics">
                 <FaChartArea className="nav-svg" />
               </NLink>
