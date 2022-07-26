@@ -14,7 +14,8 @@
     "get_started_gpu": "Майнити {{coinName}} ({{coinTicker}}) за допомогою GPU",
     "get_started_nicehash": "Оренда NiceHash до {{coinName}} ({{coinTicker}})",
     "get_started_chia_regular": "Ферма {{coinName}} ({{coinTicker}}) за допомогою {{client}}",
-    "get_started_home": "Почати"
+    "get_started_home": "Почати",
+    "network_stats": "{{coinName}} ({{coinTicker}}) Network {{chartType}}"
   },
   "website_description": {
     "home": "Flexpool.io — це найдосконаліший у світі пул для майнінгу, який забезпечує простий у використанні спосіб майнінгу ваших улюблених монет. Ми підтримуємо Ethereum і Chia.",
@@ -31,7 +32,8 @@
     "get_started_gpu": "На цій сторінці ви можете знайти інтерактивний посібник про те, як розпочати майнінг {{coinName}} ({{coinTicker}}) з {{coinAlgorithm}} за допомогою GPU на Flexpool.",
     "get_started_nicehash": "На цій сторінці ви можете знайти інтерактивний посібник про те, як почати оренду NiceHash до {{coinName}} ({{coinTicker}}) з {{coinAlgorithm}} на Flexpool.",
     "get_started_chia_regular": "На цій сторінці ви можете знайти інтерактивний посібник про те, як розпочати фармінг {{coinName}} ({{coinTicker}}) за допомогою {{client}} на Flexpool.",
-    "get_started_home": "На цій сторінці ви можете знайти всі наші інтерактивні посібники з початку роботи щодо майнінгу на Flexpool."
+    "get_started_home": "На цій сторінці ви можете знайти всі наші інтерактивні посібники з початку роботи щодо майнінгу на Flexpool.",
+    "network_stats": "View {{coinName}} ({{coinTicker}}) historical network statistics including hashrate, difficulty, and block time on this page."
   },
   "keywords": {
     "home": "Ефіріум пул, Чіа пул, найкращий Ефіріум пул, найкращий Чіа пул, майнити Ефіріум, фармити Чіа, майнінг пул, фармінг пул, найкращий майнінг пул, найкращий фармінг пул",
@@ -47,6 +49,7 @@
     "get_started_gpu": "посібник, пояснення,{{coinName}} майнінг,{{coinTicker}} майнінг,{{coinAlgorithm}} майнінг,{{coinName}} інструкції,{{coinTicker}} інструкції,{{coinAlgorithm}} інструкцій",
     "get_started_nicehash": "посібник, пояснення, оренда nicehash {{coinName}} , оренда nicehash {{coinTicker}} , інструкції nicehash {{coinName}} , інструкції nicehash {{coinTicker}} , оренда nicehash {{coinName}} , оренда nicehash {{coinTicker}} , оренда nicehash flexpool, nicehash flexpool {{coinAlgorithm}}",
     "get_started_chia_regular": "посібник, пояснення,{{coinName}} {{client}} фармінг,{{coinTicker}} {{client}} фармінг, {{coinName}} {{client}} інструкцій,{{coinTicker}} {{client}} інструкцій",
-    "get_started_home": "посібник, пояснення, розпочати майнінг, розпочати фармінг, посібник із майнінгу, пояснення щодо майнінгу, розпочати роботу, інструкції"
+    "get_started_home": "посібник, пояснення, розпочати майнінг, розпочати фармінг, посібник із майнінгу, пояснення щодо майнінгу, розпочати роботу, інструкції",
+    "network_stats": "network statistics,network hashrate,network hashrate chart,network difficulty,network difficulty chart,network blocks time,network blocks time chart,{{coinTicker}} {{chartType}} chart,{{coinTicker}} {{chartType}},{{coinName}} {{chartType}} chart,{{coinName}} {{chartType}}"
   }
 }

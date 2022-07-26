@@ -7,7 +7,8 @@
   },
   "section_two": {
     "title": "Stuur ons een berichtje via de chat op deze website",
-    "description": "De beste manier om ons te bereiken voor ondersteuning is via de chat op deze website. Die kan je vinden in de rechterbenedenhoek."
+    "description": "The best way to reach us to get assistance is to use the built-in website messenger. You can find it in the bottom-right corner. If we are offline, please leave a full question so we can respond accurately when we are available. Please be sure to provide your coin and wallet/payout address.",
+    "warning": "Please note that China Support is for Chinese language support only. If you do not read and write Chinese, please enter a ticket in Global Support."
   },
   "section_three": {
     "title": "Word lid van onze gemeenschap",
@@ -15,7 +16,7 @@
   },
   "section_four": {
     "title": "Neem contact met ons op via e-mail",
-    "description": "We voorzien ondersteuning via mail, maar garanderen via dat kanaal geen snelle responstijd. Je kan ons bereiken via <email>{{email}}</email>."
+    "description": "You may also use our email support, which goes to the same system as the website messenger. As with messenger, please leave a full question including your coin and wallet/payout address so we can respond accurately when we are available. Our support email address is <email>{{email}}</email>."
   },
   "section_five": {
     "title": "Andere vragen",

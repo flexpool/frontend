@@ -72,11 +72,11 @@
       },
       {
         "key": "Cycle de paiement",
-        "value": "Une fois par heure"
+        "value": "Once an hour (Mainnet) \n\nOnce a day (Polygon L2)"
       },
       {
         "key": "Paiements",
-        "value": "à partir de 0.01 ETH jusqu'à 100 ETH"
+        "value": "From 0.01 ETH to 20 ETH (Mainnet)\n\nFrom 0.005 ETH to 20 ETH (Polygon L2) \n\n*Can be set up to 100 ETH through support"
       },
       {
         "key": "Blocs confirmations requis",
@@ -132,7 +132,7 @@
       },
       {
         "key": "Payouts",
-        "value": "from 0.01 ETC up to 100 ETC"
+        "value": "From 0.01 ETC up to 100 ETC"
       },
       {
         "key": "Block confirmation time",
@@ -190,7 +190,7 @@
       },
       {
         "key": "Payouts",
-        "value": "from 0.01 XCH to 10 XCH"
+        "value": "From 0.01 XCH to 10 XCH"
       },
       {
         "key": "Block confirmation time",

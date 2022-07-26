@@ -7,10 +7,10 @@
     "ip_hint": "Vinkki: Sinä olet tällä sivulla osoitteesta",
     "ip_description": "Jos laitteesi käyttää proxy-välityspalvelinta, ts. laitteesi louhii tuplana ZIL-poolissa, käytä välityspalvelimen osoitetta.",
     "high_fees_warning": "Jos ulosmaksurajasi on alle 0.05 ETH, gas-hinnasta tulee korkea ja se vähennetään maksustasi. Suosittelemme asettamaan korkeamman ulosmaksurajan.",
-    "important_note": "Important Note",
+    "important_note": "Tärkeä huomio",
     "payout": {
       "title": "Ulosmaksun asetukset",
-      "title_sidebar": "Payouts",
+      "title_sidebar": "Ulosmaksut",
       "eth_mainnet": "You payout will be sent via Ethereum Mainnet. This is the main Ethereum network, it is more decentralized and secure, but has a significant transaction fee.",
       "eth_polygon": "You payout will be sent via Polygon (L2). L2 offers significant lower transaction fees and your payment will be processed in WETH (Wrapped ETH). Please make sure you understand how this is going to affect your payouts before switching networks.",
       "limit": "Payout threshold (min: {{min}})",
@@ -24,20 +24,20 @@
       "l2_acknowledge": "I acknowledge that my wallet supports <bold>{{network_name}}</bold> L2 network, that the funds will be irreversibly lost otherwise, and that I know how to deal with payouts made in the <bold>{{network_name}}</bold> network."
     },
     "difficulty": {
-      "title": "Difficulty Settings",
-      "title_sidebar": "Difficulty",
+      "title": "Vaikeusasteen asetukset",
+      "title_sidebar": "Vaikeusaste",
       "warning": "The adjustable difficulty is a feature for advanced users only. We strongly recommend keeping 1 unless you have specific requirements. Please do not change the difficulty unless you know what you are doing.",
-      "check_difficulty": "Check current difficulty",
-      "update_difficulty": "Update difficulty",
+      "check_difficulty": "Tarkista nykyinen vaikeusaste",
+      "update_difficulty": "Päivitä vaikeusaste",
       "acknowledge": "I acknowledge that higher difficulty will make the effective space calculations less precise.",
-      "check_difficulty_button": "Check Difficulty",
+      "check_difficulty_button": "Tarkista vaikeusaste",
       "pending_difficulty": "You have a pending difficulty change of {{difficulty}}. Please wait up to 10 minutes for the changes to be applied.",
       "current_difficulty": "Your current difficulty is: {{difficulty}}",
       "launcher_id_desc": "Use the Launcher ID to check the difficulty of your current PlotNFT.",
       "launcher_id_error": "The launcher ID is invalid, please try again.",
       "difficulty_desc": "Difficulty determines the frequency of partials. The lower the difficulty is, the more partials you will get. More partials will result in more precise stats.",
       "login_link_desc": "A Login Link is required to prove you own this PlotNFT.",
-      "submit": "Apply Changes"
+      "submit": "Ota muutokset käyttöön"
     },
     "payout_warning": [
       "We highly recommend setting a higher payout limit to reduce total number of payout transactions. Less transactions means less network fees.",
@@ -45,15 +45,15 @@
     ],
     "notifications": {
       "title": "Sähköposti-ilmoitukset",
-      "title_sidebar": "Notifications",
+      "title_sidebar": "Ilmoitukset",
       "email_enabled": "Sähköposti-ilmoitukset käytössä",
       "email_disabled": "Sähköposti-ilmoitukset pois käytöstä",
       "send_to": "Lähetä ilmoitus sähköpostiin",
       "send_to_placeholder": "sinun@sähköposti.fi",
       "check_worker_down": "Ilmoita minulle, jos laitteeni lopettaa louhinnan",
       "check_payout_sent": "Ilmoita minulle kun maksu lähetetään",
-      "offline_duration": "We will notify you if we haven't received any shares from your rig in {{duration}}.",
-      "worker_offline_detection_duration": "Worker Offline Detection Duration",
+      "offline_duration": "Ilmoitamme sinulle, jos emme ole saaneet yhtään osuutta louhijaltasi ajassa {{duration}}.",
+      "worker_offline_detection_duration": "Louhijan offline-tilan seurannan raja-arvo",
       "submit": "Ota muutokset käyttöön"
     }
   },
@@ -70,7 +70,7 @@
     "greet_desc_3": "",
     "greet_desc_4": "",
     "greet_desc_5": "",
-    "info_payout_limit": "Payout Threshold",
+    "info_payout_limit": "Ulosmaksun raja",
     "info_gas_limit": "Gas-hinnan raja",
     "info_gas_limit_none": "Ei mitään",
     "info_gas_limit_detail": "{{percent}} ulosmaksun rajasta.",
@@ -80,7 +80,7 @@
     "info_joined_tooltip": "Ensimmäinen osuutesi on saatu",
     "info_joined_tooltip_empty": "Osuuksia ei ole vielä tallennettu",
     "info_coin_price": "{{coin}} hinta",
-    "network": "Network",
+    "network": "Verkko",
     "stat_workers": "Laitteita Käynnissä/Pois päältä",
     "stat_unpaid_balance": "Maksamaton saldo",
     "stat_unpaid_balance_reach": "<v>{{value}}</v> ulosmaksun rajasta saavutettu.",
@@ -94,7 +94,8 @@
     "stat_estimate_monthly": "kuukausittain",
     "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimates.",
     "update_in": "Päivitys ajassa",
-    "auto_update": "Automaattinen päivitys"
+    "auto_update": "Automaattinen päivitys",
+    "time_to_lambo": "Your estimated time to Lambo is {{time}}."
   },
   "nav": {
     "stats": "Tilastot",
@@ -113,8 +114,8 @@
     "past_earnings": {
       "title": "Vanhemmat tulot",
       "yesterday": "Eilen",
-      "last_week": "Past 7 Days",
-      "last_month": "Past 30 Days"
+      "last_week": "Edelliset 7 päivää",
+      "last_month": "Edelliset 30 päivää"
     },
     "forecasted_earnings": {
       "title": "Ennustetut tulot",
@@ -170,19 +171,22 @@
       "average_cta": "Vihjeitä kulujen vähentämiseen",
       "average_cta_tooltip": [
         "1. Jos asetat suuremman ulosmaksun rajan, se vähentää transaktioiden määrää joista sinun täytyy maksaa kuluja.",
-        "2. Set your transaction fee limit to avoid high fees in the settings. When you reach your payout threshold, we will make sure that your payout transaction will be executed as soon as it meets your fee limit settings."
+        "2. Aseta transaktiokuluille raja välttääksesi isot kulut. Kun ulosmaksurajasi on täynnä, varmistamme että ulosmaksusi transaktio suoritetaan niin pian kuin mahdollista transaktiokulujesi rajoissa."
       ]
     },
     "table": {
       "title": "Maksut",
       "download": "Lataa CSV-tiedosto",
+      "download_pdf": "Download PDF",
       "table_contents": {
         "pending": "Odottaa",
         "success": "Onnistunut"
       },
+      "estimated_value": "Estimated value now:",
       "table_head": {
         "date": "Päivämäärä",
         "value": "Transaktion arvo",
+        "value_tooltip": "The fiat conversion is based on the price at the time of the payout.",
         "fee": "Kulu",
         "duration": "Kesto",
         "hash": "Hash",
@@ -201,12 +205,12 @@
       "title": "Hashrate",
       "title_space": "Tila",
       "current": "Tällä hetkellä tuloksia tuottava",
-      "average": "24h Avg Effective",
+      "average": "24h Keskiarvo Tuottava",
       "reported": "Raportoitu hashrate"
     },
     "shares": {
       "title": "Osuudet",
-      "title_hint": "last 24 hours",
+      "title_hint": "edelliset 24 tuntia",
       "title_points": "Pisteet",
       "valid": "Hyväksytyt",
       "stale": "Ristiriitaiset",
@@ -260,9 +264,12 @@
       "rewardsExportProTip": "Voit tallentaa kaikki palkkiosi CSV-tiedostoon \"Palkkiot\" välilehdeltä."
     }
   },
+  "announcements": {
+    "chia_softfork": "The Chia softfork is scheduled to happen approximately on <bold>July 22</bold>.<br/>If you are using the reference farmer, <bold>please ensure that you are running chia-blockchain version v1.3.0 or newer.</bold><br/>After the network upgrade is completed, all partials from Chia clients that don't support the softfork will be rejected.<br/><bold>No action is required for FlexFarmer users.</bold>"
+  },
   "status_pending_tooltip": "Odotetaan transaktion vahvistusta",
   "confirmation_duration_tooltip": "Vahvistettu ajassa",
   "confirmed_at_tooltip": "Vahvistettu ajankohtana",
-  "warning_header": "It looks like your dashboard is not ready yet.",
-  "warning_description": "If you are new here, your dashboard will be ready within 20 minutes of your first submitted share to this address. Please check back a little later."
+  "warning_header": "Näyttää siltä, että kojelautasi ei ole vielä valmis.",
+  "warning_description": "Jos olet juuri aloittanut louhimisen, kojelautasi on valmis 20 minuutin sisällä ensimmäisen osuuden lähettämisestä tähän osoitteeseen. Palaa takaisin hetken kuluttua."
 }

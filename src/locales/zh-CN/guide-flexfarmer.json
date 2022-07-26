@@ -37,9 +37,9 @@
       "local": "在你的机器上"
     },
     "description_extract": "要使用Flexpool进行挖矿，您需要从主要记忆短语中提取您的Farmer密钥。您既可以在本地计算机上执行此操作，也可以在此浏览器中执行此操作。",
-    "description_mnemonic": "输入24个单词的助记短语，然后将密钥粘贴到下面。",
+    "description_mnemonic": "提取脚本与下载的档案捆绑在一起。输入你的24个字的助记词组，并在下面粘贴密匙。",
     "input_label": "挖矿密钥",
-    "browser_security_notice": "<warning>重要安全警告：</warning>Farmer密钥提取在此浏览器中使用JavaScript在本地完成，并且您的助记符永远不会发送到我们的服务器。为确保此过程的安全性，请确保您使用的是无恶意软件的计算机，运行时没有不受信任的浏览器扩展。如果您不信任浏览器，我们强烈建议您使用机器上提取方法，该方法利用与FlexFarmer下载存档捆绑的脚本。我们始终建议您在耕种和储存资金时使用不同的记忆短语。Flexpool不对记忆短语盗窃负责。",
+    "browser_security_notice": "<warning>重要的安全警告：</warning>如果你将记忆术用于储存资金，而不是仅用于生成地块，我们强烈不建议使用这种方法。我们总是建议有一个不同的口诀用于耕作，一个不同的口诀用于存储资金。如果不是这种情况，我们建议你使用利用FlexFarmer捆绑的脚本的机上提取方法。Flexpool.io对这一过程中可能产生的任何损失不负责任。",
     "extractor_locked": "认可的。单击锁以解锁助记符条目",
     "description_local_win": "要运行提取脚本，请确保您已从官方Python下载网站<link>安装了Python</link>"
   },
