@@ -26,6 +26,7 @@ import RouteLoader from '@/components/RouteLoader';
 import useCheckUserRegion from '@/hooks/useCheckUserRegion';
 import { SnackViewControl } from '@/components/Snacks/SnackViewControl';
 import AnnouncementBar from '@/components/AnnouncementBar';
+import { defaultReduxState } from 'src/rdx/rootReducer';
 
 import SEO from '../next-seo.config';
 import Script from 'next/script';
@@ -36,6 +37,15 @@ let addressSearchState;
 
 if (typeof window !== 'undefined') {
   cachedState = localStorage<AppState>('app_state').get() || {};
+
+  if (window.__COIN__) {
+    cachedState.localSettings = {
+      ...defaultReduxState.localSettings,
+      ...cachedState?.localSettings,
+      coin: window.__COIN__,
+    };
+  }
+
   addressSearchState = searchAddressStorage.get();
 }
 
@@ -47,6 +57,7 @@ const store = createReduxStore({
 declare global {
   interface Window {
     dataLayer: any;
+    __COIN__: string | undefined;
   }
 }
 
