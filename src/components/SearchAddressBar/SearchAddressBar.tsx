@@ -83,7 +83,7 @@ export const SearchAddressBar: React.FC<{
               />
               {shouldShowSearchHistory && (
                 <ResultWrapper>
-                  {/* <CoinPreference /> */}
+                  <CoinPreference />
                   <SearchAddressCachedResult
                     callback={() => {
                       inputRef.current?.blur();
