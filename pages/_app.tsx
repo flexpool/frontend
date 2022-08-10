@@ -23,9 +23,7 @@ import { FooterSection } from '../src/sections/Footer.section';
 import { searchAddressStorage } from '../src/components/SearchAddressBar/searchCache';
 import TermsConsent from '../src/components/TermsConsent';
 import RouteLoader from '@/components/RouteLoader';
-import useCheckUserRegion from '@/hooks/useCheckUserRegion';
 import { SnackViewControl } from '@/components/Snacks/SnackViewControl';
-import AnnouncementBar from '@/components/AnnouncementBar';
 
 import SEO from '../next-seo.config';
 import Script from 'next/script';
@@ -51,8 +49,6 @@ declare global {
 }
 
 const App = ({ Component, pageProps, router }: AppProps) => {
-  const isChinaRegion = useCheckUserRegion('zh');
-
   return (
     <>
       <DefaultSeo {...SEO} />
@@ -84,22 +80,6 @@ const App = ({ Component, pageProps, router }: AppProps) => {
               <SnackViewControl />
               <RouteLoader />
               <NavBar />
-              {isChinaRegion && (
-                <>
-                  <AnnouncementBar id="doh-mode">
-                    亚洲直連挖礦連接：
-                    <br />
-                    TCP端口：hke.fpmirror.com:13271
-                    <br />
-                    SSL端口：hke.fpmirror.com:5555
-                    <br />
-                    亚洲备用地址： web.fpmirror.com
-                    <br />
-                    請注意，挖掘連接可能會更改。
-                    如果您想永久避免所有限制，請通過HTTPS（DoH）配寘DNS並使用eth-hke.flexpool.io
-                  </AnnouncementBar>
-                </>
-              )}
               <SwitchTransition>
                 <CSSTransition
                   classNames="fade"
