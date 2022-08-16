@@ -1,41 +1,20 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
+import { NextSeo } from 'next-seo';
 import { Page } from '@/components/layout/Page';
 import { Content } from '@/components/layout/Content';
 import { fetchApi } from '@/utils/fetchApi';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import DynamicList, {
-  DynamicListColumn,
-} from 'src/components/layout/List/List';
 import { useRouter } from 'next/router';
-import { getPoolCoins } from '@/hooks/api/usePoolCoinsQuery';
-
 import styled from 'styled-components';
-
-import { CoinLogo } from '@/components/CoinLogo';
-import { HeaderStat } from '@/components/layout/StatHeader';
-import useSearchAddress from '@/hooks/useSearchAddress';
-
-const CoinColumnContainer = styled.div`
-  display: flex;
-  align-items: center;
-
-  & > * {
-    margin-right: 0.5rem;
-  }
-`;
+import { Spacer } from '@/components/layout/Spacer';
+import { SearchAddressBar } from '@/components/SearchAddressBar/SearchAddressBar';
+import AddressCard, { AddressStatus } from '@/pages/Search/AddressCard';
+import { getChecksumByTicker } from '@/utils/validators/checksum';
 
 export const TickerName = styled.span`
   color: var(--text-tertiary);
 `;
-
-interface SearchResult {
-  address: string;
-  coin: {
-    ticker: string;
-    name: string;
-  };
-}
 
 type LocateAddressResponse = {
   all: string[];
@@ -44,84 +23,71 @@ type LocateAddressResponse = {
   result: string | null;
 };
 
-const Search = ({ searchResults }: { searchResults: SearchResult[] }) => {
+const SearchHeader = styled.div`
+  border-bottom: 1px solid var(--border-color);
+  padding: 16px 0;
+  z-index: 1;
+`;
+
+const Search = ({
+  address,
+  dashboards,
+  status,
+  isAddressValid,
+}: {
+  isAddressValid: boolean;
+  status: AddressStatus;
+  dashboards: string[];
+  address: string;
+}) => {
   const router = useRouter();
-  const search = useSearchAddress();
-
-  const columns: DynamicListColumn<SearchResult>[] = React.useMemo(
-    () => [
-      {
-        skeletonWidth: 110,
-        Component: ({ data }) => (
-          <CoinColumnContainer>
-            <CoinLogo size="lg" ticker={data.coin.ticker} />
-            <span>{data.coin.name}</span>
-            <TickerName>{data.coin.ticker.toUpperCase()}</TickerName>
-          </CoinColumnContainer>
-        ),
-      },
-      {
-        skeletonWidth: 200,
-        Component: ({ data }) => <div>{data.address}</div>,
-      },
-    ],
-    []
-  );
-
-  const handleRowClick = (data: SearchResult) => {
-    search(data.address, data.coin.ticker);
-  };
-
-  const renderSearchResult = () => {
-    if (searchResults.length === 0) {
-      return <div>No result found</div>;
-    }
-
-    return (
-      <DynamicList
-        data={searchResults}
-        columns={columns}
-        onRowClick={handleRowClick}
-        hideHead
-      />
-    );
-  };
 
   return (
     <Page>
-      <HeaderStat hideCoinSelect>
-        <h1>Search Address</h1>
-      </HeaderStat>
+      <NextSeo title="Search" noindex />
+      <SearchHeader>
+        <Content md padding>
+          <h2>Search by Address</h2>
+          <SearchAddressBar initialValue={router.query.search as string} />
+        </Content>
+      </SearchHeader>
       <Content
+        md
         padding
         style={{
           minHeight: '400px',
         }}
       >
-        <div
-          style={{
-            maxWidth: 800,
-          }}
-        >
-          <h3>
-            There are {searchResults.length} result(s) to your search{' '}
-            {router.query.search}
-          </h3>
+        <h2>Search Result</h2>
+        {isAddressValid ? (
+          <AddressCard
+            address={address}
+            status={status}
+            dashboards={dashboards}
+          />
+        ) : (
+          <p>Please enter a valid Ethereum or Chia wallet address.</p>
+        )}
 
-          {renderSearchResult()}
-        </div>
+        <Spacer />
       </Content>
+      <Spacer size="xl" />
     </Page>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const searchString = context.query.search;
+  const searchString = context.query.search as string | undefined;
 
-  const searchResults: SearchResult[] = [];
+  let addressStatus: AddressStatus = 'not-found';
+  let dashboards: string[] = [];
+  let addressType: string | undefined = undefined;
 
   if (searchString) {
-    const { all } = await fetchApi<LocateAddressResponse>(
+    if (getChecksumByTicker('eth')(searchString)) addressType = 'eth';
+    if (getChecksumByTicker('xch')(searchString)) addressType = 'xch';
+
+    const result = await fetchApi<LocateAddressResponse>(
       '/miner/locateAddress',
       {
         query: {
@@ -131,7 +97,22 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       }
     );
 
-    if (all.length === 1) {
+    const { all } = result;
+
+    // TODO: this piece of code has to be tested
+    const isPending = result.pendingStats === true;
+    const isMining = !isPending && result.result !== null;
+
+    if (isPending) {
+      if (addressType === 'eth') dashboards = ['eth', 'etc'];
+      if (addressType === 'xch') dashboards = ['xch'];
+      addressStatus = 'pending';
+    } else if (isMining) {
+      dashboards = all;
+      addressStatus = 'mining';
+    }
+
+    if (dashboards.length === 1) {
       return {
         redirect: {
           destination: `/miner/${all[0]}/${searchString}?fromSearch=true`,
@@ -139,27 +120,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         },
       };
     }
-
-    const poolCoins = await getPoolCoins();
-
-    const poolCoinsByTicker: { [key: string]: typeof poolCoins.coins[number] } =
-      poolCoins.coins.reduce(
-        (acc, coin) => ({
-          ...acc,
-          [coin.ticker]: coin,
-        }),
-        {}
-      );
-
-    all.forEach((coin) => {
-      searchResults.push({
-        address: searchString as string,
-        coin: {
-          ticker: coin,
-          name: poolCoinsByTicker[coin].name || coin,
-        },
-      });
-    });
   }
 
   return {
@@ -170,7 +130,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         'blocks',
         'cookie-consent',
       ])),
-      searchResults,
+      address: searchString,
+      dashboards,
+      status: addressStatus,
+      isAddressValid: addressType !== undefined,
     },
   };
 };

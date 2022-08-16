@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery, UseQueryOptions } from 'react-query';
 import { fetchApi } from '@/utils/fetchApi';
 import { ApiPoolCoin } from '@/types/PoolCoin.types';
 
@@ -9,8 +9,12 @@ type PoolCoinsResponse = {
   countervalues: string[];
 };
 
-const usePoolCoinsQuery = () => {
-  return useQuery(['/pool/coins'], getPoolCoins);
+const usePoolCoinsQuery = <T extends any = PoolCoinsResponse>(
+  options?: UseQueryOptions<PoolCoinsResponse, unknown, T, any>
+) => {
+  return useQuery(['/pool/coins'], getPoolCoins, {
+    ...options,
+  });
 };
 
 export default usePoolCoinsQuery;

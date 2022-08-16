@@ -21,7 +21,8 @@ const NOOP = () => {};
 export const SearchAddressBar: React.FC<{
   showResult?: boolean;
   callback?: () => void;
-}> = ({ showResult = true, callback = NOOP }) => {
+  initialValue?: string;
+}> = ({ showResult = true, callback = NOOP, initialValue = '' }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const searchData = useReduxState('addressSearch');
@@ -66,7 +67,8 @@ export const SearchAddressBar: React.FC<{
             form.resetForm();
           });
         }}
-        initialValues={{ addrsearch: '' }}
+        initialValues={{ addrsearch: initialValue }}
+        enableReinitialize
       >
         <F autoComplete="off">
           <Wrapper>
@@ -98,8 +100,4 @@ export const SearchAddressBar: React.FC<{
       </Formik>
     </Container>
   );
-};
-
-type CoinLabelProps = {
-  selected: boolean;
 };
