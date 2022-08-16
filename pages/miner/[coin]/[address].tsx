@@ -35,9 +35,9 @@ import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
 import { getChecksumByTicker } from '@/utils/validators/checksum';
 import Warning from '@/assets/warning-icon.svg';
 import { fetchApi } from 'src/utils/fetchApi';
-import useNextQueryParams from '@/hooks/useNextQueryParams';
 import { useDispatch } from 'react-redux';
 import { addressSearchSet } from 'src/rdx/addressSearch/addressSearch.actions';
+import { useRouter } from 'next/router';
 
 const DONATION_ADDRESS = '0x165CD37b4C644C2921454429E7F9358d18A45e14';
 
@@ -380,12 +380,11 @@ export const MinerDashboardPage: React.FC<{
   const { isLocated } = props;
   const { t } = useTranslation('dashboard');
 
-  const [params, setParams] = useNextQueryParams('fromSearch');
-
+  const router = useRouter();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (params.fromSearch) {
+    if (router.isReady && router.query.fromSearch) {
       dispatch(
         addressSearchSet({
           coin: props.coinTicker as string,
@@ -393,9 +392,15 @@ export const MinerDashboardPage: React.FC<{
         })
       );
 
-      setParams({ fromSearch: undefined });
+      router.replace(
+        {
+          pathname: router.asPath.replace(/\?.*/, ''),
+        },
+        undefined,
+        { shallow: true }
+      );
     }
-  }, [params, setParams, dispatch, props]);
+  }, [router, dispatch, props.address, props.coinTicker]);
 
   return (
     <>

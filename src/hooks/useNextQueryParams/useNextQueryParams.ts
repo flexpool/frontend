@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { omitBy, isUndefined } from 'lodash';
@@ -10,15 +10,17 @@ const useNextQueryParams = <T extends string[]>(...args: T) => {
 
   const [params, setParams] = useState<{ [key in ValuesOf<T>]: string }>();
 
-  if (router.isReady && typeof params === 'undefined') {
-    const params = args.reduce((acc, key) => {
-      const value = router.query[key];
-      acc[key] = value;
-      return acc;
-    }, {} as { [key in ValuesOf<T>]: string });
+  useEffect(() => {
+    if (router.isReady && typeof params === 'undefined') {
+      const params = args.reduce((acc, key) => {
+        const value = router.query[key];
+        acc[key] = value;
+        return acc;
+      }, {} as { [key in ValuesOf<T>]: string });
 
-    setParams(params);
-  }
+      setParams(params);
+    }
+  }, [router, setParams, params, args]);
 
   const setValues = (input: { [key in ValuesOf<T>]?: string | undefined }) => {
     setParams((oldParams) => {
