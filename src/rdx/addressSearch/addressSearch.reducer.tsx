@@ -16,7 +16,8 @@ export const reducer: Reducer<AddressCacheItem[], AnyAction> = (
     case '@addressCache/SET': {
       const nextItem = action.payload as AddressCacheItem;
       const nextData = state.filter(
-        (item) => item.address !== nextItem.address
+        (item) =>
+          item.address !== nextItem.address || item.coin !== nextItem.coin
       );
       const nextState = [nextItem, ...nextData];
       searchAddressStorage.set(nextState);

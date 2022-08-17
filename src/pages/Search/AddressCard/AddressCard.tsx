@@ -109,7 +109,10 @@ const DashboardExternalLink = ({
   address: string;
 }) => {
   return (
-    <StyledExternalLink href={`/miner/${coin}/${address}`} target="_blank">
+    <StyledExternalLink
+      href={`/miner/${coin}/${address}?fromSearch=true`}
+      target="_blank"
+    >
       <HiOutlineExternalLink />
     </StyledExternalLink>
   );
@@ -131,7 +134,12 @@ const DashboardListItem = ({ coin, name, address }: DashboardListItemProps) => {
           variant="primary"
           size="xs"
           onClick={() => {
-            router.push(`/miner/${coin}/${address}`);
+            router.push({
+              pathname: `/miner/${coin}/${address}`,
+              query: {
+                fromSearch: true,
+              },
+            });
           }}
         >
           View Dashboard
