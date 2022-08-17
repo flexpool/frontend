@@ -6,6 +6,12 @@ import { HiOutlineExternalLink } from 'react-icons/hi';
 import { CoinLogo } from '@/components/CoinLogo';
 import { Button } from '@/components/Button';
 import usePoolCoinsQuery from '@/hooks/api/usePoolCoinsQuery';
+import { Skeleton } from '@/components/layout/Skeleton';
+
+const DashboardItemSkeleton = styled(Skeleton)`
+  height: 36px;
+  width: 158px;
+`;
 
 export const TickerName = styled.span`
   color: var(--text-tertiary);
@@ -173,7 +179,7 @@ export const AddressCard = ({
   status,
   dashboards,
 }: AddressCardProps) => {
-  const { data: poolCoins } = usePoolCoinsQuery({
+  const { data: poolCoins, isLoading } = usePoolCoinsQuery({
     select: (data) => {
       const poolCoinsByTicker: {
         [key: string]: typeof data.coins[number];
@@ -215,6 +221,7 @@ export const AddressCard = ({
 
       <CardTitle>Dashboards</CardTitle>
       <DashboardList>
+        {isLoading && <DashboardItemSkeleton />}
         {poolCoins &&
           dashboards.map((coin) => {
             return (

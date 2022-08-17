@@ -94,7 +94,7 @@ export const SearchAddressCachedResult: React.FC<{
   return (
     <>
       {data.slice(0, 6).map((item) => (
-        <ItemWrap key={item.address}>
+        <ItemWrap key={`${item.address}-${item.coin}`}>
           <HistoryItem
             onClick={() => {
               search(item.address, item.coin, callback);
