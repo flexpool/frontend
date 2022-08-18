@@ -9,8 +9,7 @@ import styled from 'styled-components';
 import { Spacer } from '@/components/layout/Spacer';
 import { SearchAddressBar } from '@/components/SearchAddressBar/SearchAddressBar';
 import AddressCard, { AddressStatus } from '@/pages/Search/AddressCard';
-import { getChecksumByTicker } from '@/utils/validators/checksum';
-import { getLocateAddress } from '@/api';
+import { getPropsFromLocateAddress } from '@/pages/Search/utils';
 
 export const TickerName = styled.span`
   color: var(--text-tertiary);
@@ -72,39 +71,16 @@ const Search = ({
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const searchString = context.query.search as string | undefined;
 
-  let addressStatus: AddressStatus = 'not-found';
-  let dashboards: string[] = [];
-  let addressType: string | undefined = undefined;
+  const { dashboards, addressStatus, isAddressValid } =
+    await getPropsFromLocateAddress(searchString);
 
-  if (searchString) {
-    if (getChecksumByTicker('eth')(searchString)) addressType = 'eth';
-    if (getChecksumByTicker('xch')(searchString)) addressType = 'xch';
-
-    const result = await getLocateAddress(searchString);
-
-    const { all } = result;
-
-    // TODO: this piece of code has to be tested
-    const isPending = result.pendingStats === true;
-    const isMining = !isPending && result.result !== null;
-
-    if (isPending) {
-      if (addressType === 'eth') dashboards = ['eth', 'etc'];
-      if (addressType === 'xch') dashboards = ['xch'];
-      addressStatus = 'pending';
-    } else if (isMining) {
-      dashboards = all;
-      addressStatus = 'mining';
-    }
-
-    if (dashboards.length === 1) {
-      return {
-        redirect: {
-          destination: `/miner/${all[0]}/${searchString}`,
-          permanent: false,
-        },
-      };
-    }
+  if (dashboards.length === 1) {
+    return {
+      redirect: {
+        destination: `/miner/${dashboards[0]}/${searchString}`,
+        permanent: false,
+      },
+    };
   }
 
   return {
@@ -118,7 +94,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       address: searchString,
       dashboards,
       status: addressStatus,
-      isAddressValid: addressType !== undefined,
+      isAddressValid,
     },
   };
 };

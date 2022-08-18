@@ -1,6 +1,6 @@
 import { fetchApi } from '@/utils/fetchApi';
 
-type LocateAddressResponse = {
+export type LocateAddressResponse = {
   all: string[];
   error: string | null;
   pendingStats: boolean;
