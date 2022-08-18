@@ -3,7 +3,6 @@ import { GetServerSideProps } from 'next';
 import { NextSeo } from 'next-seo';
 import { Page } from '@/components/layout/Page';
 import { Content } from '@/components/layout/Content';
-import { fetchApi } from '@/utils/fetchApi';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
@@ -11,17 +10,11 @@ import { Spacer } from '@/components/layout/Spacer';
 import { SearchAddressBar } from '@/components/SearchAddressBar/SearchAddressBar';
 import AddressCard, { AddressStatus } from '@/pages/Search/AddressCard';
 import { getChecksumByTicker } from '@/utils/validators/checksum';
+import { getLocateAddress } from '@/api';
 
 export const TickerName = styled.span`
   color: var(--text-tertiary);
 `;
-
-type LocateAddressResponse = {
-  all: string[];
-  error: string | null;
-  pendingStats: boolean;
-  result: string | null;
-};
 
 const SearchHeader = styled.div`
   border-bottom: 1px solid var(--border-color);
@@ -87,15 +80,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     if (getChecksumByTicker('eth')(searchString)) addressType = 'eth';
     if (getChecksumByTicker('xch')(searchString)) addressType = 'xch';
 
-    const result = await fetchApi<LocateAddressResponse>(
-      '/miner/locateAddress',
-      {
-        query: {
-          address: searchString,
-        },
-        raw: true,
-      }
-    );
+    const result = await getLocateAddress(searchString);
 
     const { all } = result;
 
@@ -115,7 +100,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     if (dashboards.length === 1) {
       return {
         redirect: {
-          destination: `/miner/${all[0]}/${searchString}?fromSearch=true`,
+          destination: `/miner/${all[0]}/${searchString}`,
           permanent: false,
         },
       };

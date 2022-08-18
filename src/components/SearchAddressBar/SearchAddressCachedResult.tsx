@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import useSearchAddress from '@/hooks/useSearchAddress';
 import { addressSearchRemove } from 'src/rdx/addressSearch/addressSearch.actions';
+import { AddressCacheItem } from './searchCache';
 import { useReduxState } from 'src/rdx/useReduxState';
 
 const ItemWrap = styled.div`
@@ -38,7 +39,7 @@ const CoinLabel = styled.span`
   text-transform: uppercase;
   border-radius: 5px;
   font-size: 0.875rem;
-  margin-left: 1rem;
+  margin-left: 6px;
 `;
 
 const Address = styled.span`
@@ -91,10 +92,28 @@ export const SearchAddressCachedResult: React.FC<{
     return null;
   }
 
+  const renderCoinLabel = (coin: AddressCacheItem['coin']) => {
+    if (coin === null || coin === '') return null;
+    if (Array.isArray(coin)) {
+      return (
+        <ItemRight>
+          {coin.map((c) => (
+            <CoinLabel key={c}>{c}</CoinLabel>
+          ))}
+        </ItemRight>
+      );
+    }
+    return (
+      <ItemRight key={coin}>
+        <CoinLabel>{coin}</CoinLabel>
+      </ItemRight>
+    );
+  };
+
   return (
     <>
       {data.slice(0, 6).map((item) => (
-        <ItemWrap key={`${item.address}-${item.coin}`}>
+        <ItemWrap key={item.address}>
           <HistoryItem
             onClick={() => {
               search(item.address, item.coin, callback);
@@ -102,9 +121,7 @@ export const SearchAddressCachedResult: React.FC<{
             onMouseDown={(e) => e.preventDefault()}
           >
             <Address>{item.address}</Address>
-            <ItemRight>
-              <CoinLabel>{item.coin}</CoinLabel>
-            </ItemRight>
+            {renderCoinLabel(item.coin)}
           </HistoryItem>
           <RemoveWrap
             type="button"

@@ -35,8 +35,6 @@ import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
 import { getChecksumByTicker } from '@/utils/validators/checksum';
 import Warning from '@/assets/warning-icon.svg';
 import { fetchApi } from 'src/utils/fetchApi';
-import { useDispatch } from 'react-redux';
-import { addressSearchSet } from 'src/rdx/addressSearch/addressSearch.actions';
 import { useRouter } from 'next/router';
 
 const DONATION_ADDRESS = '0x165CD37b4C644C2921454429E7F9358d18A45e14';
@@ -379,28 +377,6 @@ export const MinerDashboardPage: React.FC<{
 }> = (props) => {
   const { isLocated } = props;
   const { t } = useTranslation('dashboard');
-
-  const router = useRouter();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (router.isReady && router.query.fromSearch) {
-      dispatch(
-        addressSearchSet({
-          coin: props.coinTicker as string,
-          address: props.address,
-        })
-      );
-
-      router.replace(
-        {
-          pathname: router.asPath.replace(/\?.*/, ''),
-        },
-        undefined,
-        { shallow: true }
-      );
-    }
-  }, [router, dispatch, props.address, props.coinTicker]);
 
   return (
     <>

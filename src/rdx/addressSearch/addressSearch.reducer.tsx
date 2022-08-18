@@ -1,10 +1,10 @@
 import { AnyAction, Reducer } from 'redux';
-import { searchAddressStorage } from 'src/components/SearchAddressBar/searchCache';
+import {
+  searchAddressStorage,
+  AddressCacheItem,
+} from 'src/components/SearchAddressBar/searchCache';
 
-export type AddressCacheItem = {
-  coin: string;
-  address: string;
-};
+export type { AddressCacheItem };
 
 export const initialState: AddressCacheItem[] = [];
 
@@ -16,8 +16,7 @@ export const reducer: Reducer<AddressCacheItem[], AnyAction> = (
     case '@addressCache/SET': {
       const nextItem = action.payload as AddressCacheItem;
       const nextData = state.filter(
-        (item) =>
-          item.address !== nextItem.address || item.coin !== nextItem.coin
+        (item) => item.address !== nextItem.address
       );
       const nextState = [nextItem, ...nextData];
       searchAddressStorage.set(nextState);
