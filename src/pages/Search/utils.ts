@@ -24,7 +24,7 @@ export const getPropsFromLocateAddress = async (
       addressStatus = 'pending';
     } else if (isMining) {
       dashboards = result.all;
-      addressStatus = 'mining';
+      addressStatus = 'ready';
     }
   }
 

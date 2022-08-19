@@ -36,7 +36,7 @@ describe('getPropsFromLocateAddress', () => {
       );
 
     expect(dashboards).toEqual(['eth']);
-    expect(addressStatus).toEqual('mining');
+    expect(addressStatus).toEqual('ready');
     expect(isAddressValid).toEqual(true);
   });
 
@@ -53,7 +53,7 @@ describe('getPropsFromLocateAddress', () => {
       );
 
     expect(dashboards).toEqual(['xch']);
-    expect(addressStatus).toEqual('mining');
+    expect(addressStatus).toEqual('ready');
     expect(isAddressValid).toEqual(true);
   });
 
@@ -70,7 +70,7 @@ describe('getPropsFromLocateAddress', () => {
       );
 
     expect(dashboards).toEqual(['etc']);
-    expect(addressStatus).toEqual('mining');
+    expect(addressStatus).toEqual('ready');
     expect(isAddressValid).toEqual(true);
   });
 
@@ -87,7 +87,7 @@ describe('getPropsFromLocateAddress', () => {
       );
 
     expect(dashboards).toEqual(['eth', 'etc']);
-    expect(addressStatus).toEqual('mining');
+    expect(addressStatus).toEqual('ready');
     expect(isAddressValid).toEqual(true);
   });
 

@@ -35,7 +35,7 @@ const StatusBadgeContainer = styled.div`
   font-size: 14px;
 `;
 
-export type AddressStatus = 'not-found' | 'pending' | 'mining';
+export type AddressStatus = 'not-found' | 'pending' | 'ready';
 
 const StatusIndicator = styled.div<{ status: AddressStatus }>`
   display: inline-block;
@@ -50,7 +50,7 @@ const StatusIndicator = styled.div<{ status: AddressStatus }>`
         return 'var(--bad-luck-color)';
       case 'pending':
         return 'var(--warning)';
-      case 'mining':
+      case 'ready':
         return 'var(--success)';
     }
   }};
@@ -64,8 +64,8 @@ type StatusBadgeProps = {
 
 const StatusBadge = ({ status }: StatusBadgeProps) => {
   let text = 'Pending';
-  if (status === 'mining') {
-    text = 'Mining';
+  if (status === 'ready') {
+    text = 'Ready';
   }
   if (status === 'not-found') {
     text = 'Not Found';
@@ -193,8 +193,9 @@ export const AddressCard = ({
     'not-found':
       'This address is not recognized by the pool. If you are new here, please check your connection with the pool.',
     pending:
-      "Your address is discovered by the pool but we haven't received any shares. Please wait at least 10 minutes for your stats to be ready. In the mean time, please select your preferred dashboard.",
-    mining: 'This address is currently mining with Flexpool.',
+      "This address is discovered by the pool but we haven't received any shares. Please wait at least 10 minutes for your stats to be ready. In the mean time, please select your preferred dashboard.",
+    ready:
+      'This address is found by the pool. Please select your preferred dashboard.',
   };
 
   return (
