@@ -10,6 +10,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
 import AnnouncementBar from '@/components/AnnouncementBar';
+import { getLocateAddress } from '@/api';
 
 import {
   useActiveCoin,
@@ -27,15 +28,13 @@ import TimeToLambo from '@/pages/MinerDashboard/Header/TimeToLambo';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import { PullToRefresh } from 'src/components/layout/PullToRefresh/PullToRefresh';
-import { InfoBox } from 'src/components/InfoBox';
 import FlexFarmerAnnouncement from '@/pages/MinerDashboard/Announcements/FlexFarmerAnnouncement';
+import AddressPendingInfoBox from '@/pages/MinerDashboard/InfoBox/AddressPendingInfoBox';
+import AddressNotFoundInfoBox from '@/pages/MinerDashboard/InfoBox/AddressNotFoundInfoBox';
 
 import styled from 'styled-components';
 import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
 import { getChecksumByTicker } from '@/utils/validators/checksum';
-import Warning from '@/assets/warning-icon.svg';
-import { fetchApi } from 'src/utils/fetchApi';
-import { useRouter } from 'next/router';
 
 const DONATION_ADDRESS = '0x165CD37b4C644C2921454429E7F9358d18A45e14';
 
@@ -81,32 +80,6 @@ const TabLink = styled(Tab)`
     background: rgba(128, 128, 128, 0.07);
   }
   text-decoration: none !important;
-`;
-
-const TopBannerContainer = styled.div`
-  & h3 {
-    font-size: 1.1rem;
-  }
-
-  box-shadow: 0 2px 10px 0 var(--warning-shadow);
-`;
-
-const MediaContainer = styled.div`
-  display: flex;
-  align-items: center;
-
-  & > svg {
-    width: 50px;
-  }
-`;
-
-const BannerText = styled.div`
-  margin-left: 1rem;
-  flex-grow: 1;
-
-  & > p {
-    margin-top: 0.5rem;
-  }
 `;
 
 const DonationAnnouncement = styled(AnnouncementBar)`
@@ -373,34 +346,22 @@ const DynamicMinerBlocksPage = dynamic<{
 export const MinerDashboardPage: React.FC<{
   address: string;
   coinTicker: string;
-  isLocated: boolean;
+  status: AddressStatus;
 }> = (props) => {
-  const { isLocated } = props;
-  const { t } = useTranslation('dashboard');
+  const { status } = props;
 
   return (
     <>
-      {!isLocated && (
-        <Content style={{ marginTop: '1rem' }}>
-          <TopBannerContainer>
-            <InfoBox variant="warning">
-              <MediaContainer>
-                <Warning />
-                <BannerText>
-                  <h3>{t('warning_header')}</h3>
-                  <p>{t('warning_description')}</p>
-                </BannerText>
-              </MediaContainer>
-            </InfoBox>
-          </TopBannerContainer>
-        </Content>
-      )}
+      {status === 'pending' && <AddressPendingInfoBox />}
+      {status === 'not-found' && <AddressNotFoundInfoBox />}
       <MinerDashboardPageContent {...props} />
     </>
   );
 };
 
 export default MinerDashboardPage;
+
+export type AddressStatus = 'not-found' | 'pending' | 'ready';
 
 export async function getServerSideProps({ query, locale }) {
   const { coin, address } = query;
@@ -416,9 +377,15 @@ export async function getServerSideProps({ query, locale }) {
     };
   }
 
-  const res = await fetchApi<string | null>('/miner/locateAddress', {
-    query: { address },
-  });
+  const result = await getLocateAddress(address);
+
+  let status: AddressStatus = 'ready';
+
+  if (result.pendingStats) {
+    status = 'pending';
+  } else if (!result.result) {
+    status = 'not-found';
+  }
 
   return {
     props: {
@@ -430,7 +397,7 @@ export async function getServerSideProps({ query, locale }) {
       ])),
       coinTicker: coin,
       address,
-      isLocated: res !== null,
+      status,
     },
   };
 }
