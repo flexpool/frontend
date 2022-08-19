@@ -1,6 +1,7 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
 import { NextSeo } from 'next-seo';
+import { useTranslation } from 'next-i18next';
 import { Page } from '@/components/layout/Page';
 import { Content } from '@/components/layout/Content';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -33,13 +34,19 @@ const Search = ({
   address: string;
 }) => {
   const router = useRouter();
+  const { t: seoT } = useTranslation('seo');
+  const { t } = useTranslation('search');
 
   return (
     <Page>
-      <NextSeo title="Search" noindex />
+      <NextSeo
+        title={seoT('title.search')}
+        description={seoT('website_description.search')}
+        noindex
+      />
       <SearchHeader>
         <Content md padding>
-          <h2>Search by Address</h2>
+          <h2>{t('header')}</h2>
           <SearchAddressBar initialValue={router.query.search as string} />
         </Content>
       </SearchHeader>
@@ -50,7 +57,7 @@ const Search = ({
           minHeight: '400px',
         }}
       >
-        <h2>Search Result</h2>
+        <h2>{t('search_result')}</h2>
         {isAddressValid ? (
           <AddressCard
             address={address}
@@ -58,7 +65,7 @@ const Search = ({
             dashboards={dashboards}
           />
         ) : (
-          <p>Please enter a valid Ethereum or Chia wallet address.</p>
+          <p>{t('invalid_address')}</p>
         )}
 
         <Spacer />
@@ -87,9 +94,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     props: {
       ...(await serverSideTranslations(context.locale!, [
         'common',
-        'dashboard',
-        'blocks',
         'cookie-consent',
+        'seo',
+        'search',
       ])),
       address: searchString,
       dashboards,

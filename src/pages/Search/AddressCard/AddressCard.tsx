@@ -7,6 +7,7 @@ import { CoinLogo } from '@/components/CoinLogo';
 import { Button } from '@/components/Button';
 import usePoolCoinsQuery from '@/hooks/api/usePoolCoinsQuery';
 import { Skeleton } from '@/components/layout/Skeleton';
+import { useTranslation } from 'next-i18next';
 
 const DashboardItemSkeleton = styled(Skeleton)`
   height: 36px;
@@ -173,6 +174,8 @@ export const AddressCard = ({
   status,
   dashboards,
 }: AddressCardProps) => {
+  const { t } = useTranslation('search');
+
   const { data: poolCoins, isLoading } = usePoolCoinsQuery({
     select: (data) => {
       const poolCoinsByTicker: {
@@ -190,17 +193,14 @@ export const AddressCard = ({
   });
 
   const statusDescriptions: { [key in AddressStatus]: string } = {
-    'not-found':
-      'This address is not recognized by the pool. If you are new here, please check your connection with the pool.',
-    pending:
-      "This address is discovered by the pool but we haven't received any shares. Please wait at least 10 minutes for your stats to be ready. In the mean time, please select your preferred dashboard.",
-    ready:
-      'This address is found by the pool. Please select your preferred dashboard.',
+    'not-found': t('address_card.not_found'),
+    pending: t('address_card.pending'),
+    ready: t('address_card.ready'),
   };
 
   return (
     <Card padding>
-      <CardTitle>Address</CardTitle>
+      <CardTitle>{t('address_card.address')}</CardTitle>
       <p
         style={{
           overflow: 'hidden',
@@ -210,11 +210,11 @@ export const AddressCard = ({
         {address}
       </p>
       <CardTitle>
-        Status <StatusBadge status={status} />
+        {t('address_card.status')} <StatusBadge status={status} />
       </CardTitle>
       <p>{statusDescriptions[status]}</p>
 
-      <CardTitle>Dashboards</CardTitle>
+      <CardTitle>{t('address_card.dashboards')}</CardTitle>
       <DashboardList>
         {isLoading && <DashboardItemSkeleton />}
         {poolCoins &&
@@ -228,7 +228,7 @@ export const AddressCard = ({
               />
             );
           })}
-        {dashboards.length === 0 && 'No dashboards found.'}
+        {dashboards.length === 0 && t('address_card.no_dashboards')}
       </DashboardList>
     </Card>
   );
