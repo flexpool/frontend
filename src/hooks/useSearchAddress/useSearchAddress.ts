@@ -32,7 +32,7 @@ const useSearchAddress = () => {
     } else {
       const result = await getLocateAddress(address);
 
-      if (result.all.length === 1) {
+      if (result.all?.length === 1) {
         router.push(`/miner/${result.all[0]}/${address}`).then(() => {
           callback();
           dispatch(

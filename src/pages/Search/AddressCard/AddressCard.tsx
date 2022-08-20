@@ -64,12 +64,14 @@ type StatusBadgeProps = {
 };
 
 const StatusBadge = ({ status }: StatusBadgeProps) => {
-  let text = 'Pending';
+  const { t } = useTranslation('search');
+
+  let text = t('address_card.status_pending');
   if (status === 'ready') {
-    text = 'Ready';
+    text = t('address_card.status_ready');
   }
   if (status === 'not-found') {
-    text = 'Not Found';
+    text = t('address_card.status_not_found');
   }
 
   return (
