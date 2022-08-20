@@ -82,8 +82,9 @@ const RemoveWrap = styled.button`
 
 export const SearchAddressCachedResult: React.FC<{
   isOpen?: boolean;
+  onAddressClick?: (address: string) => void;
   callback?: () => void;
-}> = ({ isOpen = true, callback }) => {
+}> = ({ isOpen = true, callback, onAddressClick }) => {
   const data = useReduxState('addressSearch');
   const d = useDispatch();
   const search = useSearchAddress();
@@ -116,6 +117,7 @@ export const SearchAddressCachedResult: React.FC<{
         <ItemWrap key={item.address}>
           <HistoryItem
             onClick={() => {
+              onAddressClick?.(item.address);
               search(item.address, item.coin, callback);
             }}
             onMouseDown={(e) => e.preventDefault()}

@@ -70,33 +70,39 @@ export const SearchAddressBar: React.FC<{
         initialValues={{ addrsearch: initialValue }}
         enableReinitialize
       >
-        <F autoComplete="off">
-          <Wrapper>
-            <FieldWrapper isOpen={openState.isOpen}>
-              <Input
-                innerRef={inputRef}
-                name="addrsearch"
-                spellCheck="false"
-                autoComplete="off"
-                placeholder={t('searchbar.placeholder')}
-                onFocus={openState.handleOpen}
-              />
-              {shouldShowSearchHistory && (
-                <ResultWrapper>
-                  <SearchAddressCachedResult
-                    callback={() => {
-                      inputRef.current?.blur();
-                      openState.handleClose();
-                    }}
-                  />
-                </ResultWrapper>
-              )}
-            </FieldWrapper>
-            <SearchButton aria-label="Search address" type="submit">
-              <FaSearch />
-            </SearchButton>
-          </Wrapper>
-        </F>
+        {({ setFieldValue, resetForm }) => (
+          <F autoComplete="off">
+            <Wrapper>
+              <FieldWrapper isOpen={openState.isOpen}>
+                <Input
+                  innerRef={inputRef}
+                  name="addrsearch"
+                  spellCheck="false"
+                  autoComplete="off"
+                  placeholder={t('searchbar.placeholder')}
+                  onFocus={openState.handleOpen}
+                />
+                {shouldShowSearchHistory && (
+                  <ResultWrapper>
+                    <SearchAddressCachedResult
+                      onAddressClick={(address) => {
+                        setFieldValue('addrsearch', address);
+                        openState.handleClose();
+                      }}
+                      callback={() => {
+                        inputRef.current?.blur();
+                        resetForm();
+                      }}
+                    />
+                  </ResultWrapper>
+                )}
+              </FieldWrapper>
+              <SearchButton aria-label="Search address" type="submit">
+                <FaSearch />
+              </SearchButton>
+            </Wrapper>
+          </F>
+        )}
       </Formik>
     </Container>
   );

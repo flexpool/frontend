@@ -20,36 +20,29 @@ const useSearchAddress = () => {
     NProgress.start();
 
     if (coin && !Array.isArray(coin)) {
-      dispatch(
-        addressSearchSet({
-          coin,
-          address: address,
-        })
-      );
       router.push(`/miner/${coin}/${address}`).then(() => {
         callback();
+        dispatch(
+          addressSearchSet({
+            coin,
+            address: address,
+          })
+        );
       });
     } else {
       const result = await getLocateAddress(address);
 
       if (result.all.length === 1) {
-        dispatch(
-          addressSearchSet({
-            coin: result.all[0],
-            address: address,
-          })
-        );
         router.push(`/miner/${result.all[0]}/${address}`).then(() => {
           callback();
+          dispatch(
+            addressSearchSet({
+              coin: result.all[0],
+              address: address,
+            })
+          );
         });
       } else {
-        dispatch(
-          addressSearchSet({
-            coin: result.all,
-            address: address,
-          })
-        );
-
         router
           .push(
             {
@@ -63,6 +56,12 @@ const useSearchAddress = () => {
           )
           .then(() => {
             callback();
+            dispatch(
+              addressSearchSet({
+                coin: result.all,
+                address: address,
+              })
+            );
           });
       }
     }
