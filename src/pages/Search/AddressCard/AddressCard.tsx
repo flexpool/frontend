@@ -126,6 +126,7 @@ const DashboardExternalLink = ({
 
 const DashboardListItem = ({ coin, name, address }: DashboardListItemProps) => {
   const router = useRouter();
+  const { t } = useTranslation('search');
 
   return (
     <ListItemContainer>
@@ -145,7 +146,7 @@ const DashboardListItem = ({ coin, name, address }: DashboardListItemProps) => {
             });
           }}
         >
-          View Dashboard
+          {t('view_dashboard')}
         </ViewDashboardButton>
 
         <DashboardExternalLink address={address} coin={coin} />
