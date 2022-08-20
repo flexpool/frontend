@@ -271,5 +271,7 @@
   "confirmation_duration_tooltip": "Vahvistettu ajassa",
   "confirmed_at_tooltip": "Vahvistettu ajankohtana",
   "warning_header": "Näyttää siltä, että kojelautasi ei ole vielä valmis.",
-  "warning_description": "Jos olet juuri aloittanut louhimisen, kojelautasi on valmis 20 minuutin sisällä ensimmäisen osuuden lähettämisestä tähän osoitteeseen. Palaa takaisin hetken kuluttua."
+  "warning_description": "Jos olet juuri aloittanut louhimisen, kojelautasi on valmis 20 minuutin sisällä ensimmäisen osuuden lähettämisestä tähän osoitteeseen. Palaa takaisin hetken kuluttua.",
+  "pending_header": "We are preparing your dashboard",
+  "pending_description": "Your address is recognized by the pool, please wait 10 minutes for the stats to be ready."
 }

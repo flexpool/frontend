@@ -15,7 +15,8 @@
     "get_started_nicehash": "Arrendar NiceHash para {{coinName}} ({{coinTicker}})",
     "get_started_chia_regular": "Farmar {{coinName}} ({{coinTicker}}) usando {{client}}",
     "get_started_home": "Primeiros Passos",
-    "network_stats": "{{coinName}} ({{coinTicker}}) Network {{chartType}}"
+    "network_stats": "{{coinName}} ({{coinTicker}}) Network {{chartType}}",
+    "search": "Search"
   },
   "website_description": {
     "home": "Flexpool.io é a pool de mineração mais avançada do mundo que permite minerar as tuas moedas favoritas de forma fácil. Suportamos Ethereum and Chia.",
@@ -33,7 +34,8 @@
     "get_started_nicehash": "Nesta página podes encontrar um guia interativo de como começar a arrendar NiceHash para {{coinName}} ({{coinTicker}}) com {{coinAlgorithm}} na Flexpool.",
     "get_started_chia_regular": "Nesta página podes encontrar um guia interativo de como começar a farmar {{coinName}} ({{coinTicker}}) com {{client}} na Flexpool.",
     "get_started_home": "Nesta página podes encontrar todos os nossos guias interativos de como começar a minerar na Flexpool.",
-    "network_stats": "View {{coinName}} ({{coinTicker}}) historical network statistics including hashrate, difficulty, and block time on this page."
+    "network_stats": "View {{coinName}} ({{coinTicker}}) historical network statistics including hashrate, difficulty, and block time on this page.",
+    "search": "Search by your wallet address."
   },
   "keywords": {
     "home": "pool de ethereum, pool de chia, a melhor pool de ethereum, a melhor pool de chia, minerar ethereum, farmar chia, pool de mineração, a melhor pool de mineração, a melhor pool para farmar",

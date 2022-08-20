@@ -271,5 +271,7 @@
   "confirmation_duration_tooltip": "Bevestigd na",
   "confirmed_at_tooltip": "Bevestigd om",
   "warning_header": "It looks like your dashboard is not ready yet.",
-  "warning_description": "If you are new here, your dashboard will be ready within 20 minutes of your first submitted share to this address. Please check back a little later."
+  "warning_description": "If you are new here, your dashboard will be ready within 20 minutes of your first submitted share to this address. Please check back a little later.",
+  "pending_header": "We are preparing your dashboard",
+  "pending_description": "Your address is recognized by the pool, please wait 10 minutes for the stats to be ready."
 }

@@ -1,0 +1,18 @@
+{
+  "header": "钱包地址搜索",
+  "search_result": "搜索结果",
+  "invalid_address": "请输入一个合法的 Ethereum 或 Chia 地址。",
+  "view_dashboard": "查看面板",
+  "address_card": {
+    "address": "地址",
+    "status": "状态",
+    "not_found": "该地址没有被矿池发现。如果你刚刚加入我们，请确保你与矿池的连接。",
+    "pending": "该地址已被矿池发现，您的数据将在十分钟内准备好。在此期间，请选择你预期的面板。",
+    "ready": "该地址已被矿池找到。请选择你想查看的面板。",
+    "dashboards": "面板",
+    "no_dashboards": "没有找到面板。",
+    "status_not_found": "没有找到",
+    "status_ready": "准备好了",
+    "status_pending": "等待确认"
+  }
+}

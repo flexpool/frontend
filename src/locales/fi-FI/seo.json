@@ -15,7 +15,8 @@
     "get_started_nicehash": "Vuokraa NiceHashista {{coinName}} ({{coinTicker}})",
     "get_started_chia_regular": "Farmaa {{coinName}} ({{coinTicker}}) käyttämällä {{client}}",
     "get_started_home": "Aloita",
-    "network_stats": "{{coinName}} ({{coinTicker}}) Network {{chartType}}"
+    "network_stats": "{{coinName}} ({{coinTicker}}) Network {{chartType}}",
+    "search": "Search"
   },
   "website_description": {
     "home": "Flexpool.io on maailman edistynein louhintapool, joka tarjoaa helpon tavan louhia lempikryptojasi. Tuemme Ethereumia ja Chiaa.",
@@ -33,7 +34,8 @@
     "get_started_nicehash": "Tältä sivulta löydät interaktiivisen ohjeen {{coinName}} ({{coinTicker}}) louhintatehon vuokraamiseen NiceHashista käyttäen {{coinAlgorithm}} algoritmia ja sen liittämiseksi Flexpooliin.",
     "get_started_chia_regular": "Tältä sivulta löydät interaktiivisen ohjeen {{coinName}} ({{coinTicker}}) farmaamisen aloittamiseen käyttäen {{client}} algoritmia Flexpoolissa.",
     "get_started_home": "Tältä sivulta löydät kaikki interaktiiviset ohjeemme louhinnan aloittamiseen Flexpoolissa.",
-    "network_stats": "View {{coinName}} ({{coinTicker}}) historical network statistics including hashrate, difficulty, and block time on this page."
+    "network_stats": "View {{coinName}} ({{coinTicker}}) historical network statistics including hashrate, difficulty, and block time on this page.",
+    "search": "Search by your wallet address."
   },
   "keywords": {
     "home": "ethereum pool,chia pool,paras ethereum pool,paras chia pool,ethereum louhinta,chia farmaus,louhinta pool,farmaus pool,paras louhinta pool,paras farmaus pool",

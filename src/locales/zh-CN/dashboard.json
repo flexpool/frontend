@@ -271,5 +271,7 @@
   "confirmation_duration_tooltip": "交易确认时间",
   "confirmed_at_tooltip": "交易确认时间",
   "warning_header": "看起来你的仪表板还没有准备好。",
-  "warning_description": "如果您是新用户，您的仪表板将在首次将共享提交到此地址后20分钟内准备就绪。请稍后再查。"
+  "warning_description": "如果您是新用户，您的仪表板将在首次将共享提交到此地址后20分钟内准备就绪。请稍后再查。",
+  "pending_header": "我们正在准备你的面板",
+  "pending_description": "你的地址已被矿池发现，挖矿数据将在10分钟内准备完成。"
 }

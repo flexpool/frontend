@@ -271,5 +271,7 @@
   "confirmation_duration_tooltip": "Підтверджено в",
   "confirmed_at_tooltip": "Підтверджено про",
   "warning_header": "Схоже, ваша інформаційна панель ще не готова.",
-  "warning_description": "Якщо ви новачок, ваша інформаційна панель буде готова протягом 20 хвилин після того, як ви вперше надіслали публікацію на цю адресу. Перевірте, будь ласка, трохи пізніше."
+  "warning_description": "Якщо ви новачок, ваша інформаційна панель буде готова протягом 20 хвилин після того, як ви вперше надіслали публікацію на цю адресу. Перевірте, будь ласка, трохи пізніше.",
+  "pending_header": "We are preparing your dashboard",
+  "pending_description": "Your address is recognized by the pool, please wait 10 minutes for the stats to be ready."
 }
