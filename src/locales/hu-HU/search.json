@@ -3,6 +3,7 @@
   "search_result": "Search Result",
   "invalid_address": "Please enter a valid Ethereum or Chia wallet address.",
   "view_dashboard": "View Dashboard",
+  "view": "View",
   "address_card": {
     "address": "Address",
     "status": "Status",

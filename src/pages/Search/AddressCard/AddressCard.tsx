@@ -98,6 +98,22 @@ const ViewDashboardButton = styled(Button)`
   font-size: 12px;
 `;
 
+const MobileMediaQuery = styled.div`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+const DesktopMediaQuery = styled.div`
+  display: block;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
 type DashboardListItemProps = { coin: string; name: string; address: string };
 
 const StyledExternalLink = styled.a`
@@ -146,7 +162,8 @@ const DashboardListItem = ({ coin, name, address }: DashboardListItemProps) => {
             });
           }}
         >
-          {t('view_dashboard')}
+          <MobileMediaQuery>{t('view')}</MobileMediaQuery>
+          <DesktopMediaQuery>{t('view_dashboard')}</DesktopMediaQuery>
         </ViewDashboardButton>
 
         <DashboardExternalLink address={address} coin={coin} />

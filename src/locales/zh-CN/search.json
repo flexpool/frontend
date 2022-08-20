@@ -3,6 +3,7 @@
   "search_result": "搜索结果",
   "invalid_address": "请输入一个合法的 Ethereum 或 Chia 地址。",
   "view_dashboard": "查看面板",
+  "view": "查看",
   "address_card": {
     "address": "地址",
     "status": "状态",
