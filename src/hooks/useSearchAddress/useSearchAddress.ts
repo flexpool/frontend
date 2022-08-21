@@ -1,56 +1,71 @@
-import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
+import { getLocateAddress } from '@/api';
+import { useDispatch } from 'react-redux';
 import { addressSearchSet } from 'src/rdx/addressSearch/addressSearch.actions';
-import { getChecksumByTicker } from '@/utils/validators/checksum';
-import { fetchApi } from '@/utils/fetchApi';
+import { AddressCacheItem } from '@/components/SearchAddressBar/searchCache';
+import NProgress from 'nprogress';
+
+const NOOP = () => {};
 
 const useSearchAddress = () => {
-  const dispatch = useDispatch();
   const router = useRouter();
+  const dispatch = useDispatch();
 
-  const search = useCallback(
-    async (address: string, coin?: string, callback?: () => void) => {
-      let coinType = coin;
+  const search = async (
+    address: string,
+    coin?: AddressCacheItem['coin'],
+    callback = NOOP
+  ) => {
+    // Start NProgress right away for better feedback
+    NProgress.start();
 
-      if (!coin) {
-        if (getChecksumByTicker('eth')(address)) coinType = 'eth';
-        if (getChecksumByTicker('xch')(address)) coinType = 'xch';
-      }
-
-      if (!coinType) {
-        alert('Please enter a valid Ethereum or Chia wallet address.');
-        return false;
-      }
-
-      if (coinType === 'eth') {
-        const res = await fetchApi<string | null>('/miner/locateAddress', {
-          query: {
-            address,
-          },
-        });
-        if (res) coinType = res;
-      }
-
-      router.push(`/miner/${coinType}/${address}`, undefined).then(async () => {
-        callback?.();
-
-        // delay for smoother UI
-        await new Promise((resolve) => setTimeout(resolve, 100));
-
-        // Add to search history
+    if (coin && !Array.isArray(coin)) {
+      router.push(`/miner/${coin}/${address}`).then(() => {
+        callback();
         dispatch(
           addressSearchSet({
-            coin: coinType as string,
+            coin,
             address: address,
           })
         );
       });
+    } else {
+      const result = await getLocateAddress(address);
 
-      return true;
-    },
-    [dispatch, router]
-  );
+      if (result.all?.length === 1) {
+        router.push(`/miner/${result.all[0]}/${address}`).then(() => {
+          callback();
+          dispatch(
+            addressSearchSet({
+              coin: result.all[0],
+              address: address,
+            })
+          );
+        });
+      } else {
+        router
+          .push(
+            {
+              pathname: '/search',
+              query: {
+                search: address,
+              },
+            },
+            undefined,
+            { shallow: false }
+          )
+          .then(() => {
+            callback();
+            dispatch(
+              addressSearchSet({
+                coin: result.all,
+                address: address,
+              })
+            );
+          });
+      }
+    }
+  };
 
   return search;
 };

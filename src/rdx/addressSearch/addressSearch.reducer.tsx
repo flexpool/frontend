@@ -1,10 +1,10 @@
 import { AnyAction, Reducer } from 'redux';
-import { searchAddressStorage } from 'src/components/SearchAddressBar/searchCache';
+import {
+  searchAddressStorage,
+  AddressCacheItem,
+} from 'src/components/SearchAddressBar/searchCache';
 
-export type AddressCacheItem = {
-  coin: string;
-  address: string;
-};
+export type { AddressCacheItem };
 
 export const initialState: AddressCacheItem[] = [];
 

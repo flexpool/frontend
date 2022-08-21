@@ -50,6 +50,7 @@ const transformBody = (
 type ApiFetchOptions = Omit<RequestInit, 'body'> & {
   query?: any;
   body?: any;
+  raw?: boolean;
 };
 
 /**
@@ -68,7 +69,7 @@ export const fetchApi = async <T>(
   initParam: ApiFetchOptions = {},
   api?: string
 ): Promise<T> => {
-  const { query, ...init } = initParam;
+  const { query, raw, ...init } = initParam;
 
   const options = {
     ...init,
@@ -97,6 +98,7 @@ export const fetchApi = async <T>(
           if (json.error) {
             return Promise.reject(json.error);
           } else {
+            if (raw) return json;
             return json.result;
           }
         })

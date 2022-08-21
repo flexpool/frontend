@@ -23,6 +23,9 @@ module.exports = {
     // Handle module aliases
     '^@/(.*)$': '<rootDir>/src/$1',
   },
+  roots: ['<rootDir>'],
+  modulePaths: ['<rootDir>'],
+  moduleDirectories: ['node_modules', 'src'],
   transform: {
     // Use babel-jest to transpile tests with the next/babel preset
     // https://jestjs.io/docs/configuration#transform-objectstring-pathtotransformer--pathtotransformer-object

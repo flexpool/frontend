@@ -15,7 +15,8 @@
     "get_started_nicehash": "Оренда NiceHash до {{coinName}} ({{coinTicker}})",
     "get_started_chia_regular": "Ферма {{coinName}} ({{coinTicker}}) за допомогою {{client}}",
     "get_started_home": "Почати",
-    "network_stats": "{{coinName}} ({{coinTicker}}) Network {{chartType}}"
+    "network_stats": "{{coinName}} ({{coinTicker}}) Network {{chartType}}",
+    "search": "Search"
   },
   "website_description": {
     "home": "Flexpool.io — це найдосконаліший у світі пул для майнінгу, який забезпечує простий у використанні спосіб майнінгу ваших улюблених монет. Ми підтримуємо Ethereum і Chia.",
@@ -33,7 +34,8 @@
     "get_started_nicehash": "На цій сторінці ви можете знайти інтерактивний посібник про те, як почати оренду NiceHash до {{coinName}} ({{coinTicker}}) з {{coinAlgorithm}} на Flexpool.",
     "get_started_chia_regular": "На цій сторінці ви можете знайти інтерактивний посібник про те, як розпочати фармінг {{coinName}} ({{coinTicker}}) за допомогою {{client}} на Flexpool.",
     "get_started_home": "На цій сторінці ви можете знайти всі наші інтерактивні посібники з початку роботи щодо майнінгу на Flexpool.",
-    "network_stats": "View {{coinName}} ({{coinTicker}}) historical network statistics including hashrate, difficulty, and block time on this page."
+    "network_stats": "View {{coinName}} ({{coinTicker}}) historical network statistics including hashrate, difficulty, and block time on this page.",
+    "search": "Search by your wallet address."
   },
   "keywords": {
     "home": "Ефіріум пул, Чіа пул, найкращий Ефіріум пул, найкращий Чіа пул, майнити Ефіріум, фармити Чіа, майнінг пул, фармінг пул, найкращий майнінг пул, найкращий фармінг пул",

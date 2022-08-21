@@ -38,7 +38,7 @@ export type ApiPoolCoinFull = {
 export type ApiPoolCoin = {
   decimalPlaces: number;
   lowestMinPayoutThreshold: number;
-  name: String;
+  name: string;
   shareDifficulty: number;
   ticker: Ticker;
   transactionSize: number;
