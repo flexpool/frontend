@@ -125,6 +125,12 @@ const Estimations = styled.div`
   }
 `;
 
+const EstimationExplainer = styled.div`
+  font-size: 14px;
+  margin-top: 4px;
+  color: var(--text-secondary);
+`;
+
 const CountdownNumber = ({
   num,
   unit,
@@ -208,6 +214,7 @@ export const TheMergeAnnouncement = () => {
               content={data ? format(data * 1000, 'KK:mm a') : '-'}
             />
           </Estimations>
+          <EstimationExplainer>{t('estimation_explain')}</EstimationExplainer>
         </CountdownCard>
       </Content>
     </Page>
