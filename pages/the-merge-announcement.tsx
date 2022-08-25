@@ -45,6 +45,9 @@ export const Announcement = () => {
             i18nKey="content"
             components={{
               support: <LinkOut href="https://www.flexpool.io/support" />,
+              ef: (
+                <LinkOut href="https://blog.ethereum.org/2022/08/24/mainnet-merge-announcement/" />
+              ),
               break: <Break />,
               end: <End />,
               b: <b />,
@@ -52,18 +55,6 @@ export const Announcement = () => {
           />
         </p>
         <Spacer />
-
-        <div>
-          <a
-            href="https://blog.ethereum.org/2022/08/24/mainnet-merge-announcement/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            {t('view_official')}
-          </a>
-        </div>
-
-        <Spacer size="sm" />
 
         <Link href="/the-merge-countdown" passHref>
           <a>{t('view_countdown')}</a>
