@@ -149,24 +149,31 @@ export const TheMergeAnnouncement = () => {
   const [countdown, setCountdown] = useState<Duration | undefined>();
 
   useEffect(() => {
-    const tick = () => {
-      if (data) {
+    if (data) {
+      setCountdown(
+        intervalToDuration({
+          start: new Date(data * 1000),
+          end: new Date(),
+        })
+      );
+
+      const tick = () => {
         setCountdown(
           intervalToDuration({
             start: new Date(data * 1000),
             end: new Date(),
           })
         );
-      }
-    };
+      };
 
-    const id = setInterval(() => {
-      tick();
-    }, 1000);
+      const id = setInterval(() => {
+        tick();
+      }, 1000);
 
-    return () => {
-      clearTimeout(id);
-    };
+      return () => {
+        clearTimeout(id);
+      };
+    }
   }, [setCountdown, data]);
 
   return (

@@ -52,6 +52,9 @@ export const Announcement = () => {
           end of this journey leads to the start of a new adventure.
           <br />
           <br />
+          If you are switching to ETC after Ethereum mining ends, please
+          consider doing it a few days in advance to ensure uninterrupted
+          operations
           <span style={{ textAlign: 'right', display: 'block' }}>
             - Flexpool.io Team
           </span>
