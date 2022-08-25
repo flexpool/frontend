@@ -24,13 +24,18 @@ const End = styled.span`
 
 export const Announcement = () => {
   const { t } = useTranslation('merge-announcement');
-  const { t: seoT } = useTranslation('seo');
+  const { t: seoT, i18n } = useTranslation('seo');
 
   return (
     <Page>
       <NextSeo
         title={seoT('title.the_merge_announcement')}
         description={seoT('website_description.the_merge_announcement')}
+        openGraph={{
+          title: seoT('title.the_merge_announcement'),
+          description: seoT('website_description.the_merge_announcement'),
+          locale: i18n.language,
+        }}
       />
       <Content md paddingLg>
         <h1>{t('title')}</h1>

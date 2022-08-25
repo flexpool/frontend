@@ -127,7 +127,7 @@ const Estimations = styled.div`
 
 const EstimationExplainer = styled.div`
   font-size: 14px;
-  margin-top: 4px;
+  margin-top: 15px;
   color: var(--text-secondary);
 `;
 
@@ -150,7 +150,7 @@ const CountdownNumber = ({
 
 export const TheMergeAnnouncement = () => {
   const { data } = useEthMergeEstimatedDate();
-  const { t: seoT } = useTranslation('seo');
+  const { t: seoT, i18n } = useTranslation('seo');
   const { t } = useTranslation('merge-countdown');
 
   const [countdown, setCountdown] = useState<Duration | undefined>();
@@ -188,6 +188,11 @@ export const TheMergeAnnouncement = () => {
       <NextSeo
         title={seoT('title.the_merge_countdown')}
         description={seoT('website_description.the_merge_countdown')}
+        openGraph={{
+          title: seoT('title.the_merge_countdown'),
+          description: seoT('website_description.the_merge_countdown'),
+          locale: i18n.language,
+        }}
       />
       <SearchHeader>
         <Content md padding>
