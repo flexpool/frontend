@@ -144,7 +144,8 @@ const CountdownNumber = ({
 
 export const TheMergeAnnouncement = () => {
   const { data } = useEthMergeEstimatedDate();
-  const { t: seoT, i18n } = useTranslation('seo');
+  const { t: seoT } = useTranslation('seo');
+  const { t } = useTranslation('merge-countdown');
 
   const [countdown, setCountdown] = useState<Duration | undefined>();
 
@@ -178,29 +179,32 @@ export const TheMergeAnnouncement = () => {
 
   return (
     <Page>
-      <NextSeo title="The Merge Countdown" />
+      <NextSeo
+        title={seoT('title.the_merge_countdown')}
+        description={seoT('website_description.the_merge_countdown')}
+      />
       <SearchHeader>
         <Content md padding>
-          <h2>The Merge Countdown</h2>
+          <h2>{t('header')}</h2>
         </Content>
       </SearchHeader>
 
       <Content md paddingLg>
         <CountdownCard>
-          <CountdownTitle>The Merge will happen in</CountdownTitle>
+          <CountdownTitle>{t('countdown_title')}</CountdownTitle>
           <NumbersContainer>
-            <CountdownNumber num={countdown?.days} unit="Days" />
-            <CountdownNumber num={countdown?.hours} unit="Hours" />
-            <CountdownNumber num={countdown?.minutes} unit="Minutes" />
-            <CountdownNumber num={countdown?.seconds} unit="Seconds" />
+            <CountdownNumber num={countdown?.days} unit={t('days')} />
+            <CountdownNumber num={countdown?.hours} unit={t('hours')} />
+            <CountdownNumber num={countdown?.minutes} unit={t('minutes')} />
+            <CountdownNumber num={countdown?.seconds} unit={t('seconds')} />
           </NumbersContainer>
           <Estimations>
             <Estimation
-              title="Estimated Date"
+              title={t('estimated_date')}
               content={data ? format(data * 1000, 'MM.dd.yyyy') : '-'}
             />
             <Estimation
-              title="Estimated Time"
+              title={t('estimated_time')}
               content={data ? format(data * 1000, 'KK:mm a') : '-'}
             />
           </Estimations>
@@ -220,6 +224,7 @@ export async function getStaticProps({ locale }) {
         'support',
         'cookie-consent',
         'seo',
+        'merge-countdown',
       ])),
     },
   };
