@@ -1,0 +1,11 @@
+{
+  "header": "The Merge 倒计时",
+  "countdown_title": "The Merge 将发生在",
+  "days": "天",
+  "hours": "小时",
+  "minutes": "分钟",
+  "seconds": "秒",
+  "estimated_date": "预计日期",
+  "estimated_time": "预计时间",
+  "estimation_explain": "预期时间会根据网络算力波动。"
+}

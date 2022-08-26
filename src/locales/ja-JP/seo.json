@@ -16,7 +16,9 @@
     "get_started_chia_regular": "Farm {{coinName}} ({{coinTicker}}) using {{client}}",
     "get_started_home": "Get Started",
     "network_stats": "{{coinName}} ({{coinTicker}}) Network {{chartType}}",
-    "search": "Search"
+    "search": "Search",
+    "the_merge_announcement": "The Merge Announcement",
+    "the_merge_countdown": "The Merge Countdown"
   },
   "website_description": {
     "home": "Flexpool.io is the world's most advanced mining pool that provides an easy-to-use way to mine your favorite coins. We support Ethereum and Chia.",
@@ -35,7 +37,9 @@
     "get_started_chia_regular": "On this page, you can find an interactive guide on how to get started farming {{coinName}} ({{coinTicker}}) using {{client}} on Flexpool.",
     "get_started_home": "On this page, you can find all our interactive get started guides on how to mine on Flexpool.",
     "network_stats": "View {{coinName}} ({{coinTicker}}) historical network statistics including hashrate, difficulty, and block time on this page.",
-    "search": "Search by your wallet address."
+    "search": "Search by your wallet address.",
+    "the_merge_announcement": "The Ethereum developers have confirmed The Merge (transition to PoS) for September 15. At that date, Ethereum will connect the Beacon Chain (Proof-of-Stake consensus layer) to the Ethereum mainnet, effectively replacing mining with staking. Mining Ethereum will no longer be possible after the transition has happened.",
+    "the_merge_countdown": "View how long until The Merge happens."
   },
   "keywords": {
     "home": "ethereum pool,chia pool,best ethereum pool, best chia pool,ethereum mining,chia farming,mining pool,farming pool,best mining pool,best farming pool",
