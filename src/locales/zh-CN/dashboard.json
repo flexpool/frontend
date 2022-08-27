@@ -265,7 +265,7 @@
     }
   },
   "announcements": {
-    "chia_softfork": "Chia softfork计划于7月22日左右举行<br/>如果您使用的是参考farmer，请确保您运行的是chia区块链版本v1.3.0或更新版本</bold><br/>网络升级完成后，来自Chia客户端的所有不支持softfork的部分将被拒绝<br/><bold>FlexFarmer用户无需任何操作。</bold>"
+    "the_merge": "The Merge 将在9月15日发生。在那之后，以太坊将不能被挖矿。见详情，请阅读我们的<merge>官方公告</merge>."
   },
   "status_pending_tooltip": "等待交易确认",
   "confirmation_duration_tooltip": "交易确认时间",

@@ -16,7 +16,9 @@
     "get_started_chia_regular": "Ферма {{coinName}} ({{coinTicker}}) за допомогою {{client}}",
     "get_started_home": "Почати",
     "network_stats": "{{coinName}} ({{coinTicker}}) Network {{chartType}}",
-    "search": "Search"
+    "search": "Search",
+    "the_merge_announcement": "The Merge Announcement",
+    "the_merge_countdown": "The Merge Countdown"
   },
   "website_description": {
     "home": "Flexpool.io — це найдосконаліший у світі пул для майнінгу, який забезпечує простий у використанні спосіб майнінгу ваших улюблених монет. Ми підтримуємо Ethereum і Chia.",
@@ -35,7 +37,9 @@
     "get_started_chia_regular": "На цій сторінці ви можете знайти інтерактивний посібник про те, як розпочати фармінг {{coinName}} ({{coinTicker}}) за допомогою {{client}} на Flexpool.",
     "get_started_home": "На цій сторінці ви можете знайти всі наші інтерактивні посібники з початку роботи щодо майнінгу на Flexpool.",
     "network_stats": "View {{coinName}} ({{coinTicker}}) historical network statistics including hashrate, difficulty, and block time on this page.",
-    "search": "Search by your wallet address."
+    "search": "Search by your wallet address.",
+    "the_merge_announcement": "The Ethereum developers have confirmed The Merge (transition to PoS) for September 15. At that date, Ethereum will connect the Beacon Chain (Proof-of-Stake consensus layer) to the Ethereum mainnet, effectively replacing mining with staking. Mining Ethereum will no longer be possible after the transition has happened.",
+    "the_merge_countdown": "View how long until The Merge happens."
   },
   "keywords": {
     "home": "Ефіріум пул, Чіа пул, найкращий Ефіріум пул, найкращий Чіа пул, майнити Ефіріум, фармити Чіа, майнінг пул, фармінг пул, найкращий майнінг пул, найкращий фармінг пул",

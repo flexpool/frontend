@@ -265,8 +265,7 @@
     }
   },
   "announcements": {
-    "chia_softfork": "The Chia softfork is scheduled to happen approximately on <bold>July 22</bold>.<br/>If you are using the reference farmer, <bold>please ensure that you are running chia-blockchain version v1.3.0 or newer.</bold><br/>After the network upgrade is completed, all partials from Chia clients that don't support the softfork will be rejected.<br/><bold>No action is required for FlexFarmer users.</bold>",
-    "the_merge": "The Merge has been confirmed for approximately September 10-20. After that, the Ethereum mining will no longer be possible. Please read our <merge>our official announcement</merge> for details."
+    "the_merge": "The Merge has been confirmed for September 15. After that, the Ethereum mining will no longer be possible. Please read our <merge>our official announcement</merge> for details."
   },
   "status_pending_tooltip": "Awaiting transaction confirmation",
   "confirmation_duration_tooltip": "Confirmed in",
