@@ -6,13 +6,15 @@ import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 
 import { MineableCoinHardware, mineableCoins } from '../mineableCoinList';
-import { MinerCommandSection } from './MinerCommand.section';
-import { PingTestSection } from './PingTest.section';
-import { SetWalletSection } from './SetWallet.section';
-import { SetWorkerNameSection } from './SetWorkerName.section';
-import { ViewDashboardSection } from './ViewDashboard.section';
+import { PingTestSection } from './../GPU/PingTest.section';
+import { SetWalletSection } from './../GPU/SetWallet.section';
+import { SetWorkerNameSection } from './../GPU/SetWorkerName.section';
+import { ViewDashboardSection } from './../GPU/ViewDashboard.section';
 import merge from 'lodash.merge';
 import { NextSeo } from 'next-seo';
+import qs from 'query-string';
+
+import { ExampleInterface, ExampleInterfaceWrapper } from './ExampleInterface';
 
 export const MineableCoinGuidePage: React.FC = () => {
   const router = useRouter();
@@ -57,6 +59,13 @@ export const MineableCoinGuidePage: React.FC = () => {
     coinAlgorithm: mineableCoin.algorithm,
   });
 
+  const {
+    primaryServer = t('cmd_keys.CLOSEST_SERVER'),
+    secondaryServer = t('cmd_keys.CLOSEST_SERVER'),
+    walletAddress = t('cmd_keys.WALLET_ADDRESS'),
+    workerName = t('cmd_keys.WORKER_NAME'),
+  } = qs.parse(typeof window !== 'undefined' ? window.location.search : '');
+
   return (
     <Page>
       <NextSeo
@@ -83,15 +92,45 @@ export const MineableCoinGuidePage: React.FC = () => {
       <Spacer size="xl" />
       <PingTestSection
         data={mineableCoin?.regions}
-        showAdditionalPorts={true}
-        showPorts={true}
+        showAdditionalPorts={false}
+        showPorts={false}
       />
       <Spacer size="xl" />
       <SetWorkerNameSection />
       <Spacer size="xl" />
-      <MinerCommandSection data={mineableCoinConfig?.miners} />
+      <ExampleInterfaceWrapper>
+        <ProcessedExampleInterface
+          poolNum={'1 (Primary)'}
+          login={`${walletAddress}.${workerName}`}
+          server={primaryServer as string}
+        />
+        <ProcessedExampleInterface
+          poolNum={'2 (Backup)'}
+          login={`${walletAddress}.${workerName}`}
+          server={secondaryServer as string}
+        />
+      </ExampleInterfaceWrapper>
       <Spacer size="xl" />
       <ViewDashboardSection ticker={ticker as string} />
     </Page>
+  );
+};
+
+const ProcessedExampleInterface: React.FC<{
+  poolNum: string;
+  login: string;
+  server: string;
+}> = ({ poolNum, login, server }) => {
+  var port = 4444;
+  if (server === 'sgeetc.gfwroute.co') {
+    port = 48607;
+  }
+
+  return (
+    <ExampleInterface
+      poolNum={poolNum}
+      login={login}
+      url={`stratum+tcp://${server}:${port}`}
+    />
   );
 };

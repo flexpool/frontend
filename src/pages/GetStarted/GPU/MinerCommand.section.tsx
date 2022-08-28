@@ -91,7 +91,7 @@ export const MinerCommandSection: React.FC<{
         if (item.title === 'TeamRedMiner') {
           return {
             ...item,
-            cmd: `${item.cmd} --dns_https=https://1.1.1.1/dns-query --dns_https_sni flexpool.ca`,
+            cmd: `${item.cmd} --dns_https=https://1.1.1.1/dns-query --dns_https_sni apple.com`,
           };
         }
 

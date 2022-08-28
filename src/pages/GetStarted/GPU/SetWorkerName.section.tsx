@@ -7,6 +7,7 @@ import qs from 'query-string';
 import { TextInput } from 'src/components/Form/TextInput';
 import { DivText, Highlight } from 'src/components/Typo/Typo';
 import { Spacer } from 'src/components/layout/Spacer';
+import { workerNameCheck } from '@/utils/checks';
 
 const getLocationSearch = () => {
   return typeof window !== 'undefined' ? window.location.search : '';
@@ -24,10 +25,21 @@ export const SetWorkerNameSection = () => {
 
   const [value, setValue] = React.useState(initValue || '');
 
+  const [workerNameCheckFailed, setWorkerNameCheckFailed] =
+    React.useState(false);
+
   const handleInputChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       setValue(value);
+
+      if (!workerNameCheck(value)) {
+        setWorkerNameCheckFailed(true);
+        return;
+      }
+
+      setWorkerNameCheckFailed(false);
+
       const parsedSearch = qs.parse(getLocationSearch());
 
       const query = qs.stringify({
@@ -62,11 +74,16 @@ export const SetWorkerNameSection = () => {
       <DivText>
         <TextInput
           label={t('detail.worker.worker_name')}
-          placeholder={t('detail.worker.worker_name_placeholder')}
+          placeholder={t('detail.worker.worker_name_placeholder', {
+            value: 'alex_rig1',
+          })}
           value={value}
           onChange={handleInputChange}
           spellCheck="false"
           autoComplete="off"
+          errorMessage={
+            workerNameCheckFailed && t('detail.wallet.invalid_worker_name')
+          }
         />
       </DivText>
     </>

@@ -146,9 +146,11 @@ const WarningBox = styled.div`
   max-width: 200px;
 `;
 
-export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
-  data,
-}) => {
+export const PingTestSection: React.FC<{
+  data: MineableCoinRegion[];
+  showAdditionalPorts: boolean;
+  showPorts: boolean;
+}> = ({ data, showAdditionalPorts, showPorts }) => {
   const { t } = useTranslation('get-started');
   const router = useRouter();
   const isAutoSetOnce = useBoolState();
@@ -472,152 +474,159 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
         data={data}
         columns={cols}
         additionalRowRender={(item) => {
-          if (item.domain === 'eth-hke.flexpool.io') {
-            return (
-              <DescriptionList
-                items={[
-                  {
-                    term: (
-                      <span style={{ fontSize: '0.85rem' }}>
-                        {t('regions.additional_ports')}
-                      </span>
-                    ),
-                    description: (
-                      <div style={{ fontSize: '0.85rem' }}>
-                        <div>
-                          TCP: <Sticker>13271</Sticker>
+          if (showAdditionalPorts) {
+            if (item.domain === 'eth-hke.flexpool.io') {
+              return (
+                <DescriptionList
+                  items={[
+                    {
+                      term: (
+                        <span style={{ fontSize: '0.85rem' }}>
+                          {t('regions.additional_ports')}
+                        </span>
+                      ),
+                      description: (
+                        <div style={{ fontSize: '0.85rem' }}>
+                          <div>
+                            TCP: <Sticker>13271</Sticker>
+                          </div>
+                          <div style={{ marginTop: '0.25rem' }}>
+                            SSL: <Sticker>22271</Sticker>
+                          </div>
                         </div>
-                        <div style={{ marginTop: '0.25rem' }}>
-                          SSL: <Sticker>22271</Sticker>
-                        </div>
-                      </div>
-                    ),
-                  },
-                  {
-                    term: (
-                      <span style={{ fontSize: '0.85rem' }}>
-                        {t('regions.additional_domains')}
-                      </span>
-                    ),
+                      ),
+                    },
+                    {
+                      term: (
+                        <span style={{ fontSize: '0.85rem' }}>
+                          {t('regions.additional_domains')}
+                        </span>
+                      ),
 
-                    description: (
-                      <span style={{ fontSize: '0.85rem' }}>
-                        hke.fpmirror.com
-                      </span>
-                    ),
-                  },
-                ]}
-              />
-            );
-          }
+                      description: (
+                        <span style={{ fontSize: '0.85rem' }}>
+                          hke.fpmirror.com
+                        </span>
+                      ),
+                    },
+                  ]}
+                />
+              );
+            }
 
-          if (item.domain === 'sgeetc.gfwroute.co') {
-            return (
-              <DescriptionList
-                items={[
-                  {
-                    term: (
-                      <span style={{ fontSize: '0.85rem' }}>
-                        {t('detail.ports.title')}
-                      </span>
-                    ),
-                    description: (
-                      <div style={{ fontSize: '0.85rem' }}>
-                        <div>
-                          TCP: <Sticker>48607</Sticker>
+            if (item.domain === 'sgeetc.gfwroute.co') {
+              return (
+                <DescriptionList
+                  items={[
+                    {
+                      term: (
+                        <span style={{ fontSize: '0.85rem' }}>
+                          {t('detail.ports.title')}
+                        </span>
+                      ),
+                      description: (
+                        <div style={{ fontSize: '0.85rem' }}>
+                          <div>
+                            TCP: <Sticker>48607</Sticker>
+                          </div>
+                          <div style={{ marginTop: '0.25rem' }}>
+                            SSL: <Sticker>58607</Sticker>
+                          </div>
                         </div>
-                        <div style={{ marginTop: '0.25rem' }}>
-                          SSL: <Sticker>58607</Sticker>
-                        </div>
-                      </div>
-                    ),
-                  },
-                ]}
-              />
-            );
+                      ),
+                    },
+                  ]}
+                />
+              );
+            }
           }
 
           return null;
         }}
       />
       <p style={{ color: 'var(--danger)' }}>{t('detail.region.warning_1')}</p>
-      <h3>{t('detail.ports.title')}</h3>
-      <p className="mb-2">
-        <Trans
-          ns="get-started"
-          i18nKey="detail.ports.description"
-          components={{
-            more: <LinkText href="/faq#should-i-use-ssl" />,
-            // strong: <strong />,
-          }}
-        />
-      </p>
-      <div>
-        <table style={{ width: 'auto' }}>
-          <tbody>
-            <tr>
-              <td>
-                <strong>{t('detail.ports.ssl_port')}</strong>
-              </td>
-              <td>
-                <Sticker variant="success">5555</Sticker>
-              </td>
-            </tr>
-            <tr>
-              <td>{t('detail.ports.tcp_port')}</td>
-              <td>
-                <Sticker>4444</Sticker>
-                <Tooltip icon={<WarningIcon />}>
-                  <TooltipContent>
-                    <p>
-                      <Trans
-                        ns="get-started"
-                        i18nKey="detail.ports.tcp_port_tooltip"
-                        components={{
-                          more: <LinkText href="/faq#should-i-use-ssl" />,
-                          strong: <strong />,
-                        }}
-                      />
-                    </p>
-                  </TooltipContent>
-                </Tooltip>
-              </td>
-            </tr>
-            <tr>
-              <td>{t('detail.ports.high_diff_port')}</td>
-              <td>
-                <Sticker>14444</Sticker>{' '}
-                <Tooltip>
-                  <TooltipContent>
-                    <p>
-                      <Trans
-                        ns="get-started"
-                        i18nKey="detail.ports.high_diff_port_tooltip"
-                        components={{
-                          NiceHash: (
-                            <LinkText
-                              href={
-                                ticker
-                                  ? `/get-started/${ticker}/nicehash`
-                                  : 'nicehash'
-                              }
-                            />
-                          ),
-                        }}
-                      />
-                    </p>
-                    <ul>
-                      {highDiffServers.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </TooltipContent>
-                </Tooltip>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+
+      {showPorts && (
+        <>
+          <h3>{t('detail.ports.title')}</h3>
+          <p className="mb-2">
+            <Trans
+              ns="get-started"
+              i18nKey="detail.ports.description"
+              components={{
+                more: <LinkText href="/faq#should-i-use-ssl" />,
+                // strong: <strong />,
+              }}
+            />
+          </p>
+          <div>
+            <table style={{ width: 'auto' }}>
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>{t('detail.ports.ssl_port')}</strong>
+                  </td>
+                  <td>
+                    <Sticker variant="success">5555</Sticker>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{t('detail.ports.tcp_port')}</td>
+                  <td>
+                    <Sticker>4444</Sticker>
+                    <Tooltip icon={<WarningIcon />}>
+                      <TooltipContent>
+                        <p>
+                          <Trans
+                            ns="get-started"
+                            i18nKey="detail.ports.tcp_port_tooltip"
+                            components={{
+                              more: <LinkText href="/faq#should-i-use-ssl" />,
+                              strong: <strong />,
+                            }}
+                          />
+                        </p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{t('detail.ports.high_diff_port')}</td>
+                  <td>
+                    <Sticker>14444</Sticker>{' '}
+                    <Tooltip>
+                      <TooltipContent>
+                        <p>
+                          <Trans
+                            ns="get-started"
+                            i18nKey="detail.ports.high_diff_port_tooltip"
+                            components={{
+                              NiceHash: (
+                                <LinkText
+                                  href={
+                                    ticker
+                                      ? `/get-started/${ticker}/nicehash`
+                                      : 'nicehash'
+                                  }
+                                />
+                              ),
+                            }}
+                          />
+                        </p>
+                        <ul>
+                          {highDiffServers.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      </TooltipContent>
+                    </Tooltip>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
     </>
   );
 };

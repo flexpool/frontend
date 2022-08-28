@@ -4,6 +4,7 @@ import qs from 'query-string';
 import { CopyButton } from 'src/components/CopyButton';
 import { useTranslation } from 'next-i18next';
 import { createBrowserHistory } from 'history';
+import { workerNameCheck } from '@/utils/checks';
 
 const HighlightItem = styled.span`
   background: var(--bg-primary);
@@ -66,6 +67,13 @@ const replaceStringWithNodes = (
   return result;
 };
 
+const replaceHKEPorts = (regionURL: string, varname: string, s: string) => {
+  if (regionURL == 'sgeetc.gfwroute.co') {
+    return s.replaceAll(`${varname}:5555`, `${varname}:58607`);
+  }
+  return s;
+};
+
 export const MinerCommand: React.FC<{
   command: string;
 }> = ({ command }) => {
@@ -79,6 +87,12 @@ export const MinerCommand: React.FC<{
     workerName = t('cmd_keys.WORKER_NAME'),
   } = qs.parse(typeof window !== 'undefined' ? window.location.search : '');
 
+  var workerNameProcessed = workerName;
+
+  if (!workerNameCheck(workerNameProcessed as string)) {
+    workerNameProcessed = 'default';
+  }
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.addEventListener('popstate', function (event) {
@@ -88,7 +102,19 @@ export const MinerCommand: React.FC<{
   }, []);
 
   const replacedText = React.useMemo(() => {
-    return replaceStringWithNodes(command, [
+    var preCommand = replaceHKEPorts(
+      primaryServer as string,
+      'CLOSEST_SERVER',
+      command
+    );
+
+    preCommand = replaceHKEPorts(
+      secondaryServer as string,
+      'BACKUP_SERVER',
+      preCommand
+    );
+
+    return replaceStringWithNodes(preCommand, [
       {
         replace: 'CLOSEST_SERVER',
         replaceWith: <HighlightItem>{`${primaryServer}`}</HighlightItem>,
@@ -103,8 +129,8 @@ export const MinerCommand: React.FC<{
       },
       {
         replace: 'WORKER_NAME',
-        replaceWith: workerName ? (
-          <HighlightItem>{`${workerName}`}</HighlightItem>
+        replaceWith: workerNameProcessed ? (
+          <HighlightItem>{`${workerNameProcessed}`}</HighlightItem>
         ) : null,
       },
     ]);
