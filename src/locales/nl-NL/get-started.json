@@ -13,7 +13,8 @@
       "desc_one": "De makkelijkste manier om een wallet te bekomen is door je te registreren op een cryptocurrency exchange zoals <binance>Binance (Ref)</binance> of <coinbase>Coinbase</coinbase>.",
       "desc_two": "Ook al zijn exchanges comfortabel en makkelijk in gebruik, zijn ze niet zo veilig. Je kan een wallet zonder bewaarder gebruiken, maar de veiligste manier om je fondsen op te slaan is op een <strong>hardware wallet</strong>. <ledger>Ledger</ledger> en <trezor>Trezor</trezor> zijn de populairsten.",
       "wallet_address": "Wallet address",
-      "invalid_address": "Ongeldig wallet address"
+      "invalid_address": "Ongeldig wallet address",
+      "invalid_worker_name": "Invalid Worker Name"
     },
     "region": {
       "title": "Kies uw regio",
@@ -43,7 +44,11 @@
       "title": "Geef je worker een naam",
       "description": "Je worker een naam geven is aangeraden als je meerdere mining rigs met Flexpool verbindt. Zo worden de prestaties van je mining rigs duidelijker op je overzichtpagina.",
       "worker_name": "Naam worker",
-      "worker_name_placeholder": "bv. MIJN_RIG_580x2"
+      "worker_name_placeholder": "e.g. {{value}}"
+    },
+    "asic": {
+      "title": "Update your ASIC configuration",
+      "description": "Copy the config details into your ASIC configuration."
     },
     "software": {
       "title": "Kies je mining software",
@@ -112,6 +117,10 @@
             "description": "Actively developed and stable miner."
           }
         ]
+      },
+      {
+        "title": "ASIC Mining",
+        "key": "ASIC"
       }
     ]
   },
@@ -168,6 +177,10 @@
             "description": "Actively developed and stable miner."
           }
         ]
+      },
+      {
+        "title": "ASIC Mining",
+        "key": "ASIC"
       }
     ]
   },

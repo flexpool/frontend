@@ -13,7 +13,8 @@
       "desc_one": "A maneira mais fácil de obter uma carteira é registrar-se em uma exchange de criptomoedas, como a <binance>Binance (Ref)</binance> ou <coinbase>Coinbase</coinbase>.",
       "desc_two": "Embora exchanges sejam convenientes e fáceis de usar, eles não são muito seguras. Você pode usar uma carteira não custodial, mas a maneira mais segura de armazenar seus fundos é usar uma <strong>carteira física</strong>. <ledger>Ledger</ledger> e <trezor>Trezor</trezor> são as mais populares.",
       "wallet_address": "Endereço da Carteira",
-      "invalid_address": "O endereço da carteira é inválido"
+      "invalid_address": "O endereço da carteira é inválido",
+      "invalid_worker_name": "Invalid Worker Name"
     },
     "region": {
       "title": "Selecione sua região",
@@ -43,7 +44,11 @@
       "title": "Nomeie seu worker",
       "description": "Nomear seu worker é recomendado se você tiver múltiplos equipamentos de mineração conectados à Flexpool. Isto lhe dará mais clareza sobre a forma como seus equipamentos de mineração funcionam na página do painel de controle.",
       "worker_name": "Nome do Worker",
-      "worker_name_placeholder": "exemplo: MY_RIG_580x2"
+      "worker_name_placeholder": "e.g. {{value}}"
+    },
+    "asic": {
+      "title": "Update your ASIC configuration",
+      "description": "Copy the config details into your ASIC configuration."
     },
     "software": {
       "title": "Escolha seu software de mineração",
@@ -112,6 +117,10 @@
             "description": "Actively developed and stable miner."
           }
         ]
+      },
+      {
+        "title": "ASIC Mining",
+        "key": "ASIC"
       }
     ]
   },
@@ -168,6 +177,10 @@
             "description": "Actively developed and stable miner."
           }
         ]
+      },
+      {
+        "title": "ASIC Mining",
+        "key": "ASIC"
       }
     ]
   },

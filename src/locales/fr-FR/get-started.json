@@ -13,7 +13,8 @@
       "desc_one": "Le moyen le plus simple d'obtenir un portefeuille est de s'inscrire sur une bourse de crypto-monnaies comme <binance>Binance (Ref)</binance> ou <coinbase>Coinbase</coinbase>.",
       "desc_two": "Bien que les échanges soient confortables et faciles à utiliser, ils ne sont pas très sûrs. Vous pouvez utiliser un portefeuille sans garde, mais le moyen le plus sûr de stocker vos fonds est d'utiliser un <strong>portefeuille matériel</strong>. <ledger>Ledger</ledger> et <trezor>Trezor</trezor> sont les plus populaires.",
       "wallet_address": "Adresse du portefeuille",
-      "invalid_address": "Adresse du portefeuille invalide"
+      "invalid_address": "Adresse du portefeuille invalide",
+      "invalid_worker_name": "Invalid Worker Name"
     },
     "region": {
       "title": "Sélectionnez votre région",
@@ -43,7 +44,11 @@
       "title": "Nommez votre plateforme de minage",
       "description": "Il est recommandé de nommer votre plateforme de minage si vous avez plusieurs connectées à Flexpool. Cela vous donnera plus de clarté sur les performances de vos plateformes minières sur votre page de tableau de bord.",
       "worker_name": "Nom de votre plateforme de minage",
-      "worker_name_placeholder": "par exemple MON_RIG_580x2"
+      "worker_name_placeholder": "e.g. {{value}}"
+    },
+    "asic": {
+      "title": "Update your ASIC configuration",
+      "description": "Copy the config details into your ASIC configuration."
     },
     "software": {
       "title": "Choisissez votre logiciel de minage",
@@ -112,6 +117,10 @@
             "description": "Actively developed and stable miner."
           }
         ]
+      },
+      {
+        "title": "ASIC Mining",
+        "key": "ASIC"
       }
     ]
   },
@@ -168,6 +177,10 @@
             "description": "Actively developed and stable miner."
           }
         ]
+      },
+      {
+        "title": "ASIC Mining",
+        "key": "ASIC"
       }
     ]
   },

@@ -13,7 +13,8 @@
       "desc_one": "Helpoin tapa saada kryptovaluutalle säilityspaikka on rekisteröitymällä kryptovaluutan vaihtopalveluihin kuten <binance>Binance</binance> tai <coinbase>Coinbase</coinbase>.",
       "desc_two": "Vaikka valuutan vaihtopalvelut ovat mukavia ja helppokäyttöisiä, ne eivät kuitenkaan ole turvallisin vaihtoehto. Voit käyttää kryptovaluuttojen säilyttämiseen ns. \"non-custodial\" lompakkoa, mutta turvallisin kryptojen säilytysmuoto on ns. <strong>Hardware</strong>-lompakko. Suosittuja hardware-lompakkoja ovat mm. <ledger>Ledger</ledger> sekä <trezor>Trezor</trezor>.",
       "wallet_address": "Lompakon Osoite",
-      "invalid_address": "Virheellinen lompakon osoite"
+      "invalid_address": "Virheellinen lompakon osoite",
+      "invalid_worker_name": "Invalid Worker Name"
     },
     "region": {
       "title": "Valitse alueesi",
@@ -43,7 +44,11 @@
       "title": "Nimeä laitteesi",
       "description": "Laitteesi nimeämistä suositellaan, jos käytät useampaa laitetta Flexpoolissa. Tämä antaa sinulle enemmän selvyyttä laitteidesi suorituskyvystä.",
       "worker_name": "Laitteen nimi",
-      "worker_name_placeholder": "esimerkiksi Minun_laite_580x2"
+      "worker_name_placeholder": "e.g. {{value}}"
+    },
+    "asic": {
+      "title": "Update your ASIC configuration",
+      "description": "Copy the config details into your ASIC configuration."
     },
     "software": {
       "title": "Valitse louhinta-ohjelmisto",
@@ -112,6 +117,10 @@
             "description": "Actively developed and stable miner."
           }
         ]
+      },
+      {
+        "title": "ASIC Mining",
+        "key": "ASIC"
       }
     ]
   },
@@ -168,6 +177,10 @@
             "description": "Actively developed and stable miner."
           }
         ]
+      },
+      {
+        "title": "ASIC Mining",
+        "key": "ASIC"
       }
     ]
   },

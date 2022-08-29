@@ -13,7 +13,8 @@
       "desc_one": "Det enklaste sättet att få en wallet på är att registrera dig på en kryptovalutaväxlare såsom <binance>Binance (Ref)</binance> eller <coinbase>Coinbase</coinbase>.",
       "desc_two": "Även fast kryptovalutaväxlare är bekväma och enkla att använda, är de inte så säkra. Du kan använda en privat wallet, men det säkraste sättet att förvara dina tillgångar på är att använda en <strong>hårdvaru-wallet</strong>. <ledger>Ledger</ledger> och <trezor>Trezor</trezor> är de populäraste.",
       "wallet_address": "Wallet-Adress",
-      "invalid_address": "Ogiltig wallet-adress"
+      "invalid_address": "Ogiltig wallet-adress",
+      "invalid_worker_name": "Invalid Worker Name"
     },
     "region": {
       "title": "Välj din region",
@@ -43,7 +44,11 @@
       "title": "Namnge din worker",
       "description": "Att namnge din worker är rekommenderat ifall du har flera mining-riggar anslutna till Flexpool. Detta kommer ge dig mer klarhet om hur dina mining-riggar presterar på din Dashboard.",
       "worker_name": "Worker-Namn",
-      "worker_name_placeholder": "t.ex. MIN_RIGG_580x2"
+      "worker_name_placeholder": "e.g. {{value}}"
+    },
+    "asic": {
+      "title": "Update your ASIC configuration",
+      "description": "Copy the config details into your ASIC configuration."
     },
     "software": {
       "title": "Välj din mining-programvara",
@@ -112,6 +117,10 @@
             "description": "Actively developed and stable miner."
           }
         ]
+      },
+      {
+        "title": "ASIC Mining",
+        "key": "ASIC"
       }
     ]
   },
@@ -168,6 +177,10 @@
             "description": "Actively developed and stable miner."
           }
         ]
+      },
+      {
+        "title": "ASIC Mining",
+        "key": "ASIC"
       }
     ]
   },
