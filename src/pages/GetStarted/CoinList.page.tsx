@@ -72,6 +72,7 @@ export const MineableCoinList: React.FC = () => {
               }
             ) as { key: string; value: string }[];
 
+            // TODO: should rely on mineableCoins to reduce code smell
             const poolHw = t(`detail_${item.ticker.toLowerCase()}.hardware`, {
               returnObjects: true,
             }) as MineableCoinHardware[];

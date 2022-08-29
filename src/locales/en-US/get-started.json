@@ -46,6 +46,10 @@
       "worker_name": "Worker Name",
       "worker_name_placeholder": "e.g. {{value}}"
     },
+    "asic": {
+      "title": "Update your ASIC configuration",
+      "description": "Copy the config details into your ASIC configuration."
+    },
     "software": {
       "title": "Choose your mining software",
       "fee": "Fee"

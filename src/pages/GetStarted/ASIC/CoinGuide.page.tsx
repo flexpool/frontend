@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
+import { Highlight } from 'src/components/Typo/Typo';
 
 import { MineableCoinHardware, mineableCoins } from '../mineableCoinList';
 import { PingTestSection } from './../GPU/PingTest.section';
@@ -21,6 +22,21 @@ export const MineableCoinGuidePage: React.FC = () => {
   const ticker = router.query.ticker;
   const { t, i18n } = useTranslation('get-started');
   const { t: seoT } = useTranslation('seo');
+
+  const [urlState, setUrlState] = useState(new Date());
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const handlePopState = () => {
+        setUrlState(new Date());
+      };
+
+      window.addEventListener('popstate', handlePopState);
+      return () => {
+        window.removeEventListener('popstate', handlePopState);
+      };
+    }
+  }, []);
 
   const mineableCoin = React.useMemo(() => {
     return mineableCoins.find((item) => item.ticker === ticker);
@@ -98,6 +114,11 @@ export const MineableCoinGuidePage: React.FC = () => {
       <Spacer size="xl" />
       <SetWorkerNameSection />
       <Spacer size="xl" />
+      <h2>
+        <Highlight>#4</Highlight> {t('detail.asic.title')}
+      </h2>
+      <p>{t('detail.asic.description')}</p>
+      <Spacer />
       <ExampleInterfaceWrapper>
         <ProcessedExampleInterface
           poolNum={'1 (Primary)'}
