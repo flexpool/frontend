@@ -38,7 +38,7 @@
     "get_started_home": "在这个页面上，你可以找到我们所有关于如何在Flexpool上挖矿入门教程。",
     "network_stats": "在此页面上查看 {{coinName}} ({{coinTicker}}) 历史网络统计数据，包括算力、难度和出块时间。",
     "search": "输入钱包地址搜索.",
-    "the_merge_announcement": "The Ethereum developers have confirmed The Merge for approximately September 10-20 (the actual date is subject to change depending on the network hashrate). After the fork has happened, Ethereum will connect the Beacon Chain (Proof-of-Stake consensus layer) to the Ethereum mainnet, effectively replacing mining with staking. Mining Ethereum will no longer be possible after the transition has happened.",
+    "the_merge_announcement": "以太坊开发人员已确认大约 9 月 10 日至 20 日的 Merge（过渡到 PoS）（实际日期可能会根据网络哈希率而变化）。分叉发生后，以太坊将信标链（Proof-of-Stake 共识层）连接到以太坊主网，有效地以 Staking 代替挖矿。过渡发生后，将无法再通过显卡挖以太坊。",
     "the_merge_countdown": "查看距离 The Merge 还有多久"
   },
   "keywords": {
