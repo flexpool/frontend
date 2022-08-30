@@ -38,7 +38,7 @@
     "get_started_home": "На цій сторінці ви можете знайти всі наші інтерактивні посібники з початку роботи щодо майнінгу на Flexpool.",
     "network_stats": "View {{coinName}} ({{coinTicker}}) historical network statistics including hashrate, difficulty, and block time on this page.",
     "search": "Search by your wallet address.",
-    "the_merge_announcement": "The Ethereum developers have confirmed The Merge (transition to PoS) for September 15. At that date, Ethereum will connect the Beacon Chain (Proof-of-Stake consensus layer) to the Ethereum mainnet, effectively replacing mining with staking. Mining Ethereum will no longer be possible after the transition has happened.",
+    "the_merge_announcement": "The Ethereum developers have confirmed The Merge for approximately September 10-20 (the actual date is subject to change depending on the network hashrate). After the fork has happened, Ethereum will connect the Beacon Chain (Proof-of-Stake consensus layer) to the Ethereum mainnet, effectively replacing mining with staking. Mining Ethereum will no longer be possible after the transition has happened.",
     "the_merge_countdown": "View how long until The Merge happens."
   },
   "keywords": {

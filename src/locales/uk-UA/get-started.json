@@ -13,7 +13,8 @@
       "desc_one": "Найпростіший спосіб отримати гаманець - зареєструватися на біржі криптовалют, наприклад <binance>Binance (Ref)</binance> або <coinbase>Coinbase</coinbase>.",
       "desc_two": "Хоча обмінники зручні та прості у використанні, вони не дуже безпечні. Ви можете використовувати гаманець без зберігання, але найбезпечніший спосіб зберігати кошти – це використовувати апаратний гаманець <strong></strong>. <ledger>Ledger</ledger> і <trezor>Trezor</trezor> є найпопулярнішими.",
       "wallet_address": "Адреса гаманця",
-      "invalid_address": "Недійсна адреса гаманця"
+      "invalid_address": "Недійсна адреса гаманця",
+      "invalid_worker_name": "Invalid Worker Name"
     },
     "region": {
       "title": "Виберіть свій регіон",
@@ -43,7 +44,11 @@
       "title": "Назвіть свого працівника",
       "description": "Рекомендується назвати свого працівника, якщо у вас є кілька майнінгових установок, підключених до Flexpool. Це дасть вам більше ясності щодо роботи ваших майнінгових установок на сторінці інформаційної панелі.",
       "worker_name": "Ім'я працівника",
-      "worker_name_placeholder": "наприклад MY_RIG_580x2"
+      "worker_name_placeholder": "e.g. {{value}}"
+    },
+    "asic": {
+      "title": "Update your ASIC configuration",
+      "description": "Copy the config details into your ASIC configuration."
     },
     "software": {
       "title": "Виберіть програмне забезпечення для майнінгу",
@@ -112,6 +117,10 @@
             "description": "Actively developed and stable miner."
           }
         ]
+      },
+      {
+        "title": "ASIC Mining",
+        "key": "ASIC"
       }
     ]
   },
@@ -168,6 +177,10 @@
             "description": "Actively developed and stable miner."
           }
         ]
+      },
+      {
+        "title": "ASIC Mining",
+        "key": "ASIC"
       }
     ]
   },

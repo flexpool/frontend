@@ -13,7 +13,8 @@
       "desc_one": "支持以太币的交易所一般会提供钱包充值，例如 <binance>币安 （推荐链接）</binance>、火币网、<coinbase>Coinbase</coinbase> 等。",
       "desc_two": "中心化交易所的钱包是托管钱包，相关风险由矿工自行承担。非托管的App及Web钱包、自创匿名钱包地址也可以用。最安全是使用 <strong>硬件钱包</strong>，例如 <ledger>Ledger</ledger> 和 <trezor>Trezor</trezor> 。",
       "wallet_address": "您的钱包地址",
-      "invalid_address": "钱包地址无效"
+      "invalid_address": "钱包地址无效",
+      "invalid_worker_name": "Worker 名字不符合"
     },
     "region": {
       "title": "选择服务器",
@@ -43,7 +44,11 @@
       "title": "矿机定名",
       "description": "建议设置矿机名字，容易分析矿机情况",
       "worker_name": "矿机名字",
-      "worker_name_placeholder": "例如：矿机RX580x2"
+      "worker_name_placeholder": "e.g. {{value}}"
+    },
+    "asic": {
+      "title": "更新你的 ASIC 配置信息",
+      "description": "复制配置信息到 ASIC 配置里。"
     },
     "software": {
       "title": "选择挖矿软件",
@@ -112,6 +117,10 @@
             "description": "积极发展和稳定的矿工。"
           }
         ]
+      },
+      {
+        "title": "ASIC 挖矿",
+        "key": "ASIC"
       }
     ]
   },
@@ -168,6 +177,10 @@
             "description": "积极发展和稳定的矿工。"
           }
         ]
+      },
+      {
+        "title": "ASIC 挖矿",
+        "key": "ASIC"
       }
     ]
   },

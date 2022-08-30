@@ -13,7 +13,8 @@
       "desc_one": "Nejjednodušší způsob, jak získat vlastní adresu peněženky, je zaregistrovat se na burze kryptoměn, jako je <binance>Binance (Ref)</binance> nebo <coinbase>Coinbase</coinbase>.",
       "desc_two": "Přestože peněženky na burzách jsou pohodlné a snadno použitelné, nejsou příliš bezpečné. Můžete použít peněženku bez úschovy, ale nejbezpečnějším způsobem, jak uložit vaše prostředky, je použít <strong>hardwarovou peněženku</strong>. <ledger>Ledger</ledger> a <trezor>Trezor</trezor> jsou nejoblíbenější.",
       "wallet_address": "Adresa peněženky",
-      "invalid_address": "Neplatná adresa peněženky"
+      "invalid_address": "Neplatná adresa peněženky",
+      "invalid_worker_name": "Invalid Worker Name"
     },
     "region": {
       "title": "Zvol si svůj region",
@@ -43,7 +44,11 @@
       "title": "Pojmenuj svého workera",
       "description": "Pojmenování workera je doporučeno, pokud máš více těžebních zařízení připojených k Flexpoolu. To ti poskytne více jasných informací o tom, jak se jak se tvům rigům daří.",
       "worker_name": "Název workera",
-      "worker_name_placeholder": "př. MUJ_RIG_RX480x12"
+      "worker_name_placeholder": "e.g. {{value}}"
+    },
+    "asic": {
+      "title": "Update your ASIC configuration",
+      "description": "Copy the config details into your ASIC configuration."
     },
     "software": {
       "title": "Vyber těžební software",
@@ -112,6 +117,10 @@
             "description": "Actively developed and stable miner."
           }
         ]
+      },
+      {
+        "title": "ASIC Mining",
+        "key": "ASIC"
       }
     ]
   },
@@ -168,6 +177,10 @@
             "description": "Actively developed and stable miner."
           }
         ]
+      },
+      {
+        "title": "ASIC Mining",
+        "key": "ASIC"
       }
     ]
   },
