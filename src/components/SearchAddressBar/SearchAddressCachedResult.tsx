@@ -104,6 +104,7 @@ export const SearchAddressCachedResult: React.FC<{
         </ItemRight>
       );
     }
+
     return (
       <ItemRight key={coin}>
         <CoinLabel>{coin}</CoinLabel>
@@ -113,30 +114,38 @@ export const SearchAddressCachedResult: React.FC<{
 
   return (
     <>
-      {data.slice(0, 6).map((item) => (
-        <ItemWrap key={item.address}>
-          <HistoryItem
-            onClick={() => {
-              onAddressClick?.(item.address);
-              search(item.address, item.coin, callback);
-            }}
-            onMouseDown={(e) => e.preventDefault()}
-          >
-            <Address>{item.address}</Address>
-            {renderCoinLabel(item.coin)}
-          </HistoryItem>
-          <RemoveWrap
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              d(addressSearchRemove(item.address));
-            }}
-            onMouseDown={(e) => e.preventDefault()}
-          >
-            <FaTimes />
-          </RemoveWrap>
-        </ItemWrap>
-      ))}
+      {data
+        .filter(
+          (i) =>
+            Array.isArray(i.coin) ||
+            typeof i.coin === 'string' ||
+            i.coin === null
+        )
+        .slice(0, 6)
+        .map((item) => (
+          <ItemWrap key={item.address}>
+            <HistoryItem
+              onClick={() => {
+                onAddressClick?.(item.address);
+                search(item.address, item.coin, callback);
+              }}
+              onMouseDown={(e) => e.preventDefault()}
+            >
+              <Address>{item.address}</Address>
+              {renderCoinLabel(item.coin)}
+            </HistoryItem>
+            <RemoveWrap
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                d(addressSearchRemove(item.address));
+              }}
+              onMouseDown={(e) => e.preventDefault()}
+            >
+              <FaTimes />
+            </RemoveWrap>
+          </ItemWrap>
+        ))}
     </>
   );
 };
