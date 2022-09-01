@@ -91,6 +91,7 @@ const DonationAnnouncement = styled(AnnouncementBar)`
 export const MinerDashboardPageContent: React.FC<{
   coinTicker: string;
   address: string;
+  status: AddressStatus;
 }> = (props) => {
   const { coinTicker, address } = props;
   const { data: poolCoins } = usePoolCoinsQuery();
@@ -198,7 +199,7 @@ export const MinerDashboardPageContent: React.FC<{
             </DonationAnnouncement>
           )}
 
-          {coinTicker === 'xch' && (
+          {props.status === 'ready' && coinTicker === 'xch' && (
             <FlexFarmerAnnouncement address={address} borderLocation="bottom" />
           )}
 
