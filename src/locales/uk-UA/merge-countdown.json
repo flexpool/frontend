@@ -7,5 +7,9 @@
   "seconds": "Seconds",
   "estimated_date": "Estimated Date",
   "estimated_time": "Estimated Time",
-  "estimation_explain": "This is an estimate, the timing is subject to change depending on the network hashrate."
+  "estimation_explain": "This is an estimate, the timing is subject to change depending on the network hashrate.",
+  "the_merge": "The Merge",
+  "will_happen": "will happen in",
+  "has_happened": "has happened.",
+  "fun_ride": " It's been a fun ride."
 }
