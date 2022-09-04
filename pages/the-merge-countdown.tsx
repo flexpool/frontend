@@ -196,7 +196,7 @@ export const TheMergeAnnouncement = () => {
     : false;
 
   const { letters: partThree, start: startPartThree } = useTypewriter(
-    " It's been a fun ride.",
+    t('fun_ride'),
     {
       delay: 400,
       enable: false,
@@ -204,7 +204,7 @@ export const TheMergeAnnouncement = () => {
   );
 
   const { letters: partTwo, start: startPartTwo } = useTypewriter(
-    'has happened.',
+    t('has_happened'),
     {
       delay: 300,
       enable: false,
@@ -215,7 +215,7 @@ export const TheMergeAnnouncement = () => {
     }
   );
 
-  const { letters: partOne } = useTypewriter('will happen in', {
+  const { letters: partOne } = useTypewriter(t('will_happen'), {
     delay: 400,
     enable: isCountdownFinished,
     delete: true,
@@ -275,9 +275,9 @@ export const TheMergeAnnouncement = () => {
       <Content md paddingLg>
         <CountdownCard>
           <CountdownTitle>
-            The Merge{' '}
+            {t('the_merge')}{' '}
             {!isCountdownFinished ? (
-              'will happen in'
+              t('will_happen')
             ) : (
               <TypeWriterInput>
                 {partOne}
