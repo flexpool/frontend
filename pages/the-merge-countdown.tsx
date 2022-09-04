@@ -196,9 +196,9 @@ export const TheMergeAnnouncement = () => {
     : false;
 
   const { letters: partThree, start: startPartThree } = useTypewriter(
-    "It's been a fun ride.",
+    " It's been a fun ride.",
     {
-      delay: 600,
+      delay: 400,
       enable: false,
     }
   );
@@ -216,7 +216,7 @@ export const TheMergeAnnouncement = () => {
   );
 
   const { letters: partOne } = useTypewriter('will happen in', {
-    delay: 1000,
+    delay: 400,
     enable: isCountdownFinished,
     delete: true,
     isTyped: true,

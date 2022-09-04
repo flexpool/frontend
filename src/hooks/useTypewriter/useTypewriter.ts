@@ -41,7 +41,7 @@ export const useTypewriter = (
   const tick = useCallback(() => {
     clearTimeout(timeoutId.current);
 
-    let t = 150 - Math.random() * 100;
+    let t = 120 - Math.random() * 100;
 
     if (!isTyped.current) {
       cursor.current += 1;
