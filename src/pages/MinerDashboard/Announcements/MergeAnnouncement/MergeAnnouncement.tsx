@@ -19,6 +19,22 @@ const BannerLink = (props: any) => {
   );
 };
 
+const CountdownLink = (props: any) => {
+  return (
+    <Link href="/the-merge-countdown" passHref>
+      <a
+        style={{
+          color: 'white',
+          textDecoration: 'underline',
+          cursor: 'pointer',
+        }}
+      >
+        {props.children}
+      </a>
+    </Link>
+  );
+};
+
 const MergeAnnouncement = () => {
   const { t } = useTranslation('dashboard');
 
@@ -29,6 +45,8 @@ const MergeAnnouncement = () => {
         i18nKey="announcements.the_merge"
         components={{
           merge: <BannerLink />,
+          countdown: <CountdownLink />,
+          br: <br />,
         }}
       />
     </AnnouncementBar>
