@@ -3,6 +3,7 @@ export type Ticker =
   | 'etc'
   | 'xch'
   | 'btc'
+  | 'zil'
   | 'usd'
   | 'cad'
   | 'eur'

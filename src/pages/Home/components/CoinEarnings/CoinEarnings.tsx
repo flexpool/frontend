@@ -160,6 +160,8 @@ const CoinEarningsItem: React.FC<{ data?: ApiPoolCoinFull }> = ({ data }) => {
                     ? percentFormatter(9 / 1000)
                     : data?.ticker === 'xch'
                     ? percentFormatter(7 / 1000)
+                    : data?.ticker === 'zil'
+                    ? percentFormatter(20 / 1000)
                     : data?.ticker === 'btc'
                     ? percentFormatter(1 / 1000)
                     : percentFormatter(10 / 1000),
