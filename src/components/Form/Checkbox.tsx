@@ -23,6 +23,7 @@ const Check = styled.div`
   border-right: 3px solid white;
   border-radius: 2px;
   transition: 0.2s all;
+  opacity: 0;
 `;
 
 const TickBox = styled.span`
@@ -46,6 +47,7 @@ const SInput = styled.input`
       background: ${(p) => p.theme.color.primary};
       border-color: ${(p) => p.theme.color.primary};
       ${Check} {
+        opacity: 1;
         transform: translateY(-1px) rotate(45deg);
       }
     }

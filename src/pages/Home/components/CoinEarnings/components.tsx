@@ -76,21 +76,6 @@ export const HeadSplit = styled.div`
   }
 `;
 
-export const IntervalContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 1;
-  flex-wrap: wrap;
-  margin-left: -1rem;
-  margin-right: -1rem;
-  & > * {
-    margin-left: 1rem;
-    margin-right: 1rem;
-    padding-top: 1.5rem;
-  }
-`;
-
 export const FiatValue = styled.div`
   font-size: 2rem;
   font-weight: 700;
@@ -108,6 +93,25 @@ export const IntervalItem = styled.div`
   @media screen and (max-width: 540px) {
     justify-content: center;
     text-align: center;
+  }
+`;
+
+export const IntervalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  & > * {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding-top: 1.5rem;
+  }
+
+  ${IntervalItem}:first-child {
+    padding-top: 10px;
   }
 `;
 
@@ -147,6 +151,10 @@ export const PoolDetails = styled.div`
   flex-direction: column;
   @media screen and (max-width: 540px) {
     text-align: center;
+  }
+
+  * + p {
+    margin-top: 4px;
   }
 `;
 
