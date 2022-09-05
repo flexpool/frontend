@@ -4,12 +4,12 @@ const feePayoutLimitDetails = {
   eth: {
     unit: 'Gwei',
     title: 'Gas Price',
-    multiplier: 1000000000,
+    multiplier: 1e9,
   },
   etc: {
     unit: 'Gwei',
     title: 'Gas Price',
-    multiplier: 1000000000,
+    multiplier: 1e9,
   },
   xch: {
     unit: 'mojo/CU',
@@ -20,6 +20,11 @@ const feePayoutLimitDetails = {
     unit: 'sat/b',
     title: 'Sats per Byte',
     multiplier: 1,
+  },
+  zil: {
+    unit: 'ZIL',
+    title: 'Gas Price',
+    multiplier: 1e12,
   },
 };
 
