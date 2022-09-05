@@ -139,7 +139,11 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         Component: ({ data, config }) => {
           const url =
             data.type !== 'orphan' &&
-            getCoinLink(data.type, data.hash, config.coinTicker);
+            getCoinLink(
+              data.type,
+              coinTicker === 'zil' ? String(data.number) : data.hash,
+              config.coinTicker
+            );
 
           const content = (
             <Ws
@@ -315,7 +319,12 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   const onRowClick = React.useCallback(
     (data: ApiBlock) => {
       const url =
-        data.type !== 'orphan' && getCoinLink(data.type, data.hash, coinTicker);
+        data.type !== 'orphan' &&
+        getCoinLink(
+          data.type,
+          coinTicker === 'zil' ? String(data.number) : data.hash,
+          coinTicker
+        );
       if (url) {
         window.open(url, '_blank');
       }
