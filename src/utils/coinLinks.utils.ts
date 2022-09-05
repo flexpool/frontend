@@ -3,6 +3,7 @@ const blockUrlMap = {
   etc: 'https://blockscout.com/etc/mainnet/block/%v',
   xch: 'https://xchscan.com/blocks/%v',
   btc: 'https://www.blockchain.com/btc/block/%v',
+  zil: 'https://devex.zilliqa.com/dsbk/%v',
 };
 
 const uncleUrlMap = {
@@ -16,6 +17,7 @@ const transactionUrlMap = {
   polygon: 'https://polygonscan.com/tx/%v',
   xch: 'https://xchscan.com/txns/%v',
   btc: 'https://www.blockchain.com/btc/tx/%v',
+  zil: 'https://viewblock.io/zilliqa/tx/%v',
 };
 
 const walletAddressUrlMap = {
@@ -24,6 +26,7 @@ const walletAddressUrlMap = {
   polygon: 'https://polygonscan.com/address/%v',
   xch: 'https://xchscan.com/address/%v',
   btc: 'https://www.blockchain.com/btc/address/%v',
+  zil: 'https://viewblock.io/zilliqa/address/%v',
 };
 
 const urlMaps = {
@@ -36,7 +39,7 @@ const urlMaps = {
 export type CoinLinkType = keyof typeof urlMaps;
 export const getCoinLink = (
   type: CoinLinkType,
-  hash: string,
+  value: string,
   coin?: string
 ) => {
   const urlMap = urlMaps[type];
@@ -45,7 +48,7 @@ export const getCoinLink = (
     const key = coin as keyof typeof urlMap;
     const url = urlMap[key];
     try {
-      return url.replaceAll('%v', hash);
+      return url.replaceAll('%v', value);
     } catch {
       return undefined;
     }
