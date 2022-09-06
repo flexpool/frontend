@@ -1,6 +1,7 @@
 import { FaTimes } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { Badge } from '@/components/Badge';
 import useSearchAddress from '@/hooks/useSearchAddress';
 import { addressSearchRemove } from 'src/rdx/addressSearch/addressSearch.actions';
 import { AddressCacheItem } from './searchCache';
@@ -30,16 +31,6 @@ const HistoryItem = styled.a`
     color: var(--primary);
     text-decoration: none;
   }
-`;
-
-const CoinLabel = styled.span`
-  background: var(--primary);
-  color: var(--text-on-bg);
-  padding: 0.2rem 0.3rem;
-  text-transform: uppercase;
-  border-radius: 5px;
-  font-size: 0.875rem;
-  margin-left: 6px;
 `;
 
 const Address = styled.span`
@@ -99,7 +90,7 @@ export const SearchAddressCachedResult: React.FC<{
       return (
         <ItemRight>
           {coin.map((c) => (
-            <CoinLabel key={c}>{c}</CoinLabel>
+            <Badge key={c}>{c}</Badge>
           ))}
         </ItemRight>
       );
@@ -107,7 +98,7 @@ export const SearchAddressCachedResult: React.FC<{
 
     return (
       <ItemRight key={coin}>
-        <CoinLabel>{coin}</CoinLabel>
+        <Badge>{coin}</Badge>
       </ItemRight>
     );
   };
