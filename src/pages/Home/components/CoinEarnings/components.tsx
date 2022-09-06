@@ -152,10 +152,6 @@ export const PoolDetails = styled.div`
   @media screen and (max-width: 540px) {
     text-align: center;
   }
-
-  * + p {
-    margin-top: 4px;
-  }
 `;
 
 export const ButtonGroup = styled.div`
