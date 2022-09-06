@@ -2,8 +2,8 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
-import qs from 'query-string';
 import {
   FaArrowDown,
   FaArrowUp,
@@ -37,6 +37,7 @@ import { ScrollArea } from 'src/components/layout/ScrollArea';
 import { CoinCalculator } from 'src/sections/CoinCalculator';
 import { CardGrid } from 'src/components/layout/Card';
 import { CoinLogo } from 'src/components/CoinLogo';
+import { Badge } from '@/components/Badge';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import usePoolCoinsFullQuery from '@/hooks/api/usePoolCoinsFullQuery';
 
@@ -71,6 +72,11 @@ const ModalNews: React.FC<{ data?: ApiPoolCoinFull[] | null }> = ({ data }) => {
   );
 };
 
+const CoinNameWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const CoinsWeMineSection = () => {
   const { data: poolCoinsFull, isLoading } = usePoolCoinsFullQuery();
   const { t } = useTranslation('home');
@@ -100,11 +106,14 @@ export const CoinsWeMineSection = () => {
               scroll={false}
               shallow
             >
-              <CoinName aria-label={`${data.ticker} news`}>
-                <CoinLogo size="lg" ticker={data.ticker} />
-                <span style={{ whiteSpace: 'nowrap' }}>{data.name}</span>
-                <TickerName>{data.ticker.toUpperCase()}</TickerName>
-              </CoinName>
+              <CoinNameWrapper>
+                <CoinName aria-label={`${data.ticker} news`}>
+                  <CoinLogo size="lg" ticker={data.ticker} />
+                  <span style={{ whiteSpace: 'nowrap' }}>{data.name}</span>
+                  <TickerName>{data.ticker.toUpperCase()}</TickerName>
+                </CoinName>
+                {data.isDual && <Badge>DUAL</Badge>}
+              </CoinNameWrapper>
             </Link>
           );
         },
