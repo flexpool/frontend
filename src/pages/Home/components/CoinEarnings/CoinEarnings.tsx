@@ -52,11 +52,26 @@ const DualMineCoinIcon = styled.div`
 const DualMineCheckboxLabelContainer = styled.div`
   display: flex;
   align-items: center;
+  white-space: nowrap;
 `;
 
 const Uppercase = styled.span`
   text-transform: uppercase;
 `;
+
+const getCoinPoolFee = (coin: string) => {
+  return coin === 'eth'
+    ? 9 / 1000
+    : coin === 'etc'
+    ? 9 / 1000
+    : coin === 'xch'
+    ? 7 / 1000
+    : coin === 'zil'
+    ? 20 / 1000
+    : coin === 'btc'
+    ? 1 / 1000
+    : 10 / 1000;
+};
 
 const CoinEarningsItem: React.FC<{
   data?: ApiPoolCoinFull;
@@ -140,26 +155,16 @@ const CoinEarningsItem: React.FC<{
   };
 
   const renderPoolFee = (coin: string, dualMineCoin?: string) => {
-    const getCoinPoolFee = (coin: string) => {
-      return coin === 'eth'
-        ? percentFormatter(9 / 1000)
-        : coin === 'etc'
-        ? percentFormatter(9 / 1000)
-        : coin === 'xch'
-        ? percentFormatter(7 / 1000)
-        : coin === 'zil'
-        ? percentFormatter(18.9 / 1000)
-        : coin === 'btc'
-        ? percentFormatter(1 / 1000)
-        : percentFormatter(10 / 1000);
-    };
+    const dualMineBoost = dailyDualMineCounterPrice / dailyCounterPrice;
+
+    const poolFee = dualMineCoin
+      ? getCoinPoolFee(dualMineCoin) * dualMineBoost + getCoinPoolFee(coin)
+      : getCoinPoolFee(coin);
 
     return (
       <>
         {t('coin_earnings_cards.pool_fee', {
-          value: dualMineCoin
-            ? getCoinPoolFee(dualMineCoin)
-            : getCoinPoolFee(coin),
+          value: percentFormatter(poolFee),
         })}{' '}
         {coin === 'eth' && (
           <Tooltip plus>
