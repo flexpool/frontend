@@ -139,22 +139,27 @@ const CoinEarningsItem: React.FC<{
     );
   };
 
-  const renderPoolFee = (coin: string) => {
+  const renderPoolFee = (coin: string, dualMineCoin?: string) => {
+    const getCoinPoolFee = (coin: string) => {
+      return coin === 'eth'
+        ? percentFormatter(9 / 1000)
+        : coin === 'etc'
+        ? percentFormatter(9 / 1000)
+        : coin === 'xch'
+        ? percentFormatter(7 / 1000)
+        : coin === 'zil'
+        ? percentFormatter(18.9 / 1000)
+        : coin === 'btc'
+        ? percentFormatter(1 / 1000)
+        : percentFormatter(10 / 1000);
+    };
+
     return (
       <>
         {t('coin_earnings_cards.pool_fee', {
-          value:
-            coin === 'eth'
-              ? percentFormatter(9 / 1000)
-              : coin === 'etc'
-              ? percentFormatter(9 / 1000)
-              : coin === 'xch'
-              ? percentFormatter(7 / 1000)
-              : coin === 'zil'
-              ? percentFormatter(20 / 1000)
-              : coin === 'btc'
-              ? percentFormatter(1 / 1000)
-              : percentFormatter(10 / 1000),
+          value: dualMineCoin
+            ? getCoinPoolFee(dualMineCoin)
+            : getCoinPoolFee(coin),
         })}{' '}
         {coin === 'eth' && (
           <Tooltip plus>
@@ -235,7 +240,7 @@ const CoinEarningsItem: React.FC<{
                   {dualMineCoin && isDualMining ? (
                     <>
                       {` + ${numberFormatter(dualMineDailyPer100, {
-                        maximumFractionDigits: 3,
+                        maximumFractionDigits: 2,
                       })} ${dualMineCoin?.ticker.toUpperCase()}`}
                     </>
                   ) : (
@@ -273,7 +278,7 @@ const CoinEarningsItem: React.FC<{
                   {dualMineCoin && isDualMining ? (
                     <>
                       {` + ${numberFormatter(dualMineMonthlyPer100, {
-                        maximumFractionDigits: 3,
+                        maximumFractionDigits: 2,
                       })} ${dualMineCoin?.ticker.toUpperCase()}`}
                     </>
                   ) : (
@@ -290,20 +295,12 @@ const CoinEarningsItem: React.FC<{
       {data?.ticker && (
         <StartMiningContainer>
           <PoolDetails>
-            {dualMineCoin && isDualMining ? (
-              <>
-                <p>
-                  {renderPoolFee(data.ticker)}{' '}
-                  <Uppercase>({data.ticker})</Uppercase>
-                </p>
-                <p>
-                  {renderPoolFee(dualMineCoin.ticker)}{' '}
-                  <Uppercase>({dualMineCoin.ticker})</Uppercase>
-                </p>
-              </>
-            ) : (
-              <p>{renderPoolFee(data.ticker)}</p>
-            )}
+            <p>
+              {renderPoolFee(
+                data.ticker,
+                dualMineCoin && isDualMining ? dualMineCoin.ticker : undefined
+              )}
+            </p>
           </PoolDetails>
 
           <Link href={`/get-started/${data?.ticker}`} passHref>
