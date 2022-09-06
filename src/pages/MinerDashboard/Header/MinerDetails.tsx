@@ -19,6 +19,7 @@ import useActiveCoinNetworkFee from '@/hooks/useActiveCoinNetworkFee';
 import { isNil } from 'lodash';
 import { stringUtils } from '@/utils/string.utils';
 import NetworkLogo from '@/components/NetworkLogo';
+import useNextPoWRound from '@/hooks/useNextPoWRound';
 
 const { titleCase } = stringUtils;
 
@@ -96,6 +97,10 @@ export const MinerDetails: React.FC<{
 
   const { t } = useTranslation('dashboard');
   const dateFormatter = useLocalizedDateFormatter();
+
+  const { duration, isLoading, isInProgress, isAvailable } = useNextPoWRound(
+    coin?.ticker
+  );
 
   return (
     <Card paddingShort>
@@ -210,6 +215,20 @@ export const MinerDetails: React.FC<{
           <div>{t('header.info_coin_price', { coin: coin?.name })}:&nbsp;</div>
           <div>{counterValuePrice || <Skeleton width={40} />}</div>
         </Item>
+
+        {isAvailable && (
+          <Item>
+            <div>Next PoW Round:&nbsp;</div>
+
+            {isLoading && <Skeleton width={40} />}
+
+            {duration && (
+              <div>{`${duration?.hours} hr ${duration?.minutes} min ${duration?.seconds} sec`}</div>
+            )}
+
+            {isInProgress && <div>In progress</div>}
+          </Item>
+        )}
       </Content>
     </Card>
   );
