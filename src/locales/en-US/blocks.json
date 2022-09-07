@@ -11,8 +11,13 @@
   "network_hashrate": "Network Hashrate",
   "network_space": "Network Space",
   "network_difficulty": "Network difficulty",
+  "next_pow": "Next PoW Round",
   "network_difficulty_tooltip": "Average amount of how many hashes pool should produce to mine a block.",
   "network_difficulty_tooltip_points": "Average amount of how many points pool should produce to mine a block.",
+  "in_progress": "In Progress",
+  "hr": "hr",
+  "min": "min",
+  "sec": "sec",
   "table": {
     "title_zero": "Unable to retrieve pool data",
     "title": "Flexpool has mined {{count}} block",

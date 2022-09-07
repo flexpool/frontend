@@ -19,7 +19,12 @@ import { LoaderSpinner } from '../src/components/Loader/LoaderSpinner';
 import { useAsyncState } from '../src/hooks/useAsyncState';
 import { fetchApi } from '../src/utils/fetchApi';
 import { useLocalizedSiFormatter } from '../src/utils/si.utils';
-import { useActiveCoin } from '../src/rdx/localSettings/localSettings.hooks';
+import useNextPoWRound from '@/hooks/useNextPoWRound';
+import useIsMounted from '@/hooks/useIsMounted';
+import {
+  useActiveCoin,
+  useActiveCoinTicker,
+} from '../src/rdx/localSettings/localSettings.hooks';
 
 import NetworkStatisticsLink from '@/components/NetworkStatisticsLink';
 
@@ -31,18 +36,29 @@ function BlocksPage() {
     networkDifficulty: number;
   } | null>('poolStats', null);
   const activeCoin = useActiveCoin();
+  // Use this hook to get ticker immediately
+  const activeCoinTicker = useActiveCoinTicker();
   const siFormatter = useLocalizedSiFormatter();
   const { t, i18n } = useTranslation('blocks');
   const { t: seoT } = useTranslation('seo');
+  const isMounted = useIsMounted();
+
+  const { duration, isAvailable, isInProgress, isLoading } =
+    useNextPoWRound(activeCoinTicker);
 
   React.useEffect(() => {
     if (activeCoin?.ticker) {
       const init = { query: { coin: activeCoin?.ticker } };
+
+      const isZil = activeCoin.ticker === 'zil';
+
       statsState.start(
         Promise.all([
-          fetchApi<number>('/pool/averageLuck', init),
-          fetchApi<number>('/pool/currentLuck', init),
-          fetchApi<number>('/pool/networkHashrate', init),
+          ...(!isZil ? [fetchApi<number>('/pool/averageLuck', init)] : [-1]),
+          ...(!isZil ? [fetchApi<number>('/pool/currentLuck', init)] : [-1]),
+          ...(!isZil
+            ? [fetchApi<number>('/pool/networkHashrate', init)]
+            : [-1]),
           fetchApi<number>('/pool/networkDifficulty', init),
         ]).then(
           ([averageLuck, currentLuck, networkHashrate, networkDifficulty]) => ({
@@ -56,6 +72,8 @@ function BlocksPage() {
     }
     // eslint-disable-next-line
   }, [activeCoin?.ticker]);
+
+  const isZil = isMounted ? activeCoinTicker === 'zil' : false;
 
   return (
     <Page>
@@ -82,53 +100,62 @@ function BlocksPage() {
       </HeaderStat>
       <Content>
         <StatBoxContainer>
-          <StatBox
-            tooltip={
-              <Tooltip>
-                <TooltipContent>{t('average_luck_tooltip')}</TooltipContent>
-              </Tooltip>
-            }
-            title={<>{t('average_luck')}&nbsp;</>}
-            value={
-              statsState.isLoading || !statsState.data ? undefined : (
-                <Luck value={statsState.data.averageLuck} />
-              )
-            }
-          />
-          <StatBox
-            tooltip={
-              <Tooltip>
-                <TooltipContent>{t('current_luck_tooltip')}</TooltipContent>
-              </Tooltip>
-            }
-            title={t('current_luck')}
-            value={
-              statsState.isLoading || !statsState.data ? undefined : (
-                <Luck value={statsState.data.currentLuck} />
-              )
-            }
-          />
-          <StatBox
-            title={
-              activeCoin?.hashrateUnit === 'B'
-                ? t('network_space')
-                : t('network_hashrate')
-            }
-            value={
-              statsState.isLoading || !statsState.data
-                ? undefined
-                : `${siFormatter(
-                    statsState.data.networkHashrate *
-                      Number(activeCoin?.difficultyFactor),
-                    {
-                      unit:
-                        activeCoin?.hashrateUnit === 'H'
-                          ? 'H/s'
-                          : activeCoin?.hashrateUnit,
-                    }
-                  )}`
-            }
-          />
+          {!isZil && (
+            <StatBox
+              tooltip={
+                <Tooltip>
+                  <TooltipContent>{t('average_luck_tooltip')}</TooltipContent>
+                </Tooltip>
+              }
+              title={<>{t('average_luck')}&nbsp;</>}
+              value={
+                statsState.isLoading || !statsState.data ? undefined : (
+                  <Luck value={statsState.data.averageLuck} />
+                )
+              }
+            />
+          )}
+
+          {!isZil && (
+            <StatBox
+              tooltip={
+                <Tooltip>
+                  <TooltipContent>{t('current_luck_tooltip')}</TooltipContent>
+                </Tooltip>
+              }
+              title={t('current_luck')}
+              value={
+                statsState.isLoading || !statsState.data ? undefined : (
+                  <Luck value={statsState.data.currentLuck} />
+                )
+              }
+            />
+          )}
+
+          {!isZil && (
+            <StatBox
+              title={
+                activeCoin?.hashrateUnit === 'B'
+                  ? t('network_space')
+                  : t('network_hashrate')
+              }
+              value={
+                statsState.isLoading || !statsState.data
+                  ? undefined
+                  : `${siFormatter(
+                      statsState.data.networkHashrate *
+                        Number(activeCoin?.difficultyFactor),
+                      {
+                        unit:
+                          activeCoin?.hashrateUnit === 'H'
+                            ? 'H/s'
+                            : activeCoin?.hashrateUnit,
+                      }
+                    )}`
+              }
+            />
+          )}
+
           <StatBox
             tooltip={
               <Tooltip>
@@ -151,9 +178,29 @@ function BlocksPage() {
                   })}`
             }
           />
+
+          {isAvailable && (
+            <StatBox
+              title={t('next_pow')}
+              value={
+                isLoading ? undefined : isInProgress ? (
+                  t('in_progress')
+                ) : (
+                  <>
+                    {duration?.hours ? `${duration.hours} ${t('hr')}` : ''}{' '}
+                    {`${duration?.minutes} ${t('min')} ${duration?.seconds} ${t(
+                      'sec'
+                    )}`}
+                  </>
+                )
+              }
+            />
+          )}
         </StatBoxContainer>
         <Spacer />
-        <DynamicBlocksChart />
+
+        {!isZil && <DynamicBlocksChart />}
+
         <BlocksSection />
       </Content>
       <Spacer size="xl" />
