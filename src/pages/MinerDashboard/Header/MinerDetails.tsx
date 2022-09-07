@@ -218,18 +218,20 @@ export const MinerDetails: React.FC<{
 
         {isAvailable && (
           <Item>
-            <div>Next PoW Round:&nbsp;</div>
+            <div>{t('header.next_pow')}:&nbsp;</div>
 
             {isLoading && <Skeleton width={40} />}
 
             {duration && (
               <div>
-                {duration?.hours ? `${duration.hours} hr` : ''}{' '}
-                {`${duration?.minutes} min ${duration?.seconds} sec`}
+                {duration?.hours ? `${duration.hours} ${t('header.hr')}` : ''}{' '}
+                {`${duration?.minutes} ${t('header.min')} ${
+                  duration?.seconds
+                } ${t('header.sec')}`}
               </div>
             )}
 
-            {isInProgress && <div>In progress</div>}
+            {isInProgress && <div>{t('header.in_progress')}</div>}
           </Item>
         )}
       </Content>

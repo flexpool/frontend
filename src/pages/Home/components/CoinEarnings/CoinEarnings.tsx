@@ -138,7 +138,7 @@ const CoinEarningsItem: React.FC<{
   const renderDualMineCheckbox = (dualMineCoin) => {
     return (
       <DualMineCheckboxLabelContainer>
-        Dual mine{' '}
+        {t('coin_earnings_cards.dual_mine')}{' '}
         <DualMineCoinIcon>
           <Image
             alt={`${dualMineCoin?.name} icon`}
@@ -149,7 +149,7 @@ const CoinEarningsItem: React.FC<{
         </DualMineCoinIcon>{' '}
         <Uppercase>{dualMineCoin.ticker}</Uppercase> (+
         {percentFormatter(dailyDualMineCounterPrice / dailyCounterPrice)}{' '}
-        earnings)
+        {t('coin_earnings_cards.earnings')})
       </DualMineCheckboxLabelContainer>
     );
   };
