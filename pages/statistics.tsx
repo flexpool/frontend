@@ -24,15 +24,23 @@ import {
   useLocalizedSiFormatter,
 } from '../src/utils/si.utils';
 import NetworkStatisticsLink from '@/components/NetworkStatisticsLink';
+import useIsMounted from '@/hooks/useIsMounted';
 
 function StatisticsPage() {
   const activeTicker = useActiveCoinTicker();
   const activeCoin = useActiveCoin();
+  const isMounted = useIsMounted();
+  const isZil = isMounted && activeTicker === 'zil';
 
   const { data: poolHashrate } = usePoolHashrateQuery({ coin: activeTicker });
-  const { data: poolAverageLuck } = usePoolAverageLuckQuery({
-    coin: activeTicker,
-  });
+  const { data: poolAverageLuck } = usePoolAverageLuckQuery(
+    {
+      coin: activeTicker,
+    },
+    {
+      enabled: isMounted && !isZil,
+    }
+  );
   const { data: poolMinerCount } = usePoolMinerCountQuery({
     coin: activeTicker,
   });
@@ -77,15 +85,18 @@ function StatisticsPage() {
               unit: activeCoin?.hashrateUnit,
             })}
           />
-          <StatBox
-            title={t('average_luck')}
-            tooltip={
-              <Tooltip>
-                <TooltipContent>{t('average_luck_tooltip')}</TooltipContent>
-              </Tooltip>
-            }
-            value={poolAverageLuck && <Luck value={poolAverageLuck} />}
-          />
+          {!isZil && (
+            <StatBox
+              title={t('average_luck')}
+              tooltip={
+                <Tooltip>
+                  <TooltipContent>{t('average_luck_tooltip')}</TooltipContent>
+                </Tooltip>
+              }
+              value={poolAverageLuck && <Luck value={poolAverageLuck} />}
+            />
+          )}
+
           <StatBox
             title={t('miners')}
             value={poolMinerCount && numberFormatter(poolMinerCount)}
