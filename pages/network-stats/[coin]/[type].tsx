@@ -190,6 +190,28 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
     coinTicker: coinQuery.toUpperCase(),
   });
 
+  const defaultChartTypeOptions = [
+    { value: 'difficulty', label: commonT('difficulty') },
+    { value: 'hashrate', label: commonT('hashrate') },
+    { value: 'blocktime', label: commonT('blocktime') },
+  ];
+
+  const spaceChartTypeOptions = [
+    { value: 'difficulty', label: commonT('difficulty') },
+    { value: 'hashrate', label: commonT('hashrate_space') },
+    { value: 'blocktime', label: commonT('blocktime') },
+  ];
+
+  const zilChartTypeOptions = [
+    { value: 'difficulty', label: commonT('difficulty') },
+    { value: 'blocktime', label: commonT('blocktime') },
+  ];
+
+  var chartTypeOptions = defaultChartTypeOptions;
+  if (hashrateUnit === 'B') chartTypeOptions = spaceChartTypeOptions;
+  else if ((router.query.coin as string) === 'zil')
+    chartTypeOptions = zilChartTypeOptions;
+
   return (
     <Page>
       <NextSeo
@@ -230,7 +252,7 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
                   onSelect={handleChartTypeSelect}
                   value={typeQuery}
                   coin={activeCoin.ticker}
-                  hashrateUnit={hashrateUnit}
+                  options={chartTypeOptions}
                 />
               </ChartHeaderRow>
               <Spacer size="md" />
@@ -369,6 +391,7 @@ export async function getStaticProps({ locale, params }) {
     eth: 'Ethereum',
     etc: 'Ethereum Classic',
     xch: 'Chia',
+    zil: 'Zilliqa',
   };
 
   return {
@@ -386,13 +409,14 @@ export async function getStaticProps({ locale, params }) {
 }
 
 export async function getStaticPaths({ locales }) {
-  const coins = ['eth', 'etc', 'xch'];
+  const coins = ['eth', 'etc', 'xch', 'zil'];
   const types = ['difficulty', 'hashrate', 'blocktime'];
 
   let paths: any = [];
 
   for (let coin of coins) {
     for (let type of types) {
+      if (coin === 'zil' && type === 'hashrate') continue;
       for (let locale of locales) {
         paths.push({
           params: { coin, type },

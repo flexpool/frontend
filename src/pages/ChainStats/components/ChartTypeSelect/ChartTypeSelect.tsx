@@ -11,7 +11,7 @@ type ChartTypeSelectProps<T = string> = {
   onSelect: (value: T) => void;
   value: T;
   coin: string;
-  hashrateUnit: string;
+  options: { label: string; value: string }[];
 };
 
 const ChartTypeButton = styled(Button)`
@@ -37,24 +37,8 @@ const MobileBreakpoint = styled.div`
 export const ChartTypeSelect = ({
   onSelect,
   value,
-  hashrateUnit,
+  options,
 }: ChartTypeSelectProps) => {
-  const { t: commonT } = useTranslation('common');
-
-  const CHART_TYPE_OPTIONS = [
-    { value: 'difficulty', label: commonT('difficulty') },
-    { value: 'hashrate', label: commonT('hashrate') },
-    { value: 'blocktime', label: commonT('blocktime') },
-  ];
-
-  const SPACE_CHART_TYPE_OPTIONS = [
-    { value: 'difficulty', label: commonT('difficulty') },
-    { value: 'hashrate', label: commonT('hashrate_space') },
-    { value: 'blocktime', label: commonT('blocktime') },
-  ];
-
-  const options =
-    hashrateUnit === 'B' ? SPACE_CHART_TYPE_OPTIONS : CHART_TYPE_OPTIONS;
   const selected = options.find((option) => option.value === value);
 
   return (
