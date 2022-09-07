@@ -223,7 +223,10 @@ export const MinerDetails: React.FC<{
             {isLoading && <Skeleton width={40} />}
 
             {duration && (
-              <div>{`${duration?.hours} hr ${duration?.minutes} min ${duration?.seconds} sec`}</div>
+              <div>
+                {duration?.hours ? `${duration.hours} hr` : ''}{' '}
+                {`${duration?.minutes} min ${duration?.seconds} sec`}
+              </div>
             )}
 
             {isInProgress && <div>In progress</div>}
