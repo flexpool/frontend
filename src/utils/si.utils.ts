@@ -75,7 +75,7 @@ export const useLocalizedNumberFormatter = (
           .replace('US', '');
       }
 
-      if (value < 1.0) {
+      if (value < 1.0 && defaultOptions?.style === 'currency') {
         return new Intl.NumberFormat(i18n.language, {
           ...defaultOptions,
           ...options,
