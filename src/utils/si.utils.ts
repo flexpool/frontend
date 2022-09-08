@@ -75,6 +75,14 @@ export const useLocalizedNumberFormatter = (
           .replace('US', '');
       }
 
+      if (value < 1.0) {
+        return new Intl.NumberFormat(i18n.language, {
+          ...defaultOptions,
+          ...options,
+          maximumFractionDigits: 4,
+        }).format(value);
+      }
+
       return new Intl.NumberFormat(i18n.language, {
         ...defaultOptions,
         ...options,
