@@ -198,7 +198,7 @@ export const TheMergeAnnouncement = () => {
   const { letters: partThree, start: startPartThree } = useTypewriter(
     t('fun_ride'),
     {
-      delay: 400,
+      delay: 800,
       enable: false,
     }
   );
