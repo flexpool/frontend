@@ -263,9 +263,14 @@ export const MinerDashboardPageContent: React.FC<{
                     counterTicker={counterTicker}
                   />
                 </TabPanel>
-                <TabPanel>
-                  <DynamicMinerBlocksPage address={address} coin={coinTicker} />
-                </TabPanel>
+                {coinTicker !== 'zil' && (
+                  <TabPanel>
+                    <DynamicMinerBlocksPage
+                      address={address}
+                      coin={coinTicker}
+                    />
+                  </TabPanel>
+                )}
               </Content>
             </TabContent>
           </Tabs>
