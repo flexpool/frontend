@@ -97,11 +97,10 @@ const RelatedChartTypeLink = ({
           {seoT('title.network_stats', {
             coinName,
             coinTicker: coinQuery.toUpperCase(),
-            chartType: getReadableChartType(
-              commonT,
-              targetTypeQuery,
-              hashrateUnit
-            ),
+            chartType: getReadableChartType(commonT, targetTypeQuery, {
+              ticker: coinQuery,
+              hashrateUnit,
+            }),
           })}
         </RelatedLink>
       )}
@@ -177,12 +176,18 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
   // the API coins response.
   const hashrateUnit = coinQuery === 'xch' ? 'B' : 'H';
 
-  const chartType = getReadableChartType(commonT, typeQuery, hashrateUnit);
+  const chartType = getReadableChartType(commonT, typeQuery, {
+    ticker: coinName,
+    hashrateUnit,
+  });
 
   const metaTitle = seoT('title.network_stats', {
     coinName,
     coinTicker: coinQuery.toUpperCase(),
-    chartType: getReadableChartType(commonT, typeQuery, hashrateUnit),
+    chartType: getReadableChartType(commonT, typeQuery, {
+      ticker: coinName,
+      hashrateUnit,
+    }),
   });
 
   const metaDescription = seoT('website_description.network_stats', {
@@ -204,7 +209,7 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
 
   const zilChartTypeOptions = [
     { value: 'difficulty', label: commonT('difficulty') },
-    { value: 'blocktime', label: commonT('blocktime') },
+    { value: 'blocktime', label: commonT('roundtime') },
   ];
 
   var chartTypeOptions = defaultChartTypeOptions;

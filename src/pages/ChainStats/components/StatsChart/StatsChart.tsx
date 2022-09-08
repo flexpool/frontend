@@ -18,6 +18,8 @@ import useNetworkStatsChartData, {
   DurationKey,
 } from '../../hooks/useNetworkStatsChartData';
 import { ChartType } from '../../types';
+import { DurationFormatter } from '@amcharts/amcharts4/core';
+import { DurationAxis } from '@amcharts/amcharts4/charts';
 
 const appear = keyframes`
   from {
@@ -72,6 +74,13 @@ export const StatsChart = React.memo(
       },
     };
 
+    const ZIL_CONFIG = {
+      ...AXIS_CONFIG,
+      blocktime: {
+        name: commonT('roundtime'),
+      },
+    };
+
     useEffect(() => {
       if (data && !isFetching) {
         chartRef.current = create('difficultyChart', XYChart);
@@ -87,10 +96,17 @@ export const StatsChart = React.memo(
         let dateAxis = chartRef.current.xAxes.push(new DateAxis());
         dateAxis.renderer.grid.template.location = 0;
 
-        const difficultyAxis = chartRef.current.yAxes.push(new ValueAxis());
+        let difficultyAxis = chartRef.current.yAxes.push(
+          type === 'blocktime' ? new DurationAxis() : new ValueAxis()
+        );
 
-        difficultyAxis.numberFormatter = new NumberFormatter();
-        difficultyAxis.numberFormatter.numberFormat = `#.0 a'` + unit;
+        if (type === 'blocktime') {
+          difficultyAxis.durationFormatter = new DurationFormatter();
+          difficultyAxis.durationFormatter.durationFormat = 'hh:mm:ss';
+        } else {
+          difficultyAxis.numberFormatter = new NumberFormatter();
+          difficultyAxis.numberFormatter.numberFormat = `#.0 a'` + unit;
+        }
 
         difficultyAxis.renderer.grid.template.disabled = true;
         difficultyAxis.renderer.opposite = true;
@@ -98,16 +114,21 @@ export const StatsChart = React.memo(
         let difficultySeries = chartRef.current.series.push(new LineSeries());
         difficultySeries.fillOpacity = 0.3;
 
-        const chartType =
-          coin === 'xch' ? XCH_CONFIG[type]?.name : AXIS_CONFIG[type]?.name;
+        let chartType = AXIS_CONFIG[type].name;
+
+        if (coin === 'xch') chartType = XCH_CONFIG[type]?.name;
+        if (coin === 'zil') chartType = ZIL_CONFIG[type]?.name;
 
         difficultySeries.dataFields.dateX = 'date';
         difficultySeries.name = chartType;
         difficultySeries.yAxis = difficultyAxis;
         difficultySeries.dataFields.valueY = type;
 
-        difficultySeries.tooltipText =
-          chartType + `: {valueY.value.formatNumber("#.0 a'${unit}'")}`;
+        difficultySeries.tooltipText = `${chartType}: {valueY.value.formatNumber("#.0 a'${unit}'")}`;
+
+        if (coin === 'zil') {
+          difficultySeries.tooltipText = `${chartType}: {valueY.value.formatDuration("h 'hr' m 'min' s 'sec'")}`;
+        }
 
         difficultySeries.strokeWidth = 2;
         difficultySeries.tensionX = 0.9;
