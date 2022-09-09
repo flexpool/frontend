@@ -28,6 +28,33 @@ import {
 
 import NetworkStatisticsLink from '@/components/NetworkStatisticsLink';
 
+const PoWTimer = ({ coin }: { coin: string }) => {
+  const { t } = useTranslation('blocks');
+
+  const { duration, isAvailable, isInProgress, isLoading } =
+    useNextPoWRound(coin);
+
+  if (!isAvailable) return null;
+
+  return (
+    <StatBox
+      title={t('next_pow')}
+      value={
+        isLoading ? undefined : isInProgress ? (
+          t('in_progress')
+        ) : (
+          <>
+            {duration?.hours ? `${duration.hours} ${t('hr')}` : ''}{' '}
+            {`${duration?.minutes} ${t('min')} ${duration?.seconds} ${t(
+              'sec'
+            )}`}
+          </>
+        )
+      }
+    />
+  );
+};
+
 function BlocksPage() {
   const statsState = useAsyncState<{
     averageLuck: number;
@@ -42,9 +69,6 @@ function BlocksPage() {
   const { t, i18n } = useTranslation('blocks');
   const { t: seoT } = useTranslation('seo');
   const isMounted = useIsMounted();
-
-  const { duration, isAvailable, isInProgress, isLoading } =
-    useNextPoWRound(activeCoinTicker);
 
   React.useEffect(() => {
     if (activeCoin?.ticker) {
@@ -179,23 +203,7 @@ function BlocksPage() {
             }
           />
 
-          {isAvailable && (
-            <StatBox
-              title={t('next_pow')}
-              value={
-                isLoading ? undefined : isInProgress ? (
-                  t('in_progress')
-                ) : (
-                  <>
-                    {duration?.hours ? `${duration.hours} ${t('hr')}` : ''}{' '}
-                    {`${duration?.minutes} ${t('min')} ${duration?.seconds} ${t(
-                      'sec'
-                    )}`}
-                  </>
-                )
-              }
-            />
-          )}
+          <PoWTimer coin={activeCoinTicker} />
         </StatBoxContainer>
         <Spacer />
 

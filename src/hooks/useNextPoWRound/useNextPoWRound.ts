@@ -30,8 +30,12 @@ export const useNextPoWRound = (coin?: string) => {
         // 60s is time needed for PoW
         if (powTs - currentTs < 60000) {
           setIsInProgress(true);
-          refetch();
-          setDurationToPoW(undefined);
+
+          // extra 2s as buffer
+          if (powTs - currentTs <= -20000) {
+            refetch();
+            setDurationToPoW(undefined);
+          }
         } else {
           setIsInProgress(false);
 
