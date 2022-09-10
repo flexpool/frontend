@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { NextSeo } from 'next-seo';
 import { intervalToDuration, Duration, format } from 'date-fns';
-
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styled from 'styled-components';
@@ -11,6 +11,21 @@ import { Page } from '../src/components/layout/Page';
 import { Card } from 'src/components/layout/Card';
 
 import useEthMergeEstimatedDate from '@/hooks/api/useEthMergeEstimatedDate';
+import useTypewriter from '@/hooks/useTypewriter';
+
+const TypeWriterInput = styled.span`
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+
+  padding-right: 2px;
+
+  border-right: 0.08em solid var(--text-secondary);
+  animation: blink 1s steps(1) infinite;
+  white-space: pre-wrap;
+`;
 
 function addLeadingZeros(num: number, totalLength: number) {
   return String(num).padStart(totalLength, '0');
@@ -149,39 +164,96 @@ const CountdownNumber = ({
 };
 
 export const TheMergeAnnouncement = () => {
-  const { data } = useEthMergeEstimatedDate();
+  const router = useRouter();
+  const [countdown, setCountdown] = useState<Duration | undefined>();
+
+  const queryTs = useMemo(() => {
+    if (router.isReady) {
+      const hasQueryTs = router.query.timestamp
+        ? /^\d+$/.test(router.query.timestamp as string)
+        : false;
+
+      if (hasQueryTs) {
+        return Number(router.query.timestamp);
+      }
+
+      return undefined;
+    }
+  }, [router.isReady, router.query.timestamp]);
+
+  const { data: estimatedDate = queryTs } = useEthMergeEstimatedDate({
+    enabled: router.isReady && typeof queryTs !== 'number',
+  });
+
   const { t: seoT, i18n } = useTranslation('seo');
   const { t } = useTranslation('merge-countdown');
 
-  const [countdown, setCountdown] = useState<Duration | undefined>();
+  const isCountdownFinished = countdown
+    ? countdown.days === 0 &&
+      countdown.hours === 0 &&
+      countdown.minutes === 0 &&
+      countdown.seconds === 0
+    : false;
+
+  const { letters: partThree, start: startPartThree } = useTypewriter(
+    t('fun_ride'),
+    {
+      delay: 800,
+      enable: false,
+    }
+  );
+
+  const { letters: partTwo, start: startPartTwo } = useTypewriter(
+    t('has_happened'),
+    {
+      delay: 300,
+      enable: false,
+      delete: false,
+      onFinished: () => {
+        startPartThree();
+      },
+    }
+  );
+
+  const { letters: partOne } = useTypewriter(t('will_happen'), {
+    delay: 400,
+    enable: isCountdownFinished,
+    delete: true,
+    isTyped: true,
+    onFinished: () => {
+      startPartTwo();
+    },
+  });
 
   useEffect(() => {
-    if (data) {
-      setCountdown(
-        intervalToDuration({
-          start: new Date(data * 1000),
-          end: new Date(),
-        })
-      );
+    if (typeof estimatedDate === 'number') {
+      const startTime =
+        estimatedDate * 1000 < Date.now()
+          ? new Date()
+          : new Date(estimatedDate * 1000);
 
       const tick = () => {
         setCountdown(
           intervalToDuration({
-            start: new Date(data * 1000),
+            start: startTime,
             end: new Date(),
           })
         );
       };
 
       const id = setInterval(() => {
-        tick();
+        if (startTime.getTime() >= Date.now()) {
+          tick();
+        }
       }, 1000);
+
+      tick();
 
       return () => {
         clearTimeout(id);
       };
     }
-  }, [setCountdown, data]);
+  }, [setCountdown, estimatedDate]);
 
   return (
     <Page>
@@ -202,7 +274,18 @@ export const TheMergeAnnouncement = () => {
 
       <Content md paddingLg>
         <CountdownCard>
-          <CountdownTitle>{t('countdown_title')}</CountdownTitle>
+          <CountdownTitle>
+            {t('the_merge')}{' '}
+            {!isCountdownFinished ? (
+              t('will_happen')
+            ) : (
+              <TypeWriterInput>
+                {partOne}
+                {partTwo}
+                <span style={{ color: 'white' }}>{partThree}</span>
+              </TypeWriterInput>
+            )}
+          </CountdownTitle>
           <NumbersContainer>
             <CountdownNumber num={countdown?.days} unit={t('days')} />
             <CountdownNumber num={countdown?.hours} unit={t('hours')} />
@@ -212,11 +295,19 @@ export const TheMergeAnnouncement = () => {
           <Estimations>
             <Estimation
               title={t('estimated_date')}
-              content={data ? format(data * 1000, 'MM.dd.yyyy') : '-'}
+              content={
+                Number(estimatedDate)
+                  ? format(estimatedDate * 1000, 'MM.dd.yyyy')
+                  : '-'
+              }
             />
             <Estimation
               title={t('estimated_time')}
-              content={data ? format(data * 1000, 'KK:mm a') : '-'}
+              content={
+                Number(estimatedDate)
+                  ? format(estimatedDate * 1000, 'KK:mm a')
+                  : '-'
+              }
             />
           </Estimations>
           <EstimationExplainer>{t('estimation_explain')}</EstimationExplainer>

@@ -265,7 +265,7 @@
     }
   },
   "announcements": {
-    "the_merge": "The Merge 将在9月15日发生。在那之后，以太坊将不能被挖矿。见详情，请阅读我们的<merge>官方公告</merge>."
+    "the_merge": "The Merge 将在9月15日发生。在那之后，以太坊将不能被挖矿。见详情，请阅读我们的<merge>官方公告</merge>.<br/>查看<countdown>The Merge 倒计时</countdown>查看距离 The Merge 还有多久。"
   },
   "status_pending_tooltip": "等待交易确认",
   "confirmation_duration_tooltip": "交易确认时间",
