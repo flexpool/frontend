@@ -81,7 +81,7 @@
     "hardware": [
       {
         "title": "GPU Dual Mining",
-        "key": "ZIL-GPU"
+        "key": "dual"
       }
     ]
   },

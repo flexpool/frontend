@@ -34,7 +34,7 @@ export const getStaticPaths = ({ locales }) => {
     [];
 
   for (const locale of locales) {
-    paths.push({ params: { ticker: 'zil', hw: 'ZIL-GPU' }, locale });
+    paths.push({ params: { ticker: 'zil', hw: 'dual' }, locale });
   }
 
   return {
