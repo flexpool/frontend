@@ -60,6 +60,31 @@
       "cta": "Open Dashboard"
     }
   },
+  "detail_zil": {
+    "title": "Zilliqa mining",
+    "pool_details": [
+      { "key": "Reward Scheme", "value": "PPLNS (Pay Per Last N Shares)" },
+      { "key": "Pool Fee", "value": "0.9%" },
+      { "key": "Bonuses", "value": "95% of Supercharged MEV" },
+      {
+        "key": "Payout Round",
+        "value": "Once an hour (Mainnet) \n\nOnce a day (Polygon L2)"
+      },
+      {
+        "key": "Payouts",
+        "value": "From 0.01 ZIL to 2000 ZIL (Mainnet)\n\nFrom 0.005 ETH to 20 ETH (Polygon L2) \n\n*Can be set up to 100 ETH through support"
+      },
+      { "key": "Block confirmation time", "value": "120 Blocks" },
+      { "key": "Share Difficulty", "value": "4 GH" },
+      { "key": "Mining Algorithm", "value": "Ethash" }
+    ],
+    "hardware": [
+      {
+        "title": "GPU Dual Mining",
+        "key": "ZIL-GPU"
+      }
+    ]
+  },
   "detail_eth": {
     "title": "Ethereum mining",
     "pool_details": [
@@ -242,6 +267,7 @@
     "hk": "Hong Kong",
     "hke": "Hong Kong (Optimized for China)",
     "sge": "Singapore (Optimized for China)",
+    "worldwide": "Worldwide",
     "additional_ports": "Additional Ports",
     "additional_domains": "Additional Domains"
   },

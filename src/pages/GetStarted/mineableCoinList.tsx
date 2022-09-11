@@ -1,5 +1,6 @@
 import { checksumETH } from 'src/utils/validators/ethWalletAddress.validator';
 import { checksumXCH } from 'src/utils/validators/xchWalletAddress.validator';
+import { checksumZIL } from 'src/utils/validators/zilWalletAddress.validator';
 
 export type GpuHardwareDetails = {
   os: ('linux' | 'windows' | 'hiveos')[];
@@ -155,8 +156,7 @@ export const mineableCoins: MineableCoin[] = [
             os: ['windows', 'linux', 'hiveos'],
             title: 'GMiner',
             key: 'gminer',
-            description:
-              'Actively developed and stable miner.',
+            description: 'Actively developed and stable miner.',
             compatibleGpus: ['AMD', 'NVIDIA'],
             fee: [1],
             downloadLink:
@@ -252,8 +252,7 @@ export const mineableCoins: MineableCoin[] = [
             os: ['windows', 'linux', 'hiveos'],
             title: 'GMiner',
             key: 'gminer',
-            description:
-              'Actively developed and stable miner.',
+            description: 'Actively developed and stable miner.',
             compatibleGpus: ['AMD', 'NVIDIA'],
             fee: [1],
             downloadLink:
@@ -302,6 +301,43 @@ export const mineableCoins: MineableCoin[] = [
         title: 'Chia CLI Farming',
         key: 'CLI',
         miners: null,
+      },
+    ],
+  },
+  {
+    name: 'Zilliqa',
+    ticker: 'zil',
+    algorithm: 'Ethash',
+    nicehash_algorithm: null,
+    description: '',
+    regex: /^zil1[qpzry9x8gf2tvdw0s3jn54khce6mua7l]{38}$/g,
+    validator: checksumZIL,
+    walletAddressExample: 'zil102n74869xnvdwq3yh8p0k9jjgtejruft268tg8',
+    nicehashAvailable: false,
+    regions: [
+      {
+        domain: 'zil.flexpool.io',
+        code: 'zil',
+        imageCode: 'worldwide',
+      },
+    ],
+    hardware: [
+      {
+        title: 'Zilliqa Dual Mining',
+        key: 'dual',
+        miners: [
+          {
+            os: ['windows', 'linux'],
+            title: 'BZMiner',
+            key: 'bzminer',
+            description:
+              'Fast Windows/Linux miner with remote management and lowest 0.5% dev fee!',
+            fee: [0.5],
+            compatibleGpus: ['AMD', 'Nvidia'],
+            downloadLink: 'https://github.com/bzminer/bzminer/releases',
+            cmd: 'bzminer -a ALGO -w MAIN_WALLET_ADDRESS.WORKER_NAME -p  ethstratum+ssl://CLOSEST_SERVER:5555 --a2 zil --w2 DUAL_WALLET_ADDRESS.WORKER_NAME --p2 zmp://zil.flexpool.io --log_date 1',
+          },
+        ],
       },
     ],
   },
