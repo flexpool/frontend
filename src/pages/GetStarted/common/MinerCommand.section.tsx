@@ -119,7 +119,7 @@ export const MinerCommandSection = ({
   return (
     <>
       <h2>
-        <Highlight>#4</Highlight> {t('detail.software.title')}
+        <Highlight>#5</Highlight> {t('detail.software.title')}
       </h2>
       <SoftwareWrapper>
         {minerMeta.map((miner) => (

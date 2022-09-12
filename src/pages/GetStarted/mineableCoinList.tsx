@@ -323,12 +323,12 @@ export const mineableCoins: MineableCoin[] = [
     ],
     hardware: [
       {
-        title: 'Zilliqa Dual Mining',
+        title: 'GPU Dual Mining',
         key: 'dual',
         miners: [
           {
             os: ['windows', 'linux'],
-            title: 'BZMiner',
+            title: 'BzMiner',
             key: 'bzminer',
             description:
               'Fast Windows/Linux miner with remote management and lowest 0.5% dev fee!',

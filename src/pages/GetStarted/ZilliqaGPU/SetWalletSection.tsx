@@ -20,13 +20,12 @@ const TextFieldLayout = styled.div`
   display: flex;
   max-width: 1000px;
   line-height: 1.4;
+  flex-wrap: wrap;
+  gap: 16px;
 
   & > div {
+    min-width: 400px;
     flex: 1;
-  }
-
-  & > div + div {
-    margin-left: 16px;
   }
 `;
 

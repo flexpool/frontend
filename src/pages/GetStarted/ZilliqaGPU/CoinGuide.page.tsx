@@ -5,7 +5,6 @@ import { useTranslation } from 'next-i18next';
 import { Page } from 'src/components/layout/Page';
 
 import { MineableCoinHardware, mineableCoins } from '../mineableCoinList';
-import { ViewDashboardSection } from '../GPU/ViewDashboard.section';
 import merge from 'lodash.merge';
 import { NextSeo } from 'next-seo';
 
@@ -84,8 +83,7 @@ export const MineableCoinGuidePage: React.FC = () => {
         ]}
       />
 
-      {/* TODO: i18n */}
-      <h1>GPU Dual Mining Zilliqa (ZIL)</h1>
+      <h1>{t(`detail_${ticker}.title`)}</h1>
 
       <GuideForm
         initialValue={{
@@ -108,7 +106,6 @@ export const MineableCoinGuidePage: React.FC = () => {
                 position={1}
                 title="Select your dual mining config"
               >
-                <p>This is the main coin you mine when dual mining ZIL.</p>
                 <MainCoinButtonGroup name="main_coin" />
               </SectionWrapper>
 
