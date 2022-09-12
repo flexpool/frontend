@@ -1,7 +1,7 @@
 {
   "header": "Search by Address",
   "search_result": "Search Result",
-  "invalid_address": "Please enter a valid Ethereum or Chia wallet address.",
+  "invalid_address": "Please enter a valid wallet address.",
   "view_dashboard": "View Dashboard",
   "view": "View",
   "address_card": {

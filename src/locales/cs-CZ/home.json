@@ -13,7 +13,9 @@
     "mev": "{{value}} of Supercharged MEV Bonus",
     "finder_reward": "{{value}} Block Finder Reward",
     "more_title": "Více kryptoměn již brzy!",
-    "more_description": "Pracujeme na spuštění dalších poolů pro těžbu různých kryptoměn. Pro aktuální novinky se připojte k nám na discord či telegram."
+    "more_description": "Pracujeme na spuštění dalších poolů pro těžbu různých kryptoměn. Pro aktuální novinky se připojte k nám na discord či telegram.",
+    "dual_mine": "Dual mine",
+    "earnings": "earnings"
   },
   "lambo_explainer": "Ł - LAMBO currency. mŁ - mLAMBO (microLAMBO), one 1000th of LAMBO.",
   "news_section": {

@@ -1,7 +1,7 @@
 {
   "header": "钱包地址搜索",
   "search_result": "搜索结果",
-  "invalid_address": "请输入一个合法的 Ethereum 或 Chia 地址。",
+  "invalid_address": "Please enter a valid wallet address.",
   "view_dashboard": "查看面板",
   "view": "查看",
   "address_card": {

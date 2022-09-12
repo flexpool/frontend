@@ -1,6 +1,8 @@
 {
   "head_title": "Vytěžené bloky",
+  "head_title_rounds": "Mined Blocks",
   "title": "Bloky",
+  "title_rounds": "Rounds",
   "description": "Historie vytěžených bloků na Flexpoolu",
   "average_luck": "Average luck",
   "average_luck_tooltip": "Počítáno na základě bloků vytěžených za posledních 30 dní.",
@@ -9,8 +11,13 @@
   "network_hashrate": "Síťová hashrate",
   "network_space": "Network Space",
   "network_difficulty": "Obtížnost sítě",
+  "next_pow": "Next PoW Round",
   "network_difficulty_tooltip": "Average amount of how many hashes pool should produce to mine a block.",
   "network_difficulty_tooltip_points": "Average amount of how many points pool should produce to mine a block.",
+  "in_progress": "In Progress",
+  "hr": "hr",
+  "min": "min",
+  "sec": "sec",
   "table": {
     "title_zero": "Nelze získat data",
     "title": "Společně jsme vytěžili {{count}} blok",
@@ -20,6 +27,13 @@
     "title_4": "Společně jsme vytěžili {{count}} bloků",
     "title_5": "Společně jsme vytěžili {{count}} bloků",
     "title_plural": "Flexpool vytěžil {{count}} bloků",
+    "title_rounds": "Flexpool has mined {{count}} rounds",
+    "title_rounds_1": "Flexpool has mined {{count}} rounds",
+    "title_rounds_2": "Flexpool has mined {{count}} rounds",
+    "title_rounds_3": "Flexpool has mined {{count}} rounds",
+    "title_rounds_4": "Flexpool has mined {{count}} rounds",
+    "title_rounds_5": "Flexpool has mined {{count}} rounds",
+    "title_rounds_plural": "Flexpool has mined {{count}} rounds",
     "title_miner_zero": "Zatím jsi ještě žádný blok nevytěžil",
     "title_miner": "Vytěžil jsi {{count}} blok",
     "title_miner_1": "Vytěžil jsi {{count}} bloky",
@@ -40,11 +54,13 @@
       "round_time": "Doba trvání",
       "hash": "Hash",
       "luck": "Luck",
-      "share": "Share"
+      "share": "Share",
+      "node_count": "Node Count"
     }
   },
   "type": {
     "block": "Blok",
+    "block_round": "Round",
     "orphan": "Orphan",
     "uncle": "Uncle"
   },

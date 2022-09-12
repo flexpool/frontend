@@ -1,6 +1,8 @@
 {
   "head_title": "Louhitut Lohkot",
+  "head_title_rounds": "Mined Blocks",
   "title": "Lohkot",
+  "title_rounds": "Rounds",
   "description": "Flexpoolin louhimien lohkojen historia",
   "average_luck": "Keskiarvoinen onni",
   "average_luck_tooltip": "Viimeisen 30 päivän keskiarvoinen lohko-onni.",
@@ -9,8 +11,13 @@
   "network_hashrate": "Verkon Hashrate",
   "network_space": "Verkon Tila",
   "network_difficulty": "Verkon vaikeusaste",
+  "next_pow": "Next PoW Round",
   "network_difficulty_tooltip": "Keskiarvo hashien määrästä, joita poolin on tuotettava louhiakseen yhden lohkon.",
   "network_difficulty_tooltip_points": "Keskiarvo pisteiden määrästä, joita poolin on tuotettava louhiakseen yhden lohkon.",
+  "in_progress": "In Progress",
+  "hr": "hr",
+  "min": "min",
+  "sec": "sec",
   "table": {
     "title_zero": "Poolin dataa ei saatu haettua",
     "title": "Flexpool on louhinut {{count}} lohkon",
@@ -20,6 +27,13 @@
     "title_4": "Flexpool on louhinut {{count}} lohkoa",
     "title_5": "Flexpool on louhinut {{count}} lohkoa",
     "title_plural": "Flexpool on louhinut {{count}} lohkoa",
+    "title_rounds": "Flexpool has mined {{count}} rounds",
+    "title_rounds_1": "Flexpool has mined {{count}} rounds",
+    "title_rounds_2": "Flexpool has mined {{count}} rounds",
+    "title_rounds_3": "Flexpool has mined {{count}} rounds",
+    "title_rounds_4": "Flexpool has mined {{count}} rounds",
+    "title_rounds_5": "Flexpool has mined {{count}} rounds",
+    "title_rounds_plural": "Flexpool has mined {{count}} rounds",
     "title_miner_zero": "Et ole louhinut vielä yhtään lohkoa",
     "title_miner": "Olet louhinut {{count}} lohkon",
     "title_miner_1": "Olet louhinut {{count}} lohkoa",
@@ -40,11 +54,13 @@
       "round_time": "Kierroksen Aika",
       "hash": "Hash",
       "luck": "Onni",
-      "share": "Osuus"
+      "share": "Osuus",
+      "node_count": "Node Count"
     }
   },
   "type": {
     "block": "Lohko",
+    "block_round": "Round",
     "orphan": "Orpo",
     "uncle": "Setä"
   },

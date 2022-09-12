@@ -1,6 +1,8 @@
 {
   "head_title": "Blocs Minés",
+  "head_title_rounds": "Mined Blocks",
   "title": "Blocs",
+  "title_rounds": "Rounds",
   "description": "Historique des blocs minés par Flexpool",
   "average_luck": "Average luck",
   "average_luck_tooltip": "La chance moyenne de bloc des 30 derniers jours.",
@@ -9,8 +11,13 @@
   "network_hashrate": "Puissance du Réseau",
   "network_space": "Network Space",
   "network_difficulty": "Difficulté du réseau",
+  "next_pow": "Next PoW Round",
   "network_difficulty_tooltip": "Average amount of how many hashes pool should produce to mine a block.",
   "network_difficulty_tooltip_points": "Average amount of how many points pool should produce to mine a block.",
+  "in_progress": "In Progress",
+  "hr": "hr",
+  "min": "min",
+  "sec": "sec",
   "table": {
     "title_zero": "Impossible de récupérer les données du pool",
     "title": "Flexpool a miné {{count}} bloc",
@@ -20,6 +27,13 @@
     "title_4": "Flexpool a miné {{count}} blocs",
     "title_5": "Flexpool a miné {{count}} blocs",
     "title_plural": "Flexpool a miné {{count}} blocs",
+    "title_rounds": "Flexpool has mined {{count}} rounds",
+    "title_rounds_1": "Flexpool has mined {{count}} rounds",
+    "title_rounds_2": "Flexpool has mined {{count}} rounds",
+    "title_rounds_3": "Flexpool has mined {{count}} rounds",
+    "title_rounds_4": "Flexpool has mined {{count}} rounds",
+    "title_rounds_5": "Flexpool has mined {{count}} rounds",
+    "title_rounds_plural": "Flexpool has mined {{count}} rounds",
     "title_miner_zero": "Vous n'avez pas encore miné de blocs",
     "title_miner": "Vous avez miné {{count}} bloc",
     "title_miner_1": "Vous avez miné {{count}} blocs",
@@ -40,11 +54,13 @@
       "round_time": "Temps du tour",
       "hash": "Hash",
       "luck": "Chance",
-      "share": "Share"
+      "share": "Share",
+      "node_count": "Node Count"
     }
   },
   "type": {
     "block": "Bloc",
+    "block_round": "Round",
     "orphan": "Orphelin",
     "uncle": "\"Uncle\""
   },

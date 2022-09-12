@@ -95,7 +95,12 @@
     "stat_estimate_tooltip": "按这可以换每天，每周，每月预计收益。",
     "update_in": "刷新",
     "auto_update": "自动刷新",
-    "time_to_lambo": "您到Lambo的预计时间是{{时间}}。"
+    "time_to_lambo": "您到Lambo的预计时间是{{时间}}。",
+    "next_pow": "Next PoW Round",
+    "in_progress": "In Progress",
+    "hr": "hr",
+    "min": "min",
+    "sec": "sec"
   },
   "nav": {
     "stats": "矿机状态",

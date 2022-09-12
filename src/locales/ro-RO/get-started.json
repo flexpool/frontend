@@ -60,6 +60,46 @@
       "cta": "Open Dashboard"
     }
   },
+  "detail_zil": {
+    "title": "Zilliqa mining",
+    "select_dual_mining": "Select your dual mining config",
+    "pool_details": [
+      {
+        "key": "Reward Scheme",
+        "value": "PPLNS (Pay Per Last N Shares)"
+      },
+      {
+        "key": "Pool Fee",
+        "value": "2%"
+      },
+      {
+        "key": "Payout Round",
+        "value": "Once an hour"
+      },
+      {
+        "key": "Payouts",
+        "value": "From 0.01 ZIL to 2000 ZIL"
+      },
+      {
+        "key": "PoW round time",
+        "value": "Around 1 hour"
+      },
+      {
+        "key": "Share Difficulty",
+        "value": "4 GH"
+      },
+      {
+        "key": "Mining Algorithm",
+        "value": "Ethash"
+      }
+    ],
+    "hardware": [
+      {
+        "title": "GPU Dual Mining",
+        "key": "dual"
+      }
+    ]
+  },
   "detail_eth": {
     "title": "Ethereum mining",
     "pool_details": [
@@ -302,6 +342,7 @@
     "hk": "Hong Kong",
     "hke": "Hong Kong (Optimized for China)",
     "sge": "Singapore (Optimized for China)",
+    "worldwide": "Worldwide",
     "additional_ports": "Additional Ports",
     "additional_domains": "Additional Domains"
   },

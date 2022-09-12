@@ -13,7 +13,9 @@
     "mev": "{{value}} MEV Bonus",
     "finder_reward": "{{value}} Lohkon löytäjän palkkio",
     "more_title": "Lisää kryptovaluuttoja tulossa!",
-    "more_description": "Rakennamme jatkuvasti uusia pooleja, jotka julkaistaan tulevaisuudessa. Pysy ajan tasalla liittymällä Discordiimme tai Telegram-ryhmäämme."
+    "more_description": "Rakennamme jatkuvasti uusia pooleja, jotka julkaistaan tulevaisuudessa. Pysy ajan tasalla liittymällä Discordiimme tai Telegram-ryhmäämme.",
+    "dual_mine": "Dual mine",
+    "earnings": "earnings"
   },
   "lambo_explainer": "Ł - LAMBO currency. mŁ - mLAMBO (microLAMBO), one 1000th of LAMBO.",
   "news_section": {
