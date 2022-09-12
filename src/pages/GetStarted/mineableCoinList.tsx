@@ -333,7 +333,7 @@ export const mineableCoins: MineableCoin[] = [
             description:
               'Fast Windows/Linux miner with remote management and lowest 0.5% dev fee!',
             fee: [0.5],
-            compatibleGpus: ['AMD', 'Nvidia'],
+            compatibleGpus: ['AMD', 'NVIDIA'],
             downloadLink: 'https://github.com/bzminer/bzminer/releases',
             cmd: 'bzminer -a ALGO -w MAIN_WALLET_ADDRESS.WORKER_NAME -p  ethstratum+ssl://CLOSEST_SERVER:5555 --a2 zil --w2 DUAL_WALLET_ADDRESS.WORKER_NAME --p2 zmp://zil.flexpool.io --log_date 1',
           },

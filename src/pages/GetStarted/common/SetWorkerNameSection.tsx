@@ -7,9 +7,7 @@ import { Spacer } from 'src/components/layout/Spacer';
 import { workerNameCheck } from '@/utils/checks';
 import { SectionWrapper } from '../common/SectionWrapper';
 
-// TODO: add wallet name validation
-
-export const SetWorkerNameSection = ({ position }, { position: number }) => {
+export const SetWorkerNameSection = ({ position }: { position: number }) => {
   const { t } = useTranslation('get-started');
 
   return (
@@ -18,6 +16,14 @@ export const SetWorkerNameSection = ({ position }, { position: number }) => {
       <Spacer />
       <DivText>
         <TextField
+          validate={(value) => {
+            if (value === '' || typeof value === 'undefined') return undefined;
+            if (!workerNameCheck(value)) {
+              return t('detail.wallet.invalid_worker_name') as string;
+            }
+
+            return undefined;
+          }}
           label={t('detail.worker.worker_name')}
           name="worker_name"
           placeholder={t('detail.worker.worker_name_placeholder', {

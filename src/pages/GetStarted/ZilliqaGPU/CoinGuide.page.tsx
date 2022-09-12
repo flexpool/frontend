@@ -15,6 +15,7 @@ import { PingTestSection } from '../common/PingTestSection';
 import { MinerCommandSection } from '../common/MinerCommand.section';
 import GuideForm from '../common/GuideForm';
 import MainCoinButtonGroup from './MainCoinButtonGroup';
+import ViewDashboard from './ViewDashboard';
 
 import { SectionWrapper } from '../common/SectionWrapper';
 
@@ -150,6 +151,19 @@ export const MineableCoinGuidePage: React.FC = () => {
                   WORKER_NAME: values.worker_name || 'WORKER_NAME',
                 }}
               />
+
+              {values.main_wallet_address && values.dual_wallet_address && (
+                <ViewDashboard
+                  primary={{
+                    coin: isMiningEth ? mineableCoins[0] : mineableCoins[1],
+                    address: values.main_wallet_address,
+                  }}
+                  dual={{
+                    coin: mineableCoins[3],
+                    address: values.dual_wallet_address,
+                  }}
+                />
+              )}
             </>
           );
         }}
