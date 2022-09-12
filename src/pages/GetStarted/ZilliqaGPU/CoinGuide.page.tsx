@@ -104,7 +104,7 @@ export const MineableCoinGuidePage: React.FC = () => {
             <>
               <SectionWrapper
                 position={1}
-                title="Select your dual mining config"
+                title={t(`detail_${ticker}.select_dual_mining`)}
               >
                 <MainCoinButtonGroup name="main_coin" />
               </SectionWrapper>

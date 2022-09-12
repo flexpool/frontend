@@ -62,6 +62,7 @@
   },
   "detail_zil": {
     "title": "Zilliqa mining",
+    "select_dual_mining": "Select your dual mining config",
     "pool_details": [
       { "key": "Reward Scheme", "value": "PPLNS (Pay Per Last N Shares)" },
       { "key": "Pool Fee", "value": "0.9%" },
