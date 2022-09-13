@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import useInterval from '@/hooks/useInterval';
 import useIsMounted from '@/hooks/useIsMounted';
 import { Trans } from 'next-i18next';
+import { mineableCoins } from '@/pages/GetStarted/mineableCoinList';
 
 const ScrollTextContainer = styled.div`
   display: inline-block;
@@ -69,17 +70,11 @@ const TextDisappear = styled.span`
   animation: ${disappear} 2.5s ease-in-out;
 `;
 
-const list = [
-  {
-    name: 'Ethereum',
-  },
-  {
-    name: 'Ethereum Classic',
-  },
-  {
-    name: 'Chia',
-  },
-];
+const list = mineableCoins.map((coin) => ({
+  name: coin.name,
+}));
+
+const COINS_COUNT = mineableCoins.length;
 
 const HeroHeadLineContainer = styled.div`
   font-size: 2rem;
@@ -101,7 +96,7 @@ const HeroHeadline = () => {
 
   useInterval(() => {
     setCount((c) => {
-      return (c + 1) % 3;
+      return (c + 1) % COINS_COUNT;
     });
   }, 2500);
 
@@ -119,12 +114,12 @@ const HeroHeadline = () => {
         {isMounted ? (
           <>
             <TextDisappear key={count - 1}>
-              {list[(3 + (count - 1)) % 3].name}
+              {list[(COINS_COUNT + (count - 1)) % COINS_COUNT].name}
             </TextDisappear>
             <TextAppear key={count}>{list[count].name}</TextAppear>
           </>
         ) : (
-          <span>Chia</span>
+          <span>{list[COINS_COUNT - 1].name}</span>
         )}
       </ScrollTextContainer>
     </HeroHeadLineContainer>
