@@ -3,7 +3,6 @@ import { NextSeo } from 'next-seo';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styled from 'styled-components';
-import Image from 'next/image';
 import { Content } from '../src/components/layout/Content';
 import { CoinsWeMineSection } from '../src/pages/Home/components/CoinsWeMine/CoinsWeMine.section';
 import { GetStartedSection } from '../src/pages/Home/components/GetStarted/GetStarted.section';
@@ -16,6 +15,7 @@ import { SearchWrapper, PageContainer } from '../src/pages/Home/components';
 import HeroHeadline from '@/pages/Home/components/HeroHeadline';
 import Globe from '@/components/Globe';
 import LamboExplainer from '@/pages/Home/components/LamboExplainer';
+import MergeAnnouncement from '@/pages/MinerDashboard/Announcements/MergeAnnouncement';
 
 const HeroGlow1 = styled.img`
   display: none;
@@ -104,6 +104,7 @@ export const HomePage = () => {
           },
         ]}
       />
+      <MergeAnnouncement />
       <div style={{ position: 'relative' }}>
         <Hero>
           <Content>
@@ -147,6 +148,7 @@ export async function getStaticProps({ locale }) {
         'home',
         'cookie-consent',
         'seo',
+        'dashboard',
       ])),
     },
   };
