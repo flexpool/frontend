@@ -95,7 +95,12 @@
     "stat_estimate_tooltip": "按这可以换每天，每周，每月预计收益。",
     "update_in": "刷新",
     "auto_update": "自动刷新",
-    "time_to_lambo": "您到Lambo的预计时间是{{时间}}。"
+    "time_to_lambo": "您到Lambo的预计时间是{{时间}}。",
+    "next_pow": "Next PoW Round",
+    "in_progress": "In Progress",
+    "hr": "hr",
+    "min": "min",
+    "sec": "sec"
   },
   "nav": {
     "stats": "矿机状态",
@@ -265,7 +270,7 @@
     }
   },
   "announcements": {
-    "the_merge": "The Merge 将在9月15日发生。在那之后，以太坊将不能被挖矿。见详情，请阅读我们的<merge>官方公告</merge>.<br/>查看<countdown>The Merge 倒计时</countdown>查看距离 The Merge 还有多久。"
+    "the_merge": "The Merge has been confirmed for September 15. After that, the Ethereum mining will no longer be possible. Please read our <merge>our official announcement</merge> for details.<br/>Check out <countdown>The Merge Countdown</countdown> to see how long until The Merge happens."
   },
   "status_pending_tooltip": "等待交易确认",
   "confirmation_duration_tooltip": "交易确认时间",

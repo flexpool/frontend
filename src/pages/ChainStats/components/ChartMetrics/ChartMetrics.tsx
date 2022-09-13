@@ -10,6 +10,7 @@ import { getReadableChartType, getUnitByChartType } from '../../utils';
 import useNetworkStatsChartData, {
   DurationKey,
 } from '../../hooks/useNetworkStatsChartData';
+import { intervalToDuration, Duration, formatDuration } from 'date-fns';
 
 const ChartMetricsContainer = styled.div`
   color: var(--text-color);
@@ -184,6 +185,7 @@ export const ChartMetrics = ({
 
   let metricValue: string | null = null;
   let metricUnit: string | null = null;
+  let durationValue: Duration | null = null;
   let trend: number | null = null;
 
   if (currentDurationStats) {
@@ -191,14 +193,21 @@ export const ChartMetrics = ({
       currentDurationStats[currentDurationStats.length - 1][type];
     const previousMetric = currentDurationStats[0][type];
 
-    const formattedMetric = formatter(currentMetric, {
-      decimals: currentMetric >= 10 ? 1 : 2,
-    });
+    if (type === 'blocktime') {
+      durationValue = intervalToDuration({
+        start: 0,
+        end: currentMetric * 1000,
+      });
+    } else {
+      const formattedMetric = formatter(currentMetric, {
+        decimals: currentMetric >= 10 ? 1 : 2,
+      });
 
-    if (formattedMetric) {
-      const [value, si] = formattedMetric.split(' ');
-      metricValue = value;
-      metricUnit = si + getUnitByChartType(type, coin);
+      if (formattedMetric) {
+        const [value, si] = formattedMetric.split(' ');
+        metricValue = value;
+        metricUnit = si + getUnitByChartType(type, coin);
+      }
     }
 
     trend = (currentMetric - previousMetric) / previousMetric;
@@ -208,12 +217,38 @@ export const ChartMetrics = ({
 
   return (
     <ChartMetricsContainer>
-      <CurrentMetric>{metricValue}</CurrentMetric>
-      <MetricUnit>{metricUnit}</MetricUnit>
+      {durationValue ? (
+        <>
+          {durationValue.hours !== 0 && (
+            <>
+              <CurrentMetric>{durationValue.hours}</CurrentMetric>
+              <MetricUnit>hr</MetricUnit>
+            </>
+          )}{' '}
+          {durationValue.minutes !== 0 && durationValue.hours !== 0 && (
+            <>
+              <CurrentMetric>{durationValue.minutes}</CurrentMetric>
+              <MetricUnit>min</MetricUnit>
+            </>
+          )}{' '}
+          {durationValue.seconds !== 0 && (
+            <>
+              <CurrentMetric>{durationValue.seconds}</CurrentMetric>
+              <MetricUnit>sec</MetricUnit>
+            </>
+          )}
+        </>
+      ) : (
+        <>
+          <CurrentMetric>{metricValue}</CurrentMetric>
+          <MetricUnit>{metricUnit}</MetricUnit>
+        </>
+      )}
+
       {trend !== null && renderBadgeContent(trend)}
       <MetricTypeSubtitle>
         {commonT('current_network_value', {
-          value: getReadableChartType(commonT, type, hashrateUnit),
+          value: getReadableChartType(commonT, type, coin),
         })}
       </MetricTypeSubtitle>
     </ChartMetricsContainer>

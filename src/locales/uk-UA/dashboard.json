@@ -95,7 +95,12 @@
     "stat_estimate_tooltip": "Натисніть, щоб перейти між щоденними, щотижневими та місячними оцінками.",
     "update_in": "Оновлення в",
     "auto_update": "Автоматичне оновлення",
-    "time_to_lambo": "Your estimated time to Lambo is {{time}}."
+    "time_to_lambo": "Your estimated time to Lambo is {{time}}.",
+    "next_pow": "Next PoW Round",
+    "in_progress": "In Progress",
+    "hr": "hr",
+    "min": "min",
+    "sec": "sec"
   },
   "nav": {
     "stats": "Статистика",

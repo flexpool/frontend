@@ -97,6 +97,7 @@
   "noDataAvailable": "Немає даних",
   "difficulty": "Difficulty",
   "blocktime": "Block Time",
+  "roundtime": "Round Time",
   "hashrate": "Hashrate",
   "hashrate_space": "Space",
   "current_network_value": "Current Network {{value}}",

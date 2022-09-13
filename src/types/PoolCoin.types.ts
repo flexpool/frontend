@@ -33,6 +33,7 @@ export type ApiPoolCoinFull = {
   ticker: Ticker;
   websiteLink: string;
   whitepaperLink: string;
+  isDual: boolean;
 };
 
 export type ApiPoolCoin = {

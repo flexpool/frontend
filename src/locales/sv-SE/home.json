@@ -13,7 +13,9 @@
     "mev": "{{value}} of Supercharged MEV Bonus",
     "finder_reward": "{{value}} Block Finder Reward",
     "more_title": "Mer Coins Kommer Snart!",
-    "more_description": "Vi jobbar på att lansera mer pools inom kort. Håll dig uppdaterad genom att joina våran discord eller telegram."
+    "more_description": "Vi jobbar på att lansera mer pools inom kort. Håll dig uppdaterad genom att joina våran discord eller telegram.",
+    "dual_mine": "Dual mine",
+    "earnings": "earnings"
   },
   "lambo_explainer": "Ł - LAMBO currency. mŁ - mLAMBO (microLAMBO), one 1000th of LAMBO.",
   "news_section": {

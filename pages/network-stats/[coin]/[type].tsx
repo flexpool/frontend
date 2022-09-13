@@ -97,11 +97,10 @@ const RelatedChartTypeLink = ({
           {seoT('title.network_stats', {
             coinName,
             coinTicker: coinQuery.toUpperCase(),
-            chartType: getReadableChartType(
-              commonT,
-              targetTypeQuery,
-              hashrateUnit
-            ),
+            chartType: getReadableChartType(commonT, targetTypeQuery, {
+              ticker: coinQuery,
+              hashrateUnit,
+            }),
           })}
         </RelatedLink>
       )}
@@ -177,18 +176,46 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
   // the API coins response.
   const hashrateUnit = coinQuery === 'xch' ? 'B' : 'H';
 
-  const chartType = getReadableChartType(commonT, typeQuery, hashrateUnit);
+  const chartType = getReadableChartType(commonT, typeQuery, {
+    ticker: coinName,
+    hashrateUnit,
+  });
 
   const metaTitle = seoT('title.network_stats', {
     coinName,
     coinTicker: coinQuery.toUpperCase(),
-    chartType: getReadableChartType(commonT, typeQuery, hashrateUnit),
+    chartType: getReadableChartType(commonT, typeQuery, {
+      ticker: coinName,
+      hashrateUnit,
+    }),
   });
 
   const metaDescription = seoT('website_description.network_stats', {
     coinName,
     coinTicker: coinQuery.toUpperCase(),
   });
+
+  const defaultChartTypeOptions = [
+    { value: 'difficulty', label: commonT('difficulty') },
+    { value: 'hashrate', label: commonT('hashrate') },
+    { value: 'blocktime', label: commonT('blocktime') },
+  ];
+
+  const spaceChartTypeOptions = [
+    { value: 'difficulty', label: commonT('difficulty') },
+    { value: 'hashrate', label: commonT('hashrate_space') },
+    { value: 'blocktime', label: commonT('blocktime') },
+  ];
+
+  const zilChartTypeOptions = [
+    { value: 'difficulty', label: commonT('difficulty') },
+    { value: 'blocktime', label: commonT('roundtime') },
+  ];
+
+  var chartTypeOptions = defaultChartTypeOptions;
+  if (hashrateUnit === 'B') chartTypeOptions = spaceChartTypeOptions;
+  else if ((router.query.coin as string) === 'zil')
+    chartTypeOptions = zilChartTypeOptions;
 
   return (
     <Page>
@@ -230,7 +257,7 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
                   onSelect={handleChartTypeSelect}
                   value={typeQuery}
                   coin={activeCoin.ticker}
-                  hashrateUnit={hashrateUnit}
+                  options={chartTypeOptions}
                 />
               </ChartHeaderRow>
               <Spacer size="md" />
@@ -369,6 +396,7 @@ export async function getStaticProps({ locale, params }) {
     eth: 'Ethereum',
     etc: 'Ethereum Classic',
     xch: 'Chia',
+    zil: 'Zilliqa',
   };
 
   return {
@@ -386,13 +414,14 @@ export async function getStaticProps({ locale, params }) {
 }
 
 export async function getStaticPaths({ locales }) {
-  const coins = ['eth', 'etc', 'xch'];
+  const coins = ['eth', 'etc', 'xch', 'zil'];
   const types = ['difficulty', 'hashrate', 'blocktime'];
 
   let paths: any = [];
 
   for (let coin of coins) {
     for (let type of types) {
+      if (coin === 'zil' && type === 'hashrate') continue;
       for (let locale of locales) {
         paths.push({
           params: { coin, type },

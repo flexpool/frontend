@@ -95,7 +95,12 @@
     "stat_estimate_tooltip": "Click to change between daily, weekly and monthly estimates.",
     "update_in": "Обновление через",
     "auto_update": "Автообновление",
-    "time_to_lambo": "Your estimated time to Lambo is {{time}}."
+    "time_to_lambo": "Your estimated time to Lambo is {{time}}.",
+    "next_pow": "Next PoW Round",
+    "in_progress": "In Progress",
+    "hr": "hr",
+    "min": "min",
+    "sec": "sec"
   },
   "nav": {
     "stats": "Статистика",

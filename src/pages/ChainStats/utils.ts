@@ -25,9 +25,13 @@ export const getUnitByChartType = (type: ChartType, coin: Coin) => {
         unit = coin?.hashrateUnit.split('/')[0] + '/s';
       }
       break;
-
     case 'blocktime':
-      unit = 'sec';
+      if (coin.ticker === 'zil') {
+        unit = '';
+      } else {
+        unit = 'sec';
+      }
+
       break;
   }
 
@@ -37,7 +41,7 @@ export const getUnitByChartType = (type: ChartType, coin: Coin) => {
 export const getReadableChartType = (
   commonT: TFunction<'common'>,
   type: ChartType,
-  hashrateUnit: string
+  coin: Coin
 ) => {
   let readableType = '';
 
@@ -47,7 +51,7 @@ export const getReadableChartType = (
       break;
 
     case 'hashrate':
-      if (hashrateUnit === 'B') {
+      if (coin.hashrateUnit === 'B') {
         readableType = commonT('hashrate_space');
       } else {
         readableType = commonT('hashrate');
@@ -56,7 +60,12 @@ export const getReadableChartType = (
       break;
 
     case 'blocktime':
-      readableType = commonT('blocktime');
+      if (coin.ticker === 'zil') {
+        readableType = commonT('roundtime');
+      } else {
+        readableType = commonT('blocktime');
+      }
+
       break;
   }
 

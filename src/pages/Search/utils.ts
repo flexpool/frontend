@@ -1,6 +1,7 @@
 import { getLocateAddress } from '@/api';
 import { getChecksumByTicker } from '@/utils/validators/checksum';
 import { AddressStatus } from '@/pages/Search/AddressCard';
+import { isZilAddress } from '@/utils/validators/zilWalletAddress.validator';
 
 export const getPropsFromLocateAddress = async (
   address: string | undefined
@@ -14,6 +15,7 @@ export const getPropsFromLocateAddress = async (
 
     if (getChecksumByTicker('eth')(address)) addressType = 'eth';
     if (getChecksumByTicker('xch')(address)) addressType = 'xch';
+    if (isZilAddress(address)) addressType = 'zil';
 
     const isPending = result.pendingStats === true;
     const isMining = !isPending && result.result !== null;

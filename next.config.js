@@ -73,6 +73,11 @@ module.exports = withPWA(
           destination: '/get-started/etc/GPU',
           permanent: false,
         },
+        {
+          source: '/get-started/zil',
+          destination: '/get-started/zil/dual',
+          permanent: false,
+        },
         // Redirect legacy URL, eg. /miner/eth/0x8df8u../stats
         {
           source: '/miner/:coin/:address/stats',

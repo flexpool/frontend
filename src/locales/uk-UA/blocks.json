@@ -1,6 +1,8 @@
 {
   "head_title": "Блоки, що вже намайнили",
+  "head_title_rounds": "Mined Blocks",
   "title": "Блоки",
+  "title_rounds": "Rounds",
   "description": "Історія майнінгу блоків Flexpool",
   "average_luck": "Середня удача",
   "average_luck_tooltip": "Середня удача блоку за останні 30 днів.",
@@ -9,8 +11,13 @@
   "network_hashrate": "Хешрейт мережі",
   "network_space": "Мережеве місце",
   "network_difficulty": "Складність мережі",
+  "next_pow": "Next PoW Round",
   "network_difficulty_tooltip": "Середня кількість хешів, які пул повинен виробляти для майнінгу блоку.",
   "network_difficulty_tooltip_points": "Середня кількість балів, яку пул повинен отримати для майнінгу блоку.",
+  "in_progress": "In Progress",
+  "hr": "hr",
+  "min": "min",
+  "sec": "sec",
   "table": {
     "title_zero": "Не вдається отримати дані пулу",
     "title": "Flexpool намайнив {{count}} блоків",
@@ -20,6 +27,13 @@
     "title_4": "Flexpool намайнив {{count}} блоків",
     "title_5": "Flexpool намайнив {{count}} блоків",
     "title_plural": "Flexpool намайнив {{count}} блоків",
+    "title_rounds": "Flexpool has mined {{count}} rounds",
+    "title_rounds_1": "Flexpool has mined {{count}} rounds",
+    "title_rounds_2": "Flexpool has mined {{count}} rounds",
+    "title_rounds_3": "Flexpool has mined {{count}} rounds",
+    "title_rounds_4": "Flexpool has mined {{count}} rounds",
+    "title_rounds_5": "Flexpool has mined {{count}} rounds",
+    "title_rounds_plural": "Flexpool has mined {{count}} rounds",
     "title_miner_zero": "Ви ще не намайнили жодного блоку",
     "title_miner": "Ви намайнили {{count}} блоків",
     "title_miner_1": "Ви намайнили {{count}} блоків",
@@ -40,11 +54,13 @@
       "round_time": "Час раунду",
       "hash": "Хеш",
       "luck": "Удача",
-      "share": "Частка"
+      "share": "Частка",
+      "node_count": "Node Count"
     }
   },
   "type": {
     "block": "Блок\n",
+    "block_round": "Round",
     "orphan": "Orphan",
     "uncle": "Uncle"
   },

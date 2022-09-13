@@ -134,12 +134,18 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         title:
           activeCoinTicker === 'eth' || activeCoinTicker === 'etc'
             ? t('table.table_head.number')
+            : activeCoinTicker === 'zil'
+            ? `DS ${t('table.table_head.height')}`
             : t('table.table_head.height'),
         skeletonWidth: 80,
         Component: ({ data, config }) => {
           const url =
             data.type !== 'orphan' &&
-            getCoinLink(data.type, data.hash, config.coinTicker);
+            getCoinLink(
+              data.type,
+              coinTicker === 'zil' ? String(data.number) : data.hash,
+              config.coinTicker
+            );
 
           const content = (
             <Ws
@@ -177,7 +183,15 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
 
           return (
             <Ws>
-              <BlockType type={data.type}>{t(`type.${data.type}`)}</BlockType>
+              <BlockType type={data.type}>
+                {t(
+                  `type.${
+                    coinTicker === 'zil' && data.type === 'block'
+                      ? 'block_round'
+                      : data.type
+                  }`
+                )}
+              </BlockType>
               {msg && (
                 <Tooltip>
                   <TooltipContent
@@ -192,7 +206,6 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
       },
       reward: {
         title: t('table.table_head.reward'),
-        alignRight: true,
         skeletonWidth: 80,
         Component: ({ data }) => {
           return (
@@ -265,6 +278,15 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
         skeletonWidth: 70,
         Component: ({ data }) => <Luck value={data.luck} />,
       },
+      nodeCount: {
+        title: t('table.table_head.node_count'),
+        skeletonWidth: 210,
+        Component: ({ data, config }) => (
+          <Mono>
+            <Ws>{data.difficulty}</Ws>
+          </Mono>
+        ),
+      },
       blockHash: {
         title: t('table.table_head.hash'),
         skeletonWidth: 200,
@@ -291,16 +313,24 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   const columns = React.useMemo(() => {
     // if no address, displaying default view
     if (!address) {
-      return [
-        blockCols.number,
-        blockCols.type,
-        blockCols.date,
-        blockCols.region,
-        blockCols.miner,
-        blockCols.reward,
-        blockCols.roundTime,
-        blockCols.luck,
-      ];
+      var cols = [blockCols.number, blockCols.type, blockCols.date];
+      if (!['zil', 'xch'].includes(coinTicker)) {
+        cols.push(blockCols.region);
+      }
+
+      if (coinTicker !== 'zil') {
+        cols.push(blockCols.miner);
+      }
+
+      cols.push(blockCols.reward);
+
+      if (coinTicker !== 'zil') {
+        cols.push(blockCols.roundTime, blockCols.luck);
+      } else {
+        cols.push(blockCols.nodeCount);
+      }
+
+      return cols;
     }
     return [
       blockCols.countNumber,
@@ -315,7 +345,12 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   const onRowClick = React.useCallback(
     (data: ApiBlock) => {
       const url =
-        data.type !== 'orphan' && getCoinLink(data.type, data.hash, coinTicker);
+        data.type !== 'orphan' &&
+        getCoinLink(
+          data.type,
+          coinTicker === 'zil' ? String(data.number) : data.hash,
+          coinTicker
+        );
       if (url) {
         window.open(url, '_blank');
       }
@@ -332,12 +367,20 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
 
   return (
     <>
-      {address && blockState.data && blockState.data.totalItems > 0 && (
-        <h2>{t('table.title_miner', { count: blockState.data.totalItems })}</h2>
-      )}
-      {!address && blockState.data && blockState.data.totalItems > 0 && (
-        <h2>{t('table.title', { count: blockState.data.totalItems })}</h2>
-      )}
+      {blockState.data && blockState.data.totalItems > 0 ? (
+        coinTicker === 'zil' ? (
+          <h2>
+            {t('table.title_rounds', { count: blockState.data.totalItems })}
+          </h2>
+        ) : address ? (
+          <h2>
+            {t('table.title_miner', { count: blockState.data.totalItems })}
+          </h2>
+        ) : (
+          <h2>{t('table.title', { count: blockState.data.totalItems })}</h2>
+        )
+      ) : null}
+
       <DynamicList
         onRowClick={onRowClick}
         onRowClickAllowed={onRowClickAllowed}

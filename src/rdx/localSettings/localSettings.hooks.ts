@@ -6,6 +6,7 @@ import usePoolCoinsQuery from '@/hooks/api/usePoolCoinsQuery';
 
 // FIXME: This hook isn't reliable for retrieving the current active coin ticker,
 // since the redux state can be updated many re-renders later
+// NOTE: NOT SSR Safe
 /**
  * Get current selected coin from coin selector
  * Coin ticker is always available from redux because of default state

@@ -1,4 +1,4 @@
-import { Field, FieldProps } from 'formik';
+import { Field, FieldAttributes, FieldProps } from 'formik';
 import React from 'react';
 import styled from 'styled-components';
 import { BaseFormFieldProps, getInputProps } from './formikUtils';
@@ -104,6 +104,8 @@ export const TextInput: React.FC<
 /**
  * Formik version
  */
-export const TextField: typeof TextInput = (props) => {
+export const TextField = <T extends any = any>(
+  props: FieldAttributes<T> & React.ComponentProps<typeof TextInput>
+) => {
   return <Field component={TextInput} {...props} />;
 };

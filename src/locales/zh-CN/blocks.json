@@ -1,6 +1,8 @@
 {
   "head_title": "出块记录",
+  "head_title_rounds": "Mined Blocks",
   "title": "出块记录",
+  "title_rounds": "Rounds",
   "description": "由Flexpool挖出区块历史",
   "average_luck": "幸运值",
   "average_luck_tooltip": "30天平均幸运值。",
@@ -9,8 +11,13 @@
   "network_hashrate": "全网算力",
   "network_space": "网络空间",
   "network_difficulty": "全网难度",
+  "next_pow": "Next PoW Round",
   "network_difficulty_tooltip": "矿池挖出区块，平均需要多少运算次数。",
   "network_difficulty_tooltip_points": "矿池挖出区块，平均需要多少运算次数。",
+  "in_progress": "In Progress",
+  "hr": "hr",
+  "min": "min",
+  "sec": "sec",
   "table": {
     "title_zero": "无法获取矿池数据",
     "title": "Flexpool 总数已挖 {{count}} 个区块",
@@ -20,6 +27,13 @@
     "title_4": "Flexpool 总数已挖 {{count}} 个区块",
     "title_5": "Flexpool 总数已挖 {{count}} 个区块",
     "title_plural": "Flexpool 总数已挖 {{count}} 个区块",
+    "title_rounds": "Flexpool has mined {{count}} rounds",
+    "title_rounds_1": "Flexpool has mined {{count}} rounds",
+    "title_rounds_2": "Flexpool has mined {{count}} rounds",
+    "title_rounds_3": "Flexpool has mined {{count}} rounds",
+    "title_rounds_4": "Flexpool has mined {{count}} rounds",
+    "title_rounds_5": "Flexpool has mined {{count}} rounds",
+    "title_rounds_plural": "Flexpool has mined {{count}} rounds",
     "title_miner_zero": "没有区块由您挖出",
     "title_miner": "您个人挖出 {{count}} 个区块",
     "title_miner_1": "您个人挖出 {{count}} 个区块",
@@ -40,11 +54,13 @@
       "round_time": "运行时间",
       "hash": "矿工算力",
       "luck": "幸运值",
-      "share": "份额比"
+      "share": "份额比",
+      "node_count": "Node Count"
     }
   },
   "type": {
     "block": "区块",
+    "block_round": "Round",
     "orphan": "孤块",
     "uncle": "叔块"
   },

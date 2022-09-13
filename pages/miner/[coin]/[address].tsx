@@ -238,9 +238,11 @@ export const MinerDashboardPageContent: React.FC<{
                 <TabLink>
                   <FaChartBar /> {t('nav.rewards')}
                 </TabLink>
-                <TabLink>
-                  <FaCube /> {t('nav.blocks')}
-                </TabLink>
+                {coinTicker !== 'zil' && (
+                  <TabLink>
+                    <FaCube /> {t('nav.blocks')}
+                  </TabLink>
+                )}
               </TabLinkContainer>
             </Content>
             <TabContent id="workertabs">
@@ -261,9 +263,14 @@ export const MinerDashboardPageContent: React.FC<{
                     counterTicker={counterTicker}
                   />
                 </TabPanel>
-                <TabPanel>
-                  <DynamicMinerBlocksPage address={address} coin={coinTicker} />
-                </TabPanel>
+                {coinTicker !== 'zil' && (
+                  <TabPanel>
+                    <DynamicMinerBlocksPage
+                      address={address}
+                      coin={coinTicker}
+                    />
+                  </TabPanel>
+                )}
               </Content>
             </TabContent>
           </Tabs>
