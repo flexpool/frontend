@@ -265,7 +265,7 @@
     }
   },
   "announcements": {
-    "the_merge": "The Merge has been confirmed for September 15. After that, the Ethereum mining will no longer be possible. Please read our <merge>our official announcement</merge> for details.<br/>Check out <countdown>The Merge Countdown</countdown> to see how long until The Merge happens."
+    "the_merge": "The Merge has been confirmed for approximately September 15. After that, the Ethereum mining will no longer be possible. Please read our <merge>our official announcement</merge> for details.<br/>Check out <countdown>The Merge Countdown</countdown> to see how long until The Merge happens."
   },
   "status_pending_tooltip": "Aguardando confirmação da transação",
   "confirmation_duration_tooltip": "Confirmado em",
