@@ -85,8 +85,8 @@ export const SetWalletSection = ({
       <TextFieldLayout>
         <WalletTextField
           name={nameDual}
-          data={mineableCoins[3]}
-          label={<WalletLabel data={mineableCoins[3]} />}
+          data={mineableCoins[2]}
+          label={<WalletLabel data={mineableCoins[2]} />}
         />
         <WalletTextField
           name={nameMain}

@@ -115,8 +115,8 @@ export const MineableCoinGuidePage: React.FC = () => {
                 position={3}
                 data={
                   values.main_coin === 'eth'
-                    ? mineableCoins[0]
-                    : mineableCoins[1]
+                    ? mineableCoins[3]
+                    : mineableCoins[0]
                 }
                 nameMain="main_wallet_address"
                 nameDual="dual_wallet_address"
@@ -126,15 +126,15 @@ export const MineableCoinGuidePage: React.FC = () => {
                 position={4}
                 data={
                   isMiningEth
-                    ? mineableCoins[0].regions
-                    : mineableCoins[1].regions
+                    ? mineableCoins[3].regions
+                    : mineableCoins[0].regions
                 }
                 namePrimary="main_primary_server"
                 nameSecondary="main_secondary_server"
               />
 
               <MinerCommandSection
-                data={mineableCoins[3].hardware[0].miners}
+                data={mineableCoins[2].hardware[0].miners}
                 replaces={{
                   ALGO: isMiningEth ? 'ethash' : 'etchash',
                   CLOSEST_SERVER:
@@ -152,11 +152,11 @@ export const MineableCoinGuidePage: React.FC = () => {
               {values.main_wallet_address && values.dual_wallet_address && (
                 <ViewDashboard
                   primary={{
-                    coin: isMiningEth ? mineableCoins[0] : mineableCoins[1],
+                    coin: isMiningEth ? mineableCoins[3] : mineableCoins[0],
                     address: values.main_wallet_address,
                   }}
                   dual={{
-                    coin: mineableCoins[3],
+                    coin: mineableCoins[2],
                     address: values.dual_wallet_address,
                   }}
                 />
