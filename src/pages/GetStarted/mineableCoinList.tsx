@@ -204,7 +204,7 @@ export const mineableCoins: MineableCoin[] = [
             title: 'BzMiner',
             key: 'bzminer',
             description:
-              'Fast Windows/Linux miner with remote management and lowest 0.5% dev fee!',
+              'Fast Windows/Linux miner with remote management and lowest 0.5% dev fee!(0 fee on Zil)',
             fee: [0.5],
             compatibleGpus: ['AMD', 'NVIDIA'],
             downloadLink: 'https://github.com/bzminer/bzminer/releases',
