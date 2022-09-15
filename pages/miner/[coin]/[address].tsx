@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useQueryClient } from 'react-query';
 import { NextSeo } from 'next-seo';
 import dynamic from 'next/dynamic';
-import { Trans, useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 
@@ -32,11 +32,11 @@ import FlexFarmerAnnouncement from '@/pages/MinerDashboard/Announcements/FlexFar
 import MergeAnnouncement from '@/pages/MinerDashboard/Announcements/MergeAnnouncement';
 import AddressPendingInfoBox from '@/pages/MinerDashboard/InfoBox/AddressPendingInfoBox';
 import AddressNotFoundInfoBox from '@/pages/MinerDashboard/InfoBox/AddressNotFoundInfoBox';
+import { PayoutsOnlyNote } from '@/pages/MinerDashboard/Header/PayoutsOnlyNote';
 
 import styled from 'styled-components';
 import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
 import { getChecksumByTicker } from '@/utils/validators/checksum';
-import { LinkOut } from '@/components/LinkOut';
 
 const DONATION_ADDRESS = '0x165CD37b4C644C2921454429E7F9358d18A45e14';
 
@@ -87,17 +87,6 @@ const TabLink = styled(Tab)`
 const DonationAnnouncement = styled(AnnouncementBar)`
   border-top: 9px solid #005bb9;
   border-bottom: 8px solid #ffd302;
-`;
-
-const PayoutOnlyModeNote = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-
-  p {
-    margin-top: 2em;
-  }
 `;
 
 export const MinerDashboardPageContent: React.FC<{
@@ -182,6 +171,8 @@ export const MinerDashboardPageContent: React.FC<{
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const hasStats = activeCoin && !activeCoin.payoutsOnly;
+
   return (
     <>
       <PullToRefresh
@@ -236,84 +227,68 @@ export const MinerDashboardPageContent: React.FC<{
             <Spacer />
             <MinerDetails coin={activeCoin} address={address} />
             <HeaderStats coin={coinTicker} address={address} />
+            {!hasStats && <PayoutsOnlyNote />}
           </Content>
-          {!activeCoinInfo || !activeCoinInfo.payoutsOnly ? (
-            <Tabs
-              className="w-full"
-              selectedIndex={tabIndex}
-              onSelect={(index) => selectTab(index)}
-            >
-              <Content>
-                <TabLinkContainer>
+          <Tabs
+            className="w-full"
+            selectedIndex={tabIndex}
+            onSelect={(index) => selectTab(index)}
+          >
+            <Content>
+              <TabLinkContainer>
+                {hasStats && (
                   <TabLink>
                     <FaChartBar /> {t('nav.stats')}
                   </TabLink>
+                )}
+                <TabLink>
+                  <FaWallet /> {t('nav.payments')}
+                </TabLink>
+                <TabLink>
+                  <FaChartBar /> {t('nav.rewards')}
+                </TabLink>
+                {coinTicker !== 'zil' && (
                   <TabLink>
-                    <FaWallet /> {t('nav.payments')}
+                    <FaCube /> {t('nav.blocks')}
                   </TabLink>
-                  <TabLink>
-                    <FaChartBar /> {t('nav.rewards')}
-                  </TabLink>
-                  {coinTicker !== 'zil' && (
-                    <TabLink>
-                      <FaCube /> {t('nav.blocks')}
-                    </TabLink>
-                  )}
-                </TabLinkContainer>
-              </Content>
-              <TabContent id="workertabs">
-                <Content>
+                )}
+              </TabLinkContainer>
+            </Content>
+            <TabContent id="workertabs">
+              <Content>
+                {hasStats && (
                   <TabPanel>
                     <DynamicMinerStatsPage
                       address={address}
                       coin={coinTicker}
                     />
                   </TabPanel>
+                )}
+
+                <TabPanel>
+                  <DynamicMinerPaymentsPage
+                    address={address}
+                    coin={coinTicker}
+                  />
+                </TabPanel>
+                <TabPanel>
+                  <DynamicMinerRewardsPage
+                    address={address}
+                    coinTicker={coinTicker}
+                    counterTicker={counterTicker}
+                  />
+                </TabPanel>
+                {coinTicker !== 'zil' && (
                   <TabPanel>
-                    <DynamicMinerPaymentsPage
+                    <DynamicMinerBlocksPage
                       address={address}
                       coin={coinTicker}
                     />
                   </TabPanel>
-                  <TabPanel>
-                    <DynamicMinerRewardsPage
-                      address={address}
-                      coinTicker={coinTicker}
-                      counterTicker={counterTicker}
-                    />
-                  </TabPanel>
-                  {coinTicker !== 'zil' && (
-                    <TabPanel>
-                      <DynamicMinerBlocksPage
-                        address={address}
-                        coin={coinTicker}
-                      />
-                    </TabPanel>
-                  )}
-                </Content>
-              </TabContent>
-            </Tabs>
-          ) : (
-            <>
-              <Spacer size="xl" />
-              <Spacer size="xl" />
-              <Content>
-                <PayoutOnlyModeNote>
-                  <h2>{t('payout_only_mode_note.title')}</h2>
-                  <p>{t('payout_only_mode_note.p1')}</p>
-                  <p>
-                    <Trans
-                      ns="dashboard"
-                      i18nKey="payout_only_mode_note.p2"
-                      components={{ supportlink: <LinkOut href="/support" /> }}
-                    />
-                  </p>
-                </PayoutOnlyModeNote>
+                )}
               </Content>
-              <Spacer size="xl" />
-              <Spacer size="xl" />
-            </>
-          )}
+            </TabContent>
+          </Tabs>
           <Spacer size="xl" />
         </Page>
       </PullToRefresh>
