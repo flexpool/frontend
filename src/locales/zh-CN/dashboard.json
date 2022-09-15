@@ -270,7 +270,12 @@
     }
   },
   "announcements": {
-    "the_merge": "The Merge has been confirmed for September 15. After that, the Ethereum mining will no longer be possible. Please read our <merge>our official announcement</merge> for details.<br/>Check out <countdown>The Merge Countdown</countdown> to see how long until The Merge happens."
+    "the_merge": "合并大约在9月15日确认。之后，以太坊将不能再挖矿。有关详细信息，请阅读我们的官方公告</merge><br/>查看＜倒计时＞合并倒计时</倒计时＞以查看合并发生前的时间。"
+  },
+  "payout_only_mode_note": {
+    "title": "矿池目前处于支付模式",
+    "p1": "如果你现在不能再进行挖矿。请使用你最后使用的IP地址来更新你的支付偏好或改变支付网络来执行支付。",
+    "p2": "如果你有一个定制的要求，如从一个地址转移到另一个地址的余额，请不要犹豫，<supportlink>与支持部门联系</supportlink>。"
   },
   "status_pending_tooltip": "等待交易确认",
   "confirmation_duration_tooltip": "交易确认时间",

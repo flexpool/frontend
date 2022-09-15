@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useQueryClient } from 'react-query';
 import { NextSeo } from 'next-seo';
 import dynamic from 'next/dynamic';
-import { useTranslation } from 'next-i18next';
+import { Trans, useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 
@@ -36,6 +36,7 @@ import AddressNotFoundInfoBox from '@/pages/MinerDashboard/InfoBox/AddressNotFou
 import styled from 'styled-components';
 import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
 import { getChecksumByTicker } from '@/utils/validators/checksum';
+import { LinkOut } from '@/components/LinkOut';
 
 const DONATION_ADDRESS = '0x165CD37b4C644C2921454429E7F9358d18A45e14';
 
@@ -86,6 +87,17 @@ const TabLink = styled(Tab)`
 const DonationAnnouncement = styled(AnnouncementBar)`
   border-top: 9px solid #005bb9;
   border-bottom: 8px solid #ffd302;
+`;
+
+const PayoutOnlyModeNote = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  p {
+    margin-top: 2em;
+  }
 `;
 
 export const MinerDashboardPageContent: React.FC<{
@@ -157,6 +169,9 @@ export const MinerDashboardPageContent: React.FC<{
     }
   }, [poolCoins, setCoinTicker, coinTicker]);
 
+  const activeCoinInfo =
+    poolCoins && poolCoins.coins.find((item) => item.ticker === coinTicker);
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       if (window.location.hash) {
@@ -222,58 +237,83 @@ export const MinerDashboardPageContent: React.FC<{
             <MinerDetails coin={activeCoin} address={address} />
             <HeaderStats coin={coinTicker} address={address} />
           </Content>
-          <Tabs
-            className="w-full"
-            selectedIndex={tabIndex}
-            onSelect={(index) => selectTab(index)}
-          >
-            <Content>
-              <TabLinkContainer>
-                <TabLink>
-                  <FaChartBar /> {t('nav.stats')}
-                </TabLink>
-                <TabLink>
-                  <FaWallet /> {t('nav.payments')}
-                </TabLink>
-                <TabLink>
-                  <FaChartBar /> {t('nav.rewards')}
-                </TabLink>
-                {coinTicker !== 'zil' && (
-                  <TabLink>
-                    <FaCube /> {t('nav.blocks')}
-                  </TabLink>
-                )}
-              </TabLinkContainer>
-            </Content>
-            <TabContent id="workertabs">
+          {!activeCoinInfo || !activeCoinInfo.payoutsOnly ? (
+            <Tabs
+              className="w-full"
+              selectedIndex={tabIndex}
+              onSelect={(index) => selectTab(index)}
+            >
               <Content>
-                <TabPanel>
-                  <DynamicMinerStatsPage address={address} coin={coinTicker} />
-                </TabPanel>
-                <TabPanel>
-                  <DynamicMinerPaymentsPage
-                    address={address}
-                    coin={coinTicker}
-                  />
-                </TabPanel>
-                <TabPanel>
-                  <DynamicMinerRewardsPage
-                    address={address}
-                    coinTicker={coinTicker}
-                    counterTicker={counterTicker}
-                  />
-                </TabPanel>
-                {coinTicker !== 'zil' && (
+                <TabLinkContainer>
+                  <TabLink>
+                    <FaChartBar /> {t('nav.stats')}
+                  </TabLink>
+                  <TabLink>
+                    <FaWallet /> {t('nav.payments')}
+                  </TabLink>
+                  <TabLink>
+                    <FaChartBar /> {t('nav.rewards')}
+                  </TabLink>
+                  {coinTicker !== 'zil' && (
+                    <TabLink>
+                      <FaCube /> {t('nav.blocks')}
+                    </TabLink>
+                  )}
+                </TabLinkContainer>
+              </Content>
+              <TabContent id="workertabs">
+                <Content>
                   <TabPanel>
-                    <DynamicMinerBlocksPage
+                    <DynamicMinerStatsPage
                       address={address}
                       coin={coinTicker}
                     />
                   </TabPanel>
-                )}
+                  <TabPanel>
+                    <DynamicMinerPaymentsPage
+                      address={address}
+                      coin={coinTicker}
+                    />
+                  </TabPanel>
+                  <TabPanel>
+                    <DynamicMinerRewardsPage
+                      address={address}
+                      coinTicker={coinTicker}
+                      counterTicker={counterTicker}
+                    />
+                  </TabPanel>
+                  {coinTicker !== 'zil' && (
+                    <TabPanel>
+                      <DynamicMinerBlocksPage
+                        address={address}
+                        coin={coinTicker}
+                      />
+                    </TabPanel>
+                  )}
+                </Content>
+              </TabContent>
+            </Tabs>
+          ) : (
+            <>
+              <Spacer size="xl" />
+              <Spacer size="xl" />
+              <Content>
+                <PayoutOnlyModeNote>
+                  <h2>{t('payout_only_mode_note.title')}</h2>
+                  <p>{t('payout_only_mode_note.p1')}</p>
+                  <p>
+                    <Trans
+                      ns="dashboard"
+                      i18nKey="payout_only_mode_note.p2"
+                      components={{ supportlink: <LinkOut href="/support" /> }}
+                    />
+                  </p>
+                </PayoutOnlyModeNote>
               </Content>
-            </TabContent>
-          </Tabs>
+              <Spacer size="xl" />
+              <Spacer size="xl" />
+            </>
+          )}
           <Spacer size="xl" />
         </Page>
       </PullToRefresh>
