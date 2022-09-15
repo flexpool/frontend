@@ -83,6 +83,7 @@ export default class MyDocument extends Document {
         <body>
           <ThemeControlScript />
           <LamboDayCompatibilityScript />
+          <PostMergeLocalSettingsCompatibilityScript />
           <Main />
           <NextScript />
         </body>
@@ -180,6 +181,34 @@ const lamboDayCompatibilityScript = () => {
 
 function LamboDayCompatibilityScript() {
   const scriptFn = `(${String(lamboDayCompatibilityScript)})()`;
+
+  return <script dangerouslySetInnerHTML={{ __html: scriptFn }} />;
+}
+
+/**
+ * After The Merge, ETH is no longer minable and removed from coin picker,
+ * This script fallbacks to 'ETC' if users previously had 'ETH' in their local storage
+ * to avoid UI glitches
+ */
+function PostMergeLocalSettingsCompatibilityScript() {
+  const script = () => {
+    let appState = localStorage.getItem('app_state');
+
+    if (appState) {
+      try {
+        let j = JSON.parse(appState);
+
+        if (j.localSettings?.coin === 'eth') {
+          j.localSettings.coin = 'etc';
+          localStorage.setItem('app_state', JSON.stringify(j));
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  };
+
+  const scriptFn = `(${String(script)})()`;
 
   return <script dangerouslySetInnerHTML={{ __html: scriptFn }} />;
 }
