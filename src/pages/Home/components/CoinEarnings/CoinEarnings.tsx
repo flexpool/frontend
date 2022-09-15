@@ -157,9 +157,12 @@ const CoinEarningsItem: React.FC<{
   const renderPoolFee = (coin: string, dualMineCoin?: string) => {
     const dualMineBoost = dailyDualMineCounterPrice / dailyCounterPrice;
 
-    const poolFee = dualMineCoin
-      ? getCoinPoolFee(dualMineCoin) * dualMineBoost + getCoinPoolFee(coin)
-      : getCoinPoolFee(coin);
+    // TODO: Reenable this back
+    // const poolFee = dualMineCoin
+    //   ? getCoinPoolFee(dualMineCoin) * dualMineBoost + getCoinPoolFee(coin)
+    //   : getCoinPoolFee(coin);
+
+    const poolFee = getCoinPoolFee(coin);
 
     return (
       <>
@@ -358,6 +361,7 @@ export const CoinEarnings = () => {
         {coinsFull ? (
           coinsFull
             .filter((c) => !c.isDual)
+            .filter((c) => !c.payoutsOnly)
             .map((item) => (
               <CoinEarningsItem
                 key={item.ticker}

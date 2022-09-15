@@ -93,6 +93,17 @@ export const CoinsWeMineSection = () => {
     []
   );
 
+  var poolCoinsFullFiltered: ApiPoolCoinFull[] = [];
+  if (poolCoinsFull) {
+    poolCoinsFull.forEach((value) => {
+      if (value.payoutsOnly) {
+        return;
+      }
+
+      poolCoinsFullFiltered.push(value);
+    });
+  }
+
   const columns: DynamicListColumn<ApiPoolCoinFull>[] = React.useMemo(() => {
     return [
       {
@@ -225,7 +236,7 @@ export const CoinsWeMineSection = () => {
           onRowClick={handleRowClick}
           isLoading={isLoading}
           loadingRowsCount={1}
-          data={poolCoinsFull || []}
+          data={poolCoinsFullFiltered}
           columns={columns}
         />
       </Content>

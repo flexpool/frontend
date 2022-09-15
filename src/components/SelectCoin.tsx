@@ -75,16 +75,18 @@ export const NewSelectCoin = () => {
   const [selected, setSelected] = React.useState<SelectOption | null>(null);
 
   const items = React.useMemo(() => {
-    return (poolCoinsState?.coins || []).map((item) => ({
-      label: (
-        <LabelWrap>
-          <CoinLogo ticker={item.ticker} />
-          <CoinName>{item.name}</CoinName>
-          <CoinNameShort>{item.ticker}</CoinNameShort>
-        </LabelWrap>
-      ),
-      value: item.ticker,
-    }));
+    return (poolCoinsState?.coins || [])
+      .filter((c) => !c.payoutsOnly)
+      .map((item) => ({
+        label: (
+          <LabelWrap>
+            <CoinLogo ticker={item.ticker} />
+            <CoinName>{item.name}</CoinName>
+            <CoinNameShort>{item.ticker}</CoinNameShort>
+          </LabelWrap>
+        ),
+        value: item.ticker,
+      }));
   }, [poolCoinsState]);
 
   React.useEffect(() => {

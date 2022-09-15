@@ -34,6 +34,7 @@ export type ApiPoolCoinFull = {
   websiteLink: string;
   whitepaperLink: string;
   isDual: boolean;
+  payoutsOnly: boolean;
 };
 
 export type ApiPoolCoin = {
@@ -45,4 +46,5 @@ export type ApiPoolCoin = {
   transactionSize: number;
   difficultyFactor: number;
   hashrateUnit: string;
+  payoutsOnly: boolean;
 };
