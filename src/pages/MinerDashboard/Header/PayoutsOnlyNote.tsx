@@ -23,7 +23,12 @@ export const PayoutsOnlyNote = () => {
   return (
     <>
       <Spacer />
-      <Card padding>
+      <Card
+        padding
+        style={{
+          border: 'none',
+        }}
+      >
         <PayoutOnlyModeNote>
           <h2>{t('payout_only_mode_note.title')}</h2>
           <p>{t('payout_only_mode_note.p1')}</p>
