@@ -17,30 +17,9 @@ const regionNameMapping = (name: string) => {
 };
 
 const useGetRegionHashRate = () => {
-  const ethCoin = useActiveCoin('eth');
   const etcCoin = useActiveCoin('etc');
   const xchCoin = useActiveCoin('xch');
   const siFormatter = useLocalizedSiFormatter();
-
-  const { data: eth } = usePoolHashrateChartQuery(
-    {
-      coin: 'eth',
-    },
-    {
-      select: (data) => {
-        const { regions } = data[data.length - 1];
-
-        return Object.keys(regions).reduce((prev, curr) => {
-          const regionName = regionNameMapping(curr);
-
-          prev[regionName] = siFormatter(regions[curr], {
-            unit: ethCoin?.hashrateUnit,
-          });
-          return prev;
-        }, {});
-      },
-    }
-  );
 
   const { data: etc } = usePoolHashrateChartQuery(
     {
@@ -81,7 +60,7 @@ const useGetRegionHashRate = () => {
     }
   );
 
-  return useMemo(() => ({ eth, etc, xch }), [eth, etc, xch]);
+  return useMemo(() => ({ etc, xch }), [etc, xch]);
 };
 
 export default useGetRegionHashRate;

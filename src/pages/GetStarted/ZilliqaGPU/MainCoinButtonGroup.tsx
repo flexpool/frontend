@@ -7,7 +7,6 @@ export const MainCoinButtonGroup = ({ name }: { name: string }) => {
   return (
     <ButtonGroup
       options={{
-        eth: { label: 'Ethereum + Zilliqa' },
         etc: { label: 'Ethereum Classic + Zilliqa' },
       }}
       setSelectedOption={(s: string) => [setMainCoin(s)]}
