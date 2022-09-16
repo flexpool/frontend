@@ -33,11 +33,6 @@ export const getStaticPaths = ({ locales }) => {
   const paths: Array<{ params: { ticker: string; hw: string }; locale: any }> =
     [];
 
-  for (const locale of locales) {
-    paths.push({ params: { ticker: 'eth', hw: 'ASIC' }, locale });
-    paths.push({ params: { ticker: 'etc', hw: 'ASIC' }, locale });
-  }
-
   return {
     paths: paths,
     fallback: false,

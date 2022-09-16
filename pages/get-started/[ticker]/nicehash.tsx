@@ -30,11 +30,8 @@ export async function getStaticProps({ locale }) {
 }
 
 export const getStaticPaths = ({ locales }) => {
-  const paths: Array<{ params: { ticker: string; hw: string }; locale: any }> = [];
-
-  for (const locale of locales) {
-    paths.push({ params: { ticker: 'eth', hw: 'nicehash' }, locale });
-  }
+  const paths: Array<{ params: { ticker: string; hw: string }; locale: any }> =
+    [];
 
   return {
     paths: paths,
