@@ -313,9 +313,7 @@
     },
     "step_four": {
       "title": "Užij si výhody používání NiceHash!",
-      "description": [
-        "Hurá! Úspěšně jsi zprovoznil NiceHash s Flexpoolem! "
-      ]
+      "description": ["Hurá! Úspěšně jsi zprovoznil NiceHash s Flexpoolem! "]
     }
   }
 }
