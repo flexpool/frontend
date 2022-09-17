@@ -86,10 +86,10 @@ const NotificationSettings: React.FC<{
         emailEnabled: !!minerDetails.notifications?.email,
         email: '',
         paymentNotifications:
-          minerDetails.notificationPreferences?.payoutNotifications || true,
+          minerDetails.notificationPreferences?.payoutNotifications ?? false,
         workersOfflineNotifications:
-          minerDetails.notificationPreferences?.workersOfflineNotifications ||
-          true,
+          minerDetails.notificationPreferences?.workersOfflineNotifications ??
+          false,
         workerOfflineDetectionDuration:
           minerDetails.notificationPreferences
             ?.workerOfflineDetectionDuration || 1200,
