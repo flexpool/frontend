@@ -106,32 +106,39 @@ export const HomePage = () => {
         ]}
       />
       <MergeAnnouncement />
-      <Hero>
-        <Content>
-          <HeroLayout>
-            <HeroLeft>
-              <HeroHeadline />
-              <Spacer size="lg" />
-              <HeroSubHeadline>{t('description')}</HeroSubHeadline>
-              <Spacer size="sm" />
-              <SearchWrapper>
-                <SearchAddressBar />
-              </SearchWrapper>
-              <Spacer size="md" />
-            </HeroLeft>
-            <Globe />
-          </HeroLayout>
-        </Content>
-        <CoinEarnings />
-        <LamboExplainer />
+      <div
+        style={{
+          position: 'relative',
+        }}
+      >
+        <Hero>
+          <Content>
+            <HeroLayout>
+              <HeroLeft>
+                <HeroHeadline />
+                <Spacer size="lg" />
+                <HeroSubHeadline>{t('description')}</HeroSubHeadline>
+                <Spacer size="sm" />
+                <SearchWrapper>
+                  <SearchAddressBar />
+                </SearchWrapper>
+                <Spacer size="md" />
+              </HeroLeft>
+              <Globe />
+            </HeroLayout>
+          </Content>
+          <CoinEarnings />
+          <LamboExplainer />
+
+          <HeroGlow1>
+            <Image width={800} height={800} src="/glow3.png" alt="glow" />
+          </HeroGlow1>
+          <HeroGlow2>
+            <Image width={800} height={800} src="/glow4.png" alt="glow" />
+          </HeroGlow2>
+        </Hero>
         <NewsSection />
-        <HeroGlow1>
-          <Image width={800} height={800} src="/glow3.png" alt="glow" />
-        </HeroGlow1>
-        <HeroGlow2>
-          <Image width={800} height={800} src="/glow4.png" alt="glow" />
-        </HeroGlow2>
-      </Hero>
+      </div>
 
       <CoinsWeMineSection />
       <WhyFlexpool />
