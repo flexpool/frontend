@@ -393,7 +393,6 @@ export default NetworkStatsPage;
 
 export async function getStaticProps({ locale, params }) {
   const coinNames = {
-    eth: 'Ethereum',
     etc: 'Ethereum Classic',
     xch: 'Chia',
     zil: 'Zilliqa',
@@ -414,7 +413,7 @@ export async function getStaticProps({ locale, params }) {
 }
 
 export async function getStaticPaths({ locales }) {
-  const coins = ['eth', 'etc', 'xch', 'zil'];
+  const coins = ['etc', 'xch', 'zil'];
   const types = ['difficulty', 'hashrate', 'blocktime'];
 
   let paths: any = [];

@@ -275,7 +275,7 @@
   "payout_only_mode_note": {
     "title": "矿池目前处于支付模式",
     "p1": "如果你现在不能再进行挖矿。请使用你最后使用的IP地址来更新你的支付偏好或改变支付网络来执行支付。",
-    "p2": "如果你有一个定制的要求，如从一个地址转移到另一个地址的余额，请不要犹豫，<supportlink>与支持部门联系</supportlink>。"
+    "p2": "Don't hesitate to get in touch with <supportlink>support</supportlink> if you have a custom request like a balance transfer from one address to another. (A signed Ethereum digital message is required, and it's not supported by exchanges.)"
   },
   "status_pending_tooltip": "等待交易确认",
   "confirmation_duration_tooltip": "交易确认时间",

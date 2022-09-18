@@ -270,12 +270,12 @@
     }
   },
   "announcements": {
-    "the_merge": "The Merge has been confirmed for approximately September 15. After that, the Ethereum mining will no longer be possible. Please read our <merge>our official announcement</merge> for details.<br/>Check out <countdown>The Merge Countdown</countdown> to see how long until The Merge happens."
+    "the_merge": "The Merge has been completed as of September 16, 2022, at 06:41 UTC.  Ethereum mining is  longer possible.<br/>Payouts will still happen if you have met your minimum or applied for an exception.  Unpaid balances will be maintained until at least December 15, 2022. Please read our our <merge>official announcement</merge> for details."
   },
   "payout_only_mode_note": {
     "title": "The pool is in payout-only mode",
     "p1": "You can no longer mine. Please use your last IP address used to update your payout preferences or change the payout network to execute a payment.",
-    "p2": "Don't hesitate to get in touch with <supportlink>support</supportlink> if you have a custom request like a balance transfer from one address to another."
+    "p2": "Don't hesitate to get in touch with <supportlink>support</supportlink> if you have a custom request like a balance transfer from one address to another. (A signed Ethereum digital message is required, and it's not supported by exchanges.)"
   },
   "status_pending_tooltip": "Ожидание подтверждения транзакции",
   "confirmation_duration_tooltip": "Подтверждено в",

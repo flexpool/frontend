@@ -94,11 +94,15 @@ export const MineableCoinGuidePage: React.FC = () => {
           main_secondary_server: '',
           dual_primary_server: 'zil.flexpool.io',
           dual_secondary_server: 'zil.flexpool.io',
-          main_coin: 'eth',
+          main_coin: 'etc',
         }}
       >
         {({ values }) => {
           const isMiningEth = values.main_coin === 'eth';
+
+          const mainCoin = mineableCoins.find(
+            (coin) => coin.ticker === values.main_coin
+          );
 
           return (
             <>
@@ -111,55 +115,51 @@ export const MineableCoinGuidePage: React.FC = () => {
 
               <SetWorkerNameSection position={2} />
 
-              <SetWalletSection
-                position={3}
-                data={
-                  values.main_coin === 'eth'
-                    ? mineableCoins[3]
-                    : mineableCoins[0]
-                }
-                nameMain="main_wallet_address"
-                nameDual="dual_wallet_address"
-              />
+              {mainCoin && (
+                <>
+                  <SetWalletSection
+                    position={3}
+                    data={mainCoin}
+                    nameMain="main_wallet_address"
+                    nameDual="dual_wallet_address"
+                  />
 
-              <PingTestSection
-                position={4}
-                data={
-                  isMiningEth
-                    ? mineableCoins[3].regions
-                    : mineableCoins[0].regions
-                }
-                namePrimary="main_primary_server"
-                nameSecondary="main_secondary_server"
-              />
+                  <PingTestSection
+                    position={4}
+                    data={mainCoin.regions}
+                    namePrimary="main_primary_server"
+                    nameSecondary="main_secondary_server"
+                  />
 
-              <MinerCommandSection
-                data={mineableCoins[2].hardware[0].miners}
-                replaces={{
-                  ALGO: isMiningEth ? 'ethash' : 'etchash',
-                  CLOSEST_SERVER:
-                    values.main_primary_server || 'PRIMARY_SERVER',
-                  BACKUP_SERVER:
-                    values.main_secondary_server || 'BACKUP_SERVER',
-                  MAIN_WALLET_ADDRESS:
-                    values.main_wallet_address || 'MAIN_WALLET_ADDRESS',
-                  DUAL_WALLET_ADDRESS:
-                    values.dual_wallet_address || 'DUAL_WALLET_ADDRESS',
-                  WORKER_NAME: values.worker_name || 'WORKER_NAME',
-                }}
-              />
+                  <MinerCommandSection
+                    data={mineableCoins[2].hardware[0].miners}
+                    replaces={{
+                      ALGO: isMiningEth ? 'ethash' : 'etchash',
+                      CLOSEST_SERVER:
+                        values.main_primary_server || 'PRIMARY_SERVER',
+                      BACKUP_SERVER:
+                        values.main_secondary_server || 'BACKUP_SERVER',
+                      MAIN_WALLET_ADDRESS:
+                        values.main_wallet_address || 'MAIN_WALLET_ADDRESS',
+                      DUAL_WALLET_ADDRESS:
+                        values.dual_wallet_address || 'DUAL_WALLET_ADDRESS',
+                      WORKER_NAME: values.worker_name || 'WORKER_NAME',
+                    }}
+                  />
 
-              {values.main_wallet_address && values.dual_wallet_address && (
-                <ViewDashboard
-                  primary={{
-                    coin: isMiningEth ? mineableCoins[3] : mineableCoins[0],
-                    address: values.main_wallet_address,
-                  }}
-                  dual={{
-                    coin: mineableCoins[2],
-                    address: values.dual_wallet_address,
-                  }}
-                />
+                  {values.main_wallet_address && values.dual_wallet_address && (
+                    <ViewDashboard
+                      primary={{
+                        coin: mainCoin,
+                        address: values.main_wallet_address,
+                      }}
+                      dual={{
+                        coin: mineableCoins[2],
+                        address: values.dual_wallet_address,
+                      }}
+                    />
+                  )}
+                </>
               )}
             </>
           );

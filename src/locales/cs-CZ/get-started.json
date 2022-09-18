@@ -100,70 +100,6 @@
       }
     ]
   },
-  "detail_eth": {
-    "title": "Těžba Etherea",
-    "pool_details": [
-      {
-        "key": "Schéma odměn",
-        "value": "PPLNS (platba za posledních N podílů)"
-      },
-      {
-        "key": "Poplatek poolu",
-        "value": "0.9%"
-      },
-      {
-        "key": "Bonusy",
-        "value": "95% of Supercharged MEV"
-      },
-      {
-        "key": "Vyplácí se",
-        "value": "Once an hour (Mainnet) \n\nOnce a day (Polygon L2)"
-      },
-      {
-        "key": "Výše vyplacení",
-        "value": "From 0.01 ETH to 20 ETH (Mainnet)\n\nFrom 0.005 ETH to 20 ETH (Polygon L2) \n\n*Can be set up to 100 ETH through support"
-      },
-      {
-        "key": "Doba potvrzení bloku",
-        "value": "120 bloků"
-      },
-      {
-        "key": "Obtížnost",
-        "value": "4 GH"
-      },
-      {
-        "key": "Algoritmus těžby",
-        "value": "Ethash"
-      }
-    ],
-    "hardware": [
-      {
-        "title": "GPU Těžba",
-        "key": "GPU",
-        "miners": [
-          {
-            "description": "Nejlepší software pro AMD GPU"
-          },
-          {
-            "description": "Nejlepší software pro NVIDIA karty řady 20/30"
-          },
-          {
-            "description": "Nejlepší software pro 4GB zombie mód."
-          },
-          {
-            "description": "Proprietární software s nízkým dev poplatkem."
-          },
-          {
-            "description": "Actively developed and stable miner."
-          }
-        ]
-      },
-      {
-        "title": "ASIC Mining",
-        "key": "ASIC"
-      }
-    ]
-  },
   "detail_etc": {
     "title": "Ethereum Classic mining",
     "pool_details": [
@@ -377,9 +313,7 @@
     },
     "step_four": {
       "title": "Užij si výhody používání NiceHash!",
-      "description": [
-        "Hurá! Úspěšně jsi zprovoznil NiceHash s Flexpoolem! "
-      ]
+      "description": ["Hurá! Úspěšně jsi zprovoznil NiceHash s Flexpoolem! "]
     }
   }
 }

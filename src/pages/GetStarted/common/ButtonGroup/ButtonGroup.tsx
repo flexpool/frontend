@@ -20,12 +20,17 @@ const ButtonGroupWrapper = styled.div`
       color: #fff;
     }
 
-    :first-child {
+    :only-child {
+      border: 2px solid var(--border-color);
+      border-radius: 5px;
+    }
+
+    :first-of-type:not(:only-of-type) {
       border: 2px solid var(--border-color);
       border-radius: 5px 0px 0px 5px;
     }
 
-    :last-child {
+    :last-of-type:not(:only-of-type) {
       border-radius: 0px 5px 5px 0px;
     }
 
