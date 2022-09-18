@@ -61,11 +61,15 @@ export const SearchAddressBar: React.FC<{
     >
       <Formik
         onSubmit={(data, form) => {
-          handleSearch(data.addrsearch, () => {
-            callback?.(); // handle component callback, such as closing modal
-            form.setSubmitting(false);
-            form.resetForm();
-          });
+          if (data.addrsearch === '') {
+            alert("Address can't be empty.");
+          } else {
+            handleSearch(data.addrsearch, () => {
+              callback?.(); // handle component callback, such as closing modal
+              form.setSubmitting(false);
+              form.resetForm();
+            });
+          }
         }}
         initialValues={{ addrsearch: initialValue }}
         enableReinitialize
