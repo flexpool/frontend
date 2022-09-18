@@ -2,6 +2,7 @@ import singletonRouter, { useRouter } from 'next/router';
 import useNextQueryParams from './useNextQueryParams';
 import { act, renderHook } from '@testing-library/react-hooks';
 import mockRouter from 'next-router-mock';
+import { waitFor } from '@testing-library/dom';
 
 jest.mock('next/router', () => require('next-router-mock'));
 
@@ -16,9 +17,7 @@ describe('useNextQueryParams', () => {
   });
 
   it('should always sync query params in the url', async () => {
-    const { result, rerender } = renderHook(() =>
-      useNextQueryParams('foo', 'bar')
-    );
+    const { result } = renderHook(() => useNextQueryParams('foo', 'bar'));
     const { result: routerResult } = renderHook(() => useRouter());
 
     expect(result.current[0]).toEqual({ foo: undefined, bar: undefined });
@@ -29,9 +28,11 @@ describe('useNextQueryParams', () => {
 
     expect(result.current[0]).toEqual({ foo: 'foo', bar: undefined });
 
-    expect(routerResult.current.query).toEqual('foo=foo');
-
-    rerender();
+    await act(async () => {
+      await waitFor(() =>
+        expect(routerResult.current.query).toEqual('foo=foo')
+      );
+    });
 
     act(() => {
       result.current[1]({ foo: 'baz', bar: 'bar' });
@@ -39,14 +40,20 @@ describe('useNextQueryParams', () => {
 
     expect(result.current[0]).toEqual({ foo: 'baz', bar: 'bar' });
 
-    expect(routerResult.current.query).toEqual('foo=baz&bar=bar');
-
-    rerender();
+    await act(async () => {
+      await waitFor(() =>
+        expect(routerResult.current.query).toEqual('foo=baz&bar=bar')
+      );
+    });
 
     act(() => {
       result.current[1]({ foo: undefined, bar: 'bar' });
     });
 
-    expect(routerResult.current.query).toEqual('bar=bar');
+    await act(async () => {
+      await waitFor(() =>
+        expect(routerResult.current.query).toEqual('bar=bar')
+      );
+    });
   });
 });
