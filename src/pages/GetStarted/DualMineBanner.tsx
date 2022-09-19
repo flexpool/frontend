@@ -76,18 +76,28 @@ const Headliner = styled.div`
   font-weight: 500;
   color: #cacaca;
   font-size: 24px;
-  width: 410px;
+  max-width: 410px;
   letter-spacing: -0.015em;
 
   margin-bottom: 14px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 `;
 
 const Description = styled.div`
   font-weight: 500;
   font-size: 15px;
-  width: 500px;
+  max-width: 500px;
 
   color: #cacaca;
+
+  @media screen and (max-width: 768px) {
+    font-size: 13px;
+  }
 `;
 
 const BannerContentLayout = styled.div`
@@ -102,6 +112,16 @@ const BannerContentLayout = styled.div`
 
   ${CTA} {
     margin-left: auto;
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+
+    ${CTA} {
+      margin-left: 0;
+      align-self: flex-start;
+      margin-top: 20px;
+    }
   }
 `;
 
@@ -183,16 +203,12 @@ const StyledAnnouncementBar = styled(AnnouncementBar)<{
   position: relative;
   min-height: 180px;
   overflow: hidden;
-  padding: 1rem 0;
+  padding: 20px 0;
 
   ${({ borderLocation }) =>
     css`border-${borderLocation}: 1px solid var(--border-color);`}
 
   & > div {
     height: 100%;
-  }
-
-  @media (max-width: 648px) {
-    padding-bottom: 60px;
   }
 `;
