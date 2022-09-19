@@ -3,6 +3,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
 import { MineableCoinGuidePage } from 'src/pages/GetStarted/GPU/CoinGuide.page';
+import { DualMineBanner } from '@/pages/GetStarted/DualMineBanner';
 
 export const GetStartedGPUPage = () => {
   return (
@@ -10,6 +11,10 @@ export const GetStartedGPUPage = () => {
       <Content paddingLg>
         <MineableCoinGuidePage />
       </Content>
+      <DualMineBanner
+        primary={{ name: 'Ethereum Classic', ticker: 'etc' }}
+        dual={{ name: 'Zilliqa', ticker: 'zil' }}
+      />
     </Page>
   );
 };
