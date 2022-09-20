@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import styled, { css } from 'styled-components';
 import AnnouncementBar from '@/components/AnnouncementBar';
+import { Trans, useTranslation } from 'next-i18next';
 import { FiChevronRight } from 'react-icons/fi';
 import Link from 'next/link';
 import { Content } from '@/components/layout/Content';
@@ -190,6 +191,7 @@ const getDailyCoinEarningsPer100 = (
 export const DualMineBanner = ({ primary, dual }: DualMineBannerProps) => {
   const { data } = usePoolCoinsFullQuery();
   const percentFormatter = useLocalizedPercentFormatter();
+  const { t } = useTranslation('get-started');
 
   const primaryCoin = data?.find((coin) => coin.ticker === primary.ticker);
   const dualCoin = data?.find((coin) => coin.ticker === dual.ticker);
@@ -217,20 +219,49 @@ export const DualMineBanner = ({ primary, dual }: DualMineBannerProps) => {
 
           <div>
             <Headliner>
-              <Highlight>Boost your earnings</Highlight> by dual mining{' '}
-              {primary.name} and {dual.name}
+              <Trans
+                t={t}
+                i18nKey={'banner.dual_mine.p1'}
+                values={{
+                  primary_coin: primary.name,
+                  dual_coin: dual.name,
+                }}
+                components={{
+                  hl: <Highlight />,
+                }}
+              />
             </Headliner>
 
             <Description>
-              We estimate a <Highlight>{boostPercent}</Highlight> boost on your
-              earnings, given current network conditions.
+              <Trans
+                t={t}
+                i18nKey={'banner.dual_mine.p2'}
+                values={{
+                  primary_ticker: primary.ticker,
+                  dual_ticker: dual.ticker,
+                  boost_percent: boostPercent,
+                }}
+                components={{
+                  hl: <Highlight />,
+                }}
+              />
             </Description>
           </div>
 
           <Link href="/get-started/zil/dual" passHref>
             <CTA id="learn_more_about_flexfarmer_cta">
-              Get started mining <Uppercase>{primary.ticker}</Uppercase> +{' '}
-              <Uppercase>{dual.ticker}</Uppercase> <FiChevronRight />
+              <Trans
+                t={t}
+                i18nKey={'banner.dual_mine.cta'}
+                values={{
+                  primary_ticker: primary.ticker,
+                  dual_ticker: dual.ticker,
+                }}
+                components={{
+                  up: <Uppercase />,
+                }}
+              />{' '}
+              <FiChevronRight />
             </CTA>
           </Link>
         </BannerContentLayout>
