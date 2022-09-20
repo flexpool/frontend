@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import styled, { css } from 'styled-components';
 import AnnouncementBar from '@/components/AnnouncementBar';
 import { FiChevronRight } from 'react-icons/fi';
 import Link from 'next/link';
 import { Content } from '@/components/layout/Content';
-import { getCoinIconUrl } from 'src/utils/staticImage.utils';
+import { getCoinIconUrl } from '@/utils/staticImage.utils';
+import { ApiPoolCoinFull } from '@/types/PoolCoin.types';
+import usePoolCoinsFullQuery from '@/hooks/api/usePoolCoinsFullQuery';
+import { useLocalizedPercentFormatter } from 'src/utils/si.utils';
 
 const StyledCoin = styled.div`
   display: inline-block;
+  height: 42px;
+  width: 42px;
 `;
 
 const CoinIcon = ({ coin }: { coin: string }) => {
@@ -25,9 +30,10 @@ const CoinIcon = ({ coin }: { coin: string }) => {
 };
 
 const IconStack = styled.div`
+  position: relative;
   ${StyledCoin} + ${StyledCoin} {
-    left: -12px;
-    position: relative;
+    position: absolute;
+    left: 26px;
     z-index: -10;
   }
 `;
@@ -107,7 +113,7 @@ const BannerContentLayout = styled.div`
 
   ${IconStack} {
     align-self: flex-start;
-    margin-right: 12px;
+    margin-right: 42px;
   }
 
   ${CTA} {
@@ -115,6 +121,7 @@ const BannerContentLayout = styled.div`
   }
 
   @media screen and (max-width: 768px) {
+    align-items: flex-start;
     flex-direction: column;
 
     ${CTA} {
@@ -152,7 +159,48 @@ const GradientBackground = styled.div`
   transform: matrix(1, 0, 0, 1, 0, 0);
 `;
 
+const getDailyCoinEarningsPer100 = (
+  coin: ApiPoolCoinFull | undefined,
+  counterTicker: string
+) => {
+  var prefixMultiplier = 1;
+
+  const counterPrice = coin?.marketData.prices[counterTicker] || 0;
+
+  if (coin?.defaultHashrateSiPrefix === 'k') {
+    prefixMultiplier = 1000;
+  } else if (coin?.defaultHashrateSiPrefix === 'M') {
+    prefixMultiplier = 1000000;
+  } else if (coin?.defaultHashrateSiPrefix === 'G') {
+    prefixMultiplier = 1000000000;
+  } else if (coin?.defaultHashrateSiPrefix === 'T') {
+    prefixMultiplier = 1000000000000;
+  }
+
+  const dailyPer100 = coin
+    ? (((coin.chainData.dailyRewardPerGigaHashSec / 1000000000) *
+        prefixMultiplier) /
+        Math.pow(10, coin.decimalPlaces)) *
+      100
+    : 0;
+
+  return dailyPer100 * counterPrice;
+};
+
 export const DualMineBanner = ({ primary, dual }: DualMineBannerProps) => {
+  const { data } = usePoolCoinsFullQuery();
+  const percentFormatter = useLocalizedPercentFormatter();
+
+  const primaryCoin = data?.find((coin) => coin.ticker === primary.ticker);
+  const dualCoin = data?.find((coin) => coin.ticker === dual.ticker);
+
+  const primaryEarnings = getDailyCoinEarningsPer100(primaryCoin, 'usd');
+  const dualEarnings = getDailyCoinEarningsPer100(dualCoin, 'usd');
+
+  const boostPercent = data
+    ? percentFormatter(dualEarnings / primaryEarnings)
+    : '-';
+
   return (
     <StyledAnnouncementBar
       id="dual-mine-banner"
@@ -174,8 +222,8 @@ export const DualMineBanner = ({ primary, dual }: DualMineBannerProps) => {
             </Headliner>
 
             <Description>
-              We estimate a <Highlight>30.8%</Highlight> boost on your earnings,
-              given current network conditions.
+              We estimate a <Highlight>{boostPercent}</Highlight> boost on your
+              earnings, given current network conditions.
             </Description>
           </div>
 
