@@ -12,18 +12,16 @@ import { SectionWrapper } from '../common/SectionWrapper';
 type SetWalletSectionProps = {
   data: MineableCoin;
   name?: string;
-  position: number;
 };
 
 export const SetWalletSection = ({
   data: { walletAddressExample, validator },
   name = 'wallet_address',
-  position,
 }: SetWalletSectionProps) => {
   const { t } = useTranslation('get-started');
 
   return (
-    <SectionWrapper position={position} title={t('detail.wallet.title')}>
+    <SectionWrapper title={t('detail.wallet.title')}>
       <p>
         <Trans
           ns="get-started"

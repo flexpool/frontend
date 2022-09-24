@@ -23,7 +23,7 @@ export const ViewDashboard = ({
   const { t } = useTranslation('get-started');
 
   return (
-    <SectionWrapper position={6} title={t('detail.view.title')}>
+    <SectionWrapper title={t('detail.view.title')}>
       <p>{t('detail.view.description')}</p>
       <Spacer />
       <StackBox>

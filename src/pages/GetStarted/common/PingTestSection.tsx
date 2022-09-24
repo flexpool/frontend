@@ -154,14 +154,12 @@ export const PingTestSection: React.FC<{
   showPorts?: boolean;
   namePrimary: string;
   nameSecondary: string;
-  position: number;
 }> = ({
   data,
   showAdditionalPorts = false,
   showPorts = true,
   namePrimary,
   nameSecondary,
-  position,
 }) => {
   const { t } = useTranslation('get-started');
   const router = useRouter();
@@ -425,7 +423,7 @@ export const PingTestSection: React.FC<{
   };
 
   return (
-    <SectionWrapper position={position} title={t('detail.region.title')}>
+    <SectionWrapper title={t('detail.region.title')}>
       <p className="mb-2">{t('detail.region.description')}</p>
       <DynamicList
         onRowClick={selectItem}
