@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import qs from 'query-string';
 import { CopyButton } from 'src/components/CopyButton';
 import { useTranslation } from 'next-i18next';
-import { createBrowserHistory } from 'history';
 import { workerNameCheck } from '@/utils/checks';
 
 const HighlightItem = styled.span`

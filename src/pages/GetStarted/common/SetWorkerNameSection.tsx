@@ -7,7 +7,7 @@ import { Spacer } from 'src/components/layout/Spacer';
 import { workerNameCheck } from '@/utils/checks';
 import { SectionWrapper } from '../common/SectionWrapper';
 
-export const SetWorkerNameSection = ({ position }: { position: number }) => {
+export const SetWorkerNameSection = ({ position, name = 'worker_name' }: { position: number, name?: string }) => {
   const { t } = useTranslation('get-started');
 
   return (

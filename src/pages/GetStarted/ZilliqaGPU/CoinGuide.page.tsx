@@ -132,6 +132,7 @@ export const MineableCoinGuidePage: React.FC = () => {
                   />
 
                   <MinerCommandSection
+                    position={5}
                     data={mineableCoins[2].hardware[0].miners}
                     replaces={{
                       ALGO: isMiningEth ? 'ethash' : 'etchash',
