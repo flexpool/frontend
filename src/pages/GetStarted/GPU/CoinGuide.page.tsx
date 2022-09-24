@@ -104,6 +104,7 @@ export const MineableCoinGuidePage = () => {
                 data={mineableCoin.regions}
                 namePrimary="primary_server"
                 nameSecondary="secondary_server"
+                showAdditionalPorts
               />
 
               <SetWorkerNameSection position={3} name="worker_name" />
