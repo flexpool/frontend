@@ -98,7 +98,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         'seo',
         'search',
       ])),
-      address: searchString,
+      address: searchString || '',
       dashboards,
       status: addressStatus,
       isAddressValid,

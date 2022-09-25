@@ -32,14 +32,16 @@ const useNextQueryParams = <T extends string[]>(...args: T) => {
         omitBy(newParams, isUndefined)
       );
 
-      router.replace(
-        {
-          pathname: router.asPath.replace(/\?.*/, ''),
-          query: urlSearchParams.toString(),
-        },
-        undefined,
-        { shallow: true }
-      );
+      setTimeout(() => {
+        router.replace(
+          {
+            pathname: router.asPath.replace(/\?.*/, ''),
+            query: urlSearchParams.toString(),
+          },
+          undefined,
+          { shallow: true }
+        );
+      }, 0);
 
       return newParams;
     });

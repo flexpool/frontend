@@ -45,7 +45,9 @@ export const SearchAddressBar: React.FC<{
 
       openState.handleClose();
 
-      search(searchAddress, undefined, callback);
+      if (searchAddress) {
+        search(searchAddress, undefined, callback);
+      }
     },
     [searchData, search, openState]
   );
