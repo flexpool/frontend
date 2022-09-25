@@ -65,6 +65,10 @@
       "title": "关于比特币",
       "description": "比特币是世界上第一个引入区块链和点对点互联网货币概念的加密货币。"
     },
+    "zil": {
+      "title": "About Zilliqa",
+      "description": "Zilliqa is a new blockchain platform that is designed to securely scale in an open, permissionless distributed network."
+    },
     "resources": "资源",
     "website": "官方网站",
     "whitepaper": "白皮书",

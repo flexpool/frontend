@@ -65,6 +65,10 @@
       "title": "Про біткойн",
       "description": "Біткойн — перша в світі криптовалюта, яка ввела концепцію блокчейну та однорангових інтернет-грошів."
     },
+    "zil": {
+      "title": "About Zilliqa",
+      "description": "Zilliqa is a new blockchain platform that is designed to securely scale in an open, permissionless distributed network."
+    },
     "resources": "Ресурси",
     "website": "Веб-сайт",
     "whitepaper": "Whitepaper\n",

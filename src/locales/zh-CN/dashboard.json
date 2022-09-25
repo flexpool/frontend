@@ -270,11 +270,11 @@
     }
   },
   "announcements": {
-    "the_merge": "合并大约在9月15日确认。之后，以太坊将不能再挖矿。有关详细信息，请阅读我们的官方公告</merge><br/>查看＜倒计时＞合并倒计时</倒计时＞以查看合并发生前的时间。"
+    "the_merge": "The Merge has been completed as of September 16, 2022, at 06:41 UTC.  Ethereum mining is  longer possible.<br/>Payouts will still happen if you have met your minimum or applied for an exception.  Unpaid balances will be maintained until at least December 15, 2022. Please read our our <merge>official announcement</merge> for details."
   },
   "payout_only_mode_note": {
     "title": "矿池目前处于支付模式",
-    "p1": "如果你现在不能再进行挖矿。请使用你最后使用的IP地址来更新你的支付偏好或改变支付网络来执行支付。",
+    "p1": "You can no longer mine Ethereum. Please use your last IP address used to update your payout preferences or change the payout network to execute a payment. If you do not know this IP address or it does not work, contact <supportlink>support</supportlink> with your ETH address (and an increased gas price limit if your limit is below 10). We will take care of your change for you within 72 hours.",
     "p2": "Don't hesitate to get in touch with <supportlink>support</supportlink> if you have a custom request like a balance transfer from one address to another. (A signed Ethereum digital message is required, and it's not supported by exchanges.)"
   },
   "status_pending_tooltip": "等待交易确认",

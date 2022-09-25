@@ -274,7 +274,7 @@
   },
   "payout_only_mode_note": {
     "title": "The pool is in payout-only mode",
-    "p1": "You can no longer mine. Please use your last IP address used to update your payout preferences or change the payout network to execute a payment.",
+    "p1": "You can no longer mine Ethereum. Please use your last IP address used to update your payout preferences or change the payout network to execute a payment. If you do not know this IP address or it does not work, contact <supportlink>support</supportlink> with your ETH address (and an increased gas price limit if your limit is below 10). We will take care of your change for you within 72 hours.",
     "p2": "Don't hesitate to get in touch with <supportlink>support</supportlink> if you have a custom request like a balance transfer from one address to another. (A signed Ethereum digital message is required, and it's not supported by exchanges.)"
   },
   "status_pending_tooltip": "Ожидание подтверждения транзакции",

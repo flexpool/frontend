@@ -3,4 +3,4 @@ title: 我丢失了我的密钥/助记符，或者我的交易所关闭了我的
 coin: ETH
 ---
 
-首先，如果您不再相信自己可以访问钱包，请停止挖掘钱包。 然后，联系支持人员并说明情况和您的 ETH 地址。 他们会告诉你是否可以做任何事情。
+First, stop mining to a wallet if you no longer believe you can access it. Then, contact support with a description of the situation and your ETH address. They will let you know if anything can be done.

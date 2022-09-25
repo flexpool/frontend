@@ -317,5 +317,12 @@
         "保存矿池设置，可以去 Nicehash 实时算力市场创建新订单（标准或长效订单），购买的算力可以在 Flexpool上挖矿！"
       ]
     }
+  },
+  "banner": {
+    "dual_mine": {
+      "p1": "<hl>Boost your earnings</hl> by dual mining {{primary_coin}} and {{dual_coin}}",
+      "p2": "We estimate a <hl>{{boost_percent}}</hl> boost on your earnings with current network conditions.",
+      "cta": "Get started mining <up>{{primary_ticker}}</up> + <up>{{dual_ticker}}</up>"
+    }
   }
 }
