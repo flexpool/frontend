@@ -45,7 +45,9 @@ export const SearchAddressBar: React.FC<{
 
       openState.handleClose();
 
-      search(searchAddress, undefined, callback);
+      if (searchAddress) {
+        search(searchAddress, undefined, callback);
+      }
     },
     [searchData, search, openState]
   );
@@ -61,15 +63,11 @@ export const SearchAddressBar: React.FC<{
     >
       <Formik
         onSubmit={(data, form) => {
-          if (data.addrsearch === '') {
-            alert("Address can't be empty.");
-          } else {
-            handleSearch(data.addrsearch, () => {
-              callback?.(); // handle component callback, such as closing modal
-              form.setSubmitting(false);
-              form.resetForm();
-            });
-          }
+          handleSearch(data.addrsearch, () => {
+            callback?.(); // handle component callback, such as closing modal
+            form.setSubmitting(false);
+            form.resetForm();
+          });
         }}
         initialValues={{ addrsearch: initialValue }}
         enableReinitialize
