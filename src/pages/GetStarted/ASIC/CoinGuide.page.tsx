@@ -7,13 +7,23 @@ import { Spacer } from 'src/components/layout/Spacer';
 import { Highlight } from 'src/components/Typo/Typo';
 
 import { MineableCoinHardware, mineableCoins } from '../mineableCoinList';
-import { PingTestSection } from './../GPU/PingTest.section';
-import { SetWalletSection } from './../GPU/SetWallet.section';
-import { SetWorkerNameSection } from './../GPU/SetWorkerName.section';
-import { ViewDashboardSection } from './../GPU/ViewDashboard.section';
+// import { PingTestSection } from './../GPU/PingTest.section';
+// import { SetWalletSection } from './../GPU/SetWallet.section';
+// import { SetWorkerNameSection } from './../GPU/SetWorkerName.section';
+// import { ViewDashboardSection } from './../GPU/ViewDashboard.section';
 import merge from 'lodash.merge';
 import { NextSeo } from 'next-seo';
 import qs from 'query-string';
+
+import {
+  GuideForm,
+  PingTestSection,
+  MinerCommandSection,
+  SetWorkerNameSection,
+  ViewDashboardSection,
+  SetWalletSection,
+  SectionWrapper,
+} from '../common';
 
 import { ExampleInterface, ExampleInterfaceWrapper } from './ExampleInterface';
 
@@ -104,7 +114,53 @@ export const MineableCoinGuidePage: React.FC = () => {
         ]}
       />
       <h1>{t(`detail_${mineableCoin?.ticker}.title`)}</h1>
-      <SetWalletSection data={mineableCoin} />
+      <GuideForm
+        initialValue={{
+          wallet_address: '',
+          primary_server: '',
+          secondary_server: '',
+          worker_name: '',
+        }}
+      >
+        {({ values }) => {
+          return (
+            <>
+              <SetWalletSection data={mineableCoin} name="wallet_address" />
+
+              <PingTestSection
+                data={mineableCoin.regions}
+                namePrimary="primary_server"
+                nameSecondary="secondary_server"
+                showAdditionalPorts={false}
+                showPorts={false}
+              />
+
+              <SetWorkerNameSection name="worker_name" />
+
+              <SectionWrapper title={t('detail.asic.title')}>
+                <p>{t('detail.asic.description')}</p>
+                <ExampleInterfaceWrapper>
+                  <ProcessedExampleInterface
+                    poolNum={'1 (Primary)'}
+                    login={`${
+                      values.wallet_address || t('cmd_keys.WALLET_ADDRESS')
+                    }.${values.worker_name || t('cmd_keys.WORKER_NAME')}`}
+                    server={values.primary_server as string}
+                  />
+                  <ProcessedExampleInterface
+                    poolNum={'2 (Backup)'}
+                    login={`${
+                      values.wallet_address || t('cmd_keys.WALLET_ADDRESS')
+                    }.${values.worker_name || t('cmd_keys.WORKER_NAME')}`}
+                    server={values.primary_server as string}
+                  />
+                </ExampleInterfaceWrapper>
+              </SectionWrapper>
+            </>
+          );
+        }}
+      </GuideForm>
+      {/* <SetWalletSection data={mineableCoin} />
       <Spacer size="xl" />
       <PingTestSection
         data={mineableCoin?.regions}
@@ -132,7 +188,7 @@ export const MineableCoinGuidePage: React.FC = () => {
         />
       </ExampleInterfaceWrapper>
       <Spacer size="xl" />
-      <ViewDashboardSection ticker={ticker as string} />
+      <ViewDashboardSection ticker={ticker as string} /> */}
     </Page>
   );
 };

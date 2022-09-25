@@ -16,7 +16,7 @@ import DynamicList, {
 } from 'src/components/layout/List/List';
 import { MineableCoinRegion } from '../mineableCoinList';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
-import { Highlight, Mono, Ws } from 'src/components/Typo/Typo';
+import { Mono, Ws } from 'src/components/Typo/Typo';
 import { CopyButton } from 'src/components/CopyButton';
 import { Sticker } from 'src/components/Sticker';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
