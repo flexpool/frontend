@@ -331,7 +331,7 @@ license: true # Agree to FlexFarmer's license located at https://static.flexpool
 
         <p>{globalT('detail.region.description_chia')}</p>
         <Spacer />
-        <PingTestSection data={mineableCoin?.regions as MineableCoinRegion[]} />
+        {/* <PingTestSection data={mineableCoin?.regions as MineableCoinRegion[]} /> */}
 
         <h2>
           <Highlight>#9</Highlight> {localT('config.heading')}

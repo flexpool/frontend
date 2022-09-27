@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
-
-import { useRouter } from 'next/router';
+import React from 'react';
 import { AnyAction } from 'redux';
 import { useTranslation } from 'next-i18next';
 
 import styled from 'styled-components';
-import qs from 'query-string';
 import { w3cwebsocket } from 'websocket';
 import { differenceInMilliseconds } from 'date-fns';
 import { FaCheck } from 'react-icons/fa';
@@ -22,6 +19,8 @@ import { Sticker } from 'src/components/Sticker';
 import { Tooltip } from 'src/components/Tooltip';
 import { Img } from 'src/components/Img';
 import { useBoolState } from 'src/hooks/useBoolState';
+
+import { useField } from 'formik';
 
 // const WarningIcon = styled(FaExclamationCircle)`
 //   color: var(--danger);
@@ -121,21 +120,19 @@ const reducer = (state: { [key: string]: number }, action: AnyAction) => {
   }
 };
 
-export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
+export const PingTestSection = ({
   data,
+  namePrimary,
+}: {
+  data: MineableCoinRegion[];
+  namePrimary: string;
 }) => {
   const [latencies, dispatch] = React.useReducer(reducer, {});
-  const router = useRouter();
-  let search;
 
-  if (typeof window !== 'undefined') {
-    search = window.location.search;
-  }
-
-  // const [selection, setSelection] = React.useState<'primary' | 'secondary'>(
-  //   'primary'
-  // );
   const isAutoSetOnce = useBoolState();
+
+  const [, { value: primaryServer }, { setValue: setPrimaryServer }] =
+    useField(namePrimary);
 
   const { t } = useTranslation('get-started');
 
@@ -278,27 +275,6 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
     ],
     [t]
   );
-  const [urlState, setUrlState] = useState(new Date());
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('popstate', function (event) {
-        setUrlState(new Date());
-      });
-    }
-  }, []);
-
-  const searchParams = React.useMemo(() => {
-    if (typeof window !== 'undefined') {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      search = window.location.search;
-    }
-    return qs.parse(search) as {
-      primaryServer?: string;
-      secondaryServer?: string;
-      farmerOption?: string;
-    };
-  }, [urlState]);
 
   /**
    * returns two fastest servers
@@ -324,111 +300,35 @@ export const PingTestSection: React.FC<{ data: MineableCoinRegion[] }> = ({
    * Automatically set primary and secondary
    */
   React.useEffect(() => {
-    if (fastest.first && fastest.second && !isAutoSetOnce.value) {
+    if (fastest.first && !isAutoSetOnce.value) {
       isAutoSetOnce.handleTrue();
-      const query = qs.stringify({
-        ...searchParams,
-        primaryServer: fastest.first,
-      });
-
-      const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
-
-      window.history.pushState(
-        { ...window.history.state, as: newUrl, url: newUrl },
-        '',
-        newUrl
-      );
-      let queryStringChange = new Event('popstate');
-      window.dispatchEvent(queryStringChange);
+      setPrimaryServer(fastest.first);
     }
-    // useEffect only needs to fire on fastest server selection
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fastest]);
+  }, [fastest, setPrimaryServer, isAutoSetOnce]);
 
   const setServer = React.useCallback(
     (type: 'secondary' | 'primary', domain: string) => {
-      if (typeof window !== 'undefined') {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        search = window.location.search;
-      }
-      const isPrimarySelection = type === 'primary';
-      const query = qs.stringify({
-        ...searchParams,
-        ...(isPrimarySelection
-          ? {
-              primaryServer: domain,
-            }
-          : {
-              secondaryServer: domain,
-            }),
-      });
-
-      const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
-
-      window.history.pushState(
-        { ...window.history.state, as: newUrl, url: newUrl },
-        '',
-        newUrl
-      );
-      let queryStringChange = new Event('popstate');
-      window.dispatchEvent(queryStringChange);
+      setPrimaryServer(domain);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 
-  const colConfig = React.useMemo(() => {
-    return {
-      setLatency: handleSetLowestLatency,
-      fastestServer: fastest.first,
-      secondFastestServer: fastest.second,
-      searchParams,
-      setServer,
-    };
-  }, [handleSetLowestLatency, fastest, searchParams, setServer]);
+  const searchParams = {
+    primaryServer,
+  };
 
-  // uncomment to turn on toggle
-  // const selectItem = React.useCallback(
-  //   (d: MineableCoinRegion) => {
-  //     // const isPrimarySelection = selection === 'primary';
-  //     historyReplace({
-  //       search: qs.stringify({
-  //         ...searchParams,
-  //         ...(isPrimarySelection
-  //           ? {
-  //               primaryServer: d.domain,
-  //             }
-  //           : {
-  //               secondaryServer: d.domain,
-  //             }),
-  //       }),
-  //     });
-  //     // setSelection(isPrimarySelection ? 'secondary' : 'primary');
-  //   },
-  //   [selectionhistoryReplace, searchParams]
-  // );
-  const selectItem = React.useCallback((d: MineableCoinRegion) => {
-    if (typeof window !== 'undefined') {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      search = window.location.search;
-    }
-    const query = qs.stringify({
-      ...qs.parse(search),
-      primaryServer: d.domain,
-    });
+  const colConfig = {
+    setLatency: handleSetLowestLatency,
+    fastestServer: fastest.first,
+    secondFastestServer: fastest.second,
+    searchParams,
+    setServer,
+  };
 
-    const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
-
-    window.history.pushState(
-      { ...window.history.state, as: newUrl, url: newUrl },
-      '',
-      newUrl
-    );
-    let queryStringChange = new Event('popstate');
-    window.dispatchEvent(queryStringChange);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const selectItem = (d: MineableCoinRegion) => {
+    setPrimaryServer(d.domain);
+  };
 
   return (
     <>

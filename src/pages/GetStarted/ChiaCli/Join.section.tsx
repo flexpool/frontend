@@ -1,54 +1,20 @@
 import React from 'react';
 import { Trans, useTranslation } from 'next-i18next';
 import { Spacer } from 'src/components/layout/Spacer';
-import { Highlight } from 'src/components/Typo/Typo';
 import { TerminalCommand } from './TerminalCommand';
 import { LinkOut } from 'src/components/LinkOut';
-import { FarmerOptionSelector } from '../ChiaShared/FarmerOptionSelector';
-
-type JoinSectionProps = {
-  primaryServer: string;
-  selectedFarmerOption: string;
-  setSelectedFarmerOption: (s: string) => void;
-};
-
-export const JoinSection = (props: JoinSectionProps) => {
-  const {
-    primaryServer,
-    selectedFarmerOption,
-    setSelectedFarmerOption,
-  } = props;
-
-  return (
-    <>
-      <FarmerOptionSelector
-        setSelectedFarmerOption={(s: string) => {
-          setSelectedFarmerOption(s);
-        }}
-        selectedFarmerOption={selectedFarmerOption}
-      />
-      {selectedFarmerOption !== 'already-farmer' ? (
-        <NewFarmerGuide primaryServer={primaryServer} />
-      ) : (
-        <AlreadyFarmerGuide primaryServer={primaryServer} />
-      )}
-    </>
-  );
-};
+import { SectionWrapper } from '../common';
 
 type FarmerGuideProps = {
   primaryServer: string;
 };
 
-const AlreadyFarmerGuide = (props: FarmerGuideProps) => {
+export const AlreadyFarmerGuide = (props: FarmerGuideProps) => {
   const { t } = useTranslation('get-started');
   const { primaryServer } = props;
 
   return (
-    <>
-      <h2>
-        <Highlight>#2</Highlight> {t('detail_xch.plotnft_join.title')}
-      </h2>
+    <SectionWrapper title={t('detail_xch.plotnft_join.title')}>
       <p>
         <Trans
           ns="get-started"
@@ -82,19 +48,16 @@ const AlreadyFarmerGuide = (props: FarmerGuideProps) => {
         <b>{t('detail.note') + ' '}</b>
         <Trans ns="get-started" i18nKey="detail_xch.plotnft_join.time_note" />
       </p>
-    </>
+    </SectionWrapper>
   );
 };
 
-const NewFarmerGuide = (props: FarmerGuideProps) => {
+export const NewFarmerGuide = (props: FarmerGuideProps) => {
   const { t } = useTranslation('get-started');
   const { primaryServer } = props;
 
   return (
-    <>
-      <h2>
-        <Highlight>#2</Highlight> {t('detail_xch.plotnft_create.title')}
-      </h2>
+    <SectionWrapper title={t('detail_xch.plotnft_create.title')}>
       <p>{t('detail_xch.plotnft_create.desc_one')}</p>
       <Spacer />
       <p>{t('detail_xch.plotnft_create.desc_two')}</p>
@@ -128,6 +91,6 @@ const NewFarmerGuide = (props: FarmerGuideProps) => {
           }}
         />
       </p>
-    </>
+    </SectionWrapper>
   );
 };

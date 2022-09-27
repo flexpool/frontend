@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Trans, useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { w3cwebsocket } from 'websocket';
@@ -343,15 +343,6 @@ export const PingTestSection: React.FC<{
     ],
     [t]
   );
-  const [urlState, setUrlState] = useState(new Date());
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('popstate', function (event) {
-        setUrlState(new Date());
-      });
-    }
-  }, []);
 
   /**
    * list of servers with 14444

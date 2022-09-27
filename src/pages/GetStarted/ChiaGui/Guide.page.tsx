@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
-
 import { Trans, useTranslation } from 'next-i18next';
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
 import { MineableCoinHardware, mineableCoins } from '../mineableCoinList';
-// import { Redirect, useHistory, useLocation, useRouteMatch } from 'react-router';
-import qs from 'query-string';
 import { PingTestSection } from '../ChiaShared/PingTest.section';
 import merge from 'lodash.merge';
 import styled, { css, keyframes } from 'styled-components';
@@ -20,6 +17,8 @@ import { ChiaGuiInput } from './Input';
 import { ChiaGuiLink } from './Link';
 import { FarmerOptionSelector } from '../ChiaShared/FarmerOptionSelector';
 import { NextSeo } from 'next-seo';
+
+import { GuideForm, SectionWrapper } from '../common';
 
 export const ChiaGuiGuidePage: React.FC = () => {
   const router = useRouter();
@@ -42,41 +41,6 @@ export const ChiaGuiGuidePage: React.FC = () => {
     return mergedHw.find((item) => item.key === 'XCH-GUI');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const [urlState, setUrlState] = useState(new Date());
-  let search;
-
-  if (typeof window !== 'undefined') {
-    search = window.location.search;
-  }
-
-  const { primaryServer = 'POOL_URL', farmerOption = 'new-farmer' } = qs.parse(search);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('popstate', function (event) {
-        setUrlState(new Date());
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const setSelectedFarmerOption = (s: string) => {
-    const query = qs.stringify({
-      ...qs.parse(search),
-      farmerOption: s,
-    });
-
-    const newUrl = `${router.asPath.split('?')[0]}/?${query}`;
-
-    window.history.pushState(
-      { ...window.history.state, as: newUrl, url: newUrl },
-      '',
-      newUrl
-    );
-    let queryStringChange = new Event('popstate');
-    window.dispatchEvent(queryStringChange);
-  };
 
   if (!mineableCoin || !mineableCoinConfig) {
     router.push('/get-started');
@@ -118,107 +82,120 @@ export const ChiaGuiGuidePage: React.FC = () => {
       />
 
       <h1>{t('detail_xch.title_gui')}</h1>
-      <h2>
-        <Highlight>#1</Highlight> {t('detail.region.title')}
-      </h2>
-      <p>{t('detail.region.description_chia')}</p>
-      <PingTestSection data={mineableCoin.regions} />
-      <Spacer size="xl" />
-      <FarmerOptionSelector
-        selectedFarmerOption={farmerOption as string}
-        setSelectedFarmerOption={setSelectedFarmerOption}
-      />
-      {farmerOption !== 'already-farmer' ? (
-        <>
-          <h2>
-            <Highlight>#1</Highlight> {t('detail_xch.plotnft_create.title_join')}
-          </h2>
-          <p>{t('detail_xch.plotnft_create.desc_one')}</p>
-          <Spacer />
-          <p>{t('detail_xch.plotnft_create.desc_two')}</p>
-          <Spacer />
-          <p>{t('detail_xch.plotnft_create.create_gui_action')}</p>
-          <ChiaGuiMenu
-            selectedMenu={'Pool'}
-            menuContent={<AddNewPlotNFTChiaGuiMenuContent />}
-            highlightMenu={true}
-          />
-          <Spacer size="xl" />
-          <p>{t('detail_xch.plotnft_create.create_gui_action_two')}</p>
-          <ChiaGuiMenu
-            selectedMenu={'Pool'}
-            menuContent={
-              <AddNewPlotNFTDetailChiaGuiMenuContent
-                selectedServer={`https://${primaryServer}`}
+      <GuideForm
+        initialValue={{
+          primary_server: 'POOL_URL',
+          farmer_option: 'already-farmer',
+        }}
+      >
+        {({ values: { primary_server, farmer_option } }) => {
+          return (
+            <>
+              <h2>
+                <Highlight>#1</Highlight> {t('detail.region.title')}
+              </h2>
+              <p>{t('detail.region.description_chia')}</p>
+              <PingTestSection
+                data={mineableCoin.regions}
+                namePrimary="primary_server"
               />
-            }
-          />
-        </>
-      ) : (
-        <>
-          <h2>
-            <Highlight>#1</Highlight> {t('detail_xch.plotnft_join.title')}
-          </h2>
-          <p>
-            <Trans
-              ns="get-started"
-              i18nKey="detail_xch.plotnft_join.desc_one"
-              components={{
-                b: <b />,
-              }}
-            />
-          </p>
-          <Spacer />
-          <p>{t('detail_xch.plotnft_join.assign_gui_action')}</p>
-          <ChiaGuiMenu
-            selectedMenu={'Pool'}
-            menuContent={
-              <PoolSwitchChiaGuiMenuContent
-                selectedServer={'https://previous-pool.com'}
+              <Spacer size="xl" />
+              <FarmerOptionSelector name="farmer_option" />
+              {farmer_option !== 'already-farmer' ? (
+                <SectionWrapper
+                  title={t('detail_xch.plotnft_create.title_join')}
+                >
+                  <p>{t('detail_xch.plotnft_create.desc_one')}</p>
+                  <Spacer />
+                  <p>{t('detail_xch.plotnft_create.desc_two')}</p>
+                  <Spacer />
+                  <p>{t('detail_xch.plotnft_create.create_gui_action')}</p>
+                  <ChiaGuiMenu
+                    selectedMenu={'Pool'}
+                    menuContent={<AddNewPlotNFTChiaGuiMenuContent />}
+                    highlightMenu={true}
+                  />
+                  <Spacer size="xl" />
+                  <p>{t('detail_xch.plotnft_create.create_gui_action_two')}</p>
+                  <ChiaGuiMenu
+                    selectedMenu={'Pool'}
+                    menuContent={
+                      <AddNewPlotNFTDetailChiaGuiMenuContent
+                        selectedServer={`https://${primary_server}`}
+                      />
+                    }
+                  />
+                </SectionWrapper>
+              ) : (
+                <SectionWrapper title={t('detail_xch.plotnft_join.title')}>
+                  <p>
+                    <Trans
+                      ns="get-started"
+                      i18nKey="detail_xch.plotnft_join.desc_one"
+                      components={{
+                        b: <b />,
+                      }}
+                    />
+                  </p>
+                  <Spacer />
+                  <p>{t('detail_xch.plotnft_join.assign_gui_action')}</p>
+                  <ChiaGuiMenu
+                    selectedMenu={'Pool'}
+                    menuContent={
+                      <PoolSwitchChiaGuiMenuContent
+                        selectedServer={'https://previous-pool.com'}
+                      />
+                    }
+                  />
+                  <Spacer size="xl" />
+                  <p>{t('detail_xch.plotnft_join.assign_gui_action_two')}</p>
+                  <ChiaGuiMenu
+                    selectedMenu={'Pool'}
+                    menuContent={
+                      <AddNewPlotNFTDetailChiaGuiMenuContent
+                        selectedServer={`https://${primary_server}`}
+                        changePool={true}
+                      />
+                    }
+                  />
+                </SectionWrapper>
+              )}
+              <Spacer size="xl" />
+              <h2>
+                <Highlight>#2</Highlight>{' '}
+                {t('detail_xch.gather_payout_address_gui.title')}
+              </h2>
+              <p>{t('detail_xch.gather_payout_address_gui.desc')}</p>
+              <Spacer />
+              <ChiaGuiMenu
+                selectedMenu={'Pool'}
+                menuContent={
+                  <PayoutAddressChiaGuiMenuContent
+                    selectedServer={`https://${primary_server}`}
+                  />
+                }
               />
-            }
-          />
-          <Spacer size="xl" />
-          <p>{t('detail_xch.plotnft_join.assign_gui_action_two')}</p>
-          <ChiaGuiMenu
-            selectedMenu={'Pool'}
-            menuContent={
-              <AddNewPlotNFTDetailChiaGuiMenuContent
-                selectedServer={`https://${primaryServer}`}
-                changePool={true}
-              />
-            }
-          />
-        </>
-      )}
-      <Spacer size="xl" />
-      <h2>
-        <Highlight>#2</Highlight> {t('detail_xch.gather_payout_address_gui.title')}
-      </h2>
-      <p>{t('detail_xch.gather_payout_address_gui.desc')}</p>
-      <Spacer />
-      <ChiaGuiMenu
-        selectedMenu={'Pool'}
-        menuContent={
-          <PayoutAddressChiaGuiMenuContent selectedServer={`https://${primaryServer}`} />
-        }
-      />
-      <Spacer />
-      <p>
-        <b>{t('detail.note') + ' '}</b>
-        <Trans
-          ns="get-started"
-          i18nKey="detail_xch.gather_payout_address_gui.not_found_note"
-          components={{
-            b: <b />,
-          }}
-        />
-      </p>
-      <Spacer size="xl" />
-      <h2>
-        <Highlight>#3</Highlight> {t('detail_xch.monitor_farm.title')}
-      </h2>
-      <p>{t('detail_xch.monitor_farm.desc_gui')}</p>
+              <Spacer />
+              <p>
+                <b>{t('detail.note') + ' '}</b>
+                <Trans
+                  ns="get-started"
+                  i18nKey="detail_xch.gather_payout_address_gui.not_found_note"
+                  components={{
+                    b: <b />,
+                  }}
+                />
+              </p>
+              <Spacer size="xl" />
+              <h2>
+                <Highlight>#3</Highlight> {t('detail_xch.monitor_farm.title')}
+              </h2>
+              <p>{t('detail_xch.monitor_farm.desc_gui')}</p>
+            </>
+          );
+        }}
+      </GuideForm>
+
       <Spacer size="xl" />
     </Page>
   );
@@ -315,14 +292,19 @@ const AddNewPlotNFTDetailChiaGuiMenuContent = (
       <ChiaGuiMenuStep>
         <ChiaGuiMenuStepHeader
           stepNumber={1}
-          text={!changePool ? 'Want to Join a Pool? Create a Plot NFT' : 'Change Pool'}
+          text={
+            !changePool
+              ? 'Want to Join a Pool? Create a Plot NFT'
+              : 'Change Pool'
+          }
         />
         <ChiaGuiMenuContent>
           {!changePool && (
             <p>
-              Join a pool and get consistent XCH farming rewards. The average returns are
-              the same, but it is much less volatile. Assign plots to a plot NFT. You can
-              easily switch pools without having to re-plot.
+              Join a pool and get consistent XCH farming rewards. The average
+              returns are the same, but it is much less volatile. Assign plots
+              to a plot NFT. You can easily switch pools without having to
+              re-plot.
             </p>
           )}
           <ConnectToPoolInputWrapper>
@@ -344,7 +326,9 @@ const AddNewPlotNFTDetailChiaGuiMenuContent = (
         </ChiaGuiMenuContent>
       </ChiaGuiMenuStep>
       <PlotNFTCreateButtonWrapper>
-        <ChiaGuiButton glowing={true}>{!changePool ? 'Create' : 'Change'}</ChiaGuiButton>
+        <ChiaGuiButton glowing={true}>
+          {!changePool ? 'Create' : 'Change'}
+        </ChiaGuiButton>
       </PlotNFTCreateButtonWrapper>
     </>
   );
@@ -499,11 +483,15 @@ const ChiaGuiNFTDetails = (props: ChiaGuiNFTDetailsProps) => {
       <ChiaPlotNFTCredentialsWrapper>
         <ChiaPlotNFTCredential
           label={'Launcher ID'}
-          value={'0xf874b591d216ca37eb02c537b3e944302b7d5c3c36fb2a6a706112e3d77e59ea'}
+          value={
+            '0xf874b591d216ca37eb02c537b3e944302b7d5c3c36fb2a6a706112e3d77e59ea'
+          }
         />
         <ChiaPlotNFTCredential
           label={'Payout Address'}
-          value={'xch1s5495j75swjzszdc6c4eecafxcu5t0n4qulm6fews8d97yr535hq08pcz5'}
+          value={
+            'xch1s5495j75swjzszdc6c4eecafxcu5t0n4qulm6fews8d97yr535hq08pcz5'
+          }
           glowing={glowingPayoutAddress === true}
         />
       </ChiaPlotNFTCredentialsWrapper>
@@ -521,19 +509,29 @@ type PayoutAddressChiaGuiMenuContentProps = {
   selectedServer: string;
 };
 
-const PayoutAddressChiaGuiMenuContent = (props: PayoutAddressChiaGuiMenuContentProps) => {
+const PayoutAddressChiaGuiMenuContent = (
+  props: PayoutAddressChiaGuiMenuContentProps
+) => {
   const { selectedServer } = props;
 
   return (
-    <ChiaGuiNFTDetails selectedServer={selectedServer} glowingPayoutAddress={true} />
+    <ChiaGuiNFTDetails
+      selectedServer={selectedServer}
+      glowingPayoutAddress={true}
+    />
   );
 };
 
-const PoolSwitchChiaGuiMenuContent = (props: PayoutAddressChiaGuiMenuContentProps) => {
+const PoolSwitchChiaGuiMenuContent = (
+  props: PayoutAddressChiaGuiMenuContentProps
+) => {
   const { selectedServer } = props;
 
   return (
-    <ChiaGuiNFTDetails selectedServer={selectedServer} switchButtonAvailable={true} />
+    <ChiaGuiNFTDetails
+      selectedServer={selectedServer}
+      switchButtonAvailable={true}
+    />
   );
 };
 
@@ -733,7 +731,10 @@ const ChiaGuiMenu = (props: ChiaGuiMenuProps) => {
       <ChiaGuiMenuSidebarWrapper>
         <ChiaGuiMenuSidebarLogoSection>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="https://static.flexpool.io/logos/chia.svg" alt="chia logo" />
+          <img
+            src="https://static.flexpool.io/logos/chia.svg"
+            alt="chia logo"
+          />
         </ChiaGuiMenuSidebarLogoSection>
         <ChiaGuiSidebarItems
           items={{

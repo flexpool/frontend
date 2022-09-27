@@ -18,10 +18,14 @@ export const SectionWrapper = ({
   const g = useGuide();
 
   useEffect(() => {
-    if (g.get(id.current) === -1) {
-      g.add(id.current);
+    var localId = id.current;
+    if (g.get(localId) === -1) {
+      g.add(localId);
+      return () => {
+        g.remove(localId);
+      };
     }
-  }, [g]);
+  }, []);
 
   return (
     <>

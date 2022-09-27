@@ -8,3 +8,4 @@ export * from './SetWorkerNameSection';
 export * from './WalletTextField';
 export * from './DashboardLink';
 export * from './ViewDashboardSection';
+export * from './TerminalCommand';

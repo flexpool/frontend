@@ -5,6 +5,7 @@ type ContextValue = {
   ids: string[];
   add: (id: string) => void;
   get: (id: string) => number;
+  remove: (id: string) => void;
 };
 
 const GuideContext = createContext<ContextValue | undefined>(undefined);
@@ -18,6 +19,9 @@ const GuideProvider = ({ children }: { children: React.ReactNode }) => {
         ids,
         add: (id: string) => setIds((ids) => [...ids, id]),
         get: (id: string) => ids.indexOf(id),
+        remove: (id: string) => {
+          setIds((i) => i.filter((i) => i !== id));
+        },
       }}
     >
       {children}
