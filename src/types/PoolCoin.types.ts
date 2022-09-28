@@ -68,3 +68,8 @@ export type ApiBlocks = {
   totalPages: number;
   data: ApiBlock[];
 };
+
+export type Distribution = {
+  hashrate: number;
+  hashrateLowerThan: number;
+}[];

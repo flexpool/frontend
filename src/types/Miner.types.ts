@@ -117,3 +117,24 @@ export type ApiBlocks = {
   totalPages: number;
   data: ApiBlock[];
 };
+
+export type ApiPaymentStats = {
+  countervalue: number;
+  lastPayment: {
+    duration: number;
+    fee: number;
+    feePercent: number;
+    hash: string;
+    timestamp: number;
+    value: number;
+  } | null;
+  stats: {
+    averageDuration: number;
+    averageFee: number;
+    averageFeePercent: number;
+    averageValue: number;
+    totalFees: number;
+    totalPaid: number;
+    transactionCount: number;
+  } | null;
+};

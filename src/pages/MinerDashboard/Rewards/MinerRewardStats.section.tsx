@@ -48,7 +48,6 @@ export const MinerRewardStatsSection: React.FC<{
   rewards: ApiMinerReward[];
   counterPrice: number;
 }> = ({ coin, address, rewards, counterPrice = 0 }) => {
-  // const dailyRewardPerGhState = useAsyncState('dailyRewGh', 0)
   const coinTicker = useActiveCoinTicker();
   const counterTicker = useCounterTicker();
   const activeCoin = useActiveCoin();
