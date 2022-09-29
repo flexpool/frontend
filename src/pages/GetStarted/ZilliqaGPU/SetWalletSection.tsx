@@ -10,6 +10,7 @@ import Image from 'next/image';
 import { getCoinIconUrl } from '@/utils/staticImage.utils';
 
 type SetWalletSectionProps = {
+  position: number;
   data: MineableCoin;
   nameMain: string;
   nameDual: string;
@@ -51,11 +52,12 @@ export const SetWalletSection = ({
   data,
   nameMain,
   nameDual,
+  position,
 }: SetWalletSectionProps) => {
   const { t } = useTranslation('get-started');
 
   return (
-    <SectionWrapper title={t('detail.wallet.title')}>
+    <SectionWrapper position={position} title={t('detail.wallet.title')}>
       <p>
         <Trans
           ns="get-started"

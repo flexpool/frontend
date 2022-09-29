@@ -156,6 +156,7 @@ export const PingTestSection: React.FC<{
   namePrimary: string;
   nameSecondary: string;
 }> = ({
+  position,
   data,
   showAdditionalPorts = false,
   showPorts = true,
@@ -173,11 +174,6 @@ export const PingTestSection: React.FC<{
     useField(nameSecondary);
 
   const ticker = router.query.ticker;
-  let search;
-
-  if (typeof window !== 'undefined') {
-    search = window.location.search;
-  }
 
   const handleSetLowestLatency = React.useCallback(
     (name: string, value: number) => {

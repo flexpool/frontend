@@ -114,7 +114,8 @@ export const MineableCoinGuidePage: React.FC = () => {
 
               <SectionWrapper position={4} title={t('detail.asic.title')}>
                 <p>{t('detail.asic.description')}</p>
-                <ExampleInterfaceWrapper>
+                <Spacer />
+                <MockBrowser>
                   <ProcessedExampleInterface
                     poolNum={'1 (Primary)'}
                     login={`${
@@ -129,9 +130,8 @@ export const MineableCoinGuidePage: React.FC = () => {
                     }.${values.worker_name || t('cmd_keys.WORKER_NAME')}`}
                     server={values.primary_server as string}
                   />
-                </ExampleInterfaceWrapper>
-                <Spacer />
-                <MockBrowser />
+                  <Spacer size="lg" />
+                </MockBrowser>
               </SectionWrapper>
 
               {values.wallet_address && (

@@ -106,27 +106,33 @@ export const MineableCoinGuidePage: React.FC = () => {
 
           return (
             <>
-              <SectionWrapper title={t(`detail_${ticker}.select_dual_mining`)}>
+              <SectionWrapper
+                position={1}
+                title={t(`detail_${ticker}.select_dual_mining`)}
+              >
                 <MainCoinButtonGroup name="main_coin" />
               </SectionWrapper>
 
-              <SetWorkerNameSection />
+              <SetWorkerNameSection position={2} />
 
               {mainCoin && (
                 <>
                   <SetWalletSection
+                    position={3}
                     data={mainCoin}
                     nameMain="main_wallet_address"
                     nameDual="dual_wallet_address"
                   />
 
                   <PingTestSection
+                    position={4}
                     data={mainCoin.regions}
                     namePrimary="main_primary_server"
                     nameSecondary="main_secondary_server"
                   />
 
                   <MinerCommandSection
+                    position={5}
                     data={mineableCoins[2].hardware[0].miners}
                     replaces={{
                       ALGO: isMiningEth ? 'ethash' : 'etchash',
@@ -144,6 +150,7 @@ export const MineableCoinGuidePage: React.FC = () => {
 
                   {values.main_wallet_address && values.dual_wallet_address && (
                     <ViewDashboard
+                      position={6}
                       primary={{
                         coin: mainCoin,
                         address: values.main_wallet_address,

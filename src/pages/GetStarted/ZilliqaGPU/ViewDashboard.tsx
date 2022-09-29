@@ -14,16 +14,18 @@ const StackBox = styled.div`
 `;
 
 export const ViewDashboard = ({
+  position,
   primary,
   dual,
 }: {
+  position: number;
   primary: { coin: MineableCoin; address: string };
   dual: { coin: MineableCoin; address: string };
 }) => {
   const { t } = useTranslation('get-started');
 
   return (
-    <SectionWrapper title={t('detail.view.title')}>
+    <SectionWrapper position={position} title={t('detail.view.title')}>
       <p>{t('detail.view.description')}</p>
       <Spacer />
       <StackBox>

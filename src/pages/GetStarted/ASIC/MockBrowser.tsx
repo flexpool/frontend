@@ -7,12 +7,18 @@ const PageHeader = styled.div`
   border-bottom: 1px solid var(--border-color);
 `;
 
-const PageBody = styled.div``;
+const PageBody = styled.div`
+  flex: 1;
+  display: flex;
+`;
 
-const PageContent = styled.div``;
+const PageContent = styled.div`
+  flex: 1;
+`;
 
 const PageAside = styled.aside`
   border-right: 1px solid var(--border-color);
+  flex-basis: 240px;
 `;
 
 const BrowserWindow = styled.div`
@@ -20,9 +26,16 @@ const BrowserWindow = styled.div`
   border-radius: 18px;
 
   border: 2px solid var(--border-color);
+
+  display: flex;
+  flex-direction: column;
 `;
 
-const BrowserContent = styled.div``;
+const BrowserContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+`;
 
 const AddressBar = styled.div`
   position: absolute;
@@ -71,7 +84,7 @@ const BrowserToolBar = styled.div`
   }
 `;
 
-export const MockBrowser = () => {
+export const MockBrowser = ({ children }: { children: React.ReactNode }) => {
   return (
     <BrowserWindow>
       <BrowserToolBar>
@@ -86,7 +99,7 @@ export const MockBrowser = () => {
         <PageHeader></PageHeader>
         <PageBody>
           <PageAside></PageAside>
-          <PageContent />
+          <PageContent>{children}</PageContent>
         </PageBody>
       </BrowserContent>
     </BrowserWindow>
