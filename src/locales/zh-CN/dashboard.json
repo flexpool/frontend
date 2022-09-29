@@ -96,11 +96,11 @@
     "update_in": "刷新",
     "auto_update": "自动刷新",
     "time_to_lambo": "您到Lambo的预计时间是{{时间}}。",
-    "next_pow": "Next PoW Round",
-    "in_progress": "In Progress",
-    "hr": "hr",
-    "min": "min",
-    "sec": "sec"
+    "next_pow": "下一轮 PoW ",
+    "in_progress": "进行中",
+    "hr": "小时",
+    "min": "分",
+    "sec": "秒"
   },
   "nav": {
     "stats": "矿机状态",
@@ -270,12 +270,12 @@
     }
   },
   "announcements": {
-    "the_merge": "合并大约在9月15日确认。之后，以太坊将不能再挖矿。有关详细信息，请阅读我们的官方公告</merge><br/>查看＜倒计时＞合并倒计时</倒计时＞以查看合并发生前的时间。"
+    "the_merge": "以太坊合并已经在 9 月 16 日，06:41 UTC 时完成。以太坊已经不可以被挖矿。<br/>如果您的余额符合最低要求，他们将被支出。未支付的余额我们将为您维护到至少 12 月 15 日 2022. 更多细节请阅读我们的<merge>官方公告</merge>。"
   },
   "payout_only_mode_note": {
     "title": "矿池目前处于支付模式",
-    "p1": "如果你现在不能再进行挖矿。请使用你最后使用的IP地址来更新你的支付偏好或改变支付网络来执行支付。",
-    "p2": "Don't hesitate to get in touch with <supportlink>support</supportlink> if you have a custom request like a balance transfer from one address to another. (A signed Ethereum digital message is required, and it's not supported by exchanges.)"
+    "p1": "你不能再继续挖以太坊。请使用你最后的 IP 地址更新的你的支付设置。如果你不知道 IP 地址，或显示错误，请联系<supportlink>客服</supportlink>，并附加上你的 ETH 地址 （和 gas 设置如果你需要更改）。我们将在 72 小时内为你提供帮助。",
+    "p2": "请不要犹豫联系<supportlink>客服</supportlink> 如果你有特殊的请求比如余额转到另一个地址。（你必须有 ETH 电子签名信息，并且该功能交易所不支持）"
   },
   "status_pending_tooltip": "等待交易确认",
   "confirmation_duration_tooltip": "交易确认时间",

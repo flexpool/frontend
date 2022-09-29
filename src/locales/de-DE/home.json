@@ -65,6 +65,10 @@
       "title": "About Bitcoin",
       "description": "Bitcoin is the world's first cryptocurrency that has introduced the concept of blockchain and peer to peer internet money."
     },
+    "zil": {
+      "title": "About Zilliqa",
+      "description": "Zilliqa is a new blockchain platform that is designed to securely scale in an open, permissionless distributed network."
+    },
     "resources": "Resources",
     "website": "Website",
     "whitepaper": "Whitepaper",

@@ -317,5 +317,12 @@
         "Hourra ! Tu as fait fonctionner le NiceHash avec Flexpool, ce qui signifie que tu peux maintenant utiliser le meilleur pool minier avec la meilleure place de marché hashpower ! "
       ]
     }
+  },
+  "banner": {
+    "dual_mine": {
+      "p1": "<hl>Boost your earnings</hl> by dual mining {{primary_coin}} and {{dual_coin}}",
+      "p2": "We estimate a <hl>{{boost_percent}}</hl> boost on your earnings with current network conditions.",
+      "cta": "Get started mining <up>{{primary_ticker}}</up> + <up>{{dual_ticker}}</up>"
+    }
   }
 }

@@ -31,7 +31,13 @@ export const PayoutsOnlyNote = () => {
       >
         <PayoutOnlyModeNote>
           <h2>{t('payout_only_mode_note.title')}</h2>
-          <p>{t('payout_only_mode_note.p1')}</p>
+          <p>
+            <Trans
+              ns="dashboard"
+              i18nKey="payout_only_mode_note.p1"
+              components={{ supportlink: <LinkOut href="/support" /> }}
+            />
+          </p>
           <p>
             <Trans
               ns="dashboard"
