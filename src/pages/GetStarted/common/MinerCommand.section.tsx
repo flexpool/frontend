@@ -77,9 +77,11 @@ const OsContainer = styled.div`
 `;
 
 export const MinerCommandSection = ({
+  position,
   data,
   replaces,
 }: {
+  position: number;
   data: GpuHardwareDetails[] | null;
   replaces: Record<string, string>;
 }) => {
@@ -117,7 +119,7 @@ export const MinerCommandSection = ({
   }
 
   return (
-    <SectionWrapper title={t('detail.software.title')}>
+    <SectionWrapper position={position} title={t('detail.software.title')}>
       <SoftwareWrapper>
         {minerMeta.map((miner) => (
           <Card key={miner.key}>

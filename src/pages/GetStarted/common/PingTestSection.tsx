@@ -149,6 +149,7 @@ const WarningBox = styled.div`
 `;
 
 export const PingTestSection: React.FC<{
+  position: number;
   data: MineableCoinRegion[];
   showAdditionalPorts?: boolean;
   showPorts?: boolean;
@@ -414,7 +415,7 @@ export const PingTestSection: React.FC<{
   };
 
   return (
-    <SectionWrapper title={t('detail.region.title')}>
+    <SectionWrapper position={position} title={t('detail.region.title')}>
       <p className="mb-2">{t('detail.region.description')}</p>
       <DynamicList
         onRowClick={selectItem}

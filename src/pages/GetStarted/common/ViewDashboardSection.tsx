@@ -5,15 +5,17 @@ import { Spacer } from '@/components/layout/Spacer';
 import DashboardLink from './DashboardLink';
 
 export const ViewDashboardSection = ({
+  position,
   coin,
   address,
 }: {
+  position: number;
   coin: { name: string; ticker: string };
   address: string;
 }) => {
   const { t } = useTranslation('get-started');
   return (
-    <SectionWrapper title={t('detail.view.title')}>
+    <SectionWrapper position={position} title={t('detail.view.title')}>
       <p>{t('detail.view.description')}</p>
       <Spacer />
       <p>

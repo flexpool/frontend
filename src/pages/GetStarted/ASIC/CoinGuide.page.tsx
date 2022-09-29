@@ -16,6 +16,8 @@ import {
 } from '../common';
 
 import { ExampleInterface, ExampleInterfaceWrapper } from './ExampleInterface';
+import { MockBrowser } from './MockBrowser';
+import { Spacer } from '@/components/layout/Spacer';
 
 export const MineableCoinGuidePage: React.FC = () => {
   const router = useRouter();
@@ -93,9 +95,14 @@ export const MineableCoinGuidePage: React.FC = () => {
         {({ values }) => {
           return (
             <>
-              <SetWalletSection data={mineableCoin} name="wallet_address" />
+              <SetWalletSection
+                position={1}
+                data={mineableCoin}
+                name="wallet_address"
+              />
 
               <PingTestSection
+                position={2}
                 data={mineableCoin.regions}
                 namePrimary="primary_server"
                 nameSecondary="secondary_server"
@@ -103,9 +110,9 @@ export const MineableCoinGuidePage: React.FC = () => {
                 showPorts={false}
               />
 
-              <SetWorkerNameSection name="worker_name" />
+              <SetWorkerNameSection position={3} name="worker_name" />
 
-              <SectionWrapper title={t('detail.asic.title')}>
+              <SectionWrapper position={4} title={t('detail.asic.title')}>
                 <p>{t('detail.asic.description')}</p>
                 <ExampleInterfaceWrapper>
                   <ProcessedExampleInterface
@@ -123,10 +130,13 @@ export const MineableCoinGuidePage: React.FC = () => {
                     server={values.primary_server as string}
                   />
                 </ExampleInterfaceWrapper>
+                <Spacer />
+                <MockBrowser />
               </SectionWrapper>
 
               {values.wallet_address && (
                 <ViewDashboardSection
+                  position={5}
                   coin={mineableCoin}
                   address={values.wallet_address}
                 />

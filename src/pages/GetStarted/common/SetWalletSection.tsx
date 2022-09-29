@@ -7,18 +7,20 @@ import { Trans, useTranslation } from 'next-i18next';
 import { SectionWrapper, WalletTextField } from '../common';
 
 type SetWalletSectionProps = {
+  position: number;
   data: MineableCoin;
   name?: string;
 };
 
 export const SetWalletSection = ({
+  position,
   data,
   name = 'wallet_address',
 }: SetWalletSectionProps) => {
   const { t } = useTranslation('get-started');
 
   return (
-    <SectionWrapper title={t('detail.wallet.title')}>
+    <SectionWrapper position={position} title={t('detail.wallet.title')}>
       <p>
         <Trans
           ns="get-started"

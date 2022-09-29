@@ -93,18 +93,24 @@ export const MineableCoinGuidePage = () => {
         {({ values }) => {
           return (
             <>
-              <SetWalletSection data={mineableCoin} name="wallet_address" />
+              <SetWalletSection
+                position={1}
+                data={mineableCoin}
+                name="wallet_address"
+              />
 
               <PingTestSection
+                position={2}
                 data={mineableCoin.regions}
                 namePrimary="primary_server"
                 nameSecondary="secondary_server"
                 showAdditionalPorts
               />
 
-              <SetWorkerNameSection name="worker_name" />
+              <SetWorkerNameSection position={3} name="worker_name" />
 
               <MinerCommandSection
+                position={4}
                 data={mineableCoinConfig.miners}
                 replaces={{
                   CLOSEST_SERVER: values.primary_server || 'CLOSEST_SERVER',
@@ -116,6 +122,7 @@ export const MineableCoinGuidePage = () => {
 
               {values.wallet_address && (
                 <ViewDashboardSection
+                  position={5}
                   coin={mineableCoin}
                   address={values.wallet_address}
                 />

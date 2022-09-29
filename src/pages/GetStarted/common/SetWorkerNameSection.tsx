@@ -8,14 +8,16 @@ import { workerNameCheck } from '@/utils/checks';
 import { SectionWrapper } from '../common/SectionWrapper';
 
 export const SetWorkerNameSection = ({
+  position,
   name = 'worker_name',
 }: {
+  position: number;
   name?: string;
 }) => {
   const { t } = useTranslation('get-started');
 
   return (
-    <SectionWrapper title={t('detail.worker.title')}>
+    <SectionWrapper position={position} title={t('detail.worker.title')}>
       <p>{t('detail.worker.description')}</p>
       <Spacer />
       <DivText>

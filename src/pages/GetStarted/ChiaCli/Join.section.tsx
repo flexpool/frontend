@@ -6,6 +6,7 @@ import { LinkOut } from 'src/components/LinkOut';
 import { SectionWrapper } from '../common';
 
 type FarmerGuideProps = {
+  position: number;
   primaryServer: string;
 };
 
@@ -14,7 +15,10 @@ export const AlreadyFarmerGuide = (props: FarmerGuideProps) => {
   const { primaryServer } = props;
 
   return (
-    <SectionWrapper title={t('detail_xch.plotnft_join.title')}>
+    <SectionWrapper
+      position={props.position}
+      title={t('detail_xch.plotnft_join.title')}
+    >
       <p>
         <Trans
           ns="get-started"
@@ -57,7 +61,10 @@ export const NewFarmerGuide = (props: FarmerGuideProps) => {
   const { primaryServer } = props;
 
   return (
-    <SectionWrapper title={t('detail_xch.plotnft_create.title')}>
+    <SectionWrapper
+      position={props.position}
+      title={t('detail_xch.plotnft_create.title')}
+    >
       <p>{t('detail_xch.plotnft_create.desc_one')}</p>
       <Spacer />
       <p>{t('detail_xch.plotnft_create.desc_two')}</p>

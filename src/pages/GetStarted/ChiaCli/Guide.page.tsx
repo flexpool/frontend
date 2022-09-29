@@ -97,7 +97,7 @@ export const ChiaCliGuidePage: React.FC = () => {
             <>
               <h1>{t('detail_xch.title_cli')}</h1>
 
-              <SectionWrapper title={t('detail.region.title')}>
+              <SectionWrapper position={1} title={t('detail.region.title')}>
                 <p>{t('detail.region.description_chia')}</p>
 
                 <PingTestSection
@@ -111,16 +111,22 @@ export const ChiaCliGuidePage: React.FC = () => {
               <FarmerOptionSelector name="farmer_option" />
 
               {farmer_option === 'new-farmer' && (
-                <NewFarmerGuide primaryServer={primary_server} />
+                <NewFarmerGuide position={2} primaryServer={primary_server} />
               )}
 
               {farmer_option === 'already-farmer' && (
-                <AlreadyFarmerGuide primaryServer={primary_server} />
+                <AlreadyFarmerGuide
+                  position={2}
+                  primaryServer={primary_server}
+                />
               )}
 
               <Spacer size="xl" />
 
-              <SectionWrapper title={t('detail_xch.plotnft_show.title')}>
+              <SectionWrapper
+                position={3}
+                title={t('detail_xch.plotnft_show.title')}
+              >
                 <p>{t('detail_xch.plotnft_show.desc')}</p>
                 <Spacer />
                 <p>{t('detail_xch.plotnft_show.show_command')}</p>
@@ -185,7 +191,10 @@ export const ChiaCliGuidePage: React.FC = () => {
                     }}
                   />
 
-                  <SectionWrapper title={t('detail_xch.create_plots.title')}>
+                  <SectionWrapper
+                    position={4}
+                    title={t('detail_xch.create_plots.title')}
+                  >
                     {plotter === 'standard' && <StandardPlotterGuide />}
                     {plotter === 'madmax' && <MadmaxPlotterGuide />}
                   </SectionWrapper>
@@ -194,7 +203,10 @@ export const ChiaCliGuidePage: React.FC = () => {
                 </>
               ) : null}
 
-              <SectionWrapper title={t('detail_xch.monitor_farm.title')}>
+              <SectionWrapper
+                position={farmer_option === 'new-farmer' ? 5 : 4}
+                title={t('detail_xch.monitor_farm.title')}
+              >
                 <p>{t('detail_xch.monitor_farm.desc')}</p>
               </SectionWrapper>
 

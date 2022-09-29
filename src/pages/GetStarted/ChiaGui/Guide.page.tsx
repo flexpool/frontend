@@ -12,7 +12,6 @@ import { FiHardDrive, FiLifeBuoy } from 'react-icons/fi';
 import { RiPlantLine } from 'react-icons/ri';
 import { BiMerge } from 'react-icons/bi';
 import { ChiaGuiButton } from './Button';
-import { Highlight } from 'src/components/Typo/Typo';
 import { ChiaGuiInput } from './Input';
 import { ChiaGuiLink } from './Link';
 import { FarmerOptionSelector } from '../ChiaShared/FarmerOptionSelector';
@@ -91,18 +90,21 @@ export const ChiaGuiGuidePage: React.FC = () => {
         {({ values: { primary_server, farmer_option } }) => {
           return (
             <>
-              <h2>
-                <Highlight>#1</Highlight> {t('detail.region.title')}
-              </h2>
-              <p>{t('detail.region.description_chia')}</p>
-              <PingTestSection
-                data={mineableCoin.regions}
-                namePrimary="primary_server"
-              />
+              <SectionWrapper position={1} title={t('detail.region.title')}>
+                <p>{t('detail.region.description_chia')}</p>
+                <PingTestSection
+                  data={mineableCoin.regions}
+                  namePrimary="primary_server"
+                />
+              </SectionWrapper>
+
               <Spacer size="xl" />
+
               <FarmerOptionSelector name="farmer_option" />
+
               {farmer_option !== 'already-farmer' ? (
                 <SectionWrapper
+                  position={2}
                   title={t('detail_xch.plotnft_create.title_join')}
                 >
                   <p>{t('detail_xch.plotnft_create.desc_one')}</p>
@@ -127,7 +129,10 @@ export const ChiaGuiGuidePage: React.FC = () => {
                   />
                 </SectionWrapper>
               ) : (
-                <SectionWrapper title={t('detail_xch.plotnft_join.title')}>
+                <SectionWrapper
+                  position={2}
+                  title={t('detail_xch.plotnft_join.title')}
+                >
                   <p>
                     <Trans
                       ns="get-started"
@@ -160,37 +165,44 @@ export const ChiaGuiGuidePage: React.FC = () => {
                   />
                 </SectionWrapper>
               )}
+
               <Spacer size="xl" />
-              <h2>
-                <Highlight>#2</Highlight>{' '}
-                {t('detail_xch.gather_payout_address_gui.title')}
-              </h2>
-              <p>{t('detail_xch.gather_payout_address_gui.desc')}</p>
-              <Spacer />
-              <ChiaGuiMenu
-                selectedMenu={'Pool'}
-                menuContent={
-                  <PayoutAddressChiaGuiMenuContent
-                    selectedServer={`https://${primary_server}`}
-                  />
-                }
-              />
-              <Spacer />
-              <p>
-                <b>{t('detail.note') + ' '}</b>
-                <Trans
-                  ns="get-started"
-                  i18nKey="detail_xch.gather_payout_address_gui.not_found_note"
-                  components={{
-                    b: <b />,
-                  }}
+
+              <SectionWrapper
+                position={3}
+                title={t('detail_xch.gather_payout_address_gui.title')}
+              >
+                <p>{t('detail_xch.gather_payout_address_gui.desc')}</p>
+                <Spacer />
+                <ChiaGuiMenu
+                  selectedMenu={'Pool'}
+                  menuContent={
+                    <PayoutAddressChiaGuiMenuContent
+                      selectedServer={`https://${primary_server}`}
+                    />
+                  }
                 />
-              </p>
+                <Spacer />
+                <p>
+                  <b>{t('detail.note') + ' '}</b>
+                  <Trans
+                    ns="get-started"
+                    i18nKey="detail_xch.gather_payout_address_gui.not_found_note"
+                    components={{
+                      b: <b />,
+                    }}
+                  />
+                </p>
+              </SectionWrapper>
+
               <Spacer size="xl" />
-              <h2>
-                <Highlight>#3</Highlight> {t('detail_xch.monitor_farm.title')}
-              </h2>
-              <p>{t('detail_xch.monitor_farm.desc_gui')}</p>
+
+              <SectionWrapper
+                position={4}
+                title={t('detail_xch.monitor_farm.title')}
+              >
+                <p>{t('detail_xch.monitor_farm.desc_gui')}</p>
+              </SectionWrapper>
             </>
           );
         }}
