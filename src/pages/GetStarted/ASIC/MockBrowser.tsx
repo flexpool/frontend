@@ -14,11 +14,16 @@ const PageBody = styled.div`
 
 const PageContent = styled.div`
   flex: 1;
+  overflow: scroll;
 `;
 
 const PageAside = styled.aside`
   border-right: 1px solid var(--border-color);
   flex-basis: 240px;
+
+  @media (max-width: 768px) {
+    flex-basis: 0px;
+  }
 `;
 
 const BrowserWindow = styled.div`
@@ -29,26 +34,13 @@ const BrowserWindow = styled.div`
 
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 `;
 
 const BrowserContent = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-`;
-
-const AddressBar = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  justify-self: center;
-  border-radius: 5px;
-  width: 535px;
-  height: 30px;
-  border-radius: 5px;
-  background-color: var(--border-color);
-  opacity: 0.4;
 `;
 
 const RoundButton = styled.div`
@@ -93,7 +85,6 @@ export const MockBrowser = ({ children }: { children: React.ReactNode }) => {
         <GreenCircle />
         <FiChevronLeft color="var(--border-color)" />
         <FiChevronRight color="var(--border-color)" />
-        <AddressBar />
       </BrowserToolBar>
       <BrowserContent>
         <PageHeader></PageHeader>

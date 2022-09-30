@@ -16,6 +16,10 @@ const ExampleInterfaceMenu = styled.div`
   background-color: var(--bg-primary);
   border-radius: 15px;
   padding: 48px 80px 24px;
+
+  @media (max-width: 768px) {
+    padding: 24px 14px;
+  }
 `;
 
 const EntryInputGroupWrapper = styled.div`
