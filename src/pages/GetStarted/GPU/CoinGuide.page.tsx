@@ -14,6 +14,7 @@ import {
   ViewDashboardSection,
   SetWalletSection,
 } from '../common';
+import { Spacer } from '@/components/layout/Spacer';
 
 export const MineableCoinGuidePage = () => {
   const router = useRouter();
@@ -98,6 +99,8 @@ export const MineableCoinGuidePage = () => {
                 data={mineableCoin}
                 name="wallet_address"
               />
+
+              <Spacer />
 
               <PingTestSection
                 position={2}

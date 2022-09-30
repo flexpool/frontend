@@ -84,7 +84,7 @@ export const ChiaGuiGuidePage: React.FC = () => {
       <GuideForm
         initialValue={{
           primary_server: 'POOL_URL',
-          farmer_option: 'already-farmer',
+          farmer_option: 'new-farmer',
         }}
       >
         {({ values: { primary_server, farmer_option } }) => {
