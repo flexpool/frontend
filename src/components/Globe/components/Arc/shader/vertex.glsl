@@ -27,10 +27,8 @@ void main() {
   v_color = vec3(abs(sin(u_time))) * w;
   v_uv = uv;
 
+  float op_mul = step(1., w);
+  float op_2_mul = 1. - op_mul;
 
-  if (w <= 1.) {
-    v_op = op_2;
-  } else {
-    v_op = op;
-  }
+  v_op = op * op_mul + op_2 * op_2_mul;
 }
