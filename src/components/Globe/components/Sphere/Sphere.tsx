@@ -107,7 +107,7 @@ const Sphere = () => {
           setRegion(null);
         }}
       >
-        <sphereGeometry attach="geometry" args={[600, 32 * 2, 32 * 2]} />
+        <sphereGeometry attach="geometry" args={[600.3, 32 * 2, 32 * 2]} />
         <shaderMaterial
           transparent
           blending={2}
