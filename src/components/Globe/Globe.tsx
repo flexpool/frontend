@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, Suspense } from 'react';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
-import { OrbitControls, Stats } from '@react-three/drei';
+import { OrbitControls, Stats, useDetectGPU } from '@react-three/drei';
 import { Vector3 } from 'three';
 import styled from 'styled-components';
 import { Leva } from 'leva';
@@ -14,6 +14,9 @@ import RegionOverlay from './components/RegionOverlay';
 import WorldMapCanvasProvider, {
   useWorldMapCanvasContext,
 } from './providers/WorldMapCanvasProvider';
+
+import Image from 'next/image';
+import useIsMounted from '@/hooks/useIsMounted';
 
 const Scene = () => {
   const oc = useRef<any>(null);
@@ -94,6 +97,22 @@ const Globe = () => {
   useLoader.preload(THREE.ImageLoader, './map.png');
   useLoader.preload(THREE.TextureLoader, 'matcap11.png');
 
+  const GPUTier = useDetectGPU();
+
+  if (GPUTier.tier === 0) {
+    return (
+      <StyledGlobe>
+        <Image
+          src="/images/globe-screenshot.png"
+          width={600}
+          height={600}
+          alt="Globe"
+        />
+        ;
+      </StyledGlobe>
+    );
+  }
+
   return (
     <StyledGlobe>
       <Leva collapsed />
@@ -125,4 +144,15 @@ const Globe = () => {
   );
 };
 
-export default Globe;
+const GlobeWrapper = () => {
+  const isMounted = useIsMounted();
+  if (!isMounted) return null;
+
+  return (
+    <Suspense fallback={null}>
+      <Globe />
+    </Suspense>
+  );
+};
+
+export default GlobeWrapper;
