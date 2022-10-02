@@ -82,13 +82,6 @@ const RegionOverlay = () => {
           </div>
         )}
 
-        {hashrate?.eth?.[region] && (
-          <Item>
-            <div>Ethereum</div>
-            <div>{hashrate?.eth[region]}</div>
-          </Item>
-        )}
-
         {hashrate?.etc?.[region] && (
           <Item>
             <div>Ethereum Classic</div>
