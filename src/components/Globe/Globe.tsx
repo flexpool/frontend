@@ -99,7 +99,7 @@ const Globe = () => {
 
   const GPUTier = useDetectGPU();
 
-  if (GPUTier.tier === 0) {
+  if (GPUTier.tier <= 1 && !GPUTier?.gpu?.includes('apple')) {
     return (
       <StyledGlobe>
         <Image
