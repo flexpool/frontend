@@ -154,13 +154,8 @@ export const mineableCoins: MineableCoin[] = [
         imageCode: 'de',
       },
       {
-        domain: 'xch-us-east.flexpool.io',
-        code: 'us-east',
-        imageCode: 'us',
-      },
-      {
-        domain: 'xch-us-west.flexpool.io',
-        code: 'us-west',
+        domain: 'xch-us.flexpool.io',
+        code: 'us',
         imageCode: 'us',
       },
       {

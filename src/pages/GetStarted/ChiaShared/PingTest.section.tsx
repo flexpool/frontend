@@ -33,7 +33,7 @@ const testConnection = (region: string) => {
     const latencyData: number[] = [];
     let startTime = new Date();
     const wsPingTestClient = new w3cwebsocket(
-      `wss://ws-ping-${region}.flexpool.io:28246`
+      `wss://ws-ping-${region === 'us' ? 'us-east' : region}.flexpool.io:28246`
     );
 
     const TEST_COUNT = 6;
