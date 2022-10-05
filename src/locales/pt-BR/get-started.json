@@ -267,6 +267,7 @@
     ]
   },
   "regions": {
+    "us": "Estados Unidos",
     "us-east": "Estados Unidos (Leste)",
     "us-west": "Estados Unidos (Oeste)",
     "de": "Alemanha",
