@@ -16,8 +16,6 @@ import { Tooltip, TooltipContent } from '../src/components/Tooltip';
 import { LoaderSpinner } from '../src/components/Loader/LoaderSpinner';
 
 // Hooks and Utils
-import { useAsyncState } from '../src/hooks/useAsyncState';
-import { fetchApi } from '../src/utils/fetchApi';
 import { useLocalizedSiFormatter } from '../src/utils/si.utils';
 import useNextPoWRound from '@/hooks/useNextPoWRound';
 import useIsMounted from '@/hooks/useIsMounted';
@@ -25,6 +23,10 @@ import {
   useActiveCoin,
   useActiveCoinTicker,
 } from '../src/rdx/localSettings/localSettings.hooks';
+import { usePoolAverageLuckQuery } from '@/hooks/api/usePoolAverageLuck';
+import { usePoolCurrentLuck } from '@/hooks/api/usePoolCurrentLuck';
+import { usePoolNetworkHashrate } from '@/hooks/api/usePoolNetworkHashrate';
+import { usePoolNetworkDifficulty } from '@/hooks/api/usePoolNetworkDifficulty';
 
 import NetworkStatisticsLink from '@/components/NetworkStatisticsLink';
 
@@ -56,12 +58,6 @@ const PoWTimer = ({ coin }: { coin: string }) => {
 };
 
 function BlocksPage() {
-  const statsState = useAsyncState<{
-    averageLuck: number;
-    currentLuck: number;
-    networkHashrate: number;
-    networkDifficulty: number;
-  } | null>('poolStats', null);
   const activeCoin = useActiveCoin();
   // Use this hook to get ticker immediately
   const activeCoinTicker = useActiveCoinTicker();
@@ -70,34 +66,36 @@ function BlocksPage() {
   const { t: seoT } = useTranslation('seo');
   const isMounted = useIsMounted();
 
-  React.useEffect(() => {
-    if (activeCoin?.ticker) {
-      const init = { query: { coin: activeCoin?.ticker } };
-
-      const isZil = activeCoin.ticker === 'zil';
-
-      statsState.start(
-        Promise.all([
-          ...(!isZil ? [fetchApi<number>('/pool/averageLuck', init)] : [-1]),
-          ...(!isZil ? [fetchApi<number>('/pool/currentLuck', init)] : [-1]),
-          ...(!isZil
-            ? [fetchApi<number>('/pool/networkHashrate', init)]
-            : [-1]),
-          fetchApi<number>('/pool/networkDifficulty', init),
-        ]).then(
-          ([averageLuck, currentLuck, networkHashrate, networkDifficulty]) => ({
-            averageLuck,
-            currentLuck,
-            networkHashrate,
-            networkDifficulty,
-          })
-        )
-      );
-    }
-    // eslint-disable-next-line
-  }, [activeCoin?.ticker]);
-
   const isZil = isMounted ? activeCoinTicker === 'zil' : false;
+
+  const averageLuck = usePoolAverageLuckQuery(
+    { coin: activeCoinTicker },
+    {
+      enabled: isMounted && activeCoinTicker !== 'zil',
+    }
+  );
+
+  const currentLuck = usePoolCurrentLuck(
+    {
+      coin: activeCoinTicker,
+    },
+    {
+      enabled: isMounted && activeCoinTicker !== 'zil',
+    }
+  );
+
+  const networkHashrate = usePoolNetworkHashrate(
+    {
+      coin: activeCoinTicker,
+    },
+    {
+      enabled: isMounted && activeCoinTicker !== 'zil',
+    }
+  );
+
+  const networkDifficulty = usePoolNetworkDifficulty({
+    coin: activeCoinTicker,
+  });
 
   return (
     <Page>
@@ -133,8 +131,8 @@ function BlocksPage() {
               }
               title={<>{t('average_luck')}&nbsp;</>}
               value={
-                statsState.isLoading || !statsState.data ? undefined : (
-                  <Luck value={statsState.data.averageLuck} />
+                averageLuck.isLoading || !averageLuck.data ? undefined : (
+                  <Luck value={averageLuck.data} />
                 )
               }
             />
@@ -149,8 +147,8 @@ function BlocksPage() {
               }
               title={t('current_luck')}
               value={
-                statsState.isLoading || !statsState.data ? undefined : (
-                  <Luck value={statsState.data.currentLuck} />
+                currentLuck.isLoading || !currentLuck.data ? undefined : (
+                  <Luck value={currentLuck.data} />
                 )
               }
             />
@@ -164,10 +162,10 @@ function BlocksPage() {
                   : t('network_hashrate')
               }
               value={
-                statsState.isLoading || !statsState.data
+                networkHashrate.isLoading || !networkHashrate.data
                   ? undefined
                   : `${siFormatter(
-                      statsState.data.networkHashrate *
+                      networkHashrate.data *
                         Number(activeCoin?.difficultyFactor),
                       {
                         unit:
@@ -192,9 +190,9 @@ function BlocksPage() {
             }
             title={t('network_difficulty')}
             value={
-              statsState.isLoading || !statsState.data
+              networkDifficulty.isLoading || !networkDifficulty.data
                 ? undefined
-                : `${siFormatter(statsState.data.networkDifficulty, {
+                : `${siFormatter(networkDifficulty.data, {
                     unit:
                       String(activeCoin?.ticker) === 'xch'
                         ? 'PT'
