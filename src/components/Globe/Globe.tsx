@@ -108,7 +108,6 @@ const Globe = () => {
           height={600}
           alt="Globe"
         />
-        ;
       </StyledGlobe>
     );
   }
