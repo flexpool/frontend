@@ -2,8 +2,6 @@ import React from 'react';
 import DynamicList, {
   DynamicListColumn,
 } from 'src/components/layout/List/List';
-import { useAsyncState } from 'src/hooks/useAsyncState';
-import { fetchApi } from 'src/utils/fetchApi';
 import { LinkMiner } from 'src/components/LinkMiner';
 import { Luck } from 'src/components/Luck';
 import styled from 'styled-components';
@@ -16,6 +14,7 @@ import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { TableCellSpinner } from 'src/components/Loader/TableCellSpinner';
 import { useTranslation } from 'next-i18next';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
+import { usePoolBlocksQuery } from '@/hooks/api/usePoolBlocksQuery';
 import { BiTransferAlt } from 'react-icons/bi';
 import ListDateSwitchButton from 'src/components/ButtonVariants/ListDateSwitchButton';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
@@ -75,11 +74,6 @@ const BlockType = styled.span<{ type: ApiBlock['type'] }>`
 
 export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   const { t } = useTranslation('blocks');
-  const blockState = useAsyncState<ApiBlocks>('blocks', {
-    totalItems: 0,
-    totalPages: 0,
-    data: [],
-  });
   const coinTicker = useActiveCoinTicker();
   const [currentPage, setCurrentPage] = React.useState(0);
   const [dateView, setDateView] = useLocalStorageState<
@@ -89,14 +83,10 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
   const dateFormatter = useLocalizedDateFormatter();
   const activeCoinTicker = useActiveCoinTicker();
 
-  React.useEffect(() => {
-    blockState.start(
-      fetchApi(address ? '/miner/blocks' : '/pool/blocks', {
-        query: { coin: coinTicker, page: currentPage, address },
-      })
-    );
-    // eslint-disable-next-line
-  }, [currentPage, coinTicker, address]);
+  const blockState = usePoolBlocksQuery({
+    coin: coinTicker,
+    page: currentPage,
+  });
 
   const totalPages = blockState.data?.totalPages || 0;
 

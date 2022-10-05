@@ -4,8 +4,7 @@ import { ApiBlocks } from '@/types/PoolCoin.types';
 
 type MinerBlocksQuery = {
   coin: string;
-  page: string;
-  address: string;
+  page: number;
 };
 
 export const usePoolBlocksQuery = <T extends any = ApiBlocks>(
