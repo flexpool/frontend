@@ -1,116 +1,26 @@
-import React, { useEffect, useRef, useState, Suspense } from 'react';
+import React, { useEffect, useRef, Suspense } from 'react';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
-import { OrbitControls, Stats } from '@react-three/drei';
+import { OrbitControls, Stats, useDetectGPU } from '@react-three/drei';
 import { Vector3 } from 'three';
 import styled from 'styled-components';
 import { Leva } from 'leva';
 import Halo from './components/Halo';
-import CanadaFlag from './components/CanadaFlag';
 import Sphere from './components/Sphere';
 import Dots from './components/Dots';
-import Marker from './components/Marker';
-import Arc from './components/Arc';
-import { useStore } from './store';
-import useInterval from '@/hooks/useInterval';
-import useGetRegionHashRate from '@/hooks/useGetRegionHashrate';
+import ServerMarkers from './components/ServerMarkers';
+import Arcs from './components/Arcs';
+import RegionOverlay from './components/RegionOverlay';
+import WorldMapCanvasProvider, {
+  useWorldMapCanvasContext,
+} from './providers/WorldMapCanvasProvider';
 
-const CANVAS_WIDTH = 1000;
-const CANVAS_HEIGHT = CANVAS_WIDTH / 2;
-
-const SERVERS = [
-  {
-    location: 'Ashburn, N. Virginia',
-    region: 'us-east',
-    latitude: 39.043757,
-    longitude: -77.487442,
-    color: '#0069ff',
-  },
-  {
-    location: 'Boardman, Oregon',
-    region: 'us-west',
-    latitude: 45.8371049,
-    longitude: -119.69639,
-    color: '#0069ff',
-  },
-  {
-    location: 'Frankfurt',
-    region: 'de',
-    latitude: 50.110924,
-    longitude: 8.682127,
-    color: '#0069ff',
-  },
-  {
-    location: 'Stockholm',
-    region: 'se',
-    latitude: 59.334591,
-    longitude: 18.06324,
-    color: '#0069ff',
-  },
-  {
-    location: 'Singapore',
-    region: 'sg',
-    latitude: -1.29027,
-    longitude: 103.851959,
-    color: '#0069ff',
-  },
-  {
-    location: 'Sydney',
-    region: 'au',
-    latitude: -33.865143,
-    longitude: 151.2099,
-    color: '#0069ff',
-  },
-  {
-    location: 'Sao Paulo',
-    region: 'br',
-    latitude: -23.533773,
-    longitude: -46.62529,
-    color: '#0069ff',
-  },
-  {
-    location: 'Seoul',
-    region: 'kr',
-    latitude: 37.5326,
-    longitude: 127.024612,
-    color: '#0069ff',
-  },
-  {
-    location: 'Hong Kong',
-    region: 'hk',
-    latitude: 22.302711,
-    longitude: 114.177216,
-    color: '#0069ff',
-  },
-];
-
-const REGION_MAP = {
-  na: 'North America',
-  sa: 'South America',
-  eu: 'Europe',
-  ap: 'Asia Pacific',
-  au: 'Australia',
-  af: 'Africa',
-  me: 'Middle East',
-  ru: 'Russia',
-};
+import Image from 'next/image';
+import useIsMounted from '@/hooks/useIsMounted';
 
 const Scene = () => {
-  const [mapIns, setMapIns] = useState<any>();
   const oc = useRef<any>(null);
-
-  const image = useLoader(THREE.ImageLoader, './map.png');
-
-  useEffect(() => {
-    if (image) {
-      const worldMap = document.createElement('canvas');
-      worldMap.width = CANVAS_WIDTH;
-      worldMap.height = CANVAS_HEIGHT;
-      const context = worldMap.getContext('2d');
-      context?.drawImage(image, 0, 0, worldMap.width, worldMap.height);
-      setMapIns(context?.getImageData(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT).data);
-    }
-  }, [image]);
+  const { map } = useWorldMapCanvasContext();
 
   useEffect(() => {
     if (oc.current) {
@@ -125,7 +35,7 @@ const Scene = () => {
   const globeGroupRef = useRef<any>(null);
 
   useFrame((_, delta) => {
-    if (mapIns && globeGroupRef.current) {
+    if (map && globeGroupRef.current) {
       const { scale } = globeGroupRef.current;
 
       if (scale.x < 1) {
@@ -135,19 +45,6 @@ const Scene = () => {
       }
     }
   });
-
-  const [arcs, setArcs] = useState<{ from: number; to: number }[]>([
-    { from: 0, to: 7 },
-    { from: 5, to: 1 },
-  ]);
-
-  useInterval(() => {
-    if (document && !document.hidden) {
-      const from = Math.floor(Math.random() * 9);
-      const to = Math.floor(Math.random() * 9);
-      setArcs((a) => a.concat([{ from, to }]));
-    }
-  }, 3000);
 
   return (
     <>
@@ -160,31 +57,13 @@ const Scene = () => {
         enableDamping={false}
       />
       <group ref={globeGroupRef} scale={[0.5, 0.5, 0.5]}>
-        {mapIns && (
+        {map && (
           <>
             <Halo />
-            <Sphere worldmap={mapIns} />
-            <Dots worldmap={mapIns} />
-            {/* <CanadaFlag /> */}
-            {arcs.map((arc, index) => (
-              <Arc
-                key={`${arc.from}-${arc.to}-${index}`}
-                fromLatitude={SERVERS[arc.from].latitude}
-                fromLongitude={SERVERS[arc.from].longitude}
-                toLatitude={SERVERS[arc.to].latitude}
-                toLongitude={SERVERS[arc.to].longitude}
-              />
-            ))}
-
-            {SERVERS.map((server, index) => (
-              <Marker
-                key={index}
-                {...server}
-                lat={server.latitude}
-                long={server.longitude}
-                color={server.color}
-              />
-            ))}
+            <Sphere />
+            <Dots />
+            <ServerMarkers />
+            <Arcs />
           </>
         )}
       </group>
@@ -215,26 +94,23 @@ const StyledGlobe = styled.div`
 `;
 
 const Globe = () => {
-  const region = useStore((state) => state.region);
-  const overlayRef = useRef<HTMLDivElement | null>(null);
-  const hashrate = useGetRegionHashRate();
+  useLoader.preload(THREE.ImageLoader, './map.png');
+  useLoader.preload(THREE.TextureLoader, 'matcap11.png');
 
-  useEffect(() => {
-    const saveMousePos = (e: any) => {
-      if (overlayRef.current) {
-        overlayRef.current.style.left = `${Math.min(
-          e.clientX + 10,
-          window.innerWidth - 280
-        )}px`;
-        overlayRef.current.style.top = `${e.clientY + 10}px`;
-      }
-    };
+  const GPUTier = useDetectGPU();
 
-    window.addEventListener('mousemove', saveMousePos);
-    return () => {
-      window.removeEventListener('mousemove', saveMousePos);
-    };
-  }, []);
+  if (GPUTier.tier <= 1 && !GPUTier?.gpu?.includes('apple')) {
+    return (
+      <StyledGlobe>
+        <Image
+          src="/images/globe-screenshot.png"
+          width={600}
+          height={600}
+          alt="Globe"
+        />
+      </StyledGlobe>
+    );
+  }
 
   return (
     <StyledGlobe>
@@ -246,6 +122,7 @@ const Globe = () => {
         )}
         gl={{
           antialias: true,
+          sortObjects: false,
         }}
         camera={{
           position: new Vector3(0, 0, 1250),
@@ -254,84 +131,27 @@ const Globe = () => {
         id="globe-canvas"
       >
         <Suspense fallback={null}>
-          {/* <axesHelper args={[1000]} /> */}
-          <ambientLight intensity={1} />
-          <Scene />
-          {/* <Stats /> */}
+          <WorldMapCanvasProvider>
+            <ambientLight intensity={1} />
+            <Scene />
+            {/* <Stats /> */}
+          </WorldMapCanvasProvider>
         </Suspense>
       </Canvas>
-      <StyledRegionOverlay
-        style={{
-          display: region ? 'block' : 'none',
-        }}
-        ref={overlayRef}
-      >
-        <div>{REGION_MAP[region]}</div>
-
-        <HashrateList>
-          {region === 'ru' && <div>This region is not available.</div>}
-          {region === 'af' && (
-            <div>
-              No server locations in this region. <br />
-              Closest region you can use is Europe.
-            </div>
-          )}
-          {region === 'me' && (
-            <div>
-              No server locations in this region. <br />
-              Closest regions you can use are Europe & Asia Pacific.
-            </div>
-          )}
-
-          {hashrate?.etc?.[region] && (
-            <Item>
-              <div>Ethereum Classic</div>
-              <div>{hashrate.etc[region]}</div>
-            </Item>
-          )}
-
-          {hashrate?.xch?.[region] && (
-            <Item>
-              <div>Chia</div>
-              <div>{hashrate.xch[region]}</div>
-            </Item>
-          )}
-        </HashrateList>
-      </StyledRegionOverlay>
+      <RegionOverlay />
     </StyledGlobe>
   );
 };
 
-const StyledRegionOverlay = styled.div`
-  border-radius: 4px;
-  font-family: 'Inter', sans-serif;
-  padding: 1rem;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
-  width: 280px;
-  min-height: 45px;
-  position: fixed;
-  pointer-events: none;
-`;
+const GlobeWrapper = () => {
+  const isMounted = useIsMounted();
+  if (!isMounted) return null;
 
-const Item = styled.div`
-  display: flex;
+  return (
+    <Suspense fallback={null}>
+      <Globe />
+    </Suspense>
+  );
+};
 
-  & > div:first-child {
-    flex: 1;
-  }
-`;
-
-const HashrateList = styled.div`
-  color: #a3a2a2;
-  margin-top: 6px;
-  font-size: 0.85rem;
-  line-height: 1.4;
-
-  & > ${Item} + ${Item} {
-    margin-top: 4px;
-  }
-`;
-
-export default Globe;
+export default GlobeWrapper;
