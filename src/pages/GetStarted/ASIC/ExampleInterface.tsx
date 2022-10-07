@@ -15,8 +15,11 @@ export const ExampleInterfaceWrapper = styled.div`
 const ExampleInterfaceMenu = styled.div`
   background-color: var(--bg-primary);
   border-radius: 15px;
-  padding: 40px;
-  margin: 20px;
+  padding: 48px 80px 24px;
+
+  @media (max-width: 768px) {
+    padding: 24px 14px;
+  }
 `;
 
 const EntryInputGroupWrapper = styled.div`
@@ -60,7 +63,7 @@ const Entry: React.FC<{
 }> = ({ label, placeholder }) => {
   return (
     <EntryInputGroupWrapper>
-      <h3>{label}</h3>
+      <h5>{label}</h5>
       <EntryInputWrapper>
         <EntryInput>{placeholder}</EntryInput>
         <EntryInputCopy>
@@ -78,7 +81,7 @@ export const ExampleInterface: React.FC<{
 }> = ({ poolNum, url, login }) => {
   return (
     <ExampleInterfaceMenu>
-      <h1>Pool {poolNum}</h1>
+      <h2>Pool {poolNum}</h2>
       <Entry label="Pool URL" placeholder={url} />
       <Entry label="Login" placeholder={login} />
       <Entry label="Password (Optional)" placeholder="x" />

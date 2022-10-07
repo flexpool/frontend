@@ -5,12 +5,12 @@ import { Button } from 'src/components/Button';
 import { Img } from 'src/components/Img';
 import { Card, CardBody } from 'src/components/layout/Card';
 import { LinkOut } from 'src/components/LinkOut';
-import { Highlight } from 'src/components/Typo/Typo';
 import { getOsLogoUrl } from 'src/utils/staticImage.utils';
 import styled from 'styled-components';
 import { GpuHardwareDetails } from '../mineableCoinList';
 import { MinerCommand } from './MinerCommand';
 import useCheckUserRegion from '@/hooks/useCheckUserRegion';
+import { SectionWrapper } from '../common/SectionWrapper';
 
 const MinerHeader = styled.div`
   display: flex;
@@ -77,9 +77,11 @@ const OsContainer = styled.div`
 `;
 
 export const MinerCommandSection = ({
+  position,
   data,
   replaces,
 }: {
+  position: number;
   data: GpuHardwareDetails[] | null;
   replaces: Record<string, string>;
 }) => {
@@ -117,10 +119,7 @@ export const MinerCommandSection = ({
   }
 
   return (
-    <>
-      <h2>
-        <Highlight>#5</Highlight> {t('detail.software.title')}
-      </h2>
+    <SectionWrapper position={position} title={t('detail.software.title')}>
       <SoftwareWrapper>
         {minerMeta.map((miner) => (
           <Card key={miner.key}>
@@ -165,6 +164,6 @@ export const MinerCommandSection = ({
           </Card>
         ))}
       </SoftwareWrapper>
-    </>
+    </SectionWrapper>
   );
 };

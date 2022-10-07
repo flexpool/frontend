@@ -82,13 +82,35 @@ export const MinerCommand = <Value extends FormikValues = FormikValues>({
   const replacedItems = Object.keys(replaces).map((replace) => {
     return {
       replace,
-      replaceWith: replaces[replace],
+      replaceWith: <HighlightItem>{replaces[replace]}</HighlightItem>,
     };
   });
 
-  const replacedText = replaceStringWithNodes(command, replacedItems);
+  var preCommand = command;
 
-  const copyText = replacedText.join('');
+  preCommand = replaceHKEPorts(
+    replaces.CLOSEST_SERVER as string,
+    'CLOSEST_SERVER',
+    command
+  );
+
+  preCommand = replaceHKEPorts(
+    replaces.BACKUP_SERVER as string,
+    'BACKUP_SERVER',
+    preCommand
+  );
+
+  const replacedText = replaceStringWithNodes(preCommand, replacedItems);
+
+  const copyText = replaceStringWithNodes(
+    preCommand,
+    Object.keys(replaces).map((replace) => {
+      return {
+        replace,
+        replaceWith: replaces[replace],
+      };
+    })
+  ).join('');
 
   return (
     <CommandCodeContainer>

@@ -1,5 +1,5 @@
+import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-
 import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
 import { MineableCoinGuidePage } from 'src/pages/GetStarted/GPU/CoinGuide.page';
@@ -21,10 +21,12 @@ export const GetStartedGPUPage = () => {
 
 export default GetStartedGPUPage;
 
-export async function getStaticProps({ locale }) {
+export const getStaticProps: GetStaticProps<any, { ticker: string }> = async ({
+  locale,
+}) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale, [
+      ...(await serverSideTranslations(locale!, [
         'common',
         'get-started',
         'cookie-consent',
@@ -32,7 +34,7 @@ export async function getStaticProps({ locale }) {
       ])),
     },
   };
-}
+};
 
 export const getStaticPaths = ({ locales }) => {
   const paths: Array<{ params: { ticker: string; hw: string }; locale: any }> =

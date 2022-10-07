@@ -132,6 +132,7 @@ export const MineableCoinGuidePage: React.FC = () => {
                   />
 
                   <MinerCommandSection
+                    position={5}
                     data={mineableCoins[2].hardware[0].miners}
                     replaces={{
                       ALGO: isMiningEth ? 'ethash' : 'etchash',
@@ -149,6 +150,7 @@ export const MineableCoinGuidePage: React.FC = () => {
 
                   {values.main_wallet_address && values.dual_wallet_address && (
                     <ViewDashboard
+                      position={6}
                       primary={{
                         coin: mainCoin,
                         address: values.main_wallet_address,

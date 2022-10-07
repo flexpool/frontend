@@ -10,8 +10,8 @@ import Image from 'next/image';
 import { getCoinIconUrl } from '@/utils/staticImage.utils';
 
 type SetWalletSectionProps = {
-  data: MineableCoin;
   position: number;
+  data: MineableCoin;
   nameMain: string;
   nameDual: string;
 };

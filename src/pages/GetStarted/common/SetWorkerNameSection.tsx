@@ -7,7 +7,13 @@ import { Spacer } from 'src/components/layout/Spacer';
 import { workerNameCheck } from '@/utils/checks';
 import { SectionWrapper } from '../common/SectionWrapper';
 
-export const SetWorkerNameSection = ({ position }: { position: number }) => {
+export const SetWorkerNameSection = ({
+  position,
+  name = 'worker_name',
+}: {
+  position: number;
+  name?: string;
+}) => {
   const { t } = useTranslation('get-started');
 
   return (
@@ -25,7 +31,7 @@ export const SetWorkerNameSection = ({ position }: { position: number }) => {
             return undefined;
           }}
           label={t('detail.worker.worker_name')}
-          name="worker_name"
+          name={name}
           placeholder={t('detail.worker.worker_name_placeholder', {
             value: 'alex_rig1',
           })}

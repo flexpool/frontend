@@ -1,26 +1,20 @@
 import { useTranslation } from 'next-i18next';
-import { ButtonGroup } from './ButtonGroup';
+import { ButtonGroupField } from '../common/ButtonGroup';
 
 type FarmerOptionProps = {
-  selectedFarmerOption: string;
-  setSelectedFarmerOption: (s: string) => void;
+  name: string;
 };
 
-export const FarmerOptionSelector = (props: FarmerOptionProps) => {
+export const FarmerOptionSelector = ({ name }: FarmerOptionProps) => {
   const { t } = useTranslation('get-started');
 
-  const { selectedFarmerOption, setSelectedFarmerOption } = props;
-
   return (
-    <ButtonGroup
+    <ButtonGroupField
       options={{
         'new-farmer': { label: t('detail_xch.new_farmer') },
         'already-farmer': { label: t('detail_xch.already_farmer') },
       }}
-      setSelectedOption={(s: string) => {
-        setSelectedFarmerOption(s);
-      }}
-      selectedOption={selectedFarmerOption}
+      name={name}
     />
   );
 };

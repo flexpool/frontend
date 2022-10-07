@@ -1,24 +1,21 @@
 import React from 'react';
-import { TextField } from 'src/components/Form/TextInput';
 import { DivText } from 'src/components/Typo/Typo';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOut } from 'src/components/LinkOut';
 import { MineableCoin } from '../mineableCoinList';
 import { Trans, useTranslation } from 'next-i18next';
-import { SectionWrapper } from '../common/SectionWrapper';
-
-// TODO: use common wallet text field
+import { SectionWrapper, WalletTextField } from '../common';
 
 type SetWalletSectionProps = {
+  position: number;
   data: MineableCoin;
   name?: string;
-  position: number;
 };
 
 export const SetWalletSection = ({
-  data: { walletAddressExample, validator },
-  name = 'wallet_address',
   position,
+  data,
+  name = 'wallet_address',
 }: SetWalletSectionProps) => {
   const { t } = useTranslation('get-started');
 
@@ -49,20 +46,7 @@ export const SetWalletSection = ({
       </p>
       <Spacer />
       <DivText>
-        <TextField
-          validate={(value) => {
-            if (value === '' || typeof value === 'undefined') return undefined;
-
-            const r = validator(value);
-            if (typeof r === 'string' && r !== '') return undefined;
-            return t('detail.wallet.invalid_address') as string;
-          }}
-          name={name}
-          autoComplete="off"
-          spellCheck="false"
-          label={t('detail.wallet.wallet_address')}
-          placeholder={walletAddressExample}
-        />
+        <WalletTextField name={name} data={data} />
       </DivText>
     </SectionWrapper>
   );

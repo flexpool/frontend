@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Trans, useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { w3cwebsocket } from 'websocket';
@@ -16,7 +16,7 @@ import DynamicList, {
 } from 'src/components/layout/List/List';
 import { MineableCoinRegion } from '../mineableCoinList';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
-import { Highlight, Mono, Ws } from 'src/components/Typo/Typo';
+import { Mono, Ws } from 'src/components/Typo/Typo';
 import { CopyButton } from 'src/components/CopyButton';
 import { Sticker } from 'src/components/Sticker';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
@@ -149,19 +149,19 @@ const WarningBox = styled.div`
 `;
 
 export const PingTestSection: React.FC<{
+  position: number;
   data: MineableCoinRegion[];
   showAdditionalPorts?: boolean;
   showPorts?: boolean;
   namePrimary: string;
   nameSecondary: string;
-  position: number;
 }> = ({
+  position,
   data,
   showAdditionalPorts = false,
   showPorts = true,
   namePrimary,
   nameSecondary,
-  position,
 }) => {
   const { t } = useTranslation('get-started');
   const router = useRouter();
@@ -174,11 +174,6 @@ export const PingTestSection: React.FC<{
     useField(nameSecondary);
 
   const ticker = router.query.ticker;
-  let search;
-
-  if (typeof window !== 'undefined') {
-    search = window.location.search;
-  }
 
   const handleSetLowestLatency = React.useCallback(
     (name: string, value: number) => {
@@ -345,15 +340,6 @@ export const PingTestSection: React.FC<{
     ],
     [t]
   );
-  const [urlState, setUrlState] = useState(new Date());
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('popstate', function (event) {
-        setUrlState(new Date());
-      });
-    }
-  }, []);
 
   /**
    * list of servers with 14444

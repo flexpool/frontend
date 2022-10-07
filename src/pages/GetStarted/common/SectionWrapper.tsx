@@ -2,13 +2,13 @@ import React from 'react';
 import { Highlight } from 'src/components/Typo/Typo';
 
 export const SectionWrapper = ({
+  position,
   children,
   title,
-  position,
 }: {
+  position: number;
   children: React.ReactNode;
   title: string;
-  position?: number;
 }) => {
   return (
     <>

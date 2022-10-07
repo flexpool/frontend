@@ -1,20 +1,22 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-
 import { Page } from 'src/components/layout/Page';
-import { Spacer } from 'src/components/layout/Spacer';
-
 import { MineableCoinHardware, mineableCoins } from '../mineableCoinList';
-import { MinerCommandSection } from './MinerCommand.section';
-import { PingTestSection } from './PingTest.section';
-import { SetWalletSection } from './SetWallet.section';
-import { SetWorkerNameSection } from './SetWorkerName.section';
-import { ViewDashboardSection } from './ViewDashboard.section';
 import merge from 'lodash.merge';
 import { NextSeo } from 'next-seo';
 
-export const MineableCoinGuidePage: React.FC = () => {
+import {
+  GuideForm,
+  PingTestSection,
+  MinerCommandSection,
+  SetWorkerNameSection,
+  ViewDashboardSection,
+  SetWalletSection,
+} from '../common';
+import { Spacer } from '@/components/layout/Spacer';
+
+export const MineableCoinGuidePage = () => {
   const router = useRouter();
   const ticker = router.query.ticker;
   const { t, i18n } = useTranslation('get-started');
@@ -25,6 +27,7 @@ export const MineableCoinGuidePage: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // TODO: Better to put hardware details in one place
   const jsonHw = t(`detail_${ticker}.hardware`, {
     returnObjects: true,
   }) as MineableCoinHardware[];
@@ -79,19 +82,58 @@ export const MineableCoinGuidePage: React.FC = () => {
         ]}
       />
       <h1>{t(`detail_${mineableCoin?.ticker}.title`)}</h1>
-      <SetWalletSection data={mineableCoin} />
-      <Spacer size="xl" />
-      <PingTestSection
-        data={mineableCoin?.regions}
-        showAdditionalPorts={true}
-        showPorts={true}
-      />
-      <Spacer size="xl" />
-      <SetWorkerNameSection />
-      <Spacer size="xl" />
-      <MinerCommandSection data={mineableCoinConfig?.miners} />
-      <Spacer size="xl" />
-      <ViewDashboardSection ticker={ticker as string} />
+
+      <GuideForm
+        initialValue={{
+          wallet_address: '',
+          primary_server: '',
+          secondary_server: '',
+          worker_name: '',
+        }}
+      >
+        {({ values }) => {
+          return (
+            <>
+              <SetWalletSection
+                position={1}
+                data={mineableCoin}
+                name="wallet_address"
+              />
+
+              <Spacer />
+
+              <PingTestSection
+                position={2}
+                data={mineableCoin.regions}
+                namePrimary="primary_server"
+                nameSecondary="secondary_server"
+                showAdditionalPorts
+              />
+
+              <SetWorkerNameSection position={3} name="worker_name" />
+
+              <MinerCommandSection
+                position={4}
+                data={mineableCoinConfig.miners}
+                replaces={{
+                  CLOSEST_SERVER: values.primary_server || 'CLOSEST_SERVER',
+                  BACKUP_SERVER: values.secondary_server || 'BACKUP_SERVER',
+                  WALLET_ADDRESS: values.wallet_address || 'WALLET_ADDRESS',
+                  WORKER_NAME: values.worker_name || 'WORKER_NAME',
+                }}
+              />
+
+              {values.wallet_address && (
+                <ViewDashboardSection
+                  position={5}
+                  coin={mineableCoin}
+                  address={values.wallet_address}
+                />
+              )}
+            </>
+          );
+        }}
+      </GuideForm>
     </Page>
   );
 };

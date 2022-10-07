@@ -2,41 +2,17 @@ import React from 'react';
 import { Trans, useTranslation } from 'next-i18next';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOut } from 'src/components/LinkOut';
-import { Highlight } from 'src/components/Typo/Typo';
-import { ButtonGroup } from '../ChiaShared/ButtonGroup';
 import { TerminalCommand } from './TerminalCommand';
 
-export const CreatePlotsSection = () => {
-  const { t } = useTranslation('get-started');
-
-  const [selectedPlotter, setSelectedPlotter] = React.useState('standard');
-
-  return (
-    <>
-      <ButtonGroup
-        options={{
-          standard: { label: t('detail_xch.plotters.standard_plotter') },
-          madmax: { label: t('detail_xch.plotters.madmax_plotter') },
-        }}
-        selectedOption={selectedPlotter}
-        setSelectedOption={(s: string) => {
-          setSelectedPlotter(s);
-        }}
-      />
-      <h2>
-        <Highlight>#4</Highlight> {t('detail_xch.create_plots.title')}
-      </h2>
-      {selectedPlotter !== 'madmax' ? <StandardPlotterGuide /> : <MadmaxPlotterGuide />}
-    </>
-  );
-};
-
-const StandardPlotterGuide = () => {
+export const StandardPlotterGuide = () => {
   const { t } = useTranslation('get-started');
   return (
     <>
       <p>
-        <Trans ns="get-started" i18nKey="detail_xch.create_plots.standard.desc" />
+        <Trans
+          ns="get-started"
+          i18nKey="detail_xch.create_plots.standard.desc"
+        />
       </p>
       <Spacer />
       <p>{t('detail_xch.create_plots.standard.create_plots_command')}</p>
@@ -47,7 +23,7 @@ const StandardPlotterGuide = () => {
   );
 };
 
-const MadmaxPlotterGuide = () => {
+export const MadmaxPlotterGuide = () => {
   const { t } = useTranslation('get-started');
   return (
     <>
@@ -56,7 +32,9 @@ const MadmaxPlotterGuide = () => {
           ns="get-started"
           i18nKey="detail_xch.create_plots.madmax.desc"
           components={{
-            plotter: <LinkOut href="https://github.com/madMAx43v3r/chia-plotter" />,
+            plotter: (
+              <LinkOut href="https://github.com/madMAx43v3r/chia-plotter" />
+            ),
             madmax: <LinkOut href="https://github.com/madMAx43v3r" />,
           }}
         />
@@ -71,7 +49,9 @@ const MadmaxPlotterGuide = () => {
           ns="get-started"
           i18nKey="detail_xch.create_plots.madmax.instructions_note"
           components={{
-            github: <LinkOut href="https://github.com/madMAx43v3r/chia-plotter" />,
+            github: (
+              <LinkOut href="https://github.com/madMAx43v3r/chia-plotter" />
+            ),
           }}
         />
       </p>

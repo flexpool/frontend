@@ -1,42 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-
 import { Page } from 'src/components/layout/Page';
-import { Spacer } from 'src/components/layout/Spacer';
-import { Highlight } from 'src/components/Typo/Typo';
-
 import { MineableCoinHardware, mineableCoins } from '../mineableCoinList';
-import { PingTestSection } from './../GPU/PingTest.section';
-import { SetWalletSection } from './../GPU/SetWallet.section';
-import { SetWorkerNameSection } from './../GPU/SetWorkerName.section';
-import { ViewDashboardSection } from './../GPU/ViewDashboard.section';
 import merge from 'lodash.merge';
 import { NextSeo } from 'next-seo';
-import qs from 'query-string';
+
+import {
+  GuideForm,
+  PingTestSection,
+  SetWorkerNameSection,
+  ViewDashboardSection,
+  SetWalletSection,
+  SectionWrapper,
+} from '../common';
 
 import { ExampleInterface, ExampleInterfaceWrapper } from './ExampleInterface';
+import { MockBrowser } from './MockBrowser';
+import { Spacer } from '@/components/layout/Spacer';
 
 export const MineableCoinGuidePage: React.FC = () => {
   const router = useRouter();
   const ticker = router.query.ticker;
   const { t, i18n } = useTranslation('get-started');
   const { t: seoT } = useTranslation('seo');
-
-  const [urlState, setUrlState] = useState(new Date());
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const handlePopState = () => {
-        setUrlState(new Date());
-      };
-
-      window.addEventListener('popstate', handlePopState);
-      return () => {
-        window.removeEventListener('popstate', handlePopState);
-      };
-    }
-  }, []);
 
   const mineableCoin = React.useMemo(() => {
     return mineableCoins.find((item) => item.ticker === ticker);
@@ -75,13 +62,6 @@ export const MineableCoinGuidePage: React.FC = () => {
     coinAlgorithm: mineableCoin.algorithm,
   });
 
-  const {
-    primaryServer = t('cmd_keys.CLOSEST_SERVER'),
-    secondaryServer = t('cmd_keys.CLOSEST_SERVER'),
-    walletAddress = t('cmd_keys.WALLET_ADDRESS'),
-    workerName = t('cmd_keys.WORKER_NAME'),
-  } = qs.parse(typeof window !== 'undefined' ? window.location.search : '');
-
   return (
     <Page>
       <NextSeo
@@ -104,35 +84,67 @@ export const MineableCoinGuidePage: React.FC = () => {
         ]}
       />
       <h1>{t(`detail_${mineableCoin?.ticker}.title`)}</h1>
-      <SetWalletSection data={mineableCoin} />
-      <Spacer size="xl" />
-      <PingTestSection
-        data={mineableCoin?.regions}
-        showAdditionalPorts={false}
-        showPorts={false}
-      />
-      <Spacer size="xl" />
-      <SetWorkerNameSection />
-      <Spacer size="xl" />
-      <h2>
-        <Highlight>#4</Highlight> {t('detail.asic.title')}
-      </h2>
-      <p>{t('detail.asic.description')}</p>
-      <Spacer />
-      <ExampleInterfaceWrapper>
-        <ProcessedExampleInterface
-          poolNum={'1 (Primary)'}
-          login={`${walletAddress}.${workerName}`}
-          server={primaryServer as string}
-        />
-        <ProcessedExampleInterface
-          poolNum={'2 (Backup)'}
-          login={`${walletAddress}.${workerName}`}
-          server={secondaryServer as string}
-        />
-      </ExampleInterfaceWrapper>
-      <Spacer size="xl" />
-      <ViewDashboardSection ticker={ticker as string} />
+      <GuideForm
+        initialValue={{
+          wallet_address: '',
+          primary_server: '',
+          secondary_server: '',
+          worker_name: '',
+        }}
+      >
+        {({ values }) => {
+          return (
+            <>
+              <SetWalletSection
+                position={1}
+                data={mineableCoin}
+                name="wallet_address"
+              />
+
+              <PingTestSection
+                position={2}
+                data={mineableCoin.regions}
+                namePrimary="primary_server"
+                nameSecondary="secondary_server"
+                showAdditionalPorts={false}
+                showPorts={false}
+              />
+
+              <SetWorkerNameSection position={3} name="worker_name" />
+
+              <SectionWrapper position={4} title={t('detail.asic.title')}>
+                <p>{t('detail.asic.description')}</p>
+                <Spacer />
+                <MockBrowser>
+                  <ProcessedExampleInterface
+                    poolNum={'1 (Primary)'}
+                    login={`${
+                      values.wallet_address || t('cmd_keys.WALLET_ADDRESS')
+                    }.${values.worker_name || t('cmd_keys.WORKER_NAME')}`}
+                    server={values.primary_server as string}
+                  />
+                  <ProcessedExampleInterface
+                    poolNum={'2 (Backup)'}
+                    login={`${
+                      values.wallet_address || t('cmd_keys.WALLET_ADDRESS')
+                    }.${values.worker_name || t('cmd_keys.WORKER_NAME')}`}
+                    server={values.primary_server as string}
+                  />
+                  <Spacer size="lg" />
+                </MockBrowser>
+              </SectionWrapper>
+
+              {values.wallet_address && (
+                <ViewDashboardSection
+                  position={5}
+                  coin={mineableCoin}
+                  address={values.wallet_address}
+                />
+              )}
+            </>
+          );
+        }}
+      </GuideForm>
     </Page>
   );
 };

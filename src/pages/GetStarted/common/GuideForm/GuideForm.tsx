@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, FormikValues, FormikProps } from 'formik';
 
-const GuideForm = <Values extends FormikValues = FormikValues>({
+export const GuideForm = <Values extends FormikValues = FormikValues>({
   children,
   initialValue,
 }: {
