@@ -3,11 +3,7 @@ import { Card, CardGrid, CardTitle } from 'src/components/layout/Card';
 import { Spacer } from 'src/components/layout/Spacer';
 import { StatItem } from 'src/components/StatItem';
 import { TooltipContent, Tooltip } from 'src/components/Tooltip';
-import {
-  useActiveCoin,
-  useActiveCoinTicker,
-} from 'src/rdx/localSettings/localSettings.hooks';
-import { fetchApi } from 'src/utils/fetchApi';
+import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import {
   useLocalizedNumberFormatter,
   useLocalizedSiFormatter,
@@ -25,7 +21,6 @@ import {
   ColumnSeries,
 } from 'src/plugins/amcharts';
 import { useLocalizedDateFormatter } from 'src/utils/date.utils';
-import { useAsyncState } from 'src/hooks/useAsyncState';
 import useMinerRoundShareQuery from '@/hooks/api/useMinerRoundShareQuery';
 import usePoolAverageBlockRewardQuery from '@/hooks/api/usePoolAverageBlockRewardQuery';
 import {
@@ -35,6 +30,7 @@ import {
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import { useTranslation } from 'next-i18next';
 import { PPLNSChartDataItem } from './MinerRewards.types';
+import { useMinerShareLogQuery } from '@/hooks/api/useMinerShareLogQuery';
 
 const mapPplnsDataToChartData = (
   data: number[],
@@ -82,11 +78,14 @@ export const MinerPplnsStats: React.FC<{
   const { t } = useTranslation('dashboard');
 
   const [shareLogLength, setShareLogLength] = React.useState(0);
-  const activeCoinTicker = useActiveCoinTicker();
   const activeCoin = useActiveCoin();
   const numberFormatter = useLocalizedNumberFormatter();
 
-  const shareLogState = useAsyncState<number[]>();
+  const shareLogState = useMinerShareLogQuery({
+    address,
+    coin,
+  });
+
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
 
   const averageBlockShare = React.useMemo(() => {
@@ -99,20 +98,6 @@ export const MinerPplnsStats: React.FC<{
   }, [activeCoinFormatter, roundShare, averageBlockReward]);
 
   const dateFormatter = useLocalizedDateFormatter();
-
-  React.useEffect(() => {
-    if (address && activeCoinTicker) {
-      shareLogState.start(
-        fetchApi<number[]>('/miner/shareLog', {
-          query: {
-            address: address,
-            coin: activeCoinTicker,
-          },
-        })
-      );
-    }
-    // eslint-disable-next-line
-  }, [address, activeCoinTicker]);
 
   React.useEffect(() => {
     const data = shareLogState.data || [];

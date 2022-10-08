@@ -4,7 +4,7 @@ import { ApiBlocks } from '@/types/Miner.types';
 
 type MinerBlocksQuery = {
   coin: string;
-  page: string;
+  page: number;
   address: string;
 };
 

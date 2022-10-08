@@ -2,8 +2,6 @@ import React from 'react';
 import DynamicList, {
   DynamicListColumn,
 } from 'src/components/layout/List/List';
-import { useAsyncState } from 'src/hooks/useAsyncState';
-import { fetchApi } from 'src/utils/fetchApi';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import styled from 'styled-components';
 import { useActiveCoinTicker } from 'src/rdx/localSettings/localSettings.hooks';
@@ -17,6 +15,9 @@ import { useLocalizedDateFormatter } from 'src/utils/date.utils';
 import ListDateSwitchButton from 'src/components/ButtonVariants/ListDateSwitchButton';
 import { getCoinLink } from 'src/utils/coinLinks.utils';
 import { LinkOutCoin } from 'src/components/LinkOut';
+import { useMinerBlockRewardsQuery } from '@/hooks/api/useMinerBlockRewardsQuery';
+
+const PAGE_SIZE = 5;
 
 export type ApiBlock = {
   share: number;
@@ -53,42 +54,31 @@ const BlockType = styled.span<{ type: ApiBlock['blockType'] }>`
 `;
 
 export const MinerRewardsBlocksSection: React.FC<{
-  address?: string;
+  address: string;
 }> = ({ address }) => {
   const { t } = useTranslation('blocks');
-  const blockState = useAsyncState<ApiBlock[]>('minerRewardBlocks', []);
   const coinTicker = useActiveCoinTicker();
+  const blockState = useMinerBlockRewardsQuery({
+    address,
+    coin: coinTicker,
+  });
+
   const [currentPage, setCurrentPage] = React.useState(0);
-  const [displayedBlocks, setDisplayedBlocks] = React.useState<ApiBlock[]>();
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const [dateView, setDateView] = useLocalStorageState<
     'full_date' | 'distance'
   >('blockDateView', 'distance');
 
-  const blocks = React.useMemo(() => {
-    setDisplayedBlocks(blockState.data?.slice(0, 5));
-    return blockState.data || [];
-  }, [blockState.data]);
+  const blocks = blockState.data?.slice(
+    currentPage * PAGE_SIZE,
+    (currentPage + 1) * PAGE_SIZE
+  );
 
-  React.useEffect(() => {
-    const indexStart = currentPage * 5;
-    const indexEnd = (currentPage + 1) * 5;
-
-    setDisplayedBlocks(blocks.slice(indexStart, indexEnd));
-  }, [currentPage, blocks]);
+  const totalPages = blockState.data
+    ? Math.ceil(blockState.data.length / 5)
+    : 0;
 
   const dateFormatter = useLocalizedDateFormatter();
-  React.useEffect(() => {
-    blockState.start(
-      fetchApi('/miner/blockRewards', {
-        query: {
-          address,
-          coin: coinTicker,
-        },
-      })
-    );
-    // eslint-disable-next-line
-  }, [currentPage, coinTicker, address]);
 
   const onRowClick = React.useCallback(
     (data: ApiBlock) => {
@@ -244,30 +234,8 @@ export const MinerRewardsBlocksSection: React.FC<{
         ),
       },
     }),
-    [activeCoinFormatter, t, dateFormatter, dateView, setDateView]
+    [activeCoinFormatter, t, dateFormatter, dateView, setDateView, coinTicker]
   );
-
-  const columns = React.useMemo(() => {
-    // if no address, displaying default view
-    if (!address) {
-      return [
-        blockCols.number,
-        blockCols.type,
-        blockCols.date,
-        blockCols.share,
-        blockCols.reward,
-        blockCols.blockHash,
-      ];
-    }
-    return [
-      blockCols.number,
-      blockCols.type,
-      blockCols.date,
-      blockCols.share,
-      blockCols.reward,
-      blockCols.blockHash,
-    ];
-  }, [address, blockCols]);
 
   return (
     <>
@@ -278,18 +246,25 @@ export const MinerRewardsBlocksSection: React.FC<{
         pagination={{
           currentPage,
           setCurrentPage,
-          totalPages: Math.ceil(blocks.length / 5) || 0,
+          totalPages,
         }}
         isLoading={blockState.isLoading}
         loadingRowsCount={5}
-        data={displayedBlocks}
+        data={blocks || []}
         config={{
           coinTicker,
-          totalPages: Math.ceil(blocks.length / 5) || 0,
+          totalPages,
           totalItems: 0,
           currentPage,
         }}
-        columns={columns}
+        columns={[
+          blockCols.number,
+          blockCols.type,
+          blockCols.date,
+          blockCols.share,
+          blockCols.reward,
+          blockCols.blockHash,
+        ]}
         contentEmpty={
           <h3>
             {!!address ? t('table.title_miner_zero') : t('table.title_zero')}

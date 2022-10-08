@@ -138,3 +138,19 @@ export type ApiPaymentStats = {
     transactionCount: number;
   } | null;
 };
+
+export type PaymentChartData = {
+  fee: number;
+  timestamp: number;
+  value: number;
+}[];
+
+export type RewardBlock = {
+  share: number;
+  reward: number;
+  confirmed: boolean;
+  blockNumber: number;
+  timestamp: number;
+  hash: string;
+  blockType: 'block' | 'uncle' | 'orphan';
+};

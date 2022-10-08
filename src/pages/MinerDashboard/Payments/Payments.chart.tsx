@@ -12,34 +12,37 @@ import {
 } from 'src/plugins/amcharts';
 
 import { ApiPoolCoin } from 'src/types/PoolCoin.types';
-import { fetchApi } from 'src/utils/fetchApi';
-import { useAsyncState } from 'src/hooks/useAsyncState';
 import {
   ChartContainer,
   responsiveRule,
 } from 'src/components/Chart/ChartContainer';
 import { useTranslation } from 'next-i18next';
 import { groupDataItemSum } from '@/utils/amchart.utils';
-
-type ChartData = {
-  fee: number;
-  timestamp: number;
-  value: number;
-}[];
+import { useMinerPaymentsChart } from '@/hooks/api/useMinerPaymentsChart';
 
 const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
   coin,
   address,
 }) => {
   const { t } = useTranslation('dashboard');
-  // FIXME: migrate to react query
-  const asyncState = useAsyncState<
+  const asyncState = useMinerPaymentsChart(
     {
-      fee: number;
-      date: Date;
-      value: number;
-    }[]
-  >();
+      address,
+      coin: coin!.ticker,
+    },
+    {
+      enabled: typeof coin !== 'undefined',
+      select: (data = []) => {
+        return data.map((item) => ({
+          date: new Date(item.timestamp * 1000),
+          value:
+            item.value / Math.pow(10, coin!.decimalPlaces) -
+            item.fee / Math.pow(10, coin!.decimalPlaces),
+          fee: item.fee / Math.pow(10, coin!.decimalPlaces),
+        }));
+      },
+    }
+  );
 
   React.useEffect(() => {
     if (coin && asyncState.data && asyncState.data.length > 0) {
@@ -122,28 +125,6 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
       };
     }
   }, [coin, asyncState.data, t]);
-
-  React.useEffect(() => {
-    if (coin?.decimalPlaces && coin?.ticker) {
-      asyncState.start(
-        fetchApi<ChartData>('/miner/paymentsChart', {
-          query: {
-            address: address,
-            coin: coin.ticker,
-          },
-        }).then((resp) => {
-          return (resp || []).map((item) => ({
-            date: new Date(item.timestamp * 1000),
-            value:
-              item.value / Math.pow(10, coin.decimalPlaces) -
-              item.fee / Math.pow(10, coin.decimalPlaces),
-            fee: item.fee / Math.pow(10, coin.decimalPlaces),
-          }));
-        })
-      );
-    }
-    // eslint-disable-next-line
-  }, [coin?.ticker, coin?.decimalPlaces, address]);
 
   return (
     <>

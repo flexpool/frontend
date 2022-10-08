@@ -2,8 +2,6 @@ import React from 'react';
 import DynamicList, {
   DynamicListColumn,
 } from 'src/components/layout/List/List';
-import { useAsyncState } from 'src/hooks/useAsyncState';
-import { fetchApi } from 'src/utils/fetchApi';
 import { LinkMiner } from 'src/components/LinkMiner';
 import { Luck } from 'src/components/Luck';
 import styled from 'styled-components';
@@ -16,6 +14,7 @@ import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { TableCellSpinner } from 'src/components/Loader/TableCellSpinner';
 import { useTranslation } from 'next-i18next';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
+import { useMinerBlocksQuery } from '@/hooks/api/useMinerBlocksQuery';
 import { BiTransferAlt } from 'react-icons/bi';
 
 type ApiBlock = {
@@ -86,14 +85,9 @@ const ButtonDateSwitch = styled(Ws)`
 `;
 
 export const BlocksSection: React.FC<{
-  address?: string;
+  address: string;
 }> = ({ address }) => {
   const { t } = useTranslation('blocks');
-  const blockState = useAsyncState<ApiBlocks>('blocks', {
-    totalItems: 0,
-    totalPages: 0,
-    data: [],
-  });
   const coinTicker = useActiveCoinTicker();
   const [currentPage, setCurrentPage] = React.useState(0);
   const [dateView, setDateView] = useLocalStorageState<
@@ -102,14 +96,11 @@ export const BlocksSection: React.FC<{
 
   const dateFormatter = useLocalizedDateFormatter();
 
-  React.useEffect(() => {
-    blockState.start(
-      fetchApi(address ? '/miner/blocks' : '/pool/blocks', {
-        query: { coin: coinTicker, page: currentPage, address },
-      })
-    );
-    // eslint-disable-next-line
-  }, [currentPage, coinTicker, address]);
+  const blockState = useMinerBlocksQuery({
+    coin: coinTicker,
+    page: currentPage,
+    address,
+  });
 
   const totalPages = blockState.data?.totalPages || 0;
 
