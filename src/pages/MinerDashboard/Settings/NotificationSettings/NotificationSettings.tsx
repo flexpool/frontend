@@ -15,99 +15,11 @@ import useUpdateNotificationSettings from '@/hooks/useUpdateNotificationSettings
 import OfflineDetectionDurationSlider from './components/OfflineDetectionDurationSlider';
 
 const DEFAULT_SLIDER_OPTIONS = [
-  {
-    key: '5m',
-    description: '5 minutes',
-    value: 300,
-  },
-  {
-    key: '10m',
-    description: '10 minutes',
-    value: 600,
-  },
-  {
-    key: '20m',
-    description: '20 minutes',
-    value: 1200,
-  },
-  {
-    key: '30m',
-    description: '30 minutes',
-    value: 1800,
-  },
-  {
-    key: '1h',
-    description: '1 hour',
-    value: 3600,
-  },
-  {
-    key: '2h',
-    description: '2 hours',
-    value: 7200,
-  },
-  {
-    key: '4h',
-    description: '4 hours',
-    value: 14400,
-  },
-  {
-    key: '8h',
-    description: '8 hours',
-    value: 28800,
-  },
-  {
-    key: '16h',
-    description: '16 hours',
-    value: 57600,
-  },
-  {
-    key: '24h',
-    description: '24 hours',
-    value: 86400,
-  },
+  300, 600, 1200, 1800, 3600, 7200, 14400, 28800, 57600, 86400,
 ];
 
 const ZIL_SLIDER_OPTIONS = [
-  {
-    key: '2h',
-    description: '2 hours',
-    value: 7200,
-  },
-  {
-    key: '4h',
-    description: '4 hours',
-    value: 14400,
-  },
-  {
-    key: '6h',
-    description: '6 hours',
-    value: 18000,
-  },
-  {
-    key: '8h',
-    description: '8 hours',
-    value: 28800,
-  },
-  {
-    key: '10h',
-    description: '10 hours',
-    value: 36000,
-  },
-  {
-    key: '12h',
-    description: '12 hours',
-    value: 43200,
-  },
-  {
-    key: '16h',
-    description: '16 hours',
-    value: 57600,
-  },
-  {
-    key: '24h',
-    description: '24 hours',
-    value: 86400,
-  },
+  7200, 14400, 21600, 28800, 36000, 43200, 57600, 86400,
 ];
 
 const NotificationSettings: React.FC<{
@@ -158,7 +70,7 @@ const NotificationSettings: React.FC<{
     });
   };
 
-  const defaultDuration = activeCoin.ticker === 'zil' ? 18000 : 1200;
+  const defaultDuration = activeCoin.ticker === 'zil' ? 21600 : 1200;
 
   return (
     <Formik

@@ -49,59 +49,6 @@ const StyledThumb = styled(Slider.Thumb)`
   }
 `;
 
-const durationOptions = [
-  {
-    key: '5m',
-    description: '5 minutes',
-    value: 300,
-  },
-  {
-    key: '10m',
-    description: '10 minutes',
-    value: 600,
-  },
-  {
-    key: '20m',
-    description: '20 minutes',
-    value: 1200,
-  },
-  {
-    key: '30m',
-    description: '30 minutes',
-    value: 1800,
-  },
-  {
-    key: '1h',
-    description: '1 hour',
-    value: 3600,
-  },
-  {
-    key: '2h',
-    description: '2 hours',
-    value: 7200,
-  },
-  {
-    key: '4h',
-    description: '4 hours',
-    value: 14400,
-  },
-  {
-    key: '8h',
-    description: '8 hours',
-    value: 28800,
-  },
-  {
-    key: '16h',
-    description: '16 hours',
-    value: 57600,
-  },
-  {
-    key: '24h',
-    description: '24 hours',
-    value: 86400,
-  },
-];
-
 const Label = styled.div<{ index: number; total: number }>`
   position: absolute;
   font-size: 0.85rem;
@@ -125,7 +72,7 @@ const LabelContainer = styled.div`
   top: 18px;
 `;
 
-const StepLabels = ({ options }) => {
+const StepLabels = ({ options }: { options: SlideOption[] }) => {
   return (
     <LabelContainer>
       {options.map(({ key }, index) => {
@@ -159,17 +106,47 @@ type SlideOption = {
   value: number;
 };
 
+type Second = number;
+
 const OfflineDetectionDurationSlider = ({
   disabled = false,
   options,
 }: {
   disabled: boolean;
-  options: SlideOption[];
+  options: Second[];
 }) => {
   const [field, , { setValue }] = useField('workerOfflineDetectionDuration');
   const { t } = useTranslation(['dashboard']);
+  const { t: commonT } = useTranslation('common');
 
-  const optionIndex = options.findIndex(
+  const hoursLabel = commonT('hours');
+  const minutesLabel = commonT('minutes');
+
+  const durationOptions = options.map((option) => {
+    let minutes,
+      hours = 0;
+
+    if (option < 60 * 60) {
+      minutes = option / 60;
+    } else {
+      hours = option / 60 / 60;
+    }
+
+    if (minutes) {
+      return {
+        key: `${minutes}m`,
+        value: option,
+        description: `${minutes} ${minutesLabel}`,
+      };
+    }
+
+    return {
+      key: `${hours}h`,
+      value: option,
+      description: `${hours} ${hoursLabel}`,
+    };
+  });
+  const optionIndex = durationOptions.findIndex(
     (option) => option.value === field.value
   );
 
@@ -183,19 +160,19 @@ const OfflineDetectionDurationSlider = ({
       <StyledSlider
         disabled={disabled}
         defaultValue={[optionIndex]}
-        max={options.length - 1}
+        max={durationOptions.length - 1}
         step={1}
         aria-label="Duration"
         onValueChange={(value) => {
-          setValue(options[value[0]].value);
+          setValue(durationOptions[value[0]].value);
         }}
       >
         <StyledTrack>
           <StyledRange />
-          <StepLabels options={options} />
+          <StepLabels options={durationOptions} />
           <SliderHint>
             {t('dashboard:settings.notifications.offline_duration', {
-              duration: options[optionIndex].description,
+              duration: durationOptions[optionIndex].description,
             })}
           </SliderHint>
         </StyledTrack>
