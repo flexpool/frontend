@@ -97,9 +97,11 @@
   "noDataAvailable": "没有可用数据",
   "difficulty": "难度",
   "blocktime": "出块时间",
-  "roundtime": "Round Time",
+  "roundtime": "回合时间",
   "hashrate": "算力",
   "hashrate_space": "空间",
   "current_network_value": "当前全网{{value}}",
-  "view_network_stats": "查看网络数据统计"
+  "view_network_stats": "查看网络数据统计",
+  "hours": "小时",
+  "minutes": "分钟"
 }

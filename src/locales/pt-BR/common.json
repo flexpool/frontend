@@ -101,5 +101,7 @@
   "hashrate": "Hashrate",
   "hashrate_space": "Space",
   "current_network_value": "Current Network {{value}}",
-  "view_network_stats": "View network statistics"
+  "view_network_stats": "View network statistics",
+  "hours": "hour(s)",
+  "minutes": "minute(s)"
 }
