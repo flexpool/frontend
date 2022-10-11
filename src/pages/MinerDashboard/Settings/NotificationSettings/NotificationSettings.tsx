@@ -14,6 +14,14 @@ import useMinerDetailsQuery from '@/hooks/api/useMinerDetailsQuery';
 import useUpdateNotificationSettings from '@/hooks/useUpdateNotificationSettings';
 import OfflineDetectionDurationSlider from './components/OfflineDetectionDurationSlider';
 
+const DEFAULT_SLIDER_OPTIONS = [
+  300, 600, 1200, 1800, 3600, 7200, 14400, 28800, 57600, 86400,
+];
+
+const ZIL_SLIDER_OPTIONS = [
+  7200, 14400, 21600, 28800, 36000, 43200, 57600, 86400,
+];
+
 const NotificationSettings: React.FC<{
   address: string;
 }> = ({ address }) => {
@@ -62,6 +70,8 @@ const NotificationSettings: React.FC<{
     });
   };
 
+  const defaultDuration = activeCoin.ticker === 'zil' ? 21600 : 1200;
+
   return (
     <Formik
       onSubmit={async (data, { setSubmitting }) => {
@@ -92,7 +102,7 @@ const NotificationSettings: React.FC<{
           false,
         workerOfflineDetectionDuration:
           minerDetails.notificationPreferences
-            ?.workerOfflineDetectionDuration || 1200,
+            ?.workerOfflineDetectionDuration ?? defaultDuration,
       }}
       validateOnChange={true}
       validate={validate}
@@ -125,8 +135,17 @@ const NotificationSettings: React.FC<{
                 }
                 disabled={!values.emailEnabled}
               />
-              <OfflineDetectionDurationSlider disabled={!values.emailEnabled} />
-              {/* <Spacer size="sm" /> */}
+              {activeCoin.ticker === 'zil' ? (
+                <OfflineDetectionDurationSlider
+                  options={ZIL_SLIDER_OPTIONS}
+                  disabled={!values.emailEnabled}
+                />
+              ) : (
+                <OfflineDetectionDurationSlider
+                  options={DEFAULT_SLIDER_OPTIONS}
+                  disabled={!values.emailEnabled}
+                />
+              )}
               <CheckboxField
                 label={t('dashboard:settings.notifications.check_worker_down')}
                 name="workersOfflineNotifications"

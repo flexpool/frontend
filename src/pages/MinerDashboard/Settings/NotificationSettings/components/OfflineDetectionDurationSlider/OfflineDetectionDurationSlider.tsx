@@ -1,6 +1,6 @@
 import React from 'react';
 import { useField } from 'formik';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import * as Slider from '@radix-ui/react-slider';
 import { useTranslation } from 'next-i18next';
 
@@ -49,68 +49,19 @@ const StyledThumb = styled(Slider.Thumb)`
   }
 `;
 
-const durationOptions = [
-  {
-    key: '5m',
-    description: '5 minutes',
-    value: 300,
-  },
-  {
-    key: '10m',
-    description: '10 minutes',
-    value: 600,
-  },
-  {
-    key: '20m',
-    description: '20 minutes',
-    value: 1200,
-  },
-  {
-    key: '30m',
-    description: '30 minutes',
-    value: 1800,
-  },
-  {
-    key: '1h',
-    description: '1 hour',
-    value: 3600,
-  },
-  {
-    key: '2h',
-    description: '2 hours',
-    value: 7200,
-  },
-  {
-    key: '4h',
-    description: '4 hours',
-    value: 14400,
-  },
-  {
-    key: '8h',
-    description: '8 hours',
-    value: 28800,
-  },
-  {
-    key: '16h',
-    description: '16 hours',
-    value: 57600,
-  },
-  {
-    key: '24h',
-    description: '24 hours',
-    value: 86400,
-  },
-];
-
 const Label = styled.div<{ index: number; total: number }>`
   position: absolute;
   font-size: 0.85rem;
   font-weight: 500;
   transform: translateX(-50%);
-  left: calc(
-    ${(p) => (p.index === 0 ? 0 : (p.index / (p.total - 1)) * 100)}% +
-      ${(p) => 10 * (1 - 0.111111 * p.index * 2)}px
-  );
+  ${(p) => {
+    const base = p.index === 0 ? 0 : (p.index / (p.total - 1)) * 100;
+    const shift = 10 * (1 - 0.111111 * p.index * 2);
+
+    return css`
+      left: calc(${base}% + ${shift}px);
+    `;
+  }};
   color: var(--text-secondary);
 `;
 
@@ -121,12 +72,12 @@ const LabelContainer = styled.div`
   top: 18px;
 `;
 
-const StepLabels = () => {
+const StepLabels = ({ options }: { options: SlideOption[] }) => {
   return (
     <LabelContainer>
-      {durationOptions.map(({ key }, index) => {
+      {options.map(({ key }, index) => {
         return (
-          <Label key={key} index={index} total={durationOptions.length}>
+          <Label key={key} index={index} total={options.length}>
             {key}
           </Label>
         );
@@ -141,7 +92,7 @@ const SliderLabel = styled.label`
   color: var(--text-primary);
   font-weight: 700;
   display: inline-block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 14px;
 `;
 
 const SliderHint = styled.div`
@@ -149,10 +100,52 @@ const SliderHint = styled.div`
   max-width: 480px;
 `;
 
-const OfflineDetectionDurationSlider = ({ disabled = false }) => {
+type SlideOption = {
+  key: string;
+  description: string;
+  value: number;
+};
+
+type Second = number;
+
+const OfflineDetectionDurationSlider = ({
+  disabled = false,
+  options,
+}: {
+  disabled: boolean;
+  options: Second[];
+}) => {
   const [field, , { setValue }] = useField('workerOfflineDetectionDuration');
   const { t } = useTranslation(['dashboard']);
+  const { t: commonT } = useTranslation('common');
 
+  const hoursLabel = commonT('hours');
+  const minutesLabel = commonT('minutes');
+
+  const durationOptions = options.map((option) => {
+    let minutes,
+      hours = 0;
+
+    if (option < 60 * 60) {
+      minutes = option / 60;
+    } else {
+      hours = option / 60 / 60;
+    }
+
+    if (minutes) {
+      return {
+        key: `${minutes}m`,
+        value: option,
+        description: `${minutes} ${minutesLabel}`,
+      };
+    }
+
+    return {
+      key: `${hours}h`,
+      value: option,
+      description: `${hours} ${hoursLabel}`,
+    };
+  });
   const optionIndex = durationOptions.findIndex(
     (option) => option.value === field.value
   );
@@ -176,7 +169,7 @@ const OfflineDetectionDurationSlider = ({ disabled = false }) => {
       >
         <StyledTrack>
           <StyledRange />
-          <StepLabels />
+          <StepLabels options={durationOptions} />
           <SliderHint>
             {t('dashboard:settings.notifications.offline_duration', {
               duration: durationOptions[optionIndex].description,
