@@ -70,7 +70,7 @@
       },
       {
         "key": "Pool Fee",
-        "value": "2%"
+        "value": "3% + Shard Node Operating Costs"
       },
       {
         "key": "Payout Round",
