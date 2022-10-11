@@ -229,7 +229,10 @@ export const MinerPplnsStats: React.FC<{
               activeCoin &&
               `${dateFormatter.durationWords(
                 (shareLogLength * activeCoin.shareDifficulty) /
-                  (averagePoolHashrate / activeCoin.difficultyFactor),
+                  ((activeCoinTicker === 'zil'
+                    ? averagePoolHashrate * (60 / 3600)
+                    : averagePoolHashrate) /
+                    activeCoin.difficultyFactor),
                 { includeSeconds: false }
               )}`
             }
