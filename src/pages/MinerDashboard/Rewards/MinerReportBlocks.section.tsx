@@ -94,7 +94,11 @@ export const MinerRewardsBlocksSection: React.FC<{
     (data: ApiBlock) => {
       const url =
         data.blockType !== 'orphan' &&
-        getCoinLink(data.blockType, data.hash, coinTicker);
+        getCoinLink(
+          data.blockType,
+          coinTicker === 'zil' ? String(data.blockNumber) : data.hash,
+          coinTicker
+        );
       if (url) {
         window.open(url, '_blank');
       }
