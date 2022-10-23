@@ -34,6 +34,12 @@ const TabsContainer = styled.div`
   @media (max-width: 768px) {
     top: 70px;
   }
+
+  -webkit-transform: translate3d(0, 0, 0);
+`;
+
+const GuideContent = styled(Content)`
+  -webkit-transform: translate3d(0, 0, -1px);
 `;
 
 export const GetStartedPage = () => {
@@ -85,7 +91,7 @@ export const GetStartedPage = () => {
           </Content>
         </TabsContainer>
 
-        <Content>
+        <GuideContent>
           <Spacer size="xl" />
 
           {mineableCoins.map((coin) => {
@@ -98,7 +104,7 @@ export const GetStartedPage = () => {
               </CoinTabs.Section>
             );
           })}
-        </Content>
+        </GuideContent>
       </CoinTabs>
     </Page>
   );
