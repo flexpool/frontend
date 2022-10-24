@@ -8,6 +8,9 @@ import { RadioGroup, GuideTypeRadio } from '../GuideTypeRadio';
 import { ViewGuideButton } from '../ViewGuideButton';
 import { PoolDetails } from '../PoolDetails';
 import { MineableCoinHardware } from '@/pages/GetStarted/mineableCoinList';
+import { BiDonateHeart, BiSupport } from 'react-icons/bi';
+import { RiTeamLine } from 'react-icons/ri';
+import { GiReceiveMoney, GiSparkles } from 'react-icons/gi';
 
 const SectionWrapper = styled.div`
   padding: 20px 0px 68px;
@@ -28,6 +31,7 @@ const SubCol = styled.div`
   flex-direction: column;
 
   border-top: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
 
   @media (max-width: 768px) {
     padding: 26px 24px;
@@ -57,13 +61,32 @@ const SmallSprint = styled.p`
 type HardwareOption = {
   key: string;
   title: string;
+  tag?: string;
 };
+
+const Tag = styled.div`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--success);
+  background-color: #15cd7221;
+  border-radius: 50px;
+  padding: 5px 10px;
+  font-size: 12px;
+  margin: 0 6px;
+  color: var(--success);
+`;
 
 const PoolGuideOptions = ({ options }: { options: HardwareOption[] }) => {
   const [selected, setSelected] = useState(0);
 
   return (
     <>
+      <h2>Start Mining Today</h2>
+      <SmallSprint>
+        Begin your Flexpool experience by choosing your setup
+      </SmallSprint>
+      <Spacer size="md" />
       <RadioGroup value={String(selected)}>
         {options.map((option, index) => {
           return (
@@ -76,6 +99,7 @@ const PoolGuideOptions = ({ options }: { options: HardwareOption[] }) => {
               }}
             >
               {option.title}
+              {option.tag && <Tag>{option.tag}</Tag>}
             </GuideTypeRadio>
           );
         })}
@@ -86,6 +110,9 @@ const PoolGuideOptions = ({ options }: { options: HardwareOption[] }) => {
           View <span>{options[selected].title}</span> Guide
         </ViewGuideButton>
       </FlexEnd>
+      <SmallSprint>
+        You can Boost your Ethereum Classic earnings by dual mining Ziliqa.
+      </SmallSprint>
     </>
   );
 };
@@ -93,10 +120,11 @@ const PoolGuideOptions = ({ options }: { options: HardwareOption[] }) => {
 const Layout = styled.div`
   border: 1px solid var(--border-color);
   border-radius: 10px;
+  overflow: hidden;
 `;
 
 const LayoutHeader = styled.div`
-  padding: 15px 40px;
+  padding: 18px 40px;
   display: flex;
   align-items: center;
 
@@ -115,6 +143,91 @@ type Props = {
   name: string;
 };
 
+const PerksWrapper = styled.div`
+  padding: 26px 48px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    padding: 24px 26px 30px;
+  }
+`;
+
+const Perk = styled.div`
+  flex-basis: 50%;
+  display: flex;
+  align-items: flex-start;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 16px 12px 16px 0; ;
+`;
+
+const PoolPerks = () => {
+  return (
+    <PerksWrapper>
+      <Perk>
+        <RiTeamLine
+          color="var(--success)"
+          size={20}
+          style={{
+            margin: '0 8 0 0',
+          }}
+        />
+        <div>
+          Built by professionals
+          <SmallSprint>
+            Flexpool runs on state of art infrastructure
+          </SmallSprint>
+        </div>
+      </Perk>
+      <Perk>
+        <BiSupport
+          color="var(--success)"
+          size={20}
+          style={{
+            margin: '0 8 0 0',
+          }}
+        />
+        <div>
+          Professional and helpful support team
+          <SmallSprint>
+            Get helped by team of progessionals within a day
+          </SmallSprint>
+        </div>
+      </Perk>
+      <Perk>
+        <GiReceiveMoney
+          color="var(--success)"
+          size={20}
+          style={{
+            margin: '0 8 0 0',
+          }}
+        />
+        <div>
+          Maximum earnings
+          <SmallSprint>Extract the most from mining</SmallSprint>
+        </div>
+      </Perk>
+      <Perk>
+        <GiSparkles
+          color="var(--success)"
+          size={20}
+          style={{
+            margin: '0 8 0 0',
+          }}
+        />
+        <div>
+          Best-in-class web experience
+          <SmallSprint>
+            A clean and modern interface with all your mining stats
+          </SmallSprint>
+        </div>
+      </Perk>
+    </PerksWrapper>
+  );
+};
+
 export const MiningGuideSection = ({ ticker, name }: Props) => {
   const { t } = useTranslation('get-started');
 
@@ -125,6 +238,16 @@ export const MiningGuideSection = ({ ticker, name }: Props) => {
   const poolHw = t(`detail_${ticker.toLowerCase()}.hardware`, {
     returnObjects: true,
   }) as MineableCoinHardware[];
+
+  const hardwareOptions = poolHw.map((hw) => {
+    let tag;
+    if (hw.key === 'flexfarmer') tag = 'New';
+
+    return {
+      ...hw,
+      tag,
+    };
+  });
 
   return (
     <SectionWrapper>
@@ -142,9 +265,10 @@ export const MiningGuideSection = ({ ticker, name }: Props) => {
         <LayoutBody>
           <MainCol>
             <PoolDetails items={poolDetails} />
+            <PoolPerks />
           </MainCol>
           <SubCol>
-            <PoolGuideOptions options={poolHw} />
+            <PoolGuideOptions options={hardwareOptions} />
           </SubCol>
         </LayoutBody>
       </Layout>

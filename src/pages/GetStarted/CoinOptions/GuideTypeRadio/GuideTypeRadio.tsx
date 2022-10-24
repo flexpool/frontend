@@ -9,12 +9,13 @@ const StyledRadio = styled(RadioGroupPrimitive.Item)`
   border-radius: 16px;
   border: 2px solid #313131;
   transition: all 0.1s ease-out;
+  margin-right: 10px;
 `;
 
 const GuideTypeRadioButton = styled.div`
   display: flex;
   align-items: center;
-
+  white-space: nowrap;
   border-radius: 5px;
   padding: 18px;
   font-weight: 600;
@@ -22,6 +23,10 @@ const GuideTypeRadioButton = styled.div`
   cursor: pointer;
   background: rgba(68, 68, 68, 0.12);
   border: 2px solid #3f3f3f;
+
+  & > * {
+    flex-shrink: 0;
+  }
 
   &:hover {
     border: 2px solid #0069ff;
@@ -89,14 +94,7 @@ export const GuideTypeRadio = ({
       <StyledRadio value={value} id={value}>
         <StyledIndicator />
       </StyledRadio>
-      <div
-        style={{
-          display: 'inline-block',
-          marginLeft: 10,
-        }}
-      >
-        {children}
-      </div>
+      {children}
     </GuideTypeRadioButton>
   );
 };
