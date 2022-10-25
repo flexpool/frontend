@@ -11,23 +11,24 @@ const StyledButton = styled.button`
   border-radius: 34px;
   padding: 9px 14px;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 15px;
 
   display: inline-flex;
   align-items: center;
 
   & > span {
-    opacity: 0.7;
+    opacity: 0.6;
+    color: var(--text-primary);
   }
 
   &[data-selected='true'] > span {
     opacity: 1;
-    color: white;
+    color: var(--text-primary);
   }
 
   &:hover > span {
     opacity: 1;
-    color: white;
+    color: var(--text-primary);
   }
 `;
 
@@ -64,7 +65,8 @@ export const CoinPillButton = ({
             position: 'absolute',
             height: '50px',
             width: '100%',
-            backgroundColor: '#252529',
+            backgroundColor: 'var(--text-primary)',
+            opacity: 0.15,
             zIndex: -1,
             borderRadius: 50,
             left: 0,

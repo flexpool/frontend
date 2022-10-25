@@ -23,13 +23,15 @@ const Item = styled.div`
 const ItemHeading = styled.div`
   font-weight: 600;
   font-size: 12px;
-  color: #494949;
+  color: var(--text-secondary);
+  opacity: 0.7;
   white-space: nowrap;
 `;
 
 const ItemDescription = styled.div`
   margin-top: 4px;
-  color: #eeeeee;
+  color: var(--text-secondary);
+  font-weight: 500;
   white-space: nowrap;
 `;
 

@@ -235,6 +235,7 @@ export const MiningGuideSection = ({ ticker, name }: Props) => {
     returnObjects: true,
   }) as { key: string; value: string }[];
 
+  // FIXME
   const poolHw = t(`detail_${ticker.toLowerCase()}.hardware`, {
     returnObjects: true,
   }) as MineableCoinHardware[];

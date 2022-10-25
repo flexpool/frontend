@@ -21,8 +21,8 @@ const GuideTypeRadioButton = styled.div`
   font-weight: 600;
   font-size: 16px;
   cursor: pointer;
-  background: rgba(68, 68, 68, 0.12);
-  border: 2px solid #3f3f3f;
+  background: rgba(255, 255, 255, 0.045);
+  border: 2px solid #313131;
 
   & > * {
     flex-shrink: 0;
