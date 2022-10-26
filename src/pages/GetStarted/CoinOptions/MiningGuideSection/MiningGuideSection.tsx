@@ -153,7 +153,7 @@ const PerksWrapper = styled.div`
   }
 `;
 
-const Perk = styled.div`
+const PerkContainer = styled.div`
   flex-basis: 50%;
   display: flex;
   align-items: flex-start;
@@ -162,67 +162,58 @@ const Perk = styled.div`
   padding: 16px 12px 16px 0; ;
 `;
 
+const Perk = ({
+  icon,
+  title,
+  description,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}) => {
+  return (
+    <PerkContainer>
+      <div
+        style={{
+          color: 'var(--success)',
+          margin: '0 8px 0 0',
+        }}
+      >
+        {icon}
+      </div>
+      <div>
+        {title}
+        <SmallSprint>{description}</SmallSprint>
+      </div>
+    </PerkContainer>
+  );
+};
+
 const PoolPerks = () => {
+  const { t } = useTranslation('get-started');
+
   return (
     <PerksWrapper>
-      <Perk>
-        <RiTeamLine
-          color="var(--success)"
-          size={20}
-          style={{
-            margin: '0 8 0 0',
-          }}
-        />
-        <div>
-          Built by professionals
-          <SmallSprint>
-            Flexpool runs on state of art infrastructure
-          </SmallSprint>
-        </div>
-      </Perk>
-      <Perk>
-        <BiSupport
-          color="var(--success)"
-          size={20}
-          style={{
-            margin: '0 8 0 0',
-          }}
-        />
-        <div>
-          Professional and helpful support team
-          <SmallSprint>
-            Get helped by team of progessionals within a day
-          </SmallSprint>
-        </div>
-      </Perk>
-      <Perk>
-        <GiReceiveMoney
-          color="var(--success)"
-          size={20}
-          style={{
-            margin: '0 8 0 0',
-          }}
-        />
-        <div>
-          Maximum earnings
-          <SmallSprint>Extract the most from mining</SmallSprint>
-        </div>
-      </Perk>
-      <Perk>
-        <GiSparkles
-          color="var(--success)"
-          size={20}
-          style={{
-            margin: '0 8 0 0',
-          }}
-        />
-        <div>
-          Best-in-class web experience
-          <SmallSprint>
-            A clean and modern interface with all your mining stats
-          </SmallSprint>
-        </div>
-      </Perk>
+      <Perk
+        icon={<RiTeamLine size={20} />}
+        title={t('list.perks.0.title')}
+        description={t('list.perks.0.description')}
+      />
+      <Perk
+        icon={<BiSupport size={20} />}
+        title={t('list.perks.1.title')}
+        description={t('list.perks.1.description')}
+      />
+      <Perk
+        icon={<GiReceiveMoney size={20} />}
+        title={t('list.perks.2.title')}
+        description={t('list.perks.2.description')}
+      />
+      <Perk
+        icon={<GiSparkles size={20} />}
+        title={t('list.perks.3.title')}
+        description={t('list.perks.3.description')}
+      />
     </PerksWrapper>
   );
 };
