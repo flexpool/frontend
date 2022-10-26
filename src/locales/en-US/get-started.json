@@ -2,7 +2,34 @@
   "list": {
     "head_title": "Start mining with us",
     "title": "Get started with mining on Flexpool today!",
-    "nicehash_rental_button": "NiceHash Rental"
+    "nicehash_rental_button": "NiceHash Rental",
+    "pool_details": "Pool Details",
+    "start_today": "Start Mining Today",
+    "begin_experience": "Begin your Flexpool experience by choosing your setup",
+    "view_button": "View {{name}} Guide",
+    "zil_boost": "Boost your earnings by dual mining Ziliqa.",
+    "perks": [
+      {
+        "title": "Built by professionals",
+        "description": "Flexpool runs on state of art infrastructure"
+      },
+      {
+        "title": "Professional and helpful support team",
+        "description": "Get helped by team of progessionals within a day"
+      },
+      {
+        "title": "Professional and helpful support team",
+        "description": "Get helped by team of progessionals within a day"
+      },
+      {
+        "title": "Maximum earnings",
+        "description": "Extract the most from mining"
+      },
+      {
+        "title": "Best-in-class web experience",
+        "description": "A clean and modern interface with all your mining stats"
+      }
+    ]
   },
   "detail": {
     "title": "{{coin}} mining",

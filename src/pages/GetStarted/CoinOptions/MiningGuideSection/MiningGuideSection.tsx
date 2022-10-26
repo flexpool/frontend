@@ -8,7 +8,7 @@ import { RadioGroup, GuideTypeRadio } from '../GuideTypeRadio';
 import { ViewGuideButton } from '../ViewGuideButton';
 import { PoolDetails } from '../PoolDetails';
 import { MineableCoinHardware } from '@/pages/GetStarted/mineableCoinList';
-import { BiDonateHeart, BiSupport } from 'react-icons/bi';
+import { BiSupport } from 'react-icons/bi';
 import { RiTeamLine } from 'react-icons/ri';
 import { GiReceiveMoney, GiSparkles } from 'react-icons/gi';
 
@@ -79,13 +79,12 @@ const Tag = styled.div`
 
 const PoolGuideOptions = ({ options }: { options: HardwareOption[] }) => {
   const [selected, setSelected] = useState(0);
+  const { t } = useTranslation('get-started');
 
   return (
     <>
-      <h2>Start Mining Today</h2>
-      <SmallSprint>
-        Begin your Flexpool experience by choosing your setup
-      </SmallSprint>
+      <h2>{t('list.start_today')}</h2>
+      <SmallSprint>{t('list.begin_experience')}</SmallSprint>
       <Spacer size="md" />
       <RadioGroup value={String(selected)}>
         {options.map((option, index) => {
@@ -107,12 +106,12 @@ const PoolGuideOptions = ({ options }: { options: HardwareOption[] }) => {
       <Spacer size="lg" />
       <FlexEnd>
         <ViewGuideButton href="">
-          View <span>{options[selected].title}</span> Guide
+          {t('list.view_button', {
+            name: options[selected].title,
+          })}
         </ViewGuideButton>
       </FlexEnd>
-      <SmallSprint>
-        You can Boost your Ethereum Classic earnings by dual mining Ziliqa.
-      </SmallSprint>
+      <SmallSprint>{t('list.zil_boost')}</SmallSprint>
     </>
   );
 };

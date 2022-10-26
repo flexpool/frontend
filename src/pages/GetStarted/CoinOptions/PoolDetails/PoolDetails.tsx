@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'next-i18next';
 
 type DetailItem = {
   key: string;
@@ -45,9 +46,11 @@ const PoolDetailsWrapper = styled.div`
 `;
 
 export const PoolDetails = ({ items }: PoolDetailsProps) => {
+  const { t } = useTranslation('get-started');
+
   return (
     <PoolDetailsWrapper>
-      <h2>Pool Details</h2>
+      <h2>{t('list.pool_details')}</h2>
       <DetailContainer>
         {items.map((item, index) => {
           return (
