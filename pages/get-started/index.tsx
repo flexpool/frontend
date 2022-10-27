@@ -72,9 +72,9 @@ export const GetStartedPage = () => {
         <TabsContainer>
           <Content>
             <CoinTabs.TabList>
-              {mineableCoins.map((coin) => {
+              {mineableCoins.map((coin, index) => {
                 return (
-                  <Tab key={coin.ticker} id={coin.ticker}>
+                  <Tab key={coin.ticker} index={index}>
                     {({ selected }) => (
                       <CoinPillButton
                         selected={selected}
@@ -94,9 +94,9 @@ export const GetStartedPage = () => {
         <GuideContent>
           <Spacer size="xl" />
 
-          {mineableCoins.map((coin) => {
+          {mineableCoins.map((coin, index) => {
             return (
-              <CoinTabs.Section key={coin.ticker} id={coin.ticker}>
+              <CoinTabs.Section key={coin.ticker} index={index}>
                 <MiningGuideSection
                   ticker={coin.ticker as string}
                   name={coin.name}

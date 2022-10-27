@@ -14,8 +14,7 @@ export const CoinTabs = ({ children }: CoinTabsProps) => {
     IntersectionObserver | undefined
   >();
 
-  const [selected, setSelected] = useState('etc');
-  const [sectionList, setSectionList] = useState<string[]>([]);
+  const [selected, setSelected] = useState(0);
 
   useEffect(() => {
     const options = {
@@ -23,42 +22,36 @@ export const CoinTabs = ({ children }: CoinTabsProps) => {
       threshold: Array.from({ length: 11 }, (_, i) => i / 10),
     };
 
-    // TODO: make this dynamic
-    const ranks = {
-      etc: 0,
-      xch: 0,
-      zil: 0,
-    };
+    const tabsIR: (number | undefined)[] = [];
 
     const callback = (entries) => {
       entries.forEach((entry) => {
-        ranks[entry.target.id] = entry.intersectionRatio;
+        const tabIndex = Number(entry.target.attributes.tabIndex.value);
+
+        tabsIR[tabIndex] = entry.intersectionRatio;
       });
 
-      const res = Object.keys(ranks).reduce((prev, current) => {
-        if (ranks[current] > ranks[prev]) {
-          return current;
+      const indexRes = tabsIR.reduce((prev = 0, _, currentIndex) => {
+        const ci = tabsIR[currentIndex] ?? Infinity;
+        const prevIndex = tabsIR[prev] ?? 0;
+
+        if (ci > prevIndex) {
+          return currentIndex;
         }
 
         return prev;
-      }, 'etc');
+      }, 0);
 
-      setSelected(res);
+      setSelected(indexRes!);
     };
 
     const io = new IntersectionObserver(callback, options);
     setIntersection(io);
   }, []);
 
-  const add = (id: string) => {
-    setSectionList((list) => [...list, id]);
-  };
-
   return (
     <TabsContext.Provider
       value={{
-        list: sectionList,
-        add,
         selected,
         intersection,
       }}
@@ -95,38 +88,34 @@ type TabRenderProps = {
 };
 
 type TabProps = {
-  id: string;
+  index: number;
   children: (props: TabRenderProps) => React.ReactNode;
 };
 
-export const Tab = ({ id, children }: TabProps) => {
+export const Tab = ({ children, index }: TabProps) => {
   const { selected } = useTabs();
 
   return (
     <TabWrapper
       onClick={() => {
-        document.getElementById(`${id}-anchor`)?.scrollIntoView({
+        document.getElementById(`coin-tab-${index}-anchor`)?.scrollIntoView({
           behavior: 'smooth',
           block: 'start',
         });
       }}
     >
-      {children({ selected: selected === id })}
+      {children({ selected: selected === index })}
     </TabWrapper>
   );
 };
 
 type SectionProps = {
-  id: string;
   children: React.ReactNode;
+  index: number;
 };
 
-const Section = ({ id, children }: SectionProps) => {
+const Section = ({ children, index }: SectionProps) => {
   const tabs = useTabs();
-
-  useEffect(() => {
-    tabs.add(id);
-  }, []);
 
   const elRef = useRef<HTMLDivElement | null>(null);
 
@@ -137,9 +126,9 @@ const Section = ({ id, children }: SectionProps) => {
   }, [elRef, tabs.intersection]);
 
   return (
-    <div ref={elRef} id={id}>
+    <div ref={elRef} tabIndex={index}>
       <div
-        id={`${id}-anchor`}
+        id={`coin-tab-${index}-anchor`}
         style={{
           position: 'relative',
           top: '-185px',
