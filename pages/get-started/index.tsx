@@ -98,6 +98,7 @@ export const GetStartedPage = () => {
             return (
               <CoinTabs.Section key={coin.ticker} index={index}>
                 <MiningGuideSection
+                  coin={coin}
                   ticker={coin.ticker as string}
                   name={coin.name}
                 />

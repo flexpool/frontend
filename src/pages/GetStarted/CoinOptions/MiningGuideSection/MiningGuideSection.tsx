@@ -11,6 +11,7 @@ import { MineableCoinHardware } from '@/pages/GetStarted/mineableCoinList';
 import { BiSupport } from 'react-icons/bi';
 import { RiTeamLine } from 'react-icons/ri';
 import { GiReceiveMoney, GiSparkles } from 'react-icons/gi';
+import { MineableCoin } from '@/pages/GetStarted/mineableCoinList';
 
 const SectionWrapper = styled.div`
   padding: 20px 0px 68px;
@@ -77,9 +78,21 @@ const Tag = styled.div`
   color: var(--success);
 `;
 
-const PoolGuideOptions = ({ options }: { options: HardwareOption[] }) => {
+const PoolGuideOptions = ({
+  options,
+  coin,
+}: {
+  coin: string;
+  options: HardwareOption[];
+}) => {
   const [selected, setSelected] = useState(0);
   const { t } = useTranslation('get-started');
+
+  let guideLink = `/get-started/${coin}/${options[selected].key}`;
+
+  if (options[selected].key === 'flexfarmer') {
+    guideLink = 'https://farmer.flexpool.io';
+  }
 
   return (
     <>
@@ -105,7 +118,7 @@ const PoolGuideOptions = ({ options }: { options: HardwareOption[] }) => {
       </RadioGroup>
       <Spacer size="lg" />
       <FlexEnd>
-        <ViewGuideButton href="">
+        <ViewGuideButton href={guideLink}>
           {t('list.view_button', {
             name: options[selected].title,
           })}
@@ -140,6 +153,7 @@ const LayoutBody = styled.div`
 type Props = {
   ticker: string;
   name: string;
+  coin: MineableCoin;
 };
 
 const PerksWrapper = styled.div`
@@ -218,7 +232,7 @@ const PoolPerks = () => {
   );
 };
 
-export const MiningGuideSection = ({ ticker, name }: Props) => {
+export const MiningGuideSection = ({ ticker, name, coin }: Props) => {
   const { t } = useTranslation('get-started');
 
   const poolDetails = t(`detail_${ticker.toLowerCase()}.pool_details`, {
@@ -243,6 +257,15 @@ export const MiningGuideSection = ({ ticker, name }: Props) => {
     };
   });
 
+  if (coin.nicehashAvailable) {
+    hardwareOptions.push({
+      key: 'nicehash',
+      title: 'NiceHash Rental',
+      miners: [],
+      tag: null,
+    });
+  }
+
   return (
     <SectionWrapper>
       <Layout>
@@ -262,7 +285,7 @@ export const MiningGuideSection = ({ ticker, name }: Props) => {
             <PoolPerks />
           </MainCol>
           <SubCol>
-            <PoolGuideOptions options={hardwareOptions} />
+            <PoolGuideOptions coin={ticker} options={hardwareOptions} />
           </SubCol>
         </LayoutBody>
       </Layout>

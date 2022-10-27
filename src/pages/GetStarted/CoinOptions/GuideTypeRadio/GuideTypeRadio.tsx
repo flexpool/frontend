@@ -7,7 +7,7 @@ const StyledRadio = styled(RadioGroupPrimitive.Item)`
   width: 16px;
   height: 16px;
   border-radius: 16px;
-  border: 2px solid #313131;
+  border: 2px solid var(--border-color);
   transition: all 0.1s ease-out;
   margin-right: 10px;
 `;
@@ -18,11 +18,12 @@ const GuideTypeRadioButton = styled.div`
   white-space: nowrap;
   border-radius: 5px;
   padding: 18px;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 16px;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.045);
-  border: 2px solid #313131;
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  color: var(--text-secondary);
 
   & > * {
     flex-shrink: 0;
@@ -31,6 +32,7 @@ const GuideTypeRadioButton = styled.div`
   &:hover {
     border: 2px solid #0069ff;
     background: rgba(0, 105, 255, 0.12);
+    color: var(--text-primary);
 
     ${StyledRadio} {
       border: 2px solid #0069ff;
@@ -40,6 +42,7 @@ const GuideTypeRadioButton = styled.div`
   &[data-selected='true'] {
     border: 2px solid #0069ff;
     background: rgba(0, 105, 255, 0.12);
+    color: var(--text-primary);
 
     ${StyledRadio} {
       border: 2px solid #0069ff;
