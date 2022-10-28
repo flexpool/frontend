@@ -48,6 +48,13 @@ const Heading = styled.h2`
   color: var(--text-primary);
 `;
 
+const SubHeading = styled.p`
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  opacity: 0.5;
+`;
+
 const FlexEnd = styled.div`
   margin-top: auto;
 `;
@@ -57,6 +64,18 @@ const SmallSprint = styled.p`
   font-weight: 500;
   color: var(--text-secondary);
   opacity: 0.5;
+`;
+
+const HelpText = styled(SmallSprint)`
+  margin-top: 8px;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: #77869e;
+  opacity: 1;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 type HardwareOption = {
@@ -88,16 +107,24 @@ const PoolGuideOptions = ({
   const [selected, setSelected] = useState(0);
   const { t } = useTranslation('get-started');
 
-  let guideLink = `/get-started/${coin}/${options[selected].key}`;
+  const key = options[selected].key;
 
-  if (options[selected].key === 'flexfarmer') {
+  let guideLink = `/get-started/${coin}/${key}`;
+  let color = 'var(--primary)';
+
+  if (key === 'flexfarmer') {
     guideLink = 'https://farmer.flexpool.io';
+    color = 'var(--success)';
+  }
+
+  if (key === 'nicehash') {
+    color = 'var(--warning)';
   }
 
   return (
     <>
       <h2>{t('list.start_today')}</h2>
-      <SmallSprint>{t('list.begin_experience')}</SmallSprint>
+      <SubHeading>{t('list.begin_experience')}</SubHeading>
       <Spacer size="md" />
       <RadioGroup value={String(selected)}>
         {options.map((option, index) => {
@@ -118,13 +145,24 @@ const PoolGuideOptions = ({
       </RadioGroup>
       <Spacer size="lg" />
       <FlexEnd>
-        <ViewGuideButton href={guideLink}>
+        <ViewGuideButton href={guideLink} color={color}>
           {t('list.view_button', {
             name: options[selected].title,
           })}
         </ViewGuideButton>
       </FlexEnd>
-      <SmallSprint>{t('list.zil_boost')}</SmallSprint>
+      {coin === 'etc' && (
+        <HelpText
+          onClick={() => {
+            document.getElementById(`coin-tab-${2}-anchor`)?.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            });
+          }}
+        >
+          {t('list.zil_boost')}
+        </HelpText>
+      )}
     </>
   );
 };
@@ -164,6 +202,7 @@ const PerksWrapper = styled.div`
 
   @media (max-width: 768px) {
     padding: 24px 26px 30px;
+    display: none;
   }
 `;
 

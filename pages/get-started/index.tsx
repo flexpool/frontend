@@ -44,6 +44,7 @@ const GuideContent = styled(Content)`
 
 export const GetStartedPage = () => {
   const { t: seoT, i18n } = useTranslation('seo');
+  const { t } = useTranslation('get-started');
 
   return (
     <Page>
@@ -64,7 +65,7 @@ export const GetStartedPage = () => {
       />
       <Header>
         <Content>
-          <h1>Get started</h1>
+          <h1>{t('list.title')}</h1>
         </Content>
       </Header>
 

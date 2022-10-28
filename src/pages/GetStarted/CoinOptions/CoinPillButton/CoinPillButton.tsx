@@ -17,7 +17,7 @@ const StyledButton = styled.button`
   align-items: center;
 
   & > span {
-    opacity: 0.6;
+    opacity: 0.5;
     color: var(--text-primary);
   }
 
@@ -30,6 +30,16 @@ const StyledButton = styled.button`
     opacity: 1;
     color: var(--text-primary);
   }
+`;
+
+const Highlight = styled(motion.div)`
+  position: absolute;
+  height: 50px;
+  width: 100%;
+  background-color: var(--border-color);
+  z-index: -1;
+  border-radius: 50px;
+  left: 0;
 `;
 
 type Coin = {
@@ -53,7 +63,7 @@ export const CoinPillButton = ({
   return (
     <StyledButton data-selected={selected}>
       {selected && (
-        <motion.div
+        <Highlight
           layoutId="highlight"
           transition={{
             layout: {
@@ -61,17 +71,7 @@ export const CoinPillButton = ({
               ease: 'easeOut',
             },
           }}
-          style={{
-            position: 'absolute',
-            height: '50px',
-            width: '100%',
-            backgroundColor: 'var(--text-primary)',
-            opacity: 0.15,
-            zIndex: -1,
-            borderRadius: 50,
-            left: 0,
-          }}
-        ></motion.div>
+        />
       )}
 
       <ButtonIcon>

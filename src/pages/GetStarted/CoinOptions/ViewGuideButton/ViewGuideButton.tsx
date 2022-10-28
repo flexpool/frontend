@@ -40,13 +40,19 @@ const StyledButton = styled.a`
 export const ViewGuideButton = ({
   href,
   children,
+  color = 'var(--primary)',
 }: {
+  color?: string;
   href: string;
   children;
 }) => {
   return (
     <Link href={href} passHref>
-      <StyledButton>
+      <StyledButton
+        style={{
+          backgroundColor: color,
+        }}
+      >
         {children}
         <FiChevronRight />
       </StyledButton>

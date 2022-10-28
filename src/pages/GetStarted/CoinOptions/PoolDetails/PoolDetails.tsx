@@ -31,7 +31,7 @@ const ItemHeading = styled.div`
 
 const ItemDescription = styled.div`
   margin-top: 4px;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   font-weight: 500;
   white-space: nowrap;
 `;
