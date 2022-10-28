@@ -26,9 +26,8 @@ export const CoinTabs = ({ children }: CoinTabsProps) => {
 
     const callback = (entries) => {
       entries.forEach((entry) => {
-        const tabIndex = Number(entry.target.attributes.tabIndex.value);
-
-        tabsIR[tabIndex] = entry.intersectionRatio;
+        const index = Number(entry.target.getAttribute('data-index'));
+        tabsIR[index] = entry.intersectionRatio;
       });
 
       const indexRes = tabsIR.reduce((prev = 0, _, currentIndex) => {
@@ -126,7 +125,7 @@ const Section = ({ children, index }: SectionProps) => {
   }, [elRef, tabs.intersection]);
 
   return (
-    <div ref={elRef} tabIndex={index}>
+    <div ref={elRef} data-index={index}>
       <div
         id={`coin-tab-${index}-anchor`}
         style={{
