@@ -7,11 +7,11 @@
     "start_today": "现在开始挖矿",
     "begin_experience": "选择你的设置开启你的Flexpool体验",
     "view_button": "查看 {{name}} 教程",
-    "zil_boost": "双挖 Zilliqa 提升你的收益",
+    "zil_boost": "可选: 双挖 Zilliqa 提升你的收益",
     "perks": [
       {
         "title": "来自专业的团队",
-        "description": "Flexpool 有着最先进的基础设施"
+        "description": "Flexpool.io 团队成员都是有着多年经验的专家"
       },
       {
         "title": "专业和有帮助的客服团队",

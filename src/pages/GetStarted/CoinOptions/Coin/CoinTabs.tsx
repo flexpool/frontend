@@ -67,7 +67,6 @@ const TabWrapper = styled.div`
 const TabListWrapper = styled.div`
   z-index: 10;
   white-space: nowrap;
-  /* overflow: scroll; */
 
   ${TabWrapper} + ${TabWrapper} {
     margin-left: 10px;

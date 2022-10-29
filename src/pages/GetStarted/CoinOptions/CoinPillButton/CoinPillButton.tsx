@@ -8,9 +8,8 @@ const StyledButton = styled.button`
   all: unset;
   position: relative;
   cursor: pointer;
-  border-radius: 34px;
   padding: 9px 14px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 15px;
 
   display: inline-flex;
@@ -38,7 +37,7 @@ const Highlight = styled(motion.div)`
   width: 100%;
   background-color: var(--border-color);
   z-index: -1;
-  border-radius: 50px;
+  border-radius: 5px;
   left: 0;
 `;
 

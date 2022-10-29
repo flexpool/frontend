@@ -7,15 +7,15 @@
     "start_today": "Start Mining Today",
     "begin_experience": "Begin your Flexpool experience by choosing your setup",
     "view_button": "View {{name}} Guide",
-    "zil_boost": "Boost your earnings by dual mining Ziliqa.",
+    "zil_boost": "Optional: Boost your earnings by dual mining Ziliqa.",
     "perks": [
       {
         "title": "Built by professionals",
-        "description": "Flexpool runs on state of art infrastructure"
+        "description": "Flexpool.io is ran by industry specialists with years of experience"
       },
       {
         "title": "Professional and helpful support team",
-        "description": "Get helped by team of professionals within a day"
+        "description": "Get assistance by professional support team within a day"
       },
       {
         "title": "Maximum earnings",
