@@ -2,7 +2,30 @@
   "list": {
     "head_title": "开始挖矿",
     "title": "开始挖矿",
-    "nicehash_rental_button": "Nicehash 设置"
+    "nicehash_rental_button": "Nicehash 设置",
+    "pool_details": "矿池详情",
+    "start_today": "现在开始挖矿",
+    "begin_experience": "选择你的设置开启你的Flexpool体验",
+    "view_button": "查看 {{name}} 教程",
+    "zil_boost": "可选: 双挖 Zilliqa 提升你的收益",
+    "perks": [
+      {
+        "title": "来自专业的团队",
+        "description": "Flexpool.io 团队成员都是有着多年经验的专家"
+      },
+      {
+        "title": "专业和有帮助的客服团队",
+        "description": "在一天内获得最专业的帮助"
+      },
+      {
+        "title": "收益最大化",
+        "description": "从挖矿中获得最多的收益"
+      },
+      {
+        "title": "最棒的网站体验",
+        "description": "在一个现代和简洁的网站上浏览你所有的数据"
+      }
+    ]
   },
   "detail": {
     "title": "{{coin}} 挖矿教程",
