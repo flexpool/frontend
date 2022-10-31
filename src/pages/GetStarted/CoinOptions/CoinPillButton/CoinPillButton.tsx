@@ -82,7 +82,7 @@ export const CoinPillButton = ({
         />
       </ButtonIcon>
 
-      <span>{coin.name}</span>
+      <span style={{ marginLeft: '0.25em' }}>{coin.name}</span>
     </StyledButton>
   );
 };
