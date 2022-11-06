@@ -15,6 +15,26 @@ import { Code } from '@/components/Code/Code';
 import { Button } from '../Button';
 import { LoaderOverlayWithin } from '../Loader/LoaderOverlayWithin';
 
+import { HiChevronUpDown } from 'react-icons/hi2';
+
+const DesktopContainer = styled(Tabs)`
+  display: inherit;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const MobileContainer = styled(Tabs)`
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    position: relative;
+    display: block;
+    height: 100%;
+  }
+`;
+
 const MotionSafeText = ({ ...props }: HTMLMotionProps<'div'>) => {
   return (
     <motion.div {...props} layout="position">
@@ -25,9 +45,14 @@ const MotionSafeText = ({ ...props }: HTMLMotionProps<'div'>) => {
 
 const ViewerContainer = styled(motion.div)`
   left: 0;
-  border: 1px solid var(--border-color);
+  box-shadow: 0 0 0 1px var(--border-color);
   background-color: var(--bg-primary);
   overflow: hidden;
+  display: flex;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const StyledTabPanel = styled(TabPanel)`
@@ -41,12 +66,26 @@ const SidePanel = styled.div`
   overflow: hidden;
   width: 30%;
   height: 100%;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Body = styled.div`
   flex: 1;
-  border-left: 1px solid var(--border-color);
+  box-shadow: -1px 0 0 var(--border-color);
   overflow: hidden;
+  background-color: var(--bg-primary);
+`;
+
+const MobileBody = styled(motion.div)`
+  z-index: 500;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  box-shadow: 0 -1px 0 var(--border-color);
+  background-color: var(--bg-primary);
 `;
 
 const Header = styled(motion.div)`
@@ -60,6 +99,7 @@ const Header = styled(motion.div)`
   top: 0;
   z-index: 100;
   background: var(--bg-primary);
+  box-shadow: 0 -1px 0 var(--border-color);
 `;
 
 const StyledTabList = styled(TabList)`
@@ -165,8 +205,77 @@ const variants = {
   },
 };
 
+const EndpointDetail = ({ endpoint }: { endpoint: Endpoint }) => {
+  return (
+    <MotionSafeText
+      style={{
+        padding: 20,
+        backgroundColor: 'var(--bg-primary)',
+      }}
+    >
+      <h4>Description</h4>
+      <p>{endpoint.desc}</p>
+      <Spacer size="sm" />
+
+      <h4>{endpoint.method === 'GET' ? 'Request Query' : 'Request Body'}</h4>
+      {endpoint.params ? (
+        <motion.div
+          layout
+          style={{
+            maxWidth: 500,
+          }}
+        >
+          <DynamicList
+            data={Object.keys(endpoint.params || {})}
+            columns={[
+              {
+                title: 'Key',
+                Component: ({ data }) => {
+                  return (
+                    <Mono
+                      style={{
+                        fontWeight: 500,
+                      }}
+                    >
+                      {data}
+                    </Mono>
+                  );
+                },
+              },
+              {
+                title: 'Value',
+                Component: ({ data }) => {
+                  return <Mono>{endpoint.params[data]}</Mono>;
+                },
+              },
+            ]}
+          />
+        </motion.div>
+      ) : (
+        <p>No request query</p>
+      )}
+
+      <Spacer size="sm" />
+
+      <h4>Response</h4>
+      <Spacer size="sm" />
+      <motion.div
+        layout
+        style={{
+          maxWidth: 800,
+        }}
+      >
+        <Code language="json">
+          {JSON.stringify(endpoint.returnExample, null, 2)}
+        </Code>
+      </motion.div>
+    </MotionSafeText>
+  );
+};
+
 export const ApiDocViewer = ({ endpoints, isLoading }: Props) => {
   const [fullScreen, setFullScreen] = useState(false);
+  const [isSelecting, setIsSelecting] = useState(false);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -259,33 +368,34 @@ export const ApiDocViewer = ({ endpoints, isLoading }: Props) => {
           </motion.div>
         )}
       </AnimatePresence>
-      <Tabs>
-        <div
-          style={{
-            height: '70vh',
-            position: 'relative',
-          }}
-        >
-          <Content>
-            <motion.div
-              animate={fullScreen ? 'open' : 'closed'}
-              variants={variants}
+
+      <div
+        style={{
+          height: '70vh',
+          position: 'relative',
+        }}
+      >
+        <Content>
+          <motion.div
+            animate={fullScreen ? 'open' : 'closed'}
+            variants={variants}
+            style={{
+              position: 'relative',
+            }}
+          >
+            <ViewerContainer
+              layout
               style={{
-                position: 'relative',
+                borderRadius: fullScreen ? 0 : 5,
+                position: fullScreen ? 'fixed' : 'absolute',
+                top: fullScreen ? 60 : 0,
+                width: fullScreen ? '100vw' : '100%',
+                height: fullScreen ? 'calc(100vh - 60px)' : '70vh',
               }}
             >
-              <ViewerContainer
-                layout
-                style={{
-                  borderRadius: fullScreen ? 0 : 5,
-                  position: fullScreen ? 'fixed' : 'absolute',
-                  top: fullScreen ? 60 : 0,
-                  width: fullScreen ? '100vw' : '100%',
-                  height: fullScreen ? 'calc(100vh - 60px)' : '70vh',
-                  display: 'flex',
-                }}
-              >
-                {isLoading && <LoaderOverlayWithin />}
+              {isLoading && <LoaderOverlayWithin />}
+
+              <DesktopContainer>
                 {endpoints && (
                   <>
                     <SidePanel>
@@ -319,89 +429,89 @@ export const ApiDocViewer = ({ endpoints, isLoading }: Props) => {
                                 {endpoint.path}
                               </MotionSafeText>
                             </Header>
-                            <MotionSafeText
-                              style={{
-                                padding: 20,
-                              }}
-                            >
-                              <h4>Description</h4>
-                              <p>{endpoint.desc}</p>
-                              <Spacer size="sm" />
-
-                              <h4>
-                                {endpoint.method === 'GET'
-                                  ? 'Request Query'
-                                  : 'Request Body'}
-                              </h4>
-                              {endpoint.params ? (
-                                <motion.div
-                                  layout
-                                  style={{
-                                    maxWidth: 500,
-                                  }}
-                                >
-                                  <DynamicList
-                                    data={Object.keys(endpoint.params || {})}
-                                    columns={[
-                                      {
-                                        title: 'Key',
-                                        Component: ({ data }) => {
-                                          return (
-                                            <Mono
-                                              style={{
-                                                fontWeight: 500,
-                                              }}
-                                            >
-                                              {data}
-                                            </Mono>
-                                          );
-                                        },
-                                      },
-                                      {
-                                        title: 'Value',
-                                        Component: ({ data }) => {
-                                          return (
-                                            <Mono>{endpoint.params[data]}</Mono>
-                                          );
-                                        },
-                                      },
-                                    ]}
-                                  />
-                                </motion.div>
-                              ) : (
-                                <p>No request query</p>
-                              )}
-
-                              <Spacer size="sm" />
-
-                              <h4>Response</h4>
-                              <Spacer size="sm" />
-                              <motion.div
-                                layout
-                                style={{
-                                  maxWidth: 800,
-                                }}
-                              >
-                                <Code language="json">
-                                  {JSON.stringify(
-                                    endpoint.returnExample,
-                                    null,
-                                    2
-                                  )}
-                                </Code>
-                              </motion.div>
-                            </MotionSafeText>
+                            <EndpointDetail endpoint={endpoint} />
                           </StyledTabPanel>
                         );
                       })}
                     </Body>
                   </>
                 )}
-              </ViewerContainer>
-            </motion.div>
-          </Content>
-        </div>
-      </Tabs>
+              </DesktopContainer>
+
+              <MobileContainer
+                onSelect={() => {
+                  setIsSelecting(false);
+                  return true;
+                }}
+              >
+                {endpoints && (
+                  <>
+                    <SidePanel>
+                      <StyledTabList
+                        style={{
+                          paddingBottom: 140,
+                        }}
+                      >
+                        {endpoints.map((endpoint) => {
+                          return (
+                            <StyledTab
+                              key={`${endpoint.method}-${endpoint.path}`}
+                            >
+                              <EndpointTab {...endpoint} />
+                            </StyledTab>
+                          );
+                        })}
+                      </StyledTabList>
+                    </SidePanel>
+                    <MobileBody
+                      layout
+                      style={{
+                        top: isSelecting ? '80%' : '0px',
+                      }}
+                    >
+                      {endpoints.map((endpoint) => {
+                        return (
+                          <StyledTabPanel
+                            key={`${endpoint.method}-${endpoint.path}`}
+                          >
+                            <Header
+                              layout
+                              onClick={() => {
+                                setIsSelecting((t) => !t);
+                              }}
+                            >
+                              <MotionSafeText>
+                                <Badge
+                                  style={{
+                                    margin: '0 8px 0 0',
+                                  }}
+                                >
+                                  {endpoint.method}
+                                </Badge>
+                                {endpoint.path}
+
+                                <HiChevronUpDown
+                                  style={{
+                                    verticalAlign: 'top',
+                                    position: 'absolute',
+                                    right: '20px',
+                                  }}
+                                  size={20}
+                                />
+                              </MotionSafeText>
+                            </Header>
+                            <EndpointDetail endpoint={endpoint} />
+                          </StyledTabPanel>
+                        );
+                      })}
+                    </MobileBody>
+                  </>
+                )}
+              </MobileContainer>
+            </ViewerContainer>
+          </motion.div>
+        </Content>
+      </div>
     </>
   );
 };
