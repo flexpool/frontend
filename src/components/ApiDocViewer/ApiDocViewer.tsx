@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { Badge } from '@/components/Badge';
 import styled from 'styled-components';
 import { Ellipsis } from '@/components/Ellipsis';
@@ -14,11 +14,12 @@ import { Mono } from '@/components/Typo/Typo';
 import { Code } from '@/components/Code/Code';
 import { Button } from '../Button';
 import { LoaderOverlayWithin } from '../Loader/LoaderOverlayWithin';
-
+import { RequestExample } from './components/RequestExample';
 import { HiChevronUpDown } from 'react-icons/hi2';
 
 const DesktopContainer = styled(Tabs)`
   display: inherit;
+  width: 100%;
 
   @media screen and (max-width: 768px) {
     display: none;
@@ -256,6 +257,17 @@ const EndpointDetail = ({ endpoint }: { endpoint: Endpoint }) => {
       )}
 
       <Spacer size="sm" />
+
+      <h4>Request Example</h4>
+      <Spacer size="sm" />
+      <motion.div
+        layout
+        style={{
+          maxWidth: 800,
+        }}
+      >
+        <RequestExample endpoint={endpoint} />
+      </motion.div>
 
       <h4>Response</h4>
       <Spacer size="sm" />
