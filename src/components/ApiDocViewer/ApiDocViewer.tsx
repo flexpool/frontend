@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Badge } from '@/components/Badge';
 import styled from 'styled-components';
 import { Ellipsis } from '@/components/Ellipsis';
@@ -9,13 +9,13 @@ import { Content } from '../layout/Content';
 import DynamicList from 'src/components/layout/List/List';
 import { AiOutlineFullscreen } from 'react-icons/ai';
 import { IoClose } from 'react-icons/io5';
-
 import { Mono } from '@/components/Typo/Typo';
 import { Code } from '@/components/Code/Code';
 import { Button } from '../Button';
 import { LoaderOverlayWithin } from '../Loader/LoaderOverlayWithin';
 import { RequestExample } from './components/RequestExample';
 import { HiChevronUpDown } from 'react-icons/hi2';
+import { useTranslation } from 'next-i18next';
 
 const DesktopContainer = styled(Tabs)`
   display: inherit;
@@ -207,6 +207,7 @@ const variants = {
 };
 
 const EndpointDetail = ({ endpoint }: { endpoint: Endpoint }) => {
+  const { t } = useTranslation('api');
   return (
     <MotionSafeText
       style={{
@@ -214,11 +215,11 @@ const EndpointDetail = ({ endpoint }: { endpoint: Endpoint }) => {
         backgroundColor: 'var(--bg-primary)',
       }}
     >
-      <h4>Description</h4>
+      <h4>{t('desc')}</h4>
       <p>{endpoint.desc}</p>
       <Spacer size="sm" />
 
-      <h4>{endpoint.method === 'GET' ? 'Request Query' : 'Request Body'}</h4>
+      <h4>{endpoint.method === 'GET' ? t('query') : t('body')}</h4>
       {endpoint.params ? (
         <motion.div
           layout
@@ -253,12 +254,12 @@ const EndpointDetail = ({ endpoint }: { endpoint: Endpoint }) => {
           />
         </motion.div>
       ) : (
-        <p>No request query</p>
+        <p>{t('no_query')}</p>
       )}
 
       <Spacer size="sm" />
 
-      <h4>Request Example</h4>
+      <h4>{t('request_example')}</h4>
       <Spacer size="sm" />
       <motion.div
         layout
@@ -269,7 +270,7 @@ const EndpointDetail = ({ endpoint }: { endpoint: Endpoint }) => {
         <RequestExample endpoint={endpoint} />
       </motion.div>
 
-      <h4>Response</h4>
+      <h4>{t('response')}</h4>
       <Spacer size="sm" />
       <motion.div
         layout
@@ -286,6 +287,7 @@ const EndpointDetail = ({ endpoint }: { endpoint: Endpoint }) => {
 };
 
 export const ApiDocViewer = ({ endpoints, isLoading }: Props) => {
+  const { t } = useTranslation('api');
   const [fullScreen, setFullScreen] = useState(false);
   const [isSelecting, setIsSelecting] = useState(false);
 
@@ -335,7 +337,7 @@ export const ApiDocViewer = ({ endpoints, isLoading }: Props) => {
             }}
             size={18}
           />
-          View in Full Screen
+          {t('full_screen')}
         </Button>
       </Content>
 
@@ -366,7 +368,7 @@ export const ApiDocViewer = ({ endpoints, isLoading }: Props) => {
               fontWeight: 500,
             }}
           >
-            Flexpool.io API Documentation
+            {t('full_screen_title')}
             <Button
               onClick={() => {
                 setFullScreen(false);

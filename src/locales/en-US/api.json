@@ -1,0 +1,11 @@
+{
+  "title": "API Documentation",
+  "desc": "Description",
+  "query": "Request Query",
+  "body": "Request Body",
+  "no_query": "No request query",
+  "request_example": "Request Example",
+  "response": "Response",
+  "full_screen": "View in Full Screen",
+  "full_screen_title": "Flexpool.io API Documentation"
+}

@@ -51,6 +51,7 @@ export async function getStaticProps({ locale }) {
         'common',
         'cookie-consent',
         'seo',
+        'api',
       ])),
     },
   };
