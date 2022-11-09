@@ -1,47 +1,43 @@
-import { useState } from 'react';
-import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
-import SwaggerUI from 'swagger-ui-react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { NextSeo } from 'next-seo';
 import { useTranslation } from 'next-i18next';
-import { LoaderOverlayWithin } from '@/components/Loader/LoaderOverlayWithin';
+import { useApiDocQuery } from '@/hooks/api/useApiDocQuery';
+import { ApiDocViewer } from '@/components/ApiDocViewer';
+import { Header } from '@/components/layout/Header';
 
 export const ApiDocsPage = () => {
   const { t: seoT, i18n } = useTranslation('seo');
-  const [isLoading, setIsLoading] = useState(true);
+
+  const { data, isLoading } = useApiDocQuery();
 
   return (
     <Page>
-      <Content style={{ position: 'relative' }} padding>
-        <NextSeo
-          title={seoT('title.api_documentation')}
-          description={seoT('website_description.api_documentation')}
-          openGraph={{
-            title: seoT('title.api_documentation'),
-            description: seoT('website_description.api_documentation'),
-            locale: i18n.language,
-          }}
-          additionalMetaTags={[
-            {
-              property: 'keywords',
-              content: seoT('keywords.api_documentation'),
-            },
-          ]}
-        />
-        <Spacer size="xl" />
-        {isLoading && <LoaderOverlayWithin />}
+      <NextSeo
+        title={seoT('title.api_documentation')}
+        description={seoT('website_description.api_documentation')}
+        openGraph={{
+          title: seoT('title.api_documentation'),
+          description: seoT('website_description.api_documentation'),
+          locale: i18n.language,
+        }}
+        additionalMetaTags={[
+          {
+            property: 'keywords',
+            content: seoT('keywords.api_documentation'),
+          },
+        ]}
+      />
+      <Header>
+        <h1>API Documentation</h1>
+      </Header>
 
-        <SwaggerUI
-          url="https://static.flexpool.io/api/openapi.json"
-          onComplete={() => {
-            setIsLoading(false);
-          }}
-        />
+      <Spacer size="md" />
 
-        <Spacer size="xl" />
-      </Content>
+      <ApiDocViewer endpoints={data} isLoading={isLoading} />
+
+      <Spacer size="xl" />
     </Page>
   );
 };
@@ -55,6 +51,7 @@ export async function getStaticProps({ locale }) {
         'common',
         'cookie-consent',
         'seo',
+        'api',
       ])),
     },
   };

@@ -222,6 +222,9 @@ scrllbar
     // background-color: rgba(128, 128, 128, 0.1);
     border-radius: 9px;
   }
+  ::-webkit-scrollbar-corner {
+    background: rgba(0, 0, 0, 0);
+  }
 
   @media screen and (max-width: 768px) {
     scrollbar-width: none;
