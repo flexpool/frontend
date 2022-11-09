@@ -275,6 +275,8 @@ const EndpointDetail = ({ endpoint }: { endpoint: Endpoint }) => {
       <motion.div
         layout
         style={{
+          border: '1px solid var(--border-color)',
+          borderRadius: '5px',
           maxWidth: 800,
         }}
       >
