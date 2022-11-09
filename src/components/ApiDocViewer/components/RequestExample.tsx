@@ -146,13 +146,14 @@ const generateCURL = (endpoint: Endpoint) => {
       ? `?${decodeURIComponent(new URLSearchParams(params).toString())}`
       : '';
 
-  const method = `-X ${endpoint.method} "https://api.flexpool.io/v2${endpoint.path}${query}" \\\n`;
+  const method = `-X ${endpoint.method} "https://api.flexpool.io/v2${endpoint.path}${query}" `;
 
   const data =
     params && endpoint.method !== 'GET'
       ? `-d '${JSON.stringify(params)}' \\\n`
       : '';
-  const header = `-H "Content-Type: application/json"`;
+  const header =
+    endpoint.method !== 'GET' ? `\\\n-H "Content-Type: application/json"` : '';
 
   return `curl ${data}${method}${header}`;
 };
