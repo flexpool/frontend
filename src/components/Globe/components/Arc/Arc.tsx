@@ -77,8 +77,8 @@ const Arc = ({
   const curveM = useMemo(() => {
     const [from, to] = coordinates;
 
-    const geo1 = [from.longitude, from.latitude];
-    const geo2 = [to.longitude, to.latitude];
+    const geo1: [number, number] = [from.longitude, from.latitude];
+    const geo2: [number, number] = [to.longitude, to.latitude];
 
     let start = toXYZ(600, geo1[1], geo1[0]);
     let end = toXYZ(600, geo2[1], geo2[0]);
