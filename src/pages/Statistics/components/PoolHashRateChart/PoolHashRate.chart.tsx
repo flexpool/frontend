@@ -173,7 +173,14 @@ const PoolHashrateChart = () => {
       });
     }
 
-    let chart = root.container.children.push(am5xy.XYChart.new(root, {}));
+    let chart = root.container.children.push(
+      am5xy.XYChart.new(root, {
+        panX: false,
+        panY: false,
+        wheelX: 'panX',
+        wheelY: 'zoomX',
+      })
+    );
     let yAxis = chart.yAxes.push(
       am5xy.ValueAxis.new(root, {
         renderer: am5xy.AxisRendererY.new(root, {}),
@@ -229,7 +236,21 @@ const PoolHashrateChart = () => {
     let legend = chart.children.push(am5.Legend.new(root, {}));
     legend.data.setAll(chart.series.values);
 
-    chart.set('cursor', am5xy.XYCursor.new(root, {}));
+    let cursor = chart.set(
+      'cursor',
+      am5xy.XYCursor.new(root, {
+        behavior: 'zoomX',
+      })
+    );
+
+    cursor.lineY.set('visible', false);
+
+    var scrollbar = chart.set(
+      'scrollbarX',
+      am5.Scrollbar.new(root, {
+        orientation: 'horizontal',
+      })
+    );
 
     chart.appear(1000, 100);
 
