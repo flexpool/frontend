@@ -137,9 +137,15 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
         let [queryString] = router.asPath.match(/\?[^#]+/g) || [''];
         const urlSearchParams = new URLSearchParams(queryString);
 
+        let { type } = router.query;
+
+        if (coin === 'zil' && type === 'hashrate') {
+          type = 'difficulty';
+        }
+
         router.replace(
           {
-            pathname: `/network-stats/${coin}/${router.query.type}`,
+            pathname: `/network-stats/${coin}/${type}`,
             query: urlSearchParams.toString(),
           },
           undefined,
