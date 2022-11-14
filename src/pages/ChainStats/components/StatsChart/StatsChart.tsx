@@ -83,6 +83,10 @@ export const StatsChart = React.memo(
 
     useEffect(() => {
       if (data && !isFetching) {
+        if (chartRef.current) {
+          chartRef.current.dispose();
+        }
+
         chartRef.current = create('difficultyChart', XYChart);
 
         chartRef.current.colors.list = [color('#0069ff')];
