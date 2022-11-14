@@ -157,16 +157,17 @@ export const MinerStats: React.FC<{
               </AverageTooltipItem>
             </TooltipContent>
           </Tooltip>
-          <StatItem
-            title={t('stats.hashrate.reported')}
-            value={
-              isLoading || !minerStatsState ? undefined : (
-                <ReportedHashrateWrapper>
-                  {siFormatter(minerStatsState?.reportedHashrate, {
-                    unit: activeCoin?.hashrateUnit,
-                  })}{' '}
-                  {String(activeCoin?.ticker) === 'xch' &&
-                    minerStatsState?.reportedHashrate === 0 && (
+
+          {String(activeCoin?.ticker) === 'xch' && (
+            <StatItem
+              title={t('stats.hashrate.reported')}
+              value={
+                isLoading || !minerStatsState ? undefined : (
+                  <ReportedHashrateWrapper>
+                    {siFormatter(minerStatsState?.reportedHashrate, {
+                      unit: activeCoin?.hashrateUnit,
+                    })}{' '}
+                    {minerStatsState?.reportedHashrate === 0 && (
                       <Tooltip interactive>
                         <TooltipContent>
                           Only available with{' '}
@@ -179,10 +180,27 @@ export const MinerStats: React.FC<{
                         </TooltipContent>
                       </Tooltip>
                     )}
-                </ReportedHashrateWrapper>
-              )
-            }
-          />
+                  </ReportedHashrateWrapper>
+                )
+              }
+            />
+          )}
+
+          {String(activeCoin?.ticker) !== 'xch' &&
+            minerStatsState?.reportedHashrate !== 0 && (
+              <StatItem
+                title={t('stats.hashrate.reported')}
+                value={
+                  isLoading || !minerStatsState ? undefined : (
+                    <ReportedHashrateWrapper>
+                      {siFormatter(minerStatsState?.reportedHashrate, {
+                        unit: activeCoin?.hashrateUnit,
+                      })}
+                    </ReportedHashrateWrapper>
+                  )
+                }
+              />
+            )}
         </StatItemGrid>
       </Card>
       <Card padding>
