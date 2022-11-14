@@ -52,11 +52,11 @@ const TabLinkContainer = styled(TabList)`
   overflow-x: auto;
 `;
 
-const TabLink = styled(Tab)`
+const TabLink = styled(Tab)<{ $hide?: boolean }>`
   font-weight: 600;
   font-size: 1.125rem;
   height: 3rem;
-  display: flex;
+  display: ${(p) => (p.$hide === true ? 'none' : 'flex')};
   align-items: center;
   color: var(--text-primary);
   padding: 0 1.5rem;
@@ -102,13 +102,17 @@ export const MinerDashboardPageContent: React.FC<{
   const { t } = useTranslation('dashboard');
   const [, setCoinTicker] = useCoinTicker();
 
-  const [tabIndex, setTabIndex] = useState(0);
+  const [tabIndex, setTabIndex] = useState(-1);
   const tabs = {
     stats: 0,
     payments: 1,
     rewards: 2,
     blocks: 3,
   };
+
+  if (activeCoin && tabIndex === -1) {
+    setTabIndex(activeCoin.payoutsOnly ? 1 : 0);
+  }
 
   // TODO: Provide a miner address oriented query key handler
   const loadAll = React.useCallback(() => {
@@ -135,8 +139,13 @@ export const MinerDashboardPageContent: React.FC<{
   }, [queryClient, address, coinTicker]);
 
   const loadSelectedTabFromHash = (tabHash: string) => {
-    setTabIndex(tabs[tabHash]);
-    return tabs[tabHash];
+    const targetIndex = tabs[tabHash];
+
+    if (targetIndex >= 0) {
+      setTabIndex(tabs[tabHash]);
+    }
+
+    return targetIndex;
   };
 
   const selectTab = (index: number) => {
@@ -158,9 +167,6 @@ export const MinerDashboardPageContent: React.FC<{
     }
   }, [poolCoins, setCoinTicker, coinTicker]);
 
-  const activeCoinInfo =
-    poolCoins && poolCoins.coins.find((item) => item.ticker === coinTicker);
-
   useEffect(() => {
     if (typeof window !== 'undefined') {
       if (window.location.hash) {
@@ -171,7 +177,7 @@ export const MinerDashboardPageContent: React.FC<{
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const hasStats = activeCoin && !activeCoin.payoutsOnly;
+  const isPayoutOnly = activeCoin?.payoutsOnly === true;
 
   return (
     <>
@@ -227,7 +233,7 @@ export const MinerDashboardPageContent: React.FC<{
             <Spacer />
             <MinerDetails coin={activeCoin} address={address} />
             <HeaderStats coin={coinTicker} address={address} />
-            {!hasStats && <PayoutsOnlyNote />}
+            {isPayoutOnly && <PayoutsOnlyNote />}
           </Content>
           <Tabs
             className="w-full"
@@ -236,34 +242,29 @@ export const MinerDashboardPageContent: React.FC<{
           >
             <Content>
               <TabLinkContainer>
-                {hasStats && (
-                  <TabLink>
-                    <FaChartBar /> {t('nav.stats')}
-                  </TabLink>
-                )}
+                <TabLink $hide={isPayoutOnly}>
+                  <FaChartBar /> {t('nav.stats')}
+                </TabLink>
                 <TabLink>
                   <FaWallet /> {t('nav.payments')}
                 </TabLink>
                 <TabLink>
                   <FaChartBar /> {t('nav.rewards')}
                 </TabLink>
-                {coinTicker !== 'zil' && (
-                  <TabLink>
-                    <FaCube /> {t('nav.blocks')}
-                  </TabLink>
-                )}
+                <TabLink $hide={coinTicker === 'zil'}>
+                  <FaCube /> {t('nav.blocks')}
+                </TabLink>
               </TabLinkContainer>
             </Content>
             <TabContent id="workertabs">
               <Content>
-                {hasStats && (
-                  <TabPanel>
-                    <DynamicMinerStatsPage
-                      address={address}
-                      coin={coinTicker}
-                    />
-                  </TabPanel>
-                )}
+                <TabPanel
+                  style={{
+                    display: isPayoutOnly ? 'none' : 'block',
+                  }}
+                >
+                  <DynamicMinerStatsPage address={address} coin={coinTicker} />
+                </TabPanel>
 
                 <TabPanel>
                   <DynamicMinerPaymentsPage
