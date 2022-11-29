@@ -31,6 +31,7 @@
     "title": "{{coin}} mining",
     "note": "Note:",
     "invalid": "{{value}} is invalid",
+    "more_about": "More about",
     "wallet": {
       "title": "Get your wallet address",
       "desc_one": "The easiest way to get a wallet is to register on a cryptocurrency exchange like <binance>Binance (Ref)</binance> or <coinbase>Coinbase</coinbase>.",
@@ -56,6 +57,7 @@
     },
     "ports": {
       "title": "Ports",
+      "additional_ports": "Additional ports available",
       "description": "We highly encourage everyone to use secured port when connecting to Flexpool servers. <more>Read more on why you shouldn't use unsecured ports</more>. <strong>IMPORTANT</strong>: Using SSL does not increase the stale rate.",
       "ssl_port": "Secure SSL Port",
       "tcp_port": "TCP Port",

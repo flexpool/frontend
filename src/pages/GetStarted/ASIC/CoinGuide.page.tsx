@@ -106,7 +106,6 @@ export const MineableCoinGuidePage: React.FC = () => {
                 data={mineableCoin.regions}
                 namePrimary="primary_server"
                 nameSecondary="secondary_server"
-                showAdditionalPorts={false}
                 showPorts={false}
               />
 
