@@ -221,7 +221,12 @@ export const DynamicList = <D extends {}, CP extends {}>(
                         renderRowTooltipContent={renderRowTooltipContent as any}
                       />
                       {additionalRow && (
-                        <Table.Tr>
+                        <Table.Tr
+                          clickable
+                          className={clx({
+                            highlighted: index === lastMouseOver,
+                          })}
+                        >
                           <Table.AdditionalTd colSpan={columns.length}>
                             {additionalRow}
                           </Table.AdditionalTd>

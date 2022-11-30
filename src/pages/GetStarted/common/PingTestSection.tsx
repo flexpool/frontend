@@ -6,9 +6,26 @@ import { differenceInMilliseconds } from 'date-fns';
 import styled from 'styled-components';
 import { AnyAction } from 'redux';
 import Link, { LinkProps } from 'next/link';
-import DescriptionList from '@/components/DescriptionList';
+import Stack from '@/components/Stack';
+import { FiChevronDown } from 'react-icons/fi';
 
 import { useField } from 'formik';
+
+const ExtraCard = styled.div`
+  background-color: rgb(128 128 128 / 5%);
+  width: 600px;
+  height: 50px;
+  border-radius: 5px;
+  margin: 22px 0 22px 23px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  font-size: 14px;
+`;
+
+const PortsContainer = styled(Stack)`
+  margin-left: auto;
+`;
 
 // Components
 import DynamicList, {
@@ -31,6 +48,31 @@ import {
 
 import { useAsyncState } from 'src/hooks/useAsyncState';
 import { useBoolState } from 'src/hooks/useBoolState';
+
+const AdditionalContainer = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 20px;
+    border-top: 1px solid var(--border-color);
+    position: absolute;
+    top: 0;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    width: calc(100% - 142px);
+    border-top: 1px solid var(--border-color);
+    position: absolute;
+    top: 0;
+    left: 142px;
+  }
+`;
 
 const WarningIcon = styled(FaExclamationCircle)`
   color: var(--danger);
@@ -420,68 +462,36 @@ export const PingTestSection: React.FC<{
         columns={cols}
         additionalRowRender={(item) => {
           if (showAdditionalPorts) {
-            if (item.domain === 'eth-hke.flexpool.io') {
-              return (
-                <DescriptionList
-                  items={[
-                    {
-                      term: (
-                        <span style={{ fontSize: '0.85rem' }}>
-                          {t('regions.additional_ports')}
-                        </span>
-                      ),
-                      description: (
-                        <div style={{ fontSize: '0.85rem' }}>
-                          <div>
-                            TCP: <Sticker>13271</Sticker>
-                          </div>
-                          <div style={{ marginTop: '0.25rem' }}>
-                            SSL: <Sticker>22271</Sticker>
-                          </div>
-                        </div>
-                      ),
-                    },
-                    {
-                      term: (
-                        <span style={{ fontSize: '0.85rem' }}>
-                          {t('regions.additional_domains')}
-                        </span>
-                      ),
-
-                      description: (
-                        <span style={{ fontSize: '0.85rem' }}>
-                          hke.fpmirror.com
-                        </span>
-                      ),
-                    },
-                  ]}
-                />
-              );
-            }
-
             if (item.domain === 'sgeetc.gfwroute.co') {
               return (
-                <DescriptionList
-                  items={[
-                    {
-                      term: (
-                        <span style={{ fontSize: '0.85rem' }}>
-                          {t('detail.ports.title')}
-                        </span>
-                      ),
-                      description: (
-                        <div style={{ fontSize: '0.85rem' }}>
-                          <div>
-                            TCP: <Sticker>48607</Sticker>
-                          </div>
-                          <div style={{ marginTop: '0.25rem' }}>
-                            SSL: <Sticker>58607</Sticker>
-                          </div>
-                        </div>
-                      ),
-                    },
-                  ]}
-                />
+                <AdditionalContainer>
+                  <div
+                    style={{
+                      color: 'var(--text-tertiary)',
+                      fontSize: 12,
+                      position: 'absolute',
+                      padding: '0 10px',
+                      top: '-6px',
+                      left: '14px',
+                    }}
+                  >
+                    <Stack spacing="xs">
+                      <FiChevronDown size={14} />{' '}
+                      <span>{t('detail.more_about')} SGE</span>
+                    </Stack>
+                  </div>
+                  <ExtraCard>
+                    {t('detail.ports.additional_ports')}
+                    <PortsContainer spacing="medium">
+                      <Stack>
+                        <span>TCP:</span> <Sticker>48607</Sticker>
+                      </Stack>
+                      <Stack>
+                        <span>SSL:</span> <Sticker>58607</Sticker>
+                      </Stack>
+                    </PortsContainer>
+                  </ExtraCard>
+                </AdditionalContainer>
               );
             }
           }

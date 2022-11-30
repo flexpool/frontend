@@ -1,13 +1,37 @@
 {
   "list": {
     "head_title": "Начать майнить с нами",
-    "title": "Начните майнить на Flexpool сегодня!",
-    "nicehash_rental_button": "NiceHash Rental"
+    "title": "Get started",
+    "nicehash_rental_button": "NiceHash Rental",
+    "pool_details": "Pool Details",
+    "start_today": "Start Mining Today",
+    "begin_experience": "Begin your Flexpool experience by choosing your setup",
+    "view_button": "View {{name}} Guide",
+    "zil_boost": "Optional: Boost your earnings by dual mining Ziliqa.",
+    "perks": [
+      {
+        "title": "Built by professionals",
+        "description": "Flexpool.io is ran by industry specialists with years of experience"
+      },
+      {
+        "title": "Professional and helpful support team",
+        "description": "Get assistance by professional support team within a day"
+      },
+      {
+        "title": "Maximum earnings",
+        "description": "Extract the most from mining"
+      },
+      {
+        "title": "Best-in-class web experience",
+        "description": "A clean and modern interface with all your mining stats"
+      }
+    ]
   },
   "detail": {
     "title": "Майнинг {{coin}}",
     "note": "Note:",
     "invalid": "{{value}} is invalid",
+    "more_about": "More about",
     "wallet": {
       "title": "Получите ваш адрес кошелька",
       "desc_one": "Найпростейший способ получить кошелёк – это зарегистрироваться на криптовалютной бирже как <binance>Binance (Ref)</binance> или <coinbase>Coinbase</coinbase>.",
@@ -33,6 +57,7 @@
     },
     "ports": {
       "title": "Ports",
+      "additional_ports": "Additional ports available",
       "description": "We highly encourage everyone to use secured port when connecting to Flexpool servers. <more>Read more on why you shouldn't use unsecured ports</more>. <strong>IMPORTANT</strong>: Using SSL does not increase the stale rate.",
       "ssl_port": "Secure SSL Port",
       "tcp_port": "TCP Port",

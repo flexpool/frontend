@@ -1,13 +1,37 @@
 {
   "list": {
     "head_title": "Börja mina med oss",
-    "title": "Kom igång med att mina på Flexpool idag!",
-    "nicehash_rental_button": "NiceHash Hyrning"
+    "title": "Get started",
+    "nicehash_rental_button": "NiceHash Hyrning",
+    "pool_details": "Pool Details",
+    "start_today": "Start Mining Today",
+    "begin_experience": "Begin your Flexpool experience by choosing your setup",
+    "view_button": "View {{name}} Guide",
+    "zil_boost": "Optional: Boost your earnings by dual mining Ziliqa.",
+    "perks": [
+      {
+        "title": "Built by professionals",
+        "description": "Flexpool.io is ran by industry specialists with years of experience"
+      },
+      {
+        "title": "Professional and helpful support team",
+        "description": "Get assistance by professional support team within a day"
+      },
+      {
+        "title": "Maximum earnings",
+        "description": "Extract the most from mining"
+      },
+      {
+        "title": "Best-in-class web experience",
+        "description": "A clean and modern interface with all your mining stats"
+      }
+    ]
   },
   "detail": {
     "title": "{{coin}} mining",
     "note": "Note:",
     "invalid": "{{value}} is invalid",
+    "more_about": "More about",
     "wallet": {
       "title": "Få din wallet-adress",
       "desc_one": "Det enklaste sättet att få en wallet på är att registrera dig på en kryptovalutaväxlare såsom <binance>Binance (Ref)</binance> eller <coinbase>Coinbase</coinbase>.",
@@ -33,6 +57,7 @@
     },
     "ports": {
       "title": "Portar",
+      "additional_ports": "Additional ports available",
       "description": "Vi rekommenderar verkligen alla att använda sig utav en säker port när du ansluter dig till Flexpool's servrar. <more>Läs mer om varför du inte borde använda osäkra portar</more>. <strong>VIKTIGT</strong>: Användning utav SSL öker inte din stale-rate.",
       "ssl_port": "Säker SSL-Port",
       "tcp_port": "TCP-Port",

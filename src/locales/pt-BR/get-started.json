@@ -1,13 +1,37 @@
 {
   "list": {
     "head_title": "Comece a minerar conosco",
-    "title": "Comece a minerar na Flexpool hoje!",
-    "nicehash_rental_button": "Aluguel de NiceHash"
+    "title": "Get started",
+    "nicehash_rental_button": "Aluguel de NiceHash",
+    "pool_details": "Pool Details",
+    "start_today": "Start Mining Today",
+    "begin_experience": "Begin your Flexpool experience by choosing your setup",
+    "view_button": "View {{name}} Guide",
+    "zil_boost": "Optional: Boost your earnings by dual mining Ziliqa.",
+    "perks": [
+      {
+        "title": "Built by professionals",
+        "description": "Flexpool.io is ran by industry specialists with years of experience"
+      },
+      {
+        "title": "Professional and helpful support team",
+        "description": "Get assistance by professional support team within a day"
+      },
+      {
+        "title": "Maximum earnings",
+        "description": "Extract the most from mining"
+      },
+      {
+        "title": "Best-in-class web experience",
+        "description": "A clean and modern interface with all your mining stats"
+      }
+    ]
   },
   "detail": {
     "title": "Mineração de {{coin}}",
     "note": "Nota:",
     "invalid": "{{value}} is invalid",
+    "more_about": "More about",
     "wallet": {
       "title": "Obtenha seu endereço da carteira",
       "desc_one": "A maneira mais fácil de obter uma carteira é registrar-se em uma exchange de criptomoedas, como a <binance>Binance (Ref)</binance> ou <coinbase>Coinbase</coinbase>.",
@@ -33,6 +57,7 @@
     },
     "ports": {
       "title": "Portas",
+      "additional_ports": "Additional ports available",
       "description": "Incentivamos todos a usar a porta segura ao se conectar aos servidores da Flexpool. <more>Leia mais sobre por que você não deve usar portas não seguras</more>. <strong>IMPORTANTE</strong>: Usar SSL não aumenta a taxa de shares obsoletas.",
       "ssl_port": "Porta segura SSL",
       "tcp_port": "Porta TCP",

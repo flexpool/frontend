@@ -31,6 +31,7 @@
     "title": "{{coin}} 挖矿教程",
     "note": "注：",
     "invalid": "{{value}}无效",
+    "more_about": "更多关于",
     "wallet": {
       "title": "创建钱包地址",
       "desc_one": "支持以太币的交易所一般会提供钱包充值，例如 <binance>币安 （推荐链接）</binance>、火币网、<coinbase>Coinbase</coinbase> 等。",
@@ -56,6 +57,7 @@
     },
     "ports": {
       "title": "端口",
+      "additional_ports": "其他可用端口",
       "description": "我们建议使用SSL加密端口来连接服务器。 <more>了解非安全端口的风险</more>。 <strong>注意</strong>: 使用 SSL端口不会影响延迟份额率。",
       "ssl_port": "SSL加密端口",
       "tcp_port": "TCP端口",

@@ -1,13 +1,37 @@
 {
   "list": {
     "head_title": "Commencez à miner avec nous",
-    "title": "Commencez dès aujourd'hui à miner sur Flexpool!",
-    "nicehash_rental_button": "Location de NiceHash"
+    "title": "Get started",
+    "nicehash_rental_button": "Location de NiceHash",
+    "pool_details": "Pool Details",
+    "start_today": "Start Mining Today",
+    "begin_experience": "Begin your Flexpool experience by choosing your setup",
+    "view_button": "View {{name}} Guide",
+    "zil_boost": "Optional: Boost your earnings by dual mining Ziliqa.",
+    "perks": [
+      {
+        "title": "Built by professionals",
+        "description": "Flexpool.io is ran by industry specialists with years of experience"
+      },
+      {
+        "title": "Professional and helpful support team",
+        "description": "Get assistance by professional support team within a day"
+      },
+      {
+        "title": "Maximum earnings",
+        "description": "Extract the most from mining"
+      },
+      {
+        "title": "Best-in-class web experience",
+        "description": "A clean and modern interface with all your mining stats"
+      }
+    ]
   },
   "detail": {
     "title": "Minage de {{coin}}",
     "note": "Note:",
     "invalid": "{{value}} is invalid",
+    "more_about": "More about",
     "wallet": {
       "title": "Obtenir l'adresse de votre portefeuille",
       "desc_one": "Le moyen le plus simple d'obtenir un portefeuille est de s'inscrire sur une bourse de crypto-monnaies comme <binance>Binance (Ref)</binance> ou <coinbase>Coinbase</coinbase>.",
@@ -33,6 +57,7 @@
     },
     "ports": {
       "title": "Ports",
+      "additional_ports": "Additional ports available",
       "description": "Nous encourageons vivement tout le monde à utiliser un port sécurisé lors de la connexion aux serveurs Flexpool. <more>Lire plus sur les raisons pour lesquelles vous ne devriez pas utiliser des ports non sécurisés</more>. <strong>IMPORTANT</strong> : L'utilisation de SSL n'augmente pas le taux de rassissement.",
       "ssl_port": "Port SSL sécurisé",
       "tcp_port": "Port TCP",

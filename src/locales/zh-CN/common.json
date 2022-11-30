@@ -102,6 +102,6 @@
   "hashrate_space": "空间",
   "current_network_value": "当前全网{{value}}",
   "view_network_stats": "查看网络数据统计",
-  "hours": "小时",
-  "minutes": "分钟"
+  "hours": "hour(s)",
+  "minutes": "minute(s)"
 }
