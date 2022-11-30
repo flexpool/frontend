@@ -1,13 +1,37 @@
 {
   "list": {
     "head_title": "Aloita louhinta Flexpoolissa",
-    "title": "Aloita louhiminen Flexpoolissa tänään!",
-    "nicehash_rental_button": "NiceHash Vuokraus"
+    "title": "Get started",
+    "nicehash_rental_button": "NiceHash Vuokraus",
+    "pool_details": "Pool Details",
+    "start_today": "Start Mining Today",
+    "begin_experience": "Begin your Flexpool experience by choosing your setup",
+    "view_button": "View {{name}} Guide",
+    "zil_boost": "Optional: Boost your earnings by dual mining Ziliqa.",
+    "perks": [
+      {
+        "title": "Built by professionals",
+        "description": "Flexpool.io is ran by industry specialists with years of experience"
+      },
+      {
+        "title": "Professional and helpful support team",
+        "description": "Get assistance by professional support team within a day"
+      },
+      {
+        "title": "Maximum earnings",
+        "description": "Extract the most from mining"
+      },
+      {
+        "title": "Best-in-class web experience",
+        "description": "A clean and modern interface with all your mining stats"
+      }
+    ]
   },
   "detail": {
     "title": "{{coin}} louhinta",
     "note": "Huomio:",
     "invalid": "{{value}} is invalid",
+    "more_about": "More about",
     "wallet": {
       "title": "Hanki lompakon osoite",
       "desc_one": "Helpoin tapa saada kryptovaluutalle säilityspaikka on rekisteröitymällä kryptovaluutan vaihtopalveluihin kuten <binance>Binance</binance> tai <coinbase>Coinbase</coinbase>.",
@@ -33,6 +57,7 @@
     },
     "ports": {
       "title": "Portit",
+      "additional_ports": "Additional ports available",
       "description": "Me suosittelemme kaikkia käyttämään turvattuja portteja, kun yhdistätte Flexpoolin palvelimille. <more>Lue lisää miksi sinun ei tulisi käyttää suojaamattomia portteja</more>. <strong>TÄRKEÄ</strong>: SSL-portin käyttäminen ei lisää ristiriitaisten osuuksien määrää.",
       "ssl_port": "Turvallinen SSL-portti",
       "tcp_port": "TCP Portti",
