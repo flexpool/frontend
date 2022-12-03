@@ -1,4 +1,4 @@
-export const DISCORD_LINK = 'https://discord.gg/flexpool';
+export const DISCORD_LINK = 'https://discord.gg/96TS7h3uj8';
 export const TELEGRAM_LINK = 'https://t.me/flexpool';
 export const TELEGRAM_LINK_CN = 'https://t.me/flexpoolcn';
 export const REDDIT_LINK = 'https://www.reddit.com/r/flexpool';
