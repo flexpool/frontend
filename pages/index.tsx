@@ -18,6 +18,8 @@ import Globe from '@/components/Globe';
 import LamboExplainer from '@/pages/Home/components/LamboExplainer';
 import MergeAnnouncement from '@/pages/MinerDashboard/Announcements/MergeAnnouncement';
 
+import SnowFall from 'react-snowfall';
+
 const HeroGlow1 = styled.div`
   display: none;
   position: absolute;
@@ -112,6 +114,7 @@ export const HomePage = () => {
         }}
       >
         <Hero>
+          <SnowFall style={{ zIndex: 0 }} />
           <Content>
             <HeroLayout>
               <HeroLeft>
