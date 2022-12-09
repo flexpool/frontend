@@ -199,11 +199,11 @@ export const mineableCoins: MineableCoin[] = [
             title: 'BzMiner',
             key: 'bzminer',
             description:
-              'Fast Windows/Linux miner with remote management and lowest 0.5% dev fee!(0 fee on Zil)',
+              'Fast Windows/Linux miner with remote management and lowest 0.5% dev fee! (0% fee on ZIL)',
             fee: [0.5],
             compatibleGpus: ['AMD', 'NVIDIA'],
             downloadLink: 'https://github.com/bzminer/bzminer/releases',
-            cmd: 'bzminer -a ALGO -w MAIN_WALLET_ADDRESS.WORKER_NAME -p  ethstratum+ssl://CLOSEST_SERVER:5555 --a2 zil --w2 DUAL_WALLET_ADDRESS.WORKER_NAME --p2 zmp://zil.flexpool.io --log_date 1',
+            cmd: 'bzminer.exe -a ALGO -w MAIN_WALLET_ADDRESS.WORKER_NAME -p  ethstratum+ssl://CLOSEST_SERVER:5555 --a2 zil --w2 DUAL_WALLET_ADDRESS.WORKER_NAME --p2 zmp://zil.flexpool.io --log_date 1',
           },
           {
             os: ['windows', 'linux'],
@@ -213,7 +213,7 @@ export const mineableCoins: MineableCoin[] = [
             fee: [0],
             compatibleGpus: ['NVIDIA'],
             downloadLink: 'https://github.com/rigelminer/rigel/releases',
-            cmd: 'regel.exe -a etchash+zil -o ethproxy+ssl://CLOSEST_SERVER:5555 -u [1]MAIN_WALLET_ADDRESS -o [2]zmp://zil.flexpool.io -u DUAL_WALLET_ADDRESS -w WORKER_NAME',
+            cmd: 'rigel.exe -a etchash+zil -o ethproxy+ssl://CLOSEST_SERVER:5555 -u [1]MAIN_WALLET_ADDRESS -o [2]zmp://zil.flexpool.io -u DUAL_WALLET_ADDRESS -w WORKER_NAME',
           },
         ],
       },
