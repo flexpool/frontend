@@ -77,7 +77,8 @@
     },
     "software": {
       "title": "Choose your mining software",
-      "fee": "Fee"
+      "fee": "Fee",
+      "promo_fee": "promotional fee, subject to change in the near future"
     },
     "view": {
       "title": "View your stats",
