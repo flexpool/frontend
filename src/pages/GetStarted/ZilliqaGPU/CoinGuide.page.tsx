@@ -100,8 +100,11 @@ export const MineableCoinGuidePage: React.FC = () => {
         {({ values }) => {
           const isMiningEth = values.main_coin === 'eth';
 
+          let formatCoin = values.main_coin;
+          if (formatCoin === 'etc_compatible') formatCoin = 'etc';
+
           const mainCoin = mineableCoins.find(
-            (coin) => coin.ticker === values.main_coin
+            (coin) => coin.ticker === formatCoin
           );
 
           return (
@@ -131,22 +134,45 @@ export const MineableCoinGuidePage: React.FC = () => {
                     nameSecondary="main_secondary_server"
                   />
 
-                  <MinerCommandSection
-                    position={5}
-                    data={mineableCoins[2].hardware[0].miners}
-                    replaces={{
-                      ALGO: isMiningEth ? 'ethash' : 'etchash',
-                      CLOSEST_SERVER:
-                        values.main_primary_server || 'PRIMARY_SERVER',
-                      BACKUP_SERVER:
-                        values.main_secondary_server || 'BACKUP_SERVER',
-                      MAIN_WALLET_ADDRESS:
-                        values.main_wallet_address || 'MAIN_WALLET_ADDRESS',
-                      DUAL_WALLET_ADDRESS:
-                        values.dual_wallet_address || 'DUAL_WALLET_ADDRESS',
-                      WORKER_NAME: values.worker_name || 'WORKER_NAME',
-                    }}
-                  />
+                  {values.main_coin === 'etc' && (
+                    <MinerCommandSection
+                      position={5}
+                      data={mineableCoins[2].hardware[0].miners}
+                      replaces={{
+                        ALGO: isMiningEth ? 'ethash' : 'etchash',
+                        CLOSEST_SERVER:
+                          values.main_primary_server || 'PRIMARY_SERVER',
+                        BACKUP_SERVER:
+                          values.main_secondary_server || 'BACKUP_SERVER',
+                        MAIN_WALLET_ADDRESS:
+                          values.main_wallet_address || 'MAIN_WALLET_ADDRESS',
+                        DUAL_WALLET_ADDRESS:
+                          values.dual_wallet_address || 'DUAL_WALLET_ADDRESS',
+                        WORKER_NAME: values.worker_name || 'WORKER_NAME',
+                      }}
+                    />
+                  )}
+
+                  {values.main_coin === 'etc_compatible' && (
+                    <MinerCommandSection
+                      position={5}
+                      // Same as ETC but with different login
+                      data={mineableCoins[0].hardware[0].miners}
+                      replaces={{
+                        ALGO: isMiningEth ? 'ethash' : 'etchash',
+                        CLOSEST_SERVER:
+                          values.main_primary_server || 'PRIMARY_SERVER',
+                        BACKUP_SERVER:
+                          values.main_secondary_server || 'BACKUP_SERVER',
+                        WALLET_ADDRESS: `${
+                          values.main_wallet_address || 'ETC_WALLET_ADDRESS'
+                        }/${
+                          values.dual_wallet_address || 'ZIL_WALLET_ADDRESS'
+                        }`,
+                        WORKER_NAME: values.worker_name || 'WORKER_NAME',
+                      }}
+                    />
+                  )}
 
                   {values.main_wallet_address && values.dual_wallet_address && (
                     <ViewDashboard
