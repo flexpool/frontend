@@ -89,6 +89,8 @@
   "detail_zil": {
     "title": "Zilliqa mining",
     "select_dual_mining": "Select your dual mining config",
+    "compatible_mode": "Compatible Mode",
+    "zmp_explain": "The Zilliqa Mining Protocol (ZMP) is a revolutionary new way of mining Zilliqa. However, not all miners currently support it. For the best compatibility, we recommend using our Compatible Mode guide.",
     "pool_details": [
       { "key": "Reward Scheme", "value": "PPLNS (Pay Per Last N Shares)" },
       { "key": "Pool Fee", "value": "3% + Shard Node Operating Costs" },

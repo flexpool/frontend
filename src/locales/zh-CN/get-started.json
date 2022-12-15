@@ -89,6 +89,8 @@
   "detail_zil": {
     "title": "Zilliqa mining",
     "select_dual_mining": "Select your dual mining config",
+    "compatible_mode": "兼容模式",
+    "zmp_explain": "Zilliqa Mining Protocol (ZMP) 是挖 ZIL 全新的方式。 不过，不是所有的挖矿软件都支持。 为了获得最佳兼容性, 请尝试使用我们的兼容模式指南。",
     "pool_details": [
       {
         "key": "Reward Scheme",

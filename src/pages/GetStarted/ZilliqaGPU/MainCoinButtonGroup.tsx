@@ -1,8 +1,10 @@
 import { useField } from 'formik';
 import { ButtonGroup } from '../common/ButtonGroup';
+import { useTranslation } from 'next-i18next';
 
 export const MainCoinButtonGroup = ({ name }: { name: string }) => {
   const [, { value: mainCoin }, { setValue: setMainCoin }] = useField(name);
+  const { t } = useTranslation('get-started');
 
   return (
     <>
@@ -10,7 +12,9 @@ export const MainCoinButtonGroup = ({ name }: { name: string }) => {
         options={{
           etc: { label: 'Ethereum Classic + Zilliqa (ZMP)' },
           etc_compatible: {
-            label: 'Ethereum Classic + Zilliqa (Compatible Mode)',
+            label: `Ethereum Classic + Zilliqa (${t(
+              'detail_zil.compatible_mode'
+            )})`,
           },
         }}
         setSelectedOption={(s: string) => [setMainCoin(s)]}
@@ -22,9 +26,7 @@ export const MainCoinButtonGroup = ({ name }: { name: string }) => {
             color: 'var(--error)',
           }}
         >
-          The Zilliqa Mining Protocol (ZMP) is a revolutionary new way of mining
-          Zilliqa. However, not all miners currently support it. For the best
-          compatibility, we recommend using our <b>Compatible Mode</b> guide.
+          {t('detail_zil.zmp_explain')}
         </p>
       )}
     </>
