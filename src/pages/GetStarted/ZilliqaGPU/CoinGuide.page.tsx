@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
+import { Trans, useTranslation } from 'next-i18next';
+import { useField } from 'formik';
 
 import { Page } from 'src/components/layout/Page';
 
@@ -24,12 +25,33 @@ import styled from 'styled-components';
 
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 
+const CompatibleLink = ({ children }: any) => {
+  const [, , { setValue: setMainCoin }] = useField({
+    name: 'main_coin',
+  });
+
+  return (
+    <a
+      style={{
+        textDecoration: 'underline',
+        cursor: 'pointer',
+      }}
+      onClick={() => {
+        setMainCoin('etc_compatible');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }}
+    >
+      {children}
+    </a>
+  );
+};
+
 const MinerInfoContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
 
-  & > * {
+  svg {
     flex-shrink: 0;
   }
 `;
@@ -163,7 +185,15 @@ export const MineableCoinGuidePage: React.FC = () => {
                               <AiOutlineInfoCircle size={22} />
                               <div>
                                 <div>{t('detail_zil.not_seeing')}</div>
-                                <div>{t('detail_zil.we_encourage')}</div>
+                                <div>
+                                  <Trans
+                                    t={t}
+                                    i18nKey="detail_zil.we_encourage"
+                                    components={{
+                                      compatible: <CompatibleLink />,
+                                    }}
+                                  />
+                                </div>
                               </div>
                             </MinerInfoContainer>
                           </InfoBox>
