@@ -159,7 +159,7 @@ export const MineableCoinGuidePage: React.FC = () => {
 
                       return `${etc}/${zil}.${name}`;
                     })()}
-                    server={values.primary_server as string}
+                    server={values.secondary_server as string}
                   />
                   <Spacer size="lg" />
                 </MockBrowser>

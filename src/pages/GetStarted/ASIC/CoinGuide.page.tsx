@@ -127,7 +127,7 @@ export const MineableCoinGuidePage: React.FC = () => {
                     login={`${
                       values.wallet_address || t('cmd_keys.WALLET_ADDRESS')
                     }.${values.worker_name || t('cmd_keys.WORKER_NAME')}`}
-                    server={values.primary_server as string}
+                    server={values.secondary_server as string}
                   />
                   <Spacer size="lg" />
                 </MockBrowser>

@@ -92,7 +92,7 @@
     "compatible_mode": "Compatible Mode",
     "not_seeing": "Not seeing your miner here?",
     "we_encourage": "We encourage switching to the ones below, but in case you can't, please refer to our Compatible Mode guide.",
-    "switch_zmp": "Please consider switching to a miner that supports ZMP for better profitability",
+    "switch_zmp": "Please consider switching to a miner that supports ZMP for better profitability.",
     "pool_details": [
       { "key": "Reward Scheme", "value": "PPLNS (Pay Per Last N Shares)" },
       { "key": "Pool Fee", "value": "3% + Shard Node Operating Costs" },
