@@ -217,6 +217,12 @@ export const mineableCoins: MineableCoin[] = [
           },
         ],
       },
+
+      {
+        title: 'ASIC Dual Mining',
+        key: 'dual-asic',
+        miners: [],
+      },
     ],
   },
 ];

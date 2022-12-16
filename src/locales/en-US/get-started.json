@@ -259,7 +259,9 @@
   "cmd_keys": {
     "CLOSEST_SERVER": "CLOSEST_SERVER",
     "WALLET_ADDRESS": "WALLET_ADDRESS",
-    "WORKER_NAME": "WORKER_NAME"
+    "WORKER_NAME": "WORKER_NAME",
+    "ZIL_WALLET_ADDRESS": "ZIL_WALLET_ADDRESS",
+    "ETC_WALLET_ADDRESS": "ETC_WALLET_ADDRESS"
   },
   "nicehash": {
     "head_title": "NiceHash guide for mining on Flexpool",
