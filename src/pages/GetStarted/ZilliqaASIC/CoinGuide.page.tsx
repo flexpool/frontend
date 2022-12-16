@@ -10,13 +10,14 @@ import {
   GuideForm,
   PingTestSection,
   SetWorkerNameSection,
-  ViewDashboardSection,
-  SetWalletSection,
   SectionWrapper,
 } from '../common';
 
-import { ExampleInterface, ExampleInterfaceWrapper } from './ExampleInterface';
-import { MockBrowser } from './MockBrowser';
+import { SetWalletSection } from '../ZilliqaGPU/SetWalletSection';
+import { ViewDashboard } from '../ZilliqaGPU/ViewDashboard';
+
+import { ExampleInterface } from '../ASIC/ExampleInterface';
+import { MockBrowser } from '../ASIC/MockBrowser';
 import { Spacer } from '@/components/layout/Spacer';
 
 export const MineableCoinGuidePage: React.FC = () => {
@@ -51,12 +52,12 @@ export const MineableCoinGuidePage: React.FC = () => {
     return null;
   }
 
-  const seoTitle = seoT('title.get_started_gpu', {
+  const seoTitle = seoT('title.get_started_asic', {
     coinName: mineableCoin.name,
     coinTicker: mineableCoin.ticker.toUpperCase(),
   });
 
-  const seoDescription = seoT('website_description.get_started_gpu', {
+  const seoDescription = seoT('website_description.get_started_asic', {
     coinName: mineableCoin.name,
     coinTicker: mineableCoin.ticker.toUpperCase(),
     coinAlgorithm: mineableCoin.algorithm,
@@ -86,28 +87,37 @@ export const MineableCoinGuidePage: React.FC = () => {
       <h1>{t(`detail_${mineableCoin?.ticker}.title`)}</h1>
       <GuideForm
         initialValue={{
-          wallet_address: '',
+          main_wallet_address: '',
+          dual_wallet_address: '',
           primary_server: '',
           secondary_server: '',
           worker_name: '',
+          main_coin: 'etc',
         }}
       >
         {({ values }) => {
+          // Currently, assume main coin is always etc
+          const mainCoin = mineableCoins.find((coin) => coin.ticker === 'etc');
+
           return (
             <>
-              <SetWalletSection
-                position={1}
-                data={mineableCoin}
-                name="wallet_address"
-              />
-
-              <PingTestSection
-                position={2}
-                data={mineableCoin.regions}
-                namePrimary="primary_server"
-                nameSecondary="secondary_server"
-                showPorts={false}
-              />
+              {mainCoin && (
+                <>
+                  <SetWalletSection
+                    position={1}
+                    data={mainCoin}
+                    nameMain="main_wallet_address"
+                    nameDual="dual_wallet_address"
+                  />
+                  <PingTestSection
+                    position={2}
+                    data={mainCoin.regions}
+                    namePrimary="primary_server"
+                    nameSecondary="secondary_server"
+                    showPorts={false}
+                  />
+                </>
+              )}
 
               <SetWorkerNameSection position={3} name="worker_name" />
 
@@ -117,29 +127,59 @@ export const MineableCoinGuidePage: React.FC = () => {
                 <MockBrowser>
                   <ProcessedExampleInterface
                     poolNum={'1 (Primary)'}
-                    login={`${
-                      values.wallet_address || t('cmd_keys.WALLET_ADDRESS')
-                    }.${values.worker_name || t('cmd_keys.WORKER_NAME')}`}
+                    login={(() => {
+                      const etc =
+                        values.main_wallet_address ||
+                        t('cmd_keys.ETC_WALLET_ADDRESS');
+
+                      const zil =
+                        values.dual_wallet_address ||
+                        t('cmd_keys.ZIL_WALLET_ADDRESS');
+
+                      const name =
+                        values.worker_name || t('cmd_keys.WORKER_NAME');
+
+                      return `${etc}/${zil}.${name}`;
+                    })()}
                     server={values.primary_server as string}
                   />
                   <ProcessedExampleInterface
                     poolNum={'2 (Backup)'}
-                    login={`${
-                      values.wallet_address || t('cmd_keys.WALLET_ADDRESS')
-                    }.${values.worker_name || t('cmd_keys.WORKER_NAME')}`}
+                    login={(() => {
+                      const etc =
+                        values.main_wallet_address ||
+                        t('cmd_keys.ETC_WALLET_ADDRESS');
+
+                      const zil =
+                        values.dual_wallet_address ||
+                        t('cmd_keys.ZIL_WALLET_ADDRESS');
+
+                      const name =
+                        values.worker_name || t('cmd_keys.WORKER_NAME');
+
+                      return `${etc}/${zil}.${name}`;
+                    })()}
                     server={values.secondary_server as string}
                   />
                   <Spacer size="lg" />
                 </MockBrowser>
               </SectionWrapper>
 
-              {values.wallet_address && (
-                <ViewDashboardSection
-                  position={5}
-                  coin={mineableCoin}
-                  address={values.wallet_address}
-                />
-              )}
+              {mainCoin &&
+                values.main_wallet_address &&
+                values.dual_wallet_address && (
+                  <ViewDashboard
+                    position={5}
+                    primary={{
+                      coin: mainCoin,
+                      address: values.main_wallet_address,
+                    }}
+                    dual={{
+                      coin: mineableCoins[2],
+                      address: values.dual_wallet_address,
+                    }}
+                  />
+                )}
             </>
           );
         }}

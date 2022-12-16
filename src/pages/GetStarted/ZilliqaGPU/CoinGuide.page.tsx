@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
+import { Trans, useTranslation } from 'next-i18next';
+import { useField } from 'formik';
 
 import { Page } from 'src/components/layout/Page';
 
@@ -17,6 +18,43 @@ import MainCoinButtonGroup from './MainCoinButtonGroup';
 import ViewDashboard from './ViewDashboard';
 
 import { SectionWrapper } from '../common/SectionWrapper';
+import { InfoBox } from '@/components/InfoBox';
+import { Spacer } from '@/components/layout/Spacer';
+
+import styled from 'styled-components';
+
+import { AiOutlineInfoCircle } from 'react-icons/ai';
+
+const CompatibleLink = ({ children }: any) => {
+  const [, , { setValue: setMainCoin }] = useField({
+    name: 'main_coin',
+  });
+
+  return (
+    <a
+      style={{
+        textDecoration: 'underline',
+        cursor: 'pointer',
+      }}
+      onClick={() => {
+        setMainCoin('etc_compatible');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }}
+    >
+      {children}
+    </a>
+  );
+};
+
+const MinerInfoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  svg {
+    flex-shrink: 0;
+  }
+`;
 
 export const MineableCoinGuidePage: React.FC = () => {
   const router = useRouter();
@@ -100,8 +138,11 @@ export const MineableCoinGuidePage: React.FC = () => {
         {({ values }) => {
           const isMiningEth = values.main_coin === 'eth';
 
+          let formatCoin = values.main_coin;
+          if (formatCoin === 'etc_compatible') formatCoin = 'etc';
+
           const mainCoin = mineableCoins.find(
-            (coin) => coin.ticker === values.main_coin
+            (coin) => coin.ticker === formatCoin
           );
 
           return (
@@ -131,22 +172,71 @@ export const MineableCoinGuidePage: React.FC = () => {
                     nameSecondary="main_secondary_server"
                   />
 
-                  <MinerCommandSection
-                    position={5}
-                    data={mineableCoins[2].hardware[0].miners}
-                    replaces={{
-                      ALGO: isMiningEth ? 'ethash' : 'etchash',
-                      CLOSEST_SERVER:
-                        values.main_primary_server || 'PRIMARY_SERVER',
-                      BACKUP_SERVER:
-                        values.main_secondary_server || 'BACKUP_SERVER',
-                      MAIN_WALLET_ADDRESS:
-                        values.main_wallet_address || 'MAIN_WALLET_ADDRESS',
-                      DUAL_WALLET_ADDRESS:
-                        values.dual_wallet_address || 'DUAL_WALLET_ADDRESS',
-                      WORKER_NAME: values.worker_name || 'WORKER_NAME',
-                    }}
-                  />
+                  {values.main_coin === 'etc' && (
+                    <MinerCommandSection
+                      extra={
+                        <div
+                          style={{
+                            width: '80%',
+                          }}
+                        >
+                          <InfoBox variant="primary">
+                            <MinerInfoContainer>
+                              <AiOutlineInfoCircle size={22} />
+                              <div>
+                                <div>{t('detail_zil.not_seeing')}</div>
+                                <div>
+                                  <Trans
+                                    t={t}
+                                    i18nKey="detail_zil.we_encourage"
+                                    components={{
+                                      compatible: <CompatibleLink />,
+                                    }}
+                                  />
+                                </div>
+                              </div>
+                            </MinerInfoContainer>
+                          </InfoBox>
+                          <Spacer />
+                        </div>
+                      }
+                      position={5}
+                      data={mineableCoins[2].hardware[0].miners}
+                      replaces={{
+                        ALGO: isMiningEth ? 'ethash' : 'etchash',
+                        CLOSEST_SERVER:
+                          values.main_primary_server || 'PRIMARY_SERVER',
+                        BACKUP_SERVER:
+                          values.main_secondary_server || 'BACKUP_SERVER',
+                        MAIN_WALLET_ADDRESS:
+                          values.main_wallet_address || 'MAIN_WALLET_ADDRESS',
+                        DUAL_WALLET_ADDRESS:
+                          values.dual_wallet_address || 'DUAL_WALLET_ADDRESS',
+                        WORKER_NAME: values.worker_name || 'WORKER_NAME',
+                      }}
+                    />
+                  )}
+
+                  {values.main_coin === 'etc_compatible' && (
+                    <MinerCommandSection
+                      position={5}
+                      // Same as ETC but with different login
+                      data={mineableCoins[0].hardware[0].miners}
+                      replaces={{
+                        ALGO: isMiningEth ? 'ethash' : 'etchash',
+                        CLOSEST_SERVER:
+                          values.main_primary_server || 'PRIMARY_SERVER',
+                        BACKUP_SERVER:
+                          values.main_secondary_server || 'BACKUP_SERVER',
+                        WALLET_ADDRESS: `${
+                          values.main_wallet_address || 'ETC_WALLET_ADDRESS'
+                        }/${
+                          values.dual_wallet_address || 'ZIL_WALLET_ADDRESS'
+                        }`,
+                        WORKER_NAME: values.worker_name || 'WORKER_NAME',
+                      }}
+                    />
+                  )}
 
                   {values.main_wallet_address && values.dual_wallet_address && (
                     <ViewDashboard

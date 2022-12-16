@@ -93,10 +93,12 @@ export const MinerCommandSection = ({
   position,
   data,
   replaces,
+  extra,
 }: {
   position: number;
   data: GpuHardwareDetails[] | null;
   replaces: Record<string, string>;
+  extra?: React.ReactNode;
 }) => {
   const { t } = useTranslation('get-started');
   const isChinaRegion = useCheckUserRegion('zh');
@@ -133,6 +135,7 @@ export const MinerCommandSection = ({
 
   return (
     <SectionWrapper position={position} title={t('detail.software.title')}>
+      {extra}
       <SoftwareWrapper>
         {minerMeta.map((miner) => (
           <Card key={miner.key}>

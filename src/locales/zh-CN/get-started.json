@@ -89,6 +89,10 @@
   "detail_zil": {
     "title": "Zilliqa mining",
     "select_dual_mining": "Select your dual mining config",
+    "compatible_mode": "兼容模式",
+    "not_seeing": "没有看到你的挖矿软件？",
+    "we_encourage": "我们强烈建议使用以下软件，如果你不可以的话，可以查看我们的<compatible>兼容攻略</compatible>。",
+    "switch_zmp": "建议您使用ZMP挖矿软件获取更好的收益。",
     "pool_details": [
       {
         "key": "Reward Scheme",

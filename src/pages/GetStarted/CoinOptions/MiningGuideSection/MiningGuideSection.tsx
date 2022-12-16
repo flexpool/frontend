@@ -7,11 +7,15 @@ import { Spacer } from '@/components/layout/Spacer';
 import { RadioGroup, GuideTypeRadio } from '../GuideTypeRadio';
 import { ViewGuideButton } from '../ViewGuideButton';
 import { PoolDetails } from '../PoolDetails';
-import { MineableCoinHardware } from '@/pages/GetStarted/mineableCoinList';
+import {
+  MineableCoinHardware,
+  mineableCoins,
+} from '@/pages/GetStarted/mineableCoinList';
 import { BiSupport } from 'react-icons/bi';
 import { RiTeamLine } from 'react-icons/ri';
 import { GiReceiveMoney, GiSparkles } from 'react-icons/gi';
 import { MineableCoin } from '@/pages/GetStarted/mineableCoinList';
+import { merge } from 'lodash';
 
 const SectionWrapper = styled.div`
   padding: 20px 0px 68px;
@@ -278,9 +282,19 @@ export const MiningGuideSection = ({ ticker, name, coin }: Props) => {
     returnObjects: true,
   }) as { key: string; value: string }[];
 
+  const mineableCoin = React.useMemo(() => {
+    return mineableCoins.find((item) => item.ticker === ticker);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const poolHw = t(`detail_${ticker.toLowerCase()}.hardware`, {
     returnObjects: true,
   }) as MineableCoinHardware[];
+
+  const mergedHw = merge(
+    mineableCoin?.hardware,
+    poolHw
+  ) as MineableCoinHardware[];
 
   if (typeof poolHw === 'string') {
     return <></>;
@@ -324,7 +338,7 @@ export const MiningGuideSection = ({ ticker, name, coin }: Props) => {
             <PoolPerks />
           </MainCol>
           <SubCol>
-            <PoolGuideOptions coin={ticker} options={hardwareOptions} />
+            <PoolGuideOptions coin={ticker} options={mergedHw} />
           </SubCol>
         </LayoutBody>
       </Layout>
