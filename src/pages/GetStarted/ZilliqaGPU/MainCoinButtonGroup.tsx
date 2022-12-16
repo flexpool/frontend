@@ -20,13 +20,13 @@ export const MainCoinButtonGroup = ({ name }: { name: string }) => {
         setSelectedOption={(s: string) => [setMainCoin(s)]}
         selectedOption={mainCoin}
       />
-      {mainCoin === 'etc' && (
+      {mainCoin === 'etc_compatible' && (
         <p
           style={{
             color: 'var(--error)',
           }}
         >
-          {t('detail_zil.zmp_explain')}
+          {t('detail_zil.switch_zmp')}
         </p>
       )}
     </>

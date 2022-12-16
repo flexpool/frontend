@@ -17,6 +17,22 @@ import MainCoinButtonGroup from './MainCoinButtonGroup';
 import ViewDashboard from './ViewDashboard';
 
 import { SectionWrapper } from '../common/SectionWrapper';
+import { InfoBox } from '@/components/InfoBox';
+import { Spacer } from '@/components/layout/Spacer';
+
+import styled from 'styled-components';
+
+import { AiOutlineInfoCircle } from 'react-icons/ai';
+
+const MinerInfoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  & > * {
+    flex-shrink: 0;
+  }
+`;
 
 export const MineableCoinGuidePage: React.FC = () => {
   const router = useRouter();
@@ -136,6 +152,24 @@ export const MineableCoinGuidePage: React.FC = () => {
 
                   {values.main_coin === 'etc' && (
                     <MinerCommandSection
+                      extra={
+                        <div
+                          style={{
+                            width: '80%',
+                          }}
+                        >
+                          <InfoBox variant="primary">
+                            <MinerInfoContainer>
+                              <AiOutlineInfoCircle size={22} />
+                              <div>
+                                <div>{t('detail_zil.not_seeing')}</div>
+                                <div>{t('detail_zil.we_encourage')}</div>
+                              </div>
+                            </MinerInfoContainer>
+                          </InfoBox>
+                          <Spacer />
+                        </div>
+                      }
                       position={5}
                       data={mineableCoins[2].hardware[0].miners}
                       replaces={{
