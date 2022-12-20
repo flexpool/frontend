@@ -8,6 +8,7 @@ import { Leva } from 'leva';
 import Halo from './components/Halo';
 import Sphere from './components/Sphere';
 import Dots from './components/Dots';
+import Ring from './components/Ring';
 import ServerMarkers from './components/ServerMarkers';
 import Arcs from './components/Arcs';
 import RegionOverlay from './components/RegionOverlay';
@@ -64,6 +65,7 @@ const Scene = () => {
             <Dots />
             <ServerMarkers />
             <Arcs />
+            <Ring />
           </>
         )}
       </group>
