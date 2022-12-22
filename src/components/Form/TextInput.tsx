@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { BaseFormFieldProps, getInputProps } from './formikUtils';
 import { FieldWrap } from './FormWrap';
 
-const SText = styled.input`
+export const SText = styled.input`
   display: block;
   width: 100%;
   cursor: text;
@@ -46,7 +46,7 @@ type FocusRingProps = {
   hasEmbelishment?: boolean;
 };
 
-const FocusRing = styled.div<FocusRingProps>`
+export const FocusRing = styled.div<FocusRingProps>`
   width: 100%;
   border: 1px solid var(--bg-secondary);
   border-radius: ${(p) => (p.hasEmbelishment ? '5px 0px 0px 5px' : '5px')};
