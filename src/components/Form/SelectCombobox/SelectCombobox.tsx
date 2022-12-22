@@ -172,27 +172,36 @@ export const SelectCombobox = (props: SelectComboboxProps) => {
         </ComboboxInputWrapper>
 
         <DropdownList {...getMenuProps({ ref: dropdownListRef })}>
-          {isOpen && (
-            <>
-              {items.map((item, index) => {
-                return (
-                  <DropdownItem
-                    key={`${item.value}-${index}`}
-                    {...getItemProps({ index, item })}
-                  >
-                    <SelectOptionButton
-                      size="sm"
-                      active={selectedItem?.value === item.value}
-                      highlighted={highlightedIndex === index}
-                      value={item.value}
-                    >
-                      {item.label}
-                    </SelectOptionButton>
-                  </DropdownItem>
-                );
-              })}
-            </>
+          {items.length === 0 && (
+            <DropdownItem>
+              <div
+                style={{
+                  color: 'var(--text-secondary)',
+                  fontWeight: 500,
+                  paddingLeft: '8px',
+                }}
+              >
+                No results found
+              </div>
+            </DropdownItem>
           )}
+          {items.map((item, index) => {
+            return (
+              <DropdownItem
+                key={`${item.value}-${index}`}
+                {...getItemProps({ index, item })}
+              >
+                <SelectOptionButton
+                  size="sm"
+                  active={selectedItem?.value === item.value}
+                  highlighted={highlightedIndex === index}
+                  value={item.value}
+                >
+                  {item.label}
+                </SelectOptionButton>
+              </DropdownItem>
+            );
+          })}
         </DropdownList>
       </ComboBox>
     </SelectContainer>
