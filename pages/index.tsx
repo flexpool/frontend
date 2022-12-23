@@ -16,7 +16,6 @@ import { SearchWrapper, PageContainer } from '../src/pages/Home/components';
 import HeroHeadline from '@/pages/Home/components/HeroHeadline';
 import Globe from '@/components/Globe';
 import LamboExplainer from '@/pages/Home/components/LamboExplainer';
-import MergeAnnouncement from '@/pages/MinerDashboard/Announcements/MergeAnnouncement';
 
 import SnowFall from 'react-snowfall';
 
@@ -107,7 +106,6 @@ export const HomePage = () => {
           },
         ]}
       />
-      <MergeAnnouncement />
       <div
         style={{
           position: 'relative',
