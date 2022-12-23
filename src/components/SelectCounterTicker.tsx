@@ -7,8 +7,57 @@ import styled from 'styled-components';
 import { SelectOption } from './Form/Select/Select';
 import { SelectCombobox } from './Form/SelectCombobox';
 import usePoolCoinsQuery from '@/hooks/api/usePoolCoinsQuery';
+import { uniq } from 'lodash';
 
 import { Img } from './Img';
+
+const CURRENCIES = [
+  'aed',
+  'ars',
+  'aud',
+  'bdt',
+  'bhd',
+  'bmd',
+  'brl',
+  'cad',
+  'chf',
+  'clp',
+  'cny',
+  'czk',
+  'dkk',
+  'eur',
+  'gbp',
+  'hkd',
+  'huf',
+  'ils',
+  'inr',
+  'jpy',
+  'krw',
+  'kwd',
+  'lkr',
+  'mmk',
+  'mxn',
+  'myr',
+  'ngn',
+  'nok',
+  'nzd',
+  'php',
+  'pkr',
+  'pln',
+  'rub',
+  'sar',
+  'sek',
+  'sgd',
+  'thb',
+  'try',
+  'twd',
+  'uah',
+  'usd',
+  'vef',
+  'vnd',
+  'zar',
+  'lambo',
+];
 
 const TickerFlag = styled(Img)`
   height: 20px;
@@ -28,16 +77,7 @@ export const NewSelectCounterTicker = () => {
 
   const items = React.useMemo(() => {
     const currencyOptions = poolCoins?.countervalues
-      ? [
-          ...poolCoins.countervalues,
-          'sek',
-          'nzd',
-          'thb',
-          'pln',
-          'czk',
-          'uah',
-          'lambo',
-        ]
+      ? uniq([...poolCoins.countervalues, ...CURRENCIES])
       : [];
 
     return currencyOptions.map((item) => ({
