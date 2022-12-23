@@ -29,7 +29,6 @@ import { Spacer } from 'src/components/layout/Spacer';
 import { LoaderSpinner } from 'src/components/Loader/LoaderSpinner';
 import { PullToRefresh } from 'src/components/layout/PullToRefresh/PullToRefresh';
 import FlexFarmerAnnouncement from '@/pages/MinerDashboard/Announcements/FlexFarmerAnnouncement';
-import MergeAnnouncement from '@/pages/MinerDashboard/Announcements/MergeAnnouncement';
 import AddressPendingInfoBox from '@/pages/MinerDashboard/InfoBox/AddressPendingInfoBox';
 import AddressNotFoundInfoBox from '@/pages/MinerDashboard/InfoBox/AddressNotFoundInfoBox';
 import { PayoutsOnlyNote } from '@/pages/MinerDashboard/Header/PayoutsOnlyNote';
@@ -214,8 +213,6 @@ export const MinerDashboardPageContent: React.FC<{
           {props.status === 'ready' && coinTicker === 'xch' && (
             <FlexFarmerAnnouncement address={address} borderLocation="bottom" />
           )}
-
-          {coinTicker === 'eth' && <MergeAnnouncement />}
 
           <Content>
             <HeaderGreetings
