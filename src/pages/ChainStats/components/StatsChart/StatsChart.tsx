@@ -130,7 +130,7 @@ export const StatsChart = React.memo(
 
         difficultySeries.tooltipText = `${chartType}: {valueY.value.formatNumber("#.0 a'${unit}'")}`;
 
-        if (coin === 'zil') {
+        if (coin === 'zil' && type === 'blocktime') {
           difficultySeries.tooltipText = `${chartType}: {valueY.value.formatDuration("h 'hr' m 'min' s 'sec'")}`;
         }
 
