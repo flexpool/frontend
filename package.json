@@ -25,6 +25,7 @@
     "downshift": "^6.1.7",
     "formik": "^2.2.6",
     "framer-motion": "^6.2.5",
+    "js-cookie": "^3.0.1",
     "leva": "^0.9.20",
     "lodash": "^4.17.21",
     "lodash.debounce": "^4.0.8",
