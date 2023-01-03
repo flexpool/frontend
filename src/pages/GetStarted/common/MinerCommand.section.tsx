@@ -76,19 +76,6 @@ const OsContainer = styled.div`
   }
 `;
 
-const isPromotionFee = ({ key }: { key: string }) => {
-  if (key === 'rigelminer') return true;
-  return false;
-};
-
-const FeeHint = styled.span`
-  position: relative;
-  font-size: 14px;
-  line-height: 16px;
-  top: -1px;
-  color: var(--text-secondary);
-`;
-
 export const MinerCommandSection = ({
   position,
   data,
@@ -154,9 +141,6 @@ export const MinerCommandSection = ({
                   <p>
                     <strong>{t('detail.software.fee')}: </strong>{' '}
                     <Fee fee={miner.fee} />{' '}
-                    {isPromotionFee(miner) && (
-                      <FeeHint>({t('detail.software.promo_fee')})</FeeHint>
-                    )}
                   </p>
                 </div>
                 <OsContainer>
