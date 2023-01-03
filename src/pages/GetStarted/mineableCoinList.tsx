@@ -195,6 +195,17 @@ export const mineableCoins: MineableCoin[] = [
         key: 'dual',
         miners: [
           {
+            os: ['windows', 'linux', 'hiveos'],
+            title: 'GMiner',
+            key: 'gminer',
+            description: 'Actively developed and stable miner.',
+            compatibleGpus: ['AMD', 'NVIDIA'],
+            fee: [1],
+            downloadLink:
+              'https://github.com/develsoftware/GMinerRelease/releases',
+            cmd: 'miner.exe -a etc --ssl 1 -s CLOSEST_SERVER:5555 -u MAIN_WALLET_ADDRESS.WORKER_NAME --ssl 1 -s BACKUP_SERVER:5555 -u MAIN_WALLET_ADDRESS.WORKER_NAME --zilserver zmp://zil.flexpool.io --ziluser DUAL_WALLET_ADDRESS',
+          },
+          {
             os: ['windows', 'linux'],
             title: 'BzMiner',
             key: 'bzminer',
@@ -210,7 +221,7 @@ export const mineableCoins: MineableCoin[] = [
             title: ' Rigel Miner',
             key: 'rigelminer',
             description: 'Miner optimized for NVIDIA GPUs.',
-            fee: [0],
+            fee: [0.7],
             compatibleGpus: ['NVIDIA'],
             downloadLink: 'https://github.com/rigelminer/rigel/releases',
             cmd: 'rigel.exe -a etchash+zil -o ethproxy+ssl://CLOSEST_SERVER:5555 -o ethproxy+ssl://BACKUP_SERVER:5555 -u [1]MAIN_WALLET_ADDRESS -o [2]zmp://zil.flexpool.io -u DUAL_WALLET_ADDRESS -w WORKER_NAME',
