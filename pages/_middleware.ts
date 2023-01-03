@@ -28,7 +28,7 @@ export function middleware(req: NextRequest) {
     const currencyCode = countryInfo
       ? Object.keys(countryInfo.currencies)[0]
       : 'usd';
-    response.cookie(COOKIES_PREFERENCE_CURRENCY, currencyCode);
+    response.cookie(COOKIES_PREFERENCE_CURRENCY, currencyCode.toLowerCase());
   }
 
   return response;
