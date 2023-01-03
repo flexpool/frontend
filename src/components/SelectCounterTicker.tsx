@@ -12,6 +12,9 @@ import { uniq } from 'lodash';
 import { Img } from './Img';
 
 const CURRENCIES = [
+  'hkd',
+  'gbp',
+  'jpy',
   'aed',
   'ars',
   'aud',
@@ -26,12 +29,9 @@ const CURRENCIES = [
   'czk',
   'dkk',
   'eur',
-  'gbp',
-  'hkd',
   'huf',
   'ils',
   'inr',
-  'jpy',
   'krw',
   'kwd',
   'lkr',
