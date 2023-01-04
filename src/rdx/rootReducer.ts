@@ -4,6 +4,9 @@ import * as localSettings from 'src/rdx/localSettings/localSettings.reducer';
 import * as snacks from 'src/rdx/snacks/snacks.reducer';
 import * as addressSearch from 'src/rdx/addressSearch/addressSearch.reducer';
 import { localStorage } from 'src/utils/localStorage';
+import { get } from 'lodash';
+import Cookies from 'js-cookie';
+import { COOKIES_PREFERENCE_CURRENCY } from '@/constants';
 
 export const defaultReduxState = {
   localSettings: localSettings.defaultState,
@@ -19,7 +22,12 @@ const combinedReducer = combineReducers({
 
 export type AppState = ReturnType<typeof combinedReducer>;
 
-export const rootReducer: Reducer = (state, action) => {
+type CommonAction = {
+  type: string;
+  payload: any;
+};
+
+export const rootReducer: Reducer<any, CommonAction> = (state, action) => {
   const nextState = combinedReducer(state, action);
 
   // save localSettings to app_state
@@ -27,6 +35,13 @@ export const rootReducer: Reducer = (state, action) => {
     localStorage('app_state').set({
       localSettings: nextState.localSettings,
     });
+
+    // Keep cookies in sync with local settings
+    const counterTicker = get(action, 'payload.counterTicker');
+
+    if (counterTicker) {
+      Cookies.set(COOKIES_PREFERENCE_CURRENCY, counterTicker);
+    }
   }
 
   return nextState;
