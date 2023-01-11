@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import styled, { css } from 'styled-components';
-import { Card, CardGrid, CardTitle } from '@/components/layout/Card';
+import styled from 'styled-components';
+import { Card } from '@/components/layout/Card';
 import Modal from '@/components/Modal/Modal';
 import Stack from '@/components/Stack';
 import { getCoinIconUrl } from '@/utils/staticImage.utils';
