@@ -21,6 +21,7 @@ import { DurationPicker } from './DurationPicker';
 import { getDailyCoinEarningsPer100 } from '@/pages/GetStarted/DualMineBanner';
 import { FiChevronRight } from 'react-icons/fi';
 import Link from 'next/link';
+import { Trans, useTranslation } from 'next-i18next';
 
 const Description = styled.div`
   font-weight: 400;
@@ -242,6 +243,7 @@ const SoloMiningEarningsCard = ({
   interval: EstimateInterval;
 }) => {
   const { data: minerStatsState } = useMinerStatsQuery({ coin, address });
+  const { t } = useTranslation('dashboard');
 
   const estimated = useGetEstimatedEarnings({
     coin,
@@ -250,7 +252,10 @@ const SoloMiningEarningsCard = ({
   });
 
   return (
-    <EarningsCard accent={'var(--border-color)'} title="Regular Mining">
+    <EarningsCard
+      accent={'var(--border-color)'}
+      title={t('zil_promotion_popup.regular_mining')}
+    >
       <Image
         alt={`etc icon`}
         width={42}
@@ -260,7 +265,9 @@ const SoloMiningEarningsCard = ({
 
       <Spacer size="md" />
 
-      <EarningsTitle>Estimated Earnings</EarningsTitle>
+      <EarningsTitle>
+        {t('zil_promotion_popup.estimated_earnings')}
+      </EarningsTitle>
       <EarningsFiat>{estimated.counterTicker}</EarningsFiat>
       <EarningsCoin>{estimated.ticker}</EarningsCoin>
     </EarningsCard>
@@ -292,6 +299,7 @@ const DualMiningEarningsCard = ({
 }) => {
   const currencyFormatter = useLocalizedCurrencyFormatter();
   const percentFormatter = useLocalizedPercentFormatter();
+  const { t } = useTranslation('dashboard');
 
   const { data: minerStatsState } = useMinerStatsQuery({
     coin: 'etc',
@@ -311,7 +319,10 @@ const DualMiningEarningsCard = ({
   });
 
   return (
-    <EarningsCard title="Dual Mining" accent={'var(--success)'}>
+    <EarningsCard
+      title={t('zil_promotion_popup.dual_mining')}
+      accent={'var(--success)'}
+    >
       <InlineStack>
         <div
           style={{
@@ -340,7 +351,9 @@ const DualMiningEarningsCard = ({
         </div>
       </InlineStack>
       <Spacer size="md" />
-      <EarningsTitle>Estimated Earnings</EarningsTitle>
+      <EarningsTitle>
+        {t('zil_promotion_popup.estimated_earnings')}
+      </EarningsTitle>
       <EarningsFiat>
         {etcEstimated.counterTickerValue &&
           zilEstimated.counterTickerValue &&
@@ -537,6 +550,8 @@ export const ZILPromotionBar = ({
   const { data } = usePoolCoinsFullQuery();
   const percentFormatter = useLocalizedPercentFormatter();
 
+  const { t } = useTranslation('dashboard');
+
   const primaryCoin = data?.find((coin) => coin.ticker === 'etc');
   const dualCoin = data?.find((coin) => coin.ticker === 'zil');
 
@@ -562,13 +577,13 @@ export const ZILPromotionBar = ({
               width: '90%',
             }}
           >
-            <h2>Learn more about dual mining Zilliqa</h2>
+            <h2>{t('zil_promotion_popup.learn_more_about')}</h2>
           </div>
         </Modal.Header>
         <ScrollArea>
           <Modal.Body>
             <ComparisonSection>
-              <Heading>Earnings Comparison</Heading>
+              <Heading>{t('zil_promotion_popup.earnings_comparison')}</Heading>
 
               <EarningsCardContainer>
                 <SoloMiningEarningsCard
@@ -581,9 +596,9 @@ export const ZILPromotionBar = ({
               <Spacer size="md" />
               <DurationPicker
                 options={[
-                  { label: 'Daily', value: 1 },
-                  { label: 'Weekly', value: 7 },
-                  { label: 'Monthly', value: 30 },
+                  { label: t('zil_promotion_popup.daily'), value: 1 },
+                  { label: t('zil_promotion_popup.weekly'), value: 7 },
+                  { label: t('zil_promotion_popup.monthly'), value: 30 },
                 ]}
                 selected={interval}
                 onChange={setInterval}
@@ -605,10 +620,10 @@ export const ZILPromotionBar = ({
                   marginBottom: '8px',
                 }}
               >
-                Get the most out of your mining rigs
+                {t('zil_promotion_popup.get_the_most')}
               </div>
               <Description>
-                Read our in-depth guide for GPU miners or ASICs to get started
+                {t('zil_promotion_popup.read_our_guide')}
               </Description>
 
               <Spacer />
@@ -624,14 +639,14 @@ export const ZILPromotionBar = ({
                   href="/get-started/zil/dual"
                   color="var(--primary)"
                 >
-                  View GPU Dual Mining Guide
+                  {t('zil_promotion_popup.view_gpu')}
                 </ViewGuideButton>
 
                 <ViewGuideButton
                   href="/get-started/zil/dual-asic"
                   color="var(--primary)"
                 >
-                  View ASIC Dual Mining Guide
+                  {t('zil_promotion_popup.view_asic')}
                 </ViewGuideButton>
               </div>
             </div>
@@ -661,8 +676,16 @@ export const ZILPromotionBar = ({
               <CoinIcon coin={'zil'} />
             </IconStack>
             <Text>
-              Earn <Highlight>{boostPercent}</Highlight> more dual mining
-              Zilliqa.
+              <Trans
+                t={t}
+                i18nKey="zil_promotion_popup.earn_more"
+                components={{
+                  hl: <Highlight />,
+                }}
+                values={{
+                  percent: boostPercent,
+                }}
+              />
             </Text>
             <CTA
               style={{
@@ -672,7 +695,7 @@ export const ZILPromotionBar = ({
                 setOpen(true);
               }}
             >
-              Learn More
+              {t('zil_promotion_popup.learn_more')}
             </CTA>
           </PromotionBarContent>
         </div>
