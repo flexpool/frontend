@@ -361,25 +361,28 @@ const DualMiningEarningsCard = ({
             etcEstimated.counterTickerValue + zilEstimated.counterTickerValue
           )}
       </EarningsFiat>
-      <EarningsCoin>
-        {etcEstimated.ticker} + {zilEstimated.ticker}
-      </EarningsCoin>
 
-      <BoostTag>
-        <Stack spacing="xs">
-          <FiArrowUp />
+      {zilEstimated.ticker && etcEstimated.ticker ? (
+        <EarningsCoin>
+          {etcEstimated.ticker} + {zilEstimated.ticker}
+        </EarningsCoin>
+      ) : (
+        '-'
+      )}
 
-          {zilEstimated.counterTickerValue &&
-            etcEstimated.counterTickerValue && (
-              <div>
-                {`${percentFormatter(
-                  zilEstimated.counterTickerValue /
-                    etcEstimated.counterTickerValue
-                )} ${t('zil_promotion_popup.extra_earnings')}`}
-              </div>
-            )}
-        </Stack>
-      </BoostTag>
+      {zilEstimated.counterTickerValue && etcEstimated.counterTickerValue && (
+        <BoostTag>
+          <Stack spacing="xs">
+            <FiArrowUp />
+            <div>
+              {`${percentFormatter(
+                zilEstimated.counterTickerValue /
+                  etcEstimated.counterTickerValue
+              )} ${t('zil_promotion_popup.extra_earnings')}`}
+            </div>
+          </Stack>
+        </BoostTag>
+      )}
     </EarningsCard>
   );
 };

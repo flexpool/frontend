@@ -285,7 +285,7 @@
   "pending_header": "我们正在准备你的面板",
   "pending_description": "你的地址已被矿池发现，挖矿数据将在10分钟内准备完成。",
   "zil_promotion_popup": {
-    "earn_more": "双挖 Zilliqa 增加 <hl>{{percent}}</hl> 的收益。",
+    "earn_more": "双挖 Zilliqa 即可增加 <hl>{{percent}}</hl> 的收益。",
     "learn_more": "学习更多",
     "learn_more_about": "学习更多关于双挖 Zilliqa",
     "earnings_comparison": "收益对比",
