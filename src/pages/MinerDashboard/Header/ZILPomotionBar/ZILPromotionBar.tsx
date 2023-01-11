@@ -375,7 +375,7 @@ const DualMiningEarningsCard = ({
                 {`${percentFormatter(
                   zilEstimated.counterTickerValue /
                     etcEstimated.counterTickerValue
-                )} Extra Earnings`}
+                )} ${t('zil_promotion_popup.extra_earnings')}`}
               </div>
             )}
         </Stack>

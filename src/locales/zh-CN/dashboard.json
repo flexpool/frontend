@@ -283,5 +283,22 @@
   "warning_header": "看起来你的仪表板还没有准备好。",
   "warning_description": "如果您是新用户，您的仪表板将在首次将共享提交到此地址后20分钟内准备就绪。请稍后再查。",
   "pending_header": "我们正在准备你的面板",
-  "pending_description": "你的地址已被矿池发现，挖矿数据将在10分钟内准备完成。"
+  "pending_description": "你的地址已被矿池发现，挖矿数据将在10分钟内准备完成。",
+  "zil_promotion_popup": {
+    "earn_more": "双挖 Zilliqa 增加 <hl>{{percent}}</hl> 的收益。",
+    "learn_more": "学习更多",
+    "learn_more_about": "学习更多关于双挖 Zilliqa",
+    "earnings_comparison": "收益对比",
+    "regular_mining": "普通挖矿",
+    "dual_mining": "双币挖矿",
+    "estimated_earnings": "预期收益",
+    "extra_earnings": "更多收益",
+    "daily": "日收益",
+    "weekly": "周收益",
+    "monthly": "月收益",
+    "get_the_most": "让你的矿机收益最大化",
+    "read_our_guide": "请阅读我们的详细 GPU 和 ASIC 教程开始双挖",
+    "view_gpu": "查看 GPU 双挖教程",
+    "view_asic": "查看 ASIC 双挖教程"
+  }
 }
