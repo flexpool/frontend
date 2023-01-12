@@ -14,6 +14,7 @@ import { Tooltip, TooltipContent } from 'src/components/Tooltip';
 import { useTranslation } from 'next-i18next';
 import { useLocalizedCurrencyFormatter } from 'src/utils/si.utils';
 import UnpaidBalance from './components/UnpaidBalance';
+import { ZILPromotionBar } from './ZILPomotionBar';
 
 const EstimatedIntervalSwitch = styled.span`
   cursor: pointer;
@@ -142,23 +143,37 @@ export const HeaderStats = ({ coin, address }: HeaderStatsProps) => {
         />
       </Card>
       <UnpaidBalance coin={coin} address={address} />
-      <Card padding>
-        <CardTitle>
-          {t('header.stat_estimate')}{' '}
-          <EstimatedIntervalSwitch onClick={handleToggleEstimateInterval}>
-            ({t(`header.stat_estimate_${estimateText}`)}){' '}
-            <Tooltip icon={<CalendarIcon />}>
-              <TooltipContent>
-                {t('header.stat_estimate_tooltip')}
-              </TooltipContent>
-            </Tooltip>
-          </EstimatedIntervalSwitch>
-        </CardTitle>
-        <StatItem
-          value={estimated.ticker}
-          subValue={estimated.counterTicker && <>≈ {estimated.counterTicker}</>}
-        />
-      </Card>
+      <div
+        style={{
+          position: 'relative',
+        }}
+      >
+        <Card
+          padding
+          style={{
+            zIndex: 100,
+          }}
+        >
+          <CardTitle>
+            {t('header.stat_estimate')}{' '}
+            <EstimatedIntervalSwitch onClick={handleToggleEstimateInterval}>
+              ({t(`header.stat_estimate_${estimateText}`)}){' '}
+              <Tooltip icon={<CalendarIcon />}>
+                <TooltipContent>
+                  {t('header.stat_estimate_tooltip')}
+                </TooltipContent>
+              </Tooltip>
+            </EstimatedIntervalSwitch>
+          </CardTitle>
+          <StatItem
+            value={estimated.ticker}
+            subValue={
+              estimated.counterTicker && <>≈ {estimated.counterTicker}</>
+            }
+          />
+        </Card>
+        {coin === 'etc' && <ZILPromotionBar coin={coin} address={address} />}
+      </div>
     </CardGrid>
   );
 };

@@ -160,7 +160,7 @@ const GradientBackground = styled.div`
   transform: matrix(1, 0, 0, 1, 0, 0);
 `;
 
-const getDailyCoinEarningsPer100 = (
+export const getDailyCoinEarningsPer100 = (
   coin: ApiPoolCoinFull | undefined,
   counterTicker: string
 ) => {
