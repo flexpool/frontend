@@ -573,7 +573,14 @@ export const ZILPromotionBar = ({
 
   return (
     <>
-      <Modal isOpen={open} handleClose={handleClose} mobileFull>
+      <Modal
+        isOpen={open}
+        handleClose={handleClose}
+        mobileFull
+        style={{
+          minHeight: 'auto',
+        }}
+      >
         <Modal.Header>
           <div
             style={{
