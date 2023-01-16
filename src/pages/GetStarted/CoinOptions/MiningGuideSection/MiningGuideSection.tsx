@@ -292,6 +292,7 @@ export const MiningGuideSection = ({ ticker, name, coin }: Props) => {
   }) as MineableCoinHardware[];
 
   const mergedHw = merge(
+    [],
     mineableCoin?.hardware,
     poolHw
   ) as MineableCoinHardware[];
