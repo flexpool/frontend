@@ -136,11 +136,13 @@ export const AccountHeader: React.FC<{
       >
         {isRefreshing ? <Spinner /> : <BiRefresh />}
       </RefreshButton>
-      <MinerSettingsModal
-        coin={coin}
-        address={address}
-        isRefreshing={isRefreshing}
-      />
+      {coin && coin.ticker !== 'eth' && (
+        <MinerSettingsModal
+          coin={coin}
+          address={address}
+          isRefreshing={isRefreshing}
+        />
+      )}
     </Wrap>
   );
 };

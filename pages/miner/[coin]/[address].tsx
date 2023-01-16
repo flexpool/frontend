@@ -228,9 +228,13 @@ export const MinerDashboardPageContent: React.FC<{
               onRefresh={loadAll}
             />
             <Spacer />
-            <MinerDetails coin={activeCoin} address={address} />
-            <HeaderStats coin={coinTicker} address={address} />
-            {isPayoutOnly && <PayoutsOnlyNote />}
+            {coinTicker !== 'eth' && (
+              <>
+                <MinerDetails coin={activeCoin} address={address} />
+                <HeaderStats coin={coinTicker} address={address} />
+                {isPayoutOnly && <PayoutsOnlyNote />}
+              </>
+            )}
           </Content>
           <Tabs
             className="w-full"
