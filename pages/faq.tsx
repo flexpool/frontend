@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaLink } from 'react-icons/fa';
-import _ from 'lodash';
+import _, { isArrayLike } from 'lodash';
 import { NextSeo } from 'next-seo';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -13,7 +13,7 @@ import { CopyButton } from '../src/components/CopyButton';
 import { faqStructure } from '@/locales/faqStructure';
 
 type FaqMarkdown = {
-  attributes: { title: string; coin?: string };
+  attributes: { title: string; coin?: string | string[] };
   html: string;
   react: React.FC;
 };
@@ -109,12 +109,16 @@ const FaqSection: React.FC<FaqDataSection> = ({ name, contents }) => {
         <h2>{t(name)}</h2>
         {contents
           .filter((item) => {
-            const markdownCoinAttribute =
-              item.md.attributes.coin?.toLowerCase();
-            return (
-              !markdownCoinAttribute ||
-              markdownCoinAttribute === selectedCoinTicker
-            );
+            if (Array.isArray(item.md.attributes.coin)) {
+              return item.md.attributes.coin.includes(selectedCoinTicker);
+            } else {
+              const markdownCoinAttribute =
+                item.md.attributes.coin?.toLowerCase();
+              return (
+                !markdownCoinAttribute ||
+                markdownCoinAttribute === selectedCoinTicker
+              );
+            }
           })
           .map((item) => (
             <FaqQuestion key={item.key} data={item} />

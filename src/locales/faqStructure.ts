@@ -28,6 +28,35 @@ export const faqStructure = [
       'questions-about-flexpool/eth-i-mined-a-block.md',
       'questions-about-flexpool/eth-is-your-live-support-24-7.md',
 
+      // ETC + ZIL
+      'questions-about-flexpool/multi-how-to-join.md',
+      'questions-about-flexpool/multi-when-do-payouts-happen.md',
+      'questions-about-flexpool/multi-how-long-will-i-receive-payout.md',
+      'questions-about-flexpool/multi-balance-is-zero.md',
+      'questions-about-flexpool/multi-what-reward-scheme.md',
+      'questions-about-flexpool/multi-does-flexpool-have-transaction-fees.md',
+      'questions-about-flexpool/multi-does-flexpool-send-weekly-payouts-regardless-of-balance.md',
+      'questions-about-flexpool/multi-how-unstable-reported-hashrate-effect-my-payouts.md',
+      'questions-about-flexpool/multi-why-do-i-have-unstable-reported-hashrate.md',
+      'questions-about-flexpool/multi-how-share-count-calculated.md',
+      'questions-about-flexpool/multi-my-exchange-has-changed-my-address-how-do-i-fix-this-on-flexpool.md',
+      'questions-about-flexpool/multi-my-payout-is-confirmed-on-the-blockchain-but-it-is-not-on-my-wallet.md',
+      'questions-about-flexpool/multi-i-ve-lost-my-keys-mnemonics.md',
+      'questions-about-flexpool/multi-what-happens-inactive-worker.md',
+      'questions-about-flexpool/multi-is-your-live-support-24-7.md',
+
+      // ETC
+      'questions-about-flexpool/etc-flexpool-pool-fee.md',
+      'questions-about-flexpool/etc-what-is-minimum-payout.md',
+      'questions-about-flexpool/etc-what-is-payout-criteria.md',
+      'questions-about-flexpool/etc-should-i-use-ssl.md',
+      'questions-about-flexpool/etc-how-can-i-transfer-unpaid-balance-to-another-account.md',
+      'questions-about-flexpool/etc-i-mined-a-block.md',
+
+      // ZIL
+      'questions-about-flexpool/zil-flexpool-pool-fee.md',
+      'questions-about-flexpool/zil-what-is-minimum-payout.md',
+
       // XCH
       'questions-about-flexpool/xch-how-to-join-flexpool-chia-pool.md',
       'questions-about-flexpool/xch-what-software-do-i-need.md',
