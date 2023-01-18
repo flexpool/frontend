@@ -3,6 +3,7 @@ title: Is your live support 24/7?
 coin:
   - etc
   - zil
+  - xch
 ---
 
 Not yet, although we have miners around the world who may be able to help you on Discord or Telegram at any time.
