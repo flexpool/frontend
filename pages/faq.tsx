@@ -12,6 +12,7 @@ import { Page } from '../src/components/layout/Page';
 import { CopyButton } from '../src/components/CopyButton';
 import { faqStructure, faqOrderCompareFn } from '@/locales/faqStructure';
 import { useInterpolateFAQ } from '@/hooks/useInterpolateFAQ';
+import useIsMounted from '@/hooks/useIsMounted';
 
 type FaqMarkdown = {
   attributes: { title: string; coin?: string | string[] };
@@ -105,7 +106,10 @@ const FaqQuestion: React.FC<{
 
 const FaqSection: React.FC<FaqDataSection> = ({ name, contents }) => {
   const { t } = useTranslation('common');
+  const isMounted = useIsMounted();
   const selectedCoinTicker = useActiveCoinTicker();
+
+  if (!isMounted) return null;
 
   if (name === 'faq.miningBasics' && selectedCoinTicker === 'xch') return null;
 
