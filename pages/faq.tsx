@@ -11,6 +11,7 @@ import { Content } from '../src/components/layout/Content';
 import { Page } from '../src/components/layout/Page';
 import { CopyButton } from '../src/components/CopyButton';
 import { faqStructure } from '@/locales/faqStructure';
+import { useInterpolateFAQ } from '@/hooks/useInterpolateFAQ';
 
 type FaqMarkdown = {
   attributes: { title: string; coin?: string | string[] };
@@ -60,7 +61,10 @@ const FSection = styled.div`
   margin-top: 1rem;
 `;
 
-const FaqQuestion: React.FC<{ data: FaqDataSection['contents'][0] }> = ({
+const FaqQuestion: React.FC<{
+  data: FaqDataSection['contents'][0];
+  coin: string;
+}> = ({
   data: {
     key,
     md: {
@@ -69,8 +73,10 @@ const FaqQuestion: React.FC<{ data: FaqDataSection['contents'][0] }> = ({
       html,
     },
   },
+  coin,
 }) => {
   const [openQuestion, setOpenQuestion] = useState(false);
+  const i = useInterpolateFAQ({ coin });
 
   return (
     <SectionItem>
@@ -91,7 +97,7 @@ const FaqQuestion: React.FC<{ data: FaqDataSection['contents'][0] }> = ({
         </CopyWrapper>
       </SectionItemHeader>
       {openQuestion && (
-        <SectionContent dangerouslySetInnerHTML={{ __html: html }} />
+        <SectionContent dangerouslySetInnerHTML={{ __html: i(html) }} />
       )}
     </SectionItem>
   );
@@ -121,7 +127,7 @@ const FaqSection: React.FC<FaqDataSection> = ({ name, contents }) => {
             }
           })
           .map((item) => (
-            <FaqQuestion key={item.key} data={item} />
+            <FaqQuestion key={item.key} data={item} coin={selectedCoinTicker} />
           ))}
       </FSection>
     </>
@@ -238,6 +244,7 @@ export async function getStaticProps({ locale }) {
         'common',
         'cookie-consent',
         'seo',
+        'get-started',
       ])),
       faq: loadFaq,
     },

@@ -30,6 +30,7 @@ export const faqStructure = [
 
       // ETC + ZIL
       'questions-about-flexpool/multi-how-to-join.md',
+      'questions-about-flexpool/multi-what-is-minimum-payout.md',
       'questions-about-flexpool/multi-when-do-payouts-happen.md',
       'questions-about-flexpool/multi-how-long-will-i-receive-payout.md',
       'questions-about-flexpool/multi-balance-is-zero.md',
@@ -47,7 +48,6 @@ export const faqStructure = [
 
       // ETC
       'questions-about-flexpool/etc-flexpool-pool-fee.md',
-      'questions-about-flexpool/etc-what-is-minimum-payout.md',
       'questions-about-flexpool/etc-what-is-payout-criteria.md',
       'questions-about-flexpool/etc-should-i-use-ssl.md',
       'questions-about-flexpool/etc-how-can-i-transfer-unpaid-balance-to-another-account.md',
@@ -55,14 +55,12 @@ export const faqStructure = [
 
       // ZIL
       'questions-about-flexpool/zil-flexpool-pool-fee.md',
-      'questions-about-flexpool/zil-what-is-minimum-payout.md',
 
       // XCH
       'questions-about-flexpool/xch-how-to-join-flexpool-chia-pool.md',
       'questions-about-flexpool/xch-what-software-do-i-need.md',
       'questions-about-flexpool/xch-do-i-have-to-make-new-plots-for-flexpool-or-flex-farmer.md',
       'questions-about-flexpool/xch-what-is-flexpool-s-chia-pool-fee.md',
-      'questions-about-flexpool/xch-what-is-minimum-payout.md',
       'questions-about-flexpool/xch-when-do-payouts-happen.md',
       'questions-about-flexpool/xch-how-many-chia-do-i-get-for-x-tb-of-plots.md',
       'questions-about-flexpool/xch-how-are-rewards-calculated-what-if-i-find-a-block.md',

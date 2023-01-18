@@ -1,6 +1,9 @@
 ---
 title: What is the minimum payout amount?
-coin: eth
+coin:
+  - etc
+  - xch
+  - zil
 ---
 
-From 0.01 ETH up to 100 ETH
+{{payouts}}
