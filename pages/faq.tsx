@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaLink } from 'react-icons/fa';
-import _, { isArrayLike } from 'lodash';
+import _ from 'lodash';
 import { NextSeo } from 'next-seo';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
