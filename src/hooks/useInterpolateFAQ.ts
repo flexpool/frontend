@@ -26,10 +26,15 @@ export const useInterpolateFAQ = ({ coin }: { coin: string }) => {
     lng: 'en-US',
   }) as { key: string; value: string }[];
 
-  const mappedPoolDetails = poolDetailsEn?.reduce((prev, current, index) => {
-    prev[snakeCase(current.key)] = poolDetails[index].value;
-    return prev;
-  }, {});
+  let mappedPoolDetails = {};
+
+  // poolDetails is NOT array when redirect away from page, this is a safe guard
+  if (Array.isArray(poolDetails) && Array.isArray(poolDetailsEn)) {
+    mappedPoolDetails = poolDetailsEn?.reduce((prev, current, index) => {
+      prev[snakeCase(current.key)] = poolDetails[index].value;
+      return prev;
+    }, {});
+  }
 
   const i = (html: string) => {
     return Object.keys(mappedPoolDetails).reduce((prev, current) => {

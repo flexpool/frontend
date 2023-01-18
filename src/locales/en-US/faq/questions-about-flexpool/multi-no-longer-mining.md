@@ -6,4 +6,4 @@ coin:
   - zil
 ---
 
-If you have stopped mining and needed a payout, submit a support request [link to https://www.flexpool.io/support], confirming your coin and payout address, and we can enable a one-time payment.
+If you have stopped mining and needed a payout, submit a [support request](/support), confirming your coin and payout address, and we can enable a one-time payment.
