@@ -10,7 +10,7 @@ import { useActiveCoinTicker } from '@/rdx/localSettings/localSettings.hooks';
 import { Content } from '../src/components/layout/Content';
 import { Page } from '../src/components/layout/Page';
 import { CopyButton } from '../src/components/CopyButton';
-import { faqStructure } from '@/locales/faqStructure';
+import { faqStructure, faqOrderCompareFn } from '@/locales/faqStructure';
 import { useInterpolateFAQ } from '@/hooks/useInterpolateFAQ';
 
 type FaqMarkdown = {
@@ -126,6 +126,7 @@ const FaqSection: React.FC<FaqDataSection> = ({ name, contents }) => {
               );
             }
           })
+          .sort((a, b) => faqOrderCompareFn(selectedCoinTicker)(a.name, b.name))
           .map((item) => (
             <FaqQuestion key={item.key} data={item} coin={selectedCoinTicker} />
           ))}
