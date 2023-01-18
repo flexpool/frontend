@@ -1,6 +1,8 @@
 ---
 title: Should I use SSL?
-coin: etc
+coin:
+  - etc
+  - zil
 ---
 
 **Yes**, use SSL where possible.

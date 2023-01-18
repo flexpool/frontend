@@ -32,7 +32,7 @@ const faqOrder = {
     'questions-about-flexpool/multi-flexpool-pool-fee.md',
     'questions-about-flexpool/etc-i-mined-a-block.md',
     'questions-about-flexpool/etc-what-is-payout-criteria.md',
-    'questions-about-flexpool/etc-should-i-use-ssl.md',
+    'questions-about-flexpool/multi-should-i-use-ssl.md',
     'questions-about-flexpool/multi-when-do-payouts-happen.md',
     'questions-about-flexpool/multi-how-long-will-i-receive-payout.md',
     'questions-about-flexpool/multi-what-reward-scheme.md',
@@ -86,13 +86,13 @@ export const faqStructure = [
       'questions-about-flexpool/multi-my-exchange-has-changed-my-address-how-do-i-fix-this-on-flexpool.md',
       'questions-about-flexpool/multi-my-payout-is-confirmed-on-the-blockchain-but-it-is-not-on-my-wallet.md',
       'questions-about-flexpool/multi-i-ve-lost-my-keys-mnemonics.md',
+      'questions-about-flexpool/multi-should-i-use-ssl.md',
       'questions-about-flexpool/multi-what-happens-inactive-worker.md',
       'questions-about-flexpool/multi-is-your-live-support-24-7.md',
       'questions-about-flexpool/multi-no-longer-mining.md',
 
       // ETC
       'questions-about-flexpool/etc-what-is-payout-criteria.md',
-      'questions-about-flexpool/etc-should-i-use-ssl.md',
       'questions-about-flexpool/etc-i-mined-a-block.md',
 
       // XCH
