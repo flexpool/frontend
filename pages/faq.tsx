@@ -10,10 +10,12 @@ import { useActiveCoinTicker } from '@/rdx/localSettings/localSettings.hooks';
 import { Content } from '../src/components/layout/Content';
 import { Page } from '../src/components/layout/Page';
 import { CopyButton } from '../src/components/CopyButton';
-import { faqStructure } from '@/locales/faqStructure';
+import { faqStructure, faqOrderCompareFn } from '@/locales/faqStructure';
+import { useInterpolateFAQ } from '@/hooks/useInterpolateFAQ';
+import useIsMounted from '@/hooks/useIsMounted';
 
 type FaqMarkdown = {
-  attributes: { title: string; coin?: string };
+  attributes: { title: string; coin?: string | string[] };
   html: string;
   react: React.FC;
 };
@@ -60,7 +62,10 @@ const FSection = styled.div`
   margin-top: 1rem;
 `;
 
-const FaqQuestion: React.FC<{ data: FaqDataSection['contents'][0] }> = ({
+const FaqQuestion: React.FC<{
+  data: FaqDataSection['contents'][0];
+  coin: string;
+}> = ({
   data: {
     key,
     md: {
@@ -69,8 +74,10 @@ const FaqQuestion: React.FC<{ data: FaqDataSection['contents'][0] }> = ({
       html,
     },
   },
+  coin,
 }) => {
   const [openQuestion, setOpenQuestion] = useState(false);
+  const i = useInterpolateFAQ({ coin });
 
   return (
     <SectionItem>
@@ -91,7 +98,7 @@ const FaqQuestion: React.FC<{ data: FaqDataSection['contents'][0] }> = ({
         </CopyWrapper>
       </SectionItemHeader>
       {openQuestion && (
-        <SectionContent dangerouslySetInnerHTML={{ __html: html }} />
+        <SectionContent dangerouslySetInnerHTML={{ __html: i(html) }} />
       )}
     </SectionItem>
   );
@@ -99,7 +106,10 @@ const FaqQuestion: React.FC<{ data: FaqDataSection['contents'][0] }> = ({
 
 const FaqSection: React.FC<FaqDataSection> = ({ name, contents }) => {
   const { t } = useTranslation('common');
+  const isMounted = useIsMounted();
   const selectedCoinTicker = useActiveCoinTicker();
+
+  if (!isMounted) return null;
 
   if (name === 'faq.miningBasics' && selectedCoinTicker === 'xch') return null;
 
@@ -109,15 +119,20 @@ const FaqSection: React.FC<FaqDataSection> = ({ name, contents }) => {
         <h2>{t(name)}</h2>
         {contents
           .filter((item) => {
-            const markdownCoinAttribute =
-              item.md.attributes.coin?.toLowerCase();
-            return (
-              !markdownCoinAttribute ||
-              markdownCoinAttribute === selectedCoinTicker
-            );
+            if (Array.isArray(item.md.attributes.coin)) {
+              return item.md.attributes.coin.includes(selectedCoinTicker);
+            } else {
+              const markdownCoinAttribute =
+                item.md.attributes.coin?.toLowerCase();
+              return (
+                !markdownCoinAttribute ||
+                markdownCoinAttribute === selectedCoinTicker
+              );
+            }
           })
+          .sort((a, b) => faqOrderCompareFn(selectedCoinTicker)(a.name, b.name))
           .map((item) => (
-            <FaqQuestion key={item.key} data={item} />
+            <FaqQuestion key={item.key} data={item} coin={selectedCoinTicker} />
           ))}
       </FSection>
     </>
@@ -234,6 +249,7 @@ export async function getStaticProps({ locale }) {
         'common',
         'cookie-consent',
         'seo',
+        'get-started',
       ])),
       faq: loadFaq,
     },
