@@ -6,8 +6,6 @@ const faqOrder = {
     'questions-about-flexpool/multi-what-reward-scheme.md',
     'questions-about-flexpool/xch-what-software-do-i-need.md',
     'questions-about-flexpool/xch-do-i-have-to-make-new-plots-for-flexpool-or-flex-farmer.md',
-    'questions-about-flexpool/xch-what-is-flexpool-s-chia-pool-fee.md',
-    'questions-about-flexpool/xch-when-do-payouts-happen.md',
     'questions-about-flexpool/xch-how-many-chia-do-i-get-for-x-tb-of-plots.md',
     'questions-about-flexpool/xch-how-are-rewards-calculated-what-if-i-find-a-block.md',
     'questions-about-flexpool/xch-what-address-do-i-use-on-the-flexpool-website-to-see-my-dashboard.md',
@@ -19,7 +17,6 @@ const faqOrder = {
     'questions-about-flexpool/xch-why-does-my-gui-show-current-difficulty-of-1-and-current-points-balance-of-9999.md',
     'questions-about-flexpool/xch-how-can-i-transfer-unpaid-balance-to-another-account.md',
     'questions-about-flexpool/xch-how-do-i-change-to-a-different-pool-server-for-my-chia-farm.md',
-    'questions-about-flexpool/xch-is-your-live-support-24-7.md',
     'questions-about-flexpool/multi-no-longer-mining.md',
   ],
   etc: [
@@ -95,8 +92,6 @@ export const faqStructure = [
       'questions-about-flexpool/xch-how-to-join-flexpool-chia-pool.md',
       'questions-about-flexpool/xch-what-software-do-i-need.md',
       'questions-about-flexpool/xch-do-i-have-to-make-new-plots-for-flexpool-or-flex-farmer.md',
-      'questions-about-flexpool/xch-what-is-flexpool-s-chia-pool-fee.md',
-      'questions-about-flexpool/xch-when-do-payouts-happen.md',
       'questions-about-flexpool/xch-how-many-chia-do-i-get-for-x-tb-of-plots.md',
       'questions-about-flexpool/xch-how-are-rewards-calculated-what-if-i-find-a-block.md',
       'questions-about-flexpool/xch-what-address-do-i-use-on-the-flexpool-website-to-see-my-dashboard.md',
@@ -108,7 +103,6 @@ export const faqStructure = [
       'questions-about-flexpool/xch-why-does-my-gui-show-current-difficulty-of-1-and-current-points-balance-of-9999.md',
       'questions-about-flexpool/xch-how-can-i-transfer-unpaid-balance-to-another-account.md',
       'questions-about-flexpool/xch-how-do-i-change-to-a-different-pool-server-for-my-chia-farm.md',
-      'questions-about-flexpool/xch-is-your-live-support-24-7.md',
     ],
   },
   {
