@@ -5,4 +5,4 @@ coin:
   - zil
 ---
 
-First, stop mining to a wallet if you no longer believe you can access it. Then, contact support with a description of the situation and your ETH address. They will let you know if anything can be done.
+First, stop mining to a wallet if you no longer believe you can access it. Then, contact support with a description of the situation and your address. They will let you know if anything can be done.
