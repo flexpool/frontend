@@ -283,5 +283,22 @@
   "warning_header": "Схоже, ваша інформаційна панель ще не готова.",
   "warning_description": "Якщо ви новачок, ваша інформаційна панель буде готова протягом 20 хвилин після того, як ви вперше надіслали публікацію на цю адресу. Перевірте, будь ласка, трохи пізніше.",
   "pending_header": "We are preparing your dashboard",
-  "pending_description": "Your address is recognized by the pool, please wait 10 minutes for the stats to be ready."
+  "pending_description": "Your address is recognized by the pool, please wait 10 minutes for the stats to be ready.",
+  "zil_promotion_popup": {
+    "earn_more": "Earn <hl>{{percent}}</hl> more dual mining Zilliqa.",
+    "learn_more": "Learn More",
+    "learn_more_about": "Learn more about dual mining Zilliqa",
+    "earnings_comparison": "Earnings Comparison",
+    "regular_mining": "Regular Mining",
+    "dual_mining": "Dual Mining",
+    "estimated_earnings": "Estimated Earnings",
+    "extra_earnings": "Extra Earnings",
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "get_the_most": "Get the most out of your mining rigs",
+    "read_our_guide": "Read our in-depth guide for GPU miners or ASICs to get started",
+    "view_gpu": "View GPU Dual Mining Guide",
+    "view_asic": "View ASIC Dual Mining Guide"
+  }
 }
