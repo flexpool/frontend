@@ -78,7 +78,7 @@
     "software": {
       "title": "选择挖矿软件",
       "fee": "费用",
-      "promo_fee": "推广时的费用，在不久的将来会有变化"
+      "promo_fee": "promotional fee, subject to change in the near future"
     },
     "view": {
       "title": "矿机监控及收益查看",
@@ -89,10 +89,10 @@
   "detail_zil": {
     "title": "Zilliqa mining",
     "select_dual_mining": "Select your dual mining config",
-    "compatible_mode": "兼容模式",
-    "not_seeing": "没有看到你的挖矿软件？",
-    "we_encourage": "我们强烈建议使用以下软件，如果你不可以的话，可以查看我们的<compatible>兼容攻略</compatible>。",
-    "switch_zmp": "建议您使用ZMP挖矿软件获取更好的收益。",
+    "compatible_mode": "Compatible Mode",
+    "not_seeing": "Not seeing your miner here?",
+    "we_encourage": "We encourage switching to the ones below, but in case you can't, please refer to our <compatible>Compatible Mode</compatible> guide.",
+    "switch_zmp": "Please consider switching to a miner that supports ZMP for better profitability.",
     "pool_details": [
       {
         "key": "Reward Scheme",
@@ -316,7 +316,9 @@
   "cmd_keys": {
     "CLOSEST_SERVER": "最近服务器地址",
     "WALLET_ADDRESS": "钱包地址",
-    "WORKER_NAME": "矿机名字"
+    "WORKER_NAME": "矿机名字",
+    "ZIL_WALLET_ADDRESS": "ZIL_WALLET_ADDRESS",
+    "ETC_WALLET_ADDRESS": "ETC_WALLET_ADDRESS"
   },
   "nicehash": {
     "head_title": "Nicehash 设置",

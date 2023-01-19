@@ -77,7 +77,8 @@
     },
     "software": {
       "title": "Välj din mining-programvara",
-      "fee": "Avgift"
+      "fee": "Avgift",
+      "promo_fee": "promotional fee, subject to change in the near future"
     },
     "view": {
       "title": "Visa din statistik",
@@ -88,6 +89,10 @@
   "detail_zil": {
     "title": "Zilliqa mining",
     "select_dual_mining": "Select your dual mining config",
+    "compatible_mode": "Compatible Mode",
+    "not_seeing": "Not seeing your miner here?",
+    "we_encourage": "We encourage switching to the ones below, but in case you can't, please refer to our <compatible>Compatible Mode</compatible> guide.",
+    "switch_zmp": "Please consider switching to a miner that supports ZMP for better profitability.",
     "pool_details": [
       {
         "key": "Reward Scheme",
@@ -311,7 +316,9 @@
   "cmd_keys": {
     "CLOSEST_SERVER": "NÄRMASTE_SERVERN",
     "WALLET_ADDRESS": "WALLET_ADRESS",
-    "WORKER_NAME": "WORKER_NAMN"
+    "WORKER_NAME": "WORKER_NAMN",
+    "ZIL_WALLET_ADDRESS": "ZIL_WALLET_ADDRESS",
+    "ETC_WALLET_ADDRESS": "ETC_WALLET_ADDRESS"
   },
   "nicehash": {
     "head_title": "NiceHash guide för att mina på Flexpool",
