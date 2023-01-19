@@ -18,6 +18,9 @@ import Globe from '@/components/Globe';
 import LamboExplainer from '@/pages/Home/components/LamboExplainer';
 
 import SnowFall from 'react-snowfall';
+import ShowBetweenDate from '@/components/ShowBetweenDates';
+
+const CURRENT_YEAR = new Date().getFullYear();
 
 const HeroGlow1 = styled.div`
   display: none;
@@ -112,7 +115,14 @@ export const HomePage = () => {
         }}
       >
         <Hero>
-          <SnowFall style={{ zIndex: 0 }} />
+          <ShowBetweenDate
+            start={`${CURRENT_YEAR} 1/15`}
+            end={`${CURRENT_YEAR} 12/15`}
+            mode="outside"
+          >
+            <SnowFall style={{ zIndex: 0 }} />
+          </ShowBetweenDate>
+
           <Content>
             <HeroLayout>
               <HeroLeft>
