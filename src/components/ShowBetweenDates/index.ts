@@ -1,2 +1,2 @@
-export * from './ShowBetweenDate';
-export { default } from './ShowBetweenDate';
+export * from './ShowBetweenDates';
+export { default } from './ShowBetweenDates';
