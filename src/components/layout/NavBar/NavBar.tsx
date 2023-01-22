@@ -15,24 +15,34 @@ import { SearchAddressBar } from '@/components/SearchAddressBar/SearchAddressBar
 import { Burger } from '@/components/Burger/Burger';
 import { clx } from 'src/utils/clx';
 import LogoSvg from 'public/svg/logo.svg';
+import ChristmasLogoSvg from 'public/svg/logo-christmas.svg';
 import { useTranslation } from 'next-i18next';
 import MobileDrawer from './MobileDrawer';
+import useIsBetweenDates from '@/hooks/useIsBetweenDates';
+
+const CURRENT_YEAR = new Date().getFullYear();
 
 const Logo = styled.div`
   width: 165px;
-  margin-bottom: 5px; // Remove when christmas logo is retired
 
   svg {
     fill: var(--text-primary);
   }
 `;
 
+const ChristmasLogo = styled(Logo)`
+  margin-bottom: 5px;
+`;
+
 const LogoMobile = styled.div`
   width: 141px;
-  margin-bottom: 5px; // Remove when christmas logo is retired
   svg {
     fill: var(--text-primary);
   }
+`;
+
+const ChristmasLogoMobile = styled(LogoMobile)`
+  margin-bottom: 5px;
 `;
 
 const NLink = styled.a`
@@ -138,6 +148,12 @@ const NavBar: React.FC<NavBarType> = (props) => {
   const modalSearchOpenState = useOpenState();
   const { t } = useTranslation(['home', 'common']);
 
+  const isBetweenChristmas = useIsBetweenDates({
+    start: `${CURRENT_YEAR} 1/15`,
+    end: `${CURRENT_YEAR} 12/15`,
+    mode: 'outside',
+  });
+
   return (
     <>
       <Modal
@@ -167,9 +183,15 @@ const NavBar: React.FC<NavBarType> = (props) => {
           <NavSection>
             <Link href="/" passHref>
               <NLink style={{ marginLeft: '-0.5rem' }}>
-                <Logo>
-                  <LogoSvg />
-                </Logo>
+                {isBetweenChristmas ? (
+                  <ChristmasLogo>
+                    <ChristmasLogoSvg />
+                  </ChristmasLogo>
+                ) : (
+                  <Logo>
+                    <LogoSvg />
+                  </Logo>
+                )}
               </NLink>
             </Link>
             <Link href="/statistics" passHref>
@@ -206,9 +228,15 @@ const NavBar: React.FC<NavBarType> = (props) => {
       <ContainerMobile>
         <NavContainer>
           <Link href="/" aria-label="Home page" passHref>
-            <LogoMobile>
-              <LogoSvg />
-            </LogoMobile>
+            {isBetweenChristmas ? (
+              <ChristmasLogoMobile>
+                <ChristmasLogoSvg />
+              </ChristmasLogoMobile>
+            ) : (
+              <LogoMobile>
+                <LogoSvg />
+              </LogoMobile>
+            )}
           </Link>
           <NavSection>
             <Link href="/statistics" passHref>

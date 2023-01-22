@@ -1,17 +1,15 @@
-import React from 'react';
+import useIsMounted from './useIsMounted';
 import { isAfter, isBefore } from 'date-fns';
-import useIsMounted from '@/hooks/useIsMounted';
 
 type Props = {
   start: string | number;
   end: string | number;
   mode: 'inside' | 'outside';
-  children: React.ReactNode;
 };
 
-export const ShowBetweenDate = ({ start, end, children, mode }: Props) => {
+export const useIsBetweenDates = ({ start, end, mode }: Props) => {
   const isMounted = useIsMounted();
-  if (!isMounted) return <></>;
+  if (!isMounted) return false;
 
   let isBetween = false;
 
@@ -27,9 +25,7 @@ export const ShowBetweenDate = ({ start, end, children, mode }: Props) => {
       isBefore(currentDate, startDate) || isAfter(currentDate, endDate);
   }
 
-  if (!isBetween) return <></>;
-
-  return <>{children}</>;
+  return isBetween;
 };
 
-export default ShowBetweenDate;
+export default useIsBetweenDates;
