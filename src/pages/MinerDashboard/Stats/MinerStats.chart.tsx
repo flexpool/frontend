@@ -206,10 +206,9 @@ export const StatsChart: React.FC<{
 
       sharesChart.cursor = new XYCursor();
       sharesChart.legend = new Legend();
-      sharesChart.legend.reverseOrder = true;
 
-      sharesChart.data = sharesData.reverse();
-      hashrateChart.data = hashrateData.reverse();
+      sharesChart.data = sharesData;
+      hashrateChart.data = hashrateData;
 
       return () => {
         hashrateChart.dispose();
