@@ -4,7 +4,12 @@ import Image from 'next/image';
 import { getCoinIconUrl } from 'src/utils/staticImage.utils';
 import { useTranslation } from 'next-i18next';
 import { Spacer } from '@/components/layout/Spacer';
-import { RadioGroup, GuideTypeRadio } from '../GuideTypeRadio';
+import {
+  RadioGroup,
+  GuideTypeRadio,
+  GuideOptionGroupContainer,
+  GuideOptionGroupLabel,
+} from '../GuideTypeRadio';
 import { ViewGuideButton } from '../ViewGuideButton';
 import { PoolDetails } from '../PoolDetails';
 import {
@@ -88,6 +93,12 @@ type HardwareOption = {
   tag?: string;
 };
 
+type GuideOptionsGroup = {
+  type: 'group';
+  label: string;
+  options: HardwareOption[];
+};
+
 const Tag = styled.div`
   display: inline-flex;
   justify-content: center;
@@ -101,17 +112,32 @@ const Tag = styled.div`
   color: var(--success);
 `;
 
+const isGuideOptionsGroup = (
+  input: GuideOptionsGroup | HardwareOption
+): input is GuideOptionsGroup => {
+  return 'type' in input;
+};
+
+const flatOptions = (options: (HardwareOption | GuideOptionsGroup)[]) => {
+  return options.flatMap((option) => {
+    if (isGuideOptionsGroup(option)) return option.options;
+    return option;
+  });
+};
+
 const PoolGuideOptions = ({
   options,
   coin,
 }: {
   coin: string;
-  options: HardwareOption[];
+  options: (HardwareOption | GuideOptionsGroup)[];
 }) => {
-  const [selected, setSelected] = useState(0);
+  const allGuideOptions = flatOptions(options);
+
+  const [selected, setSelected] = useState(allGuideOptions[0].key);
   const { t } = useTranslation('get-started');
 
-  const key = options[selected].key;
+  const key = selected;
 
   let guideLink = `/get-started/${coin}/${key}`;
   let color = 'var(--primary)';
@@ -125,20 +151,57 @@ const PoolGuideOptions = ({
     color = 'var(--warning)';
   }
 
-  return (
-    <>
-      <h2>{t('list.start_today')}</h2>
-      <SubHeading>{t('list.begin_experience')}</SubHeading>
-      <Spacer size="md" />
-      <RadioGroup value={String(selected)}>
+  const renderOptionsGroup = ({
+    label,
+    options,
+  }: {
+    label: string;
+    options: HardwareOption[];
+  }) => {
+    return (
+      <GuideOptionGroupContainer>
+        <GuideOptionGroupLabel>{label}</GuideOptionGroupLabel>
         {options.map((option, index) => {
           return (
             <GuideTypeRadio
               key={option.key}
-              value={String(index)}
-              selected={String(selected) === String(index)}
+              value={option.key}
+              selected={selected === option.key}
               onClick={() => {
-                setSelected(index);
+                setSelected(option.key);
+              }}
+            >
+              {option.title}
+
+              {option.tag && <Tag>{option.tag}</Tag>}
+            </GuideTypeRadio>
+          );
+        })}
+      </GuideOptionGroupContainer>
+    );
+  };
+
+  const selectedGuideName =
+    allGuideOptions.find((option) => option.key === selected)?.title ||
+    selected;
+
+  return (
+    <>
+      <h2>{t('list.start_today')}</h2>
+      <SubHeading>{t('list.begin_experience')}</SubHeading>
+      <RadioGroup value={String(selected)}>
+        {options.map((option, index) => {
+          if (isGuideOptionsGroup(option)) {
+            return renderOptionsGroup(option);
+          }
+
+          return (
+            <GuideTypeRadio
+              key={option.key}
+              value={option.key}
+              selected={selected === option.key}
+              onClick={() => {
+                setSelected(option.key);
               }}
             >
               {option.title}
@@ -149,9 +212,15 @@ const PoolGuideOptions = ({
       </RadioGroup>
       <Spacer size="lg" />
       <FlexEnd>
-        <ViewGuideButton href={guideLink} color={color}>
+        <ViewGuideButton
+          href={guideLink}
+          color={color}
+          style={{
+            fontSize: selectedGuideName.length > 20 ? '14px' : '16px',
+          }}
+        >
           {t('list.view_button', {
-            name: options[selected].title,
+            name: selectedGuideName,
           })}
         </ViewGuideButton>
       </FlexEnd>
@@ -320,6 +389,31 @@ export const MiningGuideSection = ({ ticker, name, coin }: Props) => {
     });
   }
 
+  let options: (HardwareOption | GuideOptionsGroup)[] = mergedHw;
+
+  // This is hard coded here since it's an outlier
+  // If we have more groups in the future, we should embed
+  // data in mineableCoinList
+  if (ticker.toLowerCase() === 'xch') {
+    options = [
+      {
+        type: 'group',
+        label: 'Plotting Guides',
+        options: [
+          {
+            title: 'MMX Compression Plots',
+            key: 'mmx-compression-plots',
+          },
+        ],
+      },
+      {
+        type: 'group',
+        label: 'Farming Guides',
+        options: mergedHw,
+      },
+    ];
+  }
+
   return (
     <SectionWrapper>
       <Layout>
@@ -339,7 +433,7 @@ export const MiningGuideSection = ({ ticker, name, coin }: Props) => {
             <PoolPerks />
           </MainCol>
           <SubCol>
-            <PoolGuideOptions coin={ticker} options={mergedHw} />
+            <PoolGuideOptions coin={ticker} options={options} />
           </SubCol>
         </LayoutBody>
       </Layout>

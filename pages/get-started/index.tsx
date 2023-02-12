@@ -4,7 +4,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { Content } from '../../src/components/layout/Content';
 import { Page } from '../../src/components/layout/Page';
-import { MineableCoinList } from '../../src/pages/GetStarted/CoinList.page';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 

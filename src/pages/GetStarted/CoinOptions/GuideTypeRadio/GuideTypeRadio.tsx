@@ -52,8 +52,22 @@ const GuideTypeRadioButton = styled.div`
   transition: all 0.2s ease-out;
 `;
 
+export const GuideOptionGroupLabel = styled.div`
+  color: var(--text-secondary);
+  opacity: 0.5;
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 10px;
+`;
+
+export const GuideOptionGroupContainer = styled.div``;
+
 export const RadioGroup = styled(RadioGroupPrimitive.Root)`
-  ${GuideTypeRadioButton} + ${GuideTypeRadioButton} {
+  ${GuideOptionGroupContainer} + ${GuideOptionGroupContainer} {
+    margin-top: 22px;
+  }
+
+  ${GuideTypeRadioButton} {
     margin-top: 14px;
   }
 `;

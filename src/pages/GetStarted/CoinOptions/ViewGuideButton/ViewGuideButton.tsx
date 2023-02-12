@@ -41,16 +41,20 @@ export const ViewGuideButton = ({
   href,
   children,
   color = 'var(--primary)',
+  style,
 }: {
   color?: string;
   href: string;
   children;
+  style?: React.CSSProperties;
 }) => {
   return (
     <Link href={href} passHref>
       <StyledButton
         style={{
+          lineHeight: '16px',
           backgroundColor: color,
+          ...style,
         }}
       >
         {children}
