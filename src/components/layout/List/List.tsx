@@ -276,3 +276,28 @@ export const DynamicListEmpty: React.FC<{ children: React.ReactNode }> = ({
   );
 };
 //
+
+export const AdditionalContainer = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 20px;
+    border-top: 1px solid var(--border-color);
+    position: absolute;
+    top: 0;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    width: calc(100% - 142px);
+    border-top: 1px solid var(--border-color);
+    position: absolute;
+    top: 0;
+    left: 142px;
+  }
+`;

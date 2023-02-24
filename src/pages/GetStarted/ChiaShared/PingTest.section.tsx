@@ -8,6 +8,7 @@ import { differenceInMilliseconds } from 'date-fns';
 import { FaCheck } from 'react-icons/fa';
 
 import DynamicList, {
+  AdditionalContainer,
   DynamicListColumn,
 } from 'src/components/layout/List/List';
 import { MineableCoinRegion } from '../mineableCoinList';
@@ -21,11 +22,25 @@ import { Img } from 'src/components/Img';
 import { useBoolState } from 'src/hooks/useBoolState';
 
 import { useField } from 'formik';
+import Stack from '@/components/Stack';
+import { FiChevronDown } from 'react-icons/fi';
+import useCheckUserRegion from '@/hooks/useCheckUserRegion';
 
 // const WarningIcon = styled(FaExclamationCircle)`
 //   color: var(--danger);
 //   margin-left: 0.5rem;
 // `;
+
+const ExtraCard = styled.div`
+  background-color: rgb(128 128 128 / 5%);
+  height: 50px;
+  border-radius: 5px;
+  margin: 22px 0 22px 23px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  font-size: 14px;
+`;
 
 const testConnection = (region: string) => {
   const latencyPromise = new Promise<number>((resolve, reject) => {
@@ -127,6 +142,8 @@ export const PingTestSection = ({
   data: MineableCoinRegion[];
   namePrimary: string;
 }) => {
+  const isChinaRegion = useCheckUserRegion('zh');
+
   const [latencies, dispatch] = React.useReducer(reducer, {});
 
   const isAutoSetOnce = useBoolState();
@@ -337,6 +354,48 @@ export const PingTestSection = ({
         config={colConfig}
         data={data}
         columns={cols}
+        additionalRowRender={(item) => {
+          if (item.domain === 'xch-sg.flexpool.io') {
+            return (
+              <AdditionalContainer>
+                <div
+                  style={{
+                    color: 'var(--text-tertiary)',
+                    fontSize: 12,
+                    position: 'absolute',
+                    padding: '0 10px',
+                    top: '-6px',
+                    left: '14px',
+                  }}
+                >
+                  <Stack spacing="xs">
+                    <FiChevronDown size={14} />{' '}
+                    <span>{t('detail.more_about')} SG</span>
+                  </Stack>
+                </div>
+                <ExtraCard>
+                  <span
+                    style={{
+                      color: isChinaRegion ? 'var(--warning)' : 'inherit',
+                    }}
+                  >
+                    {t('detail.endpoint_china')}
+                  </span>
+
+                  <div
+                    style={{
+                      marginLeft: '74px',
+                      cursor: 'text',
+                      fontWeight: 600,
+                    }}
+                  >
+                    sg.fpxch.xyz
+                  </div>
+                </ExtraCard>
+              </AdditionalContainer>
+            );
+          }
+        }}
       />
     </>
   );
