@@ -32,6 +32,7 @@
     "note": "Note:",
     "invalid": "{{value}} is invalid",
     "more_about": "More about",
+    "endpoint_china": "Endpoint Optimized for China",
     "wallet": {
       "title": "Get your wallet address",
       "desc_one": "The easiest way to get a wallet is to register on a cryptocurrency exchange like <binance>Binance (Ref)</binance> or <coinbase>Coinbase</coinbase>.",
