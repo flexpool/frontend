@@ -25,6 +25,7 @@ import { useField } from 'formik';
 import Stack from '@/components/Stack';
 import { FiChevronDown } from 'react-icons/fi';
 import useCheckUserRegion from '@/hooks/useCheckUserRegion';
+import { Flag } from '@/components/Flag';
 
 // const WarningIcon = styled(FaExclamationCircle)`
 //   color: var(--danger);
@@ -374,6 +375,7 @@ export const PingTestSection = ({
                   </Stack>
                 </div>
                 <ExtraCard>
+                  <Flag countryCode="cn" shape="round" />
                   <span
                     style={{
                       color: isChinaRegion ? 'var(--warning)' : 'inherit',
