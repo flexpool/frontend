@@ -36,6 +36,7 @@ import { PayoutsOnlyNote } from '@/pages/MinerDashboard/Header/PayoutsOnlyNote';
 import styled from 'styled-components';
 import { FaChartBar, FaCube, FaWallet } from 'react-icons/fa';
 import { getChecksumByTicker } from '@/utils/validators/checksum';
+import { LinkOut } from '@/components/LinkOut';
 
 const DONATION_ADDRESS = '0x165CD37b4C644C2921454429E7F9358d18A45e14';
 
@@ -193,6 +194,20 @@ export const MinerDashboardPageContent: React.FC<{
               title: `${address}`,
             }}
           />
+          {coinTicker === 'xch' && (
+            <AnnouncementBar id="gigahorse-flexfarmer" variant="success">
+              Gigahorse compressed plots are now available in FlexFarmer.{' '}
+              <LinkOut
+                href="https://farmer.flexpool.io/gigahorse"
+                style={{
+                  color: 'white',
+                  textDecoration: 'underline',
+                }}
+              >
+                Learn more
+              </LinkOut>
+            </AnnouncementBar>
+          )}
           {address === DONATION_ADDRESS && (
             <DonationAnnouncement
               id="donation-dashboard"
