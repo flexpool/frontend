@@ -270,7 +270,11 @@
     }
   },
   "announcements": {
-    "the_merge": "The Merge has been completed as of September 16, 2022, at 06:41 UTC.  Ethereum mining is  longer possible.<br/>Payouts will still happen if you have met your minimum or applied for an exception.  Unpaid balances will be maintained until at least December 15, 2022. Please read our our <merge>official announcement</merge> for details."
+    "the_merge": "The Merge has been completed as of September 16, 2022, at 06:41 UTC.  Ethereum mining is  longer possible.<br/>Payouts will still happen if you have met your minimum or applied for an exception.  Unpaid balances will be maintained until at least December 15, 2022. Please read our our <merge>official announcement</merge> for details.",
+    "gigahorse": {
+      "compressed_plots_support": "Gigahorse compressed plots are now available in FlexFarmer.",
+      "learn_more": "Learn more"
+    }
   },
   "payout_only_mode_note": {
     "title": "The pool is in payout-only mode",

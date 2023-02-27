@@ -196,7 +196,7 @@ export const MinerDashboardPageContent: React.FC<{
           />
           {coinTicker === 'xch' && (
             <AnnouncementBar id="gigahorse-flexfarmer" variant="success">
-              Gigahorse compressed plots are now available in FlexFarmer.{' '}
+              {t('announcements.gigahorse.compressed_plots_support')}{' '}
               <LinkOut
                 href="https://farmer.flexpool.io/gigahorse"
                 style={{
@@ -204,7 +204,7 @@ export const MinerDashboardPageContent: React.FC<{
                   textDecoration: 'underline',
                 }}
               >
-                Learn more
+                {t('announcements.gigahorse.learn_more')}
               </LinkOut>
             </AnnouncementBar>
           )}
