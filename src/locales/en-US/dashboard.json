@@ -26,7 +26,7 @@
     "difficulty": {
       "title": "Difficulty Settings",
       "title_sidebar": "Difficulty",
-      "warning": "The adjustable difficulty is a feature for advanced users only. We strongly recommend keeping 1 unless you have specific requirements. Please do not change the difficulty unless you know what you are doing.",
+      "warning": "The adjustable difficulty is a feature for advanced users only. We strongly recommend keeping 1 unless you have specific requirements. Please do not change the difficulty unless you know what you are doing. For compressed plots, it is suggested to change difficulty to 18 or higher.",
       "check_difficulty": "Check current difficulty",
       "update_difficulty": "Update difficulty",
       "acknowledge": "I acknowledge that higher difficulty will make the effective space calculations less precise.",
