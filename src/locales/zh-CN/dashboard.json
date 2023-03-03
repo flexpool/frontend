@@ -270,7 +270,11 @@
     }
   },
   "announcements": {
-    "the_merge": "以太坊合并已经在 9 月 16 日，06:41 UTC 时完成。以太坊已经不可以被挖矿。<br/>如果您的余额符合最低要求，他们将被支出。未支付的余额我们将为您维护到至少 12 月 15 日 2022. 更多细节请阅读我们的<merge>官方公告</merge>。"
+    "the_merge": "以太坊合并已经在 9 月 16 日，06:41 UTC 时完成。以太坊已经不可以被挖矿。<br/>如果您的余额符合最低要求，他们将被支出。未支付的余额我们将为您维护到至少 12 月 15 日 2022. 更多细节请阅读我们的<merge>官方公告</merge>。",
+    "gigahorse": {
+      "compressed_plots_support": "FlexFarmer 现已支持 Gigahorse compressed plots。",
+      "learn_more": "学习更多"
+    }
   },
   "payout_only_mode_note": {
     "title": "矿池目前处于支付模式",
