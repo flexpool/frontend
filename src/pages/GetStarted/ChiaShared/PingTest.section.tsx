@@ -320,9 +320,13 @@ export const PingTestSection = ({
   React.useEffect(() => {
     if (fastest.first && !isAutoSetOnce.value) {
       isAutoSetOnce.handleTrue();
-      setPrimaryServer(fastest.first);
+      if (isChinaRegion) {
+        setPrimaryServer('sg.fpxch.xyz');
+      } else {
+        setPrimaryServer(fastest.first);
+      }
     }
-  }, [fastest, setPrimaryServer, isAutoSetOnce]);
+  }, [fastest, setPrimaryServer, isAutoSetOnce, isChinaRegion]);
 
   const setServer = React.useCallback(
     (type: 'secondary' | 'primary', domain: string) => {
@@ -394,6 +398,23 @@ export const PingTestSection = ({
                     sg.fpxch.xyz
                   </div>
                 </ExtraCard>
+
+                <Tooltip
+                  wrapIcon={false}
+                  icon={
+                    <SelectButton
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setServer('primary', 'sg.fpxch.xyz');
+                      }}
+                      selected={primaryServer === 'sg.fpxch.xyz'}
+                    >
+                      {<FaCheck />}
+                    </SelectButton>
+                  }
+                >
+                  Set as primary connection
+                </Tooltip>
               </AdditionalContainer>
             );
           }
