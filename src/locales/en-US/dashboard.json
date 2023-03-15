@@ -274,6 +274,10 @@
     "gigahorse": {
       "compressed_plots_support": "Gigahorse compressed plots are now available in FlexFarmer.",
       "learn_more": "Learn more"
+    },
+    "gminer_flaw": {
+      "attention": "Attention GMiner Zilliqa (via ZMP) Users",
+      "detail": "GMiner versions 3.28 and earlier have a flaw that prevents automatic reconnection to the pool following server restarts, which are standard procedures during software or server upgrades. If you see your ZIL hashrate on GMiner suddenly disappear, <b>you'll need to restart it manually every time this happens until GMiner developers fix this</b>. You can also switch to other miners, or use Compatible Mode by <guide>following our guide</guide>."
     }
   },
   "payout_only_mode_note": {
