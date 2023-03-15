@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useQueryClient } from 'react-query';
 import { NextSeo } from 'next-seo';
 import dynamic from 'next/dynamic';
-import { useTranslation } from 'next-i18next';
+import { Trans, useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 
@@ -208,6 +208,40 @@ export const MinerDashboardPageContent: React.FC<{
               </LinkOut>
             </AnnouncementBar>
           )}
+
+          {coinTicker === 'zil' && (
+            <AnnouncementBar id="zil-gminer" variant="danger">
+              <b>{t('announcements.gminer_flaw.attention')}</b>
+
+              <Spacer size="sm" />
+
+              <div
+                style={{
+                  width: '90%',
+                  margin: '0 auto',
+                  lineHeight: 1.4,
+                }}
+              >
+                <Trans
+                  t={t}
+                  i18nKey="announcements.gminer_flaw.detail"
+                  components={{
+                    b: <b />,
+                    guide: (
+                      <LinkOut
+                        href="/get-started/zil/dual"
+                        style={{
+                          color: 'white',
+                          textDecoration: 'underline',
+                        }}
+                      />
+                    ),
+                  }}
+                />
+              </div>
+            </AnnouncementBar>
+          )}
+
           {address === DONATION_ADDRESS && (
             <DonationAnnouncement
               id="donation-dashboard"
