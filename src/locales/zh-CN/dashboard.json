@@ -274,6 +274,10 @@
     "gigahorse": {
       "compressed_plots_support": "FlexFarmer 现已支持 Gigahorse compressed plots。",
       "learn_more": "学习更多"
+    },
+    "gminer_flaw": {
+      "attention": "请注意 GMiner Zilliqa (使用 ZMP) 用户",
+      "detail": "GMiner 3.28及早期版本存在一个缺陷，会导致当矿池服务器升级时，无法自动重新连接到矿池。如果你的 ZIL 算力突然消失，请手动重启你的挖矿软件。你需要每次都这么做，直到 GMiner 的开发者修复这个问题。你还可以使用别的挖矿软件，或使用兼容模式，<guide>请参照我们的指南</guide>。"
     }
   },
   "payout_only_mode_note": {
