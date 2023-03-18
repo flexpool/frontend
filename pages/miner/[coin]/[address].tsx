@@ -210,8 +210,8 @@ export const MinerDashboardPageContent: React.FC<{
           )}
 
           {coinTicker === 'zil' && (
-            <AnnouncementBar id="zil-gminer" variant="danger">
-              <b>{t('announcements.gminer_flaw.attention')}</b>
+            <AnnouncementBar id="e9-issue" variant="primary">
+              <b>{t('announcements.e9_issue.attention')}</b>
 
               <Spacer size="sm" />
 
@@ -224,12 +224,13 @@ export const MinerDashboardPageContent: React.FC<{
               >
                 <Trans
                   t={t}
-                  i18nKey="announcements.gminer_flaw.detail"
+                  i18nKey="announcements.e9_issue.detail"
                   components={{
                     b: <b />,
-                    guide: (
+                    br: <br />,
+                    reddit_link: (
                       <LinkOut
-                        href="/get-started/zil/dual"
+                        href="https://www.reddit.com/r/Flexpool/comments/11uln0s/flexpoolio_statement_regarding_etczil_on_e9_pro/"
                         style={{
                           color: 'white',
                           textDecoration: 'underline',

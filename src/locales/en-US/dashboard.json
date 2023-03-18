@@ -278,6 +278,10 @@
     "gminer_flaw": {
       "attention": "Attention GMiner Zilliqa (via ZMP) Users",
       "detail": "GMiner versions 3.28 and earlier have a flaw that prevents automatic reconnection to the pool following server restarts, which are standard procedures during software or server upgrades. If you see your ZIL hashrate on GMiner suddenly disappear, <b>you'll need to restart it manually every time this happens until GMiner developers fix this</b>. You can also switch to other miners, or use Compatible Mode by <guide>following our guide</guide>."
+    },
+    "e9_issue": {
+      "attention": "Attention ZIL Miners",
+      "detail": "On February 26th 2023, we announced that we implemented support for E9 Pro ASICs to mine ZIL. Unfortunately, it turned out that E9 Pro was never supported, and it was producing invalid shares only that did not contribute to pool rewards. Normally, invalid shares are rejected, but there turned out to be a software bug that allowed invalid shares to slip through under certain circumstances. <br/><br/> Rewards for E9 Pro's dead weight were distributed and paid according to the PPLNS reward scheme, and given that E9 Pro ASICs did not contribute to the pool, regular miners ended up substituting them by receiving 5-10% fewer rewards on average. <b>To compensate for this, we charge no combined pool + operations fee for our Zilliqa (ZIL) pool for the entire month from March 18th 2023 until April 18th 2023, which is roughly equivalent to 19%.</b><br/><br/> <reddit_link>Read the full statement here for more information.</reddit_link>"
     }
   },
   "payout_only_mode_note": {
