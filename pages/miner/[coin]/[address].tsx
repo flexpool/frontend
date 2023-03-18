@@ -210,7 +210,7 @@ export const MinerDashboardPageContent: React.FC<{
           )}
 
           {coinTicker === 'zil' && (
-            <AnnouncementBar id="e9-issue" variant="danger">
+            <AnnouncementBar id="e9-issue" variant="primary">
               <b>{t('announcements.e9_issue.attention')}</b>
 
               <Spacer size="sm" />
