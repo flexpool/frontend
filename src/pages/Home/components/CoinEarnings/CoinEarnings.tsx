@@ -33,7 +33,7 @@ import {
 } from 'src/utils/si.utils';
 import { getCoinIconUrl } from 'src/utils/staticImage.utils';
 import styled from 'styled-components';
-
+import { IronFishLaunch } from './IronFishLaunch';
 import usePoolCoinsFullQuery from '@/hooks/api/usePoolCoinsFullQuery';
 export const recaptchaKey = process.env.REACT_APP_RECAPTCHA_KEY;
 
@@ -373,6 +373,7 @@ export const CoinEarnings = () => {
                 }
               />
             ))
+            .concat(<IronFishLaunch />)
         ) : (
           <>
             <CoinEarningsItem />
