@@ -1,6 +1,5 @@
 import { useMutation, UseMutationOptions } from 'react-query';
 import { fetchApi } from '@/utils/fetchApi';
-import { Error } from '@/types/query.types';
 
 type Response = boolean;
 
@@ -12,7 +11,7 @@ export type Query = {
 };
 
 const useMinerFarmerDifficultyMutation = (
-  options?: UseMutationOptions<Response, Error, Query>
+  options?: UseMutationOptions<Response, any, Query>
 ) => {
   return useMutation(
     (query) =>
