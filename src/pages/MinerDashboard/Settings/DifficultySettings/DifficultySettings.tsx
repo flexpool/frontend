@@ -184,7 +184,9 @@ const DifficultySettings = () => {
               <DifficultyWarning />
               {error && (
                 <ScrollIntoView>
-                  <InfoBox variant="error">{error.error}</InfoBox>
+                  <InfoBox variant="error">
+                    {error.error?.msg || error.error || 'Something went wrong'}
+                  </InfoBox>
                 </ScrollIntoView>
               )}
 
