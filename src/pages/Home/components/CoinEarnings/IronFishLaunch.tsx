@@ -39,7 +39,7 @@ export const IronFishLaunch: React.FC = () => {
   return (
     <EarningBox>
       <HeadSplit>
-        <CoinIcon alt={'xch'} src={getCoinIconUrl('xch', 'medium')} />
+        <CoinIcon alt={'xch'} src={getCoinIconUrl('iron', 'medium')} />
 
         <HeadContent>
           <h2>Iron Fish</h2>
