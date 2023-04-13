@@ -9,12 +9,13 @@ export const MainCoinButtonGroup = ({ name }: { name: string }) => {
   return (
     <>
       <ButtonGroup
-        options={{
-          etc: { label: 'ETC + ZIL (ZMP)' },
-          etc_compatible: {
+        options={[
+          { key: 'etc', label: 'ETC + ZIL (ZMP)' },
+          {
+            key: 'etc_compatible',
             label: `ETC + ZIL (${t('detail_zil.compatible_mode')})`,
           },
-        }}
+        ]}
         setSelectedOption={(s: string) => [setMainCoin(s)]}
         selectedOption={mainCoin}
       />

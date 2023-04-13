@@ -2,7 +2,7 @@ import { ButtonGroup } from './ButtonGroup';
 import { useField } from 'formik';
 
 type ButtonGroupFieldProps = {
-  options: { [key: string]: { label: string } };
+  options: { key: string; label: string }[];
   name: string;
 };
 

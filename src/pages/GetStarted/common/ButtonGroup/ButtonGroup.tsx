@@ -58,7 +58,7 @@ const OptionThumbnail = styled.img`
 `;
 
 type ButtonGroupProps = {
-  options: { [key: string]: { label: string; logoURL?: string } };
+  options: { key: string; label: string; logoURL?: string }[];
   selectedOption: string;
   setSelectedOption: (s: string) => void;
 };
@@ -81,7 +81,22 @@ export const ButtonGroup = (props: ButtonGroupProps) => {
     );
   }
 
-  return <ButtonGroupWrapper>{buttons}</ButtonGroupWrapper>;
+  return (
+    <ButtonGroupWrapper>
+      {props.options.map(({ key, logoURL, label }) => {
+        return (
+          <Button
+            onClick={() => props.setSelectedOption(key)}
+            className={`${props.selectedOption === key ? 'selected' : ''}`}
+            key={key}
+          >
+            {logoURL && <OptionThumbnail src={logoURL} />}
+            {label as string}
+          </Button>
+        );
+      })}
+    </ButtonGroupWrapper>
+  );
 };
 
 export default ButtonGroup;

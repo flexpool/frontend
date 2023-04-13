@@ -181,14 +181,16 @@ export const ChiaCliGuidePage: React.FC = () => {
                 <>
                   <ButtonGroupField
                     name="plotter"
-                    options={{
-                      standard: {
+                    options={[
+                      {
+                        key: 'standard',
                         label: t('detail_xch.plotters.standard_plotter'),
                       },
-                      madmax: {
+                      {
+                        key: 'madmax',
                         label: t('detail_xch.plotters.madmax_plotter'),
                       },
-                    }}
+                    ]}
                   />
 
                   <SectionWrapper
