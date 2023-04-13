@@ -10,7 +10,7 @@ import merge from 'lodash.merge';
 import { NextSeo } from 'next-seo';
 
 import { SetWorkerNameSection } from '../common/SetWorkerNameSection';
-import { SetWalletSection } from './SetWalletSection';
+import { SetWalletSectionDual } from '../common/SetWalletSectionDual';
 import { PingTestSection } from '../common/PingTestSection';
 import { MinerCommandSection } from '../common/MinerCommand.section';
 import GuideForm from '../common/GuideForm';
@@ -158,7 +158,7 @@ export const MineableCoinGuidePage: React.FC = () => {
 
               {mainCoin && (
                 <>
-                  <SetWalletSection
+                  <SetWalletSectionDual
                     position={3}
                     data={mainCoin}
                     nameMain="main_wallet_address"

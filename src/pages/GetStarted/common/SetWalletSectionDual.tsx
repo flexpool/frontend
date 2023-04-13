@@ -9,7 +9,7 @@ import { WalletTextField } from '../common/WalletTextField';
 import Image from 'next/image';
 import { getCoinIconUrl } from '@/utils/staticImage.utils';
 
-type SetWalletSectionProps = {
+type SetWalletSectionDualProps = {
   position: number;
   data: MineableCoin;
   nameMain: string;
@@ -48,12 +48,12 @@ const WalletLabel = ({ data }: { data: MineableCoin }) => {
   );
 };
 
-export const SetWalletSection = ({
+export const SetWalletSectionDual = ({
   data,
   nameMain,
   nameDual,
   position,
-}: SetWalletSectionProps) => {
+}: SetWalletSectionDualProps) => {
   const { t } = useTranslation('get-started');
 
   return (
@@ -98,4 +98,4 @@ export const SetWalletSection = ({
   );
 };
 
-export default SetWalletSection;
+export default SetWalletSectionDual;
