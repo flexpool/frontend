@@ -11,6 +11,7 @@ import {
   PingTestSection,
   SetWorkerNameSection,
   SectionWrapper,
+  SetWalletSectionDual,
 } from '../common';
 
 import { ViewDashboard } from '../ZilliqaGPU/ViewDashboard';
@@ -18,7 +19,6 @@ import { ViewDashboard } from '../ZilliqaGPU/ViewDashboard';
 import { ExampleInterface } from '../ASIC/ExampleInterface';
 import { MockBrowser } from '../ASIC/MockBrowser';
 import { Spacer } from '@/components/layout/Spacer';
-import SetWalletSectionDual from '../common/SetWalletSectionDual';
 
 export const MineableCoinGuidePage: React.FC = () => {
   const router = useRouter();

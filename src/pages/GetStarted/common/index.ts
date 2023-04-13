@@ -4,6 +4,7 @@ export * from './MinerCommand.section';
 export * from './PingTestSection';
 export * from './SectionWrapper';
 export * from './SetWalletSection';
+export * from './SetWalletSectionDual';
 export * from './SetWorkerNameSection';
 export * from './WalletTextField';
 export * from './DashboardLink';

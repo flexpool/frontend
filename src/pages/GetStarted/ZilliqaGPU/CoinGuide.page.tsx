@@ -9,15 +9,18 @@ import { MineableCoinHardware, mineableCoins } from '../mineableCoinList';
 import merge from 'lodash.merge';
 import { NextSeo } from 'next-seo';
 
-import { SetWorkerNameSection } from '../common/SetWorkerNameSection';
-import { SetWalletSectionDual } from '../common/SetWalletSectionDual';
-import { PingTestSection } from '../common/PingTestSection';
-import { MinerCommandSection } from '../common/MinerCommand.section';
-import GuideForm from '../common/GuideForm';
+import {
+  SetWorkerNameSection,
+  SetWalletSectionDual,
+  PingTestSection,
+  MinerCommandSection,
+  GuideForm,
+  SectionWrapper,
+} from '../common';
+
 import MainCoinButtonGroup from './MainCoinButtonGroup';
 import ViewDashboard from './ViewDashboard';
 
-import { SectionWrapper } from '../common/SectionWrapper';
 import { InfoBox } from '@/components/InfoBox';
 import { Spacer } from '@/components/layout/Spacer';
 
