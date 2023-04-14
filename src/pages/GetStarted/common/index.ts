@@ -10,3 +10,4 @@ export * from './WalletTextField';
 export * from './DashboardLink';
 export * from './ViewDashboardSection';
 export * from './TerminalCommand';
+export * from './ConfigOptions';
