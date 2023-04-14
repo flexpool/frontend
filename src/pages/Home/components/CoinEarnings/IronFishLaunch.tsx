@@ -14,6 +14,7 @@ import { Spacer } from 'src/components/layout/Spacer';
 
 import { getCoinIconUrl } from 'src/utils/staticImage.utils';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 const GradientBlueText = styled.span`
   background: linear-gradient(
@@ -87,10 +88,9 @@ export const IronFishLaunch: React.FC = () => {
 
       <StartMiningContainer>
         <PoolDetails></PoolDetails>
-
-        <Button disabled variant="success">
-          Coming Soon
-        </Button>
+        <Link href={`/get-started`} passHref>
+          <Button variant="success">Try Testnet</Button>
+        </Link>
       </StartMiningContainer>
     </EarningBox>
   );
