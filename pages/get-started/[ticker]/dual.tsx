@@ -3,6 +3,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
 import { MineableCoinGuidePage } from 'src/pages/GetStarted/ZilliqaGPU/CoinGuide.page';
+import { findCoinsByHardwareKey } from '@/pages/GetStarted/mineableCoinList.utils';
 
 export const GetStartedGPUPage = () => {
   return (
@@ -34,7 +35,9 @@ export const getStaticPaths = ({ locales }) => {
     [];
 
   for (const locale of locales) {
-    paths.push({ params: { ticker: 'zil', hw: 'dual' }, locale });
+    for (const coin of findCoinsByHardwareKey('dual')) {
+      paths.push({ params: { ticker: coin.ticker, hw: 'dual' }, locale });
+    }
   }
 
   return {
