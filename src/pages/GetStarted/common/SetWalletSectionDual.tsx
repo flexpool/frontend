@@ -11,7 +11,8 @@ import { getCoinIconUrl } from '@/utils/staticImage.utils';
 
 type SetWalletSectionDualProps = {
   position: number;
-  data: MineableCoin;
+  coinMain: MineableCoin;
+  coinDual: MineableCoin;
   nameMain: string;
   nameDual: string;
 };
@@ -49,7 +50,8 @@ const WalletLabel = ({ data }: { data: MineableCoin }) => {
 };
 
 export const SetWalletSectionDual = ({
-  data,
+  coinMain,
+  coinDual,
   nameMain,
   nameDual,
   position,
@@ -85,13 +87,13 @@ export const SetWalletSectionDual = ({
       <TextFieldLayout>
         <WalletTextField
           name={nameDual}
-          data={mineableCoins[2]}
-          label={<WalletLabel data={mineableCoins[2]} />}
+          data={coinDual}
+          label={<WalletLabel data={coinDual} />}
         />
         <WalletTextField
           name={nameMain}
-          data={data}
-          label={<WalletLabel data={data} />}
+          data={coinMain}
+          label={<WalletLabel data={coinMain} />}
         />
       </TextFieldLayout>
     </SectionWrapper>

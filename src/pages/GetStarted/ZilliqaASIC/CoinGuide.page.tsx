@@ -19,6 +19,7 @@ import { ViewDashboard } from '../ZilliqaGPU/ViewDashboard';
 import { ExampleInterface } from '../ASIC/ExampleInterface';
 import { MockBrowser } from '../ASIC/MockBrowser';
 import { Spacer } from '@/components/layout/Spacer';
+import { findMinableCoinByTicker } from '../mineableCoinList.utils';
 
 export const MineableCoinGuidePage: React.FC = () => {
   const router = useRouter();
@@ -97,15 +98,17 @@ export const MineableCoinGuidePage: React.FC = () => {
       >
         {({ values }) => {
           // Currently, assume main coin is always etc
-          const mainCoin = mineableCoins.find((coin) => coin.ticker === 'etc');
+          const mainCoin = findMinableCoinByTicker('etc');
+          const dualCoin = findMinableCoinByTicker('zil');
 
           return (
             <>
-              {mainCoin && (
+              {mainCoin && dualCoin && (
                 <>
                   <SetWalletSectionDual
                     position={1}
-                    data={mainCoin}
+                    coinMain={mainCoin}
+                    coinDual={dualCoin}
                     nameMain="main_wallet_address"
                     nameDual="dual_wallet_address"
                   />

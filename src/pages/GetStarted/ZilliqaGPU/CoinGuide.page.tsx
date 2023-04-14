@@ -23,6 +23,7 @@ import ViewDashboard from './ViewDashboard';
 
 import { InfoBox } from '@/components/InfoBox';
 import { Spacer } from '@/components/layout/Spacer';
+import { findMinableCoinByTicker } from '../mineableCoinList.utils';
 
 import styled from 'styled-components';
 
@@ -144,9 +145,8 @@ export const MineableCoinGuidePage: React.FC = () => {
           let formatCoin = values.main_coin;
           if (formatCoin === 'etc_compatible') formatCoin = 'etc';
 
-          const mainCoin = mineableCoins.find(
-            (coin) => coin.ticker === formatCoin
-          );
+          const mainCoin = findMinableCoinByTicker('etc');
+          const dualCoin = findMinableCoinByTicker('zil');
 
           return (
             <>
@@ -159,11 +159,12 @@ export const MineableCoinGuidePage: React.FC = () => {
 
               <SetWorkerNameSection position={2} />
 
-              {mainCoin && (
+              {mainCoin && dualCoin && (
                 <>
                   <SetWalletSectionDual
                     position={3}
-                    data={mainCoin}
+                    coinMain={mainCoin}
+                    coinDual={dualCoin}
                     nameMain="main_wallet_address"
                     nameDual="dual_wallet_address"
                   />

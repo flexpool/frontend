@@ -20,3 +20,7 @@ export const findCoinsByHardwareKey = (key: string) => {
 
   return coins;
 };
+
+export const findMinableCoinByTicker = (ticker: string) => {
+  return mineableCoins.find((coin) => coin.ticker === ticker);
+};
