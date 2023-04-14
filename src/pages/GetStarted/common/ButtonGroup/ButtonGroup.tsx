@@ -64,23 +64,6 @@ type ButtonGroupProps = {
 };
 
 export const ButtonGroup = (props: ButtonGroupProps) => {
-  var buttons: JSX.Element[] = [];
-
-  for (const key in props.options) {
-    buttons.push(
-      <Button
-        onClick={() => props.setSelectedOption(key)}
-        className={`${props.selectedOption === key ? 'selected' : ''}`}
-        key={key}
-      >
-        {props.options[key].logoURL && (
-          <OptionThumbnail src={props.options[key].logoURL} />
-        )}
-        {props.options[key].label as string}
-      </Button>
-    );
-  }
-
   return (
     <ButtonGroupWrapper>
       {props.options.map(({ key, logoURL, label }) => {
