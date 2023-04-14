@@ -4,6 +4,7 @@ import { localSettingsSet } from 'src/rdx/localSettings/localSettings.actions';
 import { useReduxState } from 'src/rdx/useReduxState';
 import styled from 'styled-components';
 import { CoinLogo } from './CoinLogo';
+import { processTicker } from '@/utils/ticker';
 import { Select, SelectOption } from './Form/Select/Select';
 import DownshiftSelect from './Form/DownshiftSelect';
 import usePoolCoinsQuery from '@/hooks/api/usePoolCoinsQuery';
@@ -15,58 +16,27 @@ const LabelWrap = styled.div`
 `;
 
 const CoinNameShort = styled.span`
-  text-transform: uppercase;
   display: none;
   @media screen and (max-width: 560px) {
     display: inline;
   }
   margin-left: 5px;
 `;
+
+const TestnetBadge = styled.span`
+  text-transform: uppercase;
+  margin-left: 5px;
+  opacity: 0.5;
+`;
+
 const CoinName = styled.span`
+  display: flex;
+  align-items: center;
   @media screen and (max-width: 560px) {
     display: none;
   }
   margin-left: 10px;
 `;
-
-/**
- * @deprecated A new implementation with Downshift is available.
- */
-// export const SelectCoin = () => {
-//   const localSettingsState = useReduxState('localSettings');
-//   const poolCoinsState = useReduxState('poolCoins');
-//   const d = useDispatch();
-
-//   const options = React.useMemo(() => {
-//     return (poolCoinsState.data?.coins || []).map((item) => ({
-//       label: (
-//         <LabelWrap>
-//           <CoinLogo ticker={item.ticker} />
-//           <CoinName>{item.name}</CoinName>
-//           <CoinNameShort>{item.ticker}</CoinNameShort>
-//         </LabelWrap>
-//       ),
-//       value: item.ticker,
-//     }));
-//   }, [poolCoinsState.data]);
-
-//   const handleChange = (e: React.MouseEvent<HTMLButtonElement>) => {
-//     const value = (e.target as HTMLButtonElement).value;
-//     d(
-//       localSettingsSet({
-//         coin: value,
-//       })
-//     );
-//   };
-
-//   return (
-//     <Select
-//       onChange={handleChange}
-//       value={localSettingsState.coin || 'eth'}
-//       options={options}
-//     />
-//   );
-// };
 
 export const NewSelectCoin = () => {
   const localSettingsState = useReduxState('localSettings');
@@ -81,8 +51,13 @@ export const NewSelectCoin = () => {
         label: (
           <LabelWrap>
             <CoinLogo ticker={item.ticker} />
-            <CoinName>{item.name}</CoinName>
-            <CoinNameShort>{item.ticker}</CoinNameShort>
+            <CoinName>
+              {item.name}
+              {item.testnet && <TestnetBadge>(Testnet)</TestnetBadge>}
+            </CoinName>
+            <CoinNameShort>
+              {processTicker(item.ticker, item.testnet)}
+            </CoinNameShort>
           </LabelWrap>
         ),
         value: item.ticker,

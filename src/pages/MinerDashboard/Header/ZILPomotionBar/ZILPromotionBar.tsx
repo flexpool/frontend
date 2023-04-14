@@ -407,7 +407,9 @@ const useGetEstimatedEarnings = ({
   const targetCoin = poolCoinsFull?.find((c) => c.ticker === (coin as any));
 
   const counterTicker = useCounterTicker();
-  const coinPrice = targetCoin?.marketData.prices[counterTicker] || 0;
+  const coinPrice = targetCoin?.marketData.prices
+    ? targetCoin?.marketData.prices[counterTicker]
+    : 0;
 
   const activeCoinFormatter = useLocalizedCoinValueFormatter({
     coin,

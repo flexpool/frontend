@@ -248,7 +248,7 @@ export const MinerRewardsBlocksSection: React.FC<{
         ),
       },
     }),
-    [activeCoinFormatter, t, dateFormatter, dateView, setDateView]
+    [activeCoinFormatter, t, dateFormatter, dateView, setDateView, coinTicker]
   );
 
   const columns = React.useMemo(() => {

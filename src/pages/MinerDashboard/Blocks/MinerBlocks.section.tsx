@@ -285,7 +285,7 @@ export const BlocksSection: React.FC<{
         ),
       },
     }),
-    [t, dateFormatter, dateView, setDateView]
+    [t, dateFormatter, dateView, setDateView, coinTicker]
   );
 
   const columns = React.useMemo(() => {

@@ -33,8 +33,8 @@ import {
 } from 'src/utils/si.utils';
 import { getCoinIconUrl } from 'src/utils/staticImage.utils';
 import styled from 'styled-components';
-import { IronFishLaunch } from './IronFishLaunch';
 import usePoolCoinsFullQuery from '@/hooks/api/usePoolCoinsFullQuery';
+import Badge from '@/components/Badge';
 export const recaptchaKey = process.env.REACT_APP_RECAPTCHA_KEY;
 
 const DualMineCheckBoxWrapper = styled.div`
@@ -59,6 +59,11 @@ const Uppercase = styled.span`
   text-transform: uppercase;
 `;
 
+const HeadWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const getCoinPoolFee = (coin: string) => {
   return coin === 'eth'
     ? 9 / 1000
@@ -70,9 +75,12 @@ const getCoinPoolFee = (coin: string) => {
     ? 20 / 1000
     : coin === 'btc'
     ? 1 / 1000
+    : coin === 'tiron'
+    ? 0
+    : coin === 'iron'
+    ? 95 / 10000
     : 10 / 1000;
 };
-
 const CoinEarningsItem: React.FC<{
   data?: ApiPoolCoinFull;
   dualMineCoin?: ApiPoolCoinFull;
@@ -80,7 +88,9 @@ const CoinEarningsItem: React.FC<{
   const [isDualMining, toggleDualMining] = useReducer((t) => !t, true);
 
   const counterTicker = useCounterTicker();
-  const counterPrice = data?.marketData.prices[counterTicker] || 0;
+  const counterPrice = data?.marketData.prices
+    ? data?.marketData.prices[counterTicker]
+    : 0;
 
   var prefixMultiplier = 1;
 
@@ -114,8 +124,9 @@ const CoinEarningsItem: React.FC<{
   const monthlyCounterPrice = monthlyPer100 * counterPrice;
   const dailyCounterPrice = dailyPer100 * counterPrice;
 
-  const dualMineCoinCounterPrice =
-    dualMineCoin?.marketData.prices[counterTicker] || 0;
+  const dualMineCoinCounterPrice = dualMineCoin?.marketData.prices
+    ? dualMineCoin?.marketData.prices[counterTicker]
+    : 0;
 
   const monthlyDualMineCounterPrice =
     dualMineMonthlyPer100 * dualMineCoinCounterPrice;
@@ -201,7 +212,16 @@ const CoinEarningsItem: React.FC<{
           />
         )) || <UnknownCoin />}
         <HeadContent>
-          <h2>{data ? data.name : <Skeleton />}</h2>
+          <h2>
+            {data ? (
+              <HeadWrapper>
+                <span>{data.name}</span>
+                {data.testnet && <Badge variant="warning">TESTNET</Badge>}
+              </HeadWrapper>
+            ) : (
+              <Skeleton />
+            )}
+          </h2>
           <Desc>
             {t('coin_earnings_cards.estimated')}{' '}
             <Tooltip>
@@ -229,37 +249,41 @@ const CoinEarningsItem: React.FC<{
             {data?.hashrateUnit} {t('coin_earnings_cards.daily')}
           </p>
 
-          <EstimatedNumbers>
-            <FiatValue>
-              {calculatedDailyCounterPrice ? (
-                currencyFormatter(calculatedDailyCounterPrice)
-              ) : (
-                <Skeleton style={{ height: 25 }} />
-              )}
-            </FiatValue>
-            <CryptoValue>
-              {dailyPer100 ? (
-                <>
-                  {'≈ '}
-                  {numberFormatter(dailyPer100, {
-                    maximumFractionDigits: 5,
-                  })}{' '}
-                  {data?.ticker.toUpperCase()}
-                  {dualMineCoin && isDualMining ? (
-                    <>
-                      {` + ${numberFormatter(dualMineDailyPer100, {
-                        maximumFractionDigits: 2,
-                      })} ${dualMineCoin?.ticker.toUpperCase()}`}
-                    </>
-                  ) : (
-                    <></>
-                  )}
-                </>
-              ) : (
-                <Skeleton style={{ height: 10 }} />
-              )}
-            </CryptoValue>
-          </EstimatedNumbers>
+          {data?.testnet ? (
+            <FiatValue>N/A</FiatValue>
+          ) : (
+            <EstimatedNumbers>
+              <FiatValue>
+                {calculatedDailyCounterPrice ? (
+                  currencyFormatter(calculatedDailyCounterPrice)
+                ) : (
+                  <Skeleton style={{ height: 25 }} />
+                )}
+              </FiatValue>
+              <CryptoValue>
+                {dailyPer100 ? (
+                  <>
+                    {'≈ '}
+                    {numberFormatter(dailyPer100, {
+                      maximumFractionDigits: 5,
+                    })}{' '}
+                    {data?.ticker.toUpperCase()}
+                    {dualMineCoin && isDualMining ? (
+                      <>
+                        {` + ${numberFormatter(dualMineDailyPer100, {
+                          maximumFractionDigits: 2,
+                        })} ${dualMineCoin?.ticker.toUpperCase()}`}
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                  </>
+                ) : (
+                  <Skeleton style={{ height: 10 }} />
+                )}
+              </CryptoValue>
+            </EstimatedNumbers>
+          )}
         </IntervalItem>
         <IntervalItem>
           <p>
@@ -267,37 +291,41 @@ const CoinEarningsItem: React.FC<{
             {data?.hashrateUnit} {t('coin_earnings_cards.monthly')}
           </p>
 
-          <EstimatedNumbers>
-            <FiatValue>
-              {calculatedMonthlyCounterPrice ? (
-                currencyFormatter(calculatedMonthlyCounterPrice)
-              ) : (
-                <Skeleton style={{ height: 25 }} />
-              )}
-            </FiatValue>
-            <CryptoValue>
-              {monthlyPer100 ? (
-                <>
-                  {'≈ '}
-                  {numberFormatter(monthlyPer100, {
-                    maximumFractionDigits: 5,
-                  })}{' '}
-                  {data?.ticker.toUpperCase()}
-                  {dualMineCoin && isDualMining ? (
-                    <>
-                      {` + ${numberFormatter(dualMineMonthlyPer100, {
-                        maximumFractionDigits: 2,
-                      })} ${dualMineCoin?.ticker.toUpperCase()}`}
-                    </>
-                  ) : (
-                    <></>
-                  )}
-                </>
-              ) : (
-                <Skeleton style={{ height: 10 }} />
-              )}
-            </CryptoValue>
-          </EstimatedNumbers>
+          {data?.testnet ? (
+            <FiatValue>N/A</FiatValue>
+          ) : (
+            <EstimatedNumbers>
+              <FiatValue>
+                {calculatedMonthlyCounterPrice ? (
+                  currencyFormatter(calculatedMonthlyCounterPrice)
+                ) : (
+                  <Skeleton style={{ height: 25 }} />
+                )}
+              </FiatValue>
+              <CryptoValue>
+                {monthlyPer100 ? (
+                  <>
+                    {'≈ '}
+                    {numberFormatter(monthlyPer100, {
+                      maximumFractionDigits: 5,
+                    })}{' '}
+                    {data?.ticker.toUpperCase()}
+                    {dualMineCoin && isDualMining ? (
+                      <>
+                        {` + ${numberFormatter(dualMineMonthlyPer100, {
+                          maximumFractionDigits: 2,
+                        })} ${dualMineCoin?.ticker.toUpperCase()}`}
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                  </>
+                ) : (
+                  <Skeleton style={{ height: 10 }} />
+                )}
+              </CryptoValue>
+            </EstimatedNumbers>
+          )}
         </IntervalItem>
       </IntervalContainer>
       {data?.ticker && (
@@ -367,13 +395,10 @@ export const CoinEarnings = () => {
                 key={item.ticker}
                 data={item}
                 dualMineCoin={
-                  dualMiningCoin?.hashrateUnit === item.hashrateUnit
-                    ? dualMiningCoin
-                    : undefined
+                  item.ticker === 'etc' ? dualMiningCoin : undefined
                 }
               />
             ))
-            .concat(<IronFishLaunch />)
         ) : (
           <>
             <CoinEarningsItem />
