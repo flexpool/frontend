@@ -33,6 +33,7 @@
     "invalid": "{{value}} is invalid",
     "more_about": "More about",
     "endpoint_china": "Endpoint Optimized for China",
+    "select_dual_mining": "Select your dual mining config",
     "wallet": {
       "title": "Get your wallet address",
       "desc_one": "The easiest way to get a wallet is to register on a cryptocurrency exchange like <binance>Binance (Ref)</binance> or <coinbase>Coinbase</coinbase>.",
@@ -237,6 +238,28 @@
       {
         "title": "FlexFarmer",
         "key": "flexfarmer"
+      }
+    ]
+  },
+  "detail_tiron": {
+    "title": "Iron Fish (Testnet) mining",
+    "pool_details": [
+      { "key": "Reward Scheme", "value": "PPLNS (Pay Per Last N Shares)" },
+      { "key": "Pool Fee", "value": "TODO" },
+      { "key": "Payout Round", "value": "TODO" },
+      { "key": "Payouts", "value": "TODO" },
+      { "key": "Block confirmation time", "value": "TODO" },
+      { "key": "Share Difficulty", "value": "TODO" },
+      { "key": "Mining Algorithm", "value": "Blake 3" }
+    ],
+    "hardware": [
+      {
+        "title": "GPU standard Mining",
+        "key": "GPU"
+      },
+      {
+        "title": "GPU Dual Mining",
+        "key": "dual"
       }
     ]
   },
