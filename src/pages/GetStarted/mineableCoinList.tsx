@@ -250,8 +250,8 @@ export const mineableCoins: MineableCoin[] = [
     regions: [
       {
         domain: 'iron.fpmp.net',
-        code: 'world',
-        imageCode: 'us',
+        code: 'de',
+        imageCode: 'de',
         high_diff_avail: false,
       },
     ],
