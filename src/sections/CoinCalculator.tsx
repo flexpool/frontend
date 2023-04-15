@@ -71,7 +71,9 @@ export const CoinCalculator: React.FC<{ coin: ApiPoolCoinFull }> = ({
     P: 1000000000000000,
   };
   const counterTicker = useCounterTicker();
-  const counterPrice = coin.marketData.prices[counterTicker];
+  const counterPrice = coin.marketData.prices
+    ? coin.marketData.prices[counterTicker]
+    : 0;
   const numberFormatter = useLocalizedNumberFormatter();
   const currencyFormatter = useLocalizedCurrencyFormatter();
 

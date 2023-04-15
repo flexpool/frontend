@@ -40,6 +40,7 @@ import { CoinLogo } from 'src/components/CoinLogo';
 import { Badge } from '@/components/Badge';
 import { useCounterTicker } from 'src/rdx/localSettings/localSettings.hooks';
 import usePoolCoinsFullQuery from '@/hooks/api/usePoolCoinsFullQuery';
+import { processTicker } from '@/utils/ticker';
 
 const ModalNews: React.FC<{ data?: ApiPoolCoinFull[] | null }> = ({ data }) => {
   const router = useRouter();
@@ -121,9 +122,12 @@ export const CoinsWeMineSection = () => {
                 <CoinName aria-label={`${data.ticker} news`}>
                   <CoinLogo size="lg" ticker={data.ticker} />
                   <span style={{ whiteSpace: 'nowrap' }}>{data.name}</span>
-                  <TickerName>{data.ticker.toUpperCase()}</TickerName>
+                  <TickerName>
+                    {processTicker(data.ticker.toUpperCase(), data.testnet)}
+                  </TickerName>
                 </CoinName>
-                {data.isDual && <Badge>DUAL</Badge>}
+                {data.isDual && <Badge variant="primary">DUAL</Badge>}
+                {data.testnet && <Badge variant="warning">TESTNET</Badge>}
               </CoinNameWrapper>
             </Link>
           );
@@ -136,22 +140,28 @@ export const CoinsWeMineSection = () => {
         Component: ({ data }) => {
           const priceChange = data.marketData.priceChange;
           const priceChangeDirection = priceChange >= 0 ? 'up' : 'down';
-          const value = data.marketData.prices[activeCounterTicker];
+          const value = data.marketData.prices
+            ? data.marketData.prices[activeCounterTicker]
+            : 0;
 
           return (
             <Mono>
-              <Ws>
-                {currencyFormatter(value)}{' '}
-                <PriceChange direction={priceChangeDirection}>
-                  (
-                  {priceChangeDirection === 'up' ? (
-                    <FaArrowUp />
-                  ) : (
-                    <FaArrowDown />
-                  )}
-                  {Math.round(Math.abs(priceChange) * 10) / 10}%)
-                </PriceChange>
-              </Ws>
+              {!data.testnet ? (
+                <Ws>
+                  {currencyFormatter(value)}{' '}
+                  <PriceChange direction={priceChangeDirection}>
+                    (
+                    {priceChangeDirection === 'up' ? (
+                      <FaArrowUp />
+                    ) : (
+                      <FaArrowDown />
+                    )}
+                    {Math.round(Math.abs(priceChange) * 10) / 10}%)
+                  </PriceChange>
+                </Ws>
+              ) : (
+                'N/A'
+              )}
             </Mono>
           );
         },
@@ -161,7 +171,12 @@ export const CoinsWeMineSection = () => {
         alignRight: true,
         skeletonWidth: 140,
         Component: ({ data }) => {
-          const value = data.marketData.marketCaps[activeCounterTicker];
+          if (data.testnet) {
+            return <>N/A</>;
+          }
+          const value = data.marketData.marketCaps
+            ? data.marketData.marketCaps[activeCounterTicker]
+            : 0;
 
           return <>{currencyFormatter(value)}</>;
         },

@@ -1,3 +1,4 @@
+import { checksumIron } from '@/utils/validators/ironWalletAddress.validator';
 import { checksumETH } from 'src/utils/validators/ethWalletAddress.validator';
 import { checksumXCH } from 'src/utils/validators/xchWalletAddress.validator';
 import { checksumZIL } from 'src/utils/validators/zilWalletAddress.validator';
@@ -228,11 +229,66 @@ export const mineableCoins: MineableCoin[] = [
           },
         ],
       },
-
       {
         title: 'ASIC Dual Mining',
         key: 'dual-asic',
         miners: [],
+      },
+    ],
+  },
+  {
+    name: 'Iron Fish (Testnet)',
+    ticker: 'tiron',
+    algorithm: 'Blake3',
+    nicehash_algorithm: null,
+    description: '',
+    regex: /^[A-Fa-f0-9]{64}$/,
+    validator: checksumIron,
+    walletAddressExample:
+      '2aa206fcbe1d1d86b3db2ec6e80aae6c181f633b42e4df02a8e7997f0f59c4dd',
+    nicehashAvailable: false,
+    regions: [
+      {
+        domain: 'iron.fpmp.net',
+        code: 'de',
+        imageCode: 'de',
+        high_diff_avail: false,
+      },
+    ],
+    hardware: [
+      {
+        title: 'GPU Standard Mining',
+        key: 'GPU',
+        miners: [
+          {
+            os: ['windows', 'linux'],
+            title: 'BzMiner',
+            key: 'bzminer',
+            description:
+              'Fast Windows/Linux miner with remote management and lowest 0.5% dev fee! (0% fee on ZIL)',
+            fee: [0.5],
+            compatibleGpus: ['AMD', 'NVIDIA'],
+            downloadLink: 'https://github.com/bzminer/bzminer/releases',
+            cmd: 'bzminer.exe -a ironfish -w WALLET_ADDRESS.WORKER_NAME -p stratum+tcp://iron.fpmp.net:8888 --nc 1',
+          },
+        ],
+      },
+      {
+        title: 'GPU Dual Mining',
+        key: 'dual',
+        miners: [
+          {
+            os: ['windows', 'linux'],
+            title: 'BzMiner',
+            key: 'bzminer',
+            description:
+              'Fast Windows/Linux miner with remote management and lowest 0.5% dev fee! (0% fee on ZIL)',
+            fee: [0.5],
+            compatibleGpus: ['AMD', 'NVIDIA'],
+            downloadLink: 'https://github.com/bzminer/bzminer/releases',
+            cmd: 'bzminer -a ironfish -w MAIN_WALLET_ADDRESS.WORKER_NAME -p stratum+tcp://iron.fpmp.net:8888 --nc 1 --a2 zil --w2 DUAL_WALLET_ADDRESS.WORKER_NAME --p2 zmp://zil.flexpool.io',
+          },
+        ],
       },
     ],
   },

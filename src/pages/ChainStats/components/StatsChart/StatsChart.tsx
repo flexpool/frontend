@@ -140,6 +140,9 @@ export const StatsChart = React.memo(
 
         chartRef.current.cursor = new XYCursor();
       }
+
+      // TODO(@aminick): Fix this linting warning
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data, unit, isFetching, type, coin]);
 
     useEffect(() => {

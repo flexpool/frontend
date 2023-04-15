@@ -297,6 +297,31 @@
       }
     ]
   },
+  "detail_tiron": {
+    "title": "Iron Fish (Testnet) mining",
+    "wallet": {
+      "desc_one": "对于Iron Fish，您需要通过启动节点并创建钱包来创建钱包。可以在<ifweb>官网</ifweb>上找到说明。或者，您可以使用社区制作的更简单的轻钱包，可以在<oreos>github</oreos>上找到。"
+    },
+    "pool_details": [
+      { "key": "Reward Scheme", "value": "PPLNS (Pay Per Last N Shares)" },
+      { "key": "Pool Fee", "value": "0.95%" },
+      { "key": "Payout Round", "value": "Once an hour" },
+      { "key": "Payouts", "value": "Minimum 0.05 IRON" },
+      { "key": "Block confirmation time", "value": "32 blocks" },
+      { "key": "Share Difficulty", "value": "150GH" },
+      { "key": "Mining Algorithm", "value": "Blake3" }
+    ],
+    "hardware": [
+      {
+        "title": "GPU 单挖",
+        "key": "GPU"
+      },
+      {
+        "title": "GPU 双挖",
+        "key": "dual"
+      }
+    ]
+  },
   "regions": {
     "us": "美国",
     "us-east": "美国（东岸）",

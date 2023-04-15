@@ -166,7 +166,9 @@ export const getDailyCoinEarningsPer100 = (
 ) => {
   var prefixMultiplier = 1;
 
-  const counterPrice = coin?.marketData.prices[counterTicker] || 0;
+  const counterPrice = coin?.marketData.prices
+    ? coin?.marketData.prices[counterTicker]
+    : 0;
 
   if (coin?.defaultHashrateSiPrefix === 'k') {
     prefixMultiplier = 1000;

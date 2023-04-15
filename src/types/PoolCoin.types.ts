@@ -3,11 +3,11 @@ import { Ticker } from './Ticker.types';
 type Si = 'k' | 'M' | 'G' | 'T' | 'P';
 
 type ApiCoinMarketData = {
-  marketCaps: {
+  marketCaps?: {
     [k in Ticker]: number;
   };
   priceChange: number;
-  prices: {
+  prices?: {
     [k in Ticker]: number;
   };
 };
@@ -35,6 +35,7 @@ export type ApiPoolCoinFull = {
   whitepaperLink: string;
   isDual: boolean;
   payoutsOnly: boolean;
+  testnet: boolean;
 };
 
 export type ApiPoolCoin = {
@@ -47,4 +48,5 @@ export type ApiPoolCoin = {
   difficultyFactor: number;
   hashrateUnit: string;
   payoutsOnly: boolean;
+  testnet: boolean;
 };

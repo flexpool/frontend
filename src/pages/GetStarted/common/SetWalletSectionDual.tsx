@@ -9,11 +9,13 @@ import { WalletTextField } from '../common/WalletTextField';
 import Image from 'next/image';
 import { getCoinIconUrl } from '@/utils/staticImage.utils';
 
-type SetWalletSectionProps = {
+type SetWalletSectionDualProps = {
   position: number;
-  data: MineableCoin;
+  coinMain: MineableCoin;
+  coinDual: MineableCoin;
   nameMain: string;
   nameDual: string;
+  desc?: React.ReactNode;
 };
 
 const TextFieldLayout = styled.div`
@@ -48,54 +50,63 @@ const WalletLabel = ({ data }: { data: MineableCoin }) => {
   );
 };
 
-export const SetWalletSection = ({
-  data,
+export const SetWalletSectionDual = ({
+  coinMain,
+  coinDual,
   nameMain,
   nameDual,
   position,
-}: SetWalletSectionProps) => {
+  desc,
+}: SetWalletSectionDualProps) => {
   const { t } = useTranslation('get-started');
 
   return (
     <SectionWrapper position={position} title={t('detail.wallet.title')}>
-      <p>
-        <Trans
-          ns="get-started"
-          i18nKey="detail.wallet.desc_one"
-          components={{
-            binance: (
-              <LinkOut href="https://www.binance.com/en/register?ref=B2675KF5" />
-            ),
-            coinbase: <LinkOut href="https://www.coinbase.com" />,
-          }}
-        />
-      </p>
-      <p>
-        <Trans
-          ns="get-started"
-          i18nKey="detail.wallet.desc_two"
-          components={{
-            ledger: <LinkOut href="https://www.ledger.com/" />,
-            trezor: <LinkOut href="https://trezor.io/" />,
-            strong: <strong />,
-          }}
-        />
-      </p>
+      {desc ? (
+        desc
+      ) : (
+        <>
+          <p>
+            <Trans
+              ns="get-started"
+              i18nKey="detail.wallet.desc_one"
+              components={{
+                binance: (
+                  <LinkOut href="https://www.binance.com/en/register?ref=B2675KF5" />
+                ),
+                coinbase: <LinkOut href="https://www.coinbase.com" />,
+              }}
+            />
+          </p>
+          <p>
+            <Trans
+              ns="get-started"
+              i18nKey="detail.wallet.desc_two"
+              components={{
+                ledger: <LinkOut href="https://www.ledger.com/" />,
+                trezor: <LinkOut href="https://trezor.io/" />,
+                strong: <strong />,
+              }}
+            />
+          </p>
+        </>
+      )}
+
       <Spacer />
       <TextFieldLayout>
         <WalletTextField
           name={nameDual}
-          data={mineableCoins[2]}
-          label={<WalletLabel data={mineableCoins[2]} />}
+          data={coinDual}
+          label={<WalletLabel data={coinDual} />}
         />
         <WalletTextField
           name={nameMain}
-          data={data}
-          label={<WalletLabel data={data} />}
+          data={coinMain}
+          label={<WalletLabel data={coinMain} />}
         />
       </TextFieldLayout>
     </SectionWrapper>
   );
 };
 
-export default SetWalletSection;
+export default SetWalletSectionDual;

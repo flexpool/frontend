@@ -247,21 +247,26 @@ export const PingTestSection: React.FC<{
       {
         title: t('detail.region.table_head.location'),
         Component: ({ data }) => {
+          const { imageCode, code } = overwriteRegionData(data);
+
           return (
             <Ws>
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <Img
-                  src={`https://static.flexpool.io/assets/countries/${data.imageCode}.svg`}
-                  style={{ width: '32px', marginRight: '10px' }}
-                  alt={data.imageCode}
-                />
-                {t(`regions.${data.code}`)}
+                {imageCode !== 'worldwide' && (
+                  <Img
+                    src={`https://static.flexpool.io/assets/countries/${imageCode}.svg`}
+                    style={{ width: '32px', marginRight: '10px' }}
+                    alt={imageCode}
+                  />
+                )}
+
+                {t(`regions.${code}`)}
                 <span
                   style={{ color: 'var(--text-tertiary)', marginLeft: '15px' }}
                 >
                   {(() => {
                     var split = data.code.split('-');
-                    if (split.length === 1) return data.code.toUpperCase();
+                    if (split.length === 1) return code.toUpperCase();
                     split[0] = split[0].toUpperCase();
                     split[1] =
                       split[1].charAt(0).toUpperCase() + split[1].slice(1);
@@ -422,12 +427,19 @@ export const PingTestSection: React.FC<{
    * Automatically set primary and secondary
    */
   React.useEffect(() => {
-    if (fastest.first && fastest.second && !isAutoSetOnce.value) {
-      isAutoSetOnce.handleTrue();
-
-      setPrimaryServer(fastest.first);
-      setSecondaryServer(fastest.second);
+    if (!isAutoSetOnce.value) {
+      // handles only one region
+      if (fastest.first && fastest.second === null) {
+        isAutoSetOnce.handleTrue();
+        setPrimaryServer(fastest.first);
+      } else if (fastest.first && fastest.second) {
+        isAutoSetOnce.handleTrue();
+        setPrimaryServer(fastest.first);
+        setSecondaryServer(fastest.second);
+      }
     }
+
+    // handles only one region
   }, [fastest, isAutoSetOnce, setPrimaryServer, setSecondaryServer]);
 
   const setServer = (type: 'secondary' | 'primary', domain: string) => {
@@ -585,3 +597,16 @@ export const PingTestSection: React.FC<{
     </SectionWrapper>
   );
 };
+
+function overwriteRegionData(data: MineableCoinRegion) {
+  const d = { ...data };
+  if (d.domain === 'iron.fpmp.net') {
+    return {
+      ...data,
+      code: 'worldwide',
+      imageCode: 'worldwide',
+    };
+  }
+
+  return d;
+}

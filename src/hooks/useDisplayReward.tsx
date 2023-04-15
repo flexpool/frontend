@@ -1,12 +1,20 @@
 import React from 'react';
+import { processTicker } from '@/utils/ticker';
 import { useActiveCoin } from 'src/rdx/localSettings/localSettings.hooks';
 import { useLocalizedNumberFormatter } from 'src/utils/si.utils';
 import styled from 'styled-components';
 
-const Tick = styled.span`
+const TickWrapper = styled.span`
   color: var(--primary);
-  text-transform: uppercase;
 `;
+
+const Tick: React.FC<{ ticker: string; testnet?: boolean }> = ({
+  ticker,
+  testnet,
+}) => {
+  ticker = processTicker(ticker, testnet);
+  return <TickWrapper className="ticker">{ticker}</TickWrapper>;
+};
 
 export const useLocalizedCoinValueFormatter = ({
   coin,
@@ -36,7 +44,7 @@ export const useLocalizedCoinValueFormatter = ({
             value / Math.pow(10, activeCoin?.decimalPlaces || 100),
             opts
           )}{' '}
-          <Tick className="ticker">{activeCoin?.ticker}</Tick>
+          <Tick ticker={activeCoin?.ticker} testnet={activeCoin?.testnet} />
         </span>
       );
     },
@@ -70,7 +78,7 @@ export const useLocalizedActiveCoinValueFormatter = (
             value / Math.pow(10, activeCoin?.decimalPlaces || 100),
             opts
           )}{' '}
-          <Tick className="ticker">{activeCoin?.ticker}</Tick>
+          <Tick ticker={activeCoin?.ticker} testnet={activeCoin?.testnet} />
         </span>
       );
     },

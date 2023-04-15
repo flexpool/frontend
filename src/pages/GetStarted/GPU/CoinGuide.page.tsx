@@ -16,7 +16,15 @@ import {
 } from '../common';
 import { Spacer } from '@/components/layout/Spacer';
 
-export const MineableCoinGuidePage = () => {
+type Props = {
+  walletDescription?: React.ReactNode;
+  hidePingTestSection?: boolean;
+};
+
+export const MineableCoinGuidePage = ({
+  walletDescription,
+  hidePingTestSection,
+}: Props) => {
   const router = useRouter();
   const ticker = router.query.ticker;
   const { t, i18n } = useTranslation('get-started');
@@ -60,6 +68,15 @@ export const MineableCoinGuidePage = () => {
     coinAlgorithm: mineableCoin.algorithm,
   });
 
+  const positions = [
+    '-----',
+    'wallet',
+    hidePingTestSection ? null : 'pingTest',
+    'workerName',
+    'minerCommand',
+    'dashboard',
+  ].filter((p) => p !== null);
+
   return (
     <Page>
       <NextSeo
@@ -95,25 +112,31 @@ export const MineableCoinGuidePage = () => {
           return (
             <>
               <SetWalletSection
-                position={1}
+                position={positions.indexOf('wallet')}
                 data={mineableCoin}
                 name="wallet_address"
+                desc={walletDescription}
               />
 
               <Spacer />
 
-              <PingTestSection
-                position={2}
-                data={mineableCoin.regions}
-                namePrimary="primary_server"
-                nameSecondary="secondary_server"
-                showAdditionalPorts
+              {!hidePingTestSection && (
+                <PingTestSection
+                  position={positions.indexOf('pingTest')}
+                  data={mineableCoin.regions}
+                  namePrimary="primary_server"
+                  nameSecondary="secondary_server"
+                  showAdditionalPorts
+                />
+              )}
+
+              <SetWorkerNameSection
+                position={positions.indexOf('workerName')}
+                name="worker_name"
               />
 
-              <SetWorkerNameSection position={3} name="worker_name" />
-
               <MinerCommandSection
-                position={4}
+                position={positions.indexOf('minerCommand')}
                 data={mineableCoinConfig.miners}
                 replaces={{
                   CLOSEST_SERVER: values.primary_server || 'CLOSEST_SERVER',
@@ -125,7 +148,7 @@ export const MineableCoinGuidePage = () => {
 
               {values.wallet_address && (
                 <ViewDashboardSection
-                  position={5}
+                  position={positions.indexOf('dashboard')}
                   coin={mineableCoin}
                   address={values.wallet_address}
                 />
