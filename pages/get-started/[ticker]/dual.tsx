@@ -2,13 +2,41 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
-import { MineableCoinGuidePage } from 'src/pages/GetStarted/ZilliqaGPU/CoinGuide.page';
+import { MineableCoinGuidePage as MineableCoinGuidePageZIL } from 'src/pages/GetStarted/ZilliqaGPU/CoinGuide.page';
+import { MinableCoinGuidePage as MinableCoinGuidePageDual } from 'src/pages/GetStarted/Dual/CoinGuide.page';
+import { findCoinsByHardwareKey } from '@/pages/GetStarted/mineableCoinList.utils';
+import { useTranslation } from 'next-i18next';
+import { getConfigs } from '@/pages/GetStarted/guide-configs';
 
-export const GetStartedGPUPage = () => {
+export const GetStartedGPUPage = ({ ticker }: { ticker: string }) => {
+  const { t } = useTranslation('get-started');
+  const configs = getConfigs(t);
+
   return (
     <Page>
       <Content paddingLg>
-        <MineableCoinGuidePage />
+        {ticker === 'zil' && <MineableCoinGuidePageZIL />}
+        {ticker === 'tiron' && (
+          <MinableCoinGuidePageDual
+            configs={[
+              {
+                key: 'tiron+zil',
+                label: 'Iron Fish (Testnet) + Zilliqa',
+                coins: [
+                  {
+                    name: 'Zilliqa',
+                    ticker: 'zil',
+                  },
+                  {
+                    name: 'Iron Fish (Testnet)',
+                    ticker: 'tiron',
+                  },
+                ],
+              },
+            ]}
+            {...configs.iron}
+          />
+        )}
       </Content>
     </Page>
   );
@@ -16,9 +44,10 @@ export const GetStartedGPUPage = () => {
 
 export default GetStartedGPUPage;
 
-export async function getStaticProps({ locale }) {
+export async function getStaticProps({ locale, params }) {
   return {
     props: {
+      ticker: params.ticker,
       ...(await serverSideTranslations(locale, [
         'common',
         'get-started',
@@ -34,7 +63,9 @@ export const getStaticPaths = ({ locales }) => {
     [];
 
   for (const locale of locales) {
-    paths.push({ params: { ticker: 'zil', hw: 'dual' }, locale });
+    for (const coin of findCoinsByHardwareKey('dual')) {
+      paths.push({ params: { ticker: coin.ticker, hw: 'dual' }, locale });
+    }
   }
 
   return {

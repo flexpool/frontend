@@ -10,10 +10,10 @@ export const FarmerOptionSelector = ({ name }: FarmerOptionProps) => {
 
   return (
     <ButtonGroupField
-      options={{
-        'new-farmer': { label: t('detail_xch.new_farmer') },
-        'already-farmer': { label: t('detail_xch.already_farmer') },
-      }}
+      options={[
+        { key: 'new-farmer', label: t('detail_xch.new_farmer') },
+        { key: 'already-farmer', label: t('detail_xch.already_farmer') },
+      ]}
       name={name}
     />
   );

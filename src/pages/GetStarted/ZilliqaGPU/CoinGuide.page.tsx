@@ -9,17 +9,21 @@ import { MineableCoinHardware, mineableCoins } from '../mineableCoinList';
 import merge from 'lodash.merge';
 import { NextSeo } from 'next-seo';
 
-import { SetWorkerNameSection } from '../common/SetWorkerNameSection';
-import { SetWalletSection } from './SetWalletSection';
-import { PingTestSection } from '../common/PingTestSection';
-import { MinerCommandSection } from '../common/MinerCommand.section';
-import GuideForm from '../common/GuideForm';
+import {
+  SetWorkerNameSection,
+  SetWalletSectionDual,
+  PingTestSection,
+  MinerCommandSection,
+  GuideForm,
+  SectionWrapper,
+} from '../common';
+
 import MainCoinButtonGroup from './MainCoinButtonGroup';
 import ViewDashboard from './ViewDashboard';
 
-import { SectionWrapper } from '../common/SectionWrapper';
 import { InfoBox } from '@/components/InfoBox';
 import { Spacer } from '@/components/layout/Spacer';
+import { findMinableCoinByTicker } from '../mineableCoinList.utils';
 
 import styled from 'styled-components';
 
@@ -141,9 +145,8 @@ export const MineableCoinGuidePage: React.FC = () => {
           let formatCoin = values.main_coin;
           if (formatCoin === 'etc_compatible') formatCoin = 'etc';
 
-          const mainCoin = mineableCoins.find(
-            (coin) => coin.ticker === formatCoin
-          );
+          const mainCoin = findMinableCoinByTicker('etc');
+          const dualCoin = findMinableCoinByTicker('zil');
 
           return (
             <>
@@ -156,11 +159,12 @@ export const MineableCoinGuidePage: React.FC = () => {
 
               <SetWorkerNameSection position={2} />
 
-              {mainCoin && (
+              {mainCoin && dualCoin && (
                 <>
-                  <SetWalletSection
+                  <SetWalletSectionDual
                     position={3}
-                    data={mainCoin}
+                    coinMain={mainCoin}
+                    coinDual={dualCoin}
                     nameMain="main_wallet_address"
                     nameDual="dual_wallet_address"
                   />

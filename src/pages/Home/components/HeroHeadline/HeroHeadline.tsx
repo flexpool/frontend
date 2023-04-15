@@ -70,11 +70,13 @@ const TextDisappear = styled.span`
   animation: ${disappear} 2.5s ease-in-out;
 `;
 
-const list = mineableCoins.map((coin) => ({
-  name: coin.name,
-}));
+const list = mineableCoins
+  .map((coin) => ({
+    name: coin.name,
+  }))
+  .filter((s) => !s.name.toLowerCase().includes('testnet'));
 
-const COINS_COUNT = mineableCoins.length;
+const COINS_COUNT = list.length;
 
 const HeroHeadLineContainer = styled.div`
   font-size: 2rem;
