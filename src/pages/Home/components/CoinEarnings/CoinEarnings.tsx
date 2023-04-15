@@ -339,7 +339,7 @@ const CoinEarningsItem: React.FC<{
             </p>
           </PoolDetails>
 
-          <Link href={`/get-started/${data?.ticker}`} passHref>
+          <Link href={`/get-started`} passHref>
             <Button variant="success">
               {data?.ticker === 'xch'
                 ? t('coin_earnings_cards.cta_farm')
