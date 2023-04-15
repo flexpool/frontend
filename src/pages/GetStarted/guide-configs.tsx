@@ -17,6 +17,7 @@ export const getConfigs = (t: TFunction) => {
         />
       </p>
     ),
+    hidePingTestSection: true,
   };
 
   return {

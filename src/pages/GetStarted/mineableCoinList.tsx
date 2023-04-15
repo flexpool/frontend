@@ -269,7 +269,7 @@ export const mineableCoins: MineableCoin[] = [
             fee: [0.5],
             compatibleGpus: ['AMD', 'NVIDIA'],
             downloadLink: 'https://github.com/bzminer/bzminer/releases',
-            cmd: 'bzminer.exe -a ironfish -w WALLET_ADDRESS -p stratum+tcp://CLOSEST_SERVER:8888 --nc 1',
+            cmd: 'bzminer.exe -a ironfish -w WALLET_ADDRESS -p stratum+tcp://iron.fpmp.net:8888 --nc 1',
           },
         ],
       },
