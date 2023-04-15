@@ -250,7 +250,7 @@
       { "key": "Reward Scheme", "value": "PPLNS (Pay Per Last N Shares)" },
       { "key": "Pool Fee", "value": "0.95%" },
       { "key": "Payout Round", "value": "Once an hour" },
-      { "key": "Payouts", "value": "Minimum 0.05 $IRON" },
+      { "key": "Payouts", "value": "Minimum 0.05 IRON" },
       { "key": "Block confirmation time", "value": "32 blocks" },
       { "key": "Share Difficulty", "value": "150GH" },
       { "key": "Mining Algorithm", "value": "Blake3" }
