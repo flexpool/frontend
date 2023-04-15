@@ -38,7 +38,6 @@ export const SetWalletSection = ({
                 coinbase: <LinkOut href="https://www.coinbase.com" />,
               }}
             />
-            ``
           </p>
           <p>
             <Trans
