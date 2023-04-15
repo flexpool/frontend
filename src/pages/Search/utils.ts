@@ -15,14 +15,18 @@ export const getPropsFromLocateAddress = async (
 
     if (getChecksumByTicker('eth')(address)) addressType = 'eth';
     if (getChecksumByTicker('xch')(address)) addressType = 'xch';
+    if (getChecksumByTicker('tiron')(address)) addressType = 'tiron';
     if (isZilAddress(address)) addressType = 'zil';
 
     const isPending = result.pendingStats === true;
     const isMining = !isPending && result.result !== null;
 
     if (isPending) {
-      if (addressType === 'eth') dashboards = ['eth', 'etc'];
-      if (addressType === 'xch') dashboards = ['xch'];
+      if (addressType) {
+        dashboards = [addressType];
+        if (addressType === 'eth') dashboards = ['eth', 'etc'];
+      }
+
       addressStatus = 'pending';
     } else if (isMining) {
       dashboards = result.all;
