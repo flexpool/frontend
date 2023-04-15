@@ -239,7 +239,7 @@ export const mineableCoins: MineableCoin[] = [
   {
     name: 'Iron Fish (Testnet)',
     ticker: 'tiron',
-    algorithm: 'Blake 3',
+    algorithm: 'Blake3',
     nicehash_algorithm: null,
     description: '',
     regex: /^[A-Fa-f0-9]{64}$/,
