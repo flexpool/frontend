@@ -244,7 +244,7 @@
   "detail_tiron": {
     "title": "Iron Fish (Testnet) mining",
     "wallet": {
-      "desc_one": "For Iron Fish, you will need to create a wallet by spinning up the node and creating a wallet. Instructions can be found on <ifweb>Iron Fish's website</ifweb>. In the alternative, there is an easier community-made light wallet on <oreos>github</oreos>. We have a guide for how to do so using Windows, Ubuntu, and Hive OS here: TODO"
+      "desc_one": "For Iron Fish, you will need to create a wallet by spinning up the node and creating a wallet. Instructions can be found on <ifweb>Iron Fish's website</ifweb>. In the alternative, there is an easier community-made light wallet on <oreos>github</oreos>."
     },
     "pool_details": [
       { "key": "Reward Scheme", "value": "PPLNS (Pay Per Last N Shares)" },
