@@ -16,7 +16,11 @@ import {
 } from '../common';
 import { Spacer } from '@/components/layout/Spacer';
 
-export const MineableCoinGuidePage = () => {
+type Props = {
+  walletDescription?: React.ReactNode;
+};
+
+export const MineableCoinGuidePage = ({ walletDescription }: Props) => {
   const router = useRouter();
   const ticker = router.query.ticker;
   const { t, i18n } = useTranslation('get-started');
@@ -98,6 +102,7 @@ export const MineableCoinGuidePage = () => {
                 position={1}
                 data={mineableCoin}
                 name="wallet_address"
+                desc={walletDescription}
               />
 
               <Spacer />

@@ -5,12 +5,21 @@ import { Page } from 'src/components/layout/Page';
 import { MineableCoinGuidePage } from 'src/pages/GetStarted/GPU/CoinGuide.page';
 import { DualMineBanner } from '@/pages/GetStarted/DualMineBanner';
 import { findCoinsByHardwareKey } from '@/pages/GetStarted/mineableCoinList.utils';
+import { getConfigs } from '@/pages/GetStarted/guide-configs';
+import { useTranslation } from 'next-i18next';
 
 export const GetStartedGPUPage = ({ ticker }: { ticker: string }) => {
+  const { t } = useTranslation('get-started');
+  const configs = getConfigs(t);
+
   return (
     <Page>
       <Content paddingLg>
-        <MineableCoinGuidePage />
+        {ticker === 'tiron' ? (
+          <MineableCoinGuidePage {...configs.iron} />
+        ) : (
+          <MineableCoinGuidePage />
+        )}
       </Content>
       {ticker == 'zil' ||
         (ticker === 'etc' && (

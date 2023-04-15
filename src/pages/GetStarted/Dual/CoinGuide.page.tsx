@@ -27,6 +27,7 @@ type MiningConfig = {
 
 type Props = {
   configs: MiningConfig[];
+  walletDescription?: React.ReactNode;
 };
 
 /**
@@ -34,7 +35,7 @@ type Props = {
  * This guide assumes:
  * 1. both coins only have 1 server, thus no PingTestSection
  */
-export const MinableCoinGuidePage = ({ configs }: Props) => {
+export const MinableCoinGuidePage = ({ configs, walletDescription }: Props) => {
   const router = useRouter();
   const ticker = router.query.ticker;
 
@@ -142,6 +143,7 @@ export const MinableCoinGuidePage = ({ configs }: Props) => {
                 coinDual={minableCoin_dual}
                 nameMain="main_wallet_address"
                 nameDual="dual_wallet_address"
+                desc={walletDescription}
               />
 
               {minableHardware && (
