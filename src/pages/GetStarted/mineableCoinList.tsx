@@ -1,3 +1,4 @@
+import { checksumIron } from '@/utils/validators/ironWalletAddress.validator';
 import { checksumETH } from 'src/utils/validators/ethWalletAddress.validator';
 import { checksumXCH } from 'src/utils/validators/xchWalletAddress.validator';
 import { checksumZIL } from 'src/utils/validators/zilWalletAddress.validator';
@@ -241,14 +242,15 @@ export const mineableCoins: MineableCoin[] = [
     algorithm: 'Blake 3',
     nicehash_algorithm: null,
     description: '',
-    regex: /^zil1[qpzry9x8gf2tvdw0s3jn54khce6mua7l]{38}$/g,
-    validator: checksumZIL,
-    walletAddressExample: 'zil102n74869xnvdwq3yh8p0k9jjgtejruft268tg8',
+    regex: /^[A-Fa-f0-9]{64}$/,
+    validator: checksumIron,
+    walletAddressExample:
+      '2aa206fcbe1d1d86b3db2ec6e80aae6c181f633b42e4df02a8e7997f0f59c4dd',
     nicehashAvailable: false,
     regions: [
       {
         domain: 'iron.fpmp.net',
-        code: 'us-east',
+        code: 'world',
         imageCode: 'us',
         high_diff_avail: false,
       },
