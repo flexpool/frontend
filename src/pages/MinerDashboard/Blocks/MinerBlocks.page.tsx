@@ -1,10 +1,12 @@
 import { BlocksSection } from './MinerBlocks.section';
+
 export const MinerBlocksPage: React.FC<{
   address: string;
-}> = ({ address }) => {
+  coin: string;
+}> = ({ address, coin }) => {
   return (
     <>
-      <BlocksSection address={address} />
+      <BlocksSection address={address} coin={coin} />
     </>
   );
 };
