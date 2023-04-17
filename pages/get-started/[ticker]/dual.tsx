@@ -24,12 +24,12 @@ export const GetStartedGPUPage = ({ ticker }: { ticker: string }) => {
                 label: 'Iron Fish (Testnet) + Zilliqa',
                 coins: [
                   {
-                    name: 'Zilliqa',
-                    ticker: 'zil',
-                  },
-                  {
                     name: 'Iron Fish (Testnet)',
                     ticker: 'tiron',
+                  },
+                  {
+                    name: 'Zilliqa',
+                    ticker: 'zil',
                   },
                 ],
               },

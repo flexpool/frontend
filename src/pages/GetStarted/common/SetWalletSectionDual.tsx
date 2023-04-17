@@ -95,14 +95,14 @@ export const SetWalletSectionDual = ({
       <Spacer />
       <TextFieldLayout>
         <WalletTextField
-          name={nameDual}
-          data={coinDual}
-          label={<WalletLabel data={coinDual} />}
-        />
-        <WalletTextField
           name={nameMain}
           data={coinMain}
           label={<WalletLabel data={coinMain} />}
+        />
+        <WalletTextField
+          name={nameDual}
+          data={coinDual}
+          label={<WalletLabel data={coinDual} />}
         />
       </TextFieldLayout>
     </SectionWrapper>
