@@ -306,7 +306,7 @@ export const mineableCoins: MineableCoin[] = [
             fee: [0.7],
             compatibleGpus: ['NVIDIA'],
             downloadLink: 'https://github.com/rigelminer/rigel/releases',
-            cmd: 'rigel.exe -a ironfish+zil -o stratum+tcp://iron.fpmp.net:8888 -u [1]MAIN_WALLET_ADDRESS -o [2]zmp://zil.flexpool.io -u DUAL_WALLET_ADDRESS -w WORKER_NAME',
+            cmd: 'rigel.exe -a ironfish+zil -o [1]stratum+tcp://iron.fpmp.net:8888 -u [1]MAIN_WALLET_ADDRESS -o [2]zmp://zil.flexpool.io -u [2]DUAL_WALLET_ADDRESS -w WORKER_NAME',
           },
         ],
       },

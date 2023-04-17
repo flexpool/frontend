@@ -300,7 +300,7 @@
   "detail_tiron": {
     "title": "Iron Fish (Testnet) mining",
     "wallet": {
-      "desc_one": "对于Iron Fish，您需要通过启动节点并创建钱包来创建钱包。可以在<ifweb>官网</ifweb>上找到说明。或者，您可以使用社区制作的更简单的轻钱包，可以在<oreos>github</oreos>上找到。"
+      "desc_one": "对于Iron Fish，您需要通过启动节点并创建钱包来创建钱包。可以在<ifweb>官网</ifweb>上找到说明。或者，您可以使用社区制作的更简单的轻钱包，可以在<oreos>GitHub</oreos>上找到。"
     },
     "pool_details": [
       { "key": "Reward Scheme", "value": "PPLNS (Pay Per Last N Shares)" },
