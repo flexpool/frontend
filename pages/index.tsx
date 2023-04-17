@@ -19,6 +19,8 @@ import LamboExplainer from '@/pages/Home/components/LamboExplainer';
 
 import SnowFall from 'react-snowfall';
 import { ShowBetweenDates } from '@/components/ShowBetweenDates';
+import AnnouncementBar from '@/components/AnnouncementBar';
+import { LinkOut } from '@/components/LinkOut';
 
 const CURRENT_YEAR = new Date().getFullYear();
 
@@ -109,6 +111,36 @@ export const HomePage = () => {
           },
         ]}
       />
+
+      <AnnouncementBar id="iron-testnet-announcement" variant="primary">
+        <b>Iron Fish Testnet Pool Mega Airdrop Announcement</b>
+
+        <Spacer size="sm" />
+
+        <div
+          style={{
+            width: '90%',
+            margin: '0 auto',
+            lineHeight: 1.4,
+          }}
+        >
+          Earn a portion of our $5,000 airdrop for testing our testnet Iron Fish
+          pool during the next three days.
+          <br />
+          <br />
+          Details are in the{' '}
+          <LinkOut
+            href="https://www.reddit.com/r/Flexpool/comments/12pidk7/earn_a_portion_of_our_5000_airdrop_while_testing/"
+            style={{
+              color: 'white',
+              textDecoration: 'underline',
+            }}
+          >
+            announcement
+          </LinkOut>
+          .
+        </div>
+      </AnnouncementBar>
       <div
         style={{
           position: 'relative',
