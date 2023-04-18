@@ -224,7 +224,7 @@ export const CoinsWeMineSection = () => {
               <ActionIcon size="xs" variant="primary">
                 <FaCalculator />
               </ActionIcon>
-              <Link href={`/get-started/${data.ticker}`} passHref>
+              <Link href={`/get-started`} passHref>
                 <Button
                   size="xs"
                   variant="primary"
