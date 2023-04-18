@@ -98,5 +98,11 @@
   "get_started_section": {
     "title": "准备好了吗？",
     "cta": "开始挖矿"
+  },
+  "announcements": {
+    "iron_testnet_airdrop": {
+      "title": "Iron Fish 测试网超大空投公告",
+      "desc": "在未来三天内，通过帮助我们测试 Iron Fish 测试网矿池， 即可获得总计 $5,000 的空投的一部分。<br/><br/> 详情请查看我们的<announcement>公告</announcement>。"
+    }
   }
 }
