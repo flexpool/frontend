@@ -1,6 +1,6 @@
 import React from 'react';
 import { NextSeo } from 'next-seo';
-import { useTranslation } from 'next-i18next';
+import { useTranslation, Trans } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styled from 'styled-components';
 import Image from 'next/image';
@@ -113,7 +113,7 @@ export const HomePage = () => {
       />
 
       <AnnouncementBar id="iron-testnet-announcement" variant="primary">
-        <b>Iron Fish Testnet Pool Mega Airdrop Announcement</b>
+        <b>{t('announcements.iron_testnet_airdrop.title')}</b>
 
         <Spacer size="sm" />
 
@@ -124,21 +124,24 @@ export const HomePage = () => {
             lineHeight: 1.4,
           }}
         >
-          Earn a portion of our $5,000 airdrop for testing our testnet Iron Fish
-          pool during the next three days.
-          <br />
-          <br />
-          Details are in the{' '}
-          <LinkOut
-            href="https://www.reddit.com/r/Flexpool/comments/12pidk7/earn_a_portion_of_our_5000_airdrop_while_testing/"
-            style={{
-              color: 'white',
-              textDecoration: 'underline',
+          <Trans
+            t={t}
+            i18nKey={'announcements.iron_testnet_airdrop.desc'}
+            components={{
+              br: <br />,
+              announcement: (
+                <LinkOut
+                  href="https://www.reddit.com/r/Flexpool/comments/12pidk7/earn_a_portion_of_our_5000_airdrop_while_testing/"
+                  style={{
+                    color: 'white',
+                    textDecoration: 'underline',
+                  }}
+                >
+                  announcement
+                </LinkOut>
+              ),
             }}
-          >
-            announcement
-          </LinkOut>
-          .
+          />
         </div>
       </AnnouncementBar>
       <div

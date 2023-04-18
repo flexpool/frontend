@@ -10,7 +10,7 @@ export const getConfigs = (t: TFunction) => {
           i18nKey={'detail_tiron.wallet.desc_one'}
           components={{
             ifweb: (
-              <LinkOut href="https://ironfish.network/docs/onboarding/new-account-iron-fish" />
+              <LinkOut href="https://ironfish.network/use/get-started/installation" />
             ),
             oreos: <LinkOut href="https://github.com/hairtail/oreos-rust" />,
           }}
