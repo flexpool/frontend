@@ -20,6 +20,7 @@ import { BiTransferAlt } from 'react-icons/bi';
 import ListDateSwitchButton from 'src/components/ButtonVariants/ListDateSwitchButton';
 import { useLocalizedActiveCoinValueFormatter } from 'src/hooks/useDisplayReward';
 import router from 'next/router';
+import { findMinableCoinByTicker } from '@/pages/GetStarted/mineableCoinList.utils';
 
 type ApiBlock = {
   confirmed: boolean;
@@ -314,7 +315,10 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
     // if no address, displaying default view
     if (!address) {
       var cols = [blockCols.number, blockCols.type, blockCols.date];
-      if (!['zil', 'xch'].includes(coinTicker)) {
+
+      const mineableCoin = findMinableCoinByTicker(coinTicker);
+
+      if (mineableCoin?.configs?.showBlocksRegion) {
         cols.push(blockCols.region);
       }
 
@@ -340,7 +344,7 @@ export const BlocksSection: React.FC<{ address?: string }> = ({ address }) => {
       blockCols.region,
       blockCols.blockHash,
     ];
-  }, [address, blockCols]);
+  }, [address, blockCols, coinTicker]);
 
   const onRowClick = React.useCallback(
     (data: ApiBlock) => {

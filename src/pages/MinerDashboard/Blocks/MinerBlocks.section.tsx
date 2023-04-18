@@ -17,6 +17,7 @@ import { TableCellSpinner } from 'src/components/Loader/TableCellSpinner';
 import { useTranslation } from 'next-i18next';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { BiTransferAlt } from 'react-icons/bi';
+import { findMinableCoinByTicker } from '@/pages/GetStarted/mineableCoinList.utils';
 
 type ApiBlock = {
   confirmed: boolean;
@@ -87,7 +88,8 @@ const ButtonDateSwitch = styled(Ws)`
 
 export const BlocksSection: React.FC<{
   address?: string;
-}> = ({ address }) => {
+  coin: string;
+}> = ({ address, coin }) => {
   const { t } = useTranslation('blocks');
   const blockState = useAsyncState<ApiBlocks>('blocks', {
     totalItems: 0,
@@ -289,6 +291,8 @@ export const BlocksSection: React.FC<{
   );
 
   const columns = React.useMemo(() => {
+    const mineableCoin = findMinableCoinByTicker(coin);
+
     // if no address, displaying default view
     if (!address) {
       return [
@@ -306,10 +310,10 @@ export const BlocksSection: React.FC<{
       blockCols.number,
       blockCols.type,
       blockCols.date,
-      blockCols.region,
+      ...(mineableCoin?.configs?.showBlocksRegion ? [blockCols.region] : []),
       blockCols.blockHash,
     ];
-  }, [address, blockCols]);
+  }, [address, blockCols, coin]);
 
   const onRowClick = React.useCallback(
     (data: ApiBlock) => {

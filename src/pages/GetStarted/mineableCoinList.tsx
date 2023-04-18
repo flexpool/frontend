@@ -32,12 +32,17 @@ export type MineableCoin = {
   algorithm: string;
   nicehash_algorithm: null | string;
   regions: MineableCoinRegion[];
+  configs?: Configs;
   description: string;
   walletAddressExample: string;
   regex: RegExp;
   validator: (address: string) => null | string;
   hardware: MineableCoinHardware[];
   nicehashAvailable: boolean;
+};
+
+type Configs = {
+  showBlocksRegion?: boolean;
 };
 
 export const mineableCoins: MineableCoin[] = [
@@ -51,6 +56,9 @@ export const mineableCoins: MineableCoin[] = [
     validator: checksumETH,
     walletAddressExample: '0xBf08F613ccE234c96e0e889a0B660bD819D23795',
     nicehashAvailable: true,
+    configs: {
+      showBlocksRegion: true,
+    },
     regions: [
       {
         domain: 'etc-us-east.flexpool.io',
