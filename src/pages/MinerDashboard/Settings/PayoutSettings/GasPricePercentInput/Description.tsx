@@ -32,8 +32,11 @@ const Description = ({ address }: { address: string }) => {
   const activeCoinTicker = useActiveCoinTicker();
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
   const currencyFormatter = useLocalizedCurrencyFormatter();
-  const { data: minerDetails } = useMinerDetailsQuery({ coin: 'eth', address });
-  const { data: minerBalance } = useMinerBalance(address, 'eth');
+  const { data: minerDetails } = useMinerDetailsQuery({
+    coin: activeCoinTicker,
+    address,
+  });
+  const { data: minerBalance } = useMinerBalance(address, activeCoinTicker);
 
   const maxFeePricePercent = useMemo(
     () => Number(get(values, 'maxFeePricePercent')),
