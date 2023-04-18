@@ -17,6 +17,7 @@ import { TableCellSpinner } from 'src/components/Loader/TableCellSpinner';
 import { useTranslation } from 'next-i18next';
 import { useLocalStorageState } from 'src/hooks/useLocalStorageState';
 import { BiTransferAlt } from 'react-icons/bi';
+import { findMinableCoinByTicker } from '@/pages/GetStarted/mineableCoinList.utils';
 
 type ApiBlock = {
   confirmed: boolean;
@@ -290,7 +291,7 @@ export const BlocksSection: React.FC<{
   );
 
   const columns = React.useMemo(() => {
-    const hideRegion = coin === 'tiron' || coin === 'iron';
+    const mineableCoin = findMinableCoinByTicker(coin);
 
     // if no address, displaying default view
     if (!address) {
@@ -309,7 +310,7 @@ export const BlocksSection: React.FC<{
       blockCols.number,
       blockCols.type,
       blockCols.date,
-      ...(hideRegion ? [] : [blockCols.region]),
+      ...(mineableCoin?.configs?.showBlocksRegion ? [blockCols.region] : []),
       blockCols.blockHash,
     ];
   }, [address, blockCols, coin]);
