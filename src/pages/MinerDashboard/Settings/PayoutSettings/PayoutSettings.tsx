@@ -49,7 +49,7 @@ export const PayoutSettings: React.FC<{
 
   const feeDetails = useFeePayoutLimitDetails(activeCoinTicker);
   const [gweiToggle, setGweiToggle] = React.useState(true);
-  if (!minerDetails || !activeCoin || !feeDetails) {
+  if (!minerDetails || !activeCoin) {
     return null;
   }
 
@@ -99,6 +99,19 @@ export const PayoutSettings: React.FC<{
   return (
     <Formik
       onSubmit={async (data) => {
+        const maxFeePriceFromPercent = feeDetails
+          ? Math.round(
+              ((Number(data.maxFeePricePercent) / 100) *
+                Math.pow(10, activeCoin.decimalPlaces) *
+                Number(
+                  minerDetails.payoutLimit /
+                    Math.pow(10, activeCoin.decimalPlaces)
+                )) /
+                activeCoin.transactionSize /
+                feeDetails.multiplier
+            )
+          : 0;
+
         return mutateAsync({
           address: address,
           coin: activeCoin.ticker,
@@ -106,33 +119,27 @@ export const PayoutSettings: React.FC<{
             Number(data.payoutLimit) * Math.pow(10, activeCoin.decimalPlaces),
           maxFeePrice: gweiToggle
             ? Number(data.maxFeePrice)
-            : Math.round(
-                ((Number(data.maxFeePricePercent) / 100) *
-                  Math.pow(10, activeCoin.decimalPlaces) *
-                  Number(
-                    minerDetails.payoutLimit /
-                      Math.pow(10, activeCoin.decimalPlaces)
-                  )) /
-                  activeCoin.transactionSize /
-                  feeDetails.multiplier
-              ),
+            : maxFeePriceFromPercent,
           ipAddress: data.ip,
           network: data.network,
         });
       }}
       initialValues={{
         maxFeePrice: `${minerDetails.maxFeePrice}`,
-        maxFeePricePercent: numberFormatter(
-          ((Number(minerDetails.maxFeePrice) *
-            activeCoin.transactionSize *
-            feeDetails.multiplier) /
-            Math.pow(10, activeCoin.decimalPlaces) /
-            Number(
-              minerDetails.payoutLimit / Math.pow(10, activeCoin.decimalPlaces)
-            )) *
-            100,
-          { style: 'decimal', maximumFractionDigits: 6 }
-        ),
+        maxFeePricePercent: feeDetails
+          ? numberFormatter(
+              ((Number(minerDetails.maxFeePrice) *
+                activeCoin.transactionSize *
+                feeDetails.multiplier) /
+                Math.pow(10, activeCoin.decimalPlaces) /
+                Number(
+                  minerDetails.payoutLimit /
+                    Math.pow(10, activeCoin.decimalPlaces)
+                )) *
+                100,
+              { style: 'decimal', maximumFractionDigits: 6 }
+            )
+          : '0',
         ip: '',
         payoutLimit: `${
           minerDetails.payoutLimit / Math.pow(10, activeCoin.decimalPlaces)
