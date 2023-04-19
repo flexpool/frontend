@@ -98,9 +98,7 @@ function BlocksPage() {
   }, [activeCoin?.ticker]);
 
   const isZil = isMounted ? activeCoinTicker === 'zil' : false;
-  const hideBlockChart = isMounted
-    ? activeCoinTicker === 'zil' || activeCoin?.testnet
-    : false;
+  const hideBlockChart = isMounted ? activeCoinTicker === 'zil' : false;
 
   return (
     <Page>
