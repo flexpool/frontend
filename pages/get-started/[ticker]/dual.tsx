@@ -16,16 +16,16 @@ export const GetStartedGPUPage = ({ ticker }: { ticker: string }) => {
     <Page>
       <Content paddingLg>
         {ticker === 'zil' && <MineableCoinGuidePageZIL />}
-        {ticker === 'tiron' && (
+        {ticker === 'iron' && (
           <MinableCoinGuidePageDual
             configs={[
               {
-                key: 'tiron+zil',
-                label: 'Iron Fish (Testnet) + Zilliqa',
+                key: 'iron+zil',
+                label: 'Iron Fish + Zilliqa',
                 coins: [
                   {
-                    name: 'Iron Fish (Testnet)',
-                    ticker: 'tiron',
+                    name: 'Iron Fish',
+                    ticker: 'iron',
                   },
                   {
                     name: 'Zilliqa',

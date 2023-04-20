@@ -266,6 +266,31 @@
       }
     ]
   },
+  "detail_iron": {
+    "title": "Iron Fish mining",
+    "wallet": {
+      "desc_one": "For Iron Fish, you will need to create a wallet by spinning up the node and creating a wallet. Instructions can be found on <ifweb>Iron Fish's website</ifweb>. In the alternative, there is an easier community-made light wallet on <oreos>GitHub</oreos>."
+    },
+    "pool_details": [
+      { "key": "Reward Scheme", "value": "PPLNS (Pay Per Last N Shares)" },
+      { "key": "Pool Fee", "value": "0.95%" },
+      { "key": "Payout Round", "value": "Once an hour" },
+      { "key": "Payouts", "value": "Minimum 0.05 IRON" },
+      { "key": "Block confirmation time", "value": "32 blocks" },
+      { "key": "Share Difficulty", "value": "150GH" },
+      { "key": "Mining Algorithm", "value": "Blake3" }
+    ],
+    "hardware": [
+      {
+        "title": "GPU Standard Mining",
+        "key": "GPU"
+      },
+      {
+        "title": "GPU Dual Mining",
+        "key": "dual"
+      }
+    ]
+  },
   "regions": {
     "us": "United States",
     "us-east": "United States (East)",

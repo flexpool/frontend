@@ -7,7 +7,7 @@ export const getConfigs = (t: TFunction) => {
       <p>
         <Trans
           t={t}
-          i18nKey={'detail_tiron.wallet.desc_one'}
+          i18nKey={'detail_iron.wallet.desc_one'}
           components={{
             ifweb: (
               <LinkOut href="https://ironfish.network/use/get-started/installation" />
