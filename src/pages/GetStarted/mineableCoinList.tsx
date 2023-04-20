@@ -320,4 +320,80 @@ export const mineableCoins: MineableCoin[] = [
       },
     ],
   },
+  {
+    name: 'Iron Fish',
+    ticker: 'iron',
+    algorithm: 'Blake3',
+    nicehash_algorithm: null,
+    description: '',
+    regex: /^[A-Fa-f0-9]{64}$/,
+    validator: checksumIron,
+    walletAddressExample:
+      '2aa206fcbe1d1d86b3db2ec6e80aae6c181f633b42e4df02a8e7997f0f59c4dd',
+    nicehashAvailable: false,
+    regions: [
+      {
+        domain: 'iron.fpmp.net',
+        code: 'de',
+        imageCode: 'de',
+        high_diff_avail: false,
+      },
+    ],
+    hardware: [
+      {
+        title: 'GPU Standard Mining',
+        key: 'GPU',
+        miners: [
+          {
+            os: ['windows', 'linux'],
+            title: 'BzMiner',
+            key: 'bzminer',
+            description:
+              'Fast Windows/Linux miner with remote management and lowest 1% dev fee! (0% fee on ZIL)',
+            fee: [1],
+            compatibleGpus: ['AMD', 'NVIDIA'],
+            downloadLink: 'https://github.com/bzminer/bzminer/releases',
+            cmd: 'bzminer.exe -a ironfish -w WALLET_ADDRESS.WORKER_NAME -p stratum+tcp://iron.fpmp.net:8888 --nc 1',
+          },
+          {
+            os: ['windows', 'linux'],
+            title: 'Rigel Miner',
+            key: 'rigelminer',
+            description: 'Miner optimized for NVIDIA GPUs.',
+            fee: [0.7],
+            compatibleGpus: ['NVIDIA'],
+            downloadLink: 'https://github.com/rigelminer/rigel/releases',
+            cmd: 'rigel.exe -a ironfish -o stratum+tcp://iron.fpmp.net:8888 -u WALLET_ADDRESS -w WORKER_NAME',
+          },
+        ],
+      },
+      {
+        title: 'GPU Dual Mining',
+        key: 'dual',
+        miners: [
+          {
+            os: ['windows', 'linux'],
+            title: 'BzMiner',
+            key: 'bzminer',
+            description:
+              'Fast Windows/Linux miner with remote management and lowest 0.5% dev fee! (0% fee on ZIL)',
+            fee: [1],
+            compatibleGpus: ['AMD', 'NVIDIA'],
+            downloadLink: 'https://github.com/bzminer/bzminer/releases',
+            cmd: 'bzminer -a ironfish -w MAIN_WALLET_ADDRESS.WORKER_NAME -p stratum+tcp://iron.fpmp.net:8888 --nc 1 --a2 zil --w2 DUAL_WALLET_ADDRESS.WORKER_NAME --p2 zmp://zil.flexpool.io',
+          },
+          {
+            os: ['windows', 'linux'],
+            title: 'Rigel Miner',
+            key: 'rigelminer',
+            description: 'Miner optimized for NVIDIA GPUs.',
+            fee: [0.7],
+            compatibleGpus: ['NVIDIA'],
+            downloadLink: 'https://github.com/rigelminer/rigel/releases',
+            cmd: 'rigel.exe -a ironfish+zil -o [1]stratum+tcp://iron.fpmp.net:8888 -u [1]MAIN_WALLET_ADDRESS -o [2]zmp://zil.flexpool.io -u [2]DUAL_WALLET_ADDRESS -w WORKER_NAME',
+          },
+        ],
+      },
+    ],
+  },
 ];
