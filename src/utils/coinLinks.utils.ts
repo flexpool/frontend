@@ -4,6 +4,7 @@ const blockUrlMap = {
   xch: 'https://xchscan.com/blocks/%v',
   btc: 'https://www.blockchain.com/btc/block/%v',
   zil: 'https://devex.zilliqa.com/dsbk/%v',
+  iron: 'https://explorer.ironfish.network/blocks/%v',
 };
 
 const uncleUrlMap = {
@@ -18,6 +19,7 @@ const transactionUrlMap = {
   xch: 'https://xchscan.com/txns/%v',
   btc: 'https://www.blockchain.com/btc/tx/%v',
   zil: 'https://viewblock.io/zilliqa/tx/%v',
+  iron: 'https://explorer.ironfish.network/transaction/%v',
 };
 
 const walletAddressUrlMap = {
