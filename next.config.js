@@ -104,6 +104,11 @@ module.exports = withPWA(
           destination: '/transparency',
           permanent: true,
         },
+        {
+          source: '/miner/tiron/:address',
+          destination: '/miner/iron/:address',
+          permanent: false,
+        },
         // Old Redirects from CRA app
         // {
         //   source: '/:lang/blocks',

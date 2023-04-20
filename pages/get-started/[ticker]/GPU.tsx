@@ -15,11 +15,14 @@ export const GetStartedGPUPage = ({ ticker }: { ticker: string }) => {
   return (
     <Page>
       <Content paddingLg>
-        {ticker === 'tiron' ? (
-          <MineableCoinGuidePage {...configs.iron} />
-        ) : (
-          <MineableCoinGuidePage />
-        )}
+        {(() => {
+          switch (ticker) {
+            case 'iron':
+              return <MineableCoinGuidePage {...configs.iron} />;
+            default:
+              return <MineableCoinGuidePage />;
+          }
+        })()}
       </Content>
       {ticker == 'zil' ||
         (ticker === 'etc' && (
