@@ -15,7 +15,6 @@ export const getPropsFromLocateAddress = async (
 
     if (getChecksumByTicker('eth')(address)) addressType = 'eth';
     if (getChecksumByTicker('xch')(address)) addressType = 'xch';
-    if (getChecksumByTicker('tiron')(address)) addressType = 'tiron';
     if (getChecksumByTicker('iron')(address)) addressType = 'iron';
     if (isZilAddress(address)) addressType = 'zil';
 

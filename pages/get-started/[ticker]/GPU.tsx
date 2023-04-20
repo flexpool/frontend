@@ -17,8 +17,6 @@ export const GetStartedGPUPage = ({ ticker }: { ticker: string }) => {
       <Content paddingLg>
         {(() => {
           switch (ticker) {
-            case 'tiron':
-              return <MineableCoinGuidePage {...configs.tiron} />;
             case 'iron':
               return <MineableCoinGuidePage {...configs.iron} />;
             default:

@@ -16,28 +16,6 @@ export const GetStartedGPUPage = ({ ticker }: { ticker: string }) => {
     <Page>
       <Content paddingLg>
         {ticker === 'zil' && <MineableCoinGuidePageZIL />}
-        {/* TODO: Remove after IRON mainnet */}
-        {ticker === 'tiron' && (
-          <MinableCoinGuidePageDual
-            configs={[
-              {
-                key: 'tiron+zil',
-                label: 'Iron Fish (Testnet) + Zilliqa',
-                coins: [
-                  {
-                    name: 'Iron Fish (Testnet)',
-                    ticker: 'tiron',
-                  },
-                  {
-                    name: 'Zilliqa',
-                    ticker: 'zil',
-                  },
-                ],
-              },
-            ]}
-            {...configs.tiron}
-          />
-        )}
         {ticker === 'iron' && (
           <MinableCoinGuidePageDual
             configs={[
