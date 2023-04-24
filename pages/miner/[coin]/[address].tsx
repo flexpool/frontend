@@ -209,39 +209,7 @@ export const MinerDashboardPageContent: React.FC<{
             </AnnouncementBar>
           )}
 
-          {coinTicker === 'zil' && (
-            <AnnouncementBar id="e9-issue" variant="primary">
-              <b>{t('announcements.e9_issue.attention')}</b>
-
-              <Spacer size="sm" />
-
-              <div
-                style={{
-                  width: '90%',
-                  margin: '0 auto',
-                  lineHeight: 1.4,
-                }}
-              >
-                <Trans
-                  t={t}
-                  i18nKey="announcements.e9_issue.detail"
-                  components={{
-                    b: <b />,
-                    br: <br />,
-                    reddit_link: (
-                      <LinkOut
-                        href="https://www.reddit.com/r/Flexpool/comments/11uln0s/flexpoolio_statement_regarding_etczil_on_e9_pro/"
-                        style={{
-                          color: 'white',
-                          textDecoration: 'underline',
-                        }}
-                      />
-                    ),
-                  }}
-                />
-              </div>
-            </AnnouncementBar>
-          )}
+          {coinTicker === 'zil' && <div>TODO ZIL BANNER</div>}
 
           {address === DONATION_ADDRESS && (
             <DonationAnnouncement
