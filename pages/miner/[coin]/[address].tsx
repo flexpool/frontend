@@ -209,7 +209,39 @@ export const MinerDashboardPageContent: React.FC<{
             </AnnouncementBar>
           )}
 
-          {coinTicker === 'zil' && <div>TODO ZIL BANNER</div>}
+          {coinTicker === 'zil' && (
+            <AnnouncementBar id="zil_upgrade" variant="primary">
+              <b>{t('announcements.zil_upgrade.attention')}</b>
+
+              <Spacer size="sm" />
+
+              <div
+                style={{
+                  width: '90%',
+                  margin: '0 auto',
+                  lineHeight: 1.4,
+                }}
+              >
+                <Trans
+                  t={t}
+                  i18nKey="announcements.zil_upgrade.detail"
+                  components={{
+                    b: <b />,
+                    br: <br />,
+                    zil_link: (
+                      <LinkOut
+                        href="https://blog.zilliqa.com/evm-to-launch-on-zilliqa-mainnet-network-downtime-and-future-deployment/"
+                        style={{
+                          color: 'white',
+                          textDecoration: 'underline',
+                        }}
+                      />
+                    ),
+                  }}
+                />
+              </div>
+            </AnnouncementBar>
+          )}
 
           {address === DONATION_ADDRESS && (
             <DonationAnnouncement
