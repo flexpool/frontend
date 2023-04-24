@@ -112,38 +112,6 @@ export const HomePage = () => {
         ]}
       />
 
-      <AnnouncementBar id="iron-testnet-announcement" variant="primary">
-        <b>{t('announcements.iron_testnet_airdrop.title')}</b>
-
-        <Spacer size="sm" />
-
-        <div
-          style={{
-            width: '90%',
-            margin: '0 auto',
-            lineHeight: 1.4,
-          }}
-        >
-          <Trans
-            t={t}
-            i18nKey={'announcements.iron_testnet_airdrop.desc'}
-            components={{
-              br: <br />,
-              announcement: (
-                <LinkOut
-                  href="https://www.reddit.com/r/Flexpool/comments/12pidk7/earn_a_portion_of_our_5000_airdrop_while_testing/"
-                  style={{
-                    color: 'white',
-                    textDecoration: 'underline',
-                  }}
-                >
-                  announcement
-                </LinkOut>
-              ),
-            }}
-          />
-        </div>
-      </AnnouncementBar>
       <div
         style={{
           position: 'relative',

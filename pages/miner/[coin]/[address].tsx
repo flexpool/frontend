@@ -210,8 +210,8 @@ export const MinerDashboardPageContent: React.FC<{
           )}
 
           {coinTicker === 'zil' && (
-            <AnnouncementBar id="e9-issue" variant="primary">
-              <b>{t('announcements.e9_issue.attention')}</b>
+            <AnnouncementBar id="zil_upgrade" variant="primary">
+              <b>{t('announcements.zil_upgrade.attention')}</b>
 
               <Spacer size="sm" />
 
@@ -224,13 +224,13 @@ export const MinerDashboardPageContent: React.FC<{
               >
                 <Trans
                   t={t}
-                  i18nKey="announcements.e9_issue.detail"
+                  i18nKey="announcements.zil_upgrade.detail"
                   components={{
                     b: <b />,
                     br: <br />,
-                    reddit_link: (
+                    zil_link: (
                       <LinkOut
-                        href="https://www.reddit.com/r/Flexpool/comments/11uln0s/flexpoolio_statement_regarding_etczil_on_e9_pro/"
+                        href="https://blog.zilliqa.com/evm-to-launch-on-zilliqa-mainnet-network-downtime-and-future-deployment/"
                         style={{
                           color: 'white',
                           textDecoration: 'underline',

@@ -282,6 +282,10 @@
     "e9_issue": {
       "attention": "请注意 ZIL 矿工们",
       "detail": "2023年2月26日，我们宣布了对E9 Pro ASIC挖掘ZIL的功能。不幸的是，事实证明E9 Pro从未被支持，它仅仅产生了无效的份额，没有为矿池奖励做出贡献。通常，无效份额会被拒绝，但是在某些情况下，软件缺陷导致无效份额被允许通过。<br/><br/>E9 Pro的死负载的奖励按照PPLNS奖励方案进行分配和支付，鉴于E9 Pro ASIC没有为矿池做出贡献，普通矿工最终通过平均减少5-10％的奖励来代替它们。<b>为了弥补这一损失，我们将在2023年3月18日至2023年4月18日这整个月中，为我们的Zilliqa（ZIL）矿池不收取合并矿池+运营费用，大约相当于19％。</b><br/><br/><reddit_link>阅读此处的完整声明以获取更多信息。</reddit_link>"
+    },
+    "zil_upgrade": {
+      "attention": "请注意 ZIL 矿工们",
+      "detail": "在4月25日时, ZIL 网络将会进行一个大更新。<br/>这将会让ZIL无法挖矿大约一天。<br/><br/><zil_link>阅读 Zilliqa 官方公告。</zil_link>"
     }
   },
   "payout_only_mode_note": {
