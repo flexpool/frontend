@@ -250,7 +250,7 @@ export const mineableCoins: MineableCoin[] = [
     algorithm: 'Blake3',
     nicehash_algorithm: null,
     description: '',
-    regex: /^[A-Fa-f0-9]{64}$/,
+    regex: /^[A-Fa-f0-9]{64}(\+[a-zA-Z0-9]{1,32})?$/,
     validator: checksumIron,
     walletAddressExample:
       '2aa206fcbe1d1d86b3db2ec6e80aae6c181f633b42e4df02a8e7997f0f59c4dd',
