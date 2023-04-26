@@ -408,17 +408,19 @@ export default MinerDashboardPage;
 export type AddressStatus = 'not-found' | 'pending' | 'ready';
 
 export async function getServerSideProps({ query, locale }) {
-  const { coin, address } = query;
+  var { coin, address } = query;
 
-  const checkSum = getChecksumByTicker(query.coin)(query.address);
-
-  if (checkSum === null) {
-    return {
-      redirect: {
-        destination: '/not-found',
-        permanent: false,
-      },
-    };
+  if (query.coin) {
+    const checkSum = getChecksumByTicker(query.coin)(query.address);
+    if (checkSum === null) {
+      return {
+        redirect: {
+          destination: '/not-found',
+          permanent: false,
+        },
+      };
+    }
+    address = checkSum;
   }
 
   const result = await getLocateAddress(address);

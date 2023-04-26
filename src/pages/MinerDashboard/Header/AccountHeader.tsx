@@ -109,7 +109,12 @@ export const AccountHeader: React.FC<{
     }
   }, [isRefreshing]);
 
-  const addressText = getChecksumByTicker(coin?.ticker)(address);
+  var addressText: string | null = '...';
+
+  if (coin) {
+    addressText = getChecksumByTicker(coin.ticker)(address);
+  }
+
   return (
     <Wrap paddingShort>
       <AddressContainer>
