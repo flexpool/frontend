@@ -19,7 +19,6 @@ import React, { useReducer } from 'react';
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import { Button } from 'src/components/Button';
-import { Content } from 'src/components/layout/Content';
 import { Skeleton } from 'src/components/layout/Skeleton';
 import { Spacer } from 'src/components/layout/Spacer';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
@@ -33,9 +32,7 @@ import {
 } from 'src/utils/si.utils';
 import { getCoinIconUrl } from 'src/utils/staticImage.utils';
 import styled from 'styled-components';
-import usePoolCoinsFullQuery from '@/hooks/api/usePoolCoinsFullQuery';
 import Badge from '@/components/Badge';
-import { IronCoinEarningsItem } from './IronCoinEarningsItem';
 export const recaptchaKey = process.env.REACT_APP_RECAPTCHA_KEY;
 
 const DualMineCheckBoxWrapper = styled.div`
@@ -82,57 +79,39 @@ const getCoinPoolFee = (coin: string) => {
     ? 95 / 10000
     : 10 / 1000;
 };
-const CoinEarningsItem: React.FC<{
+export const IronCoinEarningsItem: React.FC<{
   data?: ApiPoolCoinFull;
   dualMineCoin?: ApiPoolCoinFull;
 }> = ({ data, dualMineCoin }) => {
   const [isDualMining, toggleDualMining] = useReducer((t) => !t, true);
 
   const counterTicker = useCounterTicker();
-  const counterPrice = data?.marketData.prices
-    ? data?.marketData.prices[counterTicker]
-    : 0;
 
-  var prefixMultiplier = 1;
+  const [dailyPer15, dailyCounterPrice] = getCoinEarnings(
+    data,
+    15,
+    1,
+    counterTicker
+  );
+  const [monthlyPer15, monthlyCounterPrice] = getCoinEarnings(
+    data,
+    15,
+    30.5,
+    counterTicker
+  );
 
-  if (data?.defaultHashrateSiPrefix === 'k') {
-    prefixMultiplier = 1000;
-  } else if (data?.defaultHashrateSiPrefix === 'M') {
-    prefixMultiplier = 1000000;
-  } else if (data?.defaultHashrateSiPrefix === 'G') {
-    prefixMultiplier = 1000000000;
-  } else if (data?.defaultHashrateSiPrefix === 'T') {
-    prefixMultiplier = 1000000000000;
-  }
-
-  const dailyPer100 = data
-    ? (((data.chainData.dailyRewardPerGigaHashSec / 1000000000) *
-        prefixMultiplier) /
-        Math.pow(10, data.decimalPlaces)) *
-      100
-    : 0;
-  const monthlyPer100 = dailyPer100 * 30.5;
-
-  const dualMineDailyPer100 = dualMineCoin
-    ? (((dualMineCoin.chainData.dailyRewardPerGigaHashSec / 1000000000) *
-        prefixMultiplier) /
-        Math.pow(10, dualMineCoin.decimalPlaces)) *
-      100
-    : 0;
-
-  const dualMineMonthlyPer100 = dualMineDailyPer100 * 30.5;
-
-  const monthlyCounterPrice = monthlyPer100 * counterPrice;
-  const dailyCounterPrice = dailyPer100 * counterPrice;
-
-  const dualMineCoinCounterPrice = dualMineCoin?.marketData.prices
-    ? dualMineCoin?.marketData.prices[counterTicker]
-    : 0;
-
-  const monthlyDualMineCounterPrice =
-    dualMineMonthlyPer100 * dualMineCoinCounterPrice;
-  const dailyDualMineCounterPrice =
-    dualMineDailyPer100 * dualMineCoinCounterPrice;
+  const [dualMineMonthlyPer100, monthlyDualMineCounterPrice] = getCoinEarnings(
+    dualMineCoin,
+    100,
+    30.5,
+    counterTicker
+  );
+  const [dualMineDailyPer100, dailyDualMineCounterPrice] = getCoinEarnings(
+    dualMineCoin,
+    100,
+    1,
+    counterTicker
+  );
 
   const calculatedDailyCounterPrice = isDualMining
     ? dailyCounterPrice + dailyDualMineCounterPrice
@@ -246,8 +225,18 @@ const CoinEarningsItem: React.FC<{
       <IntervalContainer>
         <IntervalItem>
           <p>
-            100 {data?.defaultHashrateSiPrefix}
-            {data?.hashrateUnit} {t('coin_earnings_cards.daily')}
+            15 {data?.defaultHashrateSiPrefix}
+            {data?.hashrateUnit} {t('coin_earnings_cards.daily')}{' '}
+            {isDualMining && (
+              <span
+                style={{
+                  color: 'var(--text-secondary)',
+                  fontSize: '14px',
+                }}
+              >
+                (with 100 MH/s for ZIL)
+              </span>
+            )}
           </p>
 
           {data?.testnet ? (
@@ -262,10 +251,10 @@ const CoinEarningsItem: React.FC<{
                 )}
               </FiatValue>
               <CryptoValue>
-                {dailyPer100 ? (
+                {dailyPer15 ? (
                   <>
                     {'≈ '}
-                    {numberFormatter(dailyPer100, {
+                    {numberFormatter(dailyPer15, {
                       maximumFractionDigits: 5,
                     })}{' '}
                     {data?.ticker.toUpperCase()}
@@ -288,8 +277,18 @@ const CoinEarningsItem: React.FC<{
         </IntervalItem>
         <IntervalItem>
           <p>
-            100 {data?.defaultHashrateSiPrefix}
-            {data?.hashrateUnit} {t('coin_earnings_cards.monthly')}
+            15 {data?.defaultHashrateSiPrefix}
+            {data?.hashrateUnit} {t('coin_earnings_cards.monthly')}{' '}
+            {isDualMining && (
+              <span
+                style={{
+                  color: 'var(--text-secondary)',
+                  fontSize: '14px',
+                }}
+              >
+                (with 100 MH/s for ZIL)
+              </span>
+            )}
           </p>
 
           {data?.testnet ? (
@@ -304,10 +303,10 @@ const CoinEarningsItem: React.FC<{
                 )}
               </FiatValue>
               <CryptoValue>
-                {monthlyPer100 ? (
+                {monthlyPer15 ? (
                   <>
                     {'≈ '}
-                    {numberFormatter(monthlyPer100, {
+                    {numberFormatter(monthlyPer15, {
                       maximumFractionDigits: 5,
                     })}{' '}
                     {data?.ticker.toUpperCase()}
@@ -353,72 +352,59 @@ const CoinEarningsItem: React.FC<{
   );
 };
 
-const FormContainer = styled.div`
-  display: flex;
-  margin-top: 1rem;
-  justify-content: space-between;
-  & > *:first-child {
-    margin-right: 1rem;
-    flex-grow: 1;
+function getDailyCoinEarnings(data: ApiPoolCoinFull, mh: number) {
+  var prefixMultiplier = 1;
+
+  if (data.defaultHashrateSiPrefix === 'k') {
+    prefixMultiplier = 1000;
+  } else if (data.defaultHashrateSiPrefix === 'M') {
+    prefixMultiplier = 1000000;
+  } else if (data.defaultHashrateSiPrefix === 'G') {
+    prefixMultiplier = 1000000000;
+  } else if (data.defaultHashrateSiPrefix === 'T') {
+    prefixMultiplier = 1000000000000;
   }
-`;
-
-const ChiaBox = styled(EarningBox)`
-  background: rgb(54, 173, 88);
-  background: linear-gradient(
-    135deg,
-    rgba(54, 173, 88, 1) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
-`;
-
-const ChiaCoin = styled(UnknownCoin)`
-  height: 60px;
-  width: 60px;
-  background: white;
-`;
-
-export const CoinEarnings = () => {
-  const { data: coinsFull } = usePoolCoinsFullQuery();
-
-  const dualMiningCoin = coinsFull?.filter((c) => c.isDual)[0];
 
   return (
-    <Content style={{ maxWidth: '1300px' }}>
-      <Spacer size="xl" />
-      <Container>
-        {coinsFull ? (
-          coinsFull
-            .filter((c) => !c.isDual)
-            .filter((c) => !c.payoutsOnly)
-            .map((item) => {
-              if ((item.ticker as string) === 'iron') {
-                return (
-                  <IronCoinEarningsItem
-                    data={item}
-                    dualMineCoin={dualMiningCoin}
-                  />
-                );
-              } else {
-                return (
-                  <CoinEarningsItem
-                    key={item.ticker}
-                    data={item}
-                    dualMineCoin={
-                      item.ticker === 'etc' ? dualMiningCoin : undefined
-                    }
-                  />
-                );
-              }
-            })
-        ) : (
-          <>
-            <CoinEarningsItem />
-            <CoinEarningsItem />
-            <CoinEarningsItem />
-          </>
-        )}
-      </Container>
-    </Content>
+    (((data.chainData.dailyRewardPerGigaHashSec / 1000000000) *
+      prefixMultiplier) /
+      Math.pow(10, data.decimalPlaces)) *
+    mh
   );
+}
+
+const getEarningsForDays = (
+  data: ApiPoolCoinFull,
+  m: number,
+  day: number,
+  counterTicker: string,
+  convertToCounterPrice?: boolean
+) => {
+  const earnings = getDailyCoinEarnings(data, m) * day;
+
+  if (convertToCounterPrice) {
+    const counterPrice = data?.marketData.prices
+      ? data?.marketData.prices[counterTicker]
+      : 0;
+
+    return earnings * counterPrice;
+  }
+
+  return earnings;
+};
+
+const getCoinEarnings = (
+  data: ApiPoolCoinFull | undefined,
+  m: number,
+  day: number,
+  counterTicker: string
+) => {
+  if (data === undefined) {
+    return [0, 0];
+  }
+
+  return [
+    getEarningsForDays(data, m, day, counterTicker),
+    getEarningsForDays(data, m, day, counterTicker, true),
+  ];
 };
