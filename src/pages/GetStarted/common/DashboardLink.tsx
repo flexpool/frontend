@@ -12,7 +12,7 @@ export const DashboardLink = ({
     <Button
       variant="primary"
       as={LinkOut}
-      href={`/miner/${coin.ticker}/${address}`}
+      href={`/miner/${coin.ticker}/${encodeURIComponent(address)}`}
     >
       Open {coin.name} Dashboard
     </Button>
