@@ -46,13 +46,13 @@ const AddressContainer = styled.div`
     width: 40px;
   }
   button {
+    margin-left: 1rem;
     flex-shrink: 0;
   }
 `;
 
 const Address = styled(LinkOut)`
   margin-left: 1rem;
-  margin-right: 1rem;
   font-weight: 500;
   font-size: 1.5rem;
   cursor: pointer;
@@ -85,6 +85,18 @@ const RefreshButton = styled(Button)`
   }
 `;
 
+const Memo = styled.div`
+  font-weight: 500;
+  font-size: 18px;
+  cursor: pointer;
+
+  white-space: nowrap;
+  flex-shrink: 1;
+  color: var(--text-secondary);
+  border-left: 1px solid var(--border-color);
+  padding: 10px;
+`;
+
 export const AccountHeader: React.FC<{
   coin?: ApiPoolCoin;
   address: string;
@@ -111,8 +123,17 @@ export const AccountHeader: React.FC<{
 
   var addressText: string | null = '...';
 
+  // memos can be added to iron address in the format of <address>+<memo>
+  var ironMemo = '';
+
   if (coin) {
     addressText = getChecksumByTicker(coin.ticker)(address);
+
+    if (addressText && (coin.ticker as string) === 'iron') {
+      const parsedRes = parseIronAddressWithMemo(addressText);
+      addressText = parsedRes.address;
+      ironMemo = parsedRes.memo;
+    }
   }
 
   return (
@@ -126,6 +147,7 @@ export const AccountHeader: React.FC<{
         <Address href={getCoinLink('wallet', address, coinName)}>
           {addressText}
         </Address>
+        {ironMemo && <Memo>{ironMemo}</Memo>}
         <CopyButton text={addressText || ''} />
       </AddressContainer>
       <RefreshButton
@@ -153,3 +175,12 @@ export const AccountHeader: React.FC<{
 };
 
 export default React.memo(AccountHeader);
+
+function parseIronAddressWithMemo(address: string) {
+  const inputSplit = decodeURIComponent(address).split('+');
+
+  return {
+    address: inputSplit[0],
+    memo: inputSplit[1],
+  };
+}
