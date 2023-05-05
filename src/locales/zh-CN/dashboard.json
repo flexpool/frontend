@@ -286,6 +286,10 @@
     "zil_upgrade": {
       "attention": "请注意 ZIL 矿工们",
       "detail": "在4月25日时, ZIL 网络将会进行一个大更新。<br/>这将会让ZIL无法挖矿大约一天。<br/><br/><zil_link>阅读 Zilliqa 官方公告。</zil_link>"
+    },
+    "zil_delist": {
+      "attention": "Zilliqa (ZIL) 关闭公告 (于5月19日, 2023)",
+      "detail": "我们将于两周后，关闭 Zilliqa (ZIL) 矿池， 也就是5月19日。<br/>做出这个决定是因为最近网络的不稳定，以及由于最近网络升级导致的致命的网络问题。<br/><br/><reddit_link>阅读更多</reddit_link>"
     }
   },
   "payout_only_mode_note": {
