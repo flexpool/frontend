@@ -93,6 +93,7 @@ const HeroSubHeadline = styled.div`
 export const HomePage = () => {
   const { t, i18n } = useTranslation('home');
   const { t: seoT } = useTranslation('seo');
+  const { t: dashboardT } = useTranslation('dashboard');
 
   return (
     <PageContainer>
@@ -111,6 +112,38 @@ export const HomePage = () => {
           },
         ]}
       />
+
+      <AnnouncementBar id="zil_delist" variant="primary">
+        <b>{dashboardT('announcements.zil_delist.attention')}</b>
+
+        <Spacer size="sm" />
+
+        <div
+          style={{
+            width: '90%',
+            margin: '0 auto',
+            lineHeight: 1.4,
+          }}
+        >
+          <Trans
+            t={dashboardT}
+            i18nKey="announcements.zil_delist.detail"
+            components={{
+              b: <b />,
+              br: <br />,
+              reddit_link: (
+                <LinkOut
+                  href="https://www.reddit.com/r/Flexpool/comments/138m46o/flexpoolio_zilliqa_zil_delisting_announcement_on/"
+                  style={{
+                    color: 'white',
+                    textDecoration: 'underline',
+                  }}
+                />
+              ),
+            }}
+          />
+        </div>
+      </AnnouncementBar>
 
       <div
         style={{
