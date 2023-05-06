@@ -289,7 +289,7 @@
     },
     "zil_delist": {
       "attention": "Zilliqa (ZIL) Delisting Announcement (on May 19th, 2023)",
-      "detail": "We will shut down our Zilliqa (ZIL) pool in two weeks, which is set to happen on <b>May 19th, 2023</b>.<br/>This decision is made due to the recent unstable network and critical issues resulting from the hard fork aimed to upgrade Zilliqa.<br/><br/><reddit_link>Read more here</reddit_link>"
+      "detail": "We will shut down our Zilliqa (ZIL) pool in two weeks, which is set to happen on <b>May 19th, 2023</b>.<br/>This decision is made due to the recent network instability and critical issues resulting from the hard fork aimed to upgrade Zilliqa.<br/><br/><reddit_link>Read more here</reddit_link>"
     }
   },
   "payout_only_mode_note": {
