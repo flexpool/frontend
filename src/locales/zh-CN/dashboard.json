@@ -290,6 +290,10 @@
     "zil_delist": {
       "attention": "Zilliqa (ZIL) 关闭公告 (于5月19日, 2023)",
       "detail": "我们将于两周后，关闭 Zilliqa (ZIL) 矿池， 也就是5月19日。<br/>做出这个决定是因为最近网络的不稳定，以及由于最近网络升级导致的致命的网络问题。<br/><br/><reddit_link>阅读更多</reddit_link>"
+    },
+    "xch_fork": {
+      "attention": "Chia (XCH) 软分叉提醒",
+      "detail": "Chia区块链网络在第3,630,000个区块进行了软分叉。如果您正在使用Chia节点进行挖矿，您必须将Chia节点软件更新到1.7.0版本或更高版本。否则，您可能会生成无效的区块。<br/><br/>如果您是FlexFarmer的用户并且正在使用我们提供的区块链桥接服务，则无需更新软件。"
     }
   },
   "payout_only_mode_note": {
