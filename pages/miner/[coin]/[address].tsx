@@ -243,6 +243,29 @@ export const MinerDashboardPageContent: React.FC<{
             </AnnouncementBar>
           )}
 
+          {coinTicker === 'xch' && (
+            <AnnouncementBar id="xch-fork" variant="primary">
+              <b>{t('announcements.xch_fork.attention')}</b>
+              <Spacer size="sm" />
+              <div
+                style={{
+                  width: '90%',
+                  margin: '0 auto',
+                  lineHeight: 1.4,
+                }}
+              >
+                <Trans
+                  t={t}
+                  i18nKey="announcements.xch_fork.detail"
+                  components={{
+                    b: <b />,
+                    br: <br />,
+                  }}
+                />
+              </div>
+            </AnnouncementBar>
+          )}
+
           {address === DONATION_ADDRESS && (
             <DonationAnnouncement
               id="donation-dashboard"
