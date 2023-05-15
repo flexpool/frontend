@@ -290,6 +290,10 @@
     "zil_delist": {
       "attention": "Zilliqa (ZIL) Delisting Announcement (on May 19th, 2023)",
       "detail": "We will shut down our Zilliqa (ZIL) pool in two weeks, which is set to happen on <b>May 19th, 2023</b>.<br/>This decision is made due to the recent network instability and critical issues resulting from the hard fork aimed to upgrade Zilliqa.<br/><br/><reddit_link>Read more here</reddit_link>"
+    },
+    "xch_fork": {
+      "attention": "Chia (XCH) Soft Fork Reminder",
+      "detail": "The Chia soft fork has happened on block 3,630,000. If you are farming with a Chia node, <b>you are required to update it to v1.7.0 or higher</b>. Otherwise, you may produce invalid blocks.<br/><br/>FlexFarmer users who are using our hosted blockchain bridge do not need to update."
     }
   },
   "payout_only_mode_note": {
