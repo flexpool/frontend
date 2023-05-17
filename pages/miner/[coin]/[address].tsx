@@ -467,8 +467,14 @@ export type AddressStatus = 'not-found' | 'pending' | 'ready';
 export async function getServerSideProps({ query, locale }) {
   var { coin, address } = query;
 
+  // This is a fix to handle IRON Memo address, e.g ADDRESS+MEMO
+  // When deployed to vercel, any "+" will be replaced with space
+  // This doesn't happen in dev.
+  // https://github.com/orgs/vercel/discussions/133#discussioncomment-3699061
+  var parsedAddress = address.replace(/ /g, '+');
+
   if (query.coin) {
-    const checkSum = getChecksumByTicker(query.coin)(query.address);
+    const checkSum = getChecksumByTicker(query.coin)(parsedAddress);
     if (checkSum === null) {
       return {
         redirect: {
@@ -477,10 +483,10 @@ export async function getServerSideProps({ query, locale }) {
         },
       };
     }
-    address = checkSum;
+    parsedAddress = checkSum;
   }
 
-  const result = await getLocateAddress(address);
+  const result = await getLocateAddress(parsedAddress);
 
   let status: AddressStatus = 'ready';
 
@@ -499,7 +505,7 @@ export async function getServerSideProps({ query, locale }) {
         'cookie-consent',
       ])),
       coinTicker: coin,
-      address,
+      address: parsedAddress,
       status,
     },
   };
