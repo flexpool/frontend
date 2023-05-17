@@ -482,7 +482,7 @@ export async function getServerSideProps({ query, locale }) {
         'cookie-consent',
       ])),
       coinTicker: coin,
-      address,
+      address: parsedAddress,
       status,
     },
   };
