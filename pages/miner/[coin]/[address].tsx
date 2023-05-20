@@ -282,7 +282,7 @@ export const MinerDashboardPageContent: React.FC<{
               <>
                 <MinerDetails coin={activeCoin} address={address} />
                 <HeaderStats coin={coinTicker} address={address} />
-                {isPayoutOnly && <PayoutsOnlyNote />}
+                {/* {isPayoutOnly && <PayoutsOnlyNote />} */}
               </>
             )}
           </Content>

@@ -216,7 +216,7 @@ export const MinerDetails: React.FC<{
           <div>{counterValuePrice || <Skeleton width={40} />}</div>
         </Item>
 
-        {isAvailable && (
+        {isAvailable && !coin?.payoutsOnly && (
           <Item>
             <div>{t('header.next_pow')}:&nbsp;</div>
 
