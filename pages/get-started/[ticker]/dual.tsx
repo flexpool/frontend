@@ -2,42 +2,15 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
-import { MineableCoinGuidePage as MineableCoinGuidePageZIL } from 'src/pages/GetStarted/ZilliqaGPU/CoinGuide.page';
-import { MinableCoinGuidePage as MinableCoinGuidePageDual } from 'src/pages/GetStarted/Dual/CoinGuide.page';
 import { findCoinsByHardwareKey } from '@/pages/GetStarted/mineableCoinList.utils';
 import { useTranslation } from 'next-i18next';
-import { getConfigs } from '@/pages/GetStarted/guide-configs';
 
 export const GetStartedGPUPage = ({ ticker }: { ticker: string }) => {
   const { t } = useTranslation('get-started');
-  const configs = getConfigs(t);
 
   return (
     <Page>
-      <Content paddingLg>
-        {ticker === 'zil' && <MineableCoinGuidePageZIL />}
-        {ticker === 'iron' && (
-          <MinableCoinGuidePageDual
-            configs={[
-              {
-                key: 'iron+zil',
-                label: 'Iron Fish + Zilliqa',
-                coins: [
-                  {
-                    name: 'Iron Fish',
-                    ticker: 'iron',
-                  },
-                  {
-                    name: 'Zilliqa',
-                    ticker: 'zil',
-                  },
-                ],
-              },
-            ]}
-            {...configs.iron}
-          />
-        )}
-      </Content>
+      <Content paddingLg></Content>
     </Page>
   );
 };

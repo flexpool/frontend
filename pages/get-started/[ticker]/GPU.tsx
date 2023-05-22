@@ -3,7 +3,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Content } from 'src/components/layout/Content';
 import { Page } from 'src/components/layout/Page';
 import { MineableCoinGuidePage } from 'src/pages/GetStarted/GPU/CoinGuide.page';
-import { DualMineBanner } from '@/pages/GetStarted/DualMineBanner';
 import { findCoinsByHardwareKey } from '@/pages/GetStarted/mineableCoinList.utils';
 import { getConfigs } from '@/pages/GetStarted/guide-configs';
 import { useTranslation } from 'next-i18next';
@@ -24,13 +23,6 @@ export const GetStartedGPUPage = ({ ticker }: { ticker: string }) => {
           }
         })()}
       </Content>
-      {ticker == 'zil' ||
-        (ticker === 'etc' && (
-          <DualMineBanner
-            primary={{ name: 'Ethereum Classic', ticker: 'etc' }}
-            dual={{ name: 'Zilliqa', ticker: 'zil' }}
-          />
-        ))}
     </Page>
   );
 };

@@ -172,7 +172,6 @@ export const HeaderStats = ({ coin, address }: HeaderStatsProps) => {
             }
           />
         </Card>
-        {coin === 'etc' && <ZILPromotionBar coin={coin} address={address} />}
       </div>
     </CardGrid>
   );

@@ -284,10 +284,6 @@
       {
         "title": "GPU Standard Mining",
         "key": "GPU"
-      },
-      {
-        "title": "GPU Dual Mining",
-        "key": "dual"
       }
     ]
   },
