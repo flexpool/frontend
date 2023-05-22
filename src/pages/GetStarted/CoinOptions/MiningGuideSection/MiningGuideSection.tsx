@@ -155,18 +155,6 @@ const PoolGuideOptions = ({
           })}
         </ViewGuideButton>
       </FlexEnd>
-      {coin === 'etc' && (
-        <HelpText
-          onClick={() => {
-            document.getElementById(`coin-tab-${2}-anchor`)?.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start',
-            });
-          }}
-        >
-          {t('list.zil_boost')}
-        </HelpText>
-      )}
     </>
   );
 };
