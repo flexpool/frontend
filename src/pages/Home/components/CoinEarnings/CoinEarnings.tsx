@@ -98,7 +98,7 @@ const CoinEarningsItem: React.FC<{
             config={{
               coinData: data,
               duration: 'daily',
-              n: 100,
+              n: (data?.ticker as string) === 'iron' ? 15 : 100,
             }}
           />
         </IntervalItem>
@@ -107,7 +107,7 @@ const CoinEarningsItem: React.FC<{
             config={{
               coinData: data,
               duration: 'monthly',
-              n: 100,
+              n: (data?.ticker as string) === 'iron' ? 15 : 100,
             }}
           />
         </IntervalItem>
