@@ -380,8 +380,6 @@ const ChiaCoin = styled(UnknownCoin)`
 export const CoinEarnings = () => {
   const { data: coinsFull } = usePoolCoinsFullQuery();
 
-  const dualMiningCoin = coinsFull?.filter((c) => c.isDual)[0];
-
   return (
     <Content style={{ maxWidth: '1300px' }}>
       <Spacer size="xl" />
@@ -390,15 +388,7 @@ export const CoinEarnings = () => {
           coinsFull
             .filter((c) => !c.isDual)
             .filter((c) => !c.payoutsOnly)
-            .map((item) => (
-              <CoinEarningsItem
-                key={item.ticker}
-                data={item}
-                dualMineCoin={
-                  item.ticker === 'etc' ? dualMiningCoin : undefined
-                }
-              />
-            ))
+            .map((item) => <CoinEarningsItem key={item.ticker} data={item} />)
         ) : (
           <>
             <CoinEarningsItem />
