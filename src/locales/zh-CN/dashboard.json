@@ -288,8 +288,8 @@
       "detail": "在4月25日时, ZIL 网络将会进行一个大更新。<br/>这将会让ZIL无法挖矿大约一天。<br/><br/><zil_link>阅读 Zilliqa 官方公告。</zil_link>"
     },
     "zil_delist": {
-      "attention": "Zilliqa (ZIL) 关闭公告 (于5月19日, 2023)",
-      "detail": "我们将于两周后，关闭 Zilliqa (ZIL) 矿池， 也就是5月19日。<br/>做出这个决定是因为最近网络的不稳定，以及由于最近网络升级导致的致命的网络问题。<br/><br/><reddit_link>阅读更多</reddit_link>"
+      "attention": "Zilliqa (ZIL) 已经下线",
+      "detail": "在发出2周的公告后，我们已经于5月20日关闭了 Zilliqa (ZIL) 矿池。<br/>如果你有疑惑，或想了解接下来的计划，请阅读我们的<reddit_link>公告</reddit_link>。"
     },
     "xch_fork": {
       "attention": "Chia (XCH) 软分叉提醒",
