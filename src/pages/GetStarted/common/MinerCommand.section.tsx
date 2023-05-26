@@ -137,7 +137,6 @@ export const MinerCommandSection = ({
                       </PlatformSticker>
                     ))}
                   </h3>
-                  <p>{miner.description}</p>
                   <p>
                     <strong>{t('detail.software.fee')}: </strong>{' '}
                     <Fee fee={miner.fee} />{' '}
