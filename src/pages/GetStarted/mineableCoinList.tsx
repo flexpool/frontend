@@ -236,6 +236,17 @@ export const mineableCoins: MineableCoin[] = [
             downloadLink: 'https://github.com/todxx/teamredminer/releases',
             cmd: 'teamredminer.exe -a ironfish -o stratum+tcp://iron.fpmp.net:8888 -u WALLET_ADDRESS.WORKER_NAME -p x --fan_control',
           },
+          {
+            os: ['windows', 'linux', 'hiveos'],
+            title: 'lolMiner',
+            key: 'lolminer',
+            description: 'Best miner for 4GB zombie mode.',
+            fee: [0.75],
+            compatibleGpus: ['AMD', 'NVIDIA'],
+            downloadLink:
+              'https://github.com/Lolliedieb/lolMiner-releases/releases',
+            cmd: 'lolMiner.exe --algo IRONFISH -p stratum+tcp://iron.fpmp.net:8888 -u WALLET_ADDRESS.WORKER_NAME',
+          },
         ],
       },
     ],
