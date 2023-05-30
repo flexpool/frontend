@@ -37,7 +37,10 @@ export const EarningEstimationStats = ({ config }: Props) => {
     <>
       <p>
         {config.n} {config.coinData?.defaultHashrateSiPrefix}
-        {config.coinData?.hashrateUnit} {t('coin_earnings_cards.daily')}
+        {config.coinData?.hashrateUnit}{' '}
+        {config.duration === 'daily'
+          ? t('coin_earnings_cards.daily')
+          : t('coin_earnings_cards.monthly')}
       </p>
 
       {config.coinData?.testnet ? (
