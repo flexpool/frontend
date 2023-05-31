@@ -17,6 +17,8 @@ import { GiReceiveMoney, GiSparkles } from 'react-icons/gi';
 import { MineableCoin } from '@/pages/GetStarted/mineableCoinList';
 import { merge } from 'lodash';
 
+import { isWithinETCPromo } from '@/pages/Home/components/CoinEarnings/PoolFee';
+
 const SectionWrapper = styled.div`
   padding: 20px 0px 68px;
 `;
@@ -266,7 +268,7 @@ const PoolPerks = () => {
 export const MiningGuideSection = ({ ticker, name, coin }: Props) => {
   const { t } = useTranslation('get-started');
 
-  const poolDetails = t(`detail_${ticker.toLowerCase()}.pool_details`, {
+  var poolDetails = t(`detail_${ticker.toLowerCase()}.pool_details`, {
     returnObjects: true,
   }) as { key: string; value: string }[];
 
@@ -305,6 +307,20 @@ export const MiningGuideSection = ({ ticker, name, coin }: Props) => {
       title: 'NiceHash Rental',
       miners: [],
       tag: null,
+    });
+  }
+
+  // TODO: ETC PROMO
+  if (ticker === 'etc' && isWithinETCPromo) {
+    poolDetails = poolDetails.map((d) => {
+      console.log(d);
+      if (d.value === '0.9%') {
+        return {
+          key: d.key,
+          value: '0.0%',
+        };
+      }
+      return d;
     });
   }
 
