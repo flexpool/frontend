@@ -103,6 +103,10 @@
     "iron_testnet_airdrop": {
       "title": "Iron Fish 测试网超大空投公告",
       "desc": "在4月17日到4月23日期间，通过帮助我们测试 Iron Fish 测试网/主网矿池， 即可获得总计 US$10,000 的空投的一部分。<br/><br/> 详情请查看我们的<announcement>公告</announcement>。"
+    },
+    "etc_promo": {
+      "title": "🎉 Ethereum Classic (ETC) 一周 0% 费用活动",
+      "desc": "为了表示某大矿池的关闭，从 5月31号起一周的时间，我们将降低 Ethereum Classic (ETC) 的矿池费到 0% 来欢迎新用户。"
     }
   }
 }
