@@ -103,6 +103,10 @@
     "iron_testnet_airdrop": {
       "title": "Iron Fish Testnet Pool Mega Airdrop Announcement",
       "desc": "Earn a portion of our US$10,000 airdrop for mining on our testnet/mainnet Iron Fish pool from April 17 to April 23.<br/><br/> Details are in the <announcement>announcement</announcement>."
+    },
+    "etc_promo": {
+      "title": "🎉 Ethereum Classic (ETC) one-week 0% fee event",
+      "desc": "To address one of the largest pools shutting down, we have lowered the Ethereum Classic (ETC) pool fee to 0% for one week to welcome customers looking for a replacement, effective starting from May 31st."
     }
   }
 }

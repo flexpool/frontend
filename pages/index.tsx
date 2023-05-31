@@ -113,6 +113,23 @@ export const HomePage = () => {
         ]}
       />
 
+      {/* Announcements go here */}
+
+      <AnnouncementBar id="etc-promo" variant="primary">
+        <div
+          style={{
+            width: '80%',
+            margin: '0 auto',
+            lineHeight: 1.3,
+          }}
+        >
+          <b>{t('announcements.etc_promo.title')}</b>
+          <Spacer size="sm" />
+
+          {t('announcements.etc_promo.desc')}
+        </div>
+      </AnnouncementBar>
+
       <div
         style={{
           position: 'relative',
