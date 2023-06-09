@@ -3,11 +3,6 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { Tooltip, TooltipContent } from '@/components/Tooltip';
 
-// TODO: ETC PROMO
-const ETC_PROMO_END_DATE = new Date('2023/06/08');
-
-export const isWithinETCPromo = Date.now() < ETC_PROMO_END_DATE.getTime();
-
 type Props = {
   coin: string;
 };
@@ -17,10 +12,6 @@ export const PoolFee = ({ coin }: Props) => {
   const percentFormatter = useLocalizedPercentFormatter();
 
   var poolFee = getCoinPoolFee(coin);
-
-  if (coin === 'etc' && isWithinETCPromo) {
-    poolFee = 0;
-  }
 
   return (
     <p>
