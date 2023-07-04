@@ -292,7 +292,7 @@
       "detail": "在发出2周的公告后，我们已经于5月20日关闭了 Zilliqa (ZIL) 矿池。<br/>如果你有疑惑，或想了解接下来的计划，请阅读我们的<reddit_link>公告</reddit_link>。"
     },
     "xch_fork": {
-      "attention": "Chia (XCH) 软分叉提醒",
+      "attention": "Chia (XCH) 七月软分叉提醒",
       "detail": "Chia区块链网络在第3,886,635个区块进行了软分叉。如果您正在使用Chia节点进行挖矿，您必须将Chia节点软件更新到1.8.0版本或更高版本。否则，您可能会生成无效的区块。<br/><br/>如果您是FlexFarmer的用户并且正在使用我们提供的区块链桥接服务，则无需更新软件。"
     }
   },
