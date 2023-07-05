@@ -292,8 +292,8 @@
       "detail": "On May 20th, 2023, after a two-week notice, our Zilliqa (ZIL) pool was shut down. You can read more on what made us delist Zilliqa (ZIL) and what are our following plans in our <reddit_link>announcement</reddit_link>."
     },
     "xch_fork": {
-      "attention": "Chia (XCH) Soft Fork Reminder",
-      "detail": "The Chia soft fork has happened on block 3,630,000. If you are farming with a Chia node, <b>you are required to update it to v1.7.0 or higher</b>. Otherwise, you may produce invalid blocks.<br/><br/>FlexFarmer users who are using our hosted blockchain bridge do not need to update."
+      "attention": "Chia (XCH) July Soft Fork Reminder",
+      "detail": "The Chia soft fork has happened on block 3,886,635. If you are farming with a Chia node, <b>you are required to update it to v1.8.0 or higher</b>. Otherwise, you may produce invalid blocks.<br/><br/>FlexFarmer users who are using our hosted blockchain bridge do not need to update."
     }
   },
   "payout_only_mode_note": {

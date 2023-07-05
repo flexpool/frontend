@@ -244,7 +244,7 @@ export const MinerDashboardPageContent: React.FC<{
           )}
 
           {coinTicker === 'xch' && (
-            <AnnouncementBar id="xch-fork" variant="primary">
+            <AnnouncementBar id="xch-fork-jul" variant="primary">
               <b>{t('announcements.xch_fork.attention')}</b>
               <Spacer size="sm" />
               <div
