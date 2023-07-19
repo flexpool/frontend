@@ -34,7 +34,6 @@ export const getChecksumByTicker = (ticker: string) => {
   return (addr: string) => {
     // This obviously needs to be proper.
     if (addr.toLowerCase().startsWith("btc:")) {
-      console.log("BTC address detected", addr.slice(4), validate(addr.slice(4), Network.mainnet))
       // Slicing the address by 4 removes the "btc:" prefix.
       return validate(addr.slice(4), Network.mainnet) ? addr : null;
     }
