@@ -1,24 +1,44 @@
+import validate, { Network } from 'bitcoin-address-validation';
 import { checksumETH } from './ethWalletAddress.validator';
 import { checksumIron } from './ironWalletAddress.validator';
 import { checksumXCH } from './xchWalletAddress.validator';
 import { checksumZIL } from './zilWalletAddress.validator';
 
 export const getChecksumByTicker = (ticker: string) => {
+  let checksumFunc: (name: string) => string | null
+
   switch (ticker) {
     case 'eth':
-      return checksumETH;
+      checksumFunc = checksumETH;
+      break;
     case 'xch':
-      return checksumXCH;
+      checksumFunc = checksumXCH;
+      break;
     case 'zil':
-      return checksumZIL;
+      checksumFunc = checksumZIL;
+      break;
     case 'tiron':
-      return checksumIron;
+      checksumFunc = checksumIron;
+      break;
     case 'iron':
-      return checksumIron;
+      checksumFunc = checksumIron;
+      break;
     default:
       return (hash: string) => {
         console.log(`Checksum for ${hash} not found (ticker ${ticker})`);
         return hash;
       };
+  }
+
+  // Now wrap the checksum function with the bitcoin checksum wrapper.
+  return (addr: string) => {
+    // This obviously needs to be proper.
+    if (addr.toLowerCase().startsWith("btc:")) {
+      console.log("BTC address detected", addr.slice(4), validate(addr.slice(4), Network.mainnet))
+      // Slicing the address by 4 removes the "btc:" prefix.
+      return validate(addr.slice(4), Network.mainnet) ? addr : null;
+    }
+
+    return checksumFunc(addr);
   }
 };
