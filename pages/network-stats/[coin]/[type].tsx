@@ -32,9 +32,12 @@ import {
 import { Spacer } from '@/components/layout/Spacer';
 import { Skeleton } from '@/components/layout/Skeleton';
 import { Content } from '@/components/layout/Content';
-import useNextQueryParams from '@/hooks/useNextQueryParams';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import {
+  findMinableCoinByTicker,
+  getCoinTickers,
+} from '@/pages/GetStarted/mineableCoinList.utils';
 
 const ChartCard = styled(Card)`
   padding: 36px 36px 22px;
@@ -398,11 +401,7 @@ const NetworkStatsPage = ({ coinName }: { coinName: string }) => {
 export default NetworkStatsPage;
 
 export async function getStaticProps({ locale, params }) {
-  const coinNames = {
-    etc: 'Ethereum Classic',
-    xch: 'Chia',
-    zil: 'Zilliqa',
-  };
+  const coinName = findMinableCoinByTicker(params.coin)?.name || 'Unknown Coin';
 
   return {
     props: {
@@ -413,20 +412,18 @@ export async function getStaticProps({ locale, params }) {
         'seo',
         'dashboard',
       ])),
-      coinName: coinNames[params.coin],
+      coinName,
     },
   };
 }
 
 export async function getStaticPaths({ locales }) {
-  const coins = ['etc', 'xch', 'zil'];
   const types = ['difficulty', 'hashrate', 'blocktime'];
 
   let paths: any = [];
 
-  for (let coin of coins) {
+  for (let coin of getCoinTickers()) {
     for (let type of types) {
-      if (coin === 'zil' && type === 'hashrate') continue;
       for (let locale of locales) {
         paths.push({
           params: { coin, type },
