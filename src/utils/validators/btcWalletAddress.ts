@@ -8,7 +8,7 @@ export const isBTCAddress = (address: string | null) => {
 
 export const extractAddressFromBTCAddress = (address: string | null): string => {
   if (!isBTCAddress(address)) {
-    return address
+    return address || ""
   }
   // IsBTCAddr will reject if null.
   return address!!.slice(4)
