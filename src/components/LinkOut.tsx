@@ -1,3 +1,7 @@
+import {
+  extractAddressFromBTCAddress,
+  isBTCAddress,
+} from '@/utils/validators/btcWalletAddress';
 import React from 'react';
 import { CoinLinkType, getCoinLink } from 'src/utils/coinLinks.utils';
 import { stringUtils } from 'src/utils/string.utils';
@@ -31,6 +35,12 @@ export const LinkOutCoin: React.FC<{
 
   if (type === 'orphan') {
     return <>{stringUtils.shortenString(hash, hashLength)}</>;
+  }
+
+  // Hijack any btc prefix links to be btc address links
+  if (type === 'wallet' && isBTCAddress(hash)) {
+    hash = extractAddressFromBTCAddress(hash);
+    coin = 'btc';
   }
 
   const href = getCoinLink(type, hash, coin);

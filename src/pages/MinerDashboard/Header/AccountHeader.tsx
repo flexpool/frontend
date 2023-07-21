@@ -71,6 +71,11 @@ const Address = styled(LinkOut)`
   }
 `;
 
+const AddressPrefix = styled.p`
+  color: gray;
+  display: inline;
+`;
+
 const CoinIconSkeleton = styled.div`
   border-radius: 50%;
   width: 40px;
@@ -151,6 +156,10 @@ export const AccountHeader: React.FC<{
     }
   }
 
+  const isBtcAddr = isBTCAddress(addressText);
+
+  const btcAddr = extractAddressFromBTCAddress(addressText);
+
   return (
     <Wrap paddingShort>
       <AddressContainer>
@@ -160,7 +169,7 @@ export const AccountHeader: React.FC<{
               src={getCoinIconUrl(coin.ticker)}
               alt={`${coin.name} logo`}
             />
-            {isBTCAddress(addressText) && (
+            {isBtcAddr && (
               <BitcoinLogo src={getCoinIconUrl('btc')} alt={`btc logo`} />
             )}
           </React.Fragment>
@@ -168,8 +177,11 @@ export const AccountHeader: React.FC<{
           <CoinIconSkeleton />
         )}
 
-        <Address href={getCoinLink('wallet', address, coinName)}>
-          {extractAddressFromBTCAddress(addressText || '')}
+        <Address
+          href={getCoinLink('wallet', btcAddr, isBtcAddr ? 'btc' : coinName)}
+        >
+          {isBtcAddr ? <AddressPrefix>btc:</AddressPrefix> : null}
+          {btcAddr}
         </Address>
         {ironMemo && <Memo>{ironMemo}</Memo>}
         <CopyButton text={addressText || ''} />

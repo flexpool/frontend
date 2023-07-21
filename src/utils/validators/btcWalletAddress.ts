@@ -6,9 +6,10 @@ export const isBTCAddress = (address: string | null) => {
   return address.toLowerCase().startsWith("btc:")
 }
 
-export const extractAddressFromBTCAddress = (address: string) => {
+export const extractAddressFromBTCAddress = (address: string | null): string => {
   if (!isBTCAddress(address)) {
     return address
   }
-  return address.slice(4)
+  // IsBTCAddr will reject if null.
+  return address!!.slice(4)
 }
