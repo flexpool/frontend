@@ -62,7 +62,11 @@ export const useLocalizedActiveCoinValueFormatter = (
   const numberFormatter = useLocalizedNumberFormatter();
 
   const formatter = React.useCallback(
-    (value?: number, options?: Intl.NumberFormatOptions | undefined) => {
+    (
+      value?: number,
+      options?: Intl.NumberFormatOptions | undefined,
+      isBTC?: boolean
+    ) => {
       const opts: Intl.NumberFormatOptions = {
         maximumFractionDigits: 4,
         ...defaultOptions,
@@ -78,7 +82,10 @@ export const useLocalizedActiveCoinValueFormatter = (
             value / Math.pow(10, activeCoin?.decimalPlaces || 100),
             opts
           )}{' '}
-          <Tick ticker={activeCoin?.ticker} testnet={activeCoin?.testnet} />
+          <Tick
+            ticker={isBTC ? 'btc' : activeCoin?.ticker}
+            testnet={activeCoin?.testnet}
+          />
         </span>
       );
     },

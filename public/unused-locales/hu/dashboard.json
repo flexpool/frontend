@@ -146,6 +146,7 @@
       },
       "table_head": {
         "date": "Date",
+        "date_executed": "Date Executed",
         "value": "Transaction Value",
         "fee": "Fee",
         "duration": "Duration",

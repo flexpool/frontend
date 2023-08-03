@@ -96,8 +96,14 @@
     "we_encourage": "We encourage switching to the ones below, but in case you can't, please refer to our <compatible>Compatible Mode</compatible> guide.",
     "switch_zmp": "Please consider switching to a miner that supports ZMP for better profitability.",
     "pool_details": [
-      { "key": "Reward Scheme", "value": "PPLNS (Pay Per Last N Shares)" },
-      { "key": "Pool Fee", "value": "3% + Shard Node Operating Costs" },
+      {
+        "key": "Reward Scheme",
+        "value": "PPLNS (Pay Per Last N Shares)"
+      },
+      {
+        "key": "Pool Fee",
+        "value": "3% + Shard Node Operating Costs"
+      },
       {
         "key": "Payout Round",
         "value": "Once an hour"
@@ -106,9 +112,18 @@
         "key": "Payouts",
         "value": "From 10 ZIL to 20,000 ZIL"
       },
-      { "key": "PoW round time", "value": "Around 1 hour" },
-      { "key": "Share Difficulty", "value": "4 GH" },
-      { "key": "Mining Algorithm", "value": "Ethash" }
+      {
+        "key": "PoW round time",
+        "value": "Around 1 hour"
+      },
+      {
+        "key": "Share Difficulty",
+        "value": "4 GH"
+      },
+      {
+        "key": "Mining Algorithm",
+        "value": "Ethash"
+      }
     ],
     "hardware": [
       {
@@ -120,13 +135,34 @@
   "detail_etc": {
     "title": "Ethereum Classic mining",
     "pool_details": [
-      { "key": "Reward Scheme", "value": "PPLNS (Pay Per Last N Shares)" },
-      { "key": "Pool Fee", "value": "0.9%" },
-      { "key": "Payout Round", "value": "Once an hour" },
-      { "key": "Payouts", "value": "From 0.01 ETC up to 100 ETC" },
-      { "key": "Block confirmation time", "value": "120 Blocks" },
-      { "key": "Share Difficulty", "value": "4 GH" },
-      { "key": "Mining Algorithm", "value": "Etchash" }
+      {
+        "key": "Reward Scheme",
+        "value": "PPLNS (Pay Per Last N Shares)"
+      },
+      {
+        "key": "Pool Fee",
+        "value": "0.9%"
+      },
+      {
+        "key": "Payout Round",
+        "value": "Once an hour"
+      },
+      {
+        "key": "Payouts",
+        "value": "From 0.01 ETC up to 100 ETC"
+      },
+      {
+        "key": "Block confirmation time",
+        "value": "120 Blocks"
+      },
+      {
+        "key": "Share Difficulty",
+        "value": "4 GH"
+      },
+      {
+        "key": "Mining Algorithm",
+        "value": "Etchash"
+      }
     ],
     "hardware": [
       {
@@ -161,13 +197,34 @@
     "title_cli": "Chia farming using CLI Farmer",
     "title_gui": "Chia farming using GUI Farmer",
     "pool_details": [
-      { "key": "Reward Scheme", "value": "PPLNS (Pay Per Last N Shares)" },
-      { "key": "Pool Fee", "value": "0.7%" },
-      { "key": "Payout Round", "value": "Once an hour" },
-      { "key": "Payouts", "value": "From 0.01 XCH to 10 XCH" },
-      { "key": "Block confirmation time", "value": "60 Blocks" },
-      { "key": "Relative Lock Height", "value": "100" },
-      { "key": "Mining Algorithm", "value": "Chia PoST" }
+      {
+        "key": "Reward Scheme",
+        "value": "PPLNS (Pay Per Last N Shares)"
+      },
+      {
+        "key": "Pool Fee",
+        "value": "0.7%"
+      },
+      {
+        "key": "Payout Round",
+        "value": "Once an hour"
+      },
+      {
+        "key": "Payouts",
+        "value": "From 0.01 XCH to 10 XCH"
+      },
+      {
+        "key": "Block confirmation time",
+        "value": "60 Blocks"
+      },
+      {
+        "key": "Relative Lock Height",
+        "value": "100"
+      },
+      {
+        "key": "Mining Algorithm",
+        "value": "Chia PoST"
+      }
     ],
     "new_farmer": "New Farmer",
     "already_farmer": "Already Farmer",
@@ -247,13 +304,34 @@
       "desc_one": "For Iron Fish, you will need to create a wallet by spinning up the node and creating a wallet. Instructions can be found on <ifweb>Iron Fish's website</ifweb>. In the alternative, there is an easier community-made light wallet on <oreos>GitHub</oreos>."
     },
     "pool_details": [
-      { "key": "Reward Scheme", "value": "PPLNS (Pay Per Last N Shares)" },
-      { "key": "Pool Fee", "value": "0.95%" },
-      { "key": "Payout Round", "value": "Once an hour" },
-      { "key": "Payouts", "value": "Minimum 0.05 IRON" },
-      { "key": "Block confirmation time", "value": "32 blocks" },
-      { "key": "Share Difficulty", "value": "150GH" },
-      { "key": "Mining Algorithm", "value": "Blake3" }
+      {
+        "key": "Reward Scheme",
+        "value": "PPLNS (Pay Per Last N Shares)"
+      },
+      {
+        "key": "Pool Fee",
+        "value": "0.95%"
+      },
+      {
+        "key": "Payout Round",
+        "value": "Once an hour"
+      },
+      {
+        "key": "Payouts",
+        "value": "Minimum 0.05 IRON"
+      },
+      {
+        "key": "Block confirmation time",
+        "value": "32 blocks"
+      },
+      {
+        "key": "Share Difficulty",
+        "value": "150GH"
+      },
+      {
+        "key": "Mining Algorithm",
+        "value": "Blake3"
+      }
     ],
     "hardware": [
       {
@@ -269,16 +347,37 @@
   "detail_iron": {
     "title": "Iron Fish mining",
     "wallet": {
-      "desc_one": "For Iron Fish, you will need to create a wallet by spinning up the node and creating a wallet. Instructions can be found on <ifweb>Iron Fish's website</ifweb>. In the alternative, there is an easier community-made light wallet on <oreos>GitHub</oreos>."
+      "desc_one": "For Iron Fish, you will need to create a wallet by spinning up the node and creating a wallet. Instructions can be found on <ifweb>Iron Fish's website</ifweb>. In the alternative, there is an easier community-made light wallet on <oreos>GitHub</oreos>. To get paid in Bitcoin, use format <mono>btc:my-btc-address</mono>."
     },
     "pool_details": [
-      { "key": "Reward Scheme", "value": "PPLNS (Pay Per Last N Shares)" },
-      { "key": "Pool Fee", "value": "0.95%" },
-      { "key": "Payout Round", "value": "Once an hour" },
-      { "key": "Payouts", "value": "Minimum 0.05 IRON" },
-      { "key": "Block confirmation time", "value": "32 blocks" },
-      { "key": "Share Difficulty", "value": "150GH" },
-      { "key": "Mining Algorithm", "value": "Blake3" }
+      {
+        "key": "Reward Scheme",
+        "value": "PPLNS (Pay Per Last N Shares)"
+      },
+      {
+        "key": "Pool Fee",
+        "value": "0.95%"
+      },
+      {
+        "key": "Payout Round",
+        "value": "Once an hour"
+      },
+      {
+        "key": "Payouts",
+        "value": "Minimum 0.05 IRON"
+      },
+      {
+        "key": "Block confirmation time",
+        "value": "32 blocks"
+      },
+      {
+        "key": "Share Difficulty",
+        "value": "150GH"
+      },
+      {
+        "key": "Mining Algorithm",
+        "value": "Blake3"
+      }
     ],
     "hardware": [
       {

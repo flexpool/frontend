@@ -14,6 +14,10 @@ const NetworkLogo: React.FC<{
       return getCoinIconUrl(ticker);
     }
 
+    if (network == 'coin/btc') {
+      return getCoinIconUrl('btc');
+    }
+
     return getNetworkIconUrl(network);
   }, [ticker, network]);
 

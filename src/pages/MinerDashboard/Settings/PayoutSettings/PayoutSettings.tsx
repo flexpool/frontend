@@ -25,6 +25,7 @@ import GasPriceInput from './GasPriceInput';
 import GasPricePercentInput from './GasPricePercentInput';
 import L2AcknowledgeCheckbox from './L2AcknowledgeCheckbox';
 import ScrollIntoView from '@/components/ScrollIntoView';
+import { isBTCAddress } from '@/utils/validators/btcWalletAddress';
 
 export const LowPayoutContainer = styled.div`
   color: var(--danger);
@@ -37,6 +38,8 @@ export const PayoutSettings: React.FC<{
   const activeCoin = useActiveCoin();
   const { t } = useTranslation(['common']);
   const numberFormatter = useLocalizedNumberFormatter();
+
+  const isBTCAddr = isBTCAddress(address);
 
   const { data: minerDetails } = useMinerDetailsQuery({
     coin: activeCoinTicker,
@@ -186,6 +189,7 @@ export const PayoutSettings: React.FC<{
 
                 <ThresholdInput
                   name="payoutLimit"
+                  isBTC={isBTCAddr}
                   isMainnet={values.network === 'mainnet'}
                 />
 

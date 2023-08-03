@@ -1,7 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
 import { Button } from 'src/components/Button';
-import DynamicList from 'src/components/layout/List/List';
+import DynamicList, {
+  DynamicListColumn,
+} from 'src/components/layout/List/List';
 import { Spacer } from 'src/components/layout/Spacer';
 import { LinkOutCoin } from 'src/components/LinkOut';
 import { Mono, Ws } from 'src/components/Typo/Typo';
@@ -112,6 +114,7 @@ export const MinerPaymentsList: React.FC<{
   }, [minerPayments]);
 
   const currentCounterValuePrice = minerPayments?.countervalue || 1;
+  const currentNativeCounterValuePrice = minerPayments?.nativeCounterValue || 1;
 
   const { t } = useTranslation('dashboard');
   const currencyFormatter = useLocalizedCurrencyFormatter();
@@ -128,6 +131,287 @@ export const MinerPaymentsList: React.FC<{
     },
     [coin?.ticker]
   );
+
+  const isBtcAddr = minerPayments?.data[0]?.network === 'coin/btc';
+
+  const getColumns = (): DynamicListColumn<ApiMinerPayment, {}>[] => {
+    const columns = [
+      {
+        title: '#',
+        Component: ({ data, index }) => {
+          return (
+            <Mono>
+              #
+              {(totalItems % 10) -
+                index +
+                (totalPages - (currentPage + 1)) * 10}
+            </Mono>
+          );
+        },
+      },
+      {
+        title: t('payments.table.table_head.date'),
+        Component: ({ data }) => {
+          return (
+            <ButtonDateSwitch
+              onClick={(e) => {
+                setDateView(
+                  dateView === 'full_date' ? 'distance' : 'full_date'
+                );
+                e.stopPropagation();
+              }}
+            >
+              {dateView === 'full_date'
+                ? dateFormatter.dateAndTime(data.timestamp * 1000)
+                : dateFormatter.distanceFromNow(data.timestamp * 1000)}
+              <BiTransferAlt />
+            </ButtonDateSwitch>
+          );
+        },
+      },
+      {
+        title: (
+          <TransactionValueHeader>
+            {t('payments.table.table_head.value')}
+            <Tooltip>
+              <TooltipContent>
+                {t('payments.table.table_head.value_tooltip')}
+              </TooltipContent>
+            </Tooltip>
+          </TransactionValueHeader>
+        ),
+        alignRight: true,
+        Component: ({ data }) => {
+          const value = activeCoinFormatter(data.value, undefined, isBtcAddr);
+
+          const tickerValue = coin
+            ? (data.value / Math.pow(10, coin.decimalPlaces)) *
+              currentCounterValuePrice
+            : null;
+
+          return (
+            <Tooltip
+              wrapIcon={false}
+              icon={
+                <Ws>
+                  {value} ({currencyFormatter(data.countervalue)})
+                  <span className="reward"></span>
+                </Ws>
+              }
+            >
+              <TooltipContent>
+                {t('payments.table.estimated_value')}{' '}
+                {currencyFormatter(tickerValue || 0)}
+              </TooltipContent>
+            </Tooltip>
+          );
+        },
+      },
+      {
+        title: t('payments.table.table_head.duration'),
+        alignRight: true,
+        Component: ({ data }) => {
+          return (
+            <Ws>
+              {dateFormatter.durationWords(data.duration, {
+                includeSeconds: false,
+                short: true,
+              })}
+            </Ws>
+          );
+        },
+      },
+      {
+        title: t('payments.table.table_head.status'),
+        alignRight: true,
+        Component: ({ data }) => {
+          let component: React.ReactFragment = <></>;
+
+          if (data.confirmed) {
+            component = (
+              <StatusContainer confirmed={data.confirmed}>
+                {t('payments.table.table_contents.success')}{' '}
+                <Tooltip>
+                  <TooltipContent>
+                    {data?.confirmedTimestamp - data?.timestamp < 10800
+                      ? `${t(
+                          'confirmation_duration_tooltip'
+                        )} ${dateFormatter.durationWords(
+                          data.confirmedTimestamp - data.timestamp,
+                          {
+                            includeSeconds:
+                              data?.confirmedTimestamp - data?.timestamp < 3600
+                                ? true
+                                : false,
+                            short: false,
+                          }
+                        )}`
+                      : `${t(
+                          'confirmed_at_tooltip'
+                        )} ${dateFormatter.dateAndTime(
+                          data.confirmedTimestamp * 1000
+                        )}`}
+                  </TooltipContent>
+                </Tooltip>
+              </StatusContainer>
+            );
+          } else if (isBtcAddr && data.value === 0) {
+            // Mark data as yet to be swapped
+            component = (
+              <>
+                <StatusContainer confirmed={data.confirmed}>
+                  {t('payments.table.table_contents.dispatched')}
+                </StatusContainer>
+                <Tooltip icon={<TableCellSpinner />}>
+                  <TooltipContent message={t('dispatched_pending_tooltip')} />
+                </Tooltip>
+              </>
+            );
+          } else {
+            component = (
+              <>
+                <StatusContainer confirmed={data.confirmed}>
+                  {t('payments.table.table_contents.pending')}
+                </StatusContainer>
+                <Tooltip icon={<TableCellSpinner />}>
+                  <TooltipContent message={t('status_pending_tooltip')} />
+                </Tooltip>
+              </>
+            );
+          }
+          return <Ws>{component}</Ws>;
+        },
+      },
+      {
+        title: t('payments.table.table_head.hash'),
+        alignRight: true,
+        Component: ({ data }) => {
+          let coinName = coin?.ticker as string;
+
+          if (data.network !== 'mainnet') {
+            coinName = data.network;
+          }
+
+          if (isBtcAddr) {
+            coinName = 'btc';
+          }
+
+          return (
+            <Stack spacing="xs">
+              <NetworkLogo ticker={coinName} network={data.network} />
+              <Ws>
+                <Mono className="item-hover-higjlight">
+                  <LinkOutCoin
+                    type="transaction"
+                    hash={data.hash}
+                    coin={coinName}
+                  />
+                </Mono>
+              </Ws>
+            </Stack>
+          );
+        },
+      },
+    ];
+
+    if (isBtcAddr) {
+      columns.splice(3, 0, {
+        title: (
+          <TransactionValueHeader>
+            {t('payments.table.table_head.native_value')}
+            <Tooltip>
+              <TooltipContent>
+                {t('payments.table.table_head.native_value_tooltip')}
+              </TooltipContent>
+            </Tooltip>
+          </TransactionValueHeader>
+        ),
+        alignRight: true,
+        Component: ({ data }) => {
+          const value = activeCoinFormatter(data.nativeValue);
+
+          const tickerValue = coin
+            ? (data.nativeCounterValue / Math.pow(10, coin.decimalPlaces)) *
+              currentCounterValuePrice
+            : null;
+
+          return (
+            <Tooltip
+              wrapIcon={false}
+              icon={
+                <Ws>
+                  {value} ({currencyFormatter(data.nativeCounterValue)})
+                  <span className="reward"></span>
+                </Ws>
+              }
+            >
+              <TooltipContent>
+                {t('payments.table.estimated_value')}{' '}
+                {currencyFormatter(tickerValue || 0)}
+              </TooltipContent>
+            </Tooltip>
+          );
+        },
+      });
+
+      columns.splice(5, 0, {
+        title: <>{t('payments.table.table_head.date_executed')}</>,
+        alignRight: false,
+        Component: ({ data }) => {
+          return (
+            <ButtonDateSwitch
+              onClick={(e) => {
+                setDateView(
+                  dateView === 'full_date' ? 'distance' : 'full_date'
+                );
+                e.stopPropagation();
+              }}
+            >
+              {dateView === 'full_date'
+                ? dateFormatter.dateAndTime(data.confirmedTimestamp * 1000)
+                : dateFormatter.distanceFromNow(data.confirmedTimestamp * 1000)}
+              <BiTransferAlt />
+            </ButtonDateSwitch>
+          );
+        },
+      });
+    } else {
+      columns.splice(3, 0, {
+        title: <>{t('payments.table.table_head.fee')}</>,
+        alignRight: true,
+        Component: ({ data }) => {
+          return (
+            <Tooltip
+              wrapIcon={false}
+              icon={
+                <Ws>
+                  {numberFormatter(data.feePercent, {
+                    style: 'percent',
+                    maximumFractionDigits: 3,
+                  })}{' '}
+                  (
+                  {coin &&
+                    currencyFormatter(data.feePercent * data.countervalue)}
+                  )
+                </Ws>
+              }
+            >
+              <TooltipContent>
+                {t('payments.table.estimated_value')}{' '}
+                {coin &&
+                  currencyFormatter(
+                    (data.fee / Math.pow(10, coin.decimalPlaces)) *
+                      currentCounterValuePrice
+                  )}
+              </TooltipContent>
+            </Tooltip>
+          );
+        },
+      });
+    }
+
+    return columns;
+  };
 
   return (
     <>
@@ -166,201 +450,7 @@ export const MinerPaymentsList: React.FC<{
           totalPages,
         }}
         data={minerPayments?.data || []}
-        columns={[
-          {
-            title: '#',
-            Component: ({ data, index }) => {
-              return (
-                <Mono>
-                  #
-                  {(totalItems % 10) -
-                    index +
-                    (totalPages - (currentPage + 1)) * 10}
-                </Mono>
-              );
-            },
-          },
-          {
-            title: t('payments.table.table_head.date'),
-            Component: ({ data }) => {
-              return (
-                <ButtonDateSwitch
-                  onClick={(e) => {
-                    setDateView(
-                      dateView === 'full_date' ? 'distance' : 'full_date'
-                    );
-                    e.stopPropagation();
-                  }}
-                >
-                  {dateView === 'full_date'
-                    ? dateFormatter.dateAndTime(data.timestamp * 1000)
-                    : dateFormatter.distanceFromNow(data.timestamp * 1000)}
-                  <BiTransferAlt />
-                </ButtonDateSwitch>
-              );
-            },
-          },
-          {
-            title: (
-              <TransactionValueHeader>
-                {t('payments.table.table_head.value')}
-                <Tooltip>
-                  <TooltipContent>
-                    {t('payments.table.table_head.value_tooltip')}
-                  </TooltipContent>
-                </Tooltip>
-              </TransactionValueHeader>
-            ),
-            alignRight: true,
-            Component: ({ data }) => {
-              const value = activeCoinFormatter(data.value);
-
-              const tickerValue = coin
-                ? (data.value / Math.pow(10, coin.decimalPlaces)) *
-                  currentCounterValuePrice
-                : null;
-
-              return (
-                <Tooltip
-                  wrapIcon={false}
-                  icon={
-                    <Ws>
-                      {value} ({currencyFormatter(data.countervalue)})
-                      <span className="reward"></span>
-                    </Ws>
-                  }
-                >
-                  <TooltipContent>
-                    {t('payments.table.estimated_value')}{' '}
-                    {currencyFormatter(tickerValue || 0)}
-                  </TooltipContent>
-                </Tooltip>
-              );
-            },
-          },
-          {
-            title: t('payments.table.table_head.fee'),
-            alignRight: true,
-            Component: ({ data }) => {
-              return (
-                <Tooltip
-                  wrapIcon={false}
-                  icon={
-                    <Ws>
-                      {numberFormatter(data.feePercent, {
-                        style: 'percent',
-                        maximumFractionDigits: 3,
-                      })}{' '}
-                      (
-                      {coin &&
-                        currencyFormatter(data.feePercent * data.countervalue)}
-                      )
-                    </Ws>
-                  }
-                >
-                  <TooltipContent>
-                    {t('payments.table.estimated_value')}{' '}
-                    {coin &&
-                      currencyFormatter(
-                        (data.fee / Math.pow(10, coin.decimalPlaces)) *
-                          currentCounterValuePrice
-                      )}
-                  </TooltipContent>
-                </Tooltip>
-              );
-            },
-          },
-          {
-            title: t('payments.table.table_head.duration'),
-            alignRight: true,
-            Component: ({ data }) => {
-              return (
-                <Ws>
-                  {dateFormatter.durationWords(data.duration, {
-                    includeSeconds: false,
-                    short: true,
-                  })}
-                </Ws>
-              );
-            },
-          },
-          {
-            title: t('payments.table.table_head.status'),
-            alignRight: true,
-            Component: ({ data }) => {
-              return (
-                <Ws>
-                  {data.confirmed ? (
-                    <StatusContainer confirmed={data.confirmed}>
-                      {t('payments.table.table_contents.success')}{' '}
-                      <Tooltip>
-                        <TooltipContent>
-                          {data?.confirmedTimestamp - data?.timestamp < 10800
-                            ? `${t(
-                                'confirmation_duration_tooltip'
-                              )} ${dateFormatter.durationWords(
-                                data.confirmedTimestamp - data.timestamp,
-                                {
-                                  includeSeconds:
-                                    data?.confirmedTimestamp - data?.timestamp <
-                                    3600
-                                      ? true
-                                      : false,
-                                  short: false,
-                                }
-                              )}`
-                            : `${t(
-                                'confirmed_at_tooltip'
-                              )} ${dateFormatter.dateAndTime(
-                                data.confirmedTimestamp * 1000
-                              )}`}
-                        </TooltipContent>
-                      </Tooltip>
-                    </StatusContainer>
-                  ) : (
-                    <>
-                      <StatusContainer confirmed={data.confirmed}>
-                        {t('payments.table.table_contents.pending')}
-                      </StatusContainer>
-                      <Tooltip icon={<TableCellSpinner />}>
-                        <TooltipContent message={t('status_pending_tooltip')} />
-                      </Tooltip>
-                    </>
-                  )}
-                </Ws>
-              );
-            },
-          },
-          {
-            title: t('payments.table.table_head.hash'),
-            alignRight: true,
-            Component: ({ data }) => {
-              let coinName = coin?.ticker as string;
-
-              if (data.network !== 'mainnet') {
-                coinName = data.network;
-              }
-
-              return (
-                <Stack spacing="xs">
-                  <NetworkLogo
-                    ticker={coin?.ticker as string}
-                    network={data.network}
-                  />
-                  <Ws>
-                    <Mono className="item-hover-higjlight">
-                      <LinkOutCoin
-                        type="transaction"
-                        hash={data.hash}
-                        coin={coinName}
-                      />
-                    </Mono>
-                  </Ws>
-                </Stack>
-              );
-            },
-          },
-        ]}
+        columns={getColumns()}
       />
     </>
   );

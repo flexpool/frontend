@@ -190,6 +190,7 @@
       "estimated_value": "Estimated value now:",
       "table_head": {
         "date": "Date",
+        "date_executed": "Date Executed",
         "value": "Transaction Value",
         "value_tooltip": "The fiat conversion is based on the price at the time of the payout.",
         "fee": "Fee",

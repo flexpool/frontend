@@ -20,6 +20,7 @@ import {
 } from 'src/components/Chart/ChartContainer';
 import { useTranslation } from 'next-i18next';
 import { groupDataItemSum } from '@/utils/amchart.utils';
+import { isBTCAddress } from '@/utils/validators/btcWalletAddress';
 
 type ChartData = {
   fee: number;
@@ -90,12 +91,14 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
         return text;
       });
 
+      const coinTicker = isBTCAddress(address)
+        ? 'BTC'
+        : coin.ticker.toUpperCase();
+
       let feeSeries = paymentsChart.series.push(new ColumnSeries());
       feeSeries.stacked = true;
       feeSeries.dataFields.dateX = 'date';
-      feeSeries.name = `${t(
-        'payments.chart.fee'
-      )} (${coin.ticker.toUpperCase()})`;
+      feeSeries.name = `${t('payments.chart.fee')} (${coinTicker})`;
       feeSeries.yAxis = paymentsAxis;
       feeSeries.dataFields.valueY = 'fee';
       feeSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.0000")}`;
@@ -105,9 +108,7 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
       let paymentSeries = paymentsChart.series.push(new ColumnSeries());
       paymentSeries.adapter.add('groupDataItem', groupDataItemSum);
       paymentSeries.dataFields.dateX = 'date';
-      paymentSeries.name = `${t(
-        'payments.chart.net_value'
-      )} (${coin.ticker.toUpperCase()})`;
+      paymentSeries.name = `${t('payments.chart.net_value')} (${coinTicker})`;
       paymentSeries.yAxis = paymentsAxis;
       paymentSeries.dataFields.valueY = 'value';
       paymentSeries.tooltipText = `{name}: {valueY.value.formatNumber("#.0000")}`;
