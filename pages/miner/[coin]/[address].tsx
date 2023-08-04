@@ -98,7 +98,6 @@ export const MinerDashboardPageContent: React.FC<{
 
   // Need to handle btc address prefix. So we need to decode URI
   const address = decodeURIComponent(addressURIComponent);
-  console.log('address', address);
 
   const { data: poolCoins } = usePoolCoinsQuery();
   const queryClient = useQueryClient();
