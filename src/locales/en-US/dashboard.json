@@ -186,14 +186,15 @@
       "table_contents": {
         "dispatched": "Dispatched",
         "pending": "Pending",
-        "success": "Success"
+        "success": "Success",
+        "not_executed": "Not Executed"
       },
       "estimated_value": "Estimated value now:",
       "table_head": {
         "date": "Date",
         "date_executed": "Date Executed",
-        "native_value": "Native Value",
-        "native_value_tooltip": "The native mined currency value of the payment",
+        "btc_value": "BTC Value",
+        "btc_value_tooltip": "The BTC value paid out",
         "value": "Transaction Value",
         "value_tooltip": "The fiat conversion is based on the price at the time of the payout.",
         "fee": "Fee",

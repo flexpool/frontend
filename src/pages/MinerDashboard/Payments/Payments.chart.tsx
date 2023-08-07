@@ -91,9 +91,7 @@ const PaymentsChart: React.FC<{ address: string; coin?: ApiPoolCoin }> = ({
         return text;
       });
 
-      const coinTicker = isBTCAddress(address)
-        ? 'BTC'
-        : coin.ticker.toUpperCase();
+      const coinTicker = coin.ticker.toUpperCase();
 
       let feeSeries = paymentsChart.series.push(new ColumnSeries());
       feeSeries.stacked = true;

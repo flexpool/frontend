@@ -142,7 +142,8 @@
       "download": "Download CSV",
       "table_contents": {
         "pending": "Pending",
-        "success": "Success"
+        "success": "Success",
+        "not_executed": "Not Executed"
       },
       "table_head": {
         "date": "Date",

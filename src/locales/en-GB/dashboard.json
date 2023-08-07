@@ -186,7 +186,8 @@
       "table_contents": {
         "dispatched": "Dispatched",
         "pending": "Pending",
-        "success": "Success"
+        "success": "Success",
+        "not_executed": "Not Executed"
       },
       "estimated_value": "Estimated value now:",
       "table_head": {

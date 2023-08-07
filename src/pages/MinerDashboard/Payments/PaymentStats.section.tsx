@@ -64,8 +64,6 @@ export const GeneralPaymentStatsSection: React.FC<{
     // eslint-disable-next-line
   }, [coin?.ticker, address, couterTicker]);
 
-  const isBTCAddr = isBTCAddress(address);
-
   const averageCtaTooltip: string[] = React.useMemo(() => {
     const tooltips = t('payments.transaction_fees.average_cta_tooltip', {
       returnObjects: true,
@@ -99,11 +97,7 @@ export const GeneralPaymentStatsSection: React.FC<{
         )
       : undefined;
 
-  const totalPaid = activeCoinFormatter(
-    data?.stats?.totalPaid,
-    undefined,
-    isBTCAddr
-  );
+  const totalPaid = activeCoinFormatter(data?.stats?.totalPaid, undefined);
 
   const averageTransactionFeeCounter =
     data && coin && data.stats && data.countervalue
@@ -113,13 +107,9 @@ export const GeneralPaymentStatsSection: React.FC<{
         )
       : undefined;
 
-  const averageTransactionFee = activeCoinFormatter(
-    data?.stats?.averageFee,
-    {
-      maximumFractionDigits: 8,
-    },
-    isBTCAddr
-  );
+  const averageTransactionFee = activeCoinFormatter(data?.stats?.averageFee, {
+    maximumFractionDigits: 8,
+  });
 
   const lastPaymentCounter =
     data && data.lastPayment && coin && data.countervalue
@@ -129,11 +119,7 @@ export const GeneralPaymentStatsSection: React.FC<{
         )
       : undefined;
 
-  const lastPayment = activeCoinFormatter(
-    data?.lastPayment?.value,
-    undefined,
-    isBTCAddr
-  );
+  const lastPayment = activeCoinFormatter(data?.lastPayment?.value, undefined);
 
   if (data && !data.lastPayment) {
     return null;

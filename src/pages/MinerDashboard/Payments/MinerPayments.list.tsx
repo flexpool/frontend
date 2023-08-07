@@ -25,6 +25,8 @@ import {
 import styled from 'styled-components';
 import { BiTransferAlt } from 'react-icons/bi';
 import NetworkLogo from '@/components/NetworkLogo';
+import usePoolCoinsQuery from '@/hooks/api/usePoolCoinsQuery/usePoolCoinsQuery';
+import { dataLoader } from '@amcharts/amcharts4/core';
 
 const HeaderSplit = styled.div`
   display: flex;
@@ -100,6 +102,9 @@ export const MinerPaymentsList: React.FC<{
     page: currentPage,
   });
 
+  const poolCoins = usePoolCoinsQuery();
+  const btcPoolCoin = poolCoins?.data?.coins?.find((c) => c.ticker === 'btc');
+
   const activeCoinFormatter = useLocalizedActiveCoinValueFormatter();
   const numberFormatter = useLocalizedNumberFormatter();
   const [dateView, setDateView] = useLocalStorageState<
@@ -114,7 +119,7 @@ export const MinerPaymentsList: React.FC<{
   }, [minerPayments]);
 
   const currentCounterValuePrice = minerPayments?.countervalue || 1;
-  const currentNativeCounterValuePrice = minerPayments?.nativeCounterValue || 1;
+  const currentBTCCounterValuePrice = minerPayments?.btcCounterValue || 1;
 
   const { t } = useTranslation('dashboard');
   const currencyFormatter = useLocalizedCurrencyFormatter();
@@ -182,7 +187,7 @@ export const MinerPaymentsList: React.FC<{
         ),
         alignRight: true,
         Component: ({ data }) => {
-          const value = activeCoinFormatter(data.value, undefined, isBtcAddr);
+          const value = activeCoinFormatter(data.value, undefined);
 
           const tickerValue = coin
             ? (data.value / Math.pow(10, coin.decimalPlaces)) *
@@ -318,21 +323,20 @@ export const MinerPaymentsList: React.FC<{
       columns.splice(3, 0, {
         title: (
           <TransactionValueHeader>
-            {t('payments.table.table_head.native_value')}
+            {t('payments.table.table_head.btc_value')}
             <Tooltip>
               <TooltipContent>
-                {t('payments.table.table_head.native_value_tooltip')}
+                {t('payments.table.table_head.btc_value_tooltip')}
               </TooltipContent>
             </Tooltip>
           </TransactionValueHeader>
         ),
         alignRight: true,
         Component: ({ data }) => {
-          const value = activeCoinFormatter(data.nativeValue);
+          const value = activeCoinFormatter(data.btcValue, undefined, true);
 
-          const tickerValue = coin
-            ? (data.nativeCounterValue / Math.pow(10, coin.decimalPlaces)) *
-              currentCounterValuePrice
+          const tickerValue = currentBTCCounterValuePrice
+            ? (data.btcValue / Math.pow(10, 8)) * currentBTCCounterValuePrice
             : null;
 
           return (
@@ -340,7 +344,7 @@ export const MinerPaymentsList: React.FC<{
               wrapIcon={false}
               icon={
                 <Ws>
-                  {value} ({currencyFormatter(data.nativeCounterValue)})
+                  {value} ({currencyFormatter(data.btcCounterValue)})
                   <span className="reward"></span>
                 </Ws>
               }
@@ -358,6 +362,14 @@ export const MinerPaymentsList: React.FC<{
         title: <>{t('payments.table.table_head.date_executed')}</>,
         alignRight: false,
         Component: ({ data }) => {
+          if (data && data.confirmedTimestamp === 0) {
+            return (
+              <Ws>
+                <>{t('payments.table.table_contents.not_executed')}</>
+              </Ws>
+            );
+          }
+
           return (
             <ButtonDateSwitch
               onClick={(e) => {
