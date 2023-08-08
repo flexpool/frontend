@@ -29,7 +29,11 @@ export const WalletTextField = ({
       autoComplete="off"
       spellCheck="false"
       label={label ?? t('detail.wallet.wallet_address')}
-      placeholder={walletAddressExample}
+      placeholder={
+        isBTC
+          ? 'bc1q5zx6dqklmnjq9gffv70fsrz7uaulmr65vyf0hj'
+          : walletAddressExample
+      }
     />
   );
 };

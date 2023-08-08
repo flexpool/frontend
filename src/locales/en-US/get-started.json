@@ -347,7 +347,7 @@
   "detail_iron": {
     "title": "Iron Fish mining",
     "wallet": {
-      "desc_one": "For Iron Fish, you will need to create a wallet by spinning up the node and creating a wallet. Instructions can be found on <ifweb>Iron Fish's website</ifweb>. In the alternative, there is an easier community-made light wallet on <oreos>GitHub</oreos>. To get paid in Bitcoin, use format <mono>btc:my-btc-address</mono>."
+      "desc_one": "For Iron Fish, you will need to create a wallet by spinning up the node and creating a wallet. Instructions can be found on <ifweb>Iron Fish's website</ifweb>. In the alternative, there is an easier community-made light wallet on <oreos>GitHub</oreos>."
     },
     "pool_details": [
       {
