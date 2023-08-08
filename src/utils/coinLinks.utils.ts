@@ -2,7 +2,7 @@ const blockUrlMap = {
   eth: 'https://etherscan.io/block/%v',
   etc: 'https://blockscout.com/etc/mainnet/block/%v',
   xch: 'https://xchscan.com/blocks/%v',
-  btc: 'https://www.blockchain.com/btc/block/%v',
+  btc: 'https://mempool.space/block/%v',
   zil: 'https://devex.zilliqa.com/dsbk/%v',
   iron: 'https://explorer.ironfish.network/blocks/%v',
 };
@@ -17,7 +17,7 @@ const transactionUrlMap = {
   etc: 'https://blockscout.com/etc/mainnet/tx/%v',
   polygon: 'https://polygonscan.com/tx/%v',
   xch: 'https://xchscan.com/txns/%v',
-  btc: 'https://www.blockchain.com/btc/tx/%v',
+  btc: 'https://mempool.space/tx/%v',
   zil: 'https://viewblock.io/zilliqa/tx/%v',
   iron: 'https://explorer.ironfish.network/transaction/%v',
 };
@@ -27,7 +27,7 @@ const walletAddressUrlMap = {
   etc: 'https://blockscout.com/etc/mainnet/address/%v',
   polygon: 'https://polygonscan.com/address/%v',
   xch: 'https://xchscan.com/address/%v',
-  btc: 'https://www.blockchain.com/btc/address/%v',
+  btc: 'https://mempool.space/address/%v',
   zil: 'https://viewblock.io/zilliqa/address/%v',
 };
 
