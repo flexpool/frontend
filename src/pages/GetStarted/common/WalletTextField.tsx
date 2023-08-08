@@ -6,10 +6,12 @@ export const WalletTextField = ({
   name,
   data: { walletAddressExample, validator },
   label,
+  isBTC,
 }: {
   name: string;
   data: MineableCoin;
   label?: string | React.ReactNode;
+  isBTC?: boolean;
 }) => {
   const { t } = useTranslation('get-started');
 
@@ -18,6 +20,7 @@ export const WalletTextField = ({
       validate={(value) => {
         if (value === '' || typeof value === 'undefined') return undefined;
 
+        value = isBTC ? 'btc:' + value : value;
         const r = validator(value);
         if (typeof r === 'string' && r !== '') return undefined;
         return t('detail.wallet.invalid_address') as string;

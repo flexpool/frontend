@@ -5,12 +5,14 @@ import { LinkOut } from 'src/components/LinkOut';
 import { MineableCoin } from '../mineableCoinList';
 import { Trans, useTranslation } from 'next-i18next';
 import { SectionWrapper, WalletTextField } from '../common';
+import { CheckboxField } from '@/components/Form/Checkbox';
 
 type SetWalletSectionProps = {
   position: number;
   data: MineableCoin;
   name?: string;
   desc?: React.ReactNode;
+  isBTC?: boolean;
 };
 
 export const SetWalletSection = ({
@@ -18,6 +20,7 @@ export const SetWalletSection = ({
   data,
   name = 'wallet_address',
   desc,
+  isBTC,
 }: SetWalletSectionProps) => {
   const { t } = useTranslation('get-started');
 
@@ -52,10 +55,11 @@ export const SetWalletSection = ({
           </p>
         </>
       )}
-
+      <Spacer />
+      <CheckboxField label={'I want to mine BTC'} name={'btc'} />
       <Spacer />
       <DivText>
-        <WalletTextField name={name} data={data} />
+        <WalletTextField name={name} data={data} isBTC={isBTC} />
       </DivText>
     </SectionWrapper>
   );
