@@ -63,7 +63,7 @@ export const SetWalletSection = ({
         <>
           <MineBTCBox>
             <CheckboxField
-              label={'Recieve rewards in Bitcoin using Flexpool.io AutoSwap'}
+              label={'Receive rewards in Bitcoin using Flexpool.io AutoSwap'}
               name={'btc'}
             />
           </MineBTCBox>
