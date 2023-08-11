@@ -451,7 +451,7 @@
   "auto_swap": {
     "btc": {
       "title": "Enable Bitcoin Payouts",
-      "desc": "Receive rewards in Bitcoin using Flexpool.io AutoSwap",
+      "desc": "Receive rewards in Bitcoin using Flexpool.io AutoSwap. (Optional)",
       "fee": "1% Service Fee"
     },
     "terms": "Terms and conditions apply"
