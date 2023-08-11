@@ -5,10 +5,6 @@ import { LinkOut } from 'src/components/LinkOut';
 import { MineableCoin } from '../mineableCoinList';
 import { Trans, useTranslation } from 'next-i18next';
 import { SectionWrapper, WalletTextField } from '../common';
-import { CheckboxField } from '@/components/Form/Checkbox';
-import styled from 'styled-components';
-import { Img } from '@/components/Img';
-import { getCoinIconUrl } from '@/utils/staticImage.utils';
 import { MineBTCBox } from './MineBTCBox';
 
 type SetWalletSectionProps = {
@@ -60,15 +56,10 @@ export const SetWalletSection = ({
       )}
       <Spacer />
       {data.ticker == 'iron' && (
-        <>
-          <MineBTCBox>
-            <CheckboxField
-              label={'Recieve rewards in Bitcoin using Flexpool.io AutoSwap'}
-              name={'btc'}
-            />
-          </MineBTCBox>
+        <div>
+          <MineBTCBox />
           <Spacer />
-        </>
+        </div>
       )}
       <DivText>
         <WalletTextField name={name} data={data} isBTC={isBTC} />

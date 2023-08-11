@@ -447,5 +447,13 @@
       "p2": "We estimate a <hl>{{boost_percent}}</hl> boost on your earnings with current network conditions.",
       "cta": "Get started mining <up>{{primary_ticker}}</up> + <up>{{dual_ticker}}</up>"
     }
+  },
+  "auto_swap": {
+    "btc": {
+      "title": "Enable Bitcoin Payouts",
+      "desc": "Receive rewards in Bitcoin using Flexpool.io AutoSwap",
+      "fee": "1% Service Fee"
+    },
+    "terms": "Terms and conditions apply"
   }
 }
