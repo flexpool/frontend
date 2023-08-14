@@ -408,7 +408,7 @@
   "auto_swap": {
     "btc": {
       "title": "使用 Bitcoin 支付",
-      "desc": "使用 Flexpool.io AutoSwap 以 Bitcoin 收取挖矿收益 (选修的)。",
+      "desc": "使用 Flexpool.io AutoSwap 以 Bitcoin 收取挖矿收益 (可选)。",
       "fee": "1% 服务费"
     },
     "terms": "适用条款和条件"
