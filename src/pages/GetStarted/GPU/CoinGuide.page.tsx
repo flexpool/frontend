@@ -103,6 +103,7 @@ export const MineableCoinGuidePage = ({
       <GuideForm
         initialValue={{
           wallet_address: '',
+          btc: false,
           primary_server: '',
           secondary_server: '',
           worker_name: '',
@@ -116,10 +117,9 @@ export const MineableCoinGuidePage = ({
                 data={mineableCoin}
                 name="wallet_address"
                 desc={walletDescription}
+                isBTC={values.btc}
               />
-
               <Spacer />
-
               {!hidePingTestSection && (
                 <PingTestSection
                   position={positions.indexOf('pingTest')}
@@ -129,28 +129,27 @@ export const MineableCoinGuidePage = ({
                   showAdditionalPorts
                 />
               )}
-
               <SetWorkerNameSection
                 position={positions.indexOf('workerName')}
                 name="worker_name"
               />
-
               <MinerCommandSection
                 position={positions.indexOf('minerCommand')}
                 data={mineableCoinConfig.miners}
                 replaces={{
                   CLOSEST_SERVER: values.primary_server || 'CLOSEST_SERVER',
                   BACKUP_SERVER: values.secondary_server || 'BACKUP_SERVER',
-                  WALLET_ADDRESS: values.wallet_address || 'WALLET_ADDRESS',
+                  WALLET_ADDRESS:
+                    (values.btc ? 'btc:' : '') + values.wallet_address ||
+                    'WALLET_ADDRESS',
                   WORKER_NAME: values.worker_name || 'WORKER_NAME',
                 }}
               />
-
               {values.wallet_address && (
                 <ViewDashboardSection
                   position={positions.indexOf('dashboard')}
                   coin={mineableCoin}
-                  address={values.wallet_address}
+                  address={(values.btc ? 'btc:' : '') + values.wallet_address}
                 />
               )}
             </>

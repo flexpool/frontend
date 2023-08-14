@@ -75,9 +75,12 @@ export type ApiMinerPayment = {
   confirmed: boolean;
   confirmedTimestamp: number;
   network: string;
+  btcValue: number;
+  btcCounterValue: number;
 };
 export type ApiMinerPayments = {
   countervalue: number;
+  btcCounterValue: number;
   data: ApiMinerPayment[];
   totalItems: number;
   totalPages: number;

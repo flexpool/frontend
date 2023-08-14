@@ -15,6 +15,7 @@ import {
   useLocalizedNumberFormatter,
 } from 'src/utils/si.utils';
 import { Tooltip, TooltipContent } from 'src/components/Tooltip';
+import { isBTCAddress } from '@/utils/validators/btcWalletAddress';
 
 type ApiPaymentStats = {
   countervalue: number;
@@ -47,6 +48,8 @@ export const GeneralPaymentStatsSection: React.FC<{
   const numberFormatter = useLocalizedNumberFormatter();
   const currencyFormatter = useLocalizedCurrencyFormatter();
   const dateFormatter = useLocalizedDateFormatter();
+
+  const isBTC = isBTCAddress(address);
 
   React.useEffect(() => {
     if (coin?.ticker) {
@@ -96,7 +99,7 @@ export const GeneralPaymentStatsSection: React.FC<{
         )
       : undefined;
 
-  const totalPaid = activeCoinFormatter(data?.stats?.totalPaid);
+  const totalPaid = activeCoinFormatter(data?.stats?.totalPaid, undefined);
 
   const averageTransactionFeeCounter =
     data && coin && data.stats && data.countervalue
@@ -118,7 +121,7 @@ export const GeneralPaymentStatsSection: React.FC<{
         )
       : undefined;
 
-  const lastPayment = activeCoinFormatter(data?.lastPayment?.value);
+  const lastPayment = activeCoinFormatter(data?.lastPayment?.value, undefined);
 
   if (data && !data.lastPayment) {
     return null;
@@ -163,68 +166,75 @@ export const GeneralPaymentStatsSection: React.FC<{
           />
         </Card>
       </CardGrid>
-      <h2>{t('payments.transaction_fees.title')}</h2>
-      <CardGrid>
-        <Card padding>
-          <CardTitle>{t('payments.transaction_fees.last')}</CardTitle>
-          <StatItem
-            value={lastPaymentCounter}
-            subValue={
-              data && data.lastPayment ? (
-                <>
-                  {lastPayment} •{' '}
-                  {dateFormatter.distanceFromNow(
-                    data.lastPayment.timestamp * 1000
-                  )}{' '}
-                  •{' '}
-                  {t('payments.transaction_fees.fee', {
-                    value: numberFormatter(
-                      data.lastPayment.fee / data.lastPayment.value,
-                      {
+      {!isBTC && (
+        <>
+          <h2>{t('payments.transaction_fees.title')}</h2>
+          <CardGrid>
+            <Card padding>
+              <CardTitle>{t('payments.transaction_fees.last')}</CardTitle>
+              <StatItem
+                value={lastPaymentCounter}
+                subValue={
+                  data && data.lastPayment ? (
+                    <>
+                      {lastPayment} •{' '}
+                      {dateFormatter.distanceFromNow(
+                        data.lastPayment.timestamp * 1000
+                      )}{' '}
+                      •{' '}
+                      {t('payments.transaction_fees.fee', {
+                        value: numberFormatter(
+                          data.lastPayment.fee / data.lastPayment.value,
+                          {
+                            style: 'percent',
+                            maximumFractionDigits: 2,
+                          }
+                        ),
+                      })}
+                    </>
+                  ) : null
+                }
+              />
+            </Card>
+            <Card padding>
+              <CardTitle>{t('payments.transaction_fees.average')}</CardTitle>
+              <StatItem
+                value={averageTransactionFeeCounter}
+                subValue={averageTransactionFee}
+              />
+            </Card>
+            <Card padding>
+              <CardTitle>
+                {t('payments.transaction_fees.average_percent')}
+              </CardTitle>
+              <StatItem
+                value={
+                  data && data.stats && data.stats.averageFeePercent
+                    ? numberFormatter(data.stats.averageFeePercent, {
                         style: 'percent',
-                        maximumFractionDigits: 2,
-                      }
-                    ),
-                  })}
-                </>
-              ) : null
-            }
-          />
-        </Card>
-        <Card padding>
-          <CardTitle>{t('payments.transaction_fees.average')}</CardTitle>
-          <StatItem
-            value={averageTransactionFeeCounter}
-            subValue={averageTransactionFee}
-          />
-        </Card>
-        <Card padding>
-          <CardTitle>
-            {t('payments.transaction_fees.average_percent')}
-          </CardTitle>
-          <StatItem
-            value={
-              data && data.stats && data.stats.averageFeePercent
-                ? numberFormatter(data.stats.averageFeePercent, {
-                    style: 'percent',
-                    maximumFractionDigits: 3,
-                  })
-                : 'N/A'
-            }
-            subValue={
-              <Tooltip
-                icon={<span>{t('payments.transaction_fees.average_cta')}</span>}
-              >
-                <TooltipContent>
-                  {averageCtaTooltip.map((item) => (
-                    <p key={item}>{item}</p>
-                  ))}
-                </TooltipContent>
-              </Tooltip>
-            }
-          />
-        </Card>
-      </CardGrid>
+                        maximumFractionDigits: 3,
+                      })
+                    : 'N/A'
+                }
+                subValue={
+                  <Tooltip
+                    icon={
+                      <span>{t('payments.transaction_fees.average_cta')}</span>
+                    }
+                  >
+                    <TooltipContent>
+                      {averageCtaTooltip.map((item) => (
+                        <p key={item}>{item}</p>
+                      ))}
+                    </TooltipContent>
+                  </Tooltip>
+                }
+              />
+            </Card>
+          </CardGrid>
+        </>
+      )}
+
       <MinerPaymentsList address={address} coin={coin} />
     </>
   );

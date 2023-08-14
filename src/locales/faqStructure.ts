@@ -123,6 +123,7 @@ export const faqStructure = [
       'mining-theory/what-is-a-block.md',
       'mining-theory/the-basics-of-mining-theory.md',
       'mining-theory/what-is-share-difficulty.md',
+      'mining-theory/how-to-get-paid-bitcoin.md'
     ],
   },
 ];

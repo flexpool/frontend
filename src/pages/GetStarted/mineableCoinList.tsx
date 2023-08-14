@@ -1,7 +1,7 @@
+import { btcAddressValidator } from '@/utils/validators/btcWalletAddress';
 import { checksumIron } from '@/utils/validators/ironWalletAddress.validator';
 import { checksumETH } from 'src/utils/validators/ethWalletAddress.validator';
 import { checksumXCH } from 'src/utils/validators/xchWalletAddress.validator';
-import { checksumZIL } from 'src/utils/validators/zilWalletAddress.validator';
 
 export type GpuHardwareDetails = {
   os: ('linux' | 'windows' | 'hiveos')[];
@@ -36,7 +36,10 @@ export type MineableCoin = {
   description: string;
   walletAddressExample: string;
   regex: RegExp;
-  validator: (address: string) => null | string;
+  validator: (
+    address: string,
+    input?: (addr: string) => string | null
+  ) => null | string;
   hardware: MineableCoinHardware[];
   nicehashAvailable: boolean;
 };
@@ -188,7 +191,7 @@ export const mineableCoins: MineableCoin[] = [
     nicehash_algorithm: null,
     description: '',
     regex: /^[A-Fa-f0-9]{64}(\+[a-zA-Z0-9]{1,32})?$/,
-    validator: checksumIron,
+    validator: btcAddressValidator(checksumIron),
     walletAddressExample:
       '2aa206fcbe1d1d86b3db2ec6e80aae6c181f633b42e4df02a8e7997f0f59c4dd',
     nicehashAvailable: false,

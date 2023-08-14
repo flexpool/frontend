@@ -13,6 +13,10 @@ import { getChecksumByTicker } from 'src/utils/validators/checksum';
 import { MinerSettingsModal } from '../Settings/MinerSettings.modal';
 import { Button } from 'src/components/Button';
 import useMinerDetailsQuery from '@/hooks/api/useMinerDetailsQuery';
+import {
+  extractAddressFromBTCAddress,
+  isBTCAddress,
+} from '@/utils/validators/btcWalletAddress';
 
 const rotate = keyframes`
   from {
@@ -67,6 +71,11 @@ const Address = styled(LinkOut)`
   }
 `;
 
+const AddressPrefix = styled.p`
+  color: gray;
+  display: inline;
+`;
+
 const CoinIconSkeleton = styled.div`
   border-radius: 50%;
   width: 40px;
@@ -95,6 +104,15 @@ const Memo = styled.div`
   color: var(--text-secondary);
   border-left: 1px solid var(--border-color);
   padding: 10px;
+`;
+
+const CoinLogo = styled(Img)`
+  z-index: 1;
+`;
+
+const BitcoinLogo = styled(Img)`
+  margin-left: -20px;
+  z-index: 0;
 `;
 
 export const AccountHeader: React.FC<{
@@ -129,23 +147,41 @@ export const AccountHeader: React.FC<{
   if (coin) {
     addressText = getChecksumByTicker(coin.ticker)(address);
 
-    if (addressText && (coin.ticker as string) === 'iron') {
-      const parsedRes = parseIronAddressWithMemo(addressText);
-      addressText = parsedRes.address;
-      ironMemo = parsedRes.memo;
+    if (addressText) {
+      if ((coin.ticker as string) === 'iron') {
+        const parsedRes = parseIronAddressWithMemo(addressText);
+        addressText = parsedRes.address;
+        ironMemo = parsedRes.memo;
+      }
     }
   }
+
+  const isBtcAddr = isBTCAddress(addressText);
+
+  const btcAddr = extractAddressFromBTCAddress(addressText);
 
   return (
     <Wrap paddingShort>
       <AddressContainer>
         {coin ? (
-          <Img src={getCoinIconUrl(coin.ticker)} alt={`${coin.name} logo`} />
+          <React.Fragment>
+            <CoinLogo
+              src={getCoinIconUrl(coin.ticker)}
+              alt={`${coin.name} logo`}
+            />
+            {isBtcAddr && (
+              <BitcoinLogo src={getCoinIconUrl('btc')} alt={`btc logo`} />
+            )}
+          </React.Fragment>
         ) : (
           <CoinIconSkeleton />
         )}
-        <Address href={getCoinLink('wallet', address, coinName)}>
-          {addressText}
+
+        <Address
+          href={getCoinLink('wallet', btcAddr, isBtcAddr ? 'btc' : coinName)}
+        >
+          {isBtcAddr ? <AddressPrefix>btc:</AddressPrefix> : null}
+          {btcAddr}
         </Address>
         {ironMemo && <Memo>{ironMemo}</Memo>}
         <CopyButton text={addressText || ''} />

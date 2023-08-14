@@ -303,13 +303,34 @@
       "desc_one": "对于Iron Fish，您需要通过启动节点并创建钱包来创建钱包。可以在<ifweb>官网</ifweb>上找到说明。或者，您可以使用社区制作的更简单的轻钱包，可以在<oreos>GitHub</oreos>上找到。"
     },
     "pool_details": [
-      { "key": "Reward Scheme", "value": "PPLNS (Pay Per Last N Shares)" },
-      { "key": "Pool Fee", "value": "0.95%" },
-      { "key": "Payout Round", "value": "Once an hour" },
-      { "key": "Payouts", "value": "Minimum 0.05 IRON" },
-      { "key": "Block confirmation time", "value": "32 blocks" },
-      { "key": "Share Difficulty", "value": "150GH" },
-      { "key": "Mining Algorithm", "value": "Blake3" }
+      {
+        "key": "Reward Scheme",
+        "value": "PPLNS (Pay Per Last N Shares)"
+      },
+      {
+        "key": "Pool Fee",
+        "value": "0.95%"
+      },
+      {
+        "key": "Payout Round",
+        "value": "Once an hour"
+      },
+      {
+        "key": "Payouts",
+        "value": "Minimum 0.05 IRON"
+      },
+      {
+        "key": "Block confirmation time",
+        "value": "32 blocks"
+      },
+      {
+        "key": "Share Difficulty",
+        "value": "150GH"
+      },
+      {
+        "key": "Mining Algorithm",
+        "value": "Blake3"
+      }
     ],
     "hardware": [
       {
@@ -383,5 +404,13 @@
       "p2": "We estimate a <hl>{{boost_percent}}</hl> boost on your earnings with current network conditions.",
       "cta": "Get started mining <up>{{primary_ticker}}</up> + <up>{{dual_ticker}}</up>"
     }
+  },
+  "auto_swap": {
+    "btc": {
+      "title": "使用 Bitcoin 支付",
+      "desc": "使用 Flexpool.io AutoSwap 以 Bitcoin 收取挖矿收益 (可选)。",
+      "fee": "1% 服务费"
+    },
+    "terms": "适用条款和条件"
   }
 }

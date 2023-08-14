@@ -5,12 +5,14 @@ import { LinkOut } from 'src/components/LinkOut';
 import { MineableCoin } from '../mineableCoinList';
 import { Trans, useTranslation } from 'next-i18next';
 import { SectionWrapper, WalletTextField } from '../common';
+import { MineBTCBox } from './MineBTCBox';
 
 type SetWalletSectionProps = {
   position: number;
   data: MineableCoin;
   name?: string;
   desc?: React.ReactNode;
+  isBTC?: boolean;
 };
 
 export const SetWalletSection = ({
@@ -18,6 +20,7 @@ export const SetWalletSection = ({
   data,
   name = 'wallet_address',
   desc,
+  isBTC,
 }: SetWalletSectionProps) => {
   const { t } = useTranslation('get-started');
 
@@ -46,16 +49,20 @@ export const SetWalletSection = ({
               components={{
                 ledger: <LinkOut href="https://www.ledger.com/" />,
                 trezor: <LinkOut href="https://trezor.io/" />,
-                strong: <strong />,
               }}
             />
           </p>
         </>
       )}
-
       <Spacer />
+      {data.ticker == 'iron' && (
+        <div>
+          <MineBTCBox />
+          <Spacer />
+        </div>
+      )}
       <DivText>
-        <WalletTextField name={name} data={data} />
+        <WalletTextField name={name} data={data} isBTC={isBTC} />
       </DivText>
     </SectionWrapper>
   );

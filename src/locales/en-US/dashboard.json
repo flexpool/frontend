@@ -184,12 +184,17 @@
       "download": "Download CSV",
       "download_pdf": "Download PDF",
       "table_contents": {
+        "dispatched": "Dispatched",
         "pending": "Pending",
-        "success": "Success"
+        "success": "Success",
+        "not_executed": "Not Executed"
       },
       "estimated_value": "Estimated value now:",
       "table_head": {
         "date": "Date",
+        "date_executed": "Date Executed",
+        "btc_value": "BTC Value",
+        "btc_value_tooltip": "The BTC value paid out",
         "value": "Transaction Value",
         "value_tooltip": "The fiat conversion is based on the price at the time of the payout.",
         "fee": "Fee",
@@ -301,6 +306,7 @@
     "p1": "You can no longer mine Ethereum. Please use your last IP address used to update your payout preferences or change the payout network to execute a payment. If you do not know this IP address or it does not work, contact <supportlink>support</supportlink> with your ETH address (and an increased gas price limit if your limit is below 10). We will take care of your change for you within 72 hours.",
     "p2": "Don't hesitate to get in touch with <supportlink>support</supportlink> if you have a custom request like a balance transfer from one address to another. (A signed Ethereum digital message is required, and it's not supported by exchanges.)"
   },
+  "dispatched_pending_tooltip": "Bitcoin rounds are conducted daily to minimize the fees associated with various operations such as swapping, withdrawing, and executing transactions for users.",
   "status_pending_tooltip": "Awaiting transaction confirmation",
   "confirmation_duration_tooltip": "Confirmed in",
   "confirmed_at_tooltip": "Confirmed at",
