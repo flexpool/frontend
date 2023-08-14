@@ -140,8 +140,8 @@ export const MineableCoinGuidePage = ({
                   CLOSEST_SERVER: values.primary_server || 'CLOSEST_SERVER',
                   BACKUP_SERVER: values.secondary_server || 'BACKUP_SERVER',
                   WALLET_ADDRESS:
-                    (values.btc ? 'btc:' : '') + values.wallet_address ||
-                    'WALLET_ADDRESS',
+                    (values.btc && values.wallet_address ? 'btc:' : '') +
+                      values.wallet_address || 'WALLET_ADDRESS',
                   WORKER_NAME: values.worker_name || 'WORKER_NAME',
                 }}
               />
