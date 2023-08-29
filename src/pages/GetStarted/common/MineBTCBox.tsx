@@ -87,7 +87,18 @@ export const MineBTCBox: React.FC<MineBTCBoxProps> = ({ children }) => {
             fontSize: 12,
           }}
         >
-          {t('auto_swap.btc.fee')} <a>{t('auto_swap.terms')}</a>
+          {t('auto_swap.btc.fee')}{' '}
+          <a
+            onClick={(e) => {
+              e.stopPropagation();
+
+              window.location.href =
+                'https://static.flexpool.io/legal/terms.pdf';
+            }}
+            href={'https://static.flexpool.io/legal/terms.pdf'}
+          >
+            {t('auto_swap.terms')}
+          </a>
         </span>
       </OptionBody>
     </StyledOption>
