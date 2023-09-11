@@ -20,6 +20,7 @@ import { AutoSwapBTCToggleSection } from '../ChiaShared/AutoSwapBTCToggleSection
 import { GUI } from '../ChiaShared/AutoSwapBTCGuide';
 
 import { GuideForm, SectionWrapper } from '../common';
+import { Mono } from '@/components/Typo/Typo';
 
 export const ChiaGuiGuidePage: React.FC = () => {
   const router = useRouter();
@@ -204,6 +205,10 @@ export const ChiaGuiGuidePage: React.FC = () => {
                 title={t('detail_xch.monitor_farm.title')}
               >
                 <p>{t('detail_xch.monitor_farm.desc_gui')}</p>
+                <p>
+                  If you are using BTC AutoSwap, use your Bitcoin wallet address
+                  with the following format: <Mono>btc:BTC_WALLET</Mono>
+                </p>
               </SectionWrapper>
             </>
           );
