@@ -21,10 +21,8 @@ import merge from 'lodash.merge';
 import { NextSeo } from 'next-seo';
 
 import { GuideForm, SectionWrapper } from '../common';
-import { MineBTCBox } from '../common/MineBTCBox';
 import { AutoSwapBTCToggleSection } from '../ChiaShared/AutoSwapBTCToggleSection';
-import { CLI, FlexFarmer } from '../ChiaShared/AutoSwapBTCGuide';
-import { Badge } from '@/components/Badge';
+import { CLI } from '../ChiaShared/AutoSwapBTCGuide';
 
 export const ChiaCliGuidePage: React.FC = () => {
   const isMounted = useIsMounted();
