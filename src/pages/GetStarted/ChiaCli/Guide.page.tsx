@@ -222,7 +222,7 @@ export const ChiaCliGuidePage: React.FC = () => {
                 <p>{t('detail_xch.monitor_farm.desc')}</p>
                 <p>
                   If you are using BTC AutoSwap, use your Bitcoin wallet address
-                  with the following format: <Mono>btc:WALLET_ADDRESS</Mono>
+                  with the following format: <Mono>btc:BTC_WALLET</Mono>
                 </p>
               </SectionWrapper>
 
