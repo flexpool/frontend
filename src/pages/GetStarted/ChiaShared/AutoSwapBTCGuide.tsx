@@ -32,15 +32,15 @@ const CLI = () => {
             }}
           >
             <p>
-              The following instructions guide you through on how to change
-              payout options for Chia.
+              The following instructions guide you through how to change payout
+              options for Chia.
             </p>
 
             <Spacer />
 
             <p>
-              First, Grab the Launcher Id from <Mono>chia plotnft show</Mono>{' '}
-              command, and paste your bitcoin wallet address
+              First, grab the Launcher ID from <Mono>chia plotnft show</Mono>{' '}
+              command and paste your Bitcoin wallet address into the box below:
             </p>
             <Spacer size="sm" />
 
@@ -51,7 +51,7 @@ const CLI = () => {
             >
               <TextField
                 name="launcherId"
-                label={'Launcher Id'}
+                label={'Launcher ID'}
                 placeholder="4973f2b459881b08295dff931c26d..."
               />
 
@@ -59,14 +59,14 @@ const CLI = () => {
 
               <TextField
                 name="btc_address"
-                label={'Bitcoin Wallet'}
+                label={'Bitcoin wallet address'}
                 placeholder="bc1q5zx6dqklmnjq9gffv70fsrz7uaulmr65vyf0hj"
               />
             </div>
 
             <Spacer size="lg" />
 
-            <p>Run the following command to change your payout address</p>
+            <p>Run the following command to change your payout address:</p>
             <TerminalCommand
               cmd={`chia plotnft change_payout_instructions -l ${cmdLauncherId} -a ${cmdAddress}`}
             />
@@ -151,7 +151,7 @@ const GUI = () => {
   return (
     <div>
       <p>
-        The following instructions guide you through on how to change payout
+        The following instructions guide you through how to change payout
         options for Chia.
       </p>
       <Spacer />
@@ -170,23 +170,4 @@ const GUI = () => {
   );
 };
 
-const FlexFarmer = () => {
-  return (
-    <div>
-      <p>Update your Config.yml</p>
-      <Spacer size="sm" />
-      <Code language="yaml">
-        {`# ./config.yml
-
-# edit this
-payout_address: btc:BTC_Wallet # update to this specific format where BTC_WALLET is your bitcoin address
-
-# add this
-block_reward_destination_address: XCH_WALLET # this is where send the 0.25 XCH block reward
-      `}
-      </Code>
-    </div>
-  );
-};
-
-export { CLI, GUI, FlexFarmer };
+export { CLI, GUI };
