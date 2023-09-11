@@ -21,6 +21,10 @@ import merge from 'lodash.merge';
 import { NextSeo } from 'next-seo';
 
 import { GuideForm, SectionWrapper } from '../common';
+import { MineBTCBox } from '../common/MineBTCBox';
+import { AutoSwapBTCToggleSection } from '../ChiaShared/AutoSwapBTCToggleSection';
+import { CLI, FlexFarmer } from '../ChiaShared/AutoSwapBTCGuide';
+import { Badge } from '@/components/Badge';
 
 export const ChiaCliGuidePage: React.FC = () => {
   const isMounted = useIsMounted();
@@ -176,7 +180,13 @@ export const ChiaCliGuidePage: React.FC = () => {
                   </li>
                 </ul>
               </p>
+
+              <Spacer />
+              <AutoSwapBTCToggleSection>
+                <CLI />
+              </AutoSwapBTCToggleSection>
               <Spacer size="xl" />
+
               {farmer_option === 'new-farmer' ? (
                 <>
                   <ButtonGroupField
@@ -210,6 +220,10 @@ export const ChiaCliGuidePage: React.FC = () => {
                 title={t('detail_xch.monitor_farm.title')}
               >
                 <p>{t('detail_xch.monitor_farm.desc')}</p>
+                <p>
+                  If you are using BTC AutoSwap, use your Bitcoin wallet address
+                  with the following format: <Mono>btc:WALLET_ADDRESS</Mono>
+                </p>
               </SectionWrapper>
 
               <Spacer size="xl" />
