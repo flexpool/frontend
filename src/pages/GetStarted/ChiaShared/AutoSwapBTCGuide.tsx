@@ -7,8 +7,11 @@ import { ChiaGuiMenu } from '../ChiaGui/Guide.page';
 import styled, { keyframes } from 'styled-components';
 import { FiMoreVertical } from 'react-icons/fi';
 import { Code } from '@/components/Code/Code';
+import { Trans, useTranslation } from 'next-i18next';
 
 const CLI = () => {
+  const { t } = useTranslation('get-started');
+
   return (
     <GuideForm
       initialValue={{
@@ -31,16 +34,18 @@ const CLI = () => {
               maxWidth: 800,
             }}
           >
-            <p>
-              The following instructions guide you through how to change payout
-              options for Chia.
-            </p>
+            <p>{t('detail_xch.btc_payout.intro')}</p>
 
             <Spacer />
 
             <p>
-              First, grab the Launcher ID from <Mono>chia plotnft show</Mono>{' '}
-              command and paste your Bitcoin wallet address into the box below:
+              <Trans
+                t={t}
+                i18nKey={'detail_xch.btc_payout.paste_info'}
+                components={{
+                  mono: <Mono />,
+                }}
+              />
             </p>
             <Spacer size="sm" />
 
@@ -66,7 +71,7 @@ const CLI = () => {
 
             <Spacer size="lg" />
 
-            <p>Run the following command to change your payout address:</p>
+            <p>{t('detail_xch.btc_payout.run_cmd')}</p>
             <TerminalCommand
               cmd={`chia plotnft change_payout_instructions -l ${cmdLauncherId} -a ${cmdAddress}`}
             />
@@ -148,19 +153,20 @@ const EditPayoutInstructions = () => {
 };
 
 const GUI = () => {
+  const { t } = useTranslation('get-started');
   return (
     <div>
-      <p>
-        The following instructions guide you through how to change payout
-        options for Chia.
-      </p>
+      <p>{t('detail_xch.btc_payout.intro')}</p>
       <Spacer />
-      <p>
-        Edit your payout instructions for your PlotNFT in the &quot;Pool&quot;
-        page.
-      </p>
-      <b>Note:</b> Your address must follow the format{' '}
-      <Mono>btc:BTC_WALLET</Mono>
+      <p>{t('detail_xch.btc_payout.gui_instruction')}</p>
+      <Trans
+        t={t}
+        i18nKey={'detail_xch.btc_payout.paste_info'}
+        components={{
+          mono: <Mono />,
+          b: <b />,
+        }}
+      />
       <Spacer />
       <ChiaGuiMenu
         selectedMenu="Pool"

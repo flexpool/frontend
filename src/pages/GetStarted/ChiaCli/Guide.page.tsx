@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-import { useTranslation } from 'next-i18next';
+import { Trans, useTranslation } from 'next-i18next';
 
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
@@ -219,8 +219,13 @@ export const ChiaCliGuidePage: React.FC = () => {
               >
                 <p>{t('detail_xch.monitor_farm.desc')}</p>
                 <p>
-                  If you are using BTC AutoSwap, use your Bitcoin wallet address
-                  with the following format: <Mono>btc:BTC_WALLET</Mono>
+                  <Trans
+                    t={t}
+                    i18nKey={'detail_xch.btc_payout.dashboard_format'}
+                    components={{
+                      mono: <Mono />,
+                    }}
+                  />
                 </p>
               </SectionWrapper>
 

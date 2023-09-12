@@ -206,8 +206,13 @@ export const ChiaGuiGuidePage: React.FC = () => {
               >
                 <p>{t('detail_xch.monitor_farm.desc_gui')}</p>
                 <p>
-                  If you are using BTC AutoSwap, use your Bitcoin wallet address
-                  with the following format: <Mono>btc:BTC_WALLET</Mono>
+                  <Trans
+                    t={t}
+                    i18nKey={'detail_xch.btc_payout.dashboard_format'}
+                    components={{
+                      mono: <Mono />,
+                    }}
+                  />
                 </p>
               </SectionWrapper>
             </>
