@@ -109,6 +109,11 @@ module.exports = withPWA(
           destination: '/miner/iron/:address',
           permanent: false,
         },
+        {
+          source: '/get-started/xch/flexfarmer',
+          destination: 'https://farmer.flexpool.io/get-started',
+          permanent: false,
+        },
         // Old Redirects from CRA app
         // {
         //   source: '/:lang/blocks',

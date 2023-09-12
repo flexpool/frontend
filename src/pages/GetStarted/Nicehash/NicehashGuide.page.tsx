@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useRouter } from 'next/router';
-import { Trans, useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 import { CopyButton } from 'src/components/CopyButton';
 import { Img } from 'src/components/Img';
@@ -15,10 +15,6 @@ import { LinkOut } from 'src/components/LinkOut';
 import { Highlight, Mono, Ws } from 'src/components/Typo/Typo';
 import { MineableCoinRegion, mineableCoins } from '../mineableCoinList';
 import { NextSeo } from 'next-seo';
-
-import nh1 from './assets/nh_1.jpg';
-import nh2 from './assets/nh_2.jpg';
-import nh3 from './assets/nh_3.jpg';
 
 export const ServerList: React.FC<{
   data: MineableCoinRegion[];
@@ -165,8 +161,8 @@ export const NicehashGuidePage = () => {
             ))}
           </>
         )}
-        <LinkOut href={nh1.src}>
-          <GuideImg src={nh1.src} alt="nicehash guide" />
+        <LinkOut href={'/nicehash-guide/nh_1.jpg'}>
+          <GuideImg src={'/nicehash-guide/nh_1.jpg'} alt="nicehash guide" />
         </LinkOut>
         <h2>
           <Highlight>#2 </Highlight>
@@ -185,8 +181,8 @@ export const NicehashGuidePage = () => {
         <Spacer />
         <ServerList data={mineableCoin?.regions as MineableCoinRegion[]} />
         <Spacer />
-        <LinkOut href={nh2.src}>
-          <GuideImg src={nh2.src} alt="nicehash guide" />
+        <LinkOut href={'/nicehash-guide/nh_2.jpg'}>
+          <GuideImg src={'/nicehash-guide/nh_2.jpg'} alt="nicehash guide" />
         </LinkOut>
         <h2>
           <Highlight>#3 </Highlight>
@@ -202,8 +198,8 @@ export const NicehashGuidePage = () => {
             ))}
           </>
         )}
-        <LinkOut href={nh3.src}>
-          <GuideImg src={nh3.src} alt="nicehash guide" />
+        <LinkOut href={'/nicehash-guide/nh_3.jpg'}>
+          <GuideImg src={'/nicehash-guide/nh_3.jpg'} alt="nicehash guide" />
         </LinkOut>
         <h2>
           <Highlight>#4</Highlight> {t('nicehash.step_four.title')}

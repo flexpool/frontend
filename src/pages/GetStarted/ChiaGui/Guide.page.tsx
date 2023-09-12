@@ -16,8 +16,11 @@ import { ChiaGuiInput } from './Input';
 import { ChiaGuiLink } from './Link';
 import { FarmerOptionSelector } from '../ChiaShared/FarmerOptionSelector';
 import { NextSeo } from 'next-seo';
+import { AutoSwapBTCToggleSection } from '../ChiaShared/AutoSwapBTCToggleSection';
+import { GUI } from '../ChiaShared/AutoSwapBTCGuide';
 
 import { GuideForm, SectionWrapper } from '../common';
+import { Mono } from '@/components/Typo/Typo';
 
 export const ChiaGuiGuidePage: React.FC = () => {
   const router = useRouter();
@@ -97,11 +100,8 @@ export const ChiaGuiGuidePage: React.FC = () => {
                   namePrimary="primary_server"
                 />
               </SectionWrapper>
-
               <Spacer size="xl" />
-
               <FarmerOptionSelector name="farmer_option" />
-
               {farmer_option !== 'already-farmer' ? (
                 <SectionWrapper
                   position={2}
@@ -165,9 +165,7 @@ export const ChiaGuiGuidePage: React.FC = () => {
                   />
                 </SectionWrapper>
               )}
-
               <Spacer size="xl" />
-
               <SectionWrapper
                 position={3}
                 title={t('detail_xch.gather_payout_address_gui.title')}
@@ -182,6 +180,7 @@ export const ChiaGuiGuidePage: React.FC = () => {
                     />
                   }
                 />
+
                 <Spacer />
                 <p>
                   <b>{t('detail.note') + ' '}</b>
@@ -195,13 +194,26 @@ export const ChiaGuiGuidePage: React.FC = () => {
                 </p>
               </SectionWrapper>
 
-              <Spacer size="xl" />
+              <Spacer />
+              <AutoSwapBTCToggleSection>
+                <GUI />
+              </AutoSwapBTCToggleSection>
 
+              <Spacer size="xl" />
               <SectionWrapper
                 position={4}
                 title={t('detail_xch.monitor_farm.title')}
               >
                 <p>{t('detail_xch.monitor_farm.desc_gui')}</p>
+                <p>
+                  <Trans
+                    t={t}
+                    i18nKey={'detail_xch.btc_payout.dashboard_format'}
+                    components={{
+                      mono: <Mono />,
+                    }}
+                  />
+                </p>
               </SectionWrapper>
             </>
           );
@@ -735,7 +747,7 @@ type ChiaGuiMenuProps = {
   highlightMenu?: boolean;
 };
 
-const ChiaGuiMenu = (props: ChiaGuiMenuProps) => {
+export const ChiaGuiMenu = (props: ChiaGuiMenuProps) => {
   const { selectedMenu, menuContent, highlightMenu } = props;
 
   return (

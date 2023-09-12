@@ -3,8 +3,7 @@ import { getCoinIconUrl } from '@/utils/staticImage.utils';
 import React from 'react';
 import styled from 'styled-components';
 import { Badge } from '@/components/Badge';
-import { CheckboxField } from '@/components/Form/Checkbox';
-import { useField } from 'formik';
+import { Checkbox } from '@/components/Form/Checkbox';
 import { useTranslation } from 'next-i18next';
 
 const BTCImg = styled(Img)`
@@ -54,21 +53,30 @@ const OptionBody = styled.div`
   }
 `;
 
-interface MineBTCBoxProps {}
+interface MineBTCBoxProps {
+  onClick?: (checked: boolean) => void;
+  checked: boolean;
+}
 
-export const MineBTCBox: React.FC<MineBTCBoxProps> = ({ children }) => {
-  const [field, meta, helpers] = useField('btc');
+const NOOP = () => {};
+
+export const MineBTCBox: React.FC<MineBTCBoxProps> = ({
+  onClick = NOOP,
+  checked,
+}) => {
   const { t } = useTranslation('get-started');
+
+  const active = checked ? 'true' : 'false';
 
   return (
     <StyledOption
-      data-active={field.value.toString()}
+      data-active={active}
       onClick={(e) => {
         e.preventDefault();
-        helpers.setValue(!field.value);
+        onClick(!checked);
       }}
     >
-      <OptionHeader data-active={field.value.toString()}>
+      <OptionHeader data-active={active}>
         <BTCImg src={getCoinIconUrl('btc')} alt={`btc logo`} height={24} />
         {t('auto_swap.btc.title')} <Badge variant="success">New</Badge>
         <div
@@ -76,9 +84,14 @@ export const MineBTCBox: React.FC<MineBTCBoxProps> = ({ children }) => {
             marginLeft: 'auto',
           }}
         />
-        <CheckboxField name={'btc'} />
+        <Checkbox
+          value={checked ? 'true' : undefined}
+          onClick={() => {
+            onClick(!checked);
+          }}
+        />
       </OptionHeader>
-      <OptionBody data-active={field.value.toString()}>
+      <OptionBody data-active={active}>
         {t('auto_swap.btc.desc')}
         <br />
         <br />

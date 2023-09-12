@@ -5,7 +5,7 @@ import { LinkOut } from 'src/components/LinkOut';
 import { MineableCoin } from '../mineableCoinList';
 import { Trans, useTranslation } from 'next-i18next';
 import { SectionWrapper, WalletTextField } from '../common';
-import { MineBTCBox } from './MineBTCBox';
+import { SetAutoSwapBTC } from './SetAutoSwapBTC';
 
 type SetWalletSectionProps = {
   position: number;
@@ -57,7 +57,7 @@ export const SetWalletSection = ({
       <Spacer />
       {data.ticker == 'iron' && (
         <div>
-          <MineBTCBox />
+          <SetAutoSwapBTC name="btc" />
           <Spacer />
         </div>
       )}

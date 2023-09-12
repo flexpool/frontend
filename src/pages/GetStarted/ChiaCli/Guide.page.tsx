@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-import { useTranslation } from 'next-i18next';
+import { Trans, useTranslation } from 'next-i18next';
 
 import { Page } from 'src/components/layout/Page';
 import { Spacer } from 'src/components/layout/Spacer';
@@ -21,6 +21,8 @@ import merge from 'lodash.merge';
 import { NextSeo } from 'next-seo';
 
 import { GuideForm, SectionWrapper } from '../common';
+import { AutoSwapBTCToggleSection } from '../ChiaShared/AutoSwapBTCToggleSection';
+import { CLI } from '../ChiaShared/AutoSwapBTCGuide';
 
 export const ChiaCliGuidePage: React.FC = () => {
   const isMounted = useIsMounted();
@@ -176,7 +178,13 @@ export const ChiaCliGuidePage: React.FC = () => {
                   </li>
                 </ul>
               </p>
+
+              <Spacer />
+              <AutoSwapBTCToggleSection>
+                <CLI />
+              </AutoSwapBTCToggleSection>
               <Spacer size="xl" />
+
               {farmer_option === 'new-farmer' ? (
                 <>
                   <ButtonGroupField
@@ -210,6 +218,15 @@ export const ChiaCliGuidePage: React.FC = () => {
                 title={t('detail_xch.monitor_farm.title')}
               >
                 <p>{t('detail_xch.monitor_farm.desc')}</p>
+                <p>
+                  <Trans
+                    t={t}
+                    i18nKey={'detail_xch.btc_payout.dashboard_format'}
+                    components={{
+                      mono: <Mono />,
+                    }}
+                  />
+                </p>
               </SectionWrapper>
 
               <Spacer size="xl" />

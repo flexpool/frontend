@@ -296,7 +296,15 @@
         "title": "FlexFarmer",
         "key": "flexfarmer"
       }
-    ]
+    ],
+    "btc_payout": {
+      "intro": "The following instructions guide you through how to change payout options for Chia.",
+      "paste_info": "First, grab the Launcher ID from <mono>chia plotnft show</mono> command and paste your Bitcoin wallet address into the box below:",
+      "run_cmd": "Run the following command to change your payout address:",
+      "gui_instruction": "Edit your payout instructions for your PlotNFT in the 'Pool' page.",
+      "gui_note": "<b>Note:</b> Your address must follow the format <mono>btc:BTC_WALLET</mono>",
+      "dashboard_format": "If you are using BTC AutoSwap, use your Bitcoin wallet address with the following format: <mono>btc:BTC_WALLET</mono>"
+    }
   },
   "detail_tiron": {
     "title": "Iron Fish (Testnet) mining",

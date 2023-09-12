@@ -155,7 +155,7 @@ export const mineableCoins: MineableCoin[] = [
     nicehash_algorithm: null,
     description: '',
     regex: /^(t|)xch1[qpzry9x8gf2tvdw0s3jn54khce6mua7l]{58}$/g,
-    validator: checksumXCH,
+    validator: btcAddressValidator(checksumXCH),
     walletAddressExample:
       'xch1442zglfj9y8jvr9hnle7p09s0ura4vwnxfl7cfp4eud99f0hr2aqfvdl0h',
     nicehashAvailable: false,

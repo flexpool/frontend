@@ -295,7 +295,15 @@
         "title": "FlexFarmer",
         "key": "flexfarmer"
       }
-    ]
+    ],
+    "btc_payout": {
+      "intro": "以下说明将指导您如何更改Chia的支付选项。",
+      "paste_info": "首先，从<mono>chia plotnft show</mono>命令中获取启动器ID，并将您的比特币钱包地址粘贴到下方的框中：",
+      "run_cmd": "运行以下命令以更改您的支付地址：",
+      "gui_instruction": "在“矿池”页面编辑您的PlotNFT的支付说明。",
+      "gui_note": "<b>注意：</b>您的地址必须遵循以下格式：<mono>btc:BTC_WALLET</mono>",
+      "dashboard_format": "如果您正在使用BTC AutoSwap，请使用以下格式的比特币钱包地址：<mono>btc:BTC_WALLET</mono>"
+    }
   },
   "detail_tiron": {
     "title": "Iron Fish (Testnet) mining",
