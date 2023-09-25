@@ -28,6 +28,7 @@ import { SnackViewControl } from '@/components/Snacks/SnackViewControl';
 import SEO from '../next-seo.config';
 import Script from 'next/script';
 import { ThemeModeProvider } from '@/context/ThemeModeProvider';
+import { ShutdownNoticeBar } from '@/components/ShutdownNoticeBar';
 
 let cachedState;
 let addressSearchState;
@@ -80,6 +81,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
               <SnackViewControl />
               <RouteLoader />
               <NavBar />
+              <ShutdownNoticeBar />
               <SwitchTransition>
                 <CSSTransition
                   classNames="fade"
