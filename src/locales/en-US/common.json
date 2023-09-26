@@ -103,5 +103,19 @@
   "current_network_value": "Current Network {{value}}",
   "view_network_stats": "View network statistics",
   "hours": "hour(s)",
-  "minutes": "minute(s)"
+  "minutes": "minute(s)",
+  "shutdown": {
+    "announcement": "Flexpool.io is shutting down its service on November 1, 2023.",
+    "read_more": "Read More",
+    "notice_header": "Flexpool.io Shutdown Notice (Nov 1, 2023)",
+    "notice_p1_title": "It's time to say goodbye",
+    "notice_p1_content": "Hi everyone, we have some news to deliver. It's with a heavy heart, but we are forced to announce that <b>Flexpool.io will officially wind down its operations on November 1, 2023.</b>",
+    "notice_p2_title": "What happened",
+    "notice_p2_content": "We are forced to shut down due to the current market situation. Flexpool.io's vision was to provide mining/farming services of the best quality. Back in 2021-2022, there was enough volume to sustain our core values, and Flexpool.io was an industry leader in investing in user experience. Unfortunately, with the known declining performance of cryptocurrency markets, the main focus of an average mining pool shifted from providing the best experience possible to cutting the costs down to the minimum to survive. Flexpool.io was never designed to be run this way. Our servers and software were designed to maintain the highest quality, performance, and reliability possible. This made Flexpool.io much more expensive to run compared to the “plain” mining pools out there. This worked well during the times when the cryptocurrency market was adequate, but not now. After a year of trying to endure the pressure of migrating to cheap servers and downgrading the platform quality, we officially announce that we can no longer keep this going.",
+    "notice_p3_title": "What do you need to know as a Flexpool.io user",
+    "notice_p3_content": "Please make a switch toward another pool as soon as convenient by the deadline date of November 1, 2023. To avoid any downtime in your mining/farming operations, it's important to arrange your move in advance, as all Flexpool.io mining/farming endpoints will be shut down at once on that date. For FlexFarmer users: As FlexFarmer was never designed to work with any other pool but Flexpool.io, FlexFarmer will be deprecated on the same date. Please switch to the regular Chia farming software along with changing the pool. All outstanding balances that are high enough to cover the network fees will be paid out shorty after the mining/farming endpoints are shut down. We will cover the network fee for AutoSwap-enabled payouts.",
+    "notice_p4_title": "Thank you!",
+    "notice_p4_content": "On behalf of our entire team, we would like to thank every user who has been with us in this journey, regardless of their contribution. But we will express our special thanks to everyone who contributed to this amazing project, be it by directly contributing to our open-source software, helping us fix bugs, or submitting your feature requests. By moderating our online communities or helping other users - you are awesome! ❤️",
+    "close": "Close"
+  }
 }
