@@ -103,7 +103,7 @@ export const ShutdownNoticeBar = () => {
             setShowDetailModal(true);
           }}
         >
-          Read more
+          {t('shutdown.read_more')}
         </ReadMoreButton>
       </AnnouncementBar>
       <Modal
@@ -161,7 +161,7 @@ export const ShutdownNoticeBar = () => {
             <Spacer size="sm" />
 
             <ReadMoreButton onClick={() => setReadMore(true)}>
-              Read more <BiChevronDown />
+              {t('shutdown.read_more')} <BiChevronDown />
             </ReadMoreButton>
 
             {readMore && (
@@ -178,7 +178,7 @@ export const ShutdownNoticeBar = () => {
         </ScrollArea>
         <ModalFooter>
           <Checkbox
-            label="I have read this message"
+            label={t('shutdown.acknowledge')}
             checked={acknowledge}
             value={acknowledge === true ? 'true' : undefined}
             onChange={(e) => {
@@ -187,8 +187,6 @@ export const ShutdownNoticeBar = () => {
               } else {
                 setAcknowledge(false);
               }
-
-              console.log(e.currentTarget.checked);
             }}
           />
           <Button
