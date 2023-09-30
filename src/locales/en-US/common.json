@@ -116,6 +116,7 @@
     "notice_p3_content": "Please make a switch toward another pool as soon as convenient by the deadline date of November 1, 2023. To avoid any downtime in your mining/farming operations, it's important to arrange your move in advance, as all Flexpool.io mining/farming endpoints will be shut down at once on that date. For FlexFarmer users: As FlexFarmer was never designed to work with any other pool but Flexpool.io, FlexFarmer will be deprecated on the same date. Please switch to the regular Chia farming software along with changing the pool. All outstanding balances that are high enough to cover the network fees will be paid out shorty after the mining/farming endpoints are shut down. We will cover the network fee for AutoSwap-enabled payouts.",
     "notice_p4_title": "Thank you!",
     "notice_p4_content": "On behalf of our entire team, we would like to thank every user who has been with us in this journey, regardless of their contribution. But we will express our special thanks to everyone who contributed to this amazing project, be it by directly contributing to our open-source software, helping us fix bugs, or submitting your feature requests. By moderating our online communities or helping other users - you are awesome! ❤️",
-    "close": "Close"
+    "close": "Close",
+    "acknowledge": "I have read this message"
   }
 }

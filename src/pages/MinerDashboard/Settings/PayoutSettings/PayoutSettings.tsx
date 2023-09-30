@@ -168,33 +168,25 @@ export const PayoutSettings: React.FC<{
             <Form>
               <FieldGroup.V>
                 <h3>{t('dashboard:settings.payout.title')}</h3>
-
                 {(String(activeCoin?.ticker) === 'eth' ||
                   String(activeCoin?.ticker) === 'etc') &&
                   values.network === 'mainnet' && <PayoutWarning />}
-
                 {error && (
                   <ScrollIntoView>
                     <ErrorBox error={error} />
                   </ScrollIntoView>
                 )}
-
                 {values.network !== 'mainnet' && (
                   <L2Warning network={values.network} />
                 )}
-
                 {String(activeCoin?.ticker) === 'eth' && <NetworkSelect />}
-
                 <Spacer size="sm" />
-
                 <ThresholdInput
                   name="payoutLimit"
                   isBTC={isBTCAddr}
                   isMainnet={values.network === 'mainnet'}
                 />
-
                 <Spacer size="sm" />
-
                 {(String(activeCoin?.ticker) === 'eth' ||
                   String(activeCoin?.ticker) === 'etc') &&
                   values.network === 'mainnet' && (
@@ -214,7 +206,6 @@ export const PayoutSettings: React.FC<{
                       <Spacer size="sm" />
                     </>
                   )}
-
                 <TextField
                   name="ip"
                   label={`${t('dashboard:settings.ip')}*`}
@@ -229,7 +220,6 @@ export const PayoutSettings: React.FC<{
                   </p>
                   <p>{t('dashboard:settings.ip_description')} </p>
                 </div>
-
                 {(String(activeCoin?.ticker) === 'eth' ||
                   String(activeCoin?.ticker) === 'etc') &&
                 values.network === 'mainnet' &&
@@ -240,13 +230,11 @@ export const PayoutSettings: React.FC<{
                 ) : (
                   ''
                 )}
-
+                acknowledge
                 <Spacer size="sm" />
-
                 {values.network !== 'mainnet' && (
                   <L2AcknowledgeCheckbox network={values.network} />
                 )}
-
                 <Submit shape="block" disableWhenFormNotDirty={!isAcknowledged}>
                   {t('dashboard:settings.payout.submit')}
                 </Submit>
