@@ -18,6 +18,7 @@
     "@types/react-dom": "17.0.0",
     "@types/react-google-recaptcha": "2.1.0",
     "@types/react-pdf": "5.0.2",
+    "@vercel/edge-config": "^0.4.1",
     "ansi-regex": "5.0.1",
     "bitcoin-address-validation": "^2.2.1",
     "copy-to-clipboard": "3.3.1",

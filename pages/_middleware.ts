@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { COOKIES_PREFERENCE_CURRENCY } from '@/constants';
 import countries from '@/lib/countries';
+import { get } from '@vercel/edge-config';
 
 const BLOCKED_COUNTRY = 'RU';
 
-export function middleware(req: NextRequest) {
-  const country = req.geo?.country || 'US';
+export async function middleware(req: NextRequest) {
+  const sunset = await get('sunset');
 
-  if (process.env.SUNSET === 'true') {
+  if (sunset === 'true') {
     // Return response with html content
     return new Response(
       `<!DOCTYPE html>
@@ -63,6 +64,8 @@ export function middleware(req: NextRequest) {
       }
     );
   }
+
+  const country = req.geo?.country || 'US';
 
   if (
     req.nextUrl.pathname !== '/region-not-available' &&
