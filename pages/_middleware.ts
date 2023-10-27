@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { COOKIES_PREFERENCE_CURRENCY } from '@/constants';
 import countries from '@/lib/countries';
-import { get } from '@vercel/edge-config';
+const { get } = require('@vercel/edge-config');
 
 const BLOCKED_COUNTRY = 'RU';
 
