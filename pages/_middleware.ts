@@ -8,7 +8,7 @@ const BLOCKED_COUNTRY = 'RU';
 export async function middleware(req: NextRequest) {
   const sunset = await get('sunset');
 
-  if (sunset === 'true') {
+  if (sunset === true) {
     // Return response with html content
     return new Response(
       `<!DOCTYPE html>
