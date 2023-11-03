@@ -90,9 +90,10 @@ export const OpenDataReportsPage = ({ lastReportYear }) => {
 export default OpenDataReportsPage;
 
 export async function getStaticProps({ locale }) {
-  const lastReportYear = await fetch(
-    'https://static.flexpool.io/opendata/last-report'
-  ).then((res) => res.text());
+  // const lastReportYear = await fetch(
+  //   'https://static.flexpool.io/opendata/last-report'
+  // ).then((res) => res.text());
+  const lastReportYear = 2021;
 
   return {
     props: {
